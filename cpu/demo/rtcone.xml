@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Cone Only">
+	<camera type="Camera">
+		<viewPoint> 0 0 -15 </viewPoint>
+		<viewDir> 0 0 0 </viewDir>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+	</camera>
+	<surface type="cone">
+		<center> 0 0 0 </center>
+		<normal> 0 1 0 </normal>
+		<radius> 20 </radius>
+		<rotation> 0 0 1 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 0.0 0.3 0.3 1 </color>
+		<height> 1 </height>
+	</surface>
+	<light>
+		<position> -3 0 -8 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+</scene>

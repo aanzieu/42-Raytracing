@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Plan Only">
+	<camera type="Camera">
+		<viewPoint> 0 0 -15 </viewPoint>
+		<viewDir> 0 0 0 </viewDir>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+	</camera>
+	<surface type="plan">
+		<origin> 0 -2.5 0 </origin>
+		<normal> 0 1 0 </normal>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 0.2 0.23 0.233 0.5 </color>
+	</surface>
+	<light>
+		<position> -3 0 -8 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+</scene>

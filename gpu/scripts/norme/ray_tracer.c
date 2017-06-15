@@ -1,0 +1,115 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_tracer.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
+/*   Updated: 2017/03/17 14:07:23 by svilau           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/rtv1.h"
+#include "../frameworks/SDL2.framework/Headers/SDL.h"
+#include "../includes/display.h"
+#include <math.h>
+#include <float.h>
+#include <cuda.h>
+
+void	get_ray_direction(t_world *world, t_ray *ray, int x, int y)
+{
+	t_vec3d dir_point;
+
+	dir_point = vector_substract(
+							vector_add(
+								world->viewplane.up_left,
+								vector_scalar(
+									world->camera.right_v,
+									world->viewplane.x_indent * x)),
+							vector_scalar(
+								world->camera.up_v,
+								world->viewplane.y_indent * y));
+	ray->dir = vector_normalize(
+				vector_calculate(
+					world->camera.pos,
+					dir_point));
+	ray->origin = world->camera.pos;
+}
+
+int		get_shadow(t_world *world, t_intersection collision, t_light *light)
+{
+	t_intersection	collision_tmp;
+	t_ray			shadow;
+	double			dist_light;
+	double			dist_intersection;
+
+	collision_tmp.t = DBL_MAX;
+	collision_tmp.type = '0';
+	shadow.dir = vector_calculate(collision.pos, light->pos);
+	shadow.origin = collision.pos;
+	dist_light = vector_length(shadow.dir);
+	if (get_closest_intersection(world, shadow, &collision_tmp) == 1)
+	{
+		dist_intersection = vector_length(vector_calculate(collision.pos,
+												collision_tmp.pos));
+		if (dist_intersection < dist_light)
+			return (1);
+	}
+	return (0);
+}
+
+int		get_light_at(t_light *light, t_intersection intersection)
+{
+	t_vec3d	light_vector;
+	double	angle;
+
+	light_vector = vector_normalize(vector_calculate(intersection.pos,
+														light->pos));
+	angle = vector_dot(intersection.normal_v, light_vector);
+	if (angle <= 0)
+		return (BLACK);
+	else
+		return (get_color(angle * intersection.color->r,
+				angle * intersection.color->g, angle * intersection.color->b));
+}
+
+int		get_closest_intersection(t_world *world, t_ray ray,
+										t_intersection *intersection)
+{
+	t_intersection	intersection_tmp;
+
+	intersection_tmp.t = DBL_MAX;
+	intersection_tmp.type = '0';
+	get_closest_sphere(world, ray, intersection, &intersection_tmp);
+	get_closest_plane(world, ray, intersection, &intersection_tmp);
+	get_closest_cone(world, ray, intersection, &intersection_tmp);
+	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
+	if (intersection_tmp.type == '0')
+		return (0);
+	else
+		return (1);
+}
+
+int		ray_tracer(t_world *world, int x, int y)
+{
+	t_ray			ray;
+	t_ray			shadow;
+	t_intersection	intersection;
+	int				ret;
+
+	intersection.t = DBL_MAX;
+	intersection.type = '0';
+	get_up_left(world);
+	get_ray_direction(world, &ray, x, y);
+	get_closest_intersection(world, ray, &intersection);
+	if (intersection.type != '0' && intersection.t > 0.0000001)
+	{
+		if (get_shadow(world, intersection, world->lights) == 1)
+			return (BLACK);
+		else
+			return (get_light_at(world->lights, intersection));
+	}
+	else
+		return (BLACK);
+}

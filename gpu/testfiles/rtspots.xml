@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Full Elem">
+	<camera type="Camera">
+		<viewPoint> 0 0 -30 </viewPoint>
+		<viewDir> 0 0 0 </viewDir>
+		<!--<viewUp> 0, 1, 0 </viewUp>
+		<viewWidth> 0.75 </viewWidth>
+		<viewHeight> 0.76 </viewHeight>-->
+	</camera>
+	<image>
+		300, 300
+	</image>
+	<surface type="plan">
+		<origin> 0 0 9 </origin>
+		<normal> 0 0 -1 </normal>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 0.5 </color>
+	</surface>
+	<surface type="plan">
+		<origin> 0 -2.5 0 </origin>
+		<normal> 0 1 0 </normal>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 0.5 </color>
+	</surface>
+	<surface type="plan">
+		<origin> 0 2.5 0 </origin>
+		<normal> 0 -1 0 </normal>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 0.5 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="red" />
+		<radius> 0.3 </radius>
+		<center> 0.0 -2.0 0 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_hautG" />
+		<radius> 0.7 </radius>
+		<center> -3 2.5 -0.25 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_hautG" />
+		<radius> 0.7 </radius>
+		<center> -2 2.5 3 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_basG" />
+		<radius> 0.7 </radius>
+		<center> -3 -2.5 -0.25 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="cone">
+		<center> -3 -0.5 -0.25 </center>
+		<normal> 0 1 0 </normal>
+		<radius> 30 </radius>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+		<height> 1 </height>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_basG" />
+		<radius> 0.7 </radius>
+		<center> -2 -2.5 3 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Cylinder">
+		<center> -2 -2.5 3 </center>
+		<normal> 0 1 0 </normal>
+		<radius> 0.2 </radius>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+		<height> 1 </height>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_hautD" />
+		<radius> 0.7 </radius>
+		<center> 3 2.5 -0.25 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_hautD" />
+		<radius> 0.7 </radius>
+		<center> 2 2.5 3 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 0.3 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_basD" />
+		<radius> 0.7 </radius>
+		<center> 3 -2.5 -0.25 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 0.3 </color>
+	</surface>
+	<surface type="cone">
+		<center> 3 -0.5 -0.25 </center>
+		<normal> 0 1 0 </normal>
+		<radius> 30 </radius>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+		<height> 1 </height>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_basD" />
+		<radius> 0.7 </radius>
+		<center> 2 -2.5 3 </center>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+	</surface>
+	<surface type="Cylinder">
+		<center> 2 -2.5 3 </center>
+		<normal> 0 1 0 </normal>
+		<radius> 0.2 </radius>
+		<rotation> 0 0 1 </rotation>
+		<color> 255 255 102 1 </color>
+		<height> 1 </height>
+	</surface>
+	<light>
+		<position> 4 1 -7 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+	<light>
+		<position> 0 1 -7 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+</scene>

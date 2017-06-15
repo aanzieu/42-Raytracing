@@ -1,0 +1,40 @@
+void	get_determinant(t_world *world, t_vec3d ray, t_2deg *equation)
+{
+	equation->a = vector_substract(
+					ray,
+					vector_multiply(
+						vector_dot(
+							ray,
+							world->cylinder.up),
+						world->cylinder.up));
+	equation->b =
+
+
+
+
+
+	void	get_determinant_cylinder(t_world *world, t_vec3d ray, t_2deg *equation)
+{
+	t_vec3d	normal;
+	t_vec3d	ray_vec;
+	t_vec3d	delta;
+	t_vec3d	vec_substitute;;
+	t_vec3d	delta_substitute;
+
+	//normal = vector_calculate(world->cylinder.up, world->cylinder.pos);
+	ray_vec = vector_calculate(world->camera.pos, ray);
+	//ray_vec = ray;
+	normal = world->cylinder.up;
+	delta = vector_substract(world->camera.pos, world->cylinder.pos);
+	vec_substitute = vector_substract(ray_vec, vector_scalar(normal, vector_dot(ray_vec, normal)));
+	delta_substitute = vector_substract(delta, vector_scalar(normal, vector_dot(delta, normal)));
+	equation->a = vector_dot(vec_substitute, vec_substitute);
+	equation->b = 2 * (vector_dot(vec_substitute, delta_substitute));
+	equation->c = (vector_dot(delta_substitute, delta_substitute)) - pow(world->cylinder.radius, 2);
+	equation->det = pow(equation->b, 2) - (4 * (equation->a) * (equation->c));
+}
+
+
+equation->a = vector_dot(ray, ray);
+	equation->b = 2 * ();
+	equation->c = ;

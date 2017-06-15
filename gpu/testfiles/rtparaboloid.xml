@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Paraboloid">
+	<camera type="Camera">
+		<viewPoint> 0 0 -15 </viewPoint>
+		<viewDir> 0 0 0 </viewDir>
+		<rotation> 0 0 0 </rotation>
+		<translationn> 0 0 0 </translationn>
+	</camera>
+	<surface type="Paraboloid">
+		<top> 0 0 0 </top>
+		<normal> 0 1 0 </normal>
+		<Rdistance> 0.1 </Rdistance>
+		<height> 1 </height>
+		<rotation> 0 0 0 </rotation>
+		<translationn> 0 0 1 </translationn>
+		<color> 0.0 1.0 0.3 1 </color>
+	</surface>
+	<surface type="plan">
+		<origin> 0 -4 0 </origin>
+		<normal> 0 1 0 </normal>
+		<rotation> 0 0 0 </rotation>
+		<translationn> 0 0 1 </translationn>
+		<color> 0.23 0.1 0.3 1 </color>
+	</surface>
+	<light>
+		<position> 3 3 -8 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+	<light>
+		<position> -2 5 -13 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+</scene>
