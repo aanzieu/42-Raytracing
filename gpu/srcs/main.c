@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:07:23 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 09:12:59 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ unsigned int	count_lights(t_light *lights)
 
 void			load_spheres(t_sphere **spheres, t_sphere *spheres_tmp, int *spheres_len)
 {
-	unsigned int size;
 	unsigned int i;
 	t_sphere *tmp;
 
@@ -154,7 +153,6 @@ void			load_spheres(t_sphere **spheres, t_sphere *spheres_tmp, int *spheres_len)
 
 void			load_planes(t_plane **planes, t_plane *planes_tmp, int *planes_len)
 {
-	unsigned int size;
 	unsigned int i;
 
 	i = 0;
@@ -170,7 +168,6 @@ void			load_planes(t_plane **planes, t_plane *planes_tmp, int *planes_len)
 
 void			load_cones(t_cone **cones, t_cone *cones_tmp, int *cones_len)
 {
-	unsigned int size;
 	unsigned int i;
 	t_cone *tmp;
 
@@ -188,7 +185,6 @@ void			load_cones(t_cone **cones, t_cone *cones_tmp, int *cones_len)
 
 void			load_cylinders(t_cylinder **cylinders, t_cylinder *cylinders_tmp, int *cylinders_len)
 {
-	unsigned int size;
 	unsigned int i;
 	t_cylinder *tmp;
 
@@ -206,7 +202,6 @@ void			load_cylinders(t_cylinder **cylinders, t_cylinder *cylinders_tmp, int *cy
 
 void			load_lights(t_light **lights, t_light *lights_tmp, int *lights_len)
 {
-	unsigned int size;
 	unsigned int i;
 	t_light *tmp;
 

@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:50:12 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:08:54 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 08:02:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ CUDA_HOSTDEV void				cam_rot(t_camera *camera, double degrees, char axis);
 
 void				rotate_c(t_vec3d *point, double degrees, char axis);
 
-void				translate(t_vec3d *point, double x, double y, double z);
+CUDA_HOSTDEV void	translate(t_vec3d *point, double x, double y, double z);
 
 void				sphere_key_handler(t_world	*world);
 
