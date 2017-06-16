@@ -13,6 +13,8 @@
 extern "C" {
 	#include <rt.h>
 	#include "gpu_rt.h"
+	#include "object.h"
+	#include "vectors.h"
 }
 #include "../../../frameworks/SDL2.framework/Headers/SDL.h"
 #include "../../../includes/display.h"

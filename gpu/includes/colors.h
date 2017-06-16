@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   angles.c                                           :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:07:23 by svilau           ###   ########.fr       */
+/*   Created: 2017/06/16 14:50:53 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/06/16 17:49:20 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-extern "C" {
-	#include <rt.h>
-	#include <vectors.h>
-	#include <gpu_rt.h>
-}
-__host__ __device__ double	deg_to_radians(double deg)
+#ifndef COLORS_H
+# define COLORS_H
+
+typedef struct		s_color
 {
-	return (deg * M_PI / 180);
-}
+	double			r;
+	double			g;
+	double			b;
+	double			light;
+}					t_color;
+
+#endif

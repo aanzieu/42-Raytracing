@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_objects.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/19 09:48:31 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:17:52 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/06/16 15:54:58 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/06/16 17:41:18 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+
+void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
+{
+	t_sphere *new_sphere;
+	t_sphere *tmp;
+
+	tmp = *spheres;
+	new_sphere = malloc(sizeof(t_sphere));
+	new_sphere->radius = radius;
+	new_sphere->pos = pos;
+	new_sphere->next = NULL;
+
+	if (!tmp)
+		*spheres = new_sphere;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_sphere;
+	}
+}
 
 t_plane		*new_plan(t_plane *nw)
 {

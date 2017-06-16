@@ -12,6 +12,8 @@
 
 extern "C" {
 		#include <rt.h>
+		#include <vectors.h>
+		#include <gpu_rt.h>
 }
 
 __host__ __device__ void	translate(t_vec3d *point, double x, double y, double z)

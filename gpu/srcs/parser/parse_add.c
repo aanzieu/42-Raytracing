@@ -6,11 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:52:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:01:56 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:27:59 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include <object.h>
+#include <light.h>
 
 void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 {

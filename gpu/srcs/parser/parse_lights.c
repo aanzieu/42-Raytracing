@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 15:34:12 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:16:34 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:30:31 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <parse.h>
 
 static void	get_light_next(t_world *world, char **tmp, int i, t_light *l)
 {

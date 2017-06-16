@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include <rt.h>
+	#include <vectors.h>
+	#include <gpu_rt.h>
 }
 
 __host__ __device__ t_vec3d	new_vector(double x, double y, double z)

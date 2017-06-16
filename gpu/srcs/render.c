@@ -6,14 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 13:01:31 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:43:01 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "display.h"
-#include "../libft/libft.h"
-#include "../frameworks/SDL2.framework/Headers/SDL.h"
+#include <rt.h>
+#include <display.h>
 
 void	render(t_world *world)
 {

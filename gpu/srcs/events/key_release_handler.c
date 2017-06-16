@@ -6,16 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 13:34:24 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 16:06:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "gpu_rt.h"
-#include "../../libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include "../../frameworks/SDL2.framework/Headers/SDL.h"
+#include <rt.h>
 
 void	key_release_handler1(t_world *world, SDL_Event event)
 {

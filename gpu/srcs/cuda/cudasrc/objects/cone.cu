@@ -12,6 +12,7 @@
 
 extern "C" {
 	#include <rt.h>
+	#include <vectors.h>
 	#include <gpu_rt.h>
 }
 

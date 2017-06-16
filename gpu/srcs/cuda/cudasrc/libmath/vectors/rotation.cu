@@ -13,8 +13,10 @@
 extern "C" {
 	#include <rt.h>
 	#include <gpu_rt.h>
+	#include <vectors.h>
 }
 #include <math.h>
+#include <vectors.h>
 
 __host__ __device__ void	rotate(t_vec3d *point, double degrees, char axis)
 {

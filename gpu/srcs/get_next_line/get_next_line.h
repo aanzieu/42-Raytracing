@@ -6,13 +6,14 @@
 /*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 09:41:54 by svilau            #+#    #+#             */
-/*   Updated: 2016/06/21 13:36:22 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 17:33:47 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "../../libft/libft.h"

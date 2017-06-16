@@ -6,12 +6,13 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:35:35 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:41:34 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <gpu_rt.h>
+#include <parse.h>
 
 void		parse_camera(t_world *world, t_camera *cam, t_list *lst)
 {

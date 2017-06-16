@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 15:33:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:16:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:25:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <parse.h>
 
 static void	get_plane_next(t_world *world, char **tmp, int i, t_plane *p)
 {

@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../../includes/vectors.h"
+	#include <vectors.h>
+	#include <gpu_rt.h>
 }
 #include <math.h>
 

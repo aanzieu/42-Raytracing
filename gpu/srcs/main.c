@@ -6,35 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 13:27:40 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:44:02 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rt.h"
-#include "../libft/libft.h"
-#include "./cuda/cudaheader/gpu_rt.h"
-#include "../frameworks/SDL2.framework/Headers/SDL.h"
-
-void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
-{
-	t_sphere *new_sphere;
-	t_sphere *tmp;
-
-	tmp = *spheres;
-	new_sphere = malloc(sizeof(t_sphere));
-	new_sphere->radius = radius;
-	new_sphere->pos = pos;
-	new_sphere->next = NULL;
-
-	if (!tmp)
-		*spheres = new_sphere;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_sphere;
-	}
-}
+#include "rt.h"
+#include "parse.h"
 
 void	get_viewplane(t_world *world)
 {
@@ -236,7 +213,7 @@ void	load_data(t_world *world)
 **	On event receive send data to handler
 */
 
-void	rtv1(t_world *world)
+void	rt(t_world *world)
 {
 	SDL_Event		event;
 	int				quit;
@@ -281,6 +258,7 @@ int		main(int argc, char **argv)
 {
 	t_world	*world;
 
+	(void)argv;
 	if (argc == 2)
 	{
 		if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
@@ -289,7 +267,7 @@ int		main(int argc, char **argv)
 		get_viewplane(world);
 		parse_rtv1(world, argv[1]);
 		load_data(world);
-		rtv1(world);
+		rt(world);
 		free_world(world);
 	}
 	else

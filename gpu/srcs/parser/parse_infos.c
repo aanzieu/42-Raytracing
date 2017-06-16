@@ -6,12 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:38 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:36:02 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:41:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include "gpu_rt.h"
+#include <gpu_rt.h>
 
 void	parse_point(t_vec3d *v, char **tmp, int line)
 {

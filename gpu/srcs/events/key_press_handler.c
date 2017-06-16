@@ -6,16 +6,13 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 13:33:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 16:08:05 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "../../srcs/cuda/cudaheader/gpu_rt.h"
-#include "../../libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include "../../frameworks/SDL2.framework/Headers/SDL.h"
+#include <rt.h>
+#include <vectors.h>
+#include <gpu_rt.h>
 
 void	key_press_handler1(t_world *world, SDL_Event event)
 {

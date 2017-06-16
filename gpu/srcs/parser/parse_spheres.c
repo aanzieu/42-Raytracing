@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:38:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:20:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:25:35 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <parse.h>
 
 static void	parse_sphere_next(t_world *world, char **tmp, int i, t_sphere *s)
 {

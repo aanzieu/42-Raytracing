@@ -6,14 +6,13 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 13:02:51 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 17:42:13 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <parse.h>
 #include "../../srcs/get_next_line/get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
 
 static void		free_lst(t_list **lst)
 {
