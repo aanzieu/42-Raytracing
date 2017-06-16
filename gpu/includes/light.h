@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:36:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 17:43:41 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 18:13:21 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct			s_light
 
 t_light					*new_light(t_light *nw);
 void					add_light(t_light **alst, t_light *nw);
+void					load_lights(t_light **lights, t_light *lights_tmp,
+						int *lights_len);
 
 #endif
 

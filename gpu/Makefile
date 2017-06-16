@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/16 16:28:27 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/16 18:10:02 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,14 +59,20 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 
 SRC =			$(SRC_DIR)/main.c \
+				$(SRC_DIR)/free_memory.c \
+				$(SRC_DIR)/render.c \
+				$(SRC_DIR)/display_functions.c \
+				\
+				$(SRC_DIR)/loader/load_cones.c \
+				$(SRC_DIR)/loader/load_spheres.c \
+				$(SRC_DIR)/loader/load_cylinders.c \
+				$(SRC_DIR)/loader/load_planes.c \
+				$(SRC_DIR)/loader/load_lights.c \
 				\
 				$(SRC_DIR)/events/event_handler.c \
 				$(SRC_DIR)/events/key_press_handler.c \
 				$(SRC_DIR)/events/key_release_handler.c \
 				$(SRC_DIR)/events/mouse_handler.c \
-				\
-				$(SRC_DIR)/free_memory.c \
-				$(SRC_DIR)/render.c \
 				\
 				$(SRC_DIR)/parser/parser.c \
 				$(SRC_DIR)/parser/parse_camera.c \
@@ -80,8 +86,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/parse_infos_2.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
+				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
-				$(SRC_DIR)/display_functions.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##
