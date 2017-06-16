@@ -12,7 +12,7 @@
 
 #include "../includes/rtv1.h"
 #include "../libft/libft.h"
-#include "./cuda/cudaheader/gpu_rtv1.cuh"
+#include "./cuda/cudaheader/gpu_rt.cuh"
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)

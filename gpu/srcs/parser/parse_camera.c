@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
+#include "../../srcs/cuda/cudaheader/gpu_rt.cuh"
 
 void		parse_camera(t_world *world, t_camera *cam, t_list *lst)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
+#include "../../srcs/cuda/cudaheader/gpu_rt.cuh"
 
 void	mouse_movement(t_world *world)
 {

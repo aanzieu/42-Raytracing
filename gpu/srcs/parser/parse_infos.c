@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
+#include "../../srcs/cuda/cudaheader/gpu_rt.cuh"
 
 void	parse_point(t_vec3d *v, char **tmp, int line)
 {

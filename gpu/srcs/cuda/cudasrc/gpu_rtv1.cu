@@ -7,7 +7,7 @@ extern "C" {
 	#include "../../../includes/rtv1.h"			
 }
 
-#include "../cudaheader/gpu_rtv1.cuh"
+#include "../cudaheader/gpu_rt.cuh"
 
 #define CUDA_ERROR_CHECK
 

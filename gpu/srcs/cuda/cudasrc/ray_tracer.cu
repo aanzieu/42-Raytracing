@@ -14,6 +14,7 @@ extern "C" {
 	#include "../../../includes/rtv1.h"
 }
 #include "../../../frameworks/SDL2.framework/Headers/SDL.h"
+#include "../cudaheader/gpu_rt.cuh"
 #include "../../../includes/display.h"
 #include <math.h>
 #include <float.h>

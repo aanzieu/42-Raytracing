@@ -13,7 +13,7 @@
 #include "../includes/rtv1.h"
 #include "../includes/display.h"
 #include "../libft/libft.h"
-#include "./cuda/cudaheader/gpu_rtv1.cuh"
+#include "./cuda/cudaheader/gpu_rt.cuh"
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 void	render(t_world *world)

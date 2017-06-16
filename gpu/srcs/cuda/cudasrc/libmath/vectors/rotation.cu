@@ -12,6 +12,7 @@
 
 extern "C" {
 	#include "../../../../../includes/rtv1.h"
+	#include "../../../cudaheader/gpu_rt.cuh"
 }
 #include <math.h>
 
