@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:40:37 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/26 17:42:18 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:16:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include <rt.h>
 
 static void	get_cylinder_next(t_world *world, char **tmp, int i, t_cylinder *cy)
 {

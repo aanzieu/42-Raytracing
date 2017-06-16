@@ -11,10 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../../includes/vectors.h"
+	#include <rt.h>
 }
-#include <stdio.h>
-#include <math.h>
 
 __host__ __device__ t_vec3d	new_vector(double x, double y, double z)
 {

@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/29 13:04:38 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:02:51 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include <rt.h>
 #include "../../srcs/get_next_line/get_next_line.h"
 #include <fcntl.h>
 #include <unistd.h>

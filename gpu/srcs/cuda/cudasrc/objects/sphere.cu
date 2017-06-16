@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
-	#include "../../../../includes/vectors.h"
+	#include <rt.h>
+	#include "gpu_rt.h"
+	#include <vectors.h>
 }
 
 __host__ __device__ t_vec3d	get_normal_sphere(t_sphere sphere, t_intersection intersection)

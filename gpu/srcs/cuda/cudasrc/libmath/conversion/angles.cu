@@ -12,7 +12,7 @@
 
 #include <math.h>
 extern "C" {
-	#include "../../../../../includes/rtv1.h"
+	#include <rt.h>
 }
 
 __host__ __device__ double	deg_to_radians(double deg)

@@ -6,13 +6,13 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 09:12:59 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:27:40 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "../includes/rt.h"
 #include "../libft/libft.h"
-#include "./cuda/cudaheader/gpu_rt.cuh"
+#include "./cuda/cudaheader/gpu_rt.h"
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)

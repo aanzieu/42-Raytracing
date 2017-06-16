@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
-	#include "../../cudaheader/gpu_rt.cuh"
+	#include <rt.h>
+	#include <gpu_rt.h>
 }
 
 __host__ __device__ void	get_camera_axes(t_camera *camera)

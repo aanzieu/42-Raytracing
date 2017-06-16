@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_memory.c                                      :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/20 11:05:44 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 13:01:20 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/06/16 12:46:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
-#include <stdlib.h>
-#include <../libft/libft.h>
+#ifndef OBJECT_H
+# define OBJECT_H
 
-void		memory_allocation_error(void)
-{
-	ft_putstr("Not enough memory, quiting...\n");
-	exit(0);
-}
 
-void		free_world(t_world *world)
-{
-	free(world);
-}
+
+#endif

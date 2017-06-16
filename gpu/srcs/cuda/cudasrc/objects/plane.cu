@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
-	#include "../../../../includes/vectors.h"
+	#include <rt.h>
+	#include "gpu_rt.h"
+	#include <vectors.h>
 }
 
 /*

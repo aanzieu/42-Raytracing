@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:09:12 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 13:00:19 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include <rt.h>
 #include "../../libft/libft.h"
 #include "../../includes/keys.h"
 #include <stdlib.h>

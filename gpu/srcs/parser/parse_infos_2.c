@@ -6,12 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:38 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/26 17:43:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:36:18 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
-#include "../../srcs/cuda/cudaheader/gpu_rt.cuh"
+#include <rt.h>
+#include "gpu_rt.h"
 
 void		parse_rotation_cam(t_camera *cam, char **tmp, int line)
 {

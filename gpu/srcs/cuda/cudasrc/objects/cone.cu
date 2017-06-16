@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
-	#include "../../../../includes/vectors.h"
+	#include <rt.h>
+	#include <gpu_rt.h>
 }
 
 __host__ __device__ t_vec3d	get_normal_cone(t_cone cone, t_ray ray, t_intersection intersection)

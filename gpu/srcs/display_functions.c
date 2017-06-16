@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:09:12 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 12:34:51 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include <rt.h>
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)

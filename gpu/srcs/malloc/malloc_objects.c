@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 09:48:31 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/26 14:06:22 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:17:52 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include <rt.h>
 
 t_plane		*new_plan(t_plane *nw)
 {

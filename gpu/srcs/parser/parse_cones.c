@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:41:25 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/26 17:41:38 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:02:24 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include <rt.h>
 
 static void	get_cone_next(t_world *world, char **tmp, int i, t_cone *co)
 {

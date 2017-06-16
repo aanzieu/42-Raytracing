@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../../includes/rtv1.h"
+		#include <rt.h>
 }
 
 __host__ __device__ void	translate(t_vec3d *point, double x, double y, double z)

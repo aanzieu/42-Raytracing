@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
+	#include <rt.h>
+	#include "gpu_rt.h"
 }
 
 __host__ __device__ void	color_scalar(t_color *color, double coeficient)

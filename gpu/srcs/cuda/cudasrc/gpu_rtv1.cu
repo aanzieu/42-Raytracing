@@ -4,10 +4,11 @@
 extern "C" {
 	#include "../../../includes/display.h"
 	#include "../../../includes/vectors.h"
-	#include "../../../includes/rtv1.h"			
+	#include <rt.h>
+	#include "gpu_rt.h"
 }
 
-#include "../cudaheader/gpu_rt.cuh"
+#include "gpu_rt.h"
 
 #define CUDA_ERROR_CHECK
 

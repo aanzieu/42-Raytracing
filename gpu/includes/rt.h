@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/20 10:50:12 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 08:02:55 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/06/16 13:32:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 #ifndef CUDA_HOSTDEV
 # ifdef __CUDA_ARCH__
 # define CUDA_HOSTDEV __host__ __device__

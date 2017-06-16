@@ -6,11 +6,11 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:52:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/26 17:40:24 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 13:01:56 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rtv1.h"
+#include "rt.h"
 
 void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 {

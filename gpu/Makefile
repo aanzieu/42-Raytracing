@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/16 11:38:17 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/16 13:34:22 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@ NAME = rtv1
 
 MAKE = make 
 MAKE_FLAGS = --no-print-directory
+
+INCLUDE = -I includes -I libft
+INCLUDECUDA = -I srcs/cuda/cudaheader
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
@@ -53,6 +56,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
+
 
 SRC =			$(SRC_DIR)/main.c \
 				\
@@ -113,13 +117,13 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $< -o $@ 
+	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################

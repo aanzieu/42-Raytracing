@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include "../../../../includes/rtv1.h"
+	#include "rt.h"
+	#include "gpu_rt.h"
 }
-#include "../../cudaheader/gpu_rt.cuh"
+#include "gpu_rt.h"
 #include <float.h>
 
 __host__ __device__ int		get_shadow(t_world world, t_intersection collision, t_light light)
