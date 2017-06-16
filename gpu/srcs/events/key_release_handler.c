@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:09:12 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 10:46:37 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 void	key_release_handler1(t_world *world, SDL_Event event)
 {
+	(void)world;
 	if (event.key.keysym.sym == SDLK_UP)
 		world->keys.up = 0;
 	if (event.key.keysym.sym == SDLK_DOWN)
@@ -45,6 +46,8 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 
 void	key_release_handler2(t_world *world, SDL_Event event)
 {
+	(void)event;
+	(void)world;
 	// if (event.key.keysym.sym == SDLK_KP_4)
 	// 	world->keys.four = 0;
 	// if (event.key.keysym.sym == SDLK_KP_5)

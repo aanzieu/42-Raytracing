@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 08:31:30 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/13 14:28:38 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/16 09:19:44 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ $(NAME): $(OBJ)
 	gcc $(FLGS) -o $(NAME) $(SRC) -I ./minilibx_macos/ -lmlx -framework OpenCL -framework OpenGL -framework AppKit -L ./minilibx_macos/ -L ./srcs/libft/ -lft -L ./srcs/libmath/ -lmath -lpthread
 	printf '\033[32m[✔] %s\n\033[0m' "RTV1 RDY"
 
-obj/%.o: %.c
+obj/%.o: src/%.c
 	mkdir -p obj
 	gcc -Wall -Wextra -Werror -c $< -o $@
 	echo '\033[0m[✔] %s\n\033[0m' "$<"

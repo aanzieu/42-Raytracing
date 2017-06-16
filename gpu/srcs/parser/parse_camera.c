@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/05/29 13:04:38 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/16 10:35:21 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void		parse_camera(t_world *world, t_camera *cam, t_list *lst)
 {
+	(void)cam;
 	char	**tmp;
 	int		i;
 

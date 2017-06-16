@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:09:12 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 10:31:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 
 void	key_press_handler2(t_world *world, SDL_Event event)
 {
+	(void)event;
+	(void)world;
 	// if (event.key.keysym.sym == SDLK_q)
 	// {
 	// 	world->keys.w = 0;
@@ -80,6 +82,7 @@ void	key_press_handler2(t_world *world, SDL_Event event)
 
 void	key_press_handler3(t_world *world, SDL_Event event)
 {
+	(void)event;
 	if (world->keys.up == 1)
 		cam_rot(&world->camera, -90	, 'x');
 	if (world->keys.down == 1)

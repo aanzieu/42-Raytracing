@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 08:09:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/14 16:22:00 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/15 18:54:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,6 @@ void		cam_position(t_cam *cam, int x, int y)
 {
 	double	ndc_x;
 	double	ndc_y;
-	int		resx;
-	int		resy;
-	double ratio;
-	
-	resx = WW / FAST_RENDER_PRECISION;
-	resy = WH / FAST_RENDER_PRECISION;
-	ratio = (double)resx / (double)resy;
 
 	ndc_x = (x + 0.5) / WW;//resx;//RESX;
 	ndc_y = (y + 0.5) / WH;//resy;//RESY;

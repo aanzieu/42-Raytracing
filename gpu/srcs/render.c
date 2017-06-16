@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:07:23 by svilau           ###   ########.fr       */
+/*   Updated: 2017/06/16 10:48:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	render(t_world *world)
 {
 	int x;
 	int y;
-	int color;
+	int color = 0;
 
 	y = 0;
 	while (y < world->viewplane.y_res)
