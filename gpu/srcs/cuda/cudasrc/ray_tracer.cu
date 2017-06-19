@@ -94,7 +94,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		if (get_shadow(world, intersection, world.lights[0]) == 1)
 			return (BLACK);
 		else
-			return (get_light_at(world.lights[0], intersection));
+			return (get_light_at(world.lights[0], intersection, world.indexes));
 	}
 		return (BLACK);
 }

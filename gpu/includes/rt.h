@@ -101,6 +101,11 @@ typedef struct		s_viewplane
 	t_vec3d	up_left;
 }					t_viewplane;
 
+typedef struct		s_index
+{
+	double			ambient;
+}					t_index;
+
 typedef struct		s_2deg
 {
 	double	a;
@@ -162,6 +167,8 @@ typedef struct		s_world
 
 	int			line;
 	int			render_factor;
+
+	t_index		indexes;
 }					t_world;
 
 void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);

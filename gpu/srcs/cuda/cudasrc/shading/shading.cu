@@ -39,7 +39,7 @@ __host__ __device__ int		get_shadow(t_world world, t_intersection collision, t_l
 	return (0);
 }
 
-__host__ __device__ double		get_light_at(t_light light, t_intersection intersection)
+__host__ __device__ double		get_light_at(t_light light, t_intersection intersection, t_index indexes)
 {
 	t_vec3d	light_vector;
 	double	angle;
@@ -51,14 +51,13 @@ __host__ __device__ double		get_light_at(t_light light, t_intersection intersect
 	light_vector = vector_normalize(vector_calculate(intersection.pos,
 														light.pos));
 	angle = vector_dot(intersection.normal_v, light_vector);
+	color_add(&color_def, *intersection.color);
+	color_scalar(&color_def, indexes.ambient);
 	if (angle <= 0)
 		return (BLACK);
 	else
 	{
-		color_add(&color_def, *intersection.color);
-		color_scalar(&color_def, angle);		
-		// color_def  = get_color(angle * intersection.color->r,
-				// angle * intersection.color->g, angle * intersection.color->b);
-			return (get_color(color_def.r, color_def.g, color_def.b));
+		// color_scalar(&color_def, angle);		
+		return (get_color(color_def.r, color_def.g, color_def.b));
 	}
 }
