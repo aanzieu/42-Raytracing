@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 18:12:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 09:20:47 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 #include "object.h"
 #include "../libft/libft.h"
 
+# include <pthread.h>
 # include <SDL2/SDL.h>
+
+# define NB_TH 20
+# define FAST_RENDER_PRECISION 8
 
 # define VERSION 1.03.3
 
@@ -33,7 +37,6 @@ typedef struct		s_window
 	SDL_Surface		*screen;
 	SDL_Window		*id;
 }					t_window;
-
 
 typedef struct		s_keys
 {
@@ -58,7 +61,6 @@ typedef struct		s_keys
 	int six;
 	int eight;
 }					t_keys;
-
 
 typedef struct		s_camera
 {
@@ -99,8 +101,6 @@ typedef struct		s_viewplane
 	t_vec3d	up_left;
 }					t_viewplane;
 
-
-
 typedef struct		s_2deg
 {
 	double	a;
@@ -109,28 +109,56 @@ typedef struct		s_2deg
 	double	det;
 }					t_2deg;
 
+/*
+** Structure Thread
+*/
+
+
+typedef struct		s_thread_input
+{
+	int				th;
+//	int				x1;
+//	int				x2;
+//	int				y1;
+//	int				y2;
+	struct s_world	*world;
+}					t_thread_input;
+
+/*
+** Structure World
+*/
+
 typedef struct		s_world
 {
+	t_window	window;
+	
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_light		*lights;
 	t_cylinder	*cylinders;
 	t_cone		*cones;
+
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
 	t_light		*lights_tmp;
 	t_cylinder	*cylinders_tmp;
 	t_cone		*cones_tmp;
-	t_viewplane	viewplane;
+
+	pthread_t		thread[NB_TH];
+	int				th;
+
+	//	t_camera	camera_tmp;
 	t_camera	camera;
-	t_camera	camera_tmp;
-	t_window	window;
+	t_viewplane	viewplane;
+
 	t_keys		keys;
+
 	int			spheres_len;
 	int			planes_len;
 	int			cylinders_len;
 	int			cones_len;
 	int			lights_len;
+
 	int			line;
 	int			render_factor;
 }					t_world;

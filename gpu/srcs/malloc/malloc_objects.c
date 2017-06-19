@@ -6,12 +6,12 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:54:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 18:03:05 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 07:57:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-
+/*
 void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
 {
 	t_sphere *new_sphere;
@@ -32,7 +32,7 @@ void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
 		tmp->next = new_sphere;
 	}
 }
-
+*/
 t_plane		*new_plan(t_plane *nw)
 {
 	t_plane	*p;

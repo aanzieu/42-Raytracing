@@ -6,11 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 18:15:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 09:21:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <../srcs/cuda/cudaheader/gpu_rt.h>
 #include <parse.h>
 
 static void	get_viewplane(t_world *world)
@@ -51,12 +52,53 @@ static void	load_data(t_world *world)
 **	On event receive send data to handler
 */
 
+static	void		*perform_thread(void *arg)
+{
+	t_thread_input	*thread;
+	int			x;
+	int			y;
+
+	thread = (t_thread_input *)arg;
+	y = (thread->th * (thread->world->viewplane.y_res / NB_TH));
+	while (y < (thread->th + 1) * ((thread->world->viewplane.y_res / NB_TH)))
+	{
+		x = 0;
+		while (x < thread->world->viewplane.x_res)
+		{
+			pixel_to_image(thread->world->window.screen,
+			x, y, ray_tracer(*thread->world, x, y));
+			x++;
+		}
+		y++;
+	}
+	pthread_exit(0);
+}
+
+int					launch_thread(t_world *world)
+{
+	t_thread_input		tab[NB_TH];
+	int					i;
+
+	i = -1;
+	while (++i < NB_TH)
+	{
+		tab[i].th = i;
+		tab[i].world = world;
+		if (pthread_create(&world->thread[i], NULL, &perform_thread, &tab[i]))
+			ft_putendl_fd("Error : Can't init launch_rtv1\n", 1);
+	}
+	i = -1;
+	while (++i < NB_TH)
+		pthread_join(world->thread[i], NULL);
+	return (0);
+}
+
 void	rt(t_world *world)
 {
 	SDL_Event		event;
 	int				quit;
-	int		*a_h;
-	size_t			size_main;
+//	int		*a_h;
+//	size_t			size_main;
 
 	quit = 0;
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
@@ -64,23 +106,24 @@ void	rt(t_world *world)
 	world->window.id = SDL_CreateWindow("Rtv1 v0.9.1", 100, 100, WIN_WIDTH,
 								WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
-	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
-	if (!(a_h = malloc(size_main)))
-		return ;
-	ft_bzero(a_h, size_main);
+//	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+//	if (!(a_h = malloc(size_main)))
+//		return ;
+//	ft_bzero(a_h, size_main);
 	while (quit == 0)
 	{
 		// printf("%d\n", world->render_factor);
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
-		get_viewplane(world);		
+		get_viewplane(world);
+		launch_thread(world);
 		// printf("%d : %d : %d\n", world->render_factor, world->viewplane.x_res, world->viewplane.y_res);
-		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
+//		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
 		// ft_bzero(a_h, size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
-	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
-	free(a_h);
+//	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
+//	free(a_h);
 	SDL_FreeSurface(world->window.screen);
 	SDL_DestroyWindow(world->window.id);
 }

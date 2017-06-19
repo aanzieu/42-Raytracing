@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 18:09:35 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 09:31:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ void					add_plan(t_plane **alst, t_plane *nw);
 void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
 
-void			load_planes(t_plane **planes, t_plane *planes_tmp, int *planes_len);
-void			load_spheres(t_sphere **spheres, t_sphere *spheres_tmp, int *spheres_len);
-void			load_cylinders(t_cylinder **cylinders, t_cylinder *cylinders_tmp, int *cylinders_len);
-void			load_cones(t_cone **cones, t_cone *cones_tmp, int *cones_len);
+void					load_planes(t_plane **planes, t_plane *planes_tmp,
+						int *planes_len);
+void					load_spheres(t_sphere **spheres, t_sphere *spheres_tmp,
+						int *spheres_len);
+void					load_cylinders(t_cylinder **cylinders,
+						t_cylinder *cylinders_tmp, int *cylinders_len);
+void					load_cones(t_cone **cones, t_cone *cones_tmp,
+						int *cones_len);
+
 #endif

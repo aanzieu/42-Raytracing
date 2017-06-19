@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:38 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 17:41:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 09:43:05 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	parse_point(t_vec3d *v, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Position", 1);
+		exit(EXIT_FAILURE);
 	}
 	v->x = ft_atoi_double(tmp[i + 1]);
 	v->y = ft_atoi_double(tmp[i + 2]);

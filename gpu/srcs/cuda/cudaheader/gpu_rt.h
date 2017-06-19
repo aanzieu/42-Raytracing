@@ -82,7 +82,7 @@ CUDA_HOSTDEV t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_substract(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_cross(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_scalar(t_vec3d vect1, double scalar);
-CUDA_HOSTDEV t_vec3d	vector_calculate(t_vec3d	vect1, t_vec3d vect2);
+CUDA_HOSTDEV t_vec3d	vector_calculate(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_normalize(t_vec3d vect1);
 CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
