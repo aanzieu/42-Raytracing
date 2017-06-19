@@ -17,24 +17,30 @@ extern "C" {
 #include "gpu_rt.h"
 #include <float.h>
 
-__host__ __device__ int		get_shadow(t_world world, t_intersection collision, t_light light)
+__host__ __device__ int		get_shadow(t_world world, t_intersection collision, t_light *lights)
 {
+	int				i;
 	t_intersection	collision_tmp;
 	t_ray			shadow;
 	double			dist_light;
 	double			dist_intersection;
 
-	collision_tmp.t = DBL_MAX;
-	collision_tmp.type = '0';
-	shadow.dir = vector_calculate(collision.pos, light.pos);
-	shadow.origin = collision.pos;
-	dist_light = vector_length(shadow.dir);
-	if (get_closest_intersection(world, shadow, &collision_tmp) == 1)
+	i = 0;
+	while (i < world.lights_len)
 	{
-		dist_intersection = vector_length(vector_calculate(collision.pos,
-												collision_tmp.pos));
-		if (dist_intersection < dist_light)
-			return (1);
+		collision_tmp.t = DBL_MAX;
+		collision_tmp.type = '0';
+		shadow.dir = vector_calculate(collision.pos, lights[i].pos);
+		shadow.origin = collision.pos;
+		dist_light = vector_length(shadow.dir);
+		if (get_closest_intersection(world, shadow, &collision_tmp) == 1)
+		{
+			dist_intersection = vector_length(vector_calculate(collision.pos,
+													collision_tmp.pos));
+			if (dist_intersection < dist_light)
+				return (1);
+		}
+		i++;
 	}
 	return (0);
 }
@@ -51,13 +57,12 @@ __host__ __device__ double		get_light_at(t_light light, t_intersection intersect
 	light_vector = vector_normalize(vector_calculate(intersection.pos,
 														light.pos));
 	angle = vector_dot(intersection.normal_v, light_vector);
-	color_add(&color_def, *intersection.color);
-	color_scalar(&color_def, indexes.ambient);
 	if (angle <= 0)
 		return (BLACK);
 	else
 	{
-		// color_scalar(&color_def, angle);		
+		color_add(&color_def, *intersection.color);
+		color_scalar(&color_def, angle);		
 		return (get_color(color_def.r, color_def.g, color_def.b));
 	}
 }

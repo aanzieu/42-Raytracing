@@ -25,16 +25,14 @@ __host__ __device__ t_vec3d	get_normal_sphere(t_sphere sphere, t_intersection in
 	return (normal);
 }
 
-__host__ __device__ void	get_determinant_sphere(t_sphere sphere, t_ray ray, t_2deg *equation)
+__host__ __device__ void	get_determinant_sphere(t_sphere s, t_ray r, t_2deg *equation)
 {
-	equation->a = pow(ray.dir.x, 2) + pow(ray.dir.y, 2) + pow(ray.dir.z, 2);
-	equation->b = 2 * (ray.dir.x * (ray.origin.x - sphere.pos.x) +
-				ray.dir.y * (ray.origin.y - sphere.pos.y) +
-				ray.dir.z * (ray.origin.z - sphere.pos.z));
-	equation->c = (pow((ray.origin.x - sphere.pos.x), 2) +
-			pow((ray.origin.y - sphere.pos.y), 2) +
-			pow((ray.origin.z - sphere.pos.z), 2)) -
-			pow(sphere.radius, 2);
+	t_vec3d x;
+
+	x = vector_calculate(s.pos, r.origin);
+	equation->a = vector_dot(r.dir, r.dir);
+	equation->b = 2 * vector_dot(r.dir, x);
+	equation->c = vector_dot(x, x) - pow(s.radius, 2);
 	equation->det = pow(equation->b, 2) - (4 * (equation->a) * (equation->c));
 }
 
@@ -55,13 +53,13 @@ __host__ __device__ static int	get_sphere(t_sphere sphere, t_ray ray, t_intersec
 	{
 		t1 = ((-1) * equation.b + sqrt(equation.det)) / (2 * equation.a);
 		t2 = ((-1) * equation.b - sqrt(equation.det)) / (2 * equation.a);
-		if (t1 <= t2 && t1 > 0.0000001)
+		if (t1 <= t2 && t1 > 0)
 		{
 			intersection_tmp->t = t1;
 			intersection_tmp->type = 's';
 			return (1);
 		}
-		else if (t2 > 0.0000001)
+		else if (t2 > 0)
 		{
 			intersection_tmp->t = t2;
 			intersection_tmp->type = 's';
@@ -86,8 +84,7 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->color = &world.spheres[i].color;
-				intersection->pos = vector_add(ray.origin,
-					vector_scalar(ray.dir, intersection_tmp->t));
+				intersection->pos = vector_add(vector_scalar(ray.dir, intersection_tmp->t), ray.origin);
 				intersection->normal_v = get_normal_sphere(world.spheres[i],
 														*intersection);
 			}

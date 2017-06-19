@@ -35,10 +35,9 @@ __host__ __device__ void	get_ray_direction(t_world world, t_ray *ray, int x, int
 							vector_scalar(
 								world.camera.up_v,
 								world.viewplane.y_indent * y));
-	ray->dir = vector_normalize(
-				vector_calculate(
+	ray->dir =	vector_calculate(
 					world.camera.pos,
-					dir_point));
+					dir_point);
 	ray->origin = world.camera.pos;
 }
 
@@ -74,28 +73,41 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	get_closest_cone(world, ray, intersection, &intersection_tmp);
 	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
 	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
-	if (intersection_tmp.type == '0')
+	if (intersection->type == '0')
 		return (0);
 	else
+	{
+		// printf("%c\n", intersection_tmp.type);
 		return (1);
+	}
+		
 }
 
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
 	t_ray			ray;
 	t_intersection	intersection;
+	t_color			color_tmp;
 
+	color_tmp.r = 0;
+	color_tmp.g = 0;
+	color_tmp.b = 0;	
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
-	if (intersection.type != '0')
+	if (intersection.type != '0' && intersection.t > 0.0000001)
 	{
-		if (get_shadow(world, intersection, world.lights[0]) == 1)
-			return (BLACK);
+		if (get_shadow(world, intersection, world.lights) == 1)
+		{
+			return (RED);
+			// color_add(&color_tmp, *intersection.color);
+			// color_scalar(&color_tmp, 1);
+			// return (get_color(color_tmp.r, color_tmp.g, color_tmp.b));
+		}
 		else
 			return (get_light_at(world.lights[0], intersection, world.indexes));
 	}
-		return (BLACK);
+	return (GREEN);
 }
