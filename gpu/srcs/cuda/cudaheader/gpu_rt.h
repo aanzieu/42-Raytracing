@@ -18,7 +18,7 @@
 
 CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
 						t_intersection *intersection);
-CUDA_HOSTDEV double		get_closest_sphere(t_world world, t_ray ray,
+CUDA_HOSTDEV void		get_closest_sphere(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_plane(t_world world, t_ray ray,
@@ -30,21 +30,14 @@ CUDA_HOSTDEV void		get_closest_cone(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_cylinder(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
-CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
+CUDA_HOSTDEV void		get_closest_paraboloid(t_world world, t_ray ray,
+						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 
 /*******************************************************************************
 **                     OBJECT_GET                                             **
 *******************************************************************************/
 
-CUDA_HOSTDEV int		get_cylinder(t_cylinder cylinder, t_camera camera,
-						t_ray ray, t_intersection *intersection_tmp);
-CUDA_HOSTDEV int		get_cone(t_cone cone, t_camera camera, t_ray ray,
-						t_intersection *intersection_tmp);
-CUDA_HOSTDEV t_vec3d	get_normal_sphere(t_sphere sphere, t_ray ray, 
-						t_intersection intersection);
-CUDA_HOSTDEV t_vec3d	get_normal_cone(t_cone cone, t_ray ray,
-						t_intersection intersection);
 
 /*******************************************************************************
 **                     COLOR_FCTS                                             **

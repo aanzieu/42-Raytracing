@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 17:42:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 12:37:25 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void		get_type(t_world *world, t_list *lst, char *str)
 		parse_cylinder(world, lst->next);
 	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))
 		parse_cone(world, lst->next);
+	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
+		parse_paraboloid(world, lst->next);
 	ft_memdel((void**)&tmp);
 	lst = lst->next;
 }

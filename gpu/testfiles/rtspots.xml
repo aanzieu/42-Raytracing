@@ -7,9 +7,6 @@
 		<viewWidth> 0.75 </viewWidth>
 		<viewHeight> 0.76 </viewHeight>-->
 	</camera>
-	<image>
-		300, 300
-	</image>
 	<surface type="plan">
 		<origin> 0 0 9 </origin>
 		<normal> 0 0 -1 </normal>

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_cones.c                                       :+:      :+:    :+:   */
+/*   load_paraboloids.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/16 18:08:45 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 11:19:48 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/06/19 11:16:27 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/06/19 14:17:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 
-static unsigned int	count_cones(t_cone *cones)
+static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
 {
-	t_cone *p;
+	t_paraboloid *p;
 	unsigned int size;
 
 	size = 0;
-	p = cones;
+	p = paraboloids;
 	while (p)
 	{
 		size++;
@@ -27,19 +27,20 @@ static unsigned int	count_cones(t_cone *cones)
 	return (size);
 }
 
-void			load_cones(t_cone **cones, t_cone *cones_tmp, int *cones_len)
+void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tmp, int *paraboloids_len)
 {
 	unsigned int i;
-	t_cone *tmp;
+	t_paraboloid *tmp;
 
 	i = 0;
-	*cones_len = count_cones(cones_tmp);
-	*cones = (t_cone*)malloc(sizeof(t_cone) * *cones_len);
-	tmp = cones_tmp;
+	*paraboloids_len = count_paraboloids(paraboloids_tmp);
+	*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) * *paraboloids_len);
+	tmp = paraboloids_tmp;
 	while (tmp)
 	{
-		(*cones)[i] = *tmp;
+		(*paraboloids)[i] = *tmp;
 		tmp = tmp->next;
 		i++;
 	}
 }
+

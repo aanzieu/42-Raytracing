@@ -75,6 +75,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	static t_cylinder	*cylinders_d;
 	static t_cone		*cones_d;
 	static t_light		*lights_d;
+	static t_paraboloid	*paraboloids_d;
 	static size_t	size = 0;
 	dim3		threads_per_block(32, 32);
 	dim3		grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
@@ -90,7 +91,8 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 			CudaSafeCall(cudaMalloc(&planes_d, sizeof(t_plane) * world.planes_len));
 			CudaSafeCall(cudaMalloc(&cylinders_d, sizeof(t_cylinder) * world.cylinders_len));
 			CudaSafeCall(cudaMalloc(&cones_d, sizeof(t_cone) * world.cones_len));
-			CudaSafeCall(cudaMalloc(&lights_d, sizeof(t_light) * world.lights_len));			
+			CudaSafeCall(cudaMalloc(&lights_d, sizeof(t_light) * world.lights_len));
+			CudaSafeCall(cudaMalloc(&paraboloids_d, sizeof(t_paraboloid) * world.paraboloids_len));
 		}
 		CudaSafeCall(cudaMemcpy(spheres_d, world.spheres, sizeof(t_sphere) * world.spheres_len, cudaMemcpyHostToDevice));
 		world.spheres = spheres_d;
@@ -102,6 +104,8 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		world.cones = cones_d;
 		CudaSafeCall(cudaMemcpy(lights_d, world.lights, sizeof(t_light) * world.lights_len, cudaMemcpyHostToDevice));
 		world.lights = lights_d;
+		CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));
+		world.paraboloids = paraboloids_d;
 		test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
 		// printf("Frame rendered\n");
 		CudaCheckError();
@@ -131,6 +135,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		cudaFree(cylinders_d);
 		cudaFree(cones_d);
 		cudaFree(lights_d);
+		cudaFree(paraboloids_d);
 		cudaFree(a_d);
 	}
 }

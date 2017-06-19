@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 09:20:47 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 13:12:04 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,14 @@ typedef struct		s_world
 	t_light		*lights;
 	t_cylinder	*cylinders;
 	t_cone		*cones;
+	t_paraboloid*paraboloids;
 
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
 	t_light		*lights_tmp;
 	t_cylinder	*cylinders_tmp;
 	t_cone		*cones_tmp;
+	t_paraboloid*paraboloids_tmp;
 
 	pthread_t		thread[NB_TH];
 	int				th;
@@ -164,6 +166,7 @@ typedef struct		s_world
 	int			cylinders_len;
 	int			cones_len;
 	int			lights_len;
+	int			paraboloids_len;
 
 	int			line;
 	int			render_factor;

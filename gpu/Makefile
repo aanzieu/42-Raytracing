@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/16 18:10:02 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/19 13:02:51 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
+				$(SRC_CUDA_DIR)/objects/paraboloid.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
@@ -64,6 +65,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/display_functions.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
+				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
 				$(SRC_DIR)/loader/load_cylinders.c \
 				$(SRC_DIR)/loader/load_planes.c \
@@ -74,20 +76,23 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/events/key_release_handler.c \
 				$(SRC_DIR)/events/mouse_handler.c \
 				\
-				$(SRC_DIR)/parser/parser.c \
+				$(SRC_DIR)/parser/parse_add.c \
+				$(SRC_DIR)/parser/parse_add_bonus.c \
 				$(SRC_DIR)/parser/parse_camera.c \
 				$(SRC_DIR)/parser/parse_cones.c \
 				$(SRC_DIR)/parser/parse_cylinders.c \
-				$(SRC_DIR)/parser/parse_lights.c \
-				$(SRC_DIR)/parser/parse_planes.c \
-				$(SRC_DIR)/parser/parse_spheres.c \
-				$(SRC_DIR)/parser/parse_add.c \
 				$(SRC_DIR)/parser/parse_infos.c \
 				$(SRC_DIR)/parser/parse_infos_2.c \
+				$(SRC_DIR)/parser/parse_lights.c \
+				$(SRC_DIR)/parser/parse_paraboloids.c \
+				$(SRC_DIR)/parser/parse_planes.c \
+				$(SRC_DIR)/parser/parse_spheres.c \
+				$(SRC_DIR)/parser/parser.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
+				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##

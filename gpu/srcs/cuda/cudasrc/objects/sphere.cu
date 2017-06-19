@@ -44,7 +44,7 @@ __host__ __device__ void	get_determinant_sphere(t_sphere sphere, t_ray ray, t_2d
 **	avec la sphere
 */
 
-__host__ __device__ double		get_sphere(t_sphere sphere, t_ray ray, t_intersection *intersection_tmp)
+__host__ __device__ static int	get_sphere(t_sphere sphere, t_ray ray, t_intersection *intersection_tmp)
 {
 	t_2deg	equation;
 	float	t1;
@@ -71,7 +71,7 @@ __host__ __device__ double		get_sphere(t_sphere sphere, t_ray ray, t_intersectio
 	return (0);
 }
 
-__host__ __device__ double	get_closest_sphere(t_world world, t_ray ray,
+__host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				t_intersection *intersection, t_intersection *intersection_tmp)
 {
 	int i;
@@ -94,5 +94,4 @@ __host__ __device__ double	get_closest_sphere(t_world world, t_ray ray,
 		}
 		i++;		
 	}
-	return (0);
 }

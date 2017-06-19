@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/19 09:21:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 14:21:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	load_data(t_world *world)
 	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
 	load_cylinders(&world->cylinders, world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
+	load_paraboloids(&world->paraboloids, world->paraboloids_tmp, &world->paraboloids_len);
 }
 
 /*
@@ -99,8 +100,10 @@ void	launch_cpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-		
+	
 	quit = 0;
+//	dprintf(1, "CPU | top.x = %lf |  top.y = %lf | top.z = %lf\n", 
+//			world->paraboloids->top.x, world->paraboloids->top.y, world->paraboloids->top.z);
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);

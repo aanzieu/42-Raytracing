@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 09:31:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/19 12:11:21 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ typedef struct			s_sphere
 	struct s_sphere		*next;
 }						t_sphere;
 
+typedef struct			s_paraboloid
+{
+	t_vec3d				top;
+	t_vec3d				normal;
+	t_color				color;
+	double				distance;
+	double				maxm;
+	struct s_paraboloid	*next;
+}						t_paraboloid;
+
 /*******************************************************************************
 **                     FCTS_OBJ                                               **
 *******************************************************************************/
@@ -59,11 +69,13 @@ t_sphere				*new_sphere(t_sphere *nw);
 t_cone					*new_cone(t_cone *nw);
 t_plane					*new_plan(t_plane *nw);
 t_cylinder				*new_cylinder(t_cylinder *nw);
+t_paraboloid			*new_paraboloid(t_paraboloid *nw);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
 void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
+void					add_paraboloid(t_paraboloid **alst, t_paraboloid *nw);
 
 void					load_planes(t_plane **planes, t_plane *planes_tmp,
 						int *planes_len);
@@ -73,5 +85,6 @@ void					load_cylinders(t_cylinder **cylinders,
 						t_cylinder *cylinders_tmp, int *cylinders_len);
 void					load_cones(t_cone **cones, t_cone *cones_tmp,
 						int *cones_len);
+void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tmp, int *cones_len);
 
 #endif
