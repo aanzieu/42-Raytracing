@@ -147,11 +147,12 @@ typedef struct		s_world
 	pthread_t		thread[NB_TH];
 	int				th;
 
-	//	t_camera	camera_tmp;
 	t_camera	camera;
 	t_viewplane	viewplane;
 
 	t_keys		keys;
+
+	int			mode;
 
 	int			spheres_len;
 	int			planes_len;

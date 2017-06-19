@@ -26,6 +26,7 @@ static void	get_viewplane(t_world *world)
 
 static void	data_setup(t_world *world)
 {
+	world->mode = 1;
 	world->viewplane.width = 0.5;
 	world->viewplane.height = 0.5;
 	world->render_factor = 1;
@@ -93,37 +94,58 @@ int					launch_thread(t_world *world)
 	return (0);
 }
 
-void	rt(t_world *world)
+void	launch_cpu(t_world *world)
 {
-	SDL_Event		event;
-	int				quit;
-//	int		*a_h;
-//	size_t			size_main;
-
+	int			quit;
+	SDL_Event	event;
+		
 	quit = 0;
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		return ;
-	world->window.id = SDL_CreateWindow("Rtv1 v0.9.1", 100, 100, WIN_WIDTH,
-								WIN_HEIGHT, 0);
-	world->window.screen = SDL_GetWindowSurface(world->window.id);
-//	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
-//	if (!(a_h = malloc(size_main)))
-//		return ;
-//	ft_bzero(a_h, size_main);
 	while (quit == 0)
 	{
-		// printf("%d\n", world->render_factor);
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world);
-		// printf("%d : %d : %d\n", world->render_factor, world->viewplane.x_res, world->viewplane.y_res);
-//		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
-		// ft_bzero(a_h, size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
-//	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
-//	free(a_h);
+}
+
+void	launch_gpu(t_world *world)
+{
+	int			*a_h;
+	size_t		size_main;
+	int			quit;
+	SDL_Event	event;
+		
+	quit = 0;
+	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+	if (!(a_h = malloc(size_main)))
+		return ;
+	ft_bzero(a_h, size_main);
+	while (quit == 0)
+	{
+		SDL_PollEvent(&event);
+		quit = event_handler(world, event);
+		get_viewplane(world);
+		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);				
+		ft_bzero(a_h, size_main);
+		SDL_UpdateWindowSurface(world->window.id);
+	}
+	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
+	free(a_h);
+}
+
+void	rt(t_world *world)
+{
+	if (SDL_Init(SDL_INIT_VIDEO) == -1)
+		return ;
+	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
+								WIN_HEIGHT, 0);
+	world->window.screen = SDL_GetWindowSurface(world->window.id);
+	if (world->mode == 0)
+		launch_cpu(world);
+	else
+		launch_gpu(world);
 	SDL_FreeSurface(world->window.screen);
 	SDL_DestroyWindow(world->window.id);
 }
