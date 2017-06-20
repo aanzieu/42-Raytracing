@@ -16,7 +16,7 @@ static void	get_light_next(t_world *world, char **tmp, int i, t_light *l)
 {
 	if (ft_strnequ(tmp[i], "<position>", ft_strlen("<position>")))
 		parse_point(&l->pos, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<intensity>", ft_strlen("<intensity>")))
+	else if (ft_strnequ(tmp[i], "<color>", ft_strlen("<color>")))
 		parse_color(&l->color, tmp, world->line);
 }
 

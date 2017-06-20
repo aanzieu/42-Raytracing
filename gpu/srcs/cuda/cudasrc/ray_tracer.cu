@@ -95,9 +95,11 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	get_closest_intersection(world, ray, &intersection);
 	if (intersection.type != '0' && intersection.t > 0.0000001)
 	{
+		color_add(&color, *intersection.color);
+		color_scalar(&color, world.indexes.ambient);
 		while (i < world.lights_len)
 		{
-			get_light_at(world, &color, world.lights[i], intersection);
+			get_light_at(world, &color, world.lights[i], intersection, ray);
 			i++;
 		}
 	}

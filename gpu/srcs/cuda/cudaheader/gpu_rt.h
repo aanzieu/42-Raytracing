@@ -55,7 +55,7 @@ CUDA_HOSTDEV int		get_color(t_color color);
 
 CUDA_HOSTDEV int		get_shadow(t_light light, t_intersection collision);
 CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color, t_light light,
-						t_intersection intersection);
+						t_intersection intersection, t_ray ray);
 
 /*******************************************************************************
 **                     CAMERA_FCTS                                            **

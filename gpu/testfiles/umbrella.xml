@@ -109,19 +109,19 @@
 		<origin> 0 0.75 1 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0.5 </color>
+		<color> 255 255 255 0 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 -0.75 1 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0.5 </color>
+		<color> 255 255 255 0 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 0 2 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0.5 </color>
+		<color> 125 0 125 0 </color>
 	</surface>
 	<!--<surface type="cone">
 		<center> 0 0 2 </center>
@@ -140,13 +140,14 @@
 		<height> 1 </height>
 	</surface>-->
 	<light>
-		<position> 0 0 -5 </position>
-		<intensity> 1 1 1 1 </intensity>
+		<position> 2 0 -5 </position>
+		<color> 255 255 255 1 </color>		
 	</light>
-	<light>
-		<position> 0 0 -6 </position>
+	<!--<light>
+		<position> -2 0 -5 </position>
+		<color> 125 0 125 0.5 </color>		
 		<intensity> 1 1 1 1 </intensity>
-	</light>
+	</light>-->
 	<camera type="Camera">
 		<viewPoint> 0 0 -10 </viewPoint>
 		<viewDir> 0 0 1 </viewDir>

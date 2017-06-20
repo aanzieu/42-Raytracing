@@ -45,8 +45,8 @@ __host__ __device__ void	get_determinant_sphere(t_sphere s, t_ray r, t_2deg *equ
 __host__ __device__ static int	get_sphere(t_sphere sphere, t_ray ray, t_intersection *intersection_tmp)
 {
 	t_2deg	equation;
-	float	t1;
-	float	t2;
+	double	t1;
+	double	t2;
 
 	get_determinant_sphere(sphere, ray, &equation);
 	if (equation.det >= 0)
