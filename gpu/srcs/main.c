@@ -32,7 +32,7 @@ static void	data_setup(t_world *world)
 	world->render_factor = 1;
 	world->viewplane.dist = 1;
 	world->line = 0;
-	world->indexes.ambient = 0.2;
+	world->indexes.ambient = 0.1;
 }
 
 static void	load_data(t_world *world)

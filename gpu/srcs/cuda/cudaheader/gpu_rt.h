@@ -46,16 +46,16 @@ CUDA_HOSTDEV void		get_closest_paraboloid(t_world world, t_ray ray,
 CUDA_HOSTDEV void		color_multiply(t_color *color1, t_color color2);
 CUDA_HOSTDEV void		color_scalar(t_color *color, double coeficient);
 CUDA_HOSTDEV void		color_add(t_color *color1, t_color color2);
-CUDA_HOSTDEV int		get_color(double r, double g, double b);
+CUDA_HOSTDEV t_color	new_color(double r, double g, double b);
+CUDA_HOSTDEV int		get_color(t_color color);
 
 /*******************************************************************************
 **                     LIGHTS_FCTS                                            **
 *******************************************************************************/
 
-CUDA_HOSTDEV int		get_shadow(t_world world,
-						t_intersection collision, t_light *lights);
-CUDA_HOSTDEV double		get_light_at(t_light light,
-						t_intersection intersection, t_index indexes);
+CUDA_HOSTDEV int		get_shadow(t_light light, t_intersection collision);
+CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color, t_light light,
+						t_intersection intersection);
 
 /*******************************************************************************
 **                     CAMERA_FCTS                                            **

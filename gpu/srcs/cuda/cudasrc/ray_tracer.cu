@@ -76,38 +76,30 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	if (intersection->type == '0')
 		return (0);
 	else
-	{
-		// printf("%c\n", intersection_tmp.type);
 		return (1);
-	}
-		
 }
 
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
 	t_ray			ray;
 	t_intersection	intersection;
-	t_color			color_tmp;
+	t_color			color;
+	int				i;
 
-	color_tmp.r = 0;
-	color_tmp.g = 0;
-	color_tmp.b = 0;	
+	i = 0;	
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
+	color = new_color(0, 0, 0);
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
 	if (intersection.type != '0' && intersection.t > 0.0000001)
 	{
-		if (get_shadow(world, intersection, world.lights) == 1)
+		while (i < world.lights_len)
 		{
-			return (RED);
-			// color_add(&color_tmp, *intersection.color);
-			// color_scalar(&color_tmp, 1);
-			// return (get_color(color_tmp.r, color_tmp.g, color_tmp.b));
+			get_light_at(world, &color, world.lights[i], intersection);
+			i++;
 		}
-		else
-			return (get_light_at(world.lights[0], intersection, world.indexes));
 	}
-	return (GREEN);
+	return (get_color(color));
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Three Sphere">
+	<surface type="Sphere">
+		<shader ref="red" />
+		<radius> 0.2 </radius>
+		<center> 0 0 1 </center>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 166 166 166 1 </color>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="red" />
+		<radius> 0.2 </radius>
+		<center> 0.5 0.3 1 </center>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 166 166 166 1 </color>
+	</surface>
+	<surface type="Cylinder">
+		<center> 0.75 0 2 </center>
+		<normal> 0.75 1 2 </normal>
+		<radius> 0.1 </radius>
+		<rotation> 0 0 0 </rotation>
+		<color> 0 102 255 1 </color>
+		<height> 1 </height>
+	</surface>
+	<light>
+		<position> 1 1 1 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+	<!--<light>
+		<position> 0 0 -6 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>-->
+	<camera type="Camera">
+		<viewPoint> 0 0 -10 </viewPoint>
+		<viewDir> 0 0 1 </viewDir>
+		<!--<viewWidth> 0.75 </viewWidth>
+		<viewHeight> 0.76 </viewHeight>-->
+	</camera>
+</scene>
