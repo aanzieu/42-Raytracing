@@ -12,7 +12,7 @@
 
 extern "C" {
 	#include <rt.h>
-	#include "gpu_rt.h"
+	#include <gpu_rt.h>
 	#include <vectors.h>
 	#include <equation.h>
 }
@@ -42,7 +42,7 @@ __host__ __device__ static double get_sphere(t_sphere sphere,
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
 	eq.c = vector_dot(x, x) - pow(sphere.radius, 2);
-	return ((intersection_tmp->t = second_degres(eq.a, eq.b, eq.c)));
+	return ((intersection_tmp->t = second_degres(eq.a, eq.b, eq.c)) > ZERO_DP ? 1 : 0);
 }
 
 __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
@@ -53,7 +53,7 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.spheres_len)
 	{
-		if(get_sphere(world.spheres[i], ray, intersection_tmp) > ZERO_DP)
+		if(get_sphere(world.spheres[i], ray, intersection_tmp) == 1)
 		{
 			intersection_tmp->type = 's';
 			if (intersection_tmp->t < intersection->t)

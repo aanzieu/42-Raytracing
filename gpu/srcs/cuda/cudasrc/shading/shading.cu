@@ -13,8 +13,8 @@
 extern "C" {
 	#include "rt.h"
 	#include "gpu_rt.h"
+	#include <equation.h>
 }
-#include "gpu_rt.h"
 #include <float.h>
 
 __host__ __device__ int		get_shadow(t_world world, t_light light,

@@ -6,30 +6,28 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 11:27:18 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:48:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
-#include "vectors.h"
-#include "light.h"
-#include "display.h"
-#include "object.h"
+#include <light.h>
+#include <object.h>
 #include "../libft/libft.h"
 
-# include <pthread.h>
-# include <SDL2/SDL.h>
+#include <pthread.h>
+#include <SDL2/SDL.h>
 
-# define NB_TH 8
+#define NB_TH 8
 
-# define VERSION 1.03.3
+#define VERSION 1.03.3
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 640
+#define WIN_WIDTH 640
+#define WIN_HEIGHT 640
 
-# define SHADOW_BIAS 0
+#define SHADOW_BIAS 0
 
 typedef struct		s_window
 {

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 12:31:07 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/07 17:42:28 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 13:13:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ static t_vec3d		normalize_cone(t_cone *co, t_ray r, double t, t_3point p)
 
 	x = point_to_vector(co->center, r.org);
 	v = vector_normalize(co->normal);
+	
 	m = vector_dotproduct(r.dir, vector_scalaire(v, t))
 		+ vector_dotproduct(x, v);
+
+	
+	
 	k = co->angle;
 	n = vector_normalize(vector_sub(point_to_vector(co->center, p),
 				vector_scalaire(vector_scalaire(v, m), (1 + k * k))));
@@ -55,8 +59,10 @@ static double		find_cone_intersection(t_cone *co, t_ray r)
 	k = co->angle;
 	a[0] = vector_dotproduct(r.dir, r.dir) - ((1 + (k * k)) *
 			(pow(vector_dotproduct(r.dir, v), 2)));
+
 	a[1] = 2 * ((vector_dotproduct(r.dir, x) - ((1 + (k * k)) *
 			vector_dotproduct(r.dir, v) * vector_dotproduct(x, v))));
+	
 	a[2] = vector_dotproduct(x, x) - ((1 + (k * k)) *
 			(pow(vector_dotproduct(x, v), 2)));
 	return (positive_solution(second_degres(a[0], a[1], a[2])));

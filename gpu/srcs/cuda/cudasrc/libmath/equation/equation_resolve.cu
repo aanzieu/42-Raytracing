@@ -63,7 +63,7 @@ __host__ __device__ double		second_degres(double a, double b, double c)
 		s.res = check_solution_equation(s.tmp[0], s.tmp[1]);
 	}
 	else
-		s.res = NOT_A_SOLUTION;//-1;
+		s.res = -1;//NOT_A_SOLUTION;//-1;
 	return (s.res);
 /*
 	t_solve s;

@@ -6,13 +6,14 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:50:12 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 16:19:19 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:49:05 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_H
 # define DISPLAY_H
-# include <SDL2/SDL.h>
+
+# include <rt.h>
 
 # define BLACK 0
 # define WHITE 16777215
@@ -25,5 +26,6 @@
 # define LIGHT_BROWN 12624511
 
 void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color);
+void	put_pixel_screen(t_world *world);
 
 #endif

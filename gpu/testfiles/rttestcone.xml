@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Three Sphere">
+	<camera type="Camera">
+		<viewPoint> 0 0 -15 </viewPoint>
+		<viewDir> 0 0 0 </viewDir>
+	</camera>
+	<surface type="cone">
+		<center> -0.75 0 0.5 </center>
+		<normal> -0.75 1 0.5 </normal>
+		<radius> 3 </radius>
+		<rotation> 0 0 0 </rotation>
+		<color> 0 102 255 1 </color>
+		<height> 1 </height>
+	</surface>
+	<light>
+		<position> 2 0 -5 </position>
+		<color> 255 255 255 1 </color>		
+	</light>
+</scene>

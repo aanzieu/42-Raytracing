@@ -6,13 +6,14 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/21 11:26:50 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:51:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <../srcs/cuda/cudaheader/gpu_rt.h>
+#include <gpu_rt.h>
 #include <parse.h>
+#include <display.h>
 
 static void	get_viewplane(t_world *world)
 {
@@ -47,41 +48,6 @@ static void	load_data(t_world *world)
 			world->paraboloids_tmp, &world->paraboloids_len);
 }
 
-/*
-**	Set the game in fullscreen
-**	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-*/
-
-/*
-**	Initialize SDL and start listening to events
-**	On event receive send data to handler
-*/
-void				put_pixel_screen(t_world *world)
-{
-	int 			i;
-	int 			j;
-	int 			y;
-	int				x;
-
-	i = 0;
-	y = 0;
-	while (i < WIN_HEIGHT)
-	{
-		j = 0;
-		x = 0;
-		while (j < WIN_WIDTH)
-		{
-			pixel_to_image(world->window.screen, j, i,
-					world->a_h[y * world->viewplane.x_res + x]);
-			j++;
-			if (j % world->render_factor == 0)
-				x++;
-		}
-		i++;
-		if (i % world->render_factor == 0)
-			y++;
-	}
-}
 
 static	void		*perform_thread(void *arg)
 {
@@ -143,6 +109,8 @@ void	launch_cpu(t_world *world)
 	}
 }
 
+/*	On event receive send data to handler*/
+
 void	launch_gpu(t_world *world)
 {
 	int			quit;
@@ -163,6 +131,10 @@ void	launch_gpu(t_world *world)
 	render_cuda(world->a_h, world->viewplane.x_res,
 			world->viewplane.y_res, *world, 1);
 }
+
+/*
+**	Initialize SDL and start listening to events
+*/
 
 void	rt(t_world *world)
 {
