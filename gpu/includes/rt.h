@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 13:12:04 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 10:47:06 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 # include <pthread.h>
 # include <SDL2/SDL.h>
 
-# define NB_TH 20
-# define FAST_RENDER_PRECISION 8
+# define NB_TH 8
 
 # define VERSION 1.03.3
 
@@ -117,15 +116,17 @@ typedef struct		s_2deg
 /*
 ** Structure Thread
 */
-
+typedef struct		s_thread_cpy
+{
+	int				color;
+	struct s_world	*world;
+}					t_thread_cpy;
 
 typedef struct		s_thread_input
 {
 	int				th;
-//	int				x1;
-//	int				x2;
-//	int				y1;
-//	int				y2;
+//	int				color;
+//	int				*a_h;
 	struct s_world	*world;
 }					t_thread_input;
 
@@ -153,12 +154,12 @@ typedef struct		s_world
 
 	pthread_t		thread[NB_TH];
 	int				th;
+	int				*a_h;
 
 	t_camera	camera;
 	t_viewplane	viewplane;
 
 	t_keys		keys;
-
 	int			mode;
 
 	int			spheres_len;
@@ -170,7 +171,7 @@ typedef struct		s_world
 
 	int			line;
 	int			render_factor;
-
+	size_t		size_main;
 	t_index		indexes;
 }					t_world;
 
@@ -194,4 +195,9 @@ void				key_press_handler2(t_world *world, SDL_Event event);
 void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world, SDL_Event event);
 
+t_light		*copy_light(t_light *obj);
+t_sphere	*copy_sphere(t_sphere *obj);
+t_plane		*copy_plan(t_plane *obj);
+t_cone		*copy_cone(t_cone *obj);
+t_cylinder		*copy_cylinder(t_cylinder *obj);
 #endif

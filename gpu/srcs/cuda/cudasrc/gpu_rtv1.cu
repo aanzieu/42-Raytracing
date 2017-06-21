@@ -65,11 +65,11 @@ __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world w
 
 extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset)
 {
-	int				i;
-	int 			j;
+//	int				i;
+//	int 			j;
 	static int 		*a_d;
-	int 			y;
-	int				x;
+//	int 			y;
+//	int				x;
 	static t_sphere	*spheres_d;
 	static t_plane		*planes_d;
 	static t_cylinder	*cylinders_d;
@@ -110,23 +110,23 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		// printf("Frame rendered\n");
 		CudaCheckError();
 		CudaSafeCall(cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost));
-		i = 0;
-		y = 0;
-		while (i < WIN_HEIGHT)
-		{
-			j = 0;
-			x = 0;
-			while (j < WIN_WIDTH)
-			{
-				pixel_to_image(world.window.screen, j, i, a_h[y * constw + x]);
-				j++;
-				if (j % world.render_factor == 0)
-					x++;
-			}
-			i++;
-			if (i % world.render_factor == 0)
-				y++;
-		}
+//		i = 0;
+//		y = 0;
+//		while (i < WIN_HEIGHT)
+//		{
+//			j = 0;
+//			x = 0;
+//			while (j < WIN_WIDTH)
+//			{
+//				pixel_to_image(world.window.screen, j, i, a_h[y * constw + x]);
+//				j++;
+//				if (j % world.render_factor == 0)
+//					x++;
+//			}
+//			i++;
+//			if (i % world.render_factor == 0)
+//				y++;
+//		}
 	}
 	else
 	{

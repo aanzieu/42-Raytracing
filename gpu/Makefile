@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/19 13:02:51 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/20 17:57:59 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/translation.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/rotation.cu \
 				\
+				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
+				\
+				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
@@ -51,8 +54,6 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
-				\
-				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
@@ -63,6 +64,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/free_memory.c \
 				$(SRC_DIR)/render.c \
 				$(SRC_DIR)/display_functions.c \
+				\
+				$(SRC_DIR)/threads/malloc_objects_cpy.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \

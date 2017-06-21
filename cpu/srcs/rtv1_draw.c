@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:09:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/15 13:37:57 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/20 18:00:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	fast_mode_color(t_thread_cpy *cpy, int x, int y, int color)
 	cam_position(&cpy->scene->camera, x, y);
 	cpy->r = get_raytracing(&cpy->scene->camera);
 	cpy->color = get_color_object(cpy->r, cpy->scene);
-//	cpy->co = get_color(cpy->color);
 	cpy->co = get_special_color(get_color(cpy->color), 0, 0);
 	j = 0;
 	while(j < FAST_RENDER_PRECISION)

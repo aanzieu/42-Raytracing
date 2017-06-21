@@ -14,26 +14,16 @@ extern "C" {
 	#include <rt.h>
 	#include "gpu_rt.h"
 	#include <vectors.h>
+	#include <equation.h>
 }
 
-__host__ __device__ t_vec3d	get_normal_sphere(t_sphere sphere, t_intersection intersection)
+__host__ __device__ t_vec3d	get_normal_sphere(t_sphere sphere,
+		t_intersection intersection)
 {
 	t_vec3d normal;
 
-	normal = vector_normalize(vector_calculate(sphere.pos,
-															intersection.pos));
+	normal = vector_normalize(vector_calculate(sphere.pos, intersection.pos));
 	return (normal);
-}
-
-__host__ __device__ void	get_determinant_sphere(t_sphere s, t_ray r, t_2deg *equation)
-{
-	t_vec3d x;
-
-	x = vector_calculate(s.pos, r.origin);
-	equation->a = vector_dot(r.dir, r.dir);
-	equation->b = 2 * vector_dot(r.dir, x);
-	equation->c = vector_dot(x, x) - pow(s.radius, 2);
-	equation->det = pow(equation->b, 2) - (4 * (equation->a) * (equation->c));
 }
 
 /*
@@ -42,31 +32,17 @@ __host__ __device__ void	get_determinant_sphere(t_sphere s, t_ray r, t_2deg *equ
 **	avec la sphere
 */
 
-__host__ __device__ static int	get_sphere(t_sphere sphere, t_ray ray, t_intersection *intersection_tmp)
+__host__ __device__ static double get_sphere(t_sphere sphere,
+		t_ray ray, t_intersection *intersection_tmp)
 {
-	t_2deg	equation;
-	double	t1;
-	double	t2;
+	t_vec3d x;
+	t_eq	eq;
 
-	get_determinant_sphere(sphere, ray, &equation);
-	if (equation.det >= 0)
-	{
-		t1 = ((-1) * equation.b + sqrt(equation.det)) / (2 * equation.a);
-		t2 = ((-1) * equation.b - sqrt(equation.det)) / (2 * equation.a);
-		if (t1 <= t2 && t1 > 0)
-		{
-			intersection_tmp->t = t1;
-			intersection_tmp->type = 's';
-			return (1);
-		}
-		else if (t2 > 0)
-		{
-			intersection_tmp->t = t2;
-			intersection_tmp->type = 's';
-			return (1);
-		}
-	}
-	return (0);
+	x = vector_calculate(sphere.pos, ray.origin);
+	eq.a = vector_dot(ray.dir, ray.dir);
+	eq.b = 2 * vector_dot(ray.dir, x);
+	eq.c = vector_dot(x, x) - pow(sphere.radius, 2);
+	return ((intersection_tmp->t = second_degres(eq.a, eq.b, eq.c)));
 }
 
 __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
@@ -77,8 +53,9 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.spheres_len)
 	{
-		if(get_sphere(world.spheres[i], ray, intersection_tmp) == 1)
+		if(get_sphere(world.spheres[i], ray, intersection_tmp) > ZERO_DP)
 		{
+			intersection_tmp->type = 's';
 			if (intersection_tmp->t < intersection->t)
 			{
 				intersection->t = intersection_tmp->t;

@@ -6,11 +6,11 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 13:45:45 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 08:07:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/20 18:03:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../../includes/rt.h>
+#include <rt.h>
 
 t_plane		*copy_plan(t_plane *obj)
 {

@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/19 14:21:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:18:08 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,31 @@ static void	load_data(t_world *world)
 **	Initialize SDL and start listening to events
 **	On event receive send data to handler
 */
+void				put_pixel_screen(t_world *world)
+{
+	int 			i;
+	int 			j;
+	int 			y;
+	int				x;
+
+	i = 0;
+	y = 0;
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		x = 0;
+		while (j < WIN_WIDTH)
+		{
+			pixel_to_image(world->window.screen, j, i, world->a_h[y * world->viewplane.x_res + x]);
+			j++;
+			if (j % world->render_factor == 0)
+				x++;
+		}
+		i++;
+		if (i % world->render_factor == 0)
+			y++;
+	}
+}
 
 static	void		*perform_thread(void *arg)
 {
@@ -63,13 +88,14 @@ static	void		*perform_thread(void *arg)
 
 	thread = (t_thread_input *)arg;
 	y = (thread->th * (thread->world->viewplane.y_res / NB_TH));
-	while (y < (thread->th + 1) * ((thread->world->viewplane.y_res / NB_TH)))
+	while (y < (thread->th + 1) * (thread->world->viewplane.y_res / NB_TH))
 	{
 		x = 0;
+//		i = 0;
 		while (x < thread->world->viewplane.x_res)
 		{
-			pixel_to_image(thread->world->window.screen,
-			x, y, ray_tracer(*thread->world, x, y));
+			thread->world->a_h[y * thread->world->viewplane.x_res + x]
+					= ray_tracer(*thread->world, x, y);
 			x++;
 		}
 		y++;
@@ -80,8 +106,8 @@ static	void		*perform_thread(void *arg)
 int					launch_thread(t_world *world)
 {
 	t_thread_input		tab[NB_TH];
-	int					i;
-
+	int				i;
+		
 	i = -1;
 	while (++i < NB_TH)
 	{
@@ -93,7 +119,7 @@ int					launch_thread(t_world *world)
 	i = -1;
 	while (++i < NB_TH)
 		pthread_join(world->thread[i], NULL);
-	return (0);
+	return(0);
 }
 
 void	launch_cpu(t_world *world)
@@ -102,45 +128,49 @@ void	launch_cpu(t_world *world)
 	SDL_Event	event;
 	
 	quit = 0;
-//	dprintf(1, "CPU | top.x = %lf |  top.y = %lf | top.z = %lf\n", 
-//			world->paraboloids->top.x, world->paraboloids->top.y, world->paraboloids->top.z);
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world);
+		put_pixel_screen(world);
+		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
 }
 
 void	launch_gpu(t_world *world)
 {
-	int			*a_h;
-	size_t		size_main;
+//	int			*a_h;
+//	size_t		size_main;
 	int			quit;
 	SDL_Event	event;
 		
 	quit = 0;
-	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
-	if (!(a_h = malloc(size_main)))
-		return ;
-	ft_bzero(a_h, size_main);
+//	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+//	if (!(a_h = malloc(size_main)))
+//		return ;
+//	ft_bzero(a_h, size_main);
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);				
-		ft_bzero(a_h, size_main);
+		render_cuda(world->a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
+		put_pixel_screen(world);
+		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
-	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
-	free(a_h);
+	render_cuda(world->a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
 }
 
 void	rt(t_world *world)
 {
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+	if (!(world->a_h = malloc(world->size_main)))
+		exit(0);
+	ft_bzero(world->a_h, world->size_main);
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return ;
 	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
@@ -150,6 +180,7 @@ void	rt(t_world *world)
 		launch_cpu(world);
 	else
 		launch_gpu(world);
+	free(world->a_h);
 	SDL_FreeSurface(world->window.screen);
 	SDL_DestroyWindow(world->window.id);
 }

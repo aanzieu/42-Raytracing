@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 12:11:21 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/20 17:48:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,12 @@ void					load_cylinders(t_cylinder **cylinders,
 void					load_cones(t_cone **cones, t_cone *cones_tmp,
 						int *cones_len);
 void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tmp, int *cones_len);
+
+
+
+
+
+
+
 
 #endif

@@ -85,6 +85,7 @@ CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
 *******************************************************************************/
 
 CUDA_HOSTDEV double		deg_to_radians(double deg);
+CUDA_HOSTDEV double		second_degres(double a, double b, double c);
 
 /*******************************************************************************
 **                     RAYTRACERS_FCTS                                        **
