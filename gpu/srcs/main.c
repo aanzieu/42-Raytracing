@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/21 11:18:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:26:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ static void	load_data(t_world *world)
 	load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
 	load_planes(&world->planes, world->planes_tmp, &world->planes_len);
 	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
-	load_cylinders(&world->cylinders, world->cylinders_tmp, &world->cylinders_len);
+	load_cylinders(&world->cylinders,
+			world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
-	load_paraboloids(&world->paraboloids, world->paraboloids_tmp, &world->paraboloids_len);
+	load_paraboloids(&world->paraboloids,
+			world->paraboloids_tmp, &world->paraboloids_len);
 }
 
 /*
@@ -69,7 +71,8 @@ void				put_pixel_screen(t_world *world)
 		x = 0;
 		while (j < WIN_WIDTH)
 		{
-			pixel_to_image(world->window.screen, j, i, world->a_h[y * world->viewplane.x_res + x]);
+			pixel_to_image(world->window.screen, j, i,
+					world->a_h[y * world->viewplane.x_res + x]);
 			j++;
 			if (j % world->render_factor == 0)
 				x++;
@@ -142,32 +145,29 @@ void	launch_cpu(t_world *world)
 
 void	launch_gpu(t_world *world)
 {
-//	int			*a_h;
-//	size_t		size_main;
 	int			quit;
 	SDL_Event	event;
 		
 	quit = 0;
-//	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
-//	if (!(a_h = malloc(size_main)))
-//		return ;
-//	ft_bzero(a_h, size_main);
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-		render_cuda(world->a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
+		render_cuda(world->a_h, world->viewplane.x_res,
+				world->viewplane.y_res, *world, 0);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
-	render_cuda(world->a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
+	render_cuda(world->a_h, world->viewplane.x_res,
+			world->viewplane.y_res, *world, 1);
 }
 
 void	rt(t_world *world)
 {
-	world->size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res
+		* sizeof(int);
 	if (!(world->a_h = malloc(world->size_main)))
 		exit(0);
 	ft_bzero(world->a_h, world->size_main);

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 10:47:06 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 11:27:18 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,17 +116,10 @@ typedef struct		s_2deg
 /*
 ** Structure Thread
 */
-typedef struct		s_thread_cpy
-{
-	int				color;
-	struct s_world	*world;
-}					t_thread_cpy;
 
 typedef struct		s_thread_input
 {
 	int				th;
-//	int				color;
-//	int				*a_h;
 	struct s_world	*world;
 }					t_thread_input;
 
@@ -172,6 +165,7 @@ typedef struct		s_world
 	int			line;
 	int			render_factor;
 	size_t		size_main;
+	
 	t_index		indexes;
 }					t_world;
 

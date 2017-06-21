@@ -65,11 +65,7 @@ __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world w
 
 extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset)
 {
-//	int				i;
-//	int 			j;
 	static int 		*a_d;
-//	int 			y;
-//	int				x;
 	static t_sphere	*spheres_d;
 	static t_plane		*planes_d;
 	static t_cylinder	*cylinders_d;
@@ -79,7 +75,6 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	static size_t	size = 0;
 	dim3		threads_per_block(32, 32);
 	dim3		grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
-
 
 	if (reset == 0)
 	{
@@ -107,26 +102,8 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));
 		world.paraboloids = paraboloids_d;
 		test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
-		// printf("Frame rendered\n");
 		CudaCheckError();
 		CudaSafeCall(cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost));
-//		i = 0;
-//		y = 0;
-//		while (i < WIN_HEIGHT)
-//		{
-//			j = 0;
-//			x = 0;
-//			while (j < WIN_WIDTH)
-//			{
-//				pixel_to_image(world.window.screen, j, i, a_h[y * constw + x]);
-//				j++;
-//				if (j % world.render_factor == 0)
-//					x++;
-//			}
-//			i++;
-//			if (i % world.render_factor == 0)
-//				y++;
-//		}
 	}
 	else
 	{
