@@ -139,9 +139,13 @@
 		<color>  204 255 51 </color>
 		<height> 1 </height>
 	</surface>-->
+	<!--<ambient>
+		<color> 255 255 255 0.2 </color>
+	</ambient>-->
 	<light>
 		<position> 2 0 -5 </position>
-		<color> 255 255 255 1 </color>		
+		<intensity> 1 <intensity>
+		<color> 255 255 255 0</color>		
 	</light>
 	<!--<light>
 		<position> -2 0 -5 </position>

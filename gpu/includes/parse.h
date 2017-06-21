@@ -37,6 +37,8 @@ void				parse_paraboloid(t_world *world, t_list *lst);
 void				parse_color(t_color *c, char **tmp, int line);
 void				parse_vector(t_vec3d *v, char **tmp, int line);
 void				parse_point(t_vec3d *v, char **tmp, int line);
+void				parse_intensity(double *intensity_coef, char **tmp, int line);
+void				parse_reflexion(double *reflexion_coef, char **tmp, int line);
 
 #endif
 

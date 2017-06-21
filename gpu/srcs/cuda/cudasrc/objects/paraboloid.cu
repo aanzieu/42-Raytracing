@@ -93,6 +93,7 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
+				intersection->reflexion_coef = 0;
 				intersection->color = &world.paraboloids[i].color;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));

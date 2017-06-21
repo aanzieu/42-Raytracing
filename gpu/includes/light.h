@@ -22,6 +22,7 @@ typedef struct			s_light
 {
 	t_vec3d				pos;
 	t_color				color;
+	double				intensity_coef;
 	struct s_light		*next;
 }						t_light;
 

@@ -64,6 +64,7 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
+				intersection->reflexion_coef = world.planes[i].reflexion_coef;
 				intersection->color = &world.planes[i].color;
 				intersection->pos = vector_add(ray.origin,
 				vector_scalar(ray.dir, intersection->t));

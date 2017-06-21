@@ -41,7 +41,7 @@ __host__ __device__ int		get_shadow(t_world world, t_light light,
 }
 
 __host__ __device__ void	specular_light(t_color *color, t_vec3d ray,
-	t_intersection intersection, t_vec3d light_vector, t_color light_color)
+	t_intersection intersection, t_vec3d light_vector, t_light light)
 {
 	t_vec3d reflected_vector;
 	double	specular_angle;
@@ -50,10 +50,10 @@ __host__ __device__ void	specular_light(t_color *color, t_vec3d ray,
 		intersection.normal_v,2 * vector_dot(ray, intersection.normal_v)));
 	reflected_vector = vector_normalize(reflected_vector);
 	specular_angle = pow(vector_dot(light_vector, reflected_vector), 150);
-	color_scalar(&light_color, specular_angle);
-	color_scalar(&light_color, intersection.color->light);
-	color_scalar(&light_color, light_color.light);	
-	color_add(color, light_color);
+	color_scalar(&light.color, specular_angle);
+	color_scalar(&light.color, intersection.reflexion_coef);
+	color_scalar(&light.color, light.intensity_coef);	
+	color_add(color, light.color);
 }
 
 __host__ __device__	void	get_light_at(t_world world, t_color *color,
@@ -71,8 +71,9 @@ __host__ __device__	void	get_light_at(t_world world, t_color *color,
 	{
 		color_add(&tmp, *intersection.color);
 		color_scalar(&tmp, angle);
+		color_scalar(&tmp, light.intensity_coef);		
 		color_add(color, tmp);
 		specular_light(color, ray.dir, intersection,
-									light_vector, light.color);
+									light_vector, light);
 	}
 }

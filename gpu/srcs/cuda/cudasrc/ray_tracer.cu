@@ -89,6 +89,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	i = 0;	
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
+	// intersection.reflexion_coef = 0;
 	color = new_color(0, 0, 0);
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);

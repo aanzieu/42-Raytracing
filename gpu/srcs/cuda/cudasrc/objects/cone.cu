@@ -103,6 +103,7 @@ __host__ __device__ void	get_closest_cone(t_world world, t_ray ray,
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
+				intersection->reflexion_coef = world.cones[i].reflexion_coef;
 				intersection->color = &world.cones[i].color;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));

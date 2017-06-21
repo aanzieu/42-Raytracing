@@ -60,6 +60,7 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
+				intersection->reflexion_coef = world.spheres[i].reflexion_coef;				
 				intersection->color = &world.spheres[i].color;
 				intersection->pos = vector_add(vector_scalar(ray.dir, intersection_tmp->t), ray.origin);
 				intersection->normal_v = get_normal_sphere(world.spheres[i],

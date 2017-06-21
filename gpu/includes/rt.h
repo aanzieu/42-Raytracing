@@ -77,6 +77,7 @@ typedef struct		s_intersection
 	t_vec3d normal_v;
 	t_vec3d	pos;
 	t_color *color;
+	double	reflexion_coef;
 	double	t;
 	char	type;
 }					t_intersection;

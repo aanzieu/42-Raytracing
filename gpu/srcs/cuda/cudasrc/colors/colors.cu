@@ -66,8 +66,8 @@ __host__ __device__ int		get_color(t_color color)
 	color.g = color.g > 1 ? 1 : color.g;
 	color.b = color.b < 0 ? 0 : color.b;
 	color.b = color.b > 1 ? 1 : color.b;
-	color.light = color.light > 1 ? 1 : color.light;
-	color.light = color.light < 0 ? 0 : color.light;
+	// color.light = color.light > 1 ? 1 : color.light;
+	// color.light = color.light < 0 ? 0 : color.light;
 	return ((int)(color.b * 255) + (int)(color.g * 255) * 256 +
 									(int)(color.r * 255) * 256 * 256);
 }

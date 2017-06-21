@@ -90,7 +90,7 @@ void	parse_color(t_color *c, char **tmp, int line)
 {
 	int	i;
 
-	if (ft_count_word(tmp) != 6)
+	if (ft_count_word(tmp) != 5)
 	{
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
@@ -100,5 +100,5 @@ void	parse_color(t_color *c, char **tmp, int line)
 	c->r = color_to_coef(ft_atoi_double(tmp[i + 1]));
 	c->g = color_to_coef(ft_atoi_double(tmp[i + 2]));
 	c->b = color_to_coef(ft_atoi_double(tmp[i + 3]));
-	c->light = ft_atoi_double(tmp[i + 4]);
+	// c->light = ft_atoi_double(tmp[i + 4]);
 }

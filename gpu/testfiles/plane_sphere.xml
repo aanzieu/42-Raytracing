@@ -5,26 +5,31 @@
 		<radius> 0.5 </radius>
 		<center> 0 0 1 </center>
 		<rotation> 0 0 0 </rotation>
+		<reflexion> 0 </reflexion>		
 		<translation> 0 0 0 </translation>
-		<color> 50 0 0 1 </color>
+		<color> 50 0 0 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 -0.75 1 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0 </color>
+		<reflexion> 0 </reflexion>
+		<color> 255 255 255 </color>
 	</surface>
 	<light>
 		<position> -1.5 1 -3 </position>
-		<color> 100 100 100 1 </color>		
+		<intensity> 0 <intensity>
+		<color> 100 100 100 </color>
 	</light>
 	<light>
 		<position> 1.5 1 -3 </position>
-		<color> 255 255 255 0.5 </color>		
+		<intensity> 0 <intensity>
+		<color> 255 255 255 </color>		
 	</light>
 	<light>
 		<position> 0 1 -3 </position>
-		<color> 255 255 255 1 </color>		
+		<intensity> 1 <intensity>
+		<color> 255 255 255 </color>		
 	</light>
 	<camera type="Camera">
 		<viewPoint> 0 0 -10 </viewPoint>

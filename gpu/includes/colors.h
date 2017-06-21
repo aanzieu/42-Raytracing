@@ -18,7 +18,7 @@ typedef struct		s_color
 	double			r;
 	double			g;
 	double			b;
-	double			light;
+	// double			light;
 }					t_color;
 
 #endif

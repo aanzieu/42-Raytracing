@@ -42,6 +42,7 @@ t_plane		*new_plan(t_plane *nw)
 	p->up = nw->up;
 	p->pos = nw->pos;
 	p->color = nw->color;
+	p->reflexion_coef = nw->reflexion_coef;	
 	p->next = NULL;
 	return (p);
 }
@@ -56,6 +57,7 @@ t_cone		*new_cone(t_cone *nw)
 	c->pos = nw->pos;
 	c->up = nw->up;
 	c->color = nw->color;
+	c->reflexion_coef = nw->reflexion_coef;
 	c->next = NULL;
 	return (c);
 }
@@ -69,6 +71,7 @@ t_sphere	*new_sphere(t_sphere *nw)
 	s->radius = nw->radius;
 	s->pos = nw->pos;
 	s->color = nw->color;
+	s->reflexion_coef = nw->reflexion_coef;
 	s->next = NULL;
 	return (s);
 }
@@ -81,6 +84,7 @@ t_light		*new_light(t_light *nw)
 		ft_putendl_fd("Erroc Malloc on Light", 1);
 	l->pos = nw->pos;
 	l->color = nw->color;
+	l->intensity_coef = nw->intensity_coef;
 	l->next = NULL;
 	return (l);
 }
@@ -96,6 +100,7 @@ t_cylinder	*new_cylinder(t_cylinder *nw)
 	cy->up_v = nw->up_v;
 	cy->radius = nw->radius;
 	cy->color = nw->color;
+	cy->reflexion_coef = nw->reflexion_coef;
 	cy->next = NULL;
 	return (cy);
 }

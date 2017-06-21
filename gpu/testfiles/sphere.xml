@@ -10,7 +10,7 @@
 	</surface>
 	<light>
 		<position> -2 1 1 </position>
-		<intensity> 1 1 1 1 </intensity>
+		<intensity> 1 </intensity>
 	</light>
 	<camera type="Camera">
 		<viewPoint> 0 0 -10 </viewPoint>

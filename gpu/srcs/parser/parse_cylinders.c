@@ -26,6 +26,8 @@ static void	get_cylinder_next(t_world *world, char **tmp, int i, t_cylinder *cy)
 		parse_point_translation(&cy->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&cy->up, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
+		parse_reflexion(&cy->reflexion_coef, tmp, world->line);
 }
 
 void		parse_cylinder(t_world *world, t_list *lst)
