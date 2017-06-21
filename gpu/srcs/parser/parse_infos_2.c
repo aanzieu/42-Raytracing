@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:48:38 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/16 17:42:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 18:04:52 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		parse_rotation_cam(t_camera *cam, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Tranlation", 1);
+		exit (0);
 	}
 	rotate(&cam->look_at, ft_atoi(tmp[i + 1]), 'x');
 	rotate(&cam->look_at, ft_atoi(tmp[i + 2]), 'y');

@@ -3,7 +3,7 @@
 	<surface type="Cone">
 		<center> -0.75 0 0.5 </center>
 		<normal> -0.75 1 0.5 </normal>
-		<radius> 30 </radius>
+		<radius> 0.2 </radius>
 		<rotation> 0 0 0 </rotation>
 		<color> 0 102 255 </color>
 		<reflexion> 1 </reflexion>		
@@ -146,7 +146,7 @@
 		<height> 1 </height>
 	</surface>-->
 	<light>
-		<position> 2 0 -5 </position>
+		<position> 0 0 0 </position>
 		<color> 255 255 255 </color>		
 		<intensity> 1 </intensity>
 	</light>

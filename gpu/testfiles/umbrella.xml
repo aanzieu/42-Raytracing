@@ -5,7 +5,7 @@
 		<normal> -0.75 1 0.5 </normal>
 		<radius> 0.2 </radius>
 		<rotation> 0 0 0 </rotation>
-		<color> 0 102 255 1 </color>
+		<color> 0 102 255 </color>
 		<height> 1 </height>
 	</surface>
 	<surface type="Cylinder">
@@ -13,7 +13,7 @@
 		<normal> 0.75 1 0.5 </normal>
 		<radius> 0.1 </radius>
 		<rotation> 0 0 0 </rotation>
-		<color> 0 102 255 1 </color>
+		<color> 0 102 255 </color>
 		<height> 1 </height>
 	</surface>
 	<surface type="Cylinder">
@@ -21,7 +21,7 @@
 		<normal> -1 1 -0.5 </normal>
 		<radius> 0.1 </radius>
 		<rotation> 0 0 0 </rotation>
-		<color> 0 102 255 1 </color>
+		<color> 0 102 255 </color>
 		<height> 1 </height>
 	</surface>
 	<surface type="Cylinder">
@@ -29,7 +29,7 @@
 		<normal> 1 1 -0.5 </normal>
 		<radius> 0.1 </radius>
 		<rotation> 0 0 0 </rotation>
-		<color> 0 102 255 1 </color>
+		<color> 0 102 255 </color>
 		<height> 1 </height>
 	</surface>
 	<surface type="Sphere">
@@ -38,7 +38,7 @@
 		<center> 0.75 0.75 0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -46,7 +46,7 @@
 		<center> -0.75 0.75 0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -54,7 +54,7 @@
 		<center> 1 0.75 -0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -62,7 +62,7 @@
 		<center> -1 0.75 -0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	
 		<surface type="Sphere">
@@ -71,7 +71,7 @@
 		<center> 0.75 -0.75 0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -79,7 +79,7 @@
 		<center> -0.75 -0.75 0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -144,7 +144,7 @@
 	</ambient>-->
 	<light>
 		<position> 2 0 -5 </position>
-		<intensity> 1 <intensity>
+		<intensity> 1 </intensity>
 		<color> 255 255 255 0</color>		
 	</light>
 	<!--<light>

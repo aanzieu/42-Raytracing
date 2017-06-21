@@ -14,6 +14,7 @@ extern "C" {
 	#include <rt.h>
 	#include "gpu_rt.h"
 	#include <vectors.h>
+	#include <equation.h>
 }
 
 __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, t_intersection intersection)
@@ -35,48 +36,34 @@ __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, 
 __host__ __device__ void	get_determinant_paraboloid(t_paraboloid para, t_camera camera, t_ray ray,
 														t_2deg *equation)
 {
-	t_vec3d	x;
-	t_vec3d	v;
-
-	x = vector_calculate(para.top, ray.origin);
-	v = vector_normalize(para.normal);
-	equation->a = vector_dot(ray.dir, ray.dir)
-		- (pow(vector_dot(ray.dir, v), 2));
-	equation->b = 2 * (vector_dot(ray.dir, x)
-			- (vector_dot(ray.dir, v)
-				* ((vector_dot(x, v) + 2 * para.distance))));
-	equation->c = vector_dot(x, x)
-		- (vector_dot(x, v)
-				* (vector_dot(x, v) + 4 * para.distance));
-	equation->det = pow(equation->b, 2) - (4 * (equation->a) * (equation->c));
 }
 
 __host__ __device__ int		get_paraboloid(t_paraboloid para, t_camera camera, t_ray ray,
 									t_intersection *intersection_tmp)
 {
-	t_2deg	equation;
-	double	t1;
-	double	t2;
+	t_vec3d	x;
+	t_vec3d	v;
+	t_eq	eq;
 
-	get_determinant_paraboloid(para, camera, ray, &equation);
-	if (equation.det >= 0)
+	x = vector_calculate(para.top, ray.origin);
+	v = vector_normalize(para.normal);
+	eq.a = vector_dot(ray.dir, ray.dir)
+		- (pow(vector_dot(ray.dir, v), 2));
+	eq.b = 2 * (vector_dot(ray.dir, x)
+			- (vector_dot(ray.dir, v)
+				* ((vector_dot(x, v) + 2 * para.distance))));
+	eq.c = vector_dot(x, x)
+		- (vector_dot(x, v)
+				* (vector_dot(x, v) + 4 * para.distance));
+	eq.res = second_degres(eq.a, eq.b, eq.c);
+	if(eq.res != NOT_A_SOLUTION)
 	{
-		t1 = ((-1) * equation.b + sqrt(equation.det)) / (2 * equation.a);
-		t2 = ((-1) * equation.b - sqrt(equation.det)) / (2 * equation.a);
-		if (t1 <= t2 && t1 > 0.0000001)
-		{
-			intersection_tmp->t = t1;
-			intersection_tmp->type = 'x';
-			return (1);
-		}
-		else if (t2 > 0.0000001)
-		{
-			intersection_tmp->t = t2;
-			intersection_tmp->type = 'x';
-			return (1);
-		}
+		intersection_tmp->t = eq.res;
+		intersection_tmp->type = 'x';
+		return(1);
 	}
-	return (0);
+	intersection_tmp->t = -1.0;
+	return(0);
 }
 
 __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 11:48:58 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 17:48:13 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct		s_ambient
 {
 	t_color			color;
 	double			intensity;
+	double			coef;
 }					t_ambient;
 
 typedef struct		s_2deg

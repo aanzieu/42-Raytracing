@@ -27,15 +27,11 @@ __host__ __device__ t_vec3d	get_normal_cylinder(t_cylinder cylinder, t_camera ca
 
 	x = vector_substract(ray.origin, cylinder.pos);
 	axis_v = vector_normalize(vector_calculate(cylinder.pos, cylinder.up));
+
 	m = vector_dot(ray.dir, axis_v) * intersection.t + vector_dot(x, axis_v);
-	normal_v = vector_normalize(
-				vector_substract(
-					vector_substract(
-						intersection.pos,
-						cylinder.pos),
-					vector_scalar(
-						axis_v,
-						m)));
+	
+	normal_v = vector_normalize(vector_substract(vector_substract(intersection.pos, cylinder.pos),
+					vector_scalar(axis_v, m)));
 	return (normal_v);
 }
 
@@ -53,7 +49,15 @@ __host__ __device__ int		get_cylinder(t_cylinder cylinder, t_camera camera, t_ra
 		(vector_dot(ray.dir, normal_v) * vector_dot(x, normal_v)));
 	eq.c = vector_dot(x, x) -
 		pow(vector_dot(x, normal_v), 2) - pow(cylinder.radius, 2);
-	return ((intersection_tmp->t = second_degres(eq.a, eq.b, eq.c)) > ZERO_DP ? 1 : 0);
+	eq.res = second_degres(eq.a, eq.b, eq.c);
+	if(eq.res != NOT_A_SOLUTION)
+	{
+		intersection_tmp->t = eq.res;
+		intersection_tmp->type = 'c';
+		return(1);
+	}
+	intersection_tmp->t = -1.0;
+	return(0);
 }
 
 __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
@@ -66,7 +70,6 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 	{
 		if (get_cylinder(world.cylinders[i], world.camera, ray, intersection_tmp) == 1)
 		{
-			intersection_tmp->type = 'c';
 			if (intersection_tmp->t < intersection->t)
 			{
 				intersection->t = intersection_tmp->t;

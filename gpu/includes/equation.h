@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 14:45:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/20 14:05:00 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/21 16:55:28 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <math.h>
 
-# define IS_ZERO(X)		(fabs(X) < ZERO_DP ? 1 : 0)
-# define ZERO_DP					(1e-6)
+//# define IS_ZERO(X)		(fabs(X) < ZERO_DP ? 1 : 0)
+# define ZERO_DP					(1e-4)
 # define NOT_A_SOLUTION			0xFFFFFFFFFFFFFFFF
 
 //# define SMALLER(A, B)		(((A) < (B) ? A : B))
@@ -49,10 +49,7 @@ typedef struct		s_eq
 	double			c;
 	double			d;
 	double			e;
-//	double			det;
-	double			b0;
-	double			b1;
-	double			b2;
+	double			res;
 }					t_eq;
 /*
 # define POSITIVE(A)		(((A) > 0.0) ? (A) : 0.0)

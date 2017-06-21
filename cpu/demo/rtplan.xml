@@ -13,8 +13,20 @@
 		<translation> 0 0 0 </translation>
 		<color> 0.2 0.23 0.233 0.5 </color>
 	</surface>
+	<surface type="Sphere">
+		<shader ref="grey_basD" />
+		<radius> 2 </radius>
+		<center> 0 0 0 </center>
+		<rotation> 0 0 1 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 1 0.1 0.1 1 </color>
+	</surface>
 	<light>
 		<position> -3 0 -8 </position>
+		<intensity> 1 1 1 1 </intensity>
+	</light>
+	<light>
+		<position> 3 0 -5 </position>
 		<intensity> 1 1 1 1 </intensity>
 	</light>
 </scene>
