@@ -52,7 +52,7 @@ __host__ __device__ void	specular_light(t_color *color, t_vec3d ray,
 	specular_angle = pow(vector_dot(light_vector, reflected_vector), 150);
 	color_scalar(&light.color, specular_angle);
 	color_scalar(&light.color, intersection.reflexion_coef);
-	color_scalar(&light.color, light.intensity_coef);	
+	color_scalar(&light.color, light.intensity_coef);
 	color_add(color, light.color);
 }
 
@@ -76,4 +76,6 @@ __host__ __device__	void	get_light_at(t_world world, t_color *color,
 		specular_light(color, ray.dir, intersection,
 									light_vector, light);
 	}
+	else
+		color_add(color, tmp);
 }

@@ -82,6 +82,8 @@ static void		parse_lst(t_world *world, t_list *lst)
 			parse_camera(world, &world->camera, lst);
 		else if (ft_strnequ(lst->content, "<light", ft_strlen("<light")))
 			parse_light(world, lst->next);
+		else if (ft_strnequ(lst->content, "<ambient", ft_strlen("<ambient")))
+			parse_ambient(world, lst);
 		if (lst)
 			lst = lst->next;
 		world->line++;

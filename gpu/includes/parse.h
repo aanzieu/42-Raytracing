@@ -39,6 +39,7 @@ void				parse_vector(t_vec3d *v, char **tmp, int line);
 void				parse_point(t_vec3d *v, char **tmp, int line);
 void				parse_intensity(double *intensity_coef, char **tmp, int line);
 void				parse_reflexion(double *reflexion_coef, char **tmp, int line);
+void				parse_ambient(t_world *world, t_list *lst);
 
 #endif
 

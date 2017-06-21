@@ -89,7 +89,6 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	i = 0;	
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
-	// intersection.reflexion_coef = 0;
 	color = new_color(0, 0, 0);
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
@@ -97,7 +96,8 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	if (intersection.type != '0' && intersection.t > 0.0000001)
 	{
 		color_add(&color, *intersection.color);
-		color_scalar(&color, world.indexes.ambient);
+		color_multiply(&color, world.ambient.color);
+		color_scalar(&color, world.ambient.intensity);
 		while (i < world.lights_len)
 		{
 			get_light_at(world, &color, world.lights[i], intersection, ray);
