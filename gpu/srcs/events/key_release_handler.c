@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 16:06:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 16:29:14 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,26 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 		world->keys.s = 0;
 	if (event.key.keysym.sym == SDLK_d)
 		world->keys.d = 0;
+	if (event.key.keysym.sym == SDLK_0)
+		world->keys.pad_0 = 0;
+	if (event.key.keysym.sym == SDLK_1)
+		world->keys.pad_1 = 0;
+	if (event.key.keysym.sym == SDLK_2)
+		world->keys.pad_2 = 0;
+	if (event.key.keysym.sym == SDLK_3)
+		world->keys.pad_3 = 0;
+	if (event.key.keysym.sym == SDLK_4)
+		world->keys.pad_4 = 0;
+	if (event.key.keysym.sym == SDLK_5)
+		world->keys.pad_5 = 0;
+	if (event.key.keysym.sym == SDLK_6)
+		world->keys.pad_6 = 0;
+	if (event.key.keysym.sym == SDLK_7)
+		world->keys.pad_7 = 0;
+	if (event.key.keysym.sym == SDLK_8)
+		world->keys.pad_8 = 0;
+	if (event.key.keysym.sym == SDLK_9)
+		world->keys.pad_9 = 0;
 	return ;
 }
 

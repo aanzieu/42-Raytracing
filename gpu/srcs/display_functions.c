@@ -6,11 +6,12 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/21 11:49:07 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 16:41:08 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <effects.h>
 
 void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 {
@@ -21,6 +22,57 @@ void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 	*((Uint32*)pixel) = color;
 }
 
+int			*ft_intcpy(int	*src, int width, int height)
+{
+	int	i;
+	int	j;
+	int	*tmp;
+	size_t size;
+
+	size = sizeof(int) * width * height;
+	if (!(tmp = malloc(size)))
+		exit(0);
+	ft_bzero(tmp, size);
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			tmp[i * width + j] = src[i * width + j];
+			j++;
+		}
+		i++;
+	}
+	return(tmp);
+}
+
+void				effect_application(t_world *world)
+{
+	if(world->keys.pad_1 == 1)
+		eight_bit_effect(world->a_h);
+	else if(world->keys.pad_2 == 1)
+		black_and_white_effect(world->a_h);
+	else if(world->keys.pad_3 == 1)
+		sepia_effect(world->a_h);
+	else if(world->keys.pad_4 == 1)
+		pastel_effect(world->a_h, world->viewplane.y_res, world->viewplane.x_res);
+	else if(world->keys.pad_0 == 1)
+		solarized_effect(world->a_h);
+	else if(world->keys.pad_5 == 1)
+		bayer_color(world->a_h);
+	else if(world->keys.pad_6 == 1)
+		negative_color(world->a_h);
+	else if(world->keys.pad_7 == 1)
+		filter_color(world->a_h);
+// Not fonctionnel
+//
+// 
+//	else if(world->keys.pad_8 == 1)
+//		exposure_color(world->a_h);
+
+}
+
 void				put_pixel_screen(t_world *world)
 {
 	int 			i;
@@ -28,6 +80,7 @@ void				put_pixel_screen(t_world *world)
 	int 			y;
 	int				x;
 
+	effect_application(world);
 	i = 0;
 	y = 0;
 	while (i < WIN_HEIGHT)

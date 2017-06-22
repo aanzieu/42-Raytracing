@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 17:48:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 16:32:09 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ typedef struct		s_keys
 	int space;
 	int rightbracket;
 	int leftbracket;
+	int pad_0;
+	int pad_1;
+	int pad_2;
+	int pad_3;
+	int pad_4;
+	int pad_5;
+	int pad_6;
+	int pad_7;
+	int pad_8;
+	int pad_9;
 	int j;
 	int k;
 	int l;

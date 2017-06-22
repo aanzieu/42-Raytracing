@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/21 10:13:21 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 16:29:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,26 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.s = 1;
 	if (event.key.keysym.sym == SDLK_d)
 		world->keys.d = 1;
+	if (event.key.keysym.sym == SDLK_0)
+		world->keys.pad_0 = 1;
+	if (event.key.keysym.sym == SDLK_1)
+		world->keys.pad_1 = 1;
+	if (event.key.keysym.sym == SDLK_2)
+		world->keys.pad_2 = 1;
+	if (event.key.keysym.sym == SDLK_3)
+		world->keys.pad_3 = 1;
+	if (event.key.keysym.sym == SDLK_4)
+		world->keys.pad_4 = 1;
+	if (event.key.keysym.sym == SDLK_5)
+		world->keys.pad_5 = 1;
+	if (event.key.keysym.sym == SDLK_6)
+		world->keys.pad_6 = 1;
+	if (event.key.keysym.sym == SDLK_7)
+		world->keys.pad_7 = 1;
+	if (event.key.keysym.sym == SDLK_8)
+		world->keys.pad_8 = 1;
+	if (event.key.keysym.sym == SDLK_9)
+		world->keys.pad_9 = 1;
 	// if (event.key.keysym.sym == SDLK_RIGHTBRACKET)
 	// 	world->keys.rightbracket = 1;
 	// if (event.key.keysym.sym == SDLK_LEFTBRACKET)
@@ -110,7 +130,6 @@ void	key_press_handler3(t_world *world, SDL_Event event)
 		get_camera_axes(&world->camera);	
 	}
 	if (world->keys.d == 1)
-	if (world->keys.a == 1)
 	{
 		translate(&world->camera.pos, 0.5, 0, 0);
 		translate(&world->camera.look_at, 0.5, 0, 0);

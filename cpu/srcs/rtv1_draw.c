@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 15:09:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/20 18:00:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 14:20:38 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void			draw_p_with_thread(t_thread_cpy *e, int x, int y,
 		color = mlx_get_color_value(mlx, color);
 		if (e->endian == 0)
 		{
-			(e->img_s + pixel)[2] = color >> 16;
-			(e->img_s + pixel)[1] = (color & 0x00FF00) >> 8;
 			(e->img_s + pixel)[0] = color & 0x0000FF;
+			(e->img_s + pixel)[1] = (color & 0x00FF00) >> 8;
+			(e->img_s + pixel)[2] = color >> 16;
 		}
 		else
 		{
