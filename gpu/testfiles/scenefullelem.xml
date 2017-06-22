@@ -66,7 +66,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
-	<surface type="Paraboloid">
+	<!--surface type="Paraboloid">
 		<top> 0 -1 0 </top>
 		<normal> 0 1 0 </normal>
 		<Rdistance> 0.1 </Rdistance>
@@ -75,7 +75,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 		<height> 1 </height>
-	</surface>
+	</surface-->
 	<light>
 		<position> 0 0 -5 </position>
 		<color> 255 255 255 </color>

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/22 16:32:09 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 17:16:38 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ typedef struct		s_world
 
 	t_keys		keys;
 	int			mode;
+	int			cartoon;
 
 	int			spheres_len;
 	int			planes_len;

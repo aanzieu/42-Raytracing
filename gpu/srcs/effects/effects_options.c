@@ -6,12 +6,29 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 11:25:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/22 16:35:25 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 18:02:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rt.h"
 #include "../../includes/effects.h"
+
+static int	limit_color(int col)
+{
+	if (col <= 0)
+		return (0);
+	else if (col > 0 && col <= 50)
+		return (25);
+	else if (col > 50 && col <= 100)
+		return (75);
+	else if (col > 100 && col <= 200)
+		return (150);
+	else if (col > 200 && col < 250)
+		return (225);
+	else if (col >= 255)
+		return (255);
+	return (col);
+}
 
 void		int_to_int(int	*src, int *dst, int width, int height)
 {
@@ -99,6 +116,31 @@ void		black_and_white_effect(int *pix)
 			color.g = grey;
 			color.b = grey;
 			pix[cur] = RGB(color.r, color.g, color.b);
+			j++;
+		}
+		i++;
+	}
+}
+/* Add r,g,b and / 3 */
+void		shell_shading_effect(int *pix)
+{
+	int		i;
+	int		j;
+//	int		grey;
+	int		cur;
+	t_color	color;
+
+	i = 0;
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+		{
+			cur = i * WIN_WIDTH + j;
+			color.r = pix[cur] >> 16;
+			color.g = (pix[cur] & 0x00FF00) >> 8;
+			color.b = (pix[cur] & 0x0000FF);
+			pix[cur] = RGB(limit_color(color.r), limit_color(color.g), limit_color(color.b));
 			j++;
 		}
 		i++;
@@ -203,6 +245,7 @@ static void			each_in_radius(t_pastel pastel, t_pos pix, int *from, int averages
 		}
 	}
 }
+
 
 static void			filler(t_pastel pastel, t_pos pix, int *to, int averages[][4])
 {

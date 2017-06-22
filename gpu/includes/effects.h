@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 11:28:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/22 16:31:58 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/22 17:48:11 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef	struct	s_pos
 	int		height;
 }				t_pos;
 
+void		shell_shading_effect(int *pix);
 void		exposure_color(int *pix);
 void		filter_color(int *pix);
 void		negative_color(int *pix);

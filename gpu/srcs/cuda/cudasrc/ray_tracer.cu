@@ -78,6 +78,17 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	else
 		return (1);
 }
+	
+__host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light lights, t_intersection intersection, t_ray ray)
+{
+	if(vector_dot(intersection.normal_v, ray.dir) > -0.3 && intersection.type != 'p'
+			&& vector_dot(intersection.normal_v, ray.dir) < 0.0000001)
+	{
+		color->r = 0;
+		color->g = 0;
+		color->b = 0;
+	}
+}
 
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
@@ -86,7 +97,9 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	t_color			color;
 	int				i;
 
-	i = 0;	
+	world.cartoon = 1;
+
+	i = 0;
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	color = new_color(0, 0, 0);
@@ -101,6 +114,8 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		while (i < world.lights_len)
 		{
 			get_light_at(world, &color, world.lights[i], intersection, ray);
+			if(world.cartoon == 1)
+				cartoon_effect(world, &color, world.lights[i], intersection, ray);
 			i++;
 		}
 	}
