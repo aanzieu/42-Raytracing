@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/22 12:02:51 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/23 09:44:56 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,13 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/threads/malloc_objects_cpy.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
+				$(SRC_DIR)/effects/effect_bayer.c \
+				$(SRC_DIR)/effects/effect_black_and_white.c \
+				$(SRC_DIR)/effects/effect_cartoon.c \
+				$(SRC_DIR)/effects/effect_eight_bits.c \
+				$(SRC_DIR)/effects/effect_negative.c \
+				$(SRC_DIR)/effects/effect_sepia.c \
+				$(SRC_DIR)/effects/effect_pastel.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \

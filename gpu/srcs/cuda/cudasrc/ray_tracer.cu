@@ -78,23 +78,7 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	else
 		return (1);
 }
-__host__ __device__ static double	limit_clr(double col)
-{
-	if (col <= 0)
-		return (0);
-	else if (col > 0 && col <= 0.25)
-		return (0.2);
-	else if (col > 0.25 && col <= 0.50)
-		return (0.4);
-	else if (col > 0.5 && col <= 0.75)
-		return (0.6);
-	else if (col > 0.75 && col < 1)
-		return (0.8);
-	else if (col >= 1)
-		return (1);
-	return (col);
-}
-	
+
 __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light lights, t_intersection intersection, t_ray ray)
 {
 	if(vector_dot(intersection.normal_v, ray.dir) > -0.3 && intersection.type != 'p'
@@ -103,12 +87,6 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 		color->r = 0;
 		color->g = 0;
 		color->b = 0;
-	}
-	if(world.keys.pad_9 == 1 && intersection.type != 'p')
-	{
-		color->r = limit_clr(color->r);
-		color->g = limit_clr(color->g);
-		color->b = limit_clr(color->b);
 	}
 }
 
@@ -119,7 +97,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	t_color			color;
 	int				i;
 
-	world.cartoon = 1;
+	world.cartoon = 0;
 
 	i = 0;
 	intersection.t = DBL_MAX;

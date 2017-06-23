@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 08:15:54 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 09:44:57 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,10 @@ void				effect_application(t_world *world)
 	else if(world->keys.pad_7 == 1)
 		filter_color(world->a_h);
 // Not fonctionnel
-//
-// 
 //	else if(world->keys.pad_8 == 1)
 //		exposure_color(world->a_h);
-//	else if(world->keys.pad_9 == 1)
-
-//		shell_shading_effect(world->a_h);
+	else if(world->keys.pad_9 == 1)
+		shell_shading_effect(world->a_h);
 
 }
 
