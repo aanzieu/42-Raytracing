@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/22 15:32:11 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 17:18:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void	rt(t_world *world)
 	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
 								WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
-	if (world->mode == 1)
+	if (world->mode == 0)
 		launch_cpu(world);
 	else
 		launch_gpu(world);
@@ -177,7 +177,7 @@ int		main(int argc, char **argv)
 {
 	t_world	*world;
 
-	(void)argv;
+//	(void)argv;
 	if (argc == 2)
 	{
 		if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))

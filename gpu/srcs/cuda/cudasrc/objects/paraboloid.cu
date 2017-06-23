@@ -23,19 +23,14 @@ __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, 
 	t_vec3d	x;
 	t_vec3d	v;
 	double	m;
-	
-	x = vector_calculate(ray.origin, para.top);
+
+	x = vector_calculate(para.top, ray.origin);
 	v = vector_normalize(para.normal);
 	m = vector_dot(ray.dir, vector_scalar(v, intersection.t))
 		+ vector_dot(x, v);
 	normal_v = vector_normalize(vector_substract(vector_calculate(para.top, intersection.pos),
 				vector_scalar(v, m + para.distance)));
 	return (normal_v);
-}
-
-__host__ __device__ void	get_determinant_paraboloid(t_paraboloid para, t_camera camera, t_ray ray,
-														t_2deg *equation)
-{
 }
 
 __host__ __device__ int		get_paraboloid(t_paraboloid para, t_camera camera, t_ray ray,

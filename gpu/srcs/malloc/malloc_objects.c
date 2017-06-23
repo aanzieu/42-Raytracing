@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:54:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 11:37:53 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 13:22:02 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ t_cone		*new_cone(t_cone *nw)
 	c->up = nw->up;
 	c->color = nw->color;
 	c->reflexion_coef = nw->reflexion_coef;
+	c->height = nw->height;
+	c->min = nw->min;
+	c->max = nw->max;
 	c->next = NULL;
 	return (c);
 }

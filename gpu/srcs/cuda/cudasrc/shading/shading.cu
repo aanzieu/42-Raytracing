@@ -61,7 +61,7 @@ __host__ __device__	void	get_light_at(t_world world, t_color *color,
 {
 	t_vec3d	light_vector;
 	t_color	tmp;
-	double	angle;	
+	double	angle;
 
 	tmp =  new_color(0, 0, 0);
 	light_vector = vector_normalize(vector_calculate(intersection.pos,

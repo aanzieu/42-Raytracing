@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/20 17:48:16 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 13:23:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ typedef struct			s_cone
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
-	double				radius;	
 	double				half_angle;
+	double				height;
+	t_vec3d				min;
+	t_vec3d				max;
 	double				reflexion_coef;
 	struct s_cone		*next;
 }						t_cone;

@@ -6,7 +6,7 @@
 		<radius> 0.2 </radius>
 		<color> 0 102 255 </color>
 		<reflexion> 1 </reflexion>
-		<height> 1 </height>
+		<height> 0 </height>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
@@ -36,7 +36,7 @@
 		<radius> 0.1 </radius>
 		<color> 102 102 25 </color>
 		<reflexion> 1 </reflexion>
-		<height> 1 </height>
+		<height> 4 </height>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>

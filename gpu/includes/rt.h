@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/22 17:16:38 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 18:30:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_keys
 	int l;
 	int i;
 	int q;
+	int e;
 	int w;
 	int s;
 	int a;
@@ -109,13 +110,6 @@ typedef struct		s_viewplane
 	t_vec3d	up_left;
 }					t_viewplane;
 
-typedef struct		s_ambient
-{
-	t_color			color;
-	double			intensity;
-	double			coef;
-}					t_ambient;
-
 typedef struct		s_2deg
 {
 	double	a;
@@ -158,28 +152,29 @@ typedef struct		s_world
 	t_cone		*cones_tmp;
 	t_paraboloid*paraboloids_tmp;
 
+	int			spheres_len;
+	int			planes_len;
+	int			cylinders_len;
+	int			cones_len;
+	int			lights_len;
+	int			paraboloids_len;
+	int			disks_len;
+
 	pthread_t		thread[NB_TH];
 	int				th;
+	
 	int				*a_h;
-
+	size_t		size_main;
+	
 	t_camera	camera;
 	t_viewplane	viewplane;
 
 	t_keys		keys;
 	int			mode;
-	int			cartoon;
-
-	int			spheres_len;
-	int			planes_len;
-	int			disks_len;
-	int			cylinders_len;
-	int			cones_len;
-	int			lights_len;
-	int			paraboloids_len;
 
 	int			line;
+
 	int			render_factor;
-	size_t		size_main;
 	
 	t_ambient	ambient;
 }					t_world;

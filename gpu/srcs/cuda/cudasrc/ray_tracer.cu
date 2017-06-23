@@ -98,8 +98,6 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	t_color			color;
 	int				i;
 
-	world.cartoon = 0;
-
 	i = 0;
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
@@ -115,7 +113,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		while (i < world.lights_len)
 		{
 			get_light_at(world, &color, world.lights[i], intersection, ray);
-			if(world.cartoon == 1)
+			if(world.keys.pad_9 == 1)
 				cartoon_effect(world, &color, world.lights[i], intersection, ray);
 			i++;
 		}

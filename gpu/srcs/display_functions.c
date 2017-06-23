@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 09:44:57 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 17:18:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 	pixel += (y * surface->pitch) + (x * sizeof(Uint32));
 	*((Uint32*)pixel) = color;
 }
-
+/*
 int			*ft_intcpy(int	*src, int width, int height)
 {
 	int	i;
@@ -46,7 +46,7 @@ int			*ft_intcpy(int	*src, int width, int height)
 	}
 	return(tmp);
 }
-
+*/
 void				effect_application(t_world *world)
 {
 	if(world->keys.pad_1 == 1)

@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/22 17:20:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 12:49:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.pad_8 = 1;
 	if (event.key.keysym.sym == SDLK_9)
 		world->keys.pad_9 = 1;
+	if (event.key.keysym.sym == SDLK_q)
+		world->keys.q = 1;
+	if (event.key.keysym.sym == SDLK_e)
+		world->keys.e = 1;
+	// }
 	// if (event.key.keysym.sym == SDLK_RIGHTBRACKET)
 	// 	world->keys.rightbracket = 1;
 	// if (event.key.keysym.sym == SDLK_LEFTBRACKET)
@@ -133,6 +138,18 @@ void	key_press_handler3(t_world *world, SDL_Event event)
 	{
 		translate(&world->camera.pos, 0.5, 0, 0);
 		translate(&world->camera.look_at, 0.5, 0, 0);
+		get_camera_axes(&world->camera);	
+	}
+	if (world->keys.q == 1)
+	{
+		translate(&world->camera.pos, 0, -0.5, 0);
+		translate(&world->camera.look_at, 0, -0.5, 0);
+		get_camera_axes(&world->camera);	
+	}
+	if (world->keys.e == 1)
+	{
+		translate(&world->camera.pos, 0, 0.5, 0);
+		translate(&world->camera.look_at, 0, 0.5, 0);
 		get_camera_axes(&world->camera);	
 	}
 	if (world->keys.space == 1)

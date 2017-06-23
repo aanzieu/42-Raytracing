@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 16:41:25 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 12:05:41 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 14:16:57 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ static void	get_cone_next(t_world *world, char **tmp, int i, t_cone *co)
 		co->half_angle = ft_atoi_double(tmp[i + 1]);
 	else if (ft_strnequ(tmp[i], "<color>", ft_strlen("<color>")))
 		parse_color(&co->color, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
+		parse_reflexion(&co->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<height>", ft_strlen("<height>")))
+		co->height = ft_atoi_double(tmp[i + 1]);
+	else if (ft_strnequ(tmp[i], "<min>", ft_strlen("<min>")))
+		parse_vector(&co->min, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<max>", ft_strlen("<max>")))
+		parse_vector(&co->max, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<translation>", ft_strlen("<translation>")))
 		parse_point_translation(&co->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&co->up, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
-		parse_reflexion(&co->reflexion_coef, tmp, world->line);
 }
 
 void		parse_cone(t_world *world, t_list *lst)

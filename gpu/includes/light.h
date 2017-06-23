@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:36:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 17:00:45 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 17:10:01 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 #include "colors.h"
 
 # define AMBIENT_LIGHT WHITE
+
+typedef struct		s_ambient
+{
+	t_color			color;
+	double			intensity;
+	double			coef;
+}					t_ambient;
 
 typedef struct			s_light
 {
