@@ -40,12 +40,21 @@ static void	load_data(t_world *world)
 {
 	load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
 	load_planes(&world->planes, world->planes_tmp, &world->planes_len);
+	load_disks(&world->disks, world->disks_tmp, &world->disks_len);
 	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
 	load_cylinders(&world->cylinders,
 			world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
 	load_paraboloids(&world->paraboloids,
 			world->paraboloids_tmp, &world->paraboloids_len);
+
+	// world->disks = malloc(sizeof(t_disk) * 1);
+	// world->disks_len = 1;
+	// world->disks[0].pos = new_vector(0, 1, 2);
+	// world->disks[0].up = new_vector(0, 0, 2);
+	// world->disks[0].radius = 1;
+	// world->disks[0].radius_squared = pow(world->disks[0].radius, 2);
+	// world->disks[0].color = new_color(100, 100, 0);
 }
 
 

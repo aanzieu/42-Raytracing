@@ -14,13 +14,21 @@
 		<radius> 0.2 </radius>
 		<center> 0 0 -3 </center>
 		<color> 255 0 0 </color>
-		<reflexion> 0 </reflexion>
+		<reflexion> 0.5 </reflexion>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
+	<surface type="Disk">
+		<origin> -1 0.2 1 </origin>
+		<normal> 0 0.2 -2 </normal>
+		<radius> 0.5 </radius>		
+		<rotation> 0 0 0 </rotation>
+		<reflexion> 1 </reflexion>
+		<color> 255 255 0 </color>
+	</surface>
 	<surface type="Plan">
-		<origin> 0 -0.75 1 </origin>
-		<normal> 0 0 1 </normal>
+		<origin> 0 -0.5 1 </origin>
+		<normal> 0 -2 1 </normal>
 		<rotation> 0 0 0 </rotation>
 		<reflexion> 0 </reflexion>
 		<color> 255 245 255 </color>

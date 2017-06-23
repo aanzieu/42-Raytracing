@@ -41,6 +41,8 @@ static void		get_type(t_world *world, t_list *lst, char *str)
 		parse_sphere(world, lst->next);
 	else if (ft_strnequ(tmp, "plan", ft_strlen("plan")))
 		parse_plane(world, lst->next);
+	else if (ft_strnequ(tmp, "disk", ft_strlen("disk")))
+		parse_disk(world, lst->next);
 	else if (ft_strnequ(tmp, "cylinder", ft_strlen("cylinder")))
 		parse_cylinder(world, lst->next);
 	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))

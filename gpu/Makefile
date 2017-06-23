@@ -52,6 +52,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
 				$(SRC_CUDA_DIR)/objects/paraboloid.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
+				$(SRC_CUDA_DIR)/objects/disk.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
@@ -81,6 +82,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/loader/load_spheres.c \
 				$(SRC_DIR)/loader/load_cylinders.c \
 				$(SRC_DIR)/loader/load_planes.c \
+				$(SRC_DIR)/loader/load_disks.c \
 				$(SRC_DIR)/loader/load_lights.c \
 				\
 				$(SRC_DIR)/events/event_handler.c \
@@ -98,6 +100,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/parse_lights.c \
 				$(SRC_DIR)/parser/parse_paraboloids.c \
 				$(SRC_DIR)/parser/parse_planes.c \
+				$(SRC_DIR)/parser/parse_disks.c \
 				$(SRC_DIR)/parser/parse_spheres.c \
 				$(SRC_DIR)/parser/parser.c \
 				\

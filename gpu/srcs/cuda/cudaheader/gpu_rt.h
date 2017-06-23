@@ -33,6 +33,12 @@ CUDA_HOSTDEV void		get_closest_cylinder(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_paraboloid(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_disk(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
+						t_intersection *intersection_tmp);
+
 
 /*******************************************************************************
 **                     OBJECT_GET                                             **

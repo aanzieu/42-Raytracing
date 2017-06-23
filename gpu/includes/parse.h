@@ -30,6 +30,7 @@ void				parse_light(t_world *world, t_list *lst);
 
 void				parse_sphere(t_world *world, t_list *lst);
 void				parse_plane(t_world *world, t_list *lst);
+void				parse_disk(t_world *world, t_list *lst);
 void				parse_cylinder(t_world *world, t_list *lst);
 void				parse_cone(t_world *world, t_list *lst);
 void				parse_paraboloid(t_world *world, t_list *lst);

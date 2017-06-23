@@ -12,6 +12,7 @@
 
 #include <object.h>
 #include <light.h>
+#include <Stdio.h>
 
 void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 {
@@ -33,6 +34,23 @@ void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 void	add_plan(t_plane **alst, t_plane *nw)
 {
 	t_plane *curr;
+
+	if (!nw || !alst)
+		return ;
+	if (!*alst)
+		*alst = nw;
+	else
+	{
+		curr = *alst;
+		while (curr->next)
+			curr = curr->next;
+		curr->next = nw;
+	}
+}
+
+void	add_disk(t_disk **alst, t_disk *nw)
+{
+	t_disk *curr;
 
 	if (!nw || !alst)
 		return ;

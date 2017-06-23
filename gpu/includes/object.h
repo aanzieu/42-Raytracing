@@ -25,6 +25,17 @@ typedef struct			s_plane
 	struct s_plane		*next;
 }						t_plane;
 
+typedef struct			s_disk
+{
+	t_vec3d				up;
+	t_vec3d				pos;
+	t_color				color;
+	double				reflexion_coef;
+	double				radius;
+	double				radius_squared;	
+	struct s_disk		*next;
+}						t_disk;
+
 typedef struct			s_cylinder
 {
 	t_vec3d				up;
@@ -74,24 +85,30 @@ typedef struct			s_paraboloid
 t_sphere				*new_sphere(t_sphere *nw);
 t_cone					*new_cone(t_cone *nw);
 t_plane					*new_plan(t_plane *nw);
+t_disk					*new_disk(t_disk *nw);
 t_cylinder				*new_cylinder(t_cylinder *nw);
 t_paraboloid			*new_paraboloid(t_paraboloid *nw);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
+void					add_disk(t_disk **alst, t_disk *nw);
 void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
 void					add_paraboloid(t_paraboloid **alst, t_paraboloid *nw);
 
 void					load_planes(t_plane **planes, t_plane *planes_tmp,
 						int *planes_len);
+void					load_disks(t_disk **disks, t_disk *disks_tmp,
+						int *disks_len);
 void					load_spheres(t_sphere **spheres, t_sphere *spheres_tmp,
 						int *spheres_len);
 void					load_cylinders(t_cylinder **cylinders,
 						t_cylinder *cylinders_tmp, int *cylinders_len);
 void					load_cones(t_cone **cones, t_cone *cones_tmp,
 						int *cones_len);
-void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tmp, int *cones_len);
+void					load_paraboloids(t_paraboloid **paraboloids,
+						t_paraboloid *paraboloids_tmp,
+						int *cones_len);
 
 
 

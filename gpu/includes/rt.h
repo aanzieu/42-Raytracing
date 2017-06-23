@@ -144,6 +144,7 @@ typedef struct		s_world
 	
 	t_sphere	*spheres;
 	t_plane		*planes;
+	t_disk		*disks;
 	t_light		*lights;
 	t_cylinder	*cylinders;
 	t_cone		*cones;
@@ -151,6 +152,7 @@ typedef struct		s_world
 
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
+	t_disk		*disks_tmp;
 	t_light		*lights_tmp;
 	t_cylinder	*cylinders_tmp;
 	t_cone		*cones_tmp;
@@ -169,6 +171,7 @@ typedef struct		s_world
 
 	int			spheres_len;
 	int			planes_len;
+	int			disks_len;
 	int			cylinders_len;
 	int			cones_len;
 	int			lights_len;

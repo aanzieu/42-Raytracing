@@ -47,6 +47,22 @@ t_plane		*new_plan(t_plane *nw)
 	return (p);
 }
 
+t_disk		*new_disk(t_disk *nw)
+{
+	t_disk	*d;
+
+	if (!(d = (t_disk*)malloc(sizeof(t_disk))))
+		ft_putendl_fd("Erroc Malloc on Cone", 1);
+	d->up = nw->up;
+	d->pos = nw->pos;
+	d->color = nw->color;
+	d->radius = nw->radius;
+	d->radius_squared = nw->radius_squared;
+	d->reflexion_coef = nw->reflexion_coef;	
+	d->next = NULL;
+	return (d);
+}
+
 t_cone		*new_cone(t_cone *nw)
 {
 	t_cone	*c;
