@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 11:25:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/22 18:02:15 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/23 08:23:02 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		sepia_effect(int *pix)
 	}
 }
 
-/* Add r,g,b and / 3 */
+/* add r,g,b and divide by 3 */
 void		black_and_white_effect(int *pix)
 {
 	int		i;
@@ -110,7 +110,6 @@ void		black_and_white_effect(int *pix)
 			color.b = pix[cur] >> 16;
 			color.g = (pix[cur] & 0x00FF00) >> 8;
 			color.r = (pix[cur] & 0x0000FF);
-//			grey = ((double)color.r * 0.3 + (double)color.g * 0.3 + (double)color.b * 0.3);
 			grey = ((double)color.r + (double)color.g + (double)color.b) / 3;
 			color.r = grey;
 			color.g = grey;
@@ -121,12 +120,11 @@ void		black_and_white_effect(int *pix)
 		i++;
 	}
 }
-/* Add r,g,b and / 3 */
+
 void		shell_shading_effect(int *pix)
 {
 	int		i;
 	int		j;
-//	int		grey;
 	int		cur;
 	t_color	color;
 

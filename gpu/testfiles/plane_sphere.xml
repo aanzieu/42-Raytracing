@@ -14,7 +14,7 @@
 		<radius> 0.2 </radius>
 		<center> 0 0 -3 </center>
 		<color> 255 0 0 </color>
-		<reflexion> 1 </reflexion>
+		<reflexion> 0 </reflexion>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
@@ -26,7 +26,7 @@
 		<color> 255 245 255 </color>
 	</surface>
 	<light>
-		<position> -1.5 1 -3 </position>
+		<position> 1.5 1 -3 </position>
 		<intensity> 1 </intensity>
 		<color> 255 255 255 </color>
 	</light>
