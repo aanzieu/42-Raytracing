@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
 
 t_paraboloid				*new_paraboloid(t_paraboloid *nw)
 {
@@ -27,3 +27,18 @@ t_paraboloid				*new_paraboloid(t_paraboloid *nw)
 	return (para);
 }
 
+t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw)
+{
+	t_hyperboloid *hyper;
+
+	if (!(hyper = (t_hyperboloid *)ft_memalloc(sizeof(t_hyperboloid))))
+		ft_putendl_fd("Erroc Malloc on hyperboloid", 1);
+	hyper->top = nw->top;
+	hyper->normal = nw->normal;
+	hyper->radius = nw->radius;
+	hyper->reflexion_coef = nw->reflexion_coef;	
+	hyper->maxm = nw->maxm;
+	hyper->color = nw->color;
+	hyper->next = NULL;
+	return (hyper);
+}

@@ -40,6 +40,7 @@ void	parse_point_translation(t_vec3d *v, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Tranlation", 1);
+		exit(EXIT_FAILURE);
 	}
 	v->x += ft_atoi_double(tmp[i + 1]);
 	v->y += ft_atoi_double(tmp[i + 2]);
@@ -56,6 +57,7 @@ void	parse_rotation_object(t_vec3d *v, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Tranlation", 1);
+		exit(EXIT_FAILURE);
 	}
 	rotate(v, ft_atoi(tmp[i + 1]), 'x');
 	rotate(v, ft_atoi(tmp[i + 2]), 'y');
@@ -72,6 +74,7 @@ void	parse_vector(t_vec3d *v, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Position", 1);
+		exit(EXIT_FAILURE);
 	}
 	v->x = ft_atoi_double(tmp[i + 1]);
 	v->y = ft_atoi_double(tmp[i + 2]);
@@ -95,6 +98,7 @@ void	parse_color(t_color *c, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Color", 1);
+		exit(EXIT_FAILURE);
 	}
 	i = 0;
 	c->r = color_to_coef(ft_atoi_double(tmp[i + 1]));

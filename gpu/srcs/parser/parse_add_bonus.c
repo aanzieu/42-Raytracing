@@ -28,3 +28,20 @@ void				add_paraboloid(t_paraboloid **alst, t_paraboloid *nw)
 		curr->next = nw;
 	}
 }
+
+void				add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw)
+{
+	t_hyperboloid *curr;
+
+	if (!nw || !alst)
+		return ;
+	if (!*alst)
+		*alst = nw;
+	else
+	{
+		curr = *alst;
+		while (curr->next)
+			curr = curr->next;
+		curr->next = nw;
+	}
+}

@@ -49,6 +49,8 @@ static void		get_type(t_world *world, t_list *lst, char *str)
 		parse_cone(world, lst->next);
 	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
 		parse_paraboloid(world, lst->next);
+	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
+		parse_hyperboloid(world, lst->next);
 	ft_memdel((void**)&tmp);
 	lst = lst->next;
 }

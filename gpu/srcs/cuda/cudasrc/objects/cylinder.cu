@@ -70,7 +70,7 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 	{
 		if (get_cylinder(world.cylinders[i], world.camera, ray, intersection_tmp) == 1)
 		{
-			if (intersection_tmp->t < intersection->t)
+			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;

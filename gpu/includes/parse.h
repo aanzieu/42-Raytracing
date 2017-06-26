@@ -35,6 +35,7 @@ void				parse_cylinder(t_world *world, t_list *lst);
 void				parse_cone(t_world *world, t_list *lst);
 void				parse_paraboloid(t_world *world, t_list *lst);
 
+void				parse_hyperboloid(t_world *world, t_list *lst);
 void				parse_color(t_color *c, char **tmp, int line);
 void				parse_vector(t_vec3d *v, char **tmp, int line);
 void				parse_point(t_vec3d *v, char **tmp, int line);

@@ -29,11 +29,11 @@ __host__ __device__ inline double		check_solution(double res)
 
 __host__ __device__ double		check_solution_equation(double a, double b)
 {
-	if (a > 0.0000001 && b > 0.0000001)
+	if (a > 0.0000000001 && b > 0.0000000001)
 		return (ft_smaller(a, b));
-	else if (a > 0.0000001)
+	else if (a > 0.0000000001)
 		return (a);
-	else if (b > 0.0000001)
+	else if (b > 0.0000000001)
 		return (b);
 	return (-1.0);
 }

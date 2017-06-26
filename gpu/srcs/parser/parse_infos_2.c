@@ -22,7 +22,7 @@ void		parse_rotation_cam(t_camera *cam, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong Tranlation", 1);
-		exit (0);
+		exit (EXIT_FAILURE);
 	}
 	rotate(&cam->look_at, ft_atoi(tmp[i + 1]), 'x');
 	rotate(&cam->look_at, ft_atoi(tmp[i + 2]), 'y');
@@ -37,7 +37,7 @@ void	parse_intensity(double *intensity_coef, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong intensity format", 1);
-		exit (0);
+		exit (EXIT_FAILURE);
 	}
 	*intensity_coef = ft_atoi_double(tmp[1]);
 }
@@ -49,7 +49,7 @@ void	parse_reflexion(double *reflexion_coef, char **tmp, int line)
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
 		ft_putendl_fd(" Wrong reflexion coeficient format", 1);
-		exit (0);
+		exit (EXIT_FAILURE);
 	}
 	*reflexion_coef = ft_atoi_double(tmp[1]);
 }

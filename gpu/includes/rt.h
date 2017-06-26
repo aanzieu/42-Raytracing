@@ -143,6 +143,7 @@ typedef struct		s_world
 	t_cylinder	*cylinders;
 	t_cone		*cones;
 	t_paraboloid*paraboloids;
+	t_hyperboloid	*hyperboloids;
 
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
@@ -151,6 +152,7 @@ typedef struct		s_world
 	t_cylinder	*cylinders_tmp;
 	t_cone		*cones_tmp;
 	t_paraboloid*paraboloids_tmp;
+	t_hyperboloid	*hyperboloids_tmp;
 
 	int			spheres_len;
 	int			planes_len;
@@ -158,6 +160,7 @@ typedef struct		s_world
 	int			cones_len;
 	int			lights_len;
 	int			paraboloids_len;
+	int			hyperboloids_len;
 	int			disks_len;
 
 	pthread_t		thread[NB_TH];

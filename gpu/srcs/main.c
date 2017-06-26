@@ -47,6 +47,8 @@ static void	load_data(t_world *world)
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
 	load_paraboloids(&world->paraboloids,
 			world->paraboloids_tmp, &world->paraboloids_len);
+	load_hyperboloids(&world->hyperboloids,
+			world->hyperboloids_tmp, &world->hyperboloids_len);
 
 	// world->disks = malloc(sizeof(t_disk) * 1);
 	// world->disks_len = 1;
@@ -157,7 +159,7 @@ void	rt(t_world *world)
 	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
 								WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
-	if (world->mode == 0)
+	if (world->mode == 1)
 		launch_cpu(world);
 	else
 		launch_gpu(world);

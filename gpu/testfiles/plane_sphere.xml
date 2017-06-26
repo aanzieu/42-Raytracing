@@ -18,13 +18,14 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
-	<surface type="Disk">
-		<origin> -1 0.2 1 </origin>
-		<normal> 0 0.2 -2 </normal>
-		<radius> 0.5 </radius>		
+	<surface type="hyperboloid">
+		<top> -2 -1 10 </top>
+		<normal> 0 1 1 </normal>
+		<radius> 0.02 </radius>
 		<rotation> 0 0 0 </rotation>
-		<reflexion> 1 </reflexion>
-		<color> 255 255 0 </color>
+		<color> 0 102 255 </color>
+		<reflexion> 1 </reflexion>		
+		<height> 1 </height>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 -0.5 1 </origin>

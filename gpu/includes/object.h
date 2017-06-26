@@ -80,6 +80,16 @@ typedef struct			s_paraboloid
 	struct s_paraboloid	*next;
 }						t_paraboloid;
 
+typedef struct			s_hyperboloid
+{
+	t_vec3d				top;
+	t_vec3d				normal;
+	t_color				color;
+	double				radius;
+	double				maxm;
+	double				reflexion_coef;
+	struct s_hyperboloid*next;
+}						t_hyperboloid;
 /*******************************************************************************
 **                     FCTS_OBJ                                               **
 *******************************************************************************/
@@ -90,6 +100,7 @@ t_plane					*new_plan(t_plane *nw);
 t_disk					*new_disk(t_disk *nw);
 t_cylinder				*new_cylinder(t_cylinder *nw);
 t_paraboloid			*new_paraboloid(t_paraboloid *nw);
+t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
@@ -97,6 +108,9 @@ void					add_disk(t_disk **alst, t_disk *nw);
 void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
 void					add_paraboloid(t_paraboloid **alst, t_paraboloid *nw);
+void				add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw);
+
+
 
 void					load_planes(t_plane **planes, t_plane *planes_tmp,
 						int *planes_len);
@@ -111,8 +125,7 @@ void					load_cones(t_cone **cones, t_cone *cones_tmp,
 void					load_paraboloids(t_paraboloid **paraboloids,
 						t_paraboloid *paraboloids_tmp,
 						int *cones_len);
-
-
+void			load_hyperboloids(t_hyperboloid **hyperboloids, t_hyperboloid *hyperboloids_tmp, int *hyperboloids_len);
 
 
 

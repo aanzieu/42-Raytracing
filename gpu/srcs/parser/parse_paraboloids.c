@@ -29,6 +29,8 @@ static void				get_paraboloid_next(t_world *world, char **tmp,
 		parse_point_translation(&para->top, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&para->normal, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
+		parse_reflexion(&para->reflexion_coef, tmp, world->line);
 }
 
 void					parse_paraboloid(t_world *world, t_list *lst)

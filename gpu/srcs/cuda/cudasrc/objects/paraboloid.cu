@@ -30,6 +30,9 @@ __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, 
 		+ vector_dot(x, v);
 	normal_v = vector_normalize(vector_substract(vector_calculate(para.top, intersection.pos),
 				vector_scalar(v, m + para.distance)));
+	normal_v.x = 0;
+	normal_v.y = 0;
+	normal_v.z = 0;
 	return (normal_v);
 }
 
@@ -71,11 +74,11 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 	{
 		if (get_paraboloid(world.paraboloids[i], world.camera, ray, intersection_tmp) == 1)
 		{
-			if (intersection_tmp->t < intersection->t)
+			if (intersection_tmp->t < intersection->t && intersection_tmp->t != 1)
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
-				intersection->reflexion_coef = 0;
+				intersection->reflexion_coef = world.paraboloids[i].reflexion_coef;
 				intersection->color = &world.paraboloids[i].color;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));

@@ -47,6 +47,7 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *int
 			return (1);
 		}
 	}
+	intersection_tmp->t = -1;
 	return (0);
 }
 
@@ -60,7 +61,7 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 	{
 		if (get_plane(world.planes[i], ray, intersection_tmp) == 1)
 		{
-			if (intersection_tmp->t < intersection->t)
+			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
