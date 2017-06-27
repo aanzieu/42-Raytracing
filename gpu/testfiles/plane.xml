@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<scene name="Three Sphere">
-	<surface type="Sphere">
+<scene name="Just a plane, lonely plane">
+	<surface type="Plan">
+		<origin> 0 -0.5 1 </origin>
+		<normal> 0 -2 1 </normal>
+		<rotation> 0 0 0 </rotation>
+		<reflexion> 0 </reflexion>
+		<color> 255 245 255 </color>
+	</surface>
+		<surface type="Sphere">
 		<shader ref="red" />
 		<radius> 0.5 </radius>
 		<center> 0 0.2 1 </center>
@@ -9,25 +16,19 @@
 		<translation> 0 0 0 </translation>
 		<color> 123 0 253 </color>
 	</surface>
-	<surface type="Plan">
-		<origin> 0 -0.5 1 </origin>
-		<normal> 0 -2 1 </normal>
-		<rotation> 0 0 0 </rotation>
-		<reflexion> 0 </reflexion>
-		<color> 255 245 255 </color>
-	</surface>
-	<light>
-		<position> 0 1 -3 </position>
+	<!--<light>
+		<position> 0 0 0 </position>
 		<intensity> 1 </intensity>
 		<color> 255 255 255 </color>
-	</light>
-	<light>
-		<position> 1.5 1 -3 </position>
+	</light>-->
+	<!--<light>
+		<position> 0 1 0 </position>
 		<intensity> 1 </intensity>
 		<color> 255 255 255 </color>
-	</light>
+	</light>-->
 	<light>
-		<position> -1 1 -3.2 </position>
+		<position> 2 0 -1 </position>
+		<direction> -1 0 -1 </direction>		
 		<intensity> 1 </intensity>
 		<color> 255 255 255 </color>
 	</light>
@@ -36,7 +37,7 @@
 		<color> 255 255 255 </color>
 	</ambient>
 	<camera type="Camera">
-		<viewPoint> 0 0.5 -10 </viewPoint>
+		<viewPoint> 0 0 -5 </viewPoint>
 		<viewDir> 0 0 0 </viewDir>
 		<!--<viewWidth> 0.75 </viewWidth>
 		<viewHeight> 0.76 </viewHeight>-->

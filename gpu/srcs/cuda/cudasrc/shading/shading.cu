@@ -56,6 +56,15 @@ __host__ __device__ void	specular_light(t_color *color, t_vec3d ray,
 	color_add(color, light.color);
 }
 
+__host__ __device__ t_vec3d	get_light_vector(t_world world, t_intersection intersection, t_light light)
+{
+	if (world.light_type == 1)
+		return(vector_normalize(vector_calculate(intersection.pos,
+														light.pos)));
+	else
+		return(light.dir_v);
+}
+
 __host__ __device__	void	get_light_at(t_world world, t_color *color,
 	t_light light, t_intersection intersection, t_ray ray)
 {
@@ -64,8 +73,7 @@ __host__ __device__	void	get_light_at(t_world world, t_color *color,
 	double	angle;
 
 	tmp =  new_color(0, 0, 0);
-	light_vector = vector_normalize(vector_calculate(intersection.pos,
-														light.pos));
+	light_vector = get_light_vector(world, intersection, light);
 	angle = vector_dot(intersection.normal_v, light_vector);
 	if (angle > 0 && get_shadow(world, light, intersection) == 0)
 	{

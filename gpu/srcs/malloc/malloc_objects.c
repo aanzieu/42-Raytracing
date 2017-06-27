@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <gpu_rt.h>
 /*
 void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
 {
@@ -102,6 +103,8 @@ t_light		*new_light(t_light *nw)
 	if (!(l = (t_light *)ft_memalloc(sizeof(t_light))))
 		ft_putendl_fd("Erroc Malloc on Light", 1);
 	l->pos = nw->pos;
+	l->dir = nw->dir;
+	l->dir_v = vector_normalize(vector_calculate(nw->dir, nw->pos));
 	l->color = nw->color;
 	l->intensity_coef = nw->intensity_coef;
 	l->next = NULL;

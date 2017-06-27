@@ -28,6 +28,7 @@ static void	get_viewplane(t_world *world)
 static void	data_setup(t_world *world)
 {
 	world->mode = 1;
+	world->light_type = 0;
 	world->viewplane.width = 0.5;
 	world->viewplane.height = 0.5;
 	world->render_factor = 1;
@@ -49,14 +50,6 @@ static void	load_data(t_world *world)
 			world->paraboloids_tmp, &world->paraboloids_len);
 	load_hyperboloids(&world->hyperboloids,
 			world->hyperboloids_tmp, &world->hyperboloids_len);
-
-	// world->disks = malloc(sizeof(t_disk) * 1);
-	// world->disks_len = 1;
-	// world->disks[0].pos = new_vector(0, 1, 2);
-	// world->disks[0].up = new_vector(0, 0, 2);
-	// world->disks[0].radius = 1;
-	// world->disks[0].radius_squared = pow(world->disks[0].radius, 2);
-	// world->disks[0].color = new_color(100, 100, 0);
 }
 
 

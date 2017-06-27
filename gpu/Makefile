@@ -100,6 +100,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/parse_infos.c \
 				$(SRC_DIR)/parser/parse_infos_2.c \
 				$(SRC_DIR)/parser/parse_lights.c \
+				$(SRC_DIR)/parser/parse_ambient.c \
 				$(SRC_DIR)/parser/parse_paraboloids.c \
 				$(SRC_DIR)/parser/parse_hyperboloids.c \
 				$(SRC_DIR)/parser/parse_planes.c \

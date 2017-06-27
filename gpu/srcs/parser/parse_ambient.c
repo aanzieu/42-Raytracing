@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_lights.c                                     :+:      :+:    :+:   */
+/*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,38 +12,35 @@
 
 #include <parse.h>
 
-static void	get_light_next(t_world *world, char **tmp, int i, t_light *l)
+static void	get_ambient_next(t_world *world, char **tmp, int i, t_ambient *a)
 {
-	if (ft_strnequ(tmp[i], "<position>", ft_strlen("<position>")))
-		parse_point(&l->pos, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<direction>", ft_strlen("<direction>")))
-		parse_point(&l->dir, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<color>", ft_strlen("<color>")))
-		parse_color(&l->color, tmp, world->line);
+	if (ft_strnequ(tmp[i], "<color>", ft_strlen("<color>")))
+		parse_color(&a->color, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<intensity>", ft_strlen("<intensity>")))
-		parse_intensity(&l->intensity_coef, tmp, world->line);
+		parse_intensity(&a->intensity, tmp, world->line);
 }
 
-void		parse_light(t_world *world, t_list *lst)
+void		parse_ambient(t_world *world, t_list *lst)
 {
-	t_light *l;
+	t_ambient *a;
 	char	**tmp;
 	int		i;
 
-	if (!(l = (t_light *)ft_memalloc(sizeof(t_light))))
-		ft_putendl_fd("Error Malloc Light", 1);
-	while (lst && !ft_strequ(lst->content, "</light>"))
+	if (!(a = (t_ambient *)ft_memalloc(sizeof(t_ambient))))
+		ft_putendl_fd("Error Malloc Ambient", 1);
+	while (lst && !ft_strequ(lst->content, "</ambient>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');
 		i = -1;
 		while (tmp[++i] != NULL)
 		{
-			get_light_next(world, tmp, i, l);
+			get_ambient_next(world, tmp, i, a);
 		}
 		ft_cleanup_str(tmp);
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_light(&world->lights_tmp, new_light(l));
-	free(l);
+	world->ambient.color = a->color;
+	world->ambient.intensity = a->intensity;
+	free(a);
 }

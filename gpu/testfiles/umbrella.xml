@@ -87,7 +87,7 @@
 		<center> 1 -0.75 -0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -95,7 +95,7 @@
 		<center> -1 -0.75 -0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -103,25 +103,25 @@
 		<center> 0 0 2 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 255 0 0 1 </color>
+		<color> 255 0 0 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 0.75 1 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0 </color>
+		<color> 255 255 255 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 -0.75 1 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 0 </color>
+		<color> 255 255 255 </color>
 	</surface>
 	<surface type="Plan">
 		<origin> 0 0 2 </origin>
 		<normal> 0 0 1 </normal>
 		<rotation> 0 0 0 </rotation>
-		<color> 125 0 125 0 </color>
+		<color> 125 0 125 </color>
 	</surface>
 	<!--<surface type="cone">
 		<center> 0 0 2 </center>
@@ -145,7 +145,7 @@
 	<light>
 		<position> 2 0 -5 </position>
 		<intensity> 1 </intensity>
-		<color> 255 255 255 0</color>		
+		<color> 255 255 255 </color>		
 	</light>
 	<!--<light>
 		<position> -2 0 -5 </position>

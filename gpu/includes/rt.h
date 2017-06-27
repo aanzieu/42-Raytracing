@@ -95,7 +95,7 @@ typedef struct		s_ray
 {
 	t_vec3d	origin;
 	t_vec3d	dir;
-	t_vec3d	v;
+	t_vec3d	dir_point;
 }					t_ray;
 
 typedef struct		s_viewplane
@@ -180,6 +180,7 @@ typedef struct		s_world
 	int			render_factor;
 	
 	t_ambient	ambient;
+	int			light_type;
 }					t_world;
 
 void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
