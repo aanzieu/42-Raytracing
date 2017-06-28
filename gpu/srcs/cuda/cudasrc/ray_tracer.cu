@@ -93,19 +93,18 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 	}
 }
 
-// __host__ __device__ void	direct_light(t_world world, t_color *color, t_light light, t_ray ray)
-// {
-// 	t_vec3d	light_vector;
-// 	t_color	direct_light;
-// 	double 	angle;
+__host__ __device__ void	direct_light(t_world world, t_color *color, t_light light, t_ray ray)
+{
+	t_vec3d	light_vector;
+	t_color	direct_light;
+	double 	angle;
 
-// 	direct_light = new_color(10, 10, 10);
-// 	light_vector = vector_normalize(vector_calculate(ray.dir_point,
-// 														light.pos));
-// 	angle = vector_dot(vector_scalar(world.camera.dir_v, -1), light_vector);
-// 	color_scalar(&direct_light, angle);
-// 	color_multiply(color, direct_light);
-// }	
+	direct_light = new_color(10, 10, 10);
+	light_vector = light.dir_v;
+	angle = vector_dot(vector_scalar(world.camera.dir_v, -1), light_vector);
+	color_scalar(&direct_light, angle);
+	color_add(color, direct_light);
+}	
 
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
@@ -129,7 +128,6 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		while (i < world.lights_len)
 		{
 			get_light_at(world, &color, world.lights[i], intersection, ray);
-			// direct_light(world, &color, world.lights[i], ray);
 			if(world.keys.pad_9 == 1)
 				cartoon_effect(world, &color, world.lights[i], intersection, ray);
 			i++;

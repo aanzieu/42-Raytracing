@@ -28,7 +28,7 @@ static void	get_viewplane(t_world *world)
 static void	data_setup(t_world *world)
 {
 	world->mode = 1;
-	world->light_type = 0;
+	world->light_type = 1;
 	world->viewplane.width = 0.5;
 	world->viewplane.height = 0.5;
 	world->render_factor = 1;
