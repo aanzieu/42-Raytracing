@@ -30,9 +30,6 @@ __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, 
 		+ vector_dot(x, v);
 	normal_v = vector_normalize(vector_substract(vector_calculate(para.top, intersection.pos),
 				vector_scalar(v, m + para.distance)));
-	normal_v.x = 0;
-	normal_v.y = 0;
-	normal_v.z = 0;
 	return (normal_v);
 }
 

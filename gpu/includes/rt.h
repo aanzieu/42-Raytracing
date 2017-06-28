@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 18:30:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/27 08:44:36 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "../libft/libft.h"
 
 #include <pthread.h>
-#include <SDL2/SDL.h>
+#include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 #define NB_TH 8
 

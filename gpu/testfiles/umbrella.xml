@@ -123,21 +123,21 @@
 		<rotation> 0 0 0 </rotation>
 		<color> 125 0 125 </color>
 	</surface>
-	<!--<surface type="cone">
+	<surface type="cone">
 		<center> 0 0 2 </center>
 		<normal> 0 1 2 </normal>
 		<radius> 30 </radius>
 		<rotation> 0 0 1 </rotation>
 		<color>  204 255 51 </color>
-		<height> 1 </height>
+		<height> 5 </height>
 	</surface>-->
-	<!--<surface type="cone">
+	<surface type="cone">
 		<center> 0 0 2 </center>
 		<normal> 1 0 2 </normal>
 		<radius> 30 </radius>
 		<rotation> 0 0 1 </rotation>
 		<color>  204 255 51 </color>
-		<height> 1 </height>
+		<height> 5 </height>
 	</surface>-->
 	<!--<ambient>
 		<color> 255 255 255 0.2 </color>
