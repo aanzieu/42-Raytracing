@@ -13,12 +13,12 @@
 #ifndef RT_H
 # define RT_H
 
-#include <light.h>
-#include <object.h>
+#include "light.h"
+#include "object.h"
 #include "../libft/libft.h"
 
 #include <pthread.h>
-#include <SDL2/SDL.h>
+#include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 #define NB_TH 8
 
@@ -183,7 +183,9 @@ typedef struct		s_world
 	int			light_type;
 }					t_world;
 
-void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
+void				send_buffer(t_world *world);
+void				rt(t_world *world);
+void				render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
 void				sphere_key_handler(t_world	*world);
 void				plane_key_handler(t_world *world);
 void				render(t_world *world);

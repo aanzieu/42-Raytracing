@@ -28,7 +28,7 @@ static void	get_viewplane(t_world *world)
 
 static void	data_setup(t_world *world)
 {
-	world->mode = 1;
+	world->mode = 0;
 	world->light_type = 1;
 	world->viewplane.width = 0.5;
 	world->viewplane.height = 0.5;
@@ -99,19 +99,19 @@ int					launch_thread(t_world *world)
 void	launch_cpu(t_world *world)
 {
 	int			quit;
-	SDL_Event	event;
+	// SDL_Event	event;
 	
 	quit = 0;
-	while (quit == 0)
-	{
-		SDL_PollEvent(&event);
-		quit = event_handler(world, event);
+	// while (quit == 0)
+	// {
+		// SDL_PollEvent(&event);
+		// quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world);
-		put_pixel_screen(world);
-		ft_bzero(world->a_h, world->size_main);
-		SDL_UpdateWindowSurface(world->window.id);
-	}
+		// put_pixel_screen(world);
+		// ft_bzero(world->a_h, world->size_main);
+		// SDL_UpdateWindowSurface(world->window.id);
+	// }
 }
 
 /*	On event receive send data to handler*/
@@ -119,20 +119,20 @@ void	launch_cpu(t_world *world)
 void	launch_gpu(t_world *world)
 {
 	int			quit;
-	SDL_Event	event;
+	// SDL_Event	event;
 		
 	quit = 0;
-	while (quit == 0)
-	{
-		SDL_PollEvent(&event);
-		quit = event_handler(world, event);
+	// while (quit == 0)
+	// {
+		// SDL_PollEvent(&event);
+		// quit = event_handler(world, event);
 		get_viewplane(world);
 		render_cuda(world->a_h, world->viewplane.x_res,
 				world->viewplane.y_res, *world, 0);
-		put_pixel_screen(world);
-		ft_bzero(world->a_h, world->size_main);
-		SDL_UpdateWindowSurface(world->window.id);
-	}
+		// put_pixel_screen(world);
+		// ft_bzero(world->a_h, world->size_main);
+		// SDL_UpdateWindowSurface(world->window.id);
+	// }
 	render_cuda(world->a_h, world->viewplane.x_res,
 			world->viewplane.y_res, *world, 1);
 }
@@ -148,18 +148,24 @@ void	rt(t_world *world)
 	if (!(world->a_h = malloc(world->size_main)))
 		exit(0);
 	ft_bzero(world->a_h, world->size_main);
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		return ;
-	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
-								WIN_HEIGHT, 0);
-	world->window.screen = SDL_GetWindowSurface(world->window.id);
+	// if (SDL_Init(SDL_INIT_VIDEO) == -1)
+		// return ;
+	// world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
+								// WIN_HEIGHT, 0);
+	// world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 1)
+	{
 		launch_cpu(world);
+		send_buffer(world);		
+	}
 	else
+	{
 		launch_gpu(world);
+		send_buffer(world);
+	}
 	free(world->a_h);
-	SDL_FreeSurface(world->window.screen);
-	SDL_DestroyWindow(world->window.id);
+	// SDL_FreeSurface(world->window.screen);
+	// SDL_DestroyWindow(world->window.id);
 }
 
 /*

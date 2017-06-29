@@ -64,6 +64,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/main_master.c \
+				$(SRC_DIR)/main_client.c \
 				$(SRC_DIR)/free_memory.c \
 				$(SRC_DIR)/render.c \
 				$(SRC_DIR)/display_functions.c \
@@ -115,6 +116,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
 				\
 				$(SRC_DIR)/server/master.c \
+				$(SRC_DIR)/server/client.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##
