@@ -16,7 +16,7 @@
 #include <display.h>
 #include <unistd.h>
 
-static void	get_viewplane(t_world *world)
+void		get_viewplane(t_world *world)
 {
 	world->viewplane.x_res = WIN_WIDTH / world->render_factor;
 	world->viewplane.y_res = WIN_HEIGHT / world->render_factor;
@@ -65,7 +65,6 @@ static	void		*perform_thread(void *arg)
 	while (y < (thread->th + 1) * (thread->world->viewplane.y_res / NB_TH))
 	{
 		x = 0;
-//		i = 0;
 		while (x < thread->world->viewplane.x_res)
 		{
 			thread->world->a_h[y * thread->world->viewplane.x_res + x]
@@ -99,19 +98,19 @@ int					launch_thread(t_world *world)
 void	launch_cpu(t_world *world)
 {
 	int			quit;
-	// SDL_Event	event;
+	SDL_Event	event;
 	
 	quit = 0;
-	// while (quit == 0)
-	// {
-		// SDL_PollEvent(&event);
-		// quit = event_handler(world, event);
+	while (quit == 0)
+	{
+		SDL_PollEvent(&event);
+		quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world);
-		// put_pixel_screen(world);
-		// ft_bzero(world->a_h, world->size_main);
-		// SDL_UpdateWindowSurface(world->window.id);
-	// }
+		put_pixel_screen(world);
+		ft_bzero(world->a_h, world->size_main);
+		SDL_UpdateWindowSurface(world->window.id);
+	}
 }
 
 /*	On event receive send data to handler*/
@@ -119,20 +118,20 @@ void	launch_cpu(t_world *world)
 void	launch_gpu(t_world *world)
 {
 	int			quit;
-	// SDL_Event	event;
+	SDL_Event	event;
 		
 	quit = 0;
-	// while (quit == 0)
-	// {
-		// SDL_PollEvent(&event);
-		// quit = event_handler(world, event);
+	while (quit == 0)
+	{
+		SDL_PollEvent(&event);
+		quit = event_handler(world, event);
 		get_viewplane(world);
 		render_cuda(world->a_h, world->viewplane.x_res,
 				world->viewplane.y_res, *world, 0);
-		// put_pixel_screen(world);
-		// ft_bzero(world->a_h, world->size_main);
-		// SDL_UpdateWindowSurface(world->window.id);
-	// }
+		put_pixel_screen(world);
+		ft_bzero(world->a_h, world->size_main);
+		SDL_UpdateWindowSurface(world->window.id);
+	}
 	render_cuda(world->a_h, world->viewplane.x_res,
 			world->viewplane.y_res, *world, 1);
 }
@@ -141,31 +140,25 @@ void	launch_gpu(t_world *world)
 **	Initialize SDL and start listening to events
 */
 
-void	rt(t_world *world)
+void    rt(t_world *world)
 {
-	world->size_main = world->viewplane.x_res * world->viewplane.y_res
-		* sizeof(int);
-	if (!(world->a_h = malloc(world->size_main)))
-		exit(0);
-	ft_bzero(world->a_h, world->size_main);
-	// if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		// return ;
-	// world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
-								// WIN_HEIGHT, 0);
-	// world->window.screen = SDL_GetWindowSurface(world->window.id);
-	if (world->mode == 1)
-	{
-		launch_cpu(world);
-		send_buffer(world);		
-	}
-	else
-	{
-		launch_gpu(world);
-		send_buffer(world);
-	}
-	free(world->a_h);
-	// SDL_FreeSurface(world->window.screen);
-	// SDL_DestroyWindow(world->window.id);
+    world->size_main = world->viewplane.x_res * world->viewplane.y_res
+        * sizeof(int);
+    if (!(world->a_h = malloc(world->size_main)))
+        exit(0);
+    ft_bzero(world->a_h, world->size_main);
+    if (SDL_Init(SDL_INIT_VIDEO) == -1)
+        return ;
+    world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
+                                WIN_HEIGHT, 0);
+    world->window.screen = SDL_GetWindowSurface(world->window.id);
+    if (world->mode == 1)
+        launch_cpu(world);
+    else
+        launch_gpu(world);
+    free(world->a_h);
+    SDL_FreeSurface(world->window.screen);
+    SDL_DestroyWindow(world->window.id);
 }
 
 /*
@@ -184,10 +177,10 @@ int		main(int argc, char **argv)
 		memory_allocation_error();
 	data_setup(world);
 	get_viewplane(world);
-//	(void)argc;
-//	flags = 0; // LOCAL NO CLUSTER;
-	flags = 1; // CLUSTER MASTER;
-//	flags = 2; // CLUSTER CLIENT;
+	(void)argc;
+	// flags = 0; // LOCAL NO CLUSTER;
+	// flags = 1; // CLUSTER MASTER;
+	flags = 2; // CLUSTER CLIENT;
 //	while(1) {
 	if (flags == 0 && argv[1])
 	{
@@ -198,10 +191,15 @@ int		main(int argc, char **argv)
 	}
 	else if(flags == 1 && argv[1])
 	{
-		data_setup(world);
-		get_viewplane(world);
 		master_cluster(world);// == -1;
 		printf("je sors de master_cluster\n");
+	}
+	else if(flags == 2 && argv[1]) // Retirer l'argv[1] et ecrire une fonction de recup des donees de master
+	{
+		parse_rtv1(world, argv[1]);	// A retirer pour utiliser les donees recues de master
+		load_data(world); // A retirer pour utiliser les donees recues de master
+		client_cluster(world);// == -1;
+		printf("je sors de client\n");
 	}
 	else
 		ft_putstr("Usage: ./rtv1 filename.xml\n");

@@ -183,6 +183,8 @@ typedef struct		s_world
 	int			light_type;
 }					t_world;
 
+void				get_viewplane(t_world *world);
+int					launch_thread(t_world *world);
 void				send_buffer(t_world *world);
 void				rt(t_world *world);
 void				render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
@@ -212,11 +214,12 @@ t_cone		*copy_cone(t_cone *obj);
 t_cylinder		*copy_cylinder(t_cylinder *obj);
 
 /*******************************************************************************
-**                     KEY_FCTS_OPTS                                          **
+**                     CLUSTERING                                        	  **
 *******************************************************************************/
 
-void render_clustering(t_world *world);
-void get_data_from_client(t_world *world);
+void 	render_clustering(t_world *world);
+void 	get_data_from_client(t_world *world);
 void	master_cluster(t_world *world);
+void	client_cluster(t_world *world);
 
 #endif
