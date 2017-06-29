@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 18:30:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 15:19:10 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,4 +208,13 @@ t_sphere	*copy_sphere(t_sphere *obj);
 t_plane		*copy_plan(t_plane *obj);
 t_cone		*copy_cone(t_cone *obj);
 t_cylinder		*copy_cylinder(t_cylinder *obj);
+
+/*******************************************************************************
+**                     KEY_FCTS_OPTS                                          **
+*******************************************************************************/
+
+void render_clustering(t_world *world);
+void get_data_from_client(t_world *world);
+void	master_cluster(t_world *world);
+
 #endif

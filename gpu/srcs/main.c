@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 17:18:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 15:33:11 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <gpu_rt.h>
 #include <parse.h>
 #include <display.h>
+#include <unistd.h>
 
 static void	get_viewplane(t_world *world)
 {
@@ -171,18 +172,30 @@ void	rt(t_world *world)
 int		main(int argc, char **argv)
 {
 	t_world	*world;
+	int		flags;
 
-//	(void)argv;
-	if (argc == 2)
+	if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
+		memory_allocation_error();
+	data_setup(world);
+	get_viewplane(world);
+//	(void)argc;
+//	flags = 0; // LOCAL NO CLUSTER;
+	flags = 1; // CLUSTER MASTER;
+//	flags = 2; // CLUSTER CLIENT;
+//	while(1) {
+	if (flags == 0 && argv[1])
 	{
-		if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
-			memory_allocation_error();
-		data_setup(world);
-		get_viewplane(world);
 		parse_rtv1(world, argv[1]);
 		load_data(world);
 		rt(world);
 		free_world(world);
+	}
+	else if(flags == 1 && argv[1])
+	{
+		data_setup(world);
+		get_viewplane(world);
+		master_cluster(world);// == -1;
+		printf("je sors de master_cluster\n");
 	}
 	else
 		ft_putstr("Usage: ./rtv1 filename.xml\n");

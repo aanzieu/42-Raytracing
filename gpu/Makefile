@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/23 09:44:56 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/29 15:22:24 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 
 SRC =			$(SRC_DIR)/main.c \
+				$(SRC_DIR)/main_master.c \
 				$(SRC_DIR)/free_memory.c \
 				$(SRC_DIR)/render.c \
 				$(SRC_DIR)/display_functions.c \
@@ -112,6 +113,8 @@ SRC =			$(SRC_DIR)/main.c \
 				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
+				\
+				$(SRC_DIR)/server/master.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##
