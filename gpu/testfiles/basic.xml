@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <scene name="Three Sphere">
 	<surface type="Cone">
-		<center> 0 0 -2 </center>
+		<center> 0 0 2 </center>
 		<normal> 0 1 0 </normal>
 		<radius> 0.2 </radius>
 		<color> 255 0 100 </color>
 		<reflexion> 0 </reflexion>
 		<height> 3.0 </height>
-		<min> 0 0 0 </min>
-		<max> 0 5 0 </max>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
-	<!--surface type="Plan">
-		<origin> 0 -0.75 1 </origin>
-		<normal> 0 0 1 </normal>
-		<rotation> 0 0 0 </rotation>
-		<color> 255 245 255 </color>
-		<reflexion> 0 </reflexion>
-	</surface!-->
-	<light>
-		<position> 1.5 1 -3 </position>
-		<intensity> 1 </intensity>
-		<color> 255 255 255 </color>
-	</light>
-	<light>
-		<position> 0 0 0 </position>
-		<color> 255 255 255 </color>
-		<intensity> 1 </intensity>
-	</light>
 	<light>
 		<position> 3 0 -3 </position>
-		<color> 255 255 255 </color>
-		<intensity> 1 </intensity>
-	</light>
-	<light>
-		<position> -3 2 3 </position>
 		<color> 255 255 255 </color>
 		<intensity> 1 </intensity>
 	</light>
@@ -47,10 +23,4 @@
 		<color> 255 255 255 </color>
 		<intensity> 0.2 </intensity>
 	</ambient>
-	<camera type="Camera">
-		<viewPoint> 0 0 -20 </viewPoint>
-		<viewDir> 0 0 0 </viewDir>
-		<!--<viewWidth> 0.75 </viewWidth>
-		<viewHeight> 0.76 </viewHeight>-->
-	</camera>
 </scene>

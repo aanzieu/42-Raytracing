@@ -6,7 +6,7 @@
 		<radius> 0.2 </radius>
 		<rotation> 0 0 0 </rotation>
 		<color> 0 102 255 </color>
-		<reflexion> 1 </reflexion>		
+		<reflexion> 3 </reflexion>
 		<height> 2 </height>
 	</surface>
 	<surface type="Cylinder">
@@ -15,7 +15,7 @@
 		<radius> 0.1 </radius>
 		<rotation> 0 0 0 </rotation>
 		<color> 0 102 255 </color>
-		<reflexion> 1 </reflexion>		
+		<reflexion> 0 </reflexion>
 		<height> 1 </height>
 	</surface>
 	<surface type="Cylinder">
@@ -34,6 +34,7 @@
 		<rotation> 0 0 0 </rotation>
 		<color> 0 102 255 </color>
 		<height> 1 </height>
+		<reflexion> 1 </reflexion>		
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -42,6 +43,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 		<color> 166 166 166 </color>
+		<reflexion> 1 <reflexion>
 	</surface>
 	<surface type="Sphere">
 		<shader ref="red" />
@@ -50,112 +52,36 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> 1 0.75 -0.5 </center>
+		<reflexion> 1 </reflexion>
+		<!--/surface -->
+	<surface type="Plan">
+		<origin> 0 -1 0 </origin>
+		<normal> 0 1 0 </normal>
 		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> -1 0.75 -0.5 </center>
-		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	
-		<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> 0.75 -0.75 0.5 </center>
-		<rotation> 0 0 0 </rotation>
+		<color> 0 255 0 </color>
 		<reflexion> 1 </reflexion>		
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> -0.75 -0.75 0.5 </center>
-		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> 1 -0.75 -0.5 </center>
-		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> -1 -0.75 -0.5 </center>
-		<rotation> 0 0 0 </rotation>
-		<reflexion> 1 </reflexion>		
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.2 </radius>
-		<center> 0 0 2 </center>
-		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 255 0 0 </color>
 	</surface>
 	<surface type="Plan">
-		<origin> 0 0.75 1 </origin>
-		<normal> 0 0 1 </normal>
+		<origin> 0 1 0 </origin>
+		<normal> 0 2 0 </normal>
 		<rotation> 0 0 0 </rotation>
 		<color> 255 255 255 </color>
-	</surface>
-	<surface type="Plan">
-		<origin> 0 -0.75 1 </origin>
-		<normal> 0 0 1 </normal>
-		<rotation> 0 0 0 </rotation>
-		<color> 255 255 255 </color>
+		<reflexion> 1 </reflexion>		
 	</surface>
 	<surface type="Plan">
 		<origin> 0 0 2 </origin>
 		<normal> 0 0 1 </normal>
 		<reflexion> 1 </reflexion>		
 		<rotation> 0 0 0 </rotation>
-		<color> 125 0 125 </color>
+		<color> 0 0 0 </color>
+		<reflexion> 1 </reflexion>		
 	</surface>
-	<!--<surface type="cone">
-		<center> 0 0 2 </center>
-		<normal> 0 1 2 </normal>
-		<radius> 30 </radius>
-		<rotation> 0 0 1 </rotation>
-		<color>  204 255 51 </color>
-		<height> 1 </height>
-	</surface>-->
-	<!--<surface type="cone">
-		<center> 0 0 2 </center>
-		<normal> 1 0 2 </normal>
-		<radius> 30 </radius>
-		<rotation> 0 0 1 </rotation>
-		<color>  204 255 51 </color>
-		<height> 1 </height>
-	</surface>-->
 	<light>
 		<position> 0 0 -2 </position>
 		<direction> 0 0 0 </direction>
 		<intensity> 1 </intensity>
 		<color> 255 255 255 </color>		
 	</light>
-	<!--<light>
-		<position> -2 0 -5 </position>
-		<color> 125 0 125 0.5 </color>		
-		<intensity> 1 1 1 1 </intensity>
-	</light>-->
 	<ambient>
 		<intensity> 0.2 </intensity>
 		<color> 255 255 255 </color>

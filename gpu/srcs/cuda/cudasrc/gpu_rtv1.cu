@@ -50,13 +50,14 @@ inline void __cudaCheckError( const char *file, const int line )
     //              file, line, cudaGetErrorString( err ) );
     // //     exit( -1 );
     // }
+
 #endif
 
     return;
 }
 
 __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world world)
-{	
+{
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int index = row * constw + col;
@@ -101,7 +102,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		world.lights = lights_d;
 		CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));
 		world.paraboloids = paraboloids_d;
-		test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
+		test <<< grid_size, threads_per_block >>> (a_d, constw, consth, world);
 		CudaCheckError();
 		CudaSafeCall(cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost));
 	}

@@ -6,13 +6,13 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/23 09:44:56 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/06/29 14:13:58 by huweber          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
-MAKE = make 
+MAKE = make
 MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
@@ -45,7 +45,6 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/rotation.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
-				\
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
@@ -131,15 +130,15 @@ all: $(NAME)
 $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
-	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
+#	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
+	@nvcc -o bin/$(NAME) $(OBJ) $(LIBFT) $(OBJ_CUDA) -Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
-
+#	$(OBJ_CUDA)
 ###################################################
 ##--- Create repertories for objects .c to .c ---##
 ###################################################
@@ -153,7 +152,7 @@ obj/%.o: srcs/%.c
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
+	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################
@@ -163,7 +162,7 @@ objcuda/%.o: srcs/%.cu
 clean:
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Library--------"
-	@$(MAKE) $(MAKE_FLAGS) fclean -C $(LIBFT_DIR)
+	@$(MAKE) $(MAKE_FLAGS) #fclean -C $(LIBFT_DIR)
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Output Files--------"
 	@$(RM) $(OBJ) $(OBJ_CUDA)

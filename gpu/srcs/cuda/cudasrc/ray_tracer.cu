@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/03/17 14:07:23 by svilau           ###   ########.fr       */
+/*     Updated: 2017/06/29 14:26:47 by huweber          ###   ########.fr     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,10 @@ __host__ __device__ void	get_ray_direction(t_world world, t_ray *ray, int x, int
 	t_vec3d dir_point;
 
 	dir_point = vector_substract(
-							vector_add(
-								world.viewplane.up_left,
-								vector_scalar(
-									world.camera.right_v,
-									world.viewplane.x_indent * x)),
-							vector_scalar(
-								world.camera.up_v,
-								world.viewplane.y_indent * y));
+								vector_add(world.viewplane.up_left, vector_scalar(world.camera.right_v, world.viewplane.x_indent * x)),
+								vector_scalar(world.camera.up_v, world.viewplane.y_indent * y));
 	ray->dir_point = dir_point;
-	ray->dir =	vector_calculate(
-					world.camera.pos,
-					dir_point);
+	ray->dir = vector_calculate(world.camera.pos, dir_point);
 	ray->origin = world.camera.pos;
 }
 
@@ -68,7 +60,7 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 
 	intersection_tmp.t = DBL_MAX;
 	intersection_tmp.type = '0';
-	
+
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
 	get_closest_disk(world, ray, intersection, &intersection_tmp);
@@ -105,14 +97,14 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 // 	angle = vector_dot(vector_scalar(world.camera.dir_v, -1), light_vector);
 // 	color_scalar(&direct_light, angle);
 // 	color_multiply(color, direct_light);
-// }	
+// }
 
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
-	t_ray			ray;
-	t_intersection	intersection;
-	t_color			color;
-	int				i;
+	t_ray      			ray, ray_save;
+	t_intersection	intersection, intersection_save;
+	t_color		    	color;
+	int							i, ref;
 
 	i = 0;
 	intersection.t = DBL_MAX;
@@ -121,25 +113,46 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
-	if (intersection.type != '0' && intersection.t > 0.0000001)
+	intersection_save = intersection;
+	ray_save = ray;
+	intersection_save.normal_v = intersection.normal_v;
+	intersection_save.pos = intersection.pos;
+	intersection_save.color = intersection.color;
+	intersection_save.reflexion_coef = intersection.reflexion_coef;
+	intersection_save.t = intersection.t;
+	intersection_save.type = intersection.type;
+	ray_save.origin = ray.origin;
+	ray_save.dir = ray.dir;
+	ray_save.dir_point = ray.dir_point;
+	ref = intersection.reflexion_coef > 0 ? intersection.reflexion_coef : 1;
+	color = intersection.type != '0' ? *intersection.color : new_color(0, 0, 0);
+	while (ref-- >= 0)
 	{
-		color_add(&color, *intersection.color);
-		color_multiply(&color, world.ambient.color);
-		color_scalar(&color, world.ambient.intensity);
-		while (i < world.lights_len)
+//		color =
+		if (intersection.type != '0' && intersection.t > 0.0000001)
 		{
-			get_light_at(world, &color, world.lights[i], intersection, ray);
-			// direct_light(world, &color, world.lights[i], ray);
-			if(world.keys.pad_9 == 1)
-				cartoon_effect(world, &color, world.lights[i], intersection, ray);
-			i++;
+//			color = *intersection.color;
+		  color_add(&color, *intersection.color);
+		  color_multiply(&color, world.ambient.color);
+		  color_scalar(&color, world.ambient.intensity);
+		}
+		if (intersection.reflexion_coef > 0 && intersection.t > 0.0000001 && intersection.type != '0')
+		{
+			ray.origin = intersection.pos;
+						vector_normalize(ray.origin);
+									ray.dir = vector_scalar(intersection.normal_v, 2 * vector_dot(ray.dir, intersection.normal_v));
+			ray.dir = vector_calculate(ray.dir, ray.origin);
+			vector_normalize(ray.dir);
+
+			get_closest_intersection(world, ray, &intersection);
 		}
 	}
-	// i = 0;
-	// while (i < world.lights_len)
-	// 	{
-	// 		direct_light(world, &color, world.lights[i], ray);
-	// 		i++;
-	// 	}
+		while (i < world.lights_len && intersection.type != '0')
+	{
+		get_light_at(world, &color, world.lights[i], intersection, ray);
+		if (world.keys.pad_9 == 1)
+			cartoon_effect(world, &color, world.lights[i], intersection, ray);
+		i++;
+	}
 	return (get_color(color));
 }

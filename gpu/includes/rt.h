@@ -88,7 +88,7 @@ typedef struct		s_intersection
 	t_color *color;
 	double	reflexion_coef;
 	double	t;
-	char	type;
+	char		type;
 }					t_intersection;
 
 typedef struct		s_ray
@@ -135,7 +135,7 @@ typedef struct		s_thread_input
 typedef struct		s_world
 {
 	t_window	window;
-	
+
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_disk		*disks;
@@ -165,10 +165,10 @@ typedef struct		s_world
 
 	pthread_t		thread[NB_TH];
 	int				th;
-	
+
 	int				*a_h;
 	size_t		size_main;
-	
+
 	t_camera	camera;
 	t_viewplane	viewplane;
 
@@ -178,7 +178,7 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-	
+
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;

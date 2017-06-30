@@ -37,7 +37,7 @@ __host__ __device__ static double			get_sphere(t_sphere sphere,
 {
 	t_vec3d	x;
 	t_eq	eq;
-	
+
 	x = vector_calculate(sphere.pos, ray.origin);
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
@@ -75,6 +75,6 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 														*intersection);
 			}
 		}
-		i++;		
+		i++;
 	}
 }

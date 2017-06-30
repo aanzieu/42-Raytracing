@@ -71,7 +71,7 @@
 		<normal> 0 1 0 </normal>
 		<Rdistance> 0.1 </Rdistance>
 		<color> 255 0 255 </color>
-		<reflexion> 0 </reflexion>
+		<reflexion> 1 </reflexion>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>

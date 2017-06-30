@@ -156,6 +156,3 @@ __host__ __device__ void			get_closest_cone(t_world world, t_ray ray,
 		i++;
 	}
 }
-
-
-

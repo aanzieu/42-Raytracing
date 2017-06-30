@@ -28,9 +28,13 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *int
 	double	denominator;
 	t_vec3d	x;
 	double	n;
+//	double a, b;
 
-	intersection_tmp->normal_v = vector_normalize(
-		vector_calculate(plane.pos, plane.up));
+//	a = dot_prod(&plan->rot, &pos);
+//	b = dot_prod(&plan->rot, &ray->dir);
+//	denominator = -(dot_prod(&plan->rot, &pos) / dot_prod(&plan->rot, &ray->dir));
+
+	intersection_tmp->normal_v = vector_normalize(vector_calculate(plane.pos, plane.up));
 	denominator = vector_dot(ray.dir, intersection_tmp->normal_v);
 	if (denominator != 0)
 	{
@@ -42,8 +46,8 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *int
 			intersection_tmp->t = t;
 			intersection_tmp->type = 'p';
 			if (denominator > 0)
-				intersection_tmp->normal_v = 
-					vector_scalar(intersection_tmp->normal_v, -1);
+				intersection_tmp->normal_v =
+					vector_scalar(intersection_tmp->normal_v, 1);
 			return (1);
 		}
 	}
@@ -72,6 +76,6 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 				intersection->normal_v = intersection_tmp->normal_v;
 			}
 		}
-		i++;		
+		i++;
 	}
 }
