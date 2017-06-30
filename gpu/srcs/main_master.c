@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 15:33:12 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 18:04:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,39 @@
 #include <display.h>
 #include <unistd.h>
 
+int		launch_cluster_thread(t_world *world)
+{	
+	t_thread_input		client[2];
+	int					i;
+	
+	i = -1;
+	while(++i < 2) //nbr de client a definir avec un ping;
+	{
+		client[i].th = i;
+		client[i].world = world;
+		if(pthread_create(&world->thread[i], NULL, &get_data_from_client_thread, &client[i]))
+			ft_putendl_fd("Error : Can't init clustering thread\n", 1);
+	}
+	i = -1;
+		while(++i < 2) // nbr de client a definir avec un ping
+	{
+		pthread_join(world->thread[i], NULL);
+	}
+	return(0);
+}
+
 void	render_clustering(t_world *world)
 {
+
 	int			quit;
 	SDL_Event	event;
-	
+
 	quit = 0;
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
-		get_data_from_client(world);
+		launch_cluster_thread(world);
 		printf("je sors de get_data_from_client\n");
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);

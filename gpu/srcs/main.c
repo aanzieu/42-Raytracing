@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/29 15:33:11 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 17:33:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,17 +171,21 @@ void    rt(t_world *world)
 int		main(int argc, char **argv)
 {
 	t_world	*world;
-	int		flags;
+	int		flags = 0;
 
 	if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
 		memory_allocation_error();
 	data_setup(world);
 	get_viewplane(world);
-	(void)argc;
-	// flags = 0; // LOCAL NO CLUSTER;
-	// flags = 1; // CLUSTER MASTER;
-	flags = 2; // CLUSTER CLIENT;
-//	while(1) {
+	if (argc > 2)
+	{
+		if((ft_strcmp("local", argv[2]) == 0))
+			flags = 0;
+		else if((ft_strcmp("master", argv[2]) == 0))
+			flags = 1;
+		else if((ft_strcmp("client", argv[2]) == 0))
+			flags = 2;
+	}
 	if (flags == 0 && argv[1])
 	{
 		parse_rtv1(world, argv[1]);
