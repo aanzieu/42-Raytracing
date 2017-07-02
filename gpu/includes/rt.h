@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/27 08:44:36 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 18:52:33 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 #include <pthread.h>
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
+#include <libxml/xmlmemory.h>
+#include <libxml/parser.h>
 
 #define NB_TH 8
 

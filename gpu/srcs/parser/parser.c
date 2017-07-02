@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 11:45:34 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/06/29 19:02:38 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,57 @@ static void		parse_lst(t_world *world, t_list *lst)
 	}
 }
 
+// void			parse_rtv1(t_world *world, char *argv)
+// {
+// 	int		ret;
+// 	char	*line;
+// 	char	*tmp;
+// 	int		fd;
+// 	t_list	*lst;
+
+// 	if ((fd = open(argv, O_RDONLY)) < 0)
+// 		ft_putendl_fd("Error file don't open", 1);
+// 	lst = NULL;
+// 	while ((ret = get_next_line(fd, &line)) > 0)
+// 	{
+// 		tmp = ft_strtrim(line);
+// 		ft_lst_add_back(&lst,
+// 				ft_lstnew(ft_strtolower(tmp), ft_strlen(line) + 1));
+		
+// 		free(line);
+// 		free(tmp);
+// 	}
+// 	if (ret == -1)
+// 		ft_putendl_fd("Error file don't read", 1);
+// 	free(line);
+// 	parse_lst(world, lst);
+// 	free_lst(&lst);
+// 	close(fd);
+// }
+
 void			parse_rtv1(t_world *world, char *argv)
 {
-	int		ret;
-	char	*line;
-	char	*tmp;
-	int		fd;
-	t_list	*lst;
+	xmlParserCtxtPtr ctxt; /* the parser context */
+    xmlDocPtr doc; /* the resulting document tree */
 
-	if ((fd = open(argv, O_RDONLY)) < 0)
-		ft_putendl_fd("Error file don't open", 1);
-	lst = NULL;
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		tmp = ft_strtrim(line);
-		ft_lst_add_back(&lst,
-				ft_lstnew(ft_strtolower(tmp), ft_strlen(line) + 1));
-		
-		free(line);
-		free(tmp);
-	}
-	if (ret == -1)
-		ft_putendl_fd("Error file don't read", 1);
-	free(line);
-	parse_lst(world, lst);
-	free_lst(&lst);
-	close(fd);
+    /* create a parser context */
+    ctxt = xmlNewParserCtxt();
+    if (ctxt == NULL)
+        fprintf(stderr, "Failed to allocate parser context\n");
+    /* parse the file, activating the DTD validation option */
+    doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID);
+    /* check if parsing suceeded */
+    if (doc == NULL) {
+        fprintf(stderr, "Failed to parse %s\n", argv);
+    } else {
+	/* check if validation suceeded */
+        if (ctxt->valid == 0)
+	    	fprintf(stderr, "Failed to validate %s\n", argv);
+	    else
+	    	parseDoc(argv);
+	/* free up the resulting document */
+	xmlFreeDoc(doc);
+    }
+    /* free up the parser context */
+    xmlFreeParserCtxt(ctxt);
 }

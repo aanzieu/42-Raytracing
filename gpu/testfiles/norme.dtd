@@ -1,0 +1,53 @@
+<!ELEMENT scene (camera,light*,sphere*)>
+<!ELEMENT camera (viewPoint, viewDir)>
+<!ELEMENT light (pos, intensity)>
+<!ELEMENT sphere (pos, rot, tra, radius, color)>
+
+<!ELEMENT viewPoint (#PCDATA)>
+<!ELEMENT viewDir (#PCDATA)>
+<!ELEMENT intensity (#PCDATA)>
+<!ELEMENT pos (#PCDATA)>
+<!ELEMENT rot (#PCDATA)>
+<!ELEMENT tra (#PCDATA)>
+<!ELEMENT radius (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+
+
+<!ATTLIST scene name CDATA #REQUIRED>
+<!ATTLIST pos 
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST rot
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST tra
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST viewPoint 
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST viewDir 
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST intensity 
+	data CDATA #REQUIRED
+>
+<!ATTLIST radius 
+	data CDATA #REQUIRED
+>
+<!ATTLIST color 
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+	o CDATA #REQUIRED
+>
