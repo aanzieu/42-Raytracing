@@ -53,3 +53,15 @@ void	parse_reflexion(double *reflexion_coef, char **tmp, int line)
 	}
 	*reflexion_coef = ft_atoi_double(tmp[1]);
 }
+
+void	parse_refraxion(double *refraxion_coef, char **tmp, int line)
+{
+	if (ft_count_word(tmp) != 3)
+	{
+		ft_putstr_fd("Line : ", 1);
+		ft_putnbr(line);
+		ft_putendl_fd(" Wrong refraxion coeficient format", 1);
+		exit (EXIT_FAILURE);
+	}
+	*refraxion_coef = ft_atoi_double(tmp[1]);
+}

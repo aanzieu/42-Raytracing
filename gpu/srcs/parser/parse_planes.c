@@ -26,6 +26,8 @@ static void	get_plane_next(t_world *world, char **tmp, int i, t_plane *p)
 		parse_rotation_object(&p->up, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&p->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
+		parse_reflexion(&p->refraxion_coef, tmp, world->line);
 }
 
 void		parse_plane(t_world *world, t_list *lst)

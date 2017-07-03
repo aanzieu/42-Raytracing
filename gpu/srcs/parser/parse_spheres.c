@@ -24,6 +24,8 @@ static void	parse_sphere_next(t_world *world, char **tmp, int i, t_sphere *s)
 		parse_point_translation(&s->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&s->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
+		parse_reflexion(&s->refraxion_coef, tmp, world->line);
 }
 
 void		parse_sphere(t_world *world, t_list *lst)

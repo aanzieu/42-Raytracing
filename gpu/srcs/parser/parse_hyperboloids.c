@@ -16,6 +16,8 @@ static void				get_hyperboloid_next(t_world *world, char **tmp,
 		parse_color(&hyper->color, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&hyper->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
+		parse_reflexion(&hyper->refraxion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<translation>", ft_strlen("<translation>")))
 		parse_point_translation(&hyper->top, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))

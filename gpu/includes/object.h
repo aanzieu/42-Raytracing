@@ -22,6 +22,7 @@ typedef struct			s_plane
 	t_vec3d				pos;
 	t_color				color;
 	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_plane		*next;
 }						t_plane;
 
@@ -31,8 +32,9 @@ typedef struct			s_disk
 	t_vec3d				pos;
 	t_color				color;
 	double				reflexion_coef;
+	double				refraxion_coef;
 	double				radius;
-	double				radius_squared;	
+	double				radius_squared;
 	struct s_disk		*next;
 }						t_disk;
 
@@ -42,8 +44,9 @@ typedef struct			s_cylinder
 	t_vec3d				pos;
 	t_vec3d				up_v;
 	t_color				color;
-	double				radius;	
-	double				reflexion_coef;	
+	double				radius;
+	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_cylinder	*next;
 }						t_cylinder;
 
@@ -57,6 +60,7 @@ typedef struct			s_cone
 	t_vec3d				min;
 	t_vec3d				max;
 	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_cone		*next;
 }						t_cone;
 
@@ -66,6 +70,7 @@ typedef struct			s_sphere
 	t_vec3d				pos;
 	t_color				color;
 	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_sphere		*next;
 }						t_sphere;
 
@@ -76,7 +81,8 @@ typedef struct			s_paraboloid
 	t_color				color;
 	double				distance;
 	double				maxm;
-	double				reflexion_coef;	
+	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_paraboloid	*next;
 }						t_paraboloid;
 
@@ -88,6 +94,7 @@ typedef struct			s_hyperboloid
 	double				radius;
 	double				maxm;
 	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_hyperboloid*next;
 }						t_hyperboloid;
 /*******************************************************************************

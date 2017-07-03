@@ -34,6 +34,9 @@ static void	get_cone_next(t_world *world, char **tmp, int i, t_cone *co)
 		parse_point_translation(&co->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&co->up, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
+		parse_reflexion(&co->refraxion_coef, tmp, world->line);
+
 }
 
 void		parse_cone(t_world *world, t_list *lst)
