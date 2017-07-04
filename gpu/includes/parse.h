@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 18:52:16 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/04 18:10:36 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void				parse_rotation_object(t_vec3d *v, char **tmp, int line);
 void				parse_point_translation(t_vec3d *v, char **tmp, int line);
 void				parse_rotation_cam(t_camera *cam, char **tmp, int line);
 void				parse_camera(t_world *world, t_camera *cam, t_list *lst);
+
+void				parse_camera_xav(t_world *world, xmlNodePtr cur);
+void				parse_light_xav(t_world *world, xmlNodePtr cur);
+void				parse_sphere_xav(t_world *world, xmlNodePtr cur);
 
 void				parse_light(t_world *world, t_list *lst);
 

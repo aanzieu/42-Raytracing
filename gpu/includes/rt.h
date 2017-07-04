@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 18:52:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/03 18:51:05 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct		s_thread_input
 typedef struct		s_world
 {
 	t_window	window;
-	
+
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_disk		*disks;
@@ -167,10 +167,10 @@ typedef struct		s_world
 
 	pthread_t		thread[NB_TH];
 	int				th;
-	
+
 	int				*a_h;
 	size_t		size_main;
-	
+
 	t_camera	camera;
 	t_viewplane	viewplane;
 
@@ -180,7 +180,7 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-	
+
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;

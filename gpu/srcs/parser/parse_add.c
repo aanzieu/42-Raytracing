@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:52:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 11:27:31 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/03 17:51:07 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <object.h>
 #include <light.h>
-#include <Stdio.h>
 
 void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 {

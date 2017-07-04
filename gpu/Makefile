@@ -3,20 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
+#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/29 19:01:33 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/07/03 19:16:33 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
-MAKE = make 
+MAKE = make
 MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
+INCLUDEXML = -I/usr/include/libxml2
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
@@ -135,7 +136,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) \
+	@nvcc -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) \
 	-Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
@@ -149,13 +150,13 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) -I/usr/include/libxml2 $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
+	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################

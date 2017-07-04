@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 19:02:38 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/04 18:21:53 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,85 +14,85 @@
 #include <parse.h>
 #include "../../srcs/get_next_line/get_next_line.h"
 
-static void		free_lst(t_list **lst)
-{
-	t_list	*next;
+// static void		free_lst(t_list **lst)
+// {
+// 	t_list	*next;
 
-	while (*lst)
-	{
-		next = (*lst)->next;
-		free((*lst)->content);
-		(*lst)->content_size = 0;
-		free(*lst);
-		(*lst) = next;
-	}
-}
+// 	while (*lst)
+// 	{
+// 		next = (*lst)->next;
+// 		free((*lst)->content);
+// 		(*lst)->content_size = 0;
+// 		free(*lst);
+// 		(*lst) = next;
+// 	}
+// }
 
-static void		get_type(t_world *world, t_list *lst, char *str)
-{
-	int		i;
-	char	*tmp;
+// static void		get_type(t_world *world, t_list *lst, char *str)
+// {
+// 	int		i;
+// 	char	*tmp;
 
-	i = 0;
-	while (str[i] != '"')
-		i++;
-	tmp = ft_strsub(str, ++i, ft_strlen(str));
-	if (ft_strnequ(tmp, "sphere", ft_strlen("sphere")))
-		parse_sphere(world, lst->next);
-	else if (ft_strnequ(tmp, "plan", ft_strlen("plan")))
-		parse_plane(world, lst->next);
-	else if (ft_strnequ(tmp, "disk", ft_strlen("disk")))
-		parse_disk(world, lst->next);
-	else if (ft_strnequ(tmp, "cylinder", ft_strlen("cylinder")))
-		parse_cylinder(world, lst->next);
-	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))
-		parse_cone(world, lst->next);
-	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
-		parse_paraboloid(world, lst->next);
-	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
-		parse_hyperboloid(world, lst->next);
-	ft_memdel((void**)&tmp);
-	lst = lst->next;
-}
+// 	i = 0;
+// 	while (str[i] != '"')
+// 		i++;
+// 	tmp = ft_strsub(str, ++i, ft_strlen(str));
+// 	if (ft_strnequ(tmp, "sphere", ft_strlen("sphere")))
+// 		parse_sphere(world, lst->next);
+// 	else if (ft_strnequ(tmp, "plan", ft_strlen("plan")))
+// 		parse_plane(world, lst->next);
+// 	else if (ft_strnequ(tmp, "disk", ft_strlen("disk")))
+// 		parse_disk(world, lst->next);
+// 	else if (ft_strnequ(tmp, "cylinder", ft_strlen("cylinder")))
+// 		parse_cylinder(world, lst->next);
+// 	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))
+// 		parse_cone(world, lst->next);
+// 	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
+// 		parse_paraboloid(world, lst->next);
+// 	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
+// 		parse_hyperboloid(world, lst->next);
+// 	ft_memdel((void**)&tmp);
+// 	lst = lst->next;
+// }
 
-static void		get_surface(t_world *world, t_list *lst)
-{
-	char	**tmp;
-	int		i;
+// static void		get_surface(t_world *world, t_list *lst)
+// {
+// 	char	**tmp;
+// 	int		i;
 
-	while (lst && !ft_strequ(lst->content, "</surface>"))
-	{
-		i = 0;
-		tmp = ft_strsplit(lst->content, ' ');
-		while (tmp[i] != NULL)
-		{
-			if (ft_strstr(tmp[i], "type="))
-				get_type(world, lst, tmp[i]);
-			i++;
-		}
-		ft_cleanup_str(tmp);
-		ft_memdel((void**)&tmp);
-		lst = lst->next;
-	}
-}
+// 	while (lst && !ft_strequ(lst->content, "</surface>"))
+// 	{
+// 		i = 0;
+// 		tmp = ft_strsplit(lst->content, ' ');
+// 		while (tmp[i] != NULL)
+// 		{
+// 			if (ft_strstr(tmp[i], "type="))
+// 				get_type(world, lst, tmp[i]);
+// 			i++;
+// 		}
+// 		ft_cleanup_str(tmp);
+// 		ft_memdel((void**)&tmp);
+// 		lst = lst->next;
+// 	}
+// }
 
-static void		parse_lst(t_world *world, t_list *lst)
-{
-	while (lst && !ft_strequ(lst->content, "</scene>"))
-	{
-		if (ft_strnequ(lst->content, "<surface", ft_strlen("<surface")))
-			get_surface(world, lst);
-		else if (ft_strnequ(lst->content, "<camera", ft_strlen("<camera")))
-			parse_camera(world, &world->camera, lst);
-		else if (ft_strnequ(lst->content, "<light", ft_strlen("<light")))
-			parse_light(world, lst->next);
-		else if (ft_strnequ(lst->content, "<ambient", ft_strlen("<ambient")))
-			parse_ambient(world, lst);
-		if (lst)
-			lst = lst->next;
-		world->line++;
-	}
-}
+// static void		parse_lst(t_world *world, t_list *lst)
+// {
+// 	while (lst && !ft_strequ(lst->content, "</scene>"))
+// 	{
+// 		if (ft_strnequ(lst->content, "<surface", ft_strlen("<surface")))
+// 			get_surface(world, lst);
+// 		else if (ft_strnequ(lst->content, "<camera", ft_strlen("<camera")))
+// 			parse_camera(world, &world->camera, lst);
+// 		else if (ft_strnequ(lst->content, "<light", ft_strlen("<light")))
+// 			parse_light(world, lst->next);
+// 		else if (ft_strnequ(lst->content, "<ambient", ft_strlen("<ambient")))
+// 			parse_ambient(world, lst);
+// 		if (lst)
+// 			lst = lst->next;
+// 		world->line++;
+// 	}
+// }
 
 // void			parse_rtv1(t_world *world, char *argv)
 // {
@@ -110,7 +110,7 @@ static void		parse_lst(t_world *world, t_list *lst)
 // 		tmp = ft_strtrim(line);
 // 		ft_lst_add_back(&lst,
 // 				ft_lstnew(ft_strtolower(tmp), ft_strlen(line) + 1));
-		
+
 // 		free(line);
 // 		free(tmp);
 // 	}
@@ -121,6 +121,53 @@ static void		parse_lst(t_world *world, t_list *lst)
 // 	free_lst(&lst);
 // 	close(fd);
 // }
+static void getReference(t_world *world, xmlNodePtr obj)
+{
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"camera")))
+		parse_camera_xav(world, obj);
+		//printf("fonction -> %s\n", obj->name);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"light")))
+		parse_light_xav(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"sphere")))
+		parse_sphere_xav(world, obj);
+}
+
+static void parseDoc(t_world *world, const char *docname)
+{
+	xmlDocPtr doc;
+	xmlNodePtr cur;
+	xmlNodePtr tmp;
+	xmlChar *uri;
+
+	if (!(doc = xmlParseFile(docname)))
+	{
+		ft_putendl_fd("Document not parsed successfully.", 2);
+		exit(0);
+	}
+	if (!(cur = xmlDocGetRootElement(doc)))
+	{
+		fprintf(stderr,"empty document\n");
+		xmlFreeDoc(doc);
+		exit(0);
+	}
+	// if (xmlStrcmp(cur->name, (const xmlChar *) "scene")) {
+	// 	fprintf(stderr,"document of the wrong type, root node != scene");
+	// 	xmlFreeDoc(doc);
+	// 	return;
+	// }
+	tmp = cur;
+	printf("title: %s\n", (uri = xmlGetProp(tmp, (const xmlChar *)"name")));
+	xmlFree(uri);
+	tmp = tmp->xmlChildrenNode;
+	while (tmp != NULL)
+	{
+		if (xmlStrcmp(tmp->name, (const xmlChar *)"text"))
+			getReference(world, tmp);
+		tmp = tmp->next;
+	}
+	xmlFreeDoc(doc);
+	return;
+}
 
 void			parse_rtv1(t_world *world, char *argv)
 {
@@ -130,20 +177,20 @@ void			parse_rtv1(t_world *world, char *argv)
     /* create a parser context */
     ctxt = xmlNewParserCtxt();
     if (ctxt == NULL)
-        fprintf(stderr, "Failed to allocate parser context\n");
+    	ft_putendl_fd("Failed to allocate parser context", 2);
     /* parse the file, activating the DTD validation option */
     doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID);
     /* check if parsing suceeded */
-    if (doc == NULL) {
-        fprintf(stderr, "Failed to parse %s\n", argv);
-    } else {
-	/* check if validation suceeded */
+    if (doc == NULL)
+    	ft_putendl_fd("Failed to parse the xml file", 2);
+    else
+    {
         if (ctxt->valid == 0)
-	    	fprintf(stderr, "Failed to validate %s\n", argv);
+	    	ft_putendl_fd("xml file error", 2);
 	    else
-	    	parseDoc(argv);
-	/* free up the resulting document */
-	xmlFreeDoc(doc);
+	    	parseDoc(world, argv);
+		/* free up the resulting document */
+		xmlFreeDoc(doc);
     }
     /* free up the parser context */
     xmlFreeParserCtxt(ctxt);
