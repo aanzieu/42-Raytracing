@@ -85,74 +85,56 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 	}
 }
 
-// __host__ __device__ void	direct_light(t_world world, t_color *color, t_light light, t_ray ray)
-// {
-// 	t_vec3d	light_vector;
-// 	t_color	direct_light;
-// 	double 	angle;
-
-// 	direct_light = new_color(10, 10, 10);
-// 	light_vector = vector_normalize(vector_calculate(ray.dir_point,
-// 														light.pos));
-// 	angle = vector_dot(vector_scalar(world.camera.dir_v, -1), light_vector);
-// 	color_scalar(&direct_light, angle);
-// 	color_multiply(color, direct_light);
-// }
-
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
-	t_ray      			ray, ray_save;
-	t_intersection	intersection, intersection_save;
-	t_color		    	color;
-	int							i, ref;
+	t_ray      			ray;//, ray_save;
+	t_intersection	intersection;//, intersection_save;
+	t_color					color = (t_color){0, 0, 0};
+	t_vec3d					reflected;
+	int							i, depth;
 
 	i = 0;
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
-	color = new_color(0, 0, 0);
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
-	intersection_save = intersection;
-	ray_save = ray;
-	intersection_save.normal_v = intersection.normal_v;
-	intersection_save.pos = intersection.pos;
-	intersection_save.color = intersection.color;
-	intersection_save.reflexion_coef = intersection.reflexion_coef;
-	intersection_save.t = intersection.t;
-	intersection_save.type = intersection.type;
-	ray_save.origin = ray.origin;
-	ray_save.dir = ray.dir;
-	ray_save.dir_point = ray.dir_point;
-	ref = intersection.reflexion_coef > 0 ? intersection.reflexion_coef : 1;
-	color = intersection.type != '0' ? *intersection.color : new_color(0, 0, 0);
-	while (ref-- >= 0)
+	if (intersection.type == '0')
+		return (get_color(color));
+	// intersection_save = intersection;
+	// ray_save = ray;
+	if (intersection.reflexion_coef == 0)
 	{
-//		color =
-		if (intersection.type != '0' && intersection.t > 0.0000001)
-		{
-//			color = *intersection.color;
-		  color_add(&color, *intersection.color);
-		  color_multiply(&color, world.ambient.color);
-		  color_scalar(&color, world.ambient.intensity);
-		}
-		if (intersection.reflexion_coef > 0 && intersection.t > 0.0000001 && intersection.type != '0')
-		{
-			ray.origin = intersection.pos;
-						vector_normalize(ray.origin);
-									ray.dir = vector_scalar(intersection.normal_v, 2 * vector_dot(ray.dir, intersection.normal_v));
-			ray.dir = vector_calculate(ray.dir, ray.origin);
-			vector_normalize(ray.dir);
-
-			get_closest_intersection(world, ray, &intersection);
-		}
+		color_add(&color, *intersection.color);
+	  color_multiply(&color, world.ambient.color);
+	  color_scalar(&color, world.ambient.intensity);
 	}
-		while (i < world.lights_len && intersection.type != '0')
+	else
 	{
-		get_light_at(world, &color, world.lights[i], intersection, ray);
+		depth = intersection.reflexion_coef;
+		while(i < depth && i < MAX_DEPTH)
+		{
+			ray.origin = intersection.pos;//vector_add(intersection.pos, (t_vec3d){0.00000001, 0.00000001, 0.00000001});
+			reflected = vector_scalar(intersection.normal_v, 2 * vector_dot(ray.dir, intersection.normal_v));
+			ray.dir = vector_normalize(vector_substract(ray.dir, reflected));
+			get_closest_intersection(world, ray, &intersection);
+			if (intersection.type != '0')
+				color_add(&color, *intersection.color);
+			i++;
+		}
+		color_multiply(&color, world.ambient.color);
+		color_scalar(&color, world.ambient.intensity);
+
+	}
+	i = 0;
+	while (i < world.lights_len)
+	{
+			get_light_at(world, &color, world.lights[i], intersection, ray);
 		if (world.keys.pad_9 == 1)
 			cartoon_effect(world, &color, world.lights[i], intersection, ray);
 		i++;
 	}
+	// (void)intersection_save;
+	// (void)ray_save;
 	return (get_color(color));
 }

@@ -87,8 +87,10 @@ typedef struct		s_intersection
 	t_vec3d	pos;
 	t_color *color;
 	double	reflexion_coef;
+
 	double	t;
 	char		type;
+	int			id;
 }					t_intersection;
 
 typedef struct		s_ray

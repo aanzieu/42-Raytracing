@@ -12,6 +12,8 @@
 #include <object.h>
 #include <rt.h>
 
+#define MAX_DEPTH 2
+
 /*******************************************************************************
 **                     INTERSECTION_FONCTION_GET                              **
 *******************************************************************************/
@@ -101,7 +103,6 @@ CUDA_HOSTDEV double		second_degres(double a, double b, double c);
 *******************************************************************************/
 
 CUDA_HOSTDEV void				get_up_left(t_world *world);
-//CUDA_HOSTDEV void				illumination(t_world world, t_color color, t_ray ray, t_intersection intersection);
 CUDA_HOSTDEV int				ray_tracer(t_world world, int x, int y);
 
 #endif
