@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/03 18:51:05 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/05 13:54:39 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 #include <pthread.h>
 #include "../frameworks/SDL2.framework/Headers/SDL.h"
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
 
 #define NB_TH 8
 
@@ -137,6 +135,7 @@ typedef struct		s_thread_input
 typedef struct		s_world
 {
 	t_window	window;
+	char		*title;
 
 	t_sphere	*spheres;
 	t_plane		*planes;

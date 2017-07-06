@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 11:52:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/03 17:51:07 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/06 16:12:19 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,6 @@ void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 	}
 }
 
-void	add_plan(t_plane **alst, t_plane *nw)
-{
-	t_plane *curr;
-
-	if (!nw || !alst)
-		return ;
-	if (!*alst)
-		*alst = nw;
-	else
-	{
-		curr = *alst;
-		while (curr->next)
-			curr = curr->next;
-		curr->next = nw;
-	}
-}
 
 void	add_disk(t_disk **alst, t_disk *nw)
 {
@@ -60,42 +44,6 @@ void	add_disk(t_disk **alst, t_disk *nw)
 		curr = *alst;
 		while (curr->next)
 			curr = curr->next;
-		curr->next = nw;
-	}
-}
-
-void	add_light(t_light **alst, t_light *nw)
-{
-	t_light *curr;
-
-	if (!nw || !alst)
-		return ;
-	if (!*alst)
-		*alst = nw;
-	else
-	{
-		curr = *alst;
-		while (curr->next)
-			curr = curr->next;
-		curr->next = nw;
-	}
-}
-
-void	add_sphere(t_sphere **alst, t_sphere *nw)
-{
-	t_sphere *curr;
-
-	if (!nw || !alst)
-		return ;
-	if (!*alst)
-		*alst = nw;
-	else
-	{
-		curr = *alst;
-		while (curr->next)
-		{
-			curr = curr->next;
-		}
 		curr->next = nw;
 	}
 }

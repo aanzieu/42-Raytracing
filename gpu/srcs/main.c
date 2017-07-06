@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/04 18:08:50 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/06 15:29:21 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	rt(t_world *world)
 	ft_bzero(world->a_h, world->size_main);
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return ;
-	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
+	world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
 								WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 1)
@@ -182,9 +182,9 @@ int		main(int argc, char **argv)
 		parse_rtv1(world, argv[1]);
 		load_data(world);
 		rt(world);
-		printf("%f\n", world->camera.pos.x);
-		// printf("%f\n", world->camera.pos.y);
-		// printf("%f\n\n", world->camera.pos.z);
+		// printf("%f\n", world->lights->color.r);
+		// printf("%f\n", world->lights->color.g);
+		// printf("%f\n\n", world->lights->color.b);
 		// printf("%f\n", world->camera.look_at.x);
 		// printf("%f\n", world->camera.look_at.y);
 		// printf("%f\n", world->camera.look_at.z);

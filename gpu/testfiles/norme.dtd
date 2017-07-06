@@ -1,20 +1,30 @@
-<!ELEMENT scene (camera,light*,sphere*)>
-<!ELEMENT camera (viewPoint, viewDir)>
-<!ELEMENT light (pos, intensity)>
-<!ELEMENT sphere (pos, rot, tra, radius, color)>
+<!ELEMENT scene (camera|light|ambient|sphere|plane)*>
+<!ELEMENT camera (pos, dir, rot*, tra*)>
+<!ELEMENT light (pos, dir*, color*, intensity)>
+<!ELEMENT ambient (color, intensity)>
+<!ELEMENT sphere (pos, tra*, radius, color, reflection*)>
+<!ELEMENT plane (origin, normal, tra*, rot*, color, reflection*)>
 
-<!ELEMENT viewPoint (#PCDATA)>
-<!ELEMENT viewDir (#PCDATA)>
-<!ELEMENT intensity (#PCDATA)>
+
 <!ELEMENT pos (#PCDATA)>
+<!ELEMENT dir (#PCDATA)>
 <!ELEMENT rot (#PCDATA)>
 <!ELEMENT tra (#PCDATA)>
+<!ELEMENT origin (#PCDATA)>
+<!ELEMENT normal (#PCDATA)>
 <!ELEMENT radius (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
+<!ELEMENT intensity (#PCDATA)>
+<!ELEMENT reflection (#PCDATA)>
 
 
 <!ATTLIST scene name CDATA #REQUIRED>
-<!ATTLIST pos 
+<!ATTLIST pos
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST dir
 	x CDATA #REQUIRED
 	y CDATA #REQUIRED
 	z CDATA #REQUIRED
@@ -29,25 +39,22 @@
 	y CDATA #REQUIRED
 	z CDATA #REQUIRED
 >
-<!ATTLIST viewPoint 
+<!ATTLIST origin
 	x CDATA #REQUIRED
 	y CDATA #REQUIRED
 	z CDATA #REQUIRED
 >
-<!ATTLIST viewDir 
+<!ATTLIST normal
 	x CDATA #REQUIRED
 	y CDATA #REQUIRED
 	z CDATA #REQUIRED
 >
-<!ATTLIST intensity 
-	data CDATA #REQUIRED
->
-<!ATTLIST radius 
-	data CDATA #REQUIRED
->
-<!ATTLIST color 
+<!ATTLIST color
 	r CDATA #REQUIRED
 	g CDATA #REQUIRED
 	b CDATA #REQUIRED
-	o CDATA #REQUIRED
+	a CDATA #REQUIRED
 >
+<!ATTLIST radius data CDATA #REQUIRED>
+<!ATTLIST intensity data CDATA #REQUIRED>
+<!ATTLIST reflection data CDATA #REQUIRED>

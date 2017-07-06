@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 08:24:17 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/04 18:21:53 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/05 14:13:51 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,184 +14,110 @@
 #include <parse.h>
 #include "../../srcs/get_next_line/get_next_line.h"
 
-// static void		free_lst(t_list **lst)
-// {
-// 	t_list	*next;
-
-// 	while (*lst)
-// 	{
-// 		next = (*lst)->next;
-// 		free((*lst)->content);
-// 		(*lst)->content_size = 0;
-// 		free(*lst);
-// 		(*lst) = next;
-// 	}
-// }
-
-// static void		get_type(t_world *world, t_list *lst, char *str)
-// {
-// 	int		i;
-// 	char	*tmp;
-
-// 	i = 0;
-// 	while (str[i] != '"')
-// 		i++;
-// 	tmp = ft_strsub(str, ++i, ft_strlen(str));
-// 	if (ft_strnequ(tmp, "sphere", ft_strlen("sphere")))
-// 		parse_sphere(world, lst->next);
-// 	else if (ft_strnequ(tmp, "plan", ft_strlen("plan")))
-// 		parse_plane(world, lst->next);
-// 	else if (ft_strnequ(tmp, "disk", ft_strlen("disk")))
-// 		parse_disk(world, lst->next);
-// 	else if (ft_strnequ(tmp, "cylinder", ft_strlen("cylinder")))
-// 		parse_cylinder(world, lst->next);
-// 	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))
-// 		parse_cone(world, lst->next);
-// 	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
-// 		parse_paraboloid(world, lst->next);
-// 	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
-// 		parse_hyperboloid(world, lst->next);
-// 	ft_memdel((void**)&tmp);
-// 	lst = lst->next;
-// }
-
-// static void		get_surface(t_world *world, t_list *lst)
-// {
-// 	char	**tmp;
-// 	int		i;
-
-// 	while (lst && !ft_strequ(lst->content, "</surface>"))
-// 	{
-// 		i = 0;
-// 		tmp = ft_strsplit(lst->content, ' ');
-// 		while (tmp[i] != NULL)
-// 		{
-// 			if (ft_strstr(tmp[i], "type="))
-// 				get_type(world, lst, tmp[i]);
-// 			i++;
-// 		}
-// 		ft_cleanup_str(tmp);
-// 		ft_memdel((void**)&tmp);
-// 		lst = lst->next;
-// 	}
-// }
-
-// static void		parse_lst(t_world *world, t_list *lst)
-// {
-// 	while (lst && !ft_strequ(lst->content, "</scene>"))
-// 	{
-// 		if (ft_strnequ(lst->content, "<surface", ft_strlen("<surface")))
-// 			get_surface(world, lst);
-// 		else if (ft_strnequ(lst->content, "<camera", ft_strlen("<camera")))
-// 			parse_camera(world, &world->camera, lst);
-// 		else if (ft_strnequ(lst->content, "<light", ft_strlen("<light")))
-// 			parse_light(world, lst->next);
-// 		else if (ft_strnequ(lst->content, "<ambient", ft_strlen("<ambient")))
-// 			parse_ambient(world, lst);
-// 		if (lst)
-// 			lst = lst->next;
-// 		world->line++;
-// 	}
-// }
-
-// void			parse_rtv1(t_world *world, char *argv)
-// {
-// 	int		ret;
-// 	char	*line;
-// 	char	*tmp;
-// 	int		fd;
-// 	t_list	*lst;
-
-// 	if ((fd = open(argv, O_RDONLY)) < 0)
-// 		ft_putendl_fd("Error file don't open", 1);
-// 	lst = NULL;
-// 	while ((ret = get_next_line(fd, &line)) > 0)
-// 	{
-// 		tmp = ft_strtrim(line);
-// 		ft_lst_add_back(&lst,
-// 				ft_lstnew(ft_strtolower(tmp), ft_strlen(line) + 1));
-
-// 		free(line);
-// 		free(tmp);
-// 	}
-// 	if (ret == -1)
-// 		ft_putendl_fd("Error file don't read", 1);
-// 	free(line);
-// 	parse_lst(world, lst);
-// 	free_lst(&lst);
-// 	close(fd);
-// }
-static void getReference(t_world *world, xmlNodePtr obj)
+static void		free_lst(t_list **lst)
 {
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"camera")))
-		parse_camera_xav(world, obj);
-		//printf("fonction -> %s\n", obj->name);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"light")))
-		parse_light_xav(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"sphere")))
-		parse_sphere_xav(world, obj);
+	t_list	*next;
+
+	while (*lst)
+	{
+		next = (*lst)->next;
+		free((*lst)->content);
+		(*lst)->content_size = 0;
+		free(*lst);
+		(*lst) = next;
+	}
 }
 
-static void parseDoc(t_world *world, const char *docname)
+static void		get_type(t_world *world, t_list *lst, char *str)
 {
-	xmlDocPtr doc;
-	xmlNodePtr cur;
-	xmlNodePtr tmp;
-	xmlChar *uri;
+	int		i;
+	char	*tmp;
 
-	if (!(doc = xmlParseFile(docname)))
+	i = 0;
+	while (str[i] != '"')
+		i++;
+	tmp = ft_strsub(str, ++i, ft_strlen(str));
+	if (ft_strnequ(tmp, "sphere", ft_strlen("sphere")))
+		parse_sphere(world, lst->next);
+	else if (ft_strnequ(tmp, "plan", ft_strlen("plan")))
+		parse_plane(world, lst->next);
+	else if (ft_strnequ(tmp, "disk", ft_strlen("disk")))
+		parse_disk(world, lst->next);
+	else if (ft_strnequ(tmp, "cylinder", ft_strlen("cylinder")))
+		parse_cylinder(world, lst->next);
+	else if (ft_strnequ(tmp, "cone", ft_strlen("cone")))
+		parse_cone(world, lst->next);
+	else if (ft_strnequ(tmp, "paraboloid", ft_strlen("paraboloid")))
+		parse_paraboloid(world, lst->next);
+	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
+		parse_hyperboloid(world, lst->next);
+	ft_memdel((void**)&tmp);
+	lst = lst->next;
+}
+
+static void		get_surface(t_world *world, t_list *lst)
+{
+	char	**tmp;
+	int		i;
+
+	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
-		ft_putendl_fd("Document not parsed successfully.", 2);
-		exit(0);
+		i = 0;
+		tmp = ft_strsplit(lst->content, ' ');
+		while (tmp[i] != NULL)
+		{
+			if (ft_strstr(tmp[i], "type="))
+				get_type(world, lst, tmp[i]);
+			i++;
+		}
+		ft_cleanup_str(tmp);
+		ft_memdel((void**)&tmp);
+		lst = lst->next;
 	}
-	if (!(cur = xmlDocGetRootElement(doc)))
+}
+
+static void		parse_lst(t_world *world, t_list *lst)
+{
+	while (lst && !ft_strequ(lst->content, "</scene>"))
 	{
-		fprintf(stderr,"empty document\n");
-		xmlFreeDoc(doc);
-		exit(0);
+		if (ft_strnequ(lst->content, "<surface", ft_strlen("<surface")))
+			get_surface(world, lst);
+		else if (ft_strnequ(lst->content, "<camera", ft_strlen("<camera")))
+			parse_camera(world, &world->camera, lst);
+		else if (ft_strnequ(lst->content, "<light", ft_strlen("<light")))
+			parse_light(world, lst->next);
+		else if (ft_strnequ(lst->content, "<ambient", ft_strlen("<ambient")))
+			parse_ambient(world, lst);
+		if (lst)
+			lst = lst->next;
+		world->line++;
 	}
-	// if (xmlStrcmp(cur->name, (const xmlChar *) "scene")) {
-	// 	fprintf(stderr,"document of the wrong type, root node != scene");
-	// 	xmlFreeDoc(doc);
-	// 	return;
-	// }
-	tmp = cur;
-	printf("title: %s\n", (uri = xmlGetProp(tmp, (const xmlChar *)"name")));
-	xmlFree(uri);
-	tmp = tmp->xmlChildrenNode;
-	while (tmp != NULL)
-	{
-		if (xmlStrcmp(tmp->name, (const xmlChar *)"text"))
-			getReference(world, tmp);
-		tmp = tmp->next;
-	}
-	xmlFreeDoc(doc);
-	return;
 }
 
 void			parse_rtv1(t_world *world, char *argv)
 {
-	xmlParserCtxtPtr ctxt; /* the parser context */
-    xmlDocPtr doc; /* the resulting document tree */
+	int		ret;
+	char	*line;
+	char	*tmp;
+	int		fd;
+	t_list	*lst;
 
-    /* create a parser context */
-    ctxt = xmlNewParserCtxt();
-    if (ctxt == NULL)
-    	ft_putendl_fd("Failed to allocate parser context", 2);
-    /* parse the file, activating the DTD validation option */
-    doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID);
-    /* check if parsing suceeded */
-    if (doc == NULL)
-    	ft_putendl_fd("Failed to parse the xml file", 2);
-    else
-    {
-        if (ctxt->valid == 0)
-	    	ft_putendl_fd("xml file error", 2);
-	    else
-	    	parseDoc(world, argv);
-		/* free up the resulting document */
-		xmlFreeDoc(doc);
-    }
-    /* free up the parser context */
-    xmlFreeParserCtxt(ctxt);
+	if ((fd = open(argv, O_RDONLY)) < 0)
+		ft_putendl_fd("Error file don't open", 1);
+	lst = NULL;
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		tmp = ft_strtrim(line);
+		ft_lst_add_back(&lst,
+				ft_lstnew(ft_strtolower(tmp), ft_strlen(line) + 1));
+
+		free(line);
+		free(tmp);
+	}
+	if (ret == -1)
+		ft_putendl_fd("Error file don't read", 1);
+	free(line);
+	parse_lst(world, lst);
+	free_lst(&lst);
+	close(fd);
 }
