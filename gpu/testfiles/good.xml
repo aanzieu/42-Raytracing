@@ -3,39 +3,89 @@
 <scene name="2 Spheres">
 
 <camera>
-	<pos x="0" y="0" z="-5" />
+	<pos x="0" y="0" z="-25" />
 	<dir x="0" y="0" z="1" />
-	<rot x="0" y="1" z="0" />
-	<tra x="0.5" y="0" z="0" />
+	<rot x="0" y="0" z="0" />
+	<tra x="0" y="0" z="0" />
 </camera>
 
 <light>
-	<pos x="0" y="-2" z="-2" />
-	<dir x="1" y="0" z="1" />
-	<color r="0" g="255" b="50" a="1" />
+	<pos x="0" y="0" z="-5" />
+	<dir x="0" y="0" z="1" />
+	<color r="255" g="255" b="255" a="1" />
 	<intensity data="1" />
 </light>
 
-<light>
-	<pos x="0" y="2" z="-2" />
-	<dir x="-2" y="0" z="0" />
+<!-- <light>
+	<pos x="0" y="4" z="0" />
+	<dir x="1" y="0" z="0" />
 	<color r="0" g="255" b="50" a="1" />
 	<intensity data="0.3" />
-</light>
+</light> -->
 
 <!-- <ambient>
 	<color r="0" g="255" b="50" a="1" />
-	<intensity data="0.1" />
+	<intensity data="0.4" />
 </ambient> -->
 
-<plane>
+<!-- <plane>
 	<origin x="0" y="-1" z="1" />
 	<normal x="0" y="-2" z="1" />
+	<rot x="0" y="10" z="0" />
 	<color r="255" g="255" b="255" a="1" />
 	<reflection data="0" />
 </plane>
 
-<sphere>
+<cylinder>
+	<pos x="0" y="0" z="2" />
+	<normal x="0" y="1" z="2" />
+	<radius data="0.05" />
+	<rot x="0" y="10" z="0" />
+	<color r="255" g="0" b="0" a="1" />
+</cylinder> -->
+
+<!-- <disk>
+	<origin x="0" y="-1" z="2" />
+	<normal x="0" y="0" z="2" />
+	<radius data="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="0" g="255" b="0" a="1" />
+</disk>
+
+<disk>
+	<origin x="-0.5" y="-0.5" z="2" />
+	<normal x="0" y="0" z="2" />
+	<radius data="0.5" />
+	<rot x="0" y="0" z="0" />
+	<color r="0" g="0" b="255" a="1" />
+</disk> -->
+
+<!-- <cone>
+	<pos x="-0.75" y="0" z="0.5" />
+	<normal x="-0.75" y="1" z="0.5" />
+	<radius data="0.2" />
+	<height data="2" />
+	<color r="0" g="0" b="255" a="1" />
+	<reflection data="1" />
+</cone> -->
+
+<paraboloid>
+	<top x="1" y="-1" z="2" />
+	<normal x="0" y="0" z="2" />
+	<radius data="0.2" />
+	<height data="1" />
+	<color r="0" g="0" b="255" a="1" />
+</paraboloid>
+
+<!-- <hyperboloid>
+	<top x="1" y="-1" z="2" />
+	<normal x="0" y="0" z="2" />
+	<radius data="0.2" />
+	<height data="1" />
+	<color r="0" g="0" b="255" a="1" />
+</hyperboloid> -->
+
+<!-- <sphere>
 	<pos x="-1" y="0" z="10" />
 	<tra x="0" y="1" z="0" />
 	<radius data="0.5" />
@@ -49,6 +99,6 @@
 	<radius data="0.5" />
 	<color r="255" g="255" b="255" a="1" />
 	<reflection data="2" />
-</sphere>
+</sphere> -->
 
 </scene>

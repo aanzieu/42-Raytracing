@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/07/06 15:47:53 by PZC              ###   ########.fr        #
+#    Updated: 2017/07/07 16:26:14 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,11 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_light.c \
 				$(SRC_DIR)/xml_parser/parse_plane.c \
 				$(SRC_DIR)/xml_parser/parse_sphere.c \
+				$(SRC_DIR)/xml_parser/parse_cylinder.c \
+				$(SRC_DIR)/xml_parser/parse_disk.c \
+				$(SRC_DIR)/xml_parser/parse_cone.c \
+				$(SRC_DIR)/xml_parser/parse_paraboloid.c \
+				$(SRC_DIR)/xml_parser/parse_hyperboloid.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \

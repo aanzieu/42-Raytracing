@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_sphere.c                                     :+:      :+:    :+:   */
+/*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/05 16:32:09 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 13:37:33 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/07 15:59:04 by PZC               #+#    #+#             */
+/*   Updated: 2017/07/07 16:06:08 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	add_sphere(t_sphere **alst, t_sphere *nw)
+void	add_cone(t_cone **alst, t_cone *nw)
 {
-	t_sphere *curr;
+	t_cone *curr;
 
 	if (!nw || !alst)
 		return ;
@@ -31,27 +31,35 @@ void	add_sphere(t_sphere **alst, t_sphere *nw)
 	}
 }
 
-void	parse_sphere(t_world *world, xmlNodePtr cur)
+void	parse_cone(t_world *world, xmlNodePtr cur)
 {
-	t_sphere	*s;
+	t_cone *co;
 
 	cur = cur->xmlChildrenNode;
-	if (!(s = (t_sphere*)ft_memalloc(sizeof(t_sphere))))
-		show_error("error malloc sphere");
+	if (!(co = (t_cone*)ft_memalloc(sizeof(t_cone))))
+		show_error("error malloc cone");
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
-			parse_vec3d(&s->pos, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
-			parse_tra(&s->pos, cur);
+			parse_vec3d(&co->pos, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
+			parse_vec3d(&co->up, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
-			parse_radius(&s->radius, cur);
+			parse_radius(&co->half_angle, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
+			parse_height(&co->height, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"min")))
+			parse_vec3d(&co->min, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"max")))
+			parse_vec3d(&co->max, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&s->color, cur);
+			parse_color(&co->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+			parse_rot(&co->up, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&s->reflexion_coef, cur);
+			parse_reflection(&co->reflexion_coef, cur);
 		cur = cur->next;
 	}
-	add_sphere(&world->spheres_tmp, new_sphere(s));
-	free(s);
+	add_cone(&world->cones_tmp, new_cone(co));
+	free(co);
 }

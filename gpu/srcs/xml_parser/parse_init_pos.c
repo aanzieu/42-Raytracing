@@ -6,11 +6,35 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 14:24:20 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/06 13:44:42 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/07 15:32:44 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+void	parse_radius(double *radius, xmlNodePtr cur)
+{
+	xmlChar *nb;
+
+	nb = xmlGetProp(cur, (const xmlChar *)"data");
+	if (is_numeric((const char *)nb))
+		*radius = ft_atoi_double((const char *)nb);
+	else
+		show_error_2("invalid radius value > radius=", (const char *)nb);
+	xmlFree(nb);
+}
+
+void	parse_height(double *height, xmlNodePtr cur)
+{
+	xmlChar *nb;
+
+	nb = xmlGetProp(cur, (const xmlChar *)"data");
+	if (is_numeric((const char *)nb))
+		*height = ft_atoi_double((const char *)nb);
+	else
+		show_error_2("invalid height value > height=", (const char *)nb);
+	xmlFree(nb);
+}
 
 void	parse_vec3d(t_vec3d *v, xmlNodePtr cur)
 {

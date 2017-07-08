@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_plane.c                                      :+:      :+:    :+:   */
+/*   parse_paraboloid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/06 15:45:10 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 14:03:25 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/07 16:25:26 by PZC               #+#    #+#             */
+/*   Updated: 2017/07/07 16:33:13 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	add_plan(t_plane **alst, t_plane *nw)
+void	add_paraboloid(t_paraboloid **alst, t_paraboloid *nw)
 {
-	t_plane *curr;
+	t_paraboloid *curr;
 
 	if (!nw || !alst)
 		return ;
@@ -29,27 +29,31 @@ void	add_plan(t_plane **alst, t_plane *nw)
 	}
 }
 
-void	parse_plane(t_world *world, xmlNodePtr cur)
+void	parse_paraboloid(t_world *world, xmlNodePtr cur)
 {
-	t_plane *p;
+	t_paraboloid	*p;
 
 	cur = cur->xmlChildrenNode;
-	if (!(p = (t_plane *)ft_memalloc(sizeof(t_plane))))
-		show_error("error malloc plane");
+	if (!(p = (t_paraboloid*)ft_memalloc(sizeof(t_paraboloid))))
+		show_error("error malloc hyperboloid");
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
-			parse_vec3d(&p->pos, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
+			parse_vec3d(&p->top, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&p->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&p->up, cur);
+			parse_vec3d(&p->normal, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
+			parse_radius(&p->distance, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
+			parse_height(&p->maxm, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&p->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+			parse_rot(&p->normal, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 			parse_reflection(&p->reflexion_coef, cur);
 		cur = cur->next;
 	}
-	add_plan(&world->planes_tmp, new_plan(p));
+	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(p));
 	free(p);
 }

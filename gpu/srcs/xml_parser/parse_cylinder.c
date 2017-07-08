@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_plane.c                                      :+:      :+:    :+:   */
+/*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/06 15:45:10 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 14:03:25 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/07 13:19:37 by PZC               #+#    #+#             */
+/*   Updated: 2017/07/07 14:03:39 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	add_plan(t_plane **alst, t_plane *nw)
+void	add_cylinder(t_cylinder **alst, t_cylinder *nw)
 {
-	t_plane *curr;
+	t_cylinder *curr;
 
 	if (!nw || !alst)
 		return ;
@@ -29,27 +29,29 @@ void	add_plan(t_plane **alst, t_plane *nw)
 	}
 }
 
-void	parse_plane(t_world *world, xmlNodePtr cur)
+void	parse_cylinder(t_world *world, xmlNodePtr cur)
 {
-	t_plane *p;
+	t_cylinder	*cy;
 
 	cur = cur->xmlChildrenNode;
-	if (!(p = (t_plane *)ft_memalloc(sizeof(t_plane))))
-		show_error("error malloc plane");
+	if (!(cy = (t_cylinder*)ft_memalloc(sizeof(t_cylinder))))
+		show_error("error malloc cylinder");
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
-			parse_vec3d(&p->pos, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
+			parse_vec3d(&cy->pos, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&p->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&p->up, cur);
+			parse_vec3d(&cy->up, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
+			parse_radius(&cy->radius, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&p->color, cur);
+			parse_color(&cy->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+			parse_rot(&cy->up, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&p->reflexion_coef, cur);
+			parse_reflection(&cy->reflexion_coef, cur);
 		cur = cur->next;
 	}
-	add_plan(&world->planes_tmp, new_plan(p));
-	free(p);
+	add_cylinder(&world->cylinders_tmp, new_cylinder(cy));
+	free(cy);
 }

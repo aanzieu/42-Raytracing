@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 13:20:02 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/06 16:02:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/07 16:32:05 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 		parse_plane(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"sphere")))
 		parse_sphere(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cylinder")))
+		parse_cylinder(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"disk")))
+		parse_disk(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cone")))
+		parse_cone(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"paraboloid")))
+		parse_paraboloid(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"hyperboloid")))
+		parse_hyperboloid(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
 		parse_ambient(world, obj);
 }
@@ -74,7 +84,11 @@ void			parse_rtv1(t_world *world, char *argv)
 	if (!(ctxt = xmlNewParserCtxt()))
 		show_error("failed to allocate parser context");
 	if (!(doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID)))
-		show_error("failed to parse the xml file");
+	{
+		xmlFreeDoc(doc);
+		xmlFreeParserCtxt(ctxt);
+		show_error("Usage: ./bin/RT filename.xml");
+	}
 	else
 	{
 		if (ctxt->valid == 0)

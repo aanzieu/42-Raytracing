@@ -6,13 +6,13 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 14:16:22 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/06 13:45:08 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/07 13:58:03 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	parse_rot_cam(t_camera *cam, xmlNodePtr cur)
+static void	parse_rot_cam(t_camera *cam, xmlNodePtr cur)
 {
 	xmlChar *nb;
 
@@ -34,9 +34,10 @@ void	parse_rot_cam(t_camera *cam, xmlNodePtr cur)
     else
     	show_error_2("invalid rot camera value > z=", (const char *)nb);
     xmlFree(nb);
+    cam->rotation = 1;
 }
 
-void	parse_camera(t_world *world, xmlNodePtr cur)
+void		parse_camera(t_world *world, xmlNodePtr cur)
 {
 	cur = cur->xmlChildrenNode;
 

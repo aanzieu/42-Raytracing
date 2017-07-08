@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/05 17:29:23 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/06 15:43:08 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/07 13:22:46 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	add_light(t_light **alst, t_light *nw)
 void	parse_light(t_world *world, xmlNodePtr cur)
 {
 	t_light *l;
-	cur = cur->xmlChildrenNode;
 
+	cur = cur->xmlChildrenNode;
 	if (!(l = (t_light*)ft_memalloc(sizeof(t_light))))
  		show_error("error malloc light");
 	while (cur != NULL)

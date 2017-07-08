@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/06 15:29:21 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/07 14:45:12 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,16 +182,18 @@ int		main(int argc, char **argv)
 		parse_rtv1(world, argv[1]);
 		load_data(world);
 		rt(world);
-		// printf("%f\n", world->lights->color.r);
-		// printf("%f\n", world->lights->color.g);
-		// printf("%f\n\n", world->lights->color.b);
+		// printf("%f\n", world->disks->color.r);
+		// printf("%f\n", world->disks->color.g);
+		// printf("%f\n\n", world->disks->color.b);
+		// printf("%f\n", world->disks->radius);
+		// printf("%f\n", world->disks->radius_squared);
 		// printf("%f\n", world->camera.look_at.x);
 		// printf("%f\n", world->camera.look_at.y);
 		// printf("%f\n", world->camera.look_at.z);
 		free_world(world);
 	}
 	else
-		ft_putstr("Usage: ./rtv1 filename.xml\n");
+		ft_putstr("Usage: ./bin/RT filename.xml\n");
 	SDL_Quit();
 	return (0);
 }

@@ -1,15 +1,24 @@
-<!ELEMENT scene (camera|light|ambient|sphere|plane)*>
+<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
-<!ELEMENT sphere (pos, tra*, radius, color, reflection*)>
 <!ELEMENT plane (origin, normal, tra*, rot*, color, reflection*)>
+<!ELEMENT sphere (pos, tra*, radius, color, reflection*)>
+<!ELEMENT cylinder (pos, normal, radius, rot*, color, reflection*)>
+<!ELEMENT disk (origin, normal, radius, rot*, color, reflection*)>
+<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, color, reflection*)>
+<!ELEMENT paraboloid (top, normal, radius, height, rot*, color, reflection*)>
+<!ELEMENT hyperboloid (top, normal, radius, height, rot*, color, reflection*)>
 
 
 <!ELEMENT pos (#PCDATA)>
 <!ELEMENT dir (#PCDATA)>
 <!ELEMENT rot (#PCDATA)>
 <!ELEMENT tra (#PCDATA)>
+<!ELEMENT top (#PCDATA)>
+<!ELEMENT min (#PCDATA)>
+<!ELEMENT max (#PCDATA)>
+<!ELEMENT height (#PCDATA)>
 <!ELEMENT origin (#PCDATA)>
 <!ELEMENT normal (#PCDATA)>
 <!ELEMENT radius (#PCDATA)>
@@ -39,6 +48,21 @@
 	y CDATA #REQUIRED
 	z CDATA #REQUIRED
 >
+<!ATTLIST top
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST min
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+<!ATTLIST max
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
 <!ATTLIST origin
 	x CDATA #REQUIRED
 	y CDATA #REQUIRED
@@ -56,5 +80,6 @@
 	a CDATA #REQUIRED
 >
 <!ATTLIST radius data CDATA #REQUIRED>
+<!ATTLIST height data CDATA #REQUIRED>
 <!ATTLIST intensity data CDATA #REQUIRED>
 <!ATTLIST reflection data CDATA #REQUIRED>
