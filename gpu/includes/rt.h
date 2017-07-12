@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/27 08:44:36 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/12 15:29:56 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct		s_thread_input
 typedef struct		s_world
 {
 	t_window	window;
-	
+
 	t_sphere	*spheres;
 	t_plane		*planes;
 	t_disk		*disks;
@@ -165,10 +165,10 @@ typedef struct		s_world
 
 	pthread_t		thread[NB_TH];
 	int				th;
-	
+
 	int				*a_h;
 	size_t		size_main;
-	
+
 	t_camera	camera;
 	t_viewplane	viewplane;
 
@@ -178,7 +178,7 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-	
+
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;
@@ -202,6 +202,7 @@ void				key_press_handler1(t_world *world, SDL_Event event);
 void				key_press_handler2(t_world *world, SDL_Event event);
 void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world, SDL_Event event);
+void				savebmp(t_world *world);
 
 t_light		*copy_light(t_light *obj);
 t_sphere	*copy_sphere(t_sphere *obj);

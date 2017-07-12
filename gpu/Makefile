@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/23 09:44:56 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/07/12 15:30:16 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
-MAKE = make 
+MAKE = make
 MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
@@ -91,6 +91,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/events/key_press_handler.c \
 				$(SRC_DIR)/events/key_release_handler.c \
 				$(SRC_DIR)/events/mouse_handler.c \
+				$(SRC_DIR)/events/screenshot_event.c \
 				\
 				$(SRC_DIR)/parser/parse_add.c \
 				$(SRC_DIR)/parser/parse_add_bonus.c \
@@ -153,7 +154,7 @@ obj/%.o: srcs/%.c
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
+	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################

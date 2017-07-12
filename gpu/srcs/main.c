@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 17:18:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/12 13:56:31 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int					launch_thread(t_world *world)
 {
 	t_thread_input		tab[NB_TH];
 	int				i;
-		
+
 	i = -1;
 	while (++i < NB_TH)
 	{
@@ -99,7 +99,7 @@ void	launch_cpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-	
+
 	quit = 0;
 	while (quit == 0)
 	{
@@ -119,7 +119,7 @@ void	launch_gpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-		
+
 	quit = 0;
 	while (quit == 0)
 	{
@@ -161,6 +161,23 @@ void	rt(t_world *world)
 	SDL_DestroyWindow(world->window.id);
 }
 
+void saveppm(char *filename, SDL_Surface *img, int width, int height){
+	/* FILE pointer */
+	FILE *f;
+
+	/* Open file for writing */
+	f = fopen(filename, "w");
+
+	/* PPM header info, including the size of the image */
+	fprintf(f, "P6 %d %d %d\n", width, height, 255);
+
+	/* Write the image data to the file - remember 3 byte per pixel */
+	fwrite((unsigned char*)img, 3, width*height, f);
+
+	/* Make sure you close the file */
+	fclose(f);
+}
+
 /*
 ** DEBUG TO FILE
 **	int fd;
@@ -182,6 +199,8 @@ int		main(int argc, char **argv)
 		parse_rtv1(world, argv[1]);
 		load_data(world);
 		rt(world);
+		//saveppm("image.ppm", world->window.screen, WIN_WIDTH, WIN_HEIGHT);
+
 		free_world(world);
 	}
 	else
