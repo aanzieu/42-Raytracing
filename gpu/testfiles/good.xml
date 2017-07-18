@@ -69,21 +69,21 @@
 	<reflection data="1" />
 </cone> -->
 
-<paraboloid>
-	<top x="1" y="-1" z="2" />
-	<normal x="0" y="0" z="2" />
+<!-- <paraboloid>
+	<top x="0" y="0" z="0" />
+	<normal x="0" y="1" z="1" />
 	<radius data="0.2" />
 	<height data="1" />
-	<color r="0" g="0" b="255" a="1" />
-</paraboloid>
+	<color r="255" g="0" b="0" a="1" />
+</paraboloid> -->
 
-<!-- <hyperboloid>
-	<top x="1" y="-1" z="2" />
-	<normal x="0" y="0" z="2" />
+<hyperboloid>
+	<top x="0" y="0" z="0" />
+	<normal x="0" y="1" z="0" />
 	<radius data="0.2" />
 	<height data="1" />
-	<color r="0" g="0" b="255" a="1" />
-</hyperboloid> -->
+	<color r="0" g="255" b="0" a="1" />
+</hyperboloid>
 
 <!-- <sphere>
 	<pos x="-1" y="0" z="10" />

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/05 13:20:02 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 16:32:05 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/18 17:29:28 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/07/18 17:30:25 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 
 static void		parse_file(t_world *world, const char *docname)
 {
-	xmlDocPtr doc;
-	xmlNodePtr cur;
-	xmlChar *title;
+	xmlDocPtr	doc;
+	xmlNodePtr	cur;
+	xmlChar		*title;
 
 	if (!(doc = xmlParseFile(docname)))
 		show_error("xml file not parsed successfully");
@@ -59,7 +59,7 @@ static void		parse_file(t_world *world, const char *docname)
 		show_error("empty file");
 	}
 	title = xmlGetProp(cur, (const xmlChar *)"name");
-	world->title = ft_strjoin("RT - Scene : ",(char*)title);
+	world->title = ft_strjoin("RT - Scene : ", (char*)title);
 	xmlFree(title);
 	cur = cur->xmlChildrenNode;
 	while (cur != NULL)
@@ -78,8 +78,8 @@ static void		parse_file(t_world *world, const char *docname)
 
 void			parse_rtv1(t_world *world, char *argv)
 {
-	xmlParserCtxtPtr ctxt;
-	xmlDocPtr doc;
+	xmlParserCtxtPtr	ctxt;
+	xmlDocPtr			doc;
 
 	if (!(ctxt = xmlNewParserCtxt()))
 		show_error("failed to allocate parser context");

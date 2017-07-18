@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_disk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 14:15:35 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 14:37:03 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/18 17:16:55 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	add_disk(t_disk **alst, t_disk *nw)
+void		add_disk(t_disk **alst, t_disk *nw)
 {
 	t_disk *curr;
 

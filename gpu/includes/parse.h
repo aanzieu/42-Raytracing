@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/08 14:26:18 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/18 17:34:14 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void		parse_hyperboloid(t_world *world, xmlNodePtr cur);
 /*
 **	error_msg.c
 */
-void 		show_error(const char *str);
-void 		show_error_2(const char *s1, const char *s2);
+void		show_error(const char *str);
+void		show_error_2(const char *s1, const char *s2);
 /*
 **	parse_init_pos.c
 */
@@ -109,4 +109,3 @@ int			is_numeric(const char *str);
 //void		parse_ambient(t_world *world, t_list *lst);
 
 #endif
-

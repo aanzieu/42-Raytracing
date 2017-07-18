@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/05 17:29:23 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/07 13:22:46 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/07/18 17:27:36 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	parse_light(t_world *world, xmlNodePtr cur)
 
 	cur = cur->xmlChildrenNode;
 	if (!(l = (t_light*)ft_memalloc(sizeof(t_light))))
- 		show_error("error malloc light");
+		show_error("error malloc light");
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
@@ -49,5 +49,5 @@ void	parse_light(t_world *world, xmlNodePtr cur)
 		cur = cur->next;
 	}
 	add_light(&world->lights_tmp, new_light(l));
- 	free(l);
+	free(l);
 }
