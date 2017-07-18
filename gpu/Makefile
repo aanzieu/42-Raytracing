@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
+#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/07/07 16:26:14 by PZC              ###   ########.fr        #
+#    Updated: 2017/07/18 18:44:42 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/events/key_press_handler.c \
 				$(SRC_DIR)/events/key_release_handler.c \
 				$(SRC_DIR)/events/mouse_handler.c \
+				$(SRC_DIR)/events/screenshot_event.c \
 				\
 				$(SRC_DIR)/parser/parse_add.c \
 				$(SRC_DIR)/parser/parse_add_bonus.c \

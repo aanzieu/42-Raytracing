@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press_handler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 12:49:53 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/12 15:29:00 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.q = 1;
 	if (event.key.keysym.sym == SDLK_e)
 		world->keys.e = 1;
+	if (event.key.keysym.sym == SDLK_p)
+		savebmp(world);
 	// }
 	// if (event.key.keysym.sym == SDLK_RIGHTBRACKET)
 	// 	world->keys.rightbracket = 1;
@@ -117,40 +119,40 @@ void	key_press_handler3(t_world *world, SDL_Event event)
 	{
 		translate(&world->camera.pos, 0, 0, 0.5);
 		translate(&world->camera.look_at, 0, 0, 0.5);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 		// translate(&world->camera.dir_v, 0, 0, 1);
 		// translate(&world->camera.up_v, 0, 0, 1);
-		// translate(&world->camera.right_v, 0, 0, 1);		
+		// translate(&world->camera.right_v, 0, 0, 1);
 	}
 	if (world->keys.a == 1)
 	{
 		translate(&world->camera.pos, -0.5, 0, 0);
 		translate(&world->camera.look_at, -0.5, 0, 0);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 	}
 	if (world->keys.s == 1)
 	{
 		translate(&world->camera.pos, 0, 0, -0.5);
 		translate(&world->camera.look_at, 0, 0, -0.5);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 	}
 	if (world->keys.d == 1)
 	{
 		translate(&world->camera.pos, 0.5, 0, 0);
 		translate(&world->camera.look_at, 0.5, 0, 0);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 	}
 	if (world->keys.q == 1)
 	{
 		translate(&world->camera.pos, 0, -0.5, 0);
 		translate(&world->camera.look_at, 0, -0.5, 0);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 	}
 	if (world->keys.e == 1)
 	{
 		translate(&world->camera.pos, 0, 0.5, 0);
 		translate(&world->camera.look_at, 0, 0.5, 0);
-		get_camera_axes(&world->camera);	
+		get_camera_axes(&world->camera);
 	}
 	if (world->keys.space == 1)
 	{

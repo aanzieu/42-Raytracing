@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/05 13:54:39 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/18 18:42:04 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void				key_press_handler1(t_world *world, SDL_Event event);
 void				key_press_handler2(t_world *world, SDL_Event event);
 void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world, SDL_Event event);
+void				savebmp(t_world *world);
 
 t_light		*copy_light(t_light *obj);
 t_sphere	*copy_sphere(t_sphere *obj);

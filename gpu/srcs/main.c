@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/07 14:45:12 by PZC              ###   ########.fr       */
+/*   Updated: 2017/07/18 18:40:25 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,6 @@ int		main(int argc, char **argv)
 {
 	t_world	*world;
 
-//	(void)argv;
 	if (argc == 2)
 	{
 		if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
@@ -182,14 +181,6 @@ int		main(int argc, char **argv)
 		parse_rtv1(world, argv[1]);
 		load_data(world);
 		rt(world);
-		// printf("%f\n", world->disks->color.r);
-		// printf("%f\n", world->disks->color.g);
-		// printf("%f\n\n", world->disks->color.b);
-		// printf("%f\n", world->disks->radius);
-		// printf("%f\n", world->disks->radius_squared);
-		// printf("%f\n", world->camera.look_at.x);
-		// printf("%f\n", world->camera.look_at.y);
-		// printf("%f\n", world->camera.look_at.z);
 		free_world(world);
 	}
 	else
