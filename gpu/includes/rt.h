@@ -128,6 +128,8 @@ typedef struct		s_thread_input
 	char			*str[2];
 	int				port[2];
 	int				fd[2];
+	int				y_min;
+	int				y_max;
 	struct s_world	*world;
 }					t_thread_input;
 
@@ -187,7 +189,7 @@ typedef struct		s_world
 }					t_world;
 
 void				get_viewplane(t_world *world);
-int					launch_thread(t_world *world);
+int					launch_thread(t_world *world, int y_min, int y_max);
 void				send_buffer(t_world *world);
 void				rt(t_world *world);
 void				render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
@@ -221,9 +223,9 @@ t_cylinder		*copy_cylinder(t_cylinder *obj);
 *******************************************************************************/
 
 void 	render_clustering(t_world *world);
-void 	get_data_from_client(t_world *world);
 void	master_cluster(t_world *world);
 void	client_cluster(t_world *world);
-void *get_data_from_client_thread(void *arg);
+void	*get_data_from_client_thread(void *arg);
+void	get_data_from_client(char *hostname, unsigned short port, t_world *world);
 
 #endif

@@ -37,6 +37,21 @@ int		launch_cluster_thread(t_world *world)
 	return(0);
 }
 
+int		launch_cluster(t_world *world)
+{
+	char *clients[3] = {"10.11.13.10" , "10.11.13.14", NULL};
+	int port[2] = {23456 , 12345};	
+	int i;
+
+	i = 0;
+	while (clients[i] != NULL)
+	{
+		get_data_from_client(clients[i], port[i], world);
+		i++;
+	}
+	return (0);
+}
+
 void	render_clustering(t_world *world)
 {
 
@@ -48,7 +63,8 @@ void	render_clustering(t_world *world)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
-		launch_cluster_thread(world);
+		//launch_cluster_thread(world);
+		launch_cluster(world);
 		printf("je sors de get_data_from_client\n");
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);

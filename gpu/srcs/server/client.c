@@ -84,7 +84,6 @@ printf("HELLO THERE\n");
    {
        client_len = sizeof(client_address);
        client_sockfd = accept(server_sockfd, (struct sockaddr*)&client_address, &client_len);
-       printf("WHILE\n");
        while ((nbytes_read = read(client_sockfd, buffer, BUFSIZ)) > 0)
        {
            printf("received:\n");
@@ -93,20 +92,13 @@ printf("HELLO THERE\n");
            size = 0;
            color = 0;
            ret = 0;
-           sleep(5);
            while (size < (WIN_HEIGHT * WIN_WIDTH) / 2)
            {
                 color = world->a_h[size];
                 ret = send(client_sockfd, &color, sizeof(world->a_h), 0);
-          //      printf("returned %d\n", ret);
                 size++;
             }
-                // dprintf(client_sockfd, "%d", 2);
-                // write(client_sockfd, buffer, nbytes_read);            
-                // if (newline_found)
-           //     break;
-        }
-       //  printf("Test\n");        
+        }      
        close(client_sockfd);
    }
 }

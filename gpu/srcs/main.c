@@ -53,6 +53,29 @@ static void	load_data(t_world *world)
 			world->hyperboloids_tmp, &world->hyperboloids_len);
 }
 
+// thread = 0;
+// y_min = 32;
+// y_max = 320;
+// 
+// y = 0 * (320 / 8) + 32    =   32;
+// while y < 1 * (320 / 8)   =   40;
+
+// thread = 1;
+// y_min = 32;
+// y_max = 320;
+// 
+// y = 1 * (320 / 8) + 32    =   72;
+// while y < 2 * (320 / 8)   =   80;
+
+// thread = 2;
+// y_min = 32;
+// y_max = 320;
+// 
+// y = 2 * (320 / 8) + 32    =   112;
+// while y < 3 * (320 / 8)   =   120;
+
+// 320 / 8 = 40
+
 
 static	void		*perform_thread(void *arg)
 {
@@ -61,8 +84,8 @@ static	void		*perform_thread(void *arg)
 	int			y;
 
 	thread = (t_thread_input *)arg;
-	y = (thread->th * (thread->world->viewplane.y_res / NB_TH));
-	while (y < (thread->th + 1) * (thread->world->viewplane.y_res / NB_TH))
+	y = ((thread->th) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min);
+	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min)
 	{
 		x = 0;
 		while (x < thread->world->viewplane.x_res)
@@ -76,7 +99,7 @@ static	void		*perform_thread(void *arg)
 	pthread_exit(0);
 }
 
-int					launch_thread(t_world *world)
+int					launch_thread(t_world *world, int y_min, int y_max)
 {
 	t_thread_input		tab[NB_TH];
 	int				i;
@@ -86,6 +109,8 @@ int					launch_thread(t_world *world)
 	{
 		tab[i].th = i;
 		tab[i].world = world;
+		tab[i].y_min = y_min;
+		tab[i].y_max = y_max;
 		if (pthread_create(&world->thread[i], NULL, &perform_thread, &tab[i]))
 			ft_putendl_fd("Error : Can't init launch_rtv1\n", 1);
 	}
@@ -106,7 +131,11 @@ void	launch_cpu(t_world *world)
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-		launch_thread(world);
+
+		//
+		//		C'EST ICI QUE TU METS DES VALEURS POUR TESTER L'INTERVALE DE L'IMAGE , TU DOIS EXECUTER EN LOCAL
+		//
+		launch_thread(world, 0, 640);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
@@ -152,7 +181,7 @@ void    rt(t_world *world)
     world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
                                 WIN_HEIGHT, 0);
     world->window.screen = SDL_GetWindowSurface(world->window.id);
-    if (world->mode == 1)
+    if (world->mode == 0)
         launch_cpu(world);
     else
         launch_gpu(world);

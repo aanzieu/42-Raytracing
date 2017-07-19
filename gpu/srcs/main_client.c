@@ -99,7 +99,16 @@ void	client_cluster(t_world *world)
 	// if (world->mode == 1)
 	// {
 		get_viewplane(world);
-		launch_thread(world);
+
+
+		//
+		//		C'EST ICI QUE TU METS DES VALEURS POUR TESTER L'INTERVALE DE L'IMAGE EN CLIENT ON VA DEVOIR LES REMPLACER PAR CE QU'ON RECOIT DU MASTER OU SI TU VEUX TU PEUX BIEN CHANGER ET FAIRE UN QUI RECOIT DES DEMANDES DES PLUSIEURS PC COMME SUR UN SERVEUR.
+		//
+		launch_thread(world, 0, 80);
+
+
+
+
 	// }
 	// else
 	// {
