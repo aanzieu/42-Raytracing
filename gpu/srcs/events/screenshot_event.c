@@ -3,52 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot_event.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/12 15:27:36 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/12 17:31:15 by PZC              ###   ########.fr       */
+/*   Created: 2017/07/18 18:50:50 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/07/19 16:58:41 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include <dirent.h>
+#include "parse.h"
 
 static void	write_file_name(t_world *w, size_t nb)
 {
-	char *path;
+	char	*path;
+	char	*num;
+	char	*ext;
+	int		ret;
 
-	path = ft_strjoin("screenshots/image", ft_itoa(nb));
-	path = ft_strjoin(path, ".bmp");
-	SDL_SaveBMP(w->window.screen, path);
+	num = ft_itoa(nb);
+	path = ft_strjoin("screenshots/image", num);
+	ft_strdel(&num);
+	ext = ft_strjoin(path, ".bmp");
 	ft_strdel(&path);
+	if ((ret = SDL_SaveBMP(w->window.screen, ext)) == -1)
+		show_error("saving png file error");
+	ft_strdel(&ext);
 }
 
 void		savebmp(t_world *world)
 {
-    DIR* rep = NULL;
-    size_t nb = 0;
+	DIR				*rep;
+	size_t			nb;
+	struct dirent	*f;
 
-    struct dirent *f = NULL; /* Déclaration d'un pointeur vers la structure dirent. */
-
-    rep = opendir("screenshots");
-    if (rep == NULL)
-        exit(1);
-
-    while ((f = readdir(rep)) != NULL)
+	nb = 0;
+	rep = NULL;
+	f = NULL;
+	if ((rep = opendir("screenshots")) == NULL)
+		system("mkdir ./screenshots");
+	if ((rep = opendir("screenshots")) == NULL)
+		show_error("open screenshots directory error");
+	while ((f = readdir(rep)) != NULL)
 	{
 		if (ft_strncmp(f->d_name, ".", ft_strlen(".")))
-		{
 			nb++;
-			printf("Le fichier lu s'appelle '%s'\n", f->d_name);
-		}
 	}
-    printf("Il y a %s fichier(s)\n", ft_itoa(nb));
-
-    if (closedir(rep) == -1)
-        exit(-1);
-
-    if (nb == 0)
-		SDL_SaveBMP(world->window.screen, "screenshots/image.bmp");
-	else
-		write_file_name(world, nb);
+	if (closedir(rep) == -1)
+		show_error("close screenshots directory error");
+	write_file_name(world, nb);
 }

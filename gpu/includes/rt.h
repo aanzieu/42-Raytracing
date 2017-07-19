@@ -6,13 +6,14 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/18 18:42:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/19 16:46:01 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
+#include <dirent.h>
 #include <light.h>
 #include <object.h>
 #include "../libft/libft.h"
