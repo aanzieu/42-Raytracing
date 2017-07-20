@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 18:50:50 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/19 16:58:41 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/20 15:05:03 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ static void	write_file_name(t_world *w, size_t nb)
 		show_error("saving png file error");
 	ft_strdel(&ext);
 }
+
+/*
+** Save a bitmap format image using SDL_SaveBMP
+** We check if the "screenshots" dir exist and how many files are in it
+** to determinate the id of the new image
+*/
 
 void		savebmp(t_world *world)
 {
