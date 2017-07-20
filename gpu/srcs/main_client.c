@@ -6,14 +6,16 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 17:18:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/20 15:35:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cluster.h>
 #include <rt.h>
-#include <gpu_rt.h>
+#include "../../gpu/srcs/cuda/cudaheader/gpu_rt.h"
 #include <parse.h>
 #include <display.h>
+#include <unistd.h>
 
 // static	void		*perform_thread(void *arg)
 // {
@@ -88,7 +90,6 @@
 /*
 **	Initialize SDL and start listening to events
 */
-
 void	client_cluster(t_world *world)
 {
 	world->size_main = world->viewplane.x_res * world->viewplane.y_res
@@ -122,3 +123,77 @@ void	client_cluster(t_world *world)
 	send_buffer(world);
 	free(world->a_h);
 }
+/*
+ ** MISE EN PLACE DE RECEPTION DONNEE CLIENT
+*/
+
+void client_loop(int sockfd, t_cluster *cl)
+{
+//	char	cmd;
+//	int		ret;
+//	size_t	data_size;
+//	size_t	data_used;
+
+// recv(sockfd, &cmd, envoye pour modifier les donnees);
+//	data_used = 0;
+//	if ((ret = recv(sockfd, &data_size, 8, 0)) <= 0)
+//		return ;
+//	if (data_size)
+//	{
+//		//ecrire fonction qui permet de savoir la quqntite de donne recu;
+//		recv(sockfd, &cl, data_size, 0);
+
+//		data_used = data_size;
+//	}
+//	load_data(cl->world);
+//	rt(cl->world);
+//	send(sockfd, color, data_size);
+//	client_loop(sockfd, cl);
+	(void)sockfd;
+	(void)cl;
+}
+
+int client_init(char *host_ip)
+{
+	int					sockfd;
+	int					ret;
+	int					port_offs;
+	struct hostent		*host;
+	struct sockaddr_in	sin;
+
+	if ((host = gethostbyname(host_ip)) == NULL)
+	{
+		printf("cant get hostname\n");
+		exit(1);
+	}
+	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+	{
+		printf("cant load socket\n");
+		exit(1);
+	}
+	sin.sin_family = AF_INET;
+	sin.sin_port = FIND_PORT;
+	sin.sin_addr = *((struct in_addr *)host->h_addr);
+	port_offs = 0;
+	while (port_offs <= 5 && (ret = connect(sockfd, (struct sockaddr *)&sin, sizeof(sin))) == -1)
+	{
+		close(sockfd);
+		if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+		{
+			printf("cant load socket\n");
+			exit(1);
+		}
+		sin.sin_port = FIND_PORT + ++port_offs;
+	}
+	if (ret == -1)
+	{
+		printf("cant connect\n");
+		exit(1);
+	}
+	while(1)
+	{
+		printf("je suis connecté\n");
+	}
+	return (sockfd);
+}
+

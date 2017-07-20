@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 18:09:41 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/19 16:40:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,16 +180,12 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 	char buffer[BUFSIZ];
 	char protoname[] = "tcp";
 	struct protoent *protoent;
-//	{"10.11.13.10","10.12.13.8", NULL} ;
-	//	char *user_input = NULL;
 	in_addr_t in_addr;
 	int sockfd;
 	ssize_t nbytes_read;// user_input_len;
 	struct hostent *hostent;
 	/* This is the struct used by INet addresses. */
 	struct sockaddr_in sockaddr_in;
-	
-	
 	unsigned short server_port = port;//12345;
 	char *server_hostname = hostname;
 	

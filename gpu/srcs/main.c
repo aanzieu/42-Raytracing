@@ -6,15 +6,16 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/29 17:33:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/20 15:38:22 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <gpu_rt.h>
+#include <../../gpu/srcs/cuda/cudaheader/gpu_rt.h>
 #include <parse.h>
 #include <display.h>
 #include <unistd.h>
+#include <cluster.h>
 
 void		get_viewplane(t_world *world)
 {
@@ -197,6 +198,16 @@ void    rt(t_world *world)
 **	stdout = fopen("log.txt", "w+");
 */
 
+int		cluster_address_serveur(char *ip)
+{
+	int sockfd;
+	t_cluster cl;
+
+	sockfd = client_init(ip);
+	client_loop(sockfd, &cl);
+	return(0);
+}
+
 int		main(int argc, char **argv)
 {
 	t_world	*world;
@@ -212,7 +223,7 @@ int		main(int argc, char **argv)
 			flags = 0;
 		else if((ft_strcmp("master", argv[2]) == 0))
 			flags = 1;
-		else if((ft_strcmp("client", argv[2]) == 0))
+		else if((ft_strcmp("client", argv[1]) == 0))
 			flags = 2;
 	}
 	if (flags == 0 && argv[1])
@@ -227,11 +238,17 @@ int		main(int argc, char **argv)
 		master_cluster(world);// == -1;
 		printf("je sors de master_cluster\n");
 	}
-	else if(flags == 2 && argv[1]) // Retirer l'argv[1] et ecrire une fonction de recup des donees de master
+	else if(flags == 2) // Retirer l'argv[1] et ecrire une fonction de recup des donees de master
 	{
-		parse_rtv1(world, argv[1]);	// A retirer pour utiliser les donees recues de master
-		load_data(world); // A retirer pour utiliser les donees recues de master
-		client_cluster(world);// == -1;
+		if(argv[2] == NULL)
+		{
+			printf("usage : client IP");
+			exit(1);
+		}
+		cluster_address_serveur(argv[2]);
+	//	parse_rtv1(world, argv[1]);	// A retirer pour utiliser les donees recues de master
+	//	load_data(world); // A retirer pour utiliser les donees recues de master
+	//	client_cluster(world);// == -1;
 		printf("je sors de client\n");
 	}
 	else
