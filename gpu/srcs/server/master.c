@@ -60,16 +60,12 @@ void *get_data_from_client_thread(void *arg)
 	char buffer[BUFSIZ];
 	char protoname[] = "tcp";
 	struct protoent *protoent;
-//	{"10.11.13.10","10.12.13.8", NULL} ;
-	//	char *user_input = NULL;
 	in_addr_t in_addr;
 	int sockfd;
 	ssize_t nbytes_read;// user_input_len;
 	struct hostent *hostent;
 	/* This is the struct used by INet addresses. */
 	struct sockaddr_in sockaddr_in;
-	
-	
 	unsigned short server_port = thread->port[thread->th];//12345;
 	char *server_hostname = thread->str[thread->th];
 	
@@ -186,13 +182,11 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 	struct hostent *hostent;
 	/* This is the struct used by INet addresses. */
 	struct sockaddr_in sockaddr_in;
-	unsigned short server_port = port;//12345;
+	unsigned short server_port = port;
 	char *server_hostname = hostname;
-	
-	
+	int ret;
 	int size;
-	size = 0;
-	
+
 	/* Get socket. */
 	protoent = getprotobyname(protoname);
 	if (protoent == NULL) {
@@ -204,7 +198,6 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 		perror("socket");
 		exit(EXIT_FAILURE);
 	}
-
 	/* Prepare sockaddr_in. */
 	hostent = gethostbyname(server_hostname);//serverid]);
 	if (hostent == NULL) {
@@ -219,55 +212,37 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 	sockaddr_in.sin_addr.s_addr = in_addr;
 	sockaddr_in.sin_family = AF_INET;
 	sockaddr_in.sin_port = htons(server_port);
-	static double i = 0.000;
 	
-//	int test = 0;
 	/* Do the actual connection. */
 	if (connect(sockfd, (struct sockaddr*)&sockaddr_in, sizeof(sockaddr_in)) == -1) {
-		// printf("Reconnecting...\n");
 		perror("connect");
 		exit(EXIT_FAILURE);
 	}
+	(void)world;
 	while (1) {
-
-		if (dprintf(sockfd, "%lf : Envoie demande connection\n", i) == -1) {
+		if (write(sockfd, "Donnez moi des donnees\n", 23) == -1) {
 			perror("write");
 			exit(EXIT_FAILURE);
 		}
-		i += 0.001;
-//		(void)world;
+		printf("Sent demand\n");
 		if ((nbytes_read = read(sockfd, buffer, BUFSIZ)) > 0)
 		{
-			while(size < (WIN_HEIGHT * WIN_WIDTH) / 2)//world->size_main)
+			printf("Received response\n");
+			size = 0;
+			ret = 0;
+			while(size < (WIN_HEIGHT * WIN_WIDTH))
 			{
-				recv(sockfd, &world->a_h[size], sizeof(world->a_h), 0);
-				size++;
-//				recv(sockfd, world->a_h, sizeof(world->a_h) * 65536, 0);
-	//			recv(sockfd, tab, sizeof(int), 0);
-	//			write(STDOUT_FILENO, buffer, nbytes_read);
-	//			printf("%d\n", world->a_h[0]);
-//				printf("%d\n", tab[0]);
-//				if (size == 0)
-//					break;
-		//		world->a_h[0] = RED;
-//				return;
+				ret = recv(sockfd, &world->a_h[size], sizeof(int), 0);
+				if (ret < 0){
+					perror("receive");
+					exit(EXIT_FAILURE);
+				}
+				size++;			
 			}
-		//	test_pixel_put(world->a_h);
-		//	close(sockfd);
-			//free(user_input);
-		//	fflush(stdout);
-		//	break;
+			printf("Exited while\n");
+			printf("----------------\n");			
+			break;
 		}
-		// fflush(stdout);		
-		break;
-	//		if (buffer[nbytes_read - 1] == '\n') {
-	//			break;
-	//	}
-	//	}
 	}
-//	serverid++;
-//	}
 	close(sockfd);
-	// pthread_exit(0);//
-//	exit(EXIT_SUCCESS);
 }

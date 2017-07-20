@@ -40,8 +40,8 @@ int		launch_cluster_thread(t_world *world)
 */
 int		launch_cluster(t_world *world)
 {
-	char *clients[3] = {"10.11.13.10" , "10.11.13.14", NULL};
-	int port[2] = {23456 , 12345};	
+	char *clients[3] = {"10.11.12.20", "10.11.12.20", NULL};
+	int port[2] = {1024 , 1025};	
 	int i;
 
 	i = 0;
@@ -66,7 +66,7 @@ void	render_clustering(t_world *world)
 		quit = event_handler(world, event);
 		//launch_cluster_thread(world);
 		launch_cluster(world);
-		printf("je sors de get_data_from_client\n");
+		// printf("je sors de get_data_from_client\n");
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);

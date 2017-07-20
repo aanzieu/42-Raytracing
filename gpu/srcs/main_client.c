@@ -90,7 +90,8 @@
 /*
 **	Initialize SDL and start listening to events
 */
-void	client_cluster(t_world *world)
+
+void	client_cluster(t_world *world, int port)
 {
 	world->size_main = world->viewplane.x_res * world->viewplane.y_res
 		* sizeof(int);
@@ -105,7 +106,7 @@ void	client_cluster(t_world *world)
 		//
 		//		C'EST ICI QUE TU METS DES VALEURS POUR TESTER L'INTERVALE DE L'IMAGE EN CLIENT ON VA DEVOIR LES REMPLACER PAR CE QU'ON RECOIT DU MASTER OU SI TU VEUX TU PEUX BIEN CHANGER ET FAIRE UN QUI RECOIT DES DEMANDES DES PLUSIEURS PC COMME SUR UN SERVEUR.
 		//
-		launch_thread(world, 0, 80);
+		launch_thread(world, 0, 640);
 
 
 
@@ -120,7 +121,7 @@ void	client_cluster(t_world *world)
 			// world->viewplane.y_res, *world, 1);
 	// }
 
-	send_buffer(world);
+	send_buffer(world, port);
 	free(world->a_h);
 }
 /*

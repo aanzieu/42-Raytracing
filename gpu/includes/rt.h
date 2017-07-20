@@ -190,7 +190,7 @@ typedef struct		s_world
 
 void				get_viewplane(t_world *world);
 int					launch_thread(t_world *world, int y_min, int y_max);
-void				send_buffer(t_world *world);
+void				send_buffer(t_world *world, int port);
 void				rt(t_world *world);
 void				render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
 void				sphere_key_handler(t_world	*world);
@@ -224,7 +224,7 @@ t_cylinder		*copy_cylinder(t_cylinder *obj);
 
 void 	render_clustering(t_world *world);
 void	master_cluster(t_world *world);
-void	client_cluster(t_world *world);
+void	client_cluster(t_world *world, int port);
 void	*get_data_from_client_thread(void *arg);
 void	get_data_from_client(char *hostname, unsigned short port, t_world *world);
 
