@@ -86,18 +86,20 @@ void	*init_client(void *arg)
 
 	self = arg;
 	nbr_clients = 0;
-	while(nbr_clients < 2)//MAX_CLIENTS)
+	while(nbr_clients < MAX_CLIENTS)
 	{
+		printf("----\n");
 		fd = accept(self->sockfd, NULL, NULL);
 		nbr_clients++;
 		new = ft_memalloc(sizeof(*new));
 		ft_bzero(new, sizeof(*new));
 		new->fd = fd;
+		new->status = 'a';
 		new->next = self->client_list;
 		self->client_list = new;
 	}
 	close(self->sockfd);
-	return(NULL);
+	pthread_exit(0);
 }
 
 int		cluster_initialize(t_world *world, t_cluster *cluster)
@@ -106,7 +108,12 @@ int		cluster_initialize(t_world *world, t_cluster *cluster)
 	int					port_offs;
 	struct sockaddr_in	sockaddr_in;
 	int					enable;
+	t_client			*client_save;
+	char 		buff[BUFSIZ];	
 
+	// ft_memalloc(sizeof(cluster->client_list));
+	// ft_bzero(cluster->client_list, sizeof(t_client*));
+	cluster->client_list = NULL;
 	if((cluster->sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
 	{
 		perror("no create socket");
@@ -132,14 +139,28 @@ int		cluster_initialize(t_world *world, t_cluster *cluster)
 		perror("all ports used");
 		return(1);
 	}
-	if (listen(cluster->sockfd, 16) == -1)
+	if (listen(cluster->sockfd, 0) == -1)
 	{
 		perror("listen");
 		return(1);
 	}
 	cluster->world = world;
 	pthread_create(&cluster->client_thread, NULL, &init_client, cluster);
-	sleep(3000);
+	pthread_join(cluster->client_thread, NULL);
+	// init_client(cluster);
+	printf("before while\n");
+	// printf("fd %c\n", cluster->client_list->status);
+	client_save = cluster->client_list;
+	while (1)
+	{
+		printf("before if\n");
+		if (read(cluster->client_list->fd, buff, 16) > 0)
+			printf("%s\n", buff);
+		cluster->client_list = cluster->client_list->next;
+		if (cluster->client_list == NULL)
+			cluster->client_list = client_save;
+	}
+	// sleep(3000);
 	return(0);
 }
 

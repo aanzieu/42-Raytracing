@@ -21,7 +21,7 @@
 #include <sys/socket.h>
 
 # define FIND_PORT 60000
-# define MAX_CLIENTS 4
+# define MAX_CLIENTS 2
 
 typedef struct		s_client
 {
