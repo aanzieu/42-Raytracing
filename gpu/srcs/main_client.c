@@ -193,8 +193,13 @@ int client_init(char *host_ip)
 	}
 	while(1)
 	{
+		if (write(sockfd, "Donnez moi des donnees\n", 23) == -1) {
+			perror("write");
+			exit(EXIT_FAILURE);
+		}
 		printf("je suis connecté\n");
 	}
+	//	
 	return (sockfd);
 }
 
