@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/19 16:40:15 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/21 16:47:37 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "../includes/cluster.h"
 #include <arpa/inet.h>
 #include <netdb.h> /* getprotobyname */
 #include <netinet/in.h>
@@ -25,33 +25,208 @@
 #include <unistd.h>
 #include "../includes/rt.h"
 #include "../includes/display.h"
-/*
-typedef struct s_stockage
+
+void remove_clients(t_cluster *cl, t_client **cli, t_client **tmp)
 {
-	    int        test;
-		int			tab[2];
-}            t_stockage;
-*/
-void		test_pixel_put(int *a_h)
-{
-	int 			i;
-	int 			j;
-	i = 0;
-//	(void)a_h;
-	while (i < WIN_HEIGHT)
+	free((*cli)->buffer);
+	if (*tmp == NULL)
 	{
-		j = 0;
-		while (j < WIN_WIDTH)
-		{
-//			printf("JE rentre dans la fonciton\n");
-			if(a_h[i * WIN_WIDTH + j] > 0)
-				printf("%d\n", a_h[i * WIN_WIDTH + j]);
-			j++;
-		}
-		i++;
+		cl->client_list = (*cli)->next;
+		close((*cli)->fd);
+		free(*cli);
+		*cli = cl->client_list;
+	}
+	else
+	{
+		(*tmp)->next = (*cli)->next;
+		free(*cli);
+		*cli = (*tmp)->next;
 	}
 }
 
+int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
+{
+	char	ok;
+	size_t	main_size;
+
+	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;// * sizeof(int);
+	if(!send(clients->fd, &cmd, 1, 0))
+		return(0);
+	if(!send(clients->fd, &arg_size, 8, 0))
+		return(0);
+	if(arg_size)
+	{
+		if(!send(clients->fd, arg, arg_size, 0))
+			return(0);
+	}
+	if (cmd == 'r' && clients->buffer == NULL)
+		clients->buffer = ft_memalloc(main_size);
+	if (cmd == 'r' && (!clients->buffer || recv(clients->fd, clients->buffer, main_size, MSG_WAITALL) == 0))
+	{
+		printf("FIN DE message recu cote master\n");
+		return(0);
+	}
+	if (recv(clients->fd, &ok, 1, 0) == 0)
+	{
+		printf("pas de message recu cote master\n");
+		return(0);
+	}
+	if (ok == 'c')
+	{
+		printf("Camera OK\n");
+		clients->status |= SEND_CAMERA;
+	}
+	if (ok == 's')
+	{
+		printf("Spheres OK\n");
+		clients->status |= SEND_SPHERES;
+	}
+	if (ok == 'l')
+	{
+		printf("Lights OK\n");
+		clients->status |= SEND_LIGHTS;
+	}
+	return(1);
+	}
+
+void	*dup_data(t_cluster *cluster, char cmd)
+{
+	void	*ret;
+	size_t	size;
+
+	ret = NULL;
+	if(cmd == 'c')
+	{
+		ret = ft_memalloc(sizeof(t_camera));
+		if(ret != NULL)
+			ret = ft_memcpy(ret, &cluster->world->camera, sizeof(t_camera));
+	}
+	if(cmd == 's')
+	{
+		printf("client spheres radius %lf\n", cluster->world->spheres[0].radius);
+		size = sizeof(t_sphere) * cluster->world->spheres_len;
+		ret = ft_memalloc(size);
+		if(ret != NULL)
+			ret = ft_memcpy(ret, cluster->world->spheres, size);
+	}
+	if(cmd == 'l')
+	{
+//		printf("client lights %lf\n", cluster->world->spheres[0].radius);
+		size = sizeof(t_light) * cluster->world->lights_len;
+		ret = ft_memalloc(size);
+		if(ret != NULL)
+			ret = ft_memcpy(ret, cluster->world->lights, size);
+	}
+	return(ret);
+}
+
+int send_buffer_clients(t_cluster *cluster, t_client *clients)
+{
+	void	*buffer;
+
+	buffer = NULL;
+	if ((clients->status & SEND_CAMERA) == 0)
+	{
+		if (!(buffer = dup_data(cluster, 'c')))
+			return (0);
+		send_informations(clients, 'c', buffer, sizeof(t_camera));
+	}
+	if ((clients->status & SEND_SPHERES) == 0)
+	{
+		if (!(buffer = dup_data(cluster, 's')))
+			return (0);
+		printf("nb de spheres %d\n", cluster->world->spheres_len);
+		send_informations(clients, 's', buffer, cluster->world->spheres_len * sizeof(t_sphere));
+	}
+	if ((clients->status & SEND_LIGHTS) == 0)
+	{
+		if (!(buffer = dup_data(cluster, 'l')))
+			return (0);
+		printf("nb de light %d\n", cluster->world->lights_len);
+		send_informations(clients, 'l', buffer, cluster->world->lights_len * sizeof(t_light));
+	}
+	free(buffer);
+	return (1);
+}
+
+void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_size)
+{
+	t_client	*clients;
+	t_client	*clients_tmp;
+	int			nbr_clients;
+	int			clients_alive;
+
+	clients_tmp = NULL;
+	nbr_clients = 0;
+	clients = cluster->client_list;
+	while(clients != NULL)
+	{
+		if(cmd == 'r')
+			clients_alive = send_buffer_clients(cluster, clients);
+		if(clients_alive)
+			clients_alive = send_informations(clients, cmd, arg, arg_size);
+		if(!clients_alive)
+			remove_clients(cluster, &clients, &clients_tmp);
+		else
+		{
+			clients_tmp = clients;
+			clients = clients->next;
+			nbr_clients++;
+		}
+		printf("je change de clients\n");
+	}
+//	return(n1);
+}
+
+void	cluster_stratege(t_cluster *cluster)
+{
+	int		nbr_clients;
+	t_vec2d		offsets;
+	t_client	*clients;
+	float		theta;
+
+	nbr_clients = 1;
+	clients = cluster->client_list;
+	while(clients && (nbr_clients++ | 42))
+		clients = clients->next;
+	theta = 2* M_PI / nbr_clients;
+	clients = cluster->client_list;
+	while(nbr_clients--)
+	{
+		offsets.x = cos(theta * nbr_clients);
+		offsets.y = sin(theta * nbr_clients);
+		if(clients)
+		{	
+		//	printf("offsets.x %lf | offsets.y %lf\n", offsets.x, offsets.y);
+		//	printf("camera position.z : %lf\n", cluster->world->camera.pos.z);
+			send_informations(clients, 'w', &offsets, sizeof(offsets));
+			clients = clients->next;
+		}
+		else
+			ft_memcpy(&cluster->offsets, &offsets, sizeof(offsets));
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void *get_data_from_client_thread(void *arg)
 {
 	t_thread_input		*thread;
@@ -64,7 +239,6 @@ void *get_data_from_client_thread(void *arg)
 	int sockfd;
 	ssize_t nbytes_read;// user_input_len;
 	struct hostent *hostent;
-	/* This is the struct used by INet addresses. */
 	struct sockaddr_in sockaddr_in;
 	unsigned short server_port = thread->port[thread->th];//12345;
 	char *server_hostname = thread->str[thread->th];
@@ -91,7 +265,6 @@ void *get_data_from_client_thread(void *arg)
 //		}
 //	}
 
-	/* Get socket. */
 	protoent = getprotobyname(protoname);
 	if (protoent == NULL) {
 		perror("getprotobyname");
@@ -104,7 +277,6 @@ void *get_data_from_client_thread(void *arg)
 		exit(EXIT_FAILURE);
 	}
 
-	/* Prepare sockaddr_in. */
 	hostent = gethostbyname(server_hostname);//serverid]);
 	if (hostent == NULL) {
 		fprintf(stderr, "error: gethostbyname(\"%s\")\n", server_hostname);
@@ -121,7 +293,6 @@ void *get_data_from_client_thread(void *arg)
 	static double i = 0.000;
 	
 //	int test = 0;
-	/* Do the actual connection. */
 	while (connect(sockfd, (struct sockaddr*)&sockaddr_in, sizeof(sockaddr_in)) == -1) {
 		printf("Reconnecting...\n");
 		// perror("connect");
@@ -180,14 +351,12 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 	int sockfd;
 	ssize_t nbytes_read;// user_input_len;
 	struct hostent *hostent;
-	/* This is the struct used by INet addresses. */
 	struct sockaddr_in sockaddr_in;
 	unsigned short server_port = port;
 	char *server_hostname = hostname;
 	int ret;
 	int size;
 
-	/* Get socket. */
 	protoent = getprotobyname(protoname);
 	if (protoent == NULL) {
 		perror("getprotobyname");
@@ -198,7 +367,6 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 		perror("socket");
 		exit(EXIT_FAILURE);
 	}
-	/* Prepare sockaddr_in. */
 	hostent = gethostbyname(server_hostname);//serverid]);
 	if (hostent == NULL) {
 		fprintf(stderr, "error: gethostbyname(\"%s\")\n", server_hostname);
@@ -213,7 +381,6 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 	sockaddr_in.sin_family = AF_INET;
 	sockaddr_in.sin_port = htons(server_port);
 	
-	/* Do the actual connection. */
 	if (connect(sockfd, (struct sockaddr*)&sockaddr_in, sizeof(sockaddr_in)) == -1) {
 		perror("connect");
 		exit(EXIT_FAILURE);
@@ -245,4 +412,4 @@ void get_data_from_client(char *hostname, unsigned short port, t_world *world)
 		}
 	}
 	close(sockfd);
-}
+}*/

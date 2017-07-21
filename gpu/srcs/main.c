@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/20 15:38:22 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/21 16:54:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	data_setup(t_world *world)
 	world->viewplane.dist = 1;
 	world->line = 0;
 	world->ambient.coef = 0.2;
+	world->spheres = ft_memalloc(sizeof(t_sphere));
+	ft_bzero(world->spheres, sizeof(t_sphere));
 }
 
 static void	load_data(t_world *world)
@@ -125,17 +127,19 @@ void	launch_cpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-	
+	if(world->clientrender == 1)
+	{
+		get_viewplane(world);
+		launch_thread(world, 0, 640);
+		return;
+	}
 	quit = 0;
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-
-		//
 		//		C'EST ICI QUE TU METS DES VALEURS POUR TESTER L'INTERVALE DE L'IMAGE , TU DOIS EXECUTER EN LOCAL
-		//
 		launch_thread(world, 0, 640);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
@@ -149,7 +153,7 @@ void	launch_gpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-		
+	
 	quit = 0;
 	while (quit == 0)
 	{
@@ -170,12 +174,31 @@ void	launch_gpu(t_world *world)
 **	Initialize SDL and start listening to events
 */
 
-void    rt(t_world *world)
+void    rt_cluster(t_world *world)
 {
-    world->size_main = world->viewplane.x_res * world->viewplane.y_res
+    if(world->a_h != NULL)
+		free(world->a_h);
+	world->clientrender = 1;
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res
         * sizeof(int);
     if (!(world->a_h = malloc(world->size_main)))
         exit(0);
+	printf("JE RENTRE DANS RT\n");
+    ft_bzero(world->a_h, world->size_main);
+ //   if (world->mode == 0)
+        launch_cpu(world);
+//    else
+  //      launch_gpu(world);
+	printf("JE SORS DE RT\n");
+}
+
+void    rt(t_world *world)
+{
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res
+        * sizeof(int);
+    if (!(world->a_h = malloc(world->size_main)))
+        exit(0);
+	printf("JE RENTRE DANS RT\n");
     ft_bzero(world->a_h, world->size_main);
     if (SDL_Init(SDL_INIT_VIDEO) == -1)
         return ;
@@ -186,6 +209,8 @@ void    rt(t_world *world)
         launch_cpu(world);
     else
         launch_gpu(world);
+	printf("JE SORS DE RT\n");
+	printf("couleurs %d :\n", world->a_h[620]);
     free(world->a_h);
     SDL_FreeSurface(world->window.screen);
     SDL_DestroyWindow(world->window.id);
@@ -197,16 +222,6 @@ void    rt(t_world *world)
 **	FILE *saved = stdout;
 **	stdout = fopen("log.txt", "w+");
 */
-
-int		cluster_address_serveur(char *ip)
-{
-	int sockfd;
-	t_cluster cl;
-
-	sockfd = client_init(ip);
-	client_loop(sockfd, &cl);
-	return(0);
-}
 
 int		main(int argc, char **argv)
 {
@@ -230,22 +245,26 @@ int		main(int argc, char **argv)
 	{
 		parse_rtv1(world, argv[1]);
 		load_data(world);
+		printf("post process world spheres radius %lf\n", world->spheres[1].radius);
 		rt(world);
 		free_world(world);
 	}
 	else if(flags == 1 && argv[1])
 	{
+		parse_rtv1(world, argv[1]);
+		load_data(world);
+		printf("post process world spheres radius %lf\n", world->spheres[1].radius);
 		master_cluster(world);// == -1;
 		printf("je sors de master_cluster\n");
 	}
-	else if(flags == 2) // Retirer l'argv[1] et ecrire une fonction de recup des donees de master
+	else if(flags == 2)
 	{
 		if(argv[2] == NULL)
 		{
 			printf("usage : client IP");
 			exit(1);
 		}
-		cluster_address_serveur(argv[2]);
+		serveur_address_serveur(argv[2], world);
 	//	parse_rtv1(world, argv[1]);	// A retirer pour utiliser les donees recues de master
 	//	load_data(world); // A retirer pour utiliser les donees recues de master
 	//	client_cluster(world);// == -1;

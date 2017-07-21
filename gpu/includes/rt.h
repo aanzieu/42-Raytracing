@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/29 17:05:33 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/21 16:17:51 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,24 +139,24 @@ typedef struct		s_thread_input
 
 typedef struct		s_world
 {
-	t_window	window;
-	
-	t_sphere	*spheres;
-	t_plane		*planes;
-	t_disk		*disks;
-	t_light		*lights;
-	t_cylinder	*cylinders;
-	t_cone		*cones;
-	t_paraboloid*paraboloids;
+	t_window		window;
+
+	t_sphere		*spheres;
+	t_plane			*planes;
+	t_disk			*disks;
+	t_light			*lights;
+	t_cylinder		*cylinders;
+	t_cone			*cones;
+	t_paraboloid	*paraboloids;
 	t_hyperboloid	*hyperboloids;
 
-	t_sphere	*spheres_tmp;
-	t_plane		*planes_tmp;
-	t_disk		*disks_tmp;
-	t_light		*lights_tmp;
-	t_cylinder	*cylinders_tmp;
-	t_cone		*cones_tmp;
-	t_paraboloid*paraboloids_tmp;
+	t_sphere		*spheres_tmp;
+	t_plane			*planes_tmp;
+	t_disk			*disks_tmp;
+	t_light			*lights_tmp;
+	t_cylinder		*cylinders_tmp;
+	t_cone			*cones_tmp;
+	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
 
 	int			spheres_len;
@@ -170,7 +170,8 @@ typedef struct		s_world
 
 	pthread_t		thread[NB_TH];
 	int				th;
-	
+
+	int			clientrender;
 	int				*a_h;
 	size_t		size_main;
 	
@@ -183,7 +184,7 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-	
+
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;
@@ -222,7 +223,6 @@ t_cylinder		*copy_cylinder(t_cylinder *obj);
 **                     CLUSTERING                                        	  **
 *******************************************************************************/
 
-void 	render_clustering(t_world *world);
 void	master_cluster(t_world *world);
 void	client_cluster(t_world *world, int port);
 void	*get_data_from_client_thread(void *arg);
