@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 12:59:01 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:44:36 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <sys/socket.h>
 
 # define FIND_PORT 60000
-# define MAX_CLIENTS 1
+# define MAX_CLIENTS 4
 
 # define SEND_CAMERA 0
 # define SEND_SPHERES 0
@@ -43,6 +43,12 @@ typedef struct		s_client
 	char			status;
 }					t_client;
 
+typedef struct		s_offsets
+{
+	int				y_min;
+	int				y_max;
+}					t_offsets;
+
 typedef struct		s_cluster
 {
 	t_client		*client_list;
@@ -50,7 +56,7 @@ typedef struct		s_cluster
 	pthread_t		client_thread;
 	struct s_world	*world;
 	int				nbr_clients;
-	t_vec2d			offsets;
+	t_offsets		offsets;
 }					t_cluster;
 
 

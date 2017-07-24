@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:07:05 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:43:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,23 +193,28 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 
 void	cluster_stratege(t_cluster *cluster)
 {
-	int		nbr;
-	t_vec2d		offsets;
+	int			nbr;
+	t_offsets	offsets;
 	t_client	*clients;
 	float		theta;
 
-	cluster->nbr_clients = 1;
+	cluster->nbr_clients = 0;
 	clients = cluster->client_list;
 	while(clients && (cluster->nbr_clients++ | MAX_CLIENTS))
 		clients = clients->next;
 	theta = 2* M_PI / cluster->nbr_clients;
 	clients = cluster->client_list;
+
 	nbr = cluster->nbr_clients;
-	printf("nbde clients : %d\n :", nbr);
+	printf("nbr_clients :%d\n", cluster->nbr_clients);
+	offsets.y_min = 0;
+	sleep(5);
 	while(nbr--)
 	{
-		offsets.x = cos(theta * cluster->nbr_clients);
-		offsets.y = sin(theta * cluster->nbr_clients);
+		printf("nbr_clients :%d\n", cluster->nbr_clients);
+		offsets.y_min = nbr * WIN_HEIGHT / cluster->nbr_clients;//cos(theta * cluster->nbr_clients);
+		offsets.y_max = offsets.y_min + WIN_HEIGHT / cluster->nbr_clients;//sin(theta * cluster->nbr_clients);		
+		printf("offsets.y_min :%d | offsets.y_max :%d\n", offsets.y_min, offsets.y_max);
 		if(clients)
 		{	
 		//	printf("offsets.x %lf | offsets.y %lf\n", offsets.x, offsets.y);
@@ -218,7 +223,7 @@ void	cluster_stratege(t_cluster *cluster)
 			clients = clients->next;
 		}
 		else
-			ft_memcpy(&cluster->offsets, &offsets, sizeof(offsets));
+			ft_memcpy(&offsets, &offsets, sizeof(offsets));
 	}
 }
 
