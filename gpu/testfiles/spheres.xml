@@ -2,7 +2,7 @@
 <scene name="Three Sphere">
 	<surface type="Sphere">
 		<shader ref="red" />
-		<radius> 4 </radius>
+		<radius> 0.2 </radius>
 		<center> -1 0.75 -0.5 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>

@@ -63,7 +63,7 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 		clients->buffer = ft_memalloc(main_size);
 	if (cmd == 'r' && (!clients->buffer || recv(clients->fd, clients->buffer, main_size, MSG_WAITALL) == 0))
 	{
-		printf("FIN DE message recu cote master\n");
+		printf("Structure recu cote master\n");
 		return(0);
 	}
 	if (recv(clients->fd, &ok, 1, 0) == 0)
@@ -162,7 +162,7 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 	clients = cluster->client_list;
 	while(clients != NULL)
 	{
-		if(cmd == 'r')
+		if (cmd == 'r')
 			clients_alive = send_buffer_clients(cluster, clients);
 		if(clients_alive)
 		{
@@ -170,7 +170,15 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 			clients_alive = send_informations(clients, cmd, arg, arg_size);
 			printf("je sors d'information valeur de client%d\n", clients_alive);
 		}
-		if(!clients_alive)
+		if (clients->buffer)
+		{
+			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
+			put_pixel_screen(cluster->world);
+			SDL_UpdateWindowSurface(cluster->world->window.id);
+			printf("Color : %d\n", cluster->world->a_h[620]);
+			sleep(5);
+		}
+		if (!clients_alive)
 			remove_clients(cluster, &clients, &clients_tmp);
 		else
 		{

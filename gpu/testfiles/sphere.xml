@@ -6,7 +6,7 @@
 		<center> 0 0 1 </center>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-		<color> 166 166 166 1 </color>
+		<color> 166 166 166 </color>
 	</surface>
 	<light>
 		<position> -2 1 1 </position>

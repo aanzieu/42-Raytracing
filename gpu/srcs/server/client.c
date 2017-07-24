@@ -23,7 +23,7 @@ int	data_grow(t_data *data, size_t size)
 	void	*new;
 	size_t	new_total;
 
-	new_total = data->total * 1.618 * size;
+	new_total = data->total * size;
 	new = ft_memalloc(new_total);
 	ft_memcpy(new, data->data, data->used);
 	free(data->data);
@@ -142,6 +142,7 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 		data->used = 0;
 	//	data_recv(data, main_size);
 		printf("before cpy\n");
+		// printf("couleurs %d :\n", cluster->world->a_h[620]);
 		ft_memcpy(data->data, cluster->world->a_h, main_size);
 		printf("after cpy\n");
 		send(sockfd, data->data, main_size, 0);//data->used, 0);

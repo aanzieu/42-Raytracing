@@ -210,7 +210,7 @@ void    rt(t_world *world)
     else
         launch_gpu(world);
 	printf("JE SORS DE RT\n");
-	printf("couleurs %d :\n", world->a_h[620]);
+	// printf("couleurs %d :\n", world->a_h[620]);
     free(world->a_h);
     SDL_FreeSurface(world->window.screen);
     SDL_DestroyWindow(world->window.id);
