@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/24 14:09:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 15:49:10 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static void	data_setup(t_world *world)
 	world->viewplane.dist = 1;
 	world->line = 0;
 	world->ambient.coef = 0.2;
-	world->spheres = ft_memalloc(sizeof(t_sphere));
-	ft_bzero(world->spheres, sizeof(t_sphere));
 }
 
 static void	load_data(t_world *world)
@@ -130,6 +128,7 @@ void	launch_cpu(t_world *world)
 	if(world->clientrender == 1)
 	{
 		get_viewplane(world);
+		printf("test\n");
 		launch_thread(world, world->offsets.y_min, world->offsets.y_max);
 		return;
 	}

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:51 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 14:32:59 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 15:50:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int	data_recv(t_data *data, size_t size)
 {
 
 	if(!size)
-	{
-		printf("size = 0");
 		return(0);
-	}
 	if(!data->total)
 	{
 		data->data = ft_memalloc(size);
@@ -63,13 +60,32 @@ void	updated_objs(t_data *data, char cmd, short n, t_cluster *cluster)
 	if(cmd == 's')
 	{
 		free(cluster->world->spheres);
-		printf("data_len = %d\n", n);
 		if (n == 0)
 			return;
 		cluster->world->spheres = (t_sphere*)malloc(sizeof(t_sphere) * n);
 		ft_bzero(cluster->world->spheres, n);
 		ft_memcpy(cluster->world->spheres, data->data, data->used);
 		printf("client spheres radius %lf\n", cluster->world->spheres[0].radius);
+	}
+	if(cmd == 'p')
+	{
+		free(cluster->world->planes);
+		if (n == 0)
+			return;
+		cluster->world->planes = (t_plane*)malloc(sizeof(t_plane) * n);
+		ft_bzero(cluster->world->planes, n);
+		ft_memcpy(cluster->world->planes, data->data, data->used);
+	}
+	if(cmd == 'n')
+	{
+	//	if(cluster->world->cones != NULL)
+//		free(cluster->world->cones);
+		printf("data_len = %d\n", n);
+		if (n == 0)
+			return;
+		cluster->world->cones = (t_cone*)malloc(sizeof(t_cone) * n);
+		ft_bzero(cluster->world->cones, n);
+		ft_memcpy(cluster->world->cones, data->data, data->used);
 	}
 	if(cmd == 'l')
 	{
@@ -84,47 +100,29 @@ void	updated_objs(t_data *data, char cmd, short n, t_cluster *cluster)
 	}
 }
 
-void	send_color(t_world *world)
-{
-	int 			i;
-	int 			j;
-	int				color = 16711680;
-	world->size_main = world->viewplane.x_res * world->viewplane.y_res
-        * sizeof(int);
-    if (!(world->a_h = malloc(world->size_main)))
-        exit(0);
-	i = 0;
-	while (i < WIN_HEIGHT)
-	{
-		j = 0;
-		while (j < WIN_WIDTH)
-		{
-		//	printf("couleur pixel %d\n", world->a_h[y * world->viewplane.x_res + x]);
-			world->a_h[i * world->viewplane.x_res + j] = color;
-//			printf("test\n");
-
-			j++;
-//			if (j % world->render_factor == 0)
-//				x++;
-		}
-		i++;
-//		if (i % world->render_factor == 0)
-//			y++;
-	}
-}
 
 void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 {
 	size_t	main_size;
 
-	main_size = 4 * (WIN_WIDTH * (WIN_HEIGHT - cluster->world->offsets.y_min));// * sizeof(int);
+	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;
+	// (cluster->world->offsets.y_max - cluster->world->offsets.y_min));// * sizeof(int);
 	if(cmd == 'c')
-		updated_camera(data, cluster);
+		ft_memcpy(&cluster->world->camera, data->data, sizeof(t_camera));
 	if(cmd == 's')
 	{
 		updated_objs(data, cmd, data->used / sizeof(t_sphere), cluster);
 		cluster->world->spheres_len = data->used / sizeof(t_sphere);
-		printf("nb de spheres %d\n", cluster->world->spheres_len);
+	}
+	if(cmd == 'p')
+	{
+		updated_objs(data, cmd, data->used / sizeof(t_plane), cluster);
+		cluster->world->planes_len = data->used / sizeof(t_plane);
+	}
+	if(cmd == 'n')
+	{
+		updated_objs(data, cmd, data->used / sizeof(t_cone), cluster);
+		cluster->world->cones_len = data->used / sizeof(t_cone);
 	}
 	if(cmd == 'l')
 	{
@@ -186,10 +184,38 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 
 
 
+/*
+void	send_color(t_world *world)
+{
+	int 			i;
+	int 			j;
+	int				color = 16711680;
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res
+        * sizeof(int);
+    if (!(world->a_h = malloc(world->size_main)))
+        exit(0);
+	i = 0;
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+		{
+		//	printf("couleur pixel %d\n", world->a_h[y * world->viewplane.x_res + x]);
+			world->a_h[i * world->viewplane.x_res + j] = color;
+//			printf("test\n");
+
+			j++;
+//			if (j % world->render_factor == 0)
+//				x++;
+		}
+		i++;
+//		if (i % world->render_factor == 0)
+//			y++;
+	}
+}
 
 
-
-
+*/
 
 
 

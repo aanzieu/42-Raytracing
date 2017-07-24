@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 14:12:50 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 15:12:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define SEND_SPHERES 0
 # define SEND_LIGHTS 0
 # define SEND_PLANS 0
+# define SEND_CONES 0
+# define SEND_CYLINDERS 0
 
 typedef struct		s_data
 {
@@ -41,6 +43,7 @@ typedef struct		s_client
 	int				*buffer;
 	struct s_client	*next;
 	char			status;
+	int				nbr_clients;
 	t_offsets		offsets;
 }					t_client;
 

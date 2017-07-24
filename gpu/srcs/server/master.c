@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 14:32:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 15:46:54 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 	char	ok;
 	size_t	main_size;
 
-	main_size = 4 * (WIN_WIDTH * (WIN_HEIGHT - clients->offsets.y_min));// * sizeof(int);
-//	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;// * sizeof(int);
+	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;
 	if(!send(clients->fd, &cmd, 1, 0))
 		return(0);
 	if(!send(clients->fd, &arg_size, 8, 0))
@@ -65,7 +64,6 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 	if (cmd == 'r' && (!clients->buffer || recv(clients->fd, clients->buffer, main_size, MSG_WAITALL) == 0))
 	{
 		printf("offsets save y_min :%d | y_max :%d\n", clients->offsets.y_min, clients->offsets.y_max);
-		printf("Structure recu cote master\n");
 		return(0);
 	}
 	if (recv(clients->fd, &ok, 1, 0) == 0)
@@ -74,20 +72,18 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 		return(0);
 	}
 	if (ok == 'c')
-	{
-		printf("Camera OK\n");
 		clients->status |= SEND_CAMERA;
-	}
 	if (ok == 's')
-	{
-		printf("Spheres OK\n");
 		clients->status |= SEND_SPHERES;
+	if (ok == 'p')
+		clients->status |= SEND_PLANS;
+	if (ok == 'n')
+	{
+		printf("Cones OK\n");
+		clients->status |= SEND_CONES;
 	}
 	if (ok == 'l')
-	{
-		printf("Lights OK\n");
 		clients->status |= SEND_LIGHTS;
-	}
 	printf("fin de send information\n");
 	return(1);
 }
@@ -111,6 +107,22 @@ void	*dup_data(t_cluster *cluster, char cmd)
 		ret = ft_memalloc(size);
 		if(ret != NULL)
 			ret = ft_memcpy(ret, cluster->world->spheres, size);
+	}
+	if(cmd == 'p')
+	{
+//		printf("client lights %lf\n", cluster->world->spheres[0].radius);
+		size = sizeof(t_plane) * cluster->world->planes_len;
+		ret = ft_memalloc(size);
+		if(ret != NULL)
+			ret = ft_memcpy(ret, cluster->world->planes, size);
+	}
+	if(cmd == 'n')
+	{
+//		printf("client lights %lf\n", cluster->world->spheres[0].radius);
+		size = sizeof(t_cone) * cluster->world->cones_len;
+		ret = ft_memalloc(size);
+		if(ret != NULL)
+			ret = ft_memcpy(ret, cluster->world->cones, size);
 	}
 	if(cmd == 'l')
 	{
@@ -138,8 +150,19 @@ int send_buffer_clients(t_cluster *cluster, t_client *clients)
 	{
 		if (!(buffer = dup_data(cluster, 's')))
 			return (0);
-		printf("nb de spheres %d\n", cluster->world->spheres_len);
 		send_informations(clients, 's', buffer, cluster->world->spheres_len * sizeof(t_sphere));
+	}
+	if ((clients->status & SEND_PLANS) == 0)
+	{
+		if (!(buffer = dup_data(cluster, 'p')))
+			return (0);
+		send_informations(clients, 'p', buffer, cluster->world->planes_len * sizeof(t_plane));
+	}
+	if ((clients->status & SEND_CONES) == 0)
+	{
+		if (!(buffer = dup_data(cluster, 'n')))
+			return (0);
+		send_informations(clients, 'n', buffer, cluster->world->cones_len * sizeof(t_cone));
 	}
 	if ((clients->status & SEND_LIGHTS) == 0)
 	{
