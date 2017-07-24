@@ -49,7 +49,7 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 	char	ok;
 	size_t	main_size;
 
-	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;
+	main_size = 4 * (WIN_WIDTH * WIN_HEIGHT);// * sizeof(int);
 	if(!send(clients->fd, &cmd, 1, 0))
 		return(0);
 	if(!send(clients->fd, &arg_size, 8, 0))
@@ -195,6 +195,8 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 			clients_alive = send_informations(clients, cmd, arg, arg_size);
 			printf("je sors d'information valeur de client%d\n", clients_alive);
 		}
+		put_buffer_together(cluster, cluster->client_list);
+
 //		if (clients->buffer)
 //		{
 //			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
@@ -235,14 +237,14 @@ void	cluster_stratege(t_cluster *cluster)
 //	sleep(5);
 	while(nbr--)
 	{
-		printf("nbr_clients :%d\n", cluster->nbr_clients);
-		offsets.y_min = nbr * WIN_HEIGHT / cluster->nbr_clients;//cos(theta * cluster->nbr_clients);
-		offsets.y_max = offsets.y_min + WIN_HEIGHT / cluster->nbr_clients;//sin(theta * cluster->nbr_clients);		
-		printf("offsets.y_min :%d | offsets.y_max :%d\n", offsets.y_min, offsets.y_max);
+		// printf("nbr_clients :%d\n", cluster->nbr_clients);	
+		// printf("offsets.y_min :%d | offsets.y_max :%d\n", offsets.y_min, offsets.y_max);
 		if(clients)
 		{	
 		//	printf("offsets.x %lf | offsets.y %lf\n", offsets.x, offsets.y);
 		//	printf("camera position.z : %lf\n", cluster->world->camera.pos.z);
+			offsets.y_min = nbr * WIN_HEIGHT / cluster->nbr_clients;//cos(theta * cluster->nbr_clients);
+			offsets.y_max = offsets.y_min + WIN_HEIGHT / cluster->nbr_clients;//sin(theta * cluster->nbr_clients);	
 			clients->offsets.y_min = offsets.y_min;
 			clients->offsets.y_max = offsets.y_max;
 			printf("offsets save y_min :%d | y_max :%d\n", clients->offsets.y_min, clients->offsets.y_max);

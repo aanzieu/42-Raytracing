@@ -105,26 +105,38 @@ int		cluster_initialize(t_world *world, t_cluster *cluster)
 
 void	put_buffer_together(t_cluster *cluster, t_client *clients)
 {
-	t_client	*clients_tmp;
 	int			nbr_clients;
+	int 		x;
+	int 		y;
+	int y_max;
 
 	nbr_clients = cluster->nbr_clients;
-	while(nbr_clients-- && clients != NULL)
+	while(nbr_clients--)
 	{
 		if (clients->buffer)
 		{
+			y = nbr_clients * WIN_HEIGHT / cluster->nbr_clients;
+			y_max = y;
+			printf("CLIENT OFFSET MINIMUM %d | %d\n", y, clients->offsets.y_max);
 			printf("INSIDE BUFER PUT TOGETHER\n");
-			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_WIDTH * (WIN_HEIGHT - clients->offsets.y_min));
+			while (y < y_max + (WIN_HEIGHT / cluster->nbr_clients))
+			{
+				x = 0;
+				while (x < WIN_WIDTH)
+				{
+					cluster->world->a_h[y * WIN_WIDTH + x] = clients->buffer[y * WIN_WIDTH + x];
+					x++;
+				}
+				y++;
+			}
+			// ft_memcpy(cluster->world->a_h + 320 * 4, clients->buffer, 4 * WIN_WIDTH * WIN_HEIGHT);
+				
+			// printf("%d\n", cluster->offsets.y_min);
 //			put_pixel_screen(cluster->world);
 //			SDL_UpdateWindowSurface(cluster->world->window.id);
 	//		sleep(5);
 		}
-		else
-		{
-			clients_tmp = clients;
 			clients = clients->next;
-			nbr_clients++;
-		}
 	}
 }
 
@@ -141,10 +153,9 @@ void	render_clustering(t_world *world, t_cluster *cluster)
 		quit = event_handler(world, event);	
 		cluster_stratege(cluster);
 		send_informations_all(cluster, 'r', NULL, 0);
-		put_buffer_together(cluster, cluster->client_list);
 	////	printf("je suis dans cluster render\n");
 		put_pixel_screen(cluster->world);
-		ft_bzero(cluster->world->a_h, world->size_main);
+		// ft_bzero(cluster->world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(cluster->world->window.id);
 	}
 }

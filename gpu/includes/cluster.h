@@ -75,4 +75,5 @@ void		cluster_stratege(t_cluster *cluster);
 
 int			data_recv(t_data *data, size_t size);
 void		process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd);
+void		put_buffer_together(t_cluster *cluster, t_client *clients);
 #endif
