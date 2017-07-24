@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 12:33:24 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 12:59:01 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_cluster
 	int				sockfd;
 	pthread_t		client_thread;
 	struct s_world	*world;
+	int				nbr_clients;
 	t_vec2d			offsets;
 }					t_cluster;
 

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 12:32:47 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:07:05 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,14 +170,14 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 			clients_alive = send_informations(clients, cmd, arg, arg_size);
 			printf("je sors d'information valeur de client%d\n", clients_alive);
 		}
-		if (clients->buffer)
-		{
-			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
-			put_pixel_screen(cluster->world);
-			SDL_UpdateWindowSurface(cluster->world->window.id);
-			printf("Color : %d\n", cluster->world->a_h[620]);
-			sleep(5);
-		}
+//		if (clients->buffer)
+//		{
+//			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
+//			put_pixel_screen(cluster->world);
+//			SDL_UpdateWindowSurface(cluster->world->window.id);
+//			printf("Color : %d\n", cluster->world->a_h[620]);
+//			sleep(5);
+//		}
 		if (!clients_alive)
 			remove_clients(cluster, &clients, &clients_tmp);
 		else
@@ -193,22 +193,23 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 
 void	cluster_stratege(t_cluster *cluster)
 {
-	int		nbr_clients;
+	int		nbr;
 	t_vec2d		offsets;
 	t_client	*clients;
 	float		theta;
 
-	nbr_clients = 1;
+	cluster->nbr_clients = 1;
 	clients = cluster->client_list;
-	while(clients && (nbr_clients++ | MAX_CLIENTS))
+	while(clients && (cluster->nbr_clients++ | MAX_CLIENTS))
 		clients = clients->next;
-	theta = 2* M_PI / nbr_clients;
+	theta = 2* M_PI / cluster->nbr_clients;
 	clients = cluster->client_list;
-//	printf("nbde clients : %d\n :", nbr_clients);
-	while(nbr_clients--)
+	nbr = cluster->nbr_clients;
+	printf("nbde clients : %d\n :", nbr);
+	while(nbr--)
 	{
-		offsets.x = cos(theta * nbr_clients);
-		offsets.y = sin(theta * nbr_clients);
+		offsets.x = cos(theta * cluster->nbr_clients);
+		offsets.y = sin(theta * cluster->nbr_clients);
 		if(clients)
 		{	
 		//	printf("offsets.x %lf | offsets.y %lf\n", offsets.x, offsets.y);

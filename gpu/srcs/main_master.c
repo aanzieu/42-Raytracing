@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 12:25:38 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:15:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,31 @@ int		cluster_initialize(t_world *world, t_cluster *cluster)
 	return(0);
 }
 
+void	put_buffer_together(t_cluster *cluster, t_client *clients)
+{
+	t_client	*clients_tmp;
+	int			nbr_clients;
+
+	nbr_clients = cluster->nbr_clients;
+	while(nbr_clients-- && clients != NULL)
+	{
+		if (clients->buffer)
+		{
+			printf("INSIDE BUFER PUT TOGETHER\n");
+			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
+//			put_pixel_screen(cluster->world);
+//			SDL_UpdateWindowSurface(cluster->world->window.id);
+	//		sleep(5);
+		}
+		else
+		{
+			clients_tmp = clients;
+			clients = clients->next;
+			nbr_clients++;
+		}
+	}
+}
+
 void	render_clustering(t_world *world, t_cluster *cluster)
 {
 
@@ -116,10 +141,11 @@ void	render_clustering(t_world *world, t_cluster *cluster)
 		quit = event_handler(world, event);	
 		cluster_stratege(cluster);
 		send_informations_all(cluster, 'r', NULL, 0);
+		put_buffer_together(cluster, cluster->client_list);
 	////	printf("je suis dans cluster render\n");
-		put_pixel_screen(world);
-		ft_bzero(world->a_h, world->size_main);
-		SDL_UpdateWindowSurface(world->window.id);
+		put_pixel_screen(cluster->world);
+		ft_bzero(cluster->world->a_h, world->size_main);
+		SDL_UpdateWindowSurface(cluster->world->window.id);
 	}
 }
 
