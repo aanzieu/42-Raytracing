@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/21 16:54:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:09:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	launch_cpu(t_world *world)
 	if(world->clientrender == 1)
 	{
 		get_viewplane(world);
-		launch_thread(world, 0, 640);
+		launch_thread(world, world->offsets.y_min, world->offsets.y_max);
 		return;
 	}
 	quit = 0;

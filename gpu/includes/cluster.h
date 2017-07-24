@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:44:36 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:12:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ typedef struct		s_client
 	int				*buffer;
 	struct s_client	*next;
 	char			status;
+	t_offsets		offsets;
 }					t_client;
 
-typedef struct		s_offsets
-{
-	int				y_min;
-	int				y_max;
-}					t_offsets;
 
+struct		s_offsets;
 typedef struct		s_cluster
 {
 	t_client		*client_list;

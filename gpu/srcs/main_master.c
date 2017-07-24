@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:15:53 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:57:04 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	put_buffer_together(t_cluster *cluster, t_client *clients)
 		if (clients->buffer)
 		{
 			printf("INSIDE BUFER PUT TOGETHER\n");
-			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_HEIGHT * WIN_WIDTH);
+			ft_memcpy(cluster->world->a_h, clients->buffer, 4 * WIN_WIDTH * (WIN_HEIGHT - clients->offsets.y_min));
 //			put_pixel_screen(cluster->world);
 //			SDL_UpdateWindowSurface(cluster->world->window.id);
 	//		sleep(5);

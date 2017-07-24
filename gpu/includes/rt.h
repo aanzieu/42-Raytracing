@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/21 16:17:51 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 13:55:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 #define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
+
+typedef struct		s_offsets
+{
+	int				y_min;
+	int				y_max;
+}					t_offsets;
 
 typedef struct		s_window
 {
@@ -184,7 +190,7 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-
+	t_offsets	offsets;
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:51 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:45:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:32:59 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 {
 	size_t	main_size;
 
-	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;// * sizeof(int);
+	main_size = 4 * (WIN_WIDTH * (WIN_HEIGHT - cluster->world->offsets.y_min));// * sizeof(int);
 	if(cmd == 'c')
 		updated_camera(data, cluster);
 	if(cmd == 's')
@@ -135,9 +135,9 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 	if(cmd == 'r')
 	{
 		printf("je recois la commande %c\n", cmd);
-		send_color(cluster->world);
+//		send_color(cluster->world);
 //		printf("couleurs %d :\n", cluster->world->a_h[620]);
-//		rt_cluster(cluster->world);
+		rt_cluster(cluster->world);
 //		rt(cluster->world);
 		data->used = 0;
 	//	data_recv(data, main_size);
@@ -153,8 +153,8 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 	if (cmd == 'w')
 	{
 		printf("%c\n", cmd);
-		ft_memcpy(&cluster->offsets, data->data, data->used);
-		printf("offsets.y_min %d | offsets.y_max %d\n", cluster->offsets.y_min, cluster->offsets.y_max);
+		ft_memcpy(&cluster->world->offsets, data->data, data->used);
+		printf("offsets.y_min %d | offsets.y_max %d\n", cluster->world->offsets.y_min, cluster->world->offsets.y_max);
 	}
 	send(sockfd, &cmd, 1, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:43:58 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 14:32:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 	char	ok;
 	size_t	main_size;
 
-	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;// * sizeof(int);
+	main_size = 4 * (WIN_WIDTH * (WIN_HEIGHT - clients->offsets.y_min));// * sizeof(int);
+//	main_size = 4 * WIN_WIDTH * WIN_HEIGHT;// * sizeof(int);
 	if(!send(clients->fd, &cmd, 1, 0))
 		return(0);
 	if(!send(clients->fd, &arg_size, 8, 0))
@@ -63,6 +64,7 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 		clients->buffer = ft_memalloc(main_size);
 	if (cmd == 'r' && (!clients->buffer || recv(clients->fd, clients->buffer, main_size, MSG_WAITALL) == 0))
 	{
+		printf("offsets save y_min :%d | y_max :%d\n", clients->offsets.y_min, clients->offsets.y_max);
 		printf("Structure recu cote master\n");
 		return(0);
 	}
@@ -206,9 +208,8 @@ void	cluster_stratege(t_cluster *cluster)
 	clients = cluster->client_list;
 
 	nbr = cluster->nbr_clients;
-	printf("nbr_clients :%d\n", cluster->nbr_clients);
 	offsets.y_min = 0;
-	sleep(5);
+//	sleep(5);
 	while(nbr--)
 	{
 		printf("nbr_clients :%d\n", cluster->nbr_clients);
@@ -219,6 +220,9 @@ void	cluster_stratege(t_cluster *cluster)
 		{	
 		//	printf("offsets.x %lf | offsets.y %lf\n", offsets.x, offsets.y);
 		//	printf("camera position.z : %lf\n", cluster->world->camera.pos.z);
+			clients->offsets.y_min = offsets.y_min;
+			clients->offsets.y_max = offsets.y_max;
+			printf("offsets save y_min :%d | y_max :%d\n", clients->offsets.y_min, clients->offsets.y_max);
 			send_informations(clients, 'w', &offsets, sizeof(offsets));
 			clients = clients->next;
 		}
