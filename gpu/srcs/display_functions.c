@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/21 16:55:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 12:31:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				put_pixel_screen(t_world *world)
 	effect_application(world);
 	i = 0;
 	y = 0;
-	printf("couleurs %d :\n", world->a_h[620]);
+//	printf("couleurs %d :\n", world->a_h[620]);
 	while (i < WIN_HEIGHT)
 	{
 		j = 0;

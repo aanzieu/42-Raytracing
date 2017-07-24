@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:51 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/21 16:52:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 12:36:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,35 @@ void	updated_objs(t_data *data, char cmd, short n, t_cluster *cluster)
 	}
 }
 
+void	send_color(t_world *world)
+{
+	int 			i;
+	int 			j;
+	int				color = 16711680;
+	world->size_main = world->viewplane.x_res * world->viewplane.y_res
+        * sizeof(int);
+    if (!(world->a_h = malloc(world->size_main)))
+        exit(0);
+	i = 0;
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+		{
+		//	printf("couleur pixel %d\n", world->a_h[y * world->viewplane.x_res + x]);
+			world->a_h[i * world->viewplane.x_res + j] = color;
+//			printf("test\n");
+
+			j++;
+//			if (j % world->render_factor == 0)
+//				x++;
+		}
+		i++;
+//		if (i % world->render_factor == 0)
+//			y++;
+	}
+}
+
 void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 {
 	size_t	main_size;
@@ -106,17 +135,19 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 	if(cmd == 'r')
 	{
 		printf("je recois la commande %c\n", cmd);
+//		send_color(cluster->world);
+//		printf("couleurs %d :\n", cluster->world->a_h[620]);
 		rt_cluster(cluster->world);
+//		rt(cluster->world);
 		data->used = 0;
-		data_recv(data, main_size);
+	//	data_recv(data, main_size);
 		printf("before cpy\n");
-		printf("couleurs %d :\n", cluster->world->a_h[620]);
 		ft_memcpy(data->data, cluster->world->a_h, main_size);
 		printf("after cpy\n");
-
-		send(sockfd, data->data, data->used, 0);
+		send(sockfd, data->data, main_size, 0);//data->used, 0);
 		printf("after send\n");
 		printf("%zu\n", data->used);
+	//	return;
 	}
 	if (cmd == 'w')
 	{

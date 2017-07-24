@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/21 16:47:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 12:32:47 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 		printf("Lights OK\n");
 		clients->status |= SEND_LIGHTS;
 	}
+	printf("fin de send information\n");
 	return(1);
-	}
+}
 
 void	*dup_data(t_cluster *cluster, char cmd)
 {
@@ -103,7 +104,7 @@ void	*dup_data(t_cluster *cluster, char cmd)
 	}
 	if(cmd == 's')
 	{
-		printf("client spheres radius %lf\n", cluster->world->spheres[0].radius);
+	//	printf("client spheres radius %lf\n", cluster->world->spheres[0].radius);
 		size = sizeof(t_sphere) * cluster->world->spheres_len;
 		ret = ft_memalloc(size);
 		if(ret != NULL)
@@ -164,7 +165,11 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 		if(cmd == 'r')
 			clients_alive = send_buffer_clients(cluster, clients);
 		if(clients_alive)
+		{
+			printf("je rentre information valeur de client%d\n", clients_alive);
 			clients_alive = send_informations(clients, cmd, arg, arg_size);
+			printf("je sors d'information valeur de client%d\n", clients_alive);
+		}
 		if(!clients_alive)
 			remove_clients(cluster, &clients, &clients_tmp);
 		else
@@ -187,10 +192,11 @@ void	cluster_stratege(t_cluster *cluster)
 
 	nbr_clients = 1;
 	clients = cluster->client_list;
-	while(clients && (nbr_clients++ | 42))
+	while(clients && (nbr_clients++ | MAX_CLIENTS))
 		clients = clients->next;
 	theta = 2* M_PI / nbr_clients;
 	clients = cluster->client_list;
+//	printf("nbde clients : %d\n :", nbr_clients);
 	while(nbr_clients--)
 	{
 		offsets.x = cos(theta * nbr_clients);

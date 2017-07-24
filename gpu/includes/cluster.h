@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/21 16:22:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 12:33:24 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <sys/socket.h>
 
 # define FIND_PORT 60000
-# define MAX_CLIENTS 2
+# define MAX_CLIENTS 1
 
 # define SEND_CAMERA 0
 # define SEND_SPHERES 0
