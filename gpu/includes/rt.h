@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 13:55:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 18:23:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,6 @@ typedef struct		s_2deg
 typedef struct		s_thread_input
 {
 	int				th;
-	char			*str[2];
-	int				port[2];
-	int				fd[2];
 	int				y_min;
 	int				y_max;
 	struct s_world	*world;

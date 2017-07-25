@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 15:12:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 19:09:28 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <sys/socket.h>
 
 # define FIND_PORT 60000
-# define MAX_CLIENTS 4
+# define MAX_CLIENTS 16
 
 # define SEND_CAMERA 0
 # define SEND_SPHERES 0
@@ -51,13 +51,16 @@ typedef struct		s_client
 struct		s_offsets;
 typedef struct		s_cluster
 {
-	t_client		*client_list;
-	int				sockfd;
-	pthread_t		client_thread;
-	struct s_world	*world;
-	int				nbr_clients;
-	t_offsets		offsets;
-}					t_cluster;
+	t_client			*client_list;
+	int					sockfd;
+	pthread_t			client_thread;
+	struct s_world		*world;
+	int					nbr_clients;
+	t_offsets			offsets;
+	int					th;
+	int					y_min;
+	int					y_max;
+}						t_cluster;
 
 
 
@@ -71,9 +74,10 @@ void	rt_cluster(t_world *world);
 *******************************************************************************/
 
 void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_size);
-void		cluster_stratege(t_cluster *cluster);
+int		cluster_stratege(t_cluster *cluster);
 
 int			data_recv(t_data *data, size_t size);
 void		process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd);
 void		put_buffer_together(t_cluster *cluster, t_client *clients);
+int					launch_client(t_cluster *cluster, t_client *client);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 14:57:04 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 19:15:31 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,14 +145,18 @@ void	render_clustering(t_world *world, t_cluster *cluster)
 
 	int			quit;
 	SDL_Event	event;
+	int			tmp_nbr;
 
 	quit = 0;
 	while (quit == 0)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);	
-		cluster_stratege(cluster);
-		send_informations_all(cluster, 'r', NULL, 0);
+		if(cluster_stratege(cluster) == 1 && tmp_nbr == cluster->nbr_clients)
+			launch_client(cluster, cluster->client_list);
+	//	send_informations_all(cluster, 'r', NULL, 0);
+		tmp_nbr = cluster->nbr_clients;
+		put_buffer_together(cluster, cluster->client_list);
 	////	printf("je suis dans cluster render\n");
 		put_pixel_screen(cluster->world);
 		// ft_bzero(cluster->world->a_h, world->size_main);

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 15:46:54 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/24 19:13:28 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,14 +180,14 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 	t_client	*clients;
 	t_client	*clients_tmp;
 	int			nbr_clients;
-	int			clients_alive;
+	int			clients_alive ;
 
 	clients_tmp = NULL;
 	nbr_clients = 0;
 	clients = cluster->client_list;
-	while(clients != NULL)
-	{
-		if (cmd == 'r')
+//	while(clients != NULL)
+//	{
+//		if (cmd == 'r')
 			clients_alive = send_buffer_clients(cluster, clients);
 		if(clients_alive)
 		{
@@ -195,7 +195,6 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 			clients_alive = send_informations(clients, cmd, arg, arg_size);
 			printf("je sors d'information valeur de client%d\n", clients_alive);
 		}
-		put_buffer_together(cluster, cluster->client_list);
 
 //		if (clients->buffer)
 //		{
@@ -207,18 +206,53 @@ void		send_informations_all(t_cluster *cluster, char cmd, void *arg, size_t arg_
 //		}
 		if (!clients_alive)
 			remove_clients(cluster, &clients, &clients_tmp);
-		else
-		{
-			clients_tmp = clients;
-			clients = clients->next;
-			nbr_clients++;
-		}
-		printf("je change de clients\n");
-	}
+//		else
+	//	{
+	//		clients_tmp = clients;
+	//		clients = clients->next;
+//			nbr_clients++;
+	//	}
+	//	printf("je change de clients\n");
+//	}
 //	return(n1);
 }
 
-void	cluster_stratege(t_cluster *cluster)
+void	*send_to_client(void *arg)
+{
+	t_cluster	*cluster;
+
+	cluster = (t_cluster *)arg;
+	send_informations_all(cluster, 'r', NULL, 0);
+	pthread_exit(0);
+}
+
+int					launch_client(t_cluster *cluster, t_client *client)
+{
+	t_cluster		tab[cluster->nbr_clients];
+	int				i;
+	static pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
+
+	pthread_mutex_lock(&mutex);
+	i = -1;
+	while (++i < cluster->nbr_clients)
+	{
+		tab[i].client_list = client;
+		tab[i].th = i;
+		tab[i].world = cluster->world;
+		tab[i].y_min = client->offsets.y_min;
+		tab[i].y_max = client->offsets.y_max;
+		if (pthread_create(&cluster->world->thread[i], NULL, &send_to_client, &tab[i]))
+			ft_putendl_fd("Error : Can't init launch_rtv1\n", 1);
+		client = client->next;
+	}
+	i = -1;
+	while (++i < cluster->nbr_clients)
+		pthread_join(cluster->world->thread[i], NULL);
+	pthread_mutex_unlock(&mutex);
+	return(0);
+}
+
+int		cluster_stratege(t_cluster *cluster)
 {
 	int			nbr;
 	t_offsets	offsets;
@@ -234,8 +268,8 @@ void	cluster_stratege(t_cluster *cluster)
 
 	nbr = cluster->nbr_clients;
 	offsets.y_min = 0;
-//	sleep(5);
-	while(nbr--)
+//	sleep(5) && clients != NULL;
+	while(nbr-- && clients != NULL)
 	{
 		// printf("nbr_clients :%d\n", cluster->nbr_clients);	
 		// printf("offsets.y_min :%d | offsets.y_max :%d\n", offsets.y_min, offsets.y_max);
@@ -251,9 +285,13 @@ void	cluster_stratege(t_cluster *cluster)
 			send_informations(clients, 'w', &offsets, sizeof(offsets));
 			clients = clients->next;
 		}
-		else
+		else 
+		{
 			ft_memcpy(&offsets, &offsets, sizeof(offsets));
+			return (0);
+		}
 	}
+	return(1);
 }
 
 
