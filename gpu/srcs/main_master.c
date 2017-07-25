@@ -108,33 +108,28 @@ void	put_buffer_together(t_cluster *cluster, t_client *clients)
 	int			nbr_clients;
 	int 		x;
 	int 		y;
-	int y_max;
+	int			y_max;
+	int 		i;
 
 	nbr_clients = cluster->nbr_clients;
 	while(nbr_clients--)
 	{
+		i = 0;
 		if (clients->buffer)
 		{
 			y = nbr_clients * WIN_HEIGHT / cluster->nbr_clients;
 			y_max = y;
-			printf("CLIENT OFFSET MINIMUM %d | %d\n", y, clients->offsets.y_max);
-			printf("INSIDE BUFER PUT TOGETHER\n");
 			while (y < y_max + (WIN_HEIGHT / cluster->nbr_clients))
 			{
 				x = 0;
 				while (x < WIN_WIDTH)
 				{
-					cluster->world->a_h[y * WIN_WIDTH + x] = clients->buffer[y * WIN_WIDTH + x];
+					cluster->world->a_h[y * WIN_WIDTH + x] = clients->buffer[i];
 					x++;
+					i++;
 				}
 				y++;
 			}
-			// ft_memcpy(cluster->world->a_h + 320 * 4, clients->buffer, 4 * WIN_WIDTH * WIN_HEIGHT);
-				
-			// printf("%d\n", cluster->offsets.y_min);
-//			put_pixel_screen(cluster->world);
-//			SDL_UpdateWindowSurface(cluster->world->window.id);
-	//		sleep(5);
 		}
 			clients = clients->next;
 	}

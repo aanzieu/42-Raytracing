@@ -49,7 +49,7 @@ int		send_informations(t_client *clients, char cmd, void *arg, size_t arg_size)
 	char	ok;
 	size_t	main_size;
 
-	main_size = 4 * (WIN_WIDTH * WIN_HEIGHT);// * sizeof(int);
+	main_size = sizeof(int) * (WIN_WIDTH * (clients->offsets.y_max - clients->offsets.y_min));
 	if(!send(clients->fd, &cmd, 1, 0))
 		return(0);
 	if(!send(clients->fd, &arg_size, 8, 0))

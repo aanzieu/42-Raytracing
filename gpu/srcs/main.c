@@ -37,6 +37,8 @@ static void	data_setup(t_world *world)
 	world->viewplane.dist = 1;
 	world->line = 0;
 	world->ambient.coef = 0.2;
+	world->offsets.y_min = 0;
+	world->offsets.y_max = 0;
 }
 
 static void	load_data(t_world *world)
@@ -54,30 +56,6 @@ static void	load_data(t_world *world)
 			world->hyperboloids_tmp, &world->hyperboloids_len);
 }
 
-// thread = 0;
-// y_min = 32;
-// y_max = 320;
-// 
-// y = 0 * (320 / 8) + 32    =   32;
-// while y < 1 * (320 / 8)   =   40;
-
-// thread = 1;
-// y_min = 32;
-// y_max = 320;
-// 
-// y = 1 * (320 / 8) + 32    =   72;
-// while y < 2 * (320 / 8)   =   80;
-
-// thread = 2;
-// y_min = 32;
-// y_max = 320;
-// 
-// y = 2 * (320 / 8) + 32    =   112;
-// while y < 3 * (320 / 8)   =   120;
-
-// 320 / 8 = 40
-
-
 static	void		*perform_thread(void *arg)
 {
 	t_thread_input	*thread;
@@ -91,7 +69,7 @@ static	void		*perform_thread(void *arg)
 		x = 0;
 		while (x < thread->world->viewplane.x_res)
 		{
-			thread->world->a_h[y * thread->world->viewplane.x_res + x]
+			thread->world->a_h[(y - thread->y_min) * thread->world->viewplane.x_res + x]
 					= ray_tracer(*thread->world, x, y);
 			x++;
 		}
@@ -128,7 +106,6 @@ void	launch_cpu(t_world *world)
 	if(world->clientrender == 1)
 	{
 		get_viewplane(world);
-		printf("test\n");
 		launch_thread(world, world->offsets.y_min, world->offsets.y_max);
 		return;
 	}
@@ -138,8 +115,7 @@ void	launch_cpu(t_world *world)
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-		//		C'EST ICI QUE TU METS DES VALEURS POUR TESTER L'INTERVALE DE L'IMAGE , TU DOIS EXECUTER EN LOCAL
-		launch_thread(world, 0, 640);
+		launch_thread(world, 0, WIN_HEIGHT);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
@@ -178,8 +154,9 @@ void    rt_cluster(t_world *world)
     if(world->a_h != NULL)
 		free(world->a_h);
 	world->clientrender = 1;
-	world->size_main = world->viewplane.x_res * world->viewplane.y_res
+	world->size_main = world->viewplane.x_res * (world->offsets.y_max - world->offsets.y_min)
         * sizeof(int);
+	printf("HEIGHT %d\n", world->offsets.y_max - world->offsets.y_min);
     if (!(world->a_h = malloc(world->size_main)))
         exit(0);
 	printf("JE RENTRE DANS RT\n");
@@ -197,7 +174,6 @@ void    rt(t_world *world)
         * sizeof(int);
     if (!(world->a_h = malloc(world->size_main)))
         exit(0);
-	printf("JE RENTRE DANS RT\n");
     ft_bzero(world->a_h, world->size_main);
     if (SDL_Init(SDL_INIT_VIDEO) == -1)
         return ;
@@ -208,8 +184,6 @@ void    rt(t_world *world)
         launch_cpu(world);
     else
         launch_gpu(world);
-	printf("JE SORS DE RT\n");
-	// printf("couleurs %d :\n", world->a_h[620]);
     free(world->a_h);
     SDL_FreeSurface(world->window.screen);
     SDL_DestroyWindow(world->window.id);
@@ -244,7 +218,6 @@ int		main(int argc, char **argv)
 	{
 		parse_rtv1(world, argv[1]);
 		load_data(world);
-		printf("post process world spheres radius %lf\n", world->spheres[1].radius);
 		rt(world);
 		free_world(world);
 	}

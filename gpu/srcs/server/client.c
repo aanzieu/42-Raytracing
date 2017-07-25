@@ -106,7 +106,7 @@ void	process_send(char cmd, t_data *data, t_cluster *cluster, int sockfd)
 	size_t	main_size;
 
 	// (cluster->world->offsets.y_max - cluster->world->offsets.y_min));// * sizeof(int);
-	main_size = 4 * (WIN_WIDTH * (WIN_HEIGHT));// * sizeof(int);
+	main_size = sizeof(int) * (WIN_WIDTH * (cluster->world->offsets.y_max - cluster->world->offsets.y_min));
 	if(cmd == 'c')
 		ft_memcpy(&cluster->world->camera, data->data, sizeof(t_camera));
 	if(cmd == 's')
