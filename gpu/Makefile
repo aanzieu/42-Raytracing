@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/06/30 09:10:05 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/07/26 14:51:55 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
 				\
 				$(SRC_DIR)/server/master.c \
+				$(SRC_DIR)/server/master_send_infos.c \
 				$(SRC_DIR)/server/client.c \
 
 ###################################################
@@ -141,7 +142,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
@@ -153,7 +154,7 @@ $(NAMEMASTER): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAMEMASTER) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAMEMASTER) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
@@ -165,7 +166,7 @@ $(NAMECLIENT): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAMECLIENT) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAMECLIENT) $(OBJ) $(OBJ_CUDA) $(LIBFT) -Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
@@ -177,13 +178,13 @@ $(NAMECLIENT): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $< -o $@
+	$(CC) $(CC_FLAGS) -g -c $(INCLUDE) $(INCLUDECUDA) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
+	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $< -o $@ 
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################

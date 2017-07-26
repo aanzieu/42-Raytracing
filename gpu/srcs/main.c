@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/24 18:01:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/25 18:51:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,14 +198,15 @@ void    rt(t_world *world)
 
 int		main(int argc, char **argv)
 {
-	t_world	*world;
-	int		flags = 0;
-
-	if (!(world = (t_world*)malloc(sizeof(t_world) * 1)))
+	t_world		*world;
+	int			flags;
+	
+	if (!(world = (t_world*)ft_memalloc(sizeof(t_world))))
 		memory_allocation_error();
 	data_setup(world);
 	get_viewplane(world);
-	if (argc > 2)
+	flags = 0;
+	if (argc == 3)// 2 &&)
 	{
 		if((ft_strcmp("local", argv[2]) == 0))
 			flags = 0;
@@ -213,6 +214,8 @@ int		main(int argc, char **argv)
 			flags = 1;
 		else if((ft_strcmp("client", argv[1]) == 0))
 			flags = 2;
+		else
+			flags = 0;
 	}
 	if (flags == 0 && argv[1])
 	{
@@ -225,7 +228,6 @@ int		main(int argc, char **argv)
 	{
 		parse_rtv1(world, argv[1]);
 		load_data(world);
-		printf("post process world spheres radius %lf\n", world->spheres[1].radius);
 		master_cluster(world);// == -1;
 		printf("je sors de master_cluster\n");
 	}
@@ -237,9 +239,6 @@ int		main(int argc, char **argv)
 			exit(1);
 		}
 		serveur_address_serveur(argv[2], world);
-	//	parse_rtv1(world, argv[1]);	// A retirer pour utiliser les donees recues de master
-	//	load_data(world); // A retirer pour utiliser les donees recues de master
-	//	client_cluster(world);// == -1;
 		printf("je sors de client\n");
 	}
 	else
