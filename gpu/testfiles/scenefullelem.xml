@@ -1,4 +1,4 @@
-1?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <scene name="Three Sphere">
 	<surface type="Cone">
 		<center> -0.75 0 0.5 </center>
@@ -10,7 +10,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
-	<surface type="Cylinder">
+	<!--surface type="Cylinder">
 		<center> 0.75 0 0.5 </center>
 		<normal> 0.75 1 0.5 </normal>
 		<radius> 0.1 </radius>
@@ -19,8 +19,8 @@
 		<height> 1 </height>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-	</surface>
-	<surface type="Cylinder">
+	</surface-->
+	<!--surface type="Cylinder">
 		<center> -1 0 -0.5 </center>
 		<normal> -1 1 -0.5 </normal>
 		<radius> 0.1 </radius>
@@ -29,7 +29,7 @@
 		<height> 1 </height>
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
-	</surface>
+	</surface-->
 	<surface type="cone">
 		<center> 1 0 -0.5 </center>
 		<normal> 1 1 -0.5 </normal>
@@ -66,7 +66,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 	</surface>
-	<surface type="Paraboloid">
+	<!--surface type="Paraboloid">
 		<top> 0 -1 0 </top>
 		<normal> 0 1 0 </normal>
 		<Rdistance> 0.1 </Rdistance>
@@ -75,7 +75,7 @@
 		<rotation> 0 0 0 </rotation>
 		<translation> 0 0 0 </translation>
 		<height> 1 </height>
-	</surface>
+	</surface-->
 	<light>
 		<position> 0 0 -5 </position>
 		<color> 255 255 255 </color>

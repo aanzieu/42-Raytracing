@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/07/26 14:51:55 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/07/27 16:06:59 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,11 @@ SRC =			$(SRC_DIR)/main.c \
 				\
 				$(SRC_DIR)/server/master.c \
 				$(SRC_DIR)/server/master_send_infos.c \
+				$(SRC_DIR)/server/master_buff_infos.c \
+				$(SRC_DIR)/server/master_utils.c \
 				$(SRC_DIR)/server/client.c \
+				$(SRC_DIR)/server/client_recev_infos.c \
+				$(SRC_DIR)/server/client_utils.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##

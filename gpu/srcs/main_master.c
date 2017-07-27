@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/26 15:13:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:32:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void			*init_client(void *arg)
 		ft_bzero(new, sizeof(*new));
 		new->fd = fd;
 		new->status = 'a';
+		new->ww = WIN_WIDTH;
 		new->next = self->client_list;
 		self->client_list = new;
 	}

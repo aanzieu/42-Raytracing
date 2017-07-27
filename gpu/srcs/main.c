@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/25 18:51:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:49:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void		get_viewplane(t_world *world)
 									(double)world->viewplane.y_res;
 }
 
-static void	data_setup(t_world *world)
+void	data_setup(t_world *world)
 {
+
 	world->mode = 0;
 	world->light_type = 1;
 	world->viewplane.width = 0.5;
@@ -39,6 +40,16 @@ static void	data_setup(t_world *world)
 	world->ambient.coef = 0.2;
 	world->offsets.y_min = 0;
 	world->offsets.y_max = 0;
+	world->spheres = NULL;
+	world->spheres_len = 0;
+	world->planes = NULL;
+	world->planes_len = 0;
+	world->cones = NULL;
+	world->cones_len = 0;
+	world->cylinders = NULL;
+	world->cylinders_len = 0;
+	world->lights = NULL;
+	world->lights_len = 0;
 }
 
 static void	load_data(t_world *world)
@@ -82,7 +93,7 @@ int					launch_thread(t_world *world, int y_min, int y_max)
 {
 	t_thread_input		tab[NB_TH];
 	int				i;
-		
+
 	i = -1;
 	while (++i < NB_TH)
 	{
@@ -128,7 +139,16 @@ void	launch_gpu(t_world *world)
 {
 	int			quit;
 	SDL_Event	event;
-	
+	static pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
+
+	if(world->clientrender == 1)
+	{
+		pthread_mutex_lock(&mutex);
+		get_viewplane(world);
+		render_cuda(world->a_h, WIN_WIDTH, world->offsets.y_max - world->offsets.y_min, *world, 0);
+		pthread_mutex_unlock(&mutex);
+		return;
+	}
 	quit = 0;
 	while (quit == 0)
 	{
@@ -141,8 +161,6 @@ void	launch_gpu(t_world *world)
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
-	render_cuda(world->a_h, world->viewplane.x_res,
-			world->viewplane.y_res, *world, 1);
 }
 
 /*
@@ -151,21 +169,16 @@ void	launch_gpu(t_world *world)
 
 void    rt_cluster(t_world *world)
 {
-    if(world->a_h != NULL)
-		free(world->a_h);
 	world->clientrender = 1;
-	world->size_main = world->viewplane.x_res * (world->offsets.y_max - world->offsets.y_min)
+	world->render_factor = world->offsets.render_factor;
+	if(world->a_h != NULL)
+		free(world->a_h);
+	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min)
         * sizeof(int);
-	printf("HEIGHT %d\n", world->offsets.y_max - world->offsets.y_min);
-    if (!(world->a_h = malloc(world->size_main)))
-        exit(0);
-	printf("JE RENTRE DANS RT\n");
+    if (!(world->a_h = ft_memalloc(world->size_main)))
+		ft_putendl_fd("Error : Can't malloc client a_h", 1);
     ft_bzero(world->a_h, world->size_main);
- //   if (world->mode == 0)
-        launch_cpu(world);
-//    else
-  //      launch_gpu(world);
-	printf("JE SORS DE RT\n");
+	launch_gpu(world);
 }
 
 void    rt(t_world *world)
@@ -189,34 +202,14 @@ void    rt(t_world *world)
     SDL_DestroyWindow(world->window.id);
 }
 
-/*
-** DEBUG TO FILE
-**	int fd;
-**	FILE *saved = stdout;
-**	stdout = fopen("log.txt", "w+");
-*/
-
-int		main(int argc, char **argv)
+void		choose_main_launcher(char **argv, int flags)
 {
 	t_world		*world;
-	int			flags;
-	
+
 	if (!(world = (t_world*)ft_memalloc(sizeof(t_world))))
 		memory_allocation_error();
 	data_setup(world);
 	get_viewplane(world);
-	flags = 0;
-	if (argc == 3)// 2 &&)
-	{
-		if((ft_strcmp("local", argv[2]) == 0))
-			flags = 0;
-		else if((ft_strcmp("master", argv[2]) == 0))
-			flags = 1;
-		else if((ft_strcmp("client", argv[1]) == 0))
-			flags = 2;
-		else
-			flags = 0;
-	}
 	if (flags == 0 && argv[1])
 	{
 		parse_rtv1(world, argv[1]);
@@ -228,18 +221,33 @@ int		main(int argc, char **argv)
 	{
 		parse_rtv1(world, argv[1]);
 		load_data(world);
-		master_cluster(world);// == -1;
-		printf("je sors de master_cluster\n");
+		ft_putstr("Wait Connection\n");
+		master_cluster(world);
+		ft_putstr("End of connexion, get start again\n");
 	}
 	else if(flags == 2)
 	{
-		if(argv[2] == NULL)
-		{
-			printf("usage : client IP");
-			exit(1);
-		}
-		serveur_address_serveur(argv[2], world);
-		printf("je sors de client\n");
+		if(argv[1] == NULL)
+			ft_putstr_fd("usage : client IP\n", 1);
+		serveur_address_serveur(argv[1], world);
+		ft_putstr("Thank you for your patience\n");
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	int			flags;
+	
+	flags = 0;
+	if (argc == 2)
+		choose_main_launcher(argv, 0);
+	else if (argc > 2)
+	{
+		if((ft_strcmp("master", argv[2]) == 0))
+			flags = 1;
+		else if((ft_strcmp("client", argv[2]) == 0))
+			flags = 2;
+		choose_main_launcher(argv, flags);
 	}
 	else
 		ft_putstr("Usage: ./rtv1 filename.xml\n");

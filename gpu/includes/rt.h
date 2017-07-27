@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/24 18:23:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/27 16:31:02 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_offsets
 {
 	int				y_min;
 	int				y_max;
+	int				render_factor;
 }					t_offsets;
 
 typedef struct		s_window
@@ -162,6 +163,11 @@ typedef struct		s_world
 	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
 
+	t_sphere		*spheres_d;
+	t_plane			*planes_d;
+	t_light			*lights_d;
+	t_cone			*cones_d;
+	
 	int			spheres_len;
 	int			planes_len;
 	int			cylinders_len;

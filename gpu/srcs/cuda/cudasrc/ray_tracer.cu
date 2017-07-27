@@ -71,11 +71,11 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
-	get_closest_disk(world, ray, intersection, &intersection_tmp);
+//	get_closest_disk(world, ray, intersection, &intersection_tmp);
 	get_closest_cone(world, ray, intersection, &intersection_tmp);
-	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
-	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
-	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
+//	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
+//	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
+//	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
 	if (intersection->type == '0')
 		return (0);
 	else

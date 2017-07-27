@@ -6,13 +6,13 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/26 15:16:28 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/27 17:33:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/cluster.h>
 
-static void			*sd_cli(void *arg)
+static void		*sd_cli(void *arg)
 {
 	t_cluster	*cluster;
 	int			err;
@@ -23,7 +23,7 @@ static void			*sd_cli(void *arg)
 	pthread_exit(0);
 }
 
-int					launch_client(t_cluster *cluster, t_client *client)
+int				launch_client(t_cluster *cluster, t_client *client)
 {
 	t_cluster				tab[cluster->nbr_clients];
 	int						i;
@@ -52,54 +52,32 @@ int					launch_client(t_cluster *cluster, t_client *client)
 	return (0);
 }
 
-void				remove_client_if(t_cluster *cluster, t_client **alst,
-		t_client *last, t_client *tmp)
+static void		send_offsets(t_client *clients, t_cluster *cluster, int nbr)
 {
-	t_client	*current;
+	t_offsets	offsets;
 
-	current = *alst;
-	while (current)
+	offsets.y_min = 0;
+	while (nbr--)
 	{
-		if (current->remove == 'o')
+		if (clients)
 		{
-			cluster->nbr_clients--;
-			if (current == *alst)
-				*alst = current->next;
-			else
-				last->next = current->next;
-			tmp = current;
-			current = current->next;
-			free(tmp->buffer);
-			ft_putstr_fd("Client Connexion Dead\n", 1);
-			free(tmp);
-		}
-		else
-		{
-			last = current;
-			current = current->next;
+			offsets.y_min = nbr * WIN_HEIGHT / cluster->nbr_clients;
+			offsets.y_max = offsets.y_min + WIN_HEIGHT / cluster->nbr_clients;
+			offsets.render_factor = cluster->world->render_factor;
+			clients->offsets.y_min = offsets.y_min;
+			clients->offsets.y_max = offsets.y_max;
+			clients->main_size = sizeof(int)
+				* (clients->ww
+						* (clients->offsets.y_max - clients->offsets.y_min));
+			send_informations(clients, 'w', &offsets, sizeof(offsets));
+			clients = clients->next;
 		}
 	}
 }
 
-void				free_buffer(t_cluster *cluster)
-{
-	int			nbr_clients;
-	t_client	*tmp;
-
-	tmp = cluster->client_list;
-	nbr_clients = cluster->nbr_clients;
-	while (tmp)
-	{
-		free(tmp->buffer);
-		tmp->buffer = NULL;
-		tmp = tmp->next;
-	}
-}
-
-int					cluster_stratege(t_cluster *cluster)
+int				cluster_stratege(t_cluster *cluster)
 {
 	int			nbr;
-	t_offsets	offsets;
 	t_client	*clients;
 
 	cluster->nbr_clients = 0;
@@ -109,18 +87,6 @@ int					cluster_stratege(t_cluster *cluster)
 	clients = cluster->client_list;
 	if ((nbr = cluster->nbr_clients) == 0)
 		return (0);
-	offsets.y_min = 0;
-	while (nbr--)
-	{
-		if (clients)
-		{
-			offsets.y_min = nbr * WIN_HEIGHT / cluster->nbr_clients;
-			offsets.y_max = offsets.y_min + WIN_HEIGHT / cluster->nbr_clients;
-			clients->offsets.y_min = offsets.y_min;
-			clients->offsets.y_max = offsets.y_max;
-			send_informations(clients, 'w', &offsets, sizeof(offsets));
-			clients = clients->next;
-		}
-	}
+	send_offsets(clients, cluster, nbr);
 	return (1);
 }
