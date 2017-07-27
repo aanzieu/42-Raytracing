@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/19 16:46:01 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/07/27 18:06:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@
 #define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
+
+typedef struct		s_offsets
+{
+	int				y_min;
+	int				y_max;
+	int				render_factor;
+}					t_offsets;
 
 typedef struct		s_window
 {
@@ -126,6 +133,8 @@ typedef struct		s_2deg
 typedef struct		s_thread_input
 {
 	int				th;
+	int				y_min;
+	int				y_max;
 	struct s_world	*world;
 }					t_thread_input;
 
@@ -147,15 +156,20 @@ typedef struct		s_world
 	t_paraboloid*paraboloids;
 	t_hyperboloid	*hyperboloids;
 
-	t_sphere	*spheres_tmp;
-	t_plane		*planes_tmp;
-	t_disk		*disks_tmp;
-	t_light		*lights_tmp;
-	t_cylinder	*cylinders_tmp;
-	t_cone		*cones_tmp;
-	t_paraboloid*paraboloids_tmp;
+	t_sphere		*spheres_tmp;
+	t_plane			*planes_tmp;
+	t_disk			*disks_tmp;
+	t_light			*lights_tmp;
+	t_cylinder		*cylinders_tmp;
+	t_cone			*cones_tmp;
+	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
 
+	t_sphere		*spheres_d;
+	t_plane			*planes_d;
+	t_light			*lights_d;
+	t_cone			*cones_d;
+	
 	int			spheres_len;
 	int			planes_len;
 	int			cylinders_len;
@@ -168,6 +182,7 @@ typedef struct		s_world
 	pthread_t		thread[NB_TH];
 	int				th;
 
+	int			clientrender;
 	int				*a_h;
 	size_t		size_main;
 
@@ -180,12 +195,17 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-
+	
+	t_offsets	offsets;
 	t_ambient	ambient;
 	int			light_type;
 }					t_world;
 
-void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
+void				get_viewplane(t_world *world);
+int					launch_thread(t_world *world, int y_min, int y_max);
+void				send_buffer(t_world *world, int port);
+void				rt(t_world *world);
+void				render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
 void				sphere_key_handler(t_world	*world);
 void				plane_key_handler(t_world *world);
 void				render(t_world *world);
@@ -211,4 +231,14 @@ t_sphere	*copy_sphere(t_sphere *obj);
 t_plane		*copy_plan(t_plane *obj);
 t_cone		*copy_cone(t_cone *obj);
 t_cylinder		*copy_cylinder(t_cylinder *obj);
+
+/*******************************************************************************
+**                     CLUSTERING                                        	  **
+*******************************************************************************/
+
+void	master_cluster(t_world *world);
+void	client_cluster(t_world *world, int port);
+void	*get_data_from_client_thread(void *arg);
+void	get_data_from_client(char *hostname, unsigned short port, t_world *world);
+
 #endif

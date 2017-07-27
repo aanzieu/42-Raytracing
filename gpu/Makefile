@@ -6,11 +6,13 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/07/18 18:44:42 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/07/27 18:27:25 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
+NAMEMASTER = RTmaster
+NAMECLIENT = RTclient
 
 MAKE = make
 MAKE_FLAGS = --no-print-directory
@@ -65,6 +67,8 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 
 SRC =			$(SRC_DIR)/main.c \
+				$(SRC_DIR)/main_master.c \
+				$(SRC_DIR)/main_client.c \
 				$(SRC_DIR)/free_memory.c \
 				$(SRC_DIR)/render.c \
 				$(SRC_DIR)/display_functions.c \
@@ -117,6 +121,14 @@ SRC =			$(SRC_DIR)/main.c \
 				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
+				\
+				$(SRC_DIR)/server/master.c \
+				$(SRC_DIR)/server/master_send_infos.c \
+				$(SRC_DIR)/server/master_buff_infos.c \
+				$(SRC_DIR)/server/master_utils.c \
+				$(SRC_DIR)/server/client.c \
+				$(SRC_DIR)/server/client_recev_infos.c \
+				$(SRC_DIR)/server/client_utils.c \
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##
@@ -139,13 +151,35 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) \
-	-Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
+$(NAMEMASTER): $(OBJ) $(OBJ_CUDA)
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
+	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
+	if [ ! -d bin ]; then mkdir -p bin; fi
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
+	-gencode arch=compute_30,code=compute_30 \
+    -gencode arch=compute_35,code=compute_35
+	printf '\033[1;7m'
+	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
+
+$(NAMECLIENT): $(OBJ) $(OBJ_CUDA)
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
+	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
+	if [ ! -d bin ]; then mkdir -p bin; fi
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
+	-gencode arch=compute_30,code=compute_30 \
+    -gencode arch=compute_35,code=compute_35
+	printf '\033[1;7m'
+	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 ###################################################
 ##--- Create repertories for objects .c to .c ---##
 ###################################################
@@ -153,13 +187,13 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
+	$(CC) $(CC_FLAGS) -g -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@
+	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@ 
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################
@@ -185,6 +219,9 @@ fclean: clean
 	@$(RF) obj objcuda bin
 
 re: fclean all
+
+master : $(NAMEMASTER)
+client : $(NAMECLIENT)
 
 run: $(NAME)
 	./bin/rtv1 ./testfiles/basic.xml
