@@ -118,7 +118,7 @@ __host__ __device__ t_color 	handle_refraxion_transparence(t_world world, t_ray 
 	intersection->t = DBL_MAX;
 	intersection->type = '0';
  	ref_coef = intersection->refraxion_coef;
-	if (ref_coef != 1)
+	if (ref_coef > 1)
 	{
 		calc[0] = vector_dot(intersection->normal_v, ray->dir);
 		calc[1] = sqrt(1 - (ref_coef * ref_coef) * (1 - (calc[0] * calc[0])));
@@ -133,7 +133,7 @@ __host__ __device__ t_color 	handle_refraxion_transparence(t_world world, t_ray 
 	ray->origin = intersection->pos;
 	if (get_closest_intersection(world, *ray, intersection))
 	{
-		color_scalar(&color, 0.33);
+		color_scalar(&color, ref_coef);
 		color_add(&color, *intersection->color);
 	}
 	else
