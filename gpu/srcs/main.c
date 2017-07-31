@@ -19,8 +19,8 @@
 
 void		get_viewplane(t_world *world)
 {
-	world->viewplane.x_res = WIN_WIDTH / world->render_factor;
-	world->viewplane.y_res = WIN_HEIGHT / world->render_factor;
+	world->viewplane.x_res = WIN_WIDTH / world->render_factor * world->anti_aliasing;
+	world->viewplane.y_res = WIN_HEIGHT / world->render_factor * world->anti_aliasing;
 	world->viewplane.x_indent = world->viewplane.width /
 									(double)world->viewplane.x_res;
 	world->viewplane.y_indent = world->viewplane.height /
@@ -50,6 +50,7 @@ void	data_setup(t_world *world)
 	world->cylinders_len = 0;
 	world->lights = NULL;
 	world->lights_len = 0;
+	world->anti_aliasing = 1;
 }
 
 static void	load_data(t_world *world)
@@ -126,7 +127,7 @@ void	launch_cpu(t_world *world)
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
 		get_viewplane(world);
-		launch_thread(world, 0, WIN_HEIGHT);
+		launch_thread(world, 0, WIN_HEIGHT * world->anti_aliasing);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		SDL_UpdateWindowSurface(world->window.id);

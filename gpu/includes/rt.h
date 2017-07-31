@@ -19,14 +19,15 @@
 #include "../libft/libft.h"
 
 #include <pthread.h>
-#include "../frameworks/SDL2.framework/Headers/SDL.h"
+//#include "../frameworks/SDL2.framework/Headers/SDL.h"
+#include <SDL2/SDL.h>
 
 #define NB_TH 8
 
 #define VERSION 1.03.3
 
-#define WIN_WIDTH 640
-#define WIN_HEIGHT 640
+#define WIN_WIDTH 160
+#define WIN_HEIGHT 160
 
 #define SHADOW_BIAS 0
 
@@ -191,6 +192,7 @@ typedef struct		s_world
 
 	t_keys		keys;
 	int			mode;
+	int			anti_aliasing;
 
 	int			line;
 

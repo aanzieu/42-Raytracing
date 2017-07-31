@@ -104,6 +104,5 @@ void					remove_client_if(t_cluster *cluster, t_client **alst,
 						t_client *last, t_client *tmp);
 int						send_buffer_clients(t_cluster *cluster, t_client *clients);
 void					free_buffer(t_cluster *cluster);
-void					data_setup(t_world *world);
 
 #endif

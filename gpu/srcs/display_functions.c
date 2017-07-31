@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_functions.c                                :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:05:20 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:46:23 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <effects.h>
+#include <gpu_rt.h>
 
 void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 {
@@ -73,33 +74,76 @@ void				effect_application(t_world *world)
 
 }
 
+int					average_colors(int color1, int color2)
+{
+	t_color		rgb_color1;
+	t_color		rgb_color2;
+	t_color		average;
+
+	rgb_color1 = int_to_rgb(color1);
+	rgb_color2 = int_to_rgb(color2);
+	average.r = (rgb_color1.r + rgb_color2.r) / 2;
+	average.g = (rgb_color1.g + rgb_color2.g) / 2;
+	average.b = (rgb_color1.b + rgb_color2.b) / 2;		
+
+	return (rgb_to_int(rgb_color1));
+}
+
+int	anti_aliasing(t_world *world, int x, int y)
+{
+	int color;
+	int		i;
+	int		j;
+
+	color = 0;
+	i = 0;
+	while (i < world->anti_aliasing)
+	{
+		j = 0;
+		while (j < world->anti_aliasing)
+		{
+			if (color == 0)
+				color = world->a_h[y * world->viewplane.x_res + x];
+			else
+				color = average_colors(color, world->a_h[(y + i) * world->viewplane.x_res + (x + j)]);
+			j++;
+		}
+		i++;
+	}
+	return (color);
+}
+
 void				put_pixel_screen(t_world *world)
 {
 	int 			i;
 	int 			j;
 	int 			y;
 	int				x;
+	int				color;
 
 
 	effect_application(world);
 	i = 0;
 	y = 0;
-//	printf("couleurs %d :\n", world->a_h[620]);
 	while (i < WIN_HEIGHT)
 	{
 		j = 0;
 		x = 0;
 		while (j < WIN_WIDTH)
 		{
-		//	printf("couleur pixel %d\n", world->a_h[y * world->viewplane.x_res + x]);
+			color = 0;
+			if (world->anti_aliasing == 1)
+				color = world->a_h[y * world->viewplane.x_res + x];
+			else
+				color = anti_aliasing(world, x, y);
 			pixel_to_image(world->window.screen, j, i,
-					world->a_h[y * world->viewplane.x_res + x]);
+				color);
 			j++;
 			if (j % world->render_factor == 0)
-				x++;
+					x += world->anti_aliasing;
 		}
 		i++;
 		if (i % world->render_factor == 0)
-			y++;
+					y += world->anti_aliasing;
 	}
 }
