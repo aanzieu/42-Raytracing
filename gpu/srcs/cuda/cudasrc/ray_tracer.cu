@@ -60,7 +60,7 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 
 	intersection_tmp.t = DBL_MAX;
 	intersection_tmp.type = '0';
-
+	intersection_tmp.id = intersection->id;
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
 	get_closest_disk(world, ray, intersection, &intersection_tmp);
@@ -85,56 +85,99 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 	}
 }
 
-__host__ __device__ int		ray_tracer(t_world world, int x, int y)
+__host__ __device__ t_color 	handle_reflexion(t_world world, t_ray *ray, t_intersection *intersection, t_color color)
 {
-	t_ray      			ray;//, ray_save;
-	t_intersection	intersection;//, intersection_save;
-	t_color					color = (t_color){0, 0, 0};
-	t_vec3d					reflected;
-	int							i, depth;
+	int				i;
+	int				depth;
 
 	i = 0;
-	intersection.t = DBL_MAX;
-	intersection.type = '0';
-	get_up_left(&world);
-	get_ray_direction(world, &ray, x, y);
-	get_closest_intersection(world, ray, &intersection);
-	if (intersection.type == '0')
-		return (get_color(color));
-	// intersection_save = intersection;
-	// ray_save = ray;
-	if (intersection.reflexion_coef == 0)
+	depth = intersection->reflexion_coef < MAX_DEPTH ? intersection->reflexion_coef : MAX_DEPTH;
+	while(i < depth)// && i < MAX_DEPTH)
 	{
-		color_add(&color, *intersection.color);
-	  color_multiply(&color, world.ambient.color);
-	  color_scalar(&color, world.ambient.intensity);
+		intersection->t = DBL_MAX;
+		ray->origin = intersection->pos;
+		ray->dir = vector_normalize(vector_substract(ray->dir,
+			vector_scalar(intersection->normal_v,
+				2 * vector_dot(ray->dir, intersection->normal_v))));
+		get_closest_intersection(world, *ray, intersection);
+		if (intersection->type != '0')
+			color_add(&color, *intersection->color);
+		i++;
+	}
+	return (color);
+}
+
+__host__ __device__ t_color 	handle_refraxion_transparence(t_world world, t_ray *ray, t_intersection *intersection)
+{
+	double			calc[2];
+	double		 	refracted_t;
+	double			ref_coef;
+	t_color			color;
+
+	color = *intersection->color;
+	intersection->t = DBL_MAX;
+	intersection->type = '0';
+ 	ref_coef = intersection->refraxion_coef;
+	if (ref_coef != 1)
+	{
+		calc[0] = vector_dot(intersection->normal_v, ray->dir);
+		calc[1] = sqrt(1 - (ref_coef * ref_coef) * (1 - (calc[0] * calc[0])));
+		if (calc[0] > 0)
+			refracted_t = (ref_coef * calc[0] - calc[1]);
+		else
+			refracted_t = (ref_coef * calc[0] + calc[1]);
+	 	ray->dir = vector_normalize(vector_add(
+			vector_scalar(ray->dir, ref_coef),
+			vector_scalar(intersection->normal_v, refracted_t)));
+	}
+	ray->origin = intersection->pos;
+	if (get_closest_intersection(world, *ray, intersection))
+	{
+		color_scalar(&color, 0.33);
+		color_add(&color, *intersection->color);
 	}
 	else
-	{
-		depth = intersection.reflexion_coef;
-		while(i < depth && i < MAX_DEPTH)
-		{
-			ray.origin = intersection.pos;//vector_add(intersection.pos, (t_vec3d){0.00000001, 0.00000001, 0.00000001});
-			reflected = vector_scalar(intersection.normal_v, 2 * vector_dot(ray.dir, intersection.normal_v));
-			ray.dir = vector_normalize(vector_substract(ray.dir, reflected));
-			get_closest_intersection(world, ray, &intersection);
-			if (intersection.type != '0')
-				color_add(&color, *intersection.color);
-			i++;
-		}
-		color_multiply(&color, world.ambient.color);
-		color_scalar(&color, world.ambient.intensity);
+		color = (t_color){0, 0, 0};
+	intersection->color = &color;
+	return (color);
+}
 
-	}
+__host__ __device__ int		ray_tracer(t_world world, int x, int y)
+{
+	t_ray      			ray, raycpy;
+	t_intersection	intersection;
+	t_color					color;
+	int							i;
+
 	i = 0;
+	color = (t_color){0, 0, 0};
+	intersection.t = DBL_MAX;
+	intersection.type = '0';
+	intersection.id = -1;
+
+	get_up_left(&world);
+	get_ray_direction(world, &ray, x, y);
+	raycpy.origin = vector_copy(ray.origin);
+	raycpy.dir = vector_copy(ray.dir);
+	get_closest_intersection(world, ray, &intersection);
+
+	if (intersection.type == '0')
+		return (0);
+	if (intersection.reflexion_coef == 0 && intersection.refraxion_coef == 0)
+		color = *intersection.color;
+	if (intersection.reflexion_coef != 0)
+		color = handle_reflexion(world, &raycpy, &intersection, color);
+	if (intersection.refraxion_coef != 0)
+		color = handle_refraxion_transparence(world, intersection.refraxion_coef == 1 ? &ray : &raycpy, &intersection);
+
+	color_scalar(&color, world.ambient.intensity);
+	color_multiply(&color, world.ambient.color);
 	while (i < world.lights_len)
 	{
-			get_light_at(world, &color, world.lights[i], intersection, ray);
+		get_light_at(world, &color, world.lights[i], intersection, ray);
 		if (world.keys.pad_9 == 1)
 			cartoon_effect(world, &color, world.lights[i], intersection, ray);
 		i++;
 	}
-	// (void)intersection_save;
-	// (void)ray_save;
 	return (get_color(color));
 }

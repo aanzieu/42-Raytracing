@@ -27,7 +27,7 @@ static void	get_plane_next(t_world *world, char **tmp, int i, t_plane *p)
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&p->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
-		parse_reflexion(&p->refraxion_coef, tmp, world->line);
+		parse_refraxion(&p->refraxion_coef, tmp, world->line);
 }
 
 void		parse_plane(t_world *world, t_list *lst)
@@ -48,6 +48,6 @@ void		parse_plane(t_world *world, t_list *lst)
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_plan(&world->planes_tmp, new_plan(p));
+	add_plan(&world->planes_tmp, new_plan(p, world->obj_id++));
 	free(p);
 }

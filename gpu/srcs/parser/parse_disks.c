@@ -27,7 +27,7 @@ static void	get_disk_next(t_world *world, char **tmp, int i, t_disk *d)
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&d->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
-		parse_reflexion(&d->refraxion_coef, tmp, world->line);
+		parse_refraxion(&d->refraxion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<radius>", ft_strlen("<radius>")))
 	{
 		d->radius = ft_atoi_double((tmp[i + 1]));
@@ -53,6 +53,6 @@ void		parse_disk(t_world *world, t_list *lst)
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_disk(&world->disks_tmp, new_disk(d));
+	add_disk(&world->disks_tmp, new_disk(d, world->obj_id++));
 	free(d);
 }

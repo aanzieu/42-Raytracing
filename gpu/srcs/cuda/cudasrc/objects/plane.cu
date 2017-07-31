@@ -28,30 +28,27 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *int
 	double	denominator;
 	t_vec3d	x;
 	double	n;
-//	double a, b;
 
-//	a = dot_prod(&plan->rot, &pos);
-//	b = dot_prod(&plan->rot, &ray->dir);
-//	denominator = -(dot_prod(&plan->rot, &pos) / dot_prod(&plan->rot, &ray->dir));
-
-	intersection_tmp->normal_v = vector_normalize(vector_calculate(plane.pos, plane.up));
+	intersection_tmp->normal_v = vector_normalize(
+		vector_calculate(plane.pos, plane.up));
 	denominator = vector_dot(ray.dir, intersection_tmp->normal_v);
 	if (denominator != 0)
 	{
 		x = vector_scalar(vector_calculate(plane.pos, ray.origin), -1);
 		n = vector_dot(x, intersection_tmp->normal_v);
 		t = n / denominator;
-		if (t > 0.0000001)
+		if (t > 0.0000001 && (intersection_tmp->id != plane.id))
 		{
 			intersection_tmp->t = t;
+			if (plane.refraxion_coef != 0)
+				intersection_tmp->id = plane.id;
 			intersection_tmp->type = 'p';
 			if (denominator > 0)
 				intersection_tmp->normal_v =
-					vector_scalar(intersection_tmp->normal_v, 1);
+					vector_scalar(intersection_tmp->normal_v, -1);
 			return (1);
 		}
 	}
-	intersection_tmp->t = -1;
 	return (0);
 }
 
@@ -67,9 +64,11 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
+				intersection->id = world.planes[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.planes[i].reflexion_coef;
+				intersection->refraxion_coef = world.planes[i].refraxion_coef;
 				intersection->color = &world.planes[i].color;
 				intersection->pos = vector_add(ray.origin,
 				vector_scalar(ray.dir, intersection->t));

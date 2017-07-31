@@ -16,6 +16,11 @@ extern "C" {
 }
 #include <math.h>
 
+__host__ __device__ t_vec3d vector_copy(t_vec3d cpy)
+{
+	return ((t_vec3d){cpy.x, cpy.y, cpy.z});
+}
+
 __host__ __device__ t_vec3d	vector_calculate(t_vec3d vect1, t_vec3d vect2)
 {
 	return (vector_substract(vect2, vect1));

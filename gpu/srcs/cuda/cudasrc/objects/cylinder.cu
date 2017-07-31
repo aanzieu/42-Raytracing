@@ -29,7 +29,7 @@ __host__ __device__ t_vec3d	get_normal_cylinder(t_cylinder cylinder, t_camera ca
 	axis_v = vector_normalize(vector_calculate(cylinder.pos, cylinder.up));
 
 	m = vector_dot(ray.dir, axis_v) * intersection.t + vector_dot(x, axis_v);
-	
+
 	normal_v = vector_normalize(vector_substract(vector_substract(intersection.pos, cylinder.pos),
 					vector_scalar(axis_v, m)));
 	return (normal_v);
@@ -70,11 +70,13 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 	{
 		if (get_cylinder(world.cylinders[i], world.camera, ray, intersection_tmp) == 1)
 		{
-			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
+			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1 && intersection_tmp->id != intersection->id)
 			{
+				intersection->id = world.cylinders[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.cylinders[i].reflexion_coef;
+				intersection->refraxion_coef = world.cylinders[i].refraxion_coef;
 				intersection->color = &world.cylinders[i].color;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection->t));

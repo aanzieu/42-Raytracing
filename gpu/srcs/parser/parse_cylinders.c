@@ -29,8 +29,7 @@ static void	get_cylinder_next(t_world *world, char **tmp, int i, t_cylinder *cy)
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&cy->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
-		parse_reflexion(&cy->refraxion_coef, tmp, world->line);
-
+		parse_refraxion(&cy->refraxion_coef, tmp, world->line);
 }
 
 void		parse_cylinder(t_world *world, t_list *lst)
@@ -51,6 +50,6 @@ void		parse_cylinder(t_world *world, t_list *lst)
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_cylinder(&world->cylinders_tmp, new_cylinder(cy));
+	add_cylinder(&world->cylinders_tmp, new_cylinder(cy, world->obj_id++));
 	free(cy);
 }

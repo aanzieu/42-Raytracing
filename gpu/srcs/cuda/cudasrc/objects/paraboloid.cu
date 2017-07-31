@@ -69,13 +69,15 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.paraboloids_len)
 	{
-		if (get_paraboloid(world.paraboloids[i], world.camera, ray, intersection_tmp) == 1)
+		if (get_paraboloid(world.paraboloids[i], world.camera, ray, intersection_tmp) == 1 && intersection_tmp->id != intersection->id)
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != 1)
 			{
+				intersection->id = world.paraboloids[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.paraboloids[i].reflexion_coef;
+				intersection->refraxion_coef = world.paraboloids[i].refraxion_coef;
 				intersection->color = &world.paraboloids[i].color;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));

@@ -82,6 +82,7 @@ CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 CUDA_HOSTDEV void		rotate(t_vec3d *point, double degrees, char axis);
 CUDA_HOSTDEV void		translate(t_vec3d *point, double x, double y, double z);
 CUDA_HOSTDEV t_vec3d	new_vector(double x, double y, double z);
+CUDA_HOSTDEV t_vec3d	vector_copy(t_vec3d cpy);
 CUDA_HOSTDEV t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_substract(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_cross(t_vec3d vect1, t_vec3d vect2);

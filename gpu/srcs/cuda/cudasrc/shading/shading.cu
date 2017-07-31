@@ -30,6 +30,7 @@ __host__ __device__ int		get_shadow(t_world world, t_light light,
 	shadow.dir = vector_calculate(collision.pos, light.pos);
 	shadow.origin = collision.pos;
 	dist_light = vector_length(shadow.dir);
+	collision_tmp.id = -1;
 	if (get_closest_intersection(world, shadow, &collision_tmp) == 1)
 	{
 		dist_intersection = vector_length(vector_calculate(collision.pos,

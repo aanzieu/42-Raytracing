@@ -17,7 +17,7 @@ static void				get_hyperboloid_next(t_world *world, char **tmp,
 	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
 		parse_reflexion(&hyper->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
-		parse_reflexion(&hyper->refraxion_coef, tmp, world->line);
+		parse_refraxion(&hyper->refraxion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<translation>", ft_strlen("<translation>")))
 		parse_point_translation(&hyper->top, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
@@ -36,12 +36,13 @@ void					parse_hyperboloid(t_world *world, t_list *lst)
 	{
 		tmp = ft_strsplit(lst->content, ' ');
 		i = -1;
+		hyper->refraxion_coef = 0;
 		while (tmp[++i] != NULL)
 			get_hyperboloid_next(world, tmp, i, hyper);
 		ft_cleanup_str(tmp);
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(hyper));
+	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(hyper, world->obj_id++));
 	free(hyper);
 }

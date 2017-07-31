@@ -46,18 +46,20 @@ __host__ __device__ void	get_closest_disk(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.disks_len)
 	{
-		if (get_disk(world.disks[i], ray, intersection_tmp) == 1)
+		if (get_disk(world.disks[i], ray, intersection_tmp) == 1 && intersection_tmp->id != intersection->id)
 		{
 			if (intersection_tmp->t < intersection->t)
 			{
+				intersection->id = world.disks[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.disks[i].reflexion_coef;
+				intersection->refraxion_coef = world.disks[i].refraxion_coef;
 				intersection->color = &world.disks[i].color;
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
 			}
 		}
-		i++;		
+		i++;
 	}
 }

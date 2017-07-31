@@ -69,7 +69,7 @@ __host__ __device__ static int		get_cone(t_cone cone, t_camera camera,
 	return(0);
 }
 
-__host__ __device__ static void		get_dist_cone_face(t_cone cone, t_ray ray,  t_intersection intersection)
+__host__ __device__ void		get_dist_cone_face(t_cone cone, t_ray ray,  t_intersection intersection)
 {
 	double	t;
 	double	denominator;
@@ -140,11 +140,13 @@ __host__ __device__ void			get_closest_cone(t_world world, t_ray ray,
 	//				intersection_tmp->t = -1;
 //			if(intersection_tmp->pos.x > world.cones[i].height.x)// || intersection_tmp->pos.x < 0.0)
 //					intersection_tmp->t = -1;
-			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
+			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1 && intersection_tmp->id != intersection->id)
 			{
+				intersection->id = world.cones[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.cones[i].reflexion_coef;
+				intersection->refraxion_coef = world.cones[i].refraxion_coef;
 				intersection->color = &world.cones[i].color;
 				intersection->pos = vector_add(ray.origin,
 						vector_scalar(ray.dir, intersection_tmp->t));

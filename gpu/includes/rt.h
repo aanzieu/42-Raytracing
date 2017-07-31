@@ -24,8 +24,8 @@
 
 #define VERSION 1.03.3
 
-#define WIN_WIDTH 640
-#define WIN_HEIGHT 640
+#define WIN_WIDTH 576
+#define WIN_HEIGHT 576
 
 #define SHADOW_BIAS 0
 
@@ -87,10 +87,11 @@ typedef struct		s_intersection
 	t_vec3d	pos;
 	t_color *color;
 	double	reflexion_coef;
-
+	double	refraxion_coef;
 	double	t;
 	char		type;
 	int			id;
+	int			flag;
 }					t_intersection;
 
 typedef struct		s_ray
@@ -146,7 +147,6 @@ typedef struct		s_world
 	t_cone		*cones;
 	t_paraboloid*paraboloids;
 	t_hyperboloid	*hyperboloids;
-
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
 	t_disk		*disks_tmp;
@@ -183,6 +183,8 @@ typedef struct		s_world
 
 	t_ambient	ambient;
 	int			light_type;
+
+	int			obj_id;
 }					t_world;
 
 void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset);
@@ -210,4 +212,5 @@ t_sphere	*copy_sphere(t_sphere *obj);
 t_plane		*copy_plan(t_plane *obj);
 t_cone		*copy_cone(t_cone *obj);
 t_cylinder		*copy_cylinder(t_cylinder *obj);
+
 #endif

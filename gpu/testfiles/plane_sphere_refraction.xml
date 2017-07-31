@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Three Sphere">
+	<surface type="Sphere">
+		<shader ref="red"/>
+		<radius> 0.5 </radius>
+		<center> -0.5 -0.5 2.5 </center>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 255 0 0 </color>
+		<reflexion> 0 </reflexion>
+		<refraxion> 0 </refraxion>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="blue"/>
+		<radius> 1 </radius>
+		<center> 0 1.5 4.5 </center>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 0 0 255 </color>
+		<reflexion> 0 </reflexion>
+		<refraxion> 0 </refraxion>
+	</surface>
+	<surface type="Sphere">
+		<shader ref="green"/>
+		<radius> 0.5 </radius>
+		<center> 0 -0.5 1 </center>
+		<rotation> 0 0 0 </rotation>
+		<translation> 0 0 0 </translation>
+		<color> 0 255 0 </color>
+		<reflexion> 0 </reflexion>
+		<refraxion> 1.1 </refraxion>
+	</surface>
+	<surface type="Plan">
+		<origin> 0 -1 1 </origin>
+		<normal> 0 0 1 </normal>
+		<rotation> 0 0 0 </rotation>
+		<color> 255 255 255 </color>
+		<reflexion> 1 </reflexion>
+	</surface>
+	<light>
+		<position> 0.5 0 -1.5 </position>
+		<direction> 0 0 1 </direction>
+		<intensity> 1 </intensity>
+		<color> 255 255 255 </color>
+	</light>
+	<ambient>
+		<intensity> 0.2 </intensity>
+		<color> 255 255 255 </color>
+	</ambient>
+	<camera type="Camera">
+		<viewPoint> 0 0 -5 </viewPoint>
+		<viewDir> 0 0 1 </viewDir>
+	</camera>
+</scene>

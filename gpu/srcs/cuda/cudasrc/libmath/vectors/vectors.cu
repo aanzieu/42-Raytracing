@@ -35,9 +35,9 @@ __host__ __device__ t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2)
 
 __host__ __device__ t_vec3d	vector_substract(t_vec3d vect1, t_vec3d vect2)
 {
-	vect1.x += (-1) * vect2.x;
-	vect1.y += (-1) * vect2.y;
-	vect1.z += (-1) * vect2.z;
+	vect1.x -= vect2.x;//(-1) * vect2.x;
+	vect1.y -= vect2.y;//(-1) * vect2.y;
+	vect1.z -= vect2.z;//(-1) * vect2.z;
 	return (vect1);
 }
 

@@ -43,14 +43,15 @@ __host__ __device__ static double			get_sphere(t_sphere sphere,
 	eq.b = 2 * vector_dot(ray.dir, x);
 	eq.c = vector_dot(x, x) - pow(sphere.radius, 2);
 	eq.res = second_degres(eq.a, eq.b, eq.c);
-	if(eq.res != NOT_A_SOLUTION)
+	if(eq.res != NOT_A_SOLUTION && intersection_tmp->id != sphere.id)
 	{
 		intersection_tmp->t = eq.res;
 		intersection_tmp->type = 's';
-		return(1);
+		if (sphere.refraxion_coef != 0)
+			intersection_tmp->id = sphere.id;
+		return (1);
 	}
-	intersection_tmp->t = -1.0;
-	return(0);
+	return (0);
 }
 
 __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
@@ -61,16 +62,18 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.spheres_len)
 	{
-		if(get_sphere(world.spheres[i], ray, intersection_tmp) == 1)
+		if (get_sphere(world.spheres[i], ray, intersection_tmp) == 1)// && intersection_tmp->id != intersection->id)
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
+				intersection->id = intersection_tmp->id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflexion_coef = world.spheres[i].reflexion_coef;
+				intersection->refraxion_coef = world.spheres[i].refraxion_coef;
 				intersection->color = &world.spheres[i].color;
-				intersection->pos = vector_add(vector_scalar(ray.dir,
-							intersection_tmp->t), ray.origin);
+				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,
+							intersection_tmp->t));
 				intersection->normal_v = get_normal_sphere(world.spheres[i],
 														*intersection);
 			}

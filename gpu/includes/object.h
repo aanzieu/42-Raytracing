@@ -18,6 +18,7 @@
 
 typedef struct			s_plane
 {
+	int						id;
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
@@ -28,18 +29,20 @@ typedef struct			s_plane
 
 typedef struct			s_disk
 {
+	int						id;
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
-	double				reflexion_coef;
-	double				refraxion_coef;
 	double				radius;
 	double				radius_squared;
+	double				reflexion_coef;
+	double				refraxion_coef;
 	struct s_disk		*next;
 }						t_disk;
 
 typedef struct			s_cylinder
 {
+	int						id;
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_vec3d				up_v;
@@ -52,6 +55,7 @@ typedef struct			s_cylinder
 
 typedef struct			s_cone
 {
+	int						id;
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
@@ -66,16 +70,18 @@ typedef struct			s_cone
 
 typedef struct			s_sphere
 {
+	int						id;
 	double				radius;
 	t_vec3d				pos;
 	t_color				color;
 	double				reflexion_coef;
-	double				refraxion_coef;
+	double		refraxion_coef;
 	struct s_sphere		*next;
 }						t_sphere;
 
 typedef struct			s_paraboloid
 {
+	int						id;
 	t_vec3d				top;
 	t_vec3d				normal;
 	t_color				color;
@@ -88,6 +94,7 @@ typedef struct			s_paraboloid
 
 typedef struct			s_hyperboloid
 {
+	int						id;
 	t_vec3d				top;
 	t_vec3d				normal;
 	t_color				color;
@@ -95,19 +102,20 @@ typedef struct			s_hyperboloid
 	double				maxm;
 	double				reflexion_coef;
 	double				refraxion_coef;
-	struct s_hyperboloid*next;
+	struct s_hyperboloid *next;
 }						t_hyperboloid;
+
 /*******************************************************************************
 **                     FCTS_OBJ                                               **
 *******************************************************************************/
 
-t_sphere				*new_sphere(t_sphere *nw);
-t_cone					*new_cone(t_cone *nw);
-t_plane					*new_plan(t_plane *nw);
-t_disk					*new_disk(t_disk *nw);
-t_cylinder				*new_cylinder(t_cylinder *nw);
-t_paraboloid			*new_paraboloid(t_paraboloid *nw);
-t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw);
+t_sphere				*new_sphere(t_sphere *nw, int id);
+t_cone					*new_cone(t_cone *nw, int id);
+t_plane					*new_plan(t_plane *nw, int id);
+t_disk					*new_disk(t_disk *nw, int id);
+t_cylinder				*new_cylinder(t_cylinder *nw, int id);
+t_paraboloid			*new_paraboloid(t_paraboloid *nw, int id);
+t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);

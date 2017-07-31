@@ -17,8 +17,8 @@
 
 static void	get_viewplane(t_world *world)
 {
-	world->viewplane.x_res = WIN_WIDTH / world->render_factor;
-	world->viewplane.y_res = WIN_HEIGHT / world->render_factor;
+	world->viewplane.x_res = (WIN_WIDTH) / world->render_factor;
+	world->viewplane.y_res = (WIN_HEIGHT) / world->render_factor;
 	world->viewplane.x_indent = world->viewplane.width /
 									(double)world->viewplane.x_res;
 	world->viewplane.y_indent = world->viewplane.height /
@@ -27,7 +27,7 @@ static void	get_viewplane(t_world *world)
 
 static void	data_setup(t_world *world)
 {
-	world->mode = 1;
+	world->mode = 2;
 	world->light_type = 1;
 	world->viewplane.width = (double)((M_PI / 4) / 2);
 	world->viewplane.height = ((double)((double)(WIN_HEIGHT) / (double)(WIN_WIDTH)) * world->viewplane.width);
@@ -35,6 +35,7 @@ static void	data_setup(t_world *world)
 	world->viewplane.dist = 1;
 	world->line = 0;
 	world->ambient.coef = 0.2;
+	world->obj_id = 0;
 }
 
 static void	load_data(t_world *world)
