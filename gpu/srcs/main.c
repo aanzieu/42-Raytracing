@@ -51,6 +51,7 @@ void	data_setup(t_world *world)
 	world->lights = NULL;
 	world->lights_len = 0;
 	world->anti_aliasing = 1;
+	world->size_main = 0;
 }
 
 static void	load_data(t_world *world)
@@ -124,13 +125,16 @@ void	launch_cpu(t_world *world)
 	quit = 0;
 	while (quit == 0)
 	{
-		SDL_PollEvent(&event);
-		quit = event_handler(world, event);
-		get_viewplane(world);
-		launch_thread(world, 0, WIN_HEIGHT * world->anti_aliasing);
-		put_pixel_screen(world);
-		ft_bzero(world->a_h, world->size_main);
-		SDL_UpdateWindowSurface(world->window.id);
+		while (SDL_PollEvent(&event))
+		{
+			quit = event_handler(world, event);
+			get_viewplane(world);
+			launch_thread(world, 0, WIN_HEIGHT * world->anti_aliasing);
+			// printf("anti_aliasing: %d\n", world->anti_aliasing);
+			put_pixel_screen(world);
+			ft_bzero(world->a_h, world->size_main);
+			SDL_UpdateWindowSurface(world->window.id);
+		}
 	}
 }
 

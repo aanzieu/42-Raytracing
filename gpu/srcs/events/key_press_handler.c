@@ -28,10 +28,12 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.space = 1;
 	if (event.key.keysym.sym == SDLK_w)
 		world->keys.w = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
+	if (event.key.keysym.sym == SDLK_x)
+		world->keys.x = 1;
+	if (event.key.keysym.sym == SDLK_z)
+		world->keys.z = 1;
+	if (event.key.keysym.sym == SDLK_c)
+		world->keys.c = 1;
 	if (event.key.keysym.sym == SDLK_a)
 		world->keys.a = 1;
 	if (event.key.keysym.sym == SDLK_s)
@@ -158,6 +160,36 @@ void	key_press_handler3(t_world *world, SDL_Event event)
 	{
 		while ((WIN_HEIGHT / world->render_factor) != 32)
 					world->render_factor++;
+	}
+	if (world->keys.z == 1)
+	{
+		if (world->anti_aliasing != 1)
+		{
+			world->anti_aliasing = 1;
+			get_viewplane(world);
+			realloc_framebuffer(world);
+			printf("Modified value %d\n", world->anti_aliasing);
+		}
+	}
+	if (world->keys.x == 1)
+	{
+		if (world->anti_aliasing != 8)
+		{
+			world->anti_aliasing = 8;
+			get_viewplane(world);
+			realloc_framebuffer(world);
+			printf("Modified value %d\n",  world->anti_aliasing);			
+		}
+	}
+	if (world->keys.c == 1)
+	{
+		if (world->anti_aliasing != 16)
+		{
+			world->anti_aliasing = 16;
+			get_viewplane(world);
+			realloc_framebuffer(world);
+			printf("Modified value %d\n",  world->anti_aliasing);			
+		}
 	}
 	// if (world->keys.rightbracket == 1)
 	// 	world->lights->pos.z += 0.05;

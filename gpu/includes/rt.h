@@ -73,6 +73,9 @@ typedef struct		s_keys
 	int s;
 	int a;
 	int d;
+	int x;
+	int z;
+	int	c;
 	int	four;
 	int five;
 	int six;

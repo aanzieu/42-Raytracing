@@ -121,6 +121,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
+				$(SRC_DIR)/malloc/malloc_framebuffer.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
 				\
 				$(SRC_DIR)/server/master.c \

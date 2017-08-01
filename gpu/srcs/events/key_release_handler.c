@@ -36,6 +36,12 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 		world->keys.s = 0;
 	if (event.key.keysym.sym == SDLK_d)
 		world->keys.d = 0;
+	if (event.key.keysym.sym == SDLK_z)
+		world->keys.z = 0;
+	if (event.key.keysym.sym == SDLK_x)
+		world->keys.x = 0;
+	if (event.key.keysym.sym == SDLK_c)
+		world->keys.c = 0;
 	if (event.key.keysym.sym == SDLK_0)
 		world->keys.pad_0 = 0;
 	if (event.key.keysym.sym == SDLK_1)
