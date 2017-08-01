@@ -55,11 +55,9 @@ int				send_informations_all(t_cluster *cluster,
 		char cmd, void *arg, size_t arg_size)
 {
 	t_client	*clients;
-	int			nbr_clients;
 	int			clients_alive;
 
 	clients_alive = 0;
-	nbr_clients = 0;
 	clients = cluster->client_list;
 	if (clients != NULL)
 	{

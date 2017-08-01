@@ -64,6 +64,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
+				$(SRC_CUDA_DIR)/colors/colors_conversion.cu \
 
 
 SRC =			$(SRC_DIR)/main.c \
@@ -151,7 +152,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -lm `sdl2-config --cflags --libs` \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'

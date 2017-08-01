@@ -50,6 +50,7 @@ void	data_setup(t_world *world)
 	world->cylinders_len = 0;
 	world->lights = NULL;
 	world->lights_len = 0;
+	world->anaglyph_depth = 3;
 }
 
 static void	load_data(t_world *world)

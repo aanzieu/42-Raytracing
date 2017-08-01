@@ -57,6 +57,8 @@ CUDA_HOSTDEV void		color_scalar(t_color *color, double coeficient);
 CUDA_HOSTDEV void		color_add(t_color *color1, t_color color2);
 CUDA_HOSTDEV t_color	new_color(double r, double g, double b);
 CUDA_HOSTDEV int		get_color(t_color color);
+CUDA_HOSTDEV t_color	int_to_rgb(int color);
+CUDA_HOSTDEV int		rgb_to_int(t_color color);
 
 /*******************************************************************************
 **                     LIGHTS_FCTS                                            **

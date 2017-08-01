@@ -19,7 +19,8 @@
 #include "../libft/libft.h"
 
 #include <pthread.h>
-#include "../frameworks/SDL2.framework/Headers/SDL.h"
+// #include "../frameworks/SDL2.framework/Headers/SDL.h"
+#include <SDL2/SDL.h>
 
 #define NB_TH 8
 
@@ -191,6 +192,7 @@ typedef struct		s_world
 
 	t_keys		keys;
 	int			mode;
+	int			anaglyph_depth;
 
 	int			line;
 

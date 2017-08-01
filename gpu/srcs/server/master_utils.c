@@ -43,11 +43,9 @@ void				remove_client_if(t_cluster *cluster, t_client **alst,
 
 void				free_buffer(t_cluster *cluster)
 {
-	int			nbr_clients;
 	t_client	*tmp;
 
 	tmp = cluster->client_list;
-	nbr_clients = cluster->nbr_clients;
 	while (tmp)
 	{
 		free(tmp->buffer);

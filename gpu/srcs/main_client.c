@@ -22,11 +22,9 @@ void				client_loop(int sockfd, t_cluster *cluster, t_data *data)
 	char	cmd;
 	int		ret;
 	size_t	data_size;
-	size_t	data_used;
 
 	if ((ret = recv(sockfd, &cmd, 1, 0)) != 1)
 		return ;
-	data_used = 0;
 	if ((ret = recv(sockfd, &data_size, 8, 0)) <= 0)
 		return ;
 	if (data_size)
