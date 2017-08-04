@@ -33,6 +33,8 @@ static void				get_paraboloid_next(t_world *world, char **tmp,
 		parse_reflexion(&para->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
 		parse_refraxion(&para->refraxion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&para->chess, tmp, world->line);
 }
 
 void					parse_paraboloid(t_world *world, t_list *lst)
@@ -43,6 +45,7 @@ void					parse_paraboloid(t_world *world, t_list *lst)
 
 	if (!(para = (t_paraboloid *)ft_memalloc(sizeof(t_paraboloid))))
 		ft_putendl_fd("error malloc Paraboloid", 1);
+	para->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');

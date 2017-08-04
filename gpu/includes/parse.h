@@ -34,6 +34,7 @@ void				parse_disk(t_world *world, t_list *lst);
 void				parse_cylinder(t_world *world, t_list *lst);
 void				parse_cone(t_world *world, t_list *lst);
 void				parse_paraboloid(t_world *world, t_list *lst);
+void        parse_torus(t_world *world, t_list *lst);
 
 void				parse_hyperboloid(t_world *world, t_list *lst);
 void				parse_color(t_color *c, char **tmp, int line);

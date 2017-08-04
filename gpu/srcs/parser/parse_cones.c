@@ -36,6 +36,8 @@ static void	get_cone_next(t_world *world, char **tmp, int i, t_cone *co)
 		parse_point_translation(&co->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&co->up, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&co->chess, tmp, world->line);
 }
 
 void		parse_cone(t_world *world, t_list *lst)
@@ -46,6 +48,7 @@ void		parse_cone(t_world *world, t_list *lst)
 
 	if (!(co = (t_cone *)ft_memalloc(sizeof(t_cone))))
 		ft_putendl_fd("error malloc Cones", 1);
+	co->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');

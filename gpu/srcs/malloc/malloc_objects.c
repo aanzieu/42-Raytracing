@@ -44,6 +44,7 @@ t_plane		*new_plan(t_plane *nw, int id)
 	p->up = nw->up;
 	p->pos = nw->pos;
 	p->color = nw->color;
+	p->chess = nw->chess;
 	p->reflexion_coef = nw->reflexion_coef;
 	p->refraxion_coef = nw->refraxion_coef;
 	p->next = NULL;
@@ -64,6 +65,7 @@ t_disk		*new_disk(t_disk *nw, int id)
 	d->radius_squared = nw->radius_squared;
 	d->reflexion_coef = nw->reflexion_coef;
 	d->refraxion_coef = nw->refraxion_coef;
+	d->chess = nw->chess;
 	d->next = NULL;
 	return (d);
 }
@@ -84,6 +86,7 @@ t_cone		*new_cone(t_cone *nw, int id)
 	c->height = nw->height;
 	c->min = nw->min;
 	c->max = nw->max;
+	c->chess = nw->chess;
 	c->next = NULL;
 	return (c);
 }
@@ -98,6 +101,7 @@ t_sphere	*new_sphere(t_sphere *nw, int id)
 	s->radius = nw->radius;
 	s->pos = nw->pos;
 	s->color = nw->color;
+	s->chess = nw->chess;
 	s->reflexion_coef = nw->reflexion_coef;
 	s->refraxion_coef = nw->refraxion_coef;
 	s->next = NULL;
@@ -119,6 +123,7 @@ t_cylinder	*new_cylinder(t_cylinder *nw, int id)
 	cy->reflexion_coef = nw->reflexion_coef;
 	cy->refraxion_coef = nw->refraxion_coef;
 	cy->next = NULL;
+	cy->chess = nw->chess;
 	return (cy);
 }
 

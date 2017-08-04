@@ -28,6 +28,8 @@ static void	get_disk_next(t_world *world, char **tmp, int i, t_disk *d)
 		parse_reflexion(&d->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
 		parse_refraxion(&d->refraxion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&d->chess, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<radius>", ft_strlen("<radius>")))
 	{
 		d->radius = ft_atoi_double((tmp[i + 1]));
@@ -43,6 +45,7 @@ void		parse_disk(t_world *world, t_list *lst)
 
 	if (!(d = (t_disk *)ft_memalloc(sizeof(t_disk))))
 		ft_putendl_fd("Error Malloc Disk", 1);
+	d->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');

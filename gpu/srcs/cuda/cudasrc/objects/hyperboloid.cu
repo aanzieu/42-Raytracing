@@ -63,6 +63,7 @@ __host__ __device__ void	get_closest_hyperboloid(t_world world, t_ray ray,
 				intersection->reflexion_coef = world.hyperboloids[i].reflexion_coef;
 				intersection->refraxion_coef = world.hyperboloids[i].refraxion_coef;
 				intersection->color = &world.hyperboloids[i].color;
+				intersection->chess = &world.hyperboloids[i].chess;
 				intersection->pos = vector_add(ray.origin,
 						vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_hyperboloid(world.hyperboloids[i], ray,

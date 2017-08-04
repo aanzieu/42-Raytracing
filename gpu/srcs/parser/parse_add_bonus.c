@@ -45,3 +45,22 @@ void				add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw)
 		curr->next = nw;
 	}
 }
+
+void 				add_torus(t_torus **alst, t_torus *nw)
+{
+	t_torus *curr;
+
+	if (!nw || !alst)
+		return ;
+	if (!*alst)
+		*alst = nw;
+	else
+	{
+		curr = *alst;
+		while (curr->next)
+		{
+			curr = curr->next;
+		}
+		curr->next = nw;
+	}
+}

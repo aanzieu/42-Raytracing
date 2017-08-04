@@ -22,6 +22,8 @@ static void				get_hyperboloid_next(t_world *world, char **tmp,
 		parse_point_translation(&hyper->top, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&hyper->normal, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&hyper->chess, tmp, world->line);
 }
 
 void					parse_hyperboloid(t_world *world, t_list *lst)
@@ -32,6 +34,7 @@ void					parse_hyperboloid(t_world *world, t_list *lst)
 
 	if (!(hyper = (t_hyperboloid *)ft_memalloc(sizeof(t_hyperboloid))))
 		ft_putendl_fd("error malloc Paraboloid", 1);
+	hyper->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');

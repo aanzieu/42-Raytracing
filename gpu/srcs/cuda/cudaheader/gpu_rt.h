@@ -12,8 +12,6 @@
 #include <object.h>
 #include <rt.h>
 
-#define MAX_DEPTH 2
-
 /*******************************************************************************
 **                     INTERSECTION_FONCTION_GET                              **
 *******************************************************************************/
@@ -41,6 +39,9 @@ CUDA_HOSTDEV void		get_closest_disk(t_world world, t_ray ray,
 CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_hyperboloid(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 

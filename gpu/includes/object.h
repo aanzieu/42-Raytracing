@@ -22,6 +22,7 @@ typedef struct			s_plane
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
+	t_color				chess;
 	double				reflexion_coef;
 	double				refraxion_coef;
 	struct s_plane		*next;
@@ -33,6 +34,7 @@ typedef struct			s_disk
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
+	t_color				chess;
 	double				radius;
 	double				radius_squared;
 	double				reflexion_coef;
@@ -47,6 +49,7 @@ typedef struct			s_cylinder
 	t_vec3d				pos;
 	t_vec3d				up_v;
 	t_color				color;
+	t_color				chess;
 	double				radius;
 	double				reflexion_coef;
 	double				refraxion_coef;
@@ -59,6 +62,7 @@ typedef struct			s_cone
 	t_vec3d				up;
 	t_vec3d				pos;
 	t_color				color;
+	t_color				chess;
 	double				half_angle;
 	double				height;
 	t_vec3d				min;
@@ -74,8 +78,9 @@ typedef struct			s_sphere
 	double				radius;
 	t_vec3d				pos;
 	t_color				color;
+	t_color				chess;
 	double				reflexion_coef;
-	double		refraxion_coef;
+	double				refraxion_coef;
 	struct s_sphere		*next;
 }						t_sphere;
 
@@ -85,12 +90,13 @@ typedef struct			s_paraboloid
 	t_vec3d				top;
 	t_vec3d				normal;
 	t_color				color;
+	t_color				chess;
 	double				distance;
 	double				maxm;
 	double				reflexion_coef;
 	double				refraxion_coef;
 	struct s_paraboloid	*next;
-}						t_paraboloid;
+}									t_paraboloid;
 
 typedef struct			s_hyperboloid
 {
@@ -98,12 +104,27 @@ typedef struct			s_hyperboloid
 	t_vec3d				top;
 	t_vec3d				normal;
 	t_color				color;
+	t_color				chess;
 	double				radius;
 	double				maxm;
 	double				reflexion_coef;
 	double				refraxion_coef;
 	struct s_hyperboloid *next;
-}						t_hyperboloid;
+}									t_hyperboloid;
+
+typedef struct			s_torus
+{
+	int						id;
+	t_vec3d				pos;
+	t_vec3d				normal;
+	t_color				color;
+	t_color				chess;
+	double				radius;
+	double				radius2;
+	double				reflexion_coef;
+	double				refraxion_coef;
+	struct s_torus *next;
+}									t_torus;
 
 /*******************************************************************************
 **                     FCTS_OBJ                                               **
@@ -116,6 +137,7 @@ t_disk					*new_disk(t_disk *nw, int id);
 t_cylinder				*new_cylinder(t_cylinder *nw, int id);
 t_paraboloid			*new_paraboloid(t_paraboloid *nw, int id);
 t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id);
+t_torus				*new_torus(t_torus *nt, int id);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
@@ -124,7 +146,7 @@ void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
 void					add_paraboloid(t_paraboloid **alst, t_paraboloid *nw);
 void				add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw);
-
+void					add_torus(t_torus **alst, t_torus *nt);
 
 
 void					load_planes(t_plane **planes, t_plane *planes_tmp,
@@ -141,10 +163,6 @@ void					load_paraboloids(t_paraboloid **paraboloids,
 						t_paraboloid *paraboloids_tmp,
 						int *cones_len);
 void			load_hyperboloids(t_hyperboloid **hyperboloids, t_hyperboloid *hyperboloids_tmp, int *hyperboloids_len);
-
-
-
-
-
+void 			load_torus(t_torus **torus, t_torus *torus_tmp, int *torus_len);
 
 #endif

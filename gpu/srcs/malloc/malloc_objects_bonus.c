@@ -24,6 +24,7 @@ t_paraboloid				*new_paraboloid(t_paraboloid *nw, int id)
 	para->distance = nw->distance;
 	para->maxm = nw->maxm;
 	para->color = nw->color;
+	para->chess = nw->chess;
 	para->next = NULL;
 	return (para);
 }
@@ -41,6 +42,25 @@ t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id)
 	hyper->reflexion_coef = nw->reflexion_coef;
 	hyper->maxm = nw->maxm;
 	hyper->color = nw->color;
+	hyper->chess = nw->chess;
 	hyper->next = NULL;
 	return (hyper);
+}
+
+t_torus						*new_torus(t_torus *nw, int id)
+{
+	t_torus	*t;
+
+	if (!(t = (t_torus *)ft_memalloc(sizeof(t_torus))))
+		ft_putendl_fd("Erroc Malloc on Torus", 1);
+	t->id = id;
+	t->radius = nw->radius;
+	t->radius2 = nw->radius2;
+	t->pos = nw->pos;
+	t->color = nw->color;
+	t->chess = nw->chess;
+	t->reflexion_coef = nw->reflexion_coef;
+	t->refraxion_coef = nw->refraxion_coef;
+	t->next = NULL;
+	return (t);
 }

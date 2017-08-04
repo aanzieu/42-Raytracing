@@ -56,6 +56,7 @@ __host__ __device__ void	get_closest_disk(t_world world, t_ray ray,
 				intersection->reflexion_coef = world.disks[i].reflexion_coef;
 				intersection->refraxion_coef = world.disks[i].refraxion_coef;
 				intersection->color = &world.disks[i].color;
+				intersection->chess = &world.disks[i].chess;
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
 			}

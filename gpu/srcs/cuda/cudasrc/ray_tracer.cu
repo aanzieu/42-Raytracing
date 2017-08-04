@@ -85,24 +85,38 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 	}
 }
 
-__host__ __device__ t_color 	handle_reflexion(t_world world, t_ray *ray, t_intersection *intersection, t_color color)
+__host__ __device__ t_color 	handle_reflexion(t_world world, t_ray *ray, t_intersection *intersection)
 {
 	int				i;
 	int				depth;
+	t_color		color = (t_color){0, 0, 0};
 
 	i = 0;
+	int j = 0;
 	depth = intersection->reflexion_coef < MAX_DEPTH ? intersection->reflexion_coef : MAX_DEPTH;
-	while(i < depth)// && i < MAX_DEPTH)
+	while(i < depth && j < depth)
 	{
 		intersection->t = DBL_MAX;
+		intersection->type = '0';
 		ray->origin = intersection->pos;
 		ray->dir = vector_normalize(vector_substract(ray->dir,
 			vector_scalar(intersection->normal_v,
 				2 * vector_dot(ray->dir, intersection->normal_v))));
 		get_closest_intersection(world, *ray, intersection);
 		if (intersection->type != '0')
+		{
 			color_add(&color, *intersection->color);
+			if (intersection->reflexion_coef == 0)
+				i++;
+		}
+		else
+		{
+			color = (t_color){0, 0, 0};
+			*intersection->color = (t_color){0, 0, 0};
+			return (color);
+		}
 		i++;
+		j++;
 	}
 	return (color);
 }
@@ -114,9 +128,9 @@ __host__ __device__ t_color 	handle_refraxion_transparence(t_world world, t_ray 
 	double			ref_coef;
 	t_color			color;
 
-	color = *intersection->color;
 	intersection->t = DBL_MAX;
 	intersection->type = '0';
+	color = *intersection->color;
  	ref_coef = intersection->refraxion_coef;
 	if (ref_coef > 1)
 	{
@@ -133,12 +147,48 @@ __host__ __device__ t_color 	handle_refraxion_transparence(t_world world, t_ray 
 	ray->origin = intersection->pos;
 	if (get_closest_intersection(world, *ray, intersection))
 	{
-		color_scalar(&color, ref_coef);
-		color_add(&color, *intersection->color);
+		color = *intersection->color;
+		// color_scalar(&color, ref_coef);
+		// color_add(&color, *intersection->color);
 	}
 	else
 		color = (t_color){0, 0, 0};
 	intersection->color = &color;
+	return (color);
+}
+
+__host__ __device__ t_color chess_effect(t_world world, t_ray *ray,
+																					t_intersection *intersection)
+{
+	float			x;
+	float			y;
+	t_color		color;
+
+  if (intersection->type == 'p')
+	{
+		if (((int)((intersection->pos.x + 450) * CHESS_PATTERN) ^
+					(int)((intersection->pos.y + 450) * CHESS_PATTERN) ^
+					(int)((intersection->pos.z + 450) * CHESS_PATTERN)) % 2 == 0)
+		{
+			color = *intersection->chess;
+			intersection->color = intersection->chess;
+		}
+		else
+			color = *intersection->color;
+	}
+	else
+	{
+		x = atan2(intersection->normal_v.z, intersection->normal_v.x) / M_PI + 1;
+	  y = acos(intersection->normal_v.y) / M_PI;
+		if ((fmodf(x * CHESS_PATTERN, 1) > 0.5) ^
+				(fmodf(y * CHESS_PATTERN, 1) > 0.5) == 0)
+		{
+			color = *intersection->chess;
+			intersection->color = intersection->chess;
+		}
+		else
+			color = *intersection->color;
+	}
 	return (color);
 }
 
@@ -160,18 +210,18 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	raycpy.origin = vector_copy(ray.origin);
 	raycpy.dir = vector_copy(ray.dir);
 	get_closest_intersection(world, ray, &intersection);
-
 	if (intersection.type == '0')
 		return (0);
 	if (intersection.reflexion_coef == 0 && intersection.refraxion_coef == 0)
 		color = *intersection.color;
 	if (intersection.reflexion_coef != 0)
-		color = handle_reflexion(world, &raycpy, &intersection, color);
+		color_add(&color, handle_reflexion(world, &raycpy, &intersection));
 	if (intersection.refraxion_coef != 0)
-		color = handle_refraxion_transparence(world, intersection.refraxion_coef == 1 ? &ray : &raycpy, &intersection);
-
-	color_scalar(&color, world.ambient.intensity);
+		color_add(&color, handle_refraxion_transparence(world, &raycpy, &intersection));
+	if (intersection.chess->r != -1)
+		color_add(&color, chess_effect(world, &raycpy, &intersection));
 	color_multiply(&color, world.ambient.color);
+	color_scalar(&color, world.ambient.intensity);
 	while (i < world.lights_len)
 	{
 		get_light_at(world, &color, world.lights[i], intersection, ray);

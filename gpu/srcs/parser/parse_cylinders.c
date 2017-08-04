@@ -30,6 +30,8 @@ static void	get_cylinder_next(t_world *world, char **tmp, int i, t_cylinder *cy)
 		parse_reflexion(&cy->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
 		parse_refraxion(&cy->refraxion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&cy->chess, tmp, world->line);
 }
 
 void		parse_cylinder(t_world *world, t_list *lst)
@@ -40,6 +42,7 @@ void		parse_cylinder(t_world *world, t_list *lst)
 
 	if (!(cy = (t_cylinder *)ft_memalloc(sizeof(t_cylinder))))
 		ft_putendl_fd("Error Malloc Cylinders", 1);
+	cy->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');

@@ -78,6 +78,7 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 				intersection->reflexion_coef = world.cylinders[i].reflexion_coef;
 				intersection->refraxion_coef = world.cylinders[i].refraxion_coef;
 				intersection->color = &world.cylinders[i].color;
+				intersection->chess = &world.cylinders[i].chess;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection->t));
 				intersection->normal_v = get_normal_cylinder(world.cylinders[i],

@@ -24,10 +24,12 @@
 
 #define VERSION 1.03.3
 
-#define WIN_WIDTH 576
-#define WIN_HEIGHT 576
+#define WIN_WIDTH 768
+#define WIN_HEIGHT 768
 
 #define SHADOW_BIAS 0
+#define MAX_DEPTH 3
+#define CHESS_PATTERN 4
 
 typedef struct		s_window
 {
@@ -86,6 +88,7 @@ typedef struct		s_intersection
 	t_vec3d normal_v;
 	t_vec3d	pos;
 	t_color *color;
+	t_color	*chess;
 	double	reflexion_coef;
 	double	refraxion_coef;
 	double	t;
@@ -147,6 +150,7 @@ typedef struct		s_world
 	t_cone		*cones;
 	t_paraboloid*paraboloids;
 	t_hyperboloid	*hyperboloids;
+	t_torus *torus;
 	t_sphere	*spheres_tmp;
 	t_plane		*planes_tmp;
 	t_disk		*disks_tmp;
@@ -155,6 +159,7 @@ typedef struct		s_world
 	t_cone		*cones_tmp;
 	t_paraboloid*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
+	t_torus *torus_tmp;
 
 	int			spheres_len;
 	int			planes_len;
@@ -164,6 +169,7 @@ typedef struct		s_world
 	int			paraboloids_len;
 	int			hyperboloids_len;
 	int			disks_len;
+	int			torus_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;

@@ -28,6 +28,8 @@ static void	get_plane_next(t_world *world, char **tmp, int i, t_plane *p)
 		parse_reflexion(&p->reflexion_coef, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<refraxion>", ft_strlen("<refraxion>")))
 		parse_refraxion(&p->refraxion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&p->chess, tmp, world->line);
 }
 
 void		parse_plane(t_world *world, t_list *lst)
@@ -38,6 +40,7 @@ void		parse_plane(t_world *world, t_list *lst)
 
 	if (!(p = (t_plane *)ft_memalloc(sizeof(t_plane))))
 		ft_putendl_fd("Error Malloc Plan", 1);
+	p->chess = (t_color){-1, -1, -1};
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');
