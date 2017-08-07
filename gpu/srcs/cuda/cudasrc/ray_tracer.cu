@@ -98,6 +98,39 @@ __host__ __device__ void	direct_light(t_world world, t_color *color, t_light lig
 	color_add(color, direct_light);
 }
 
+__host__ __device__ t_color 	handle_reflection(t_world world, t_ray ray,
+															t_intersection *intersection)
+{
+	int					i;
+	int					depth;
+  t_color			color;
+
+  i = 0;
+  color = new_color(0, 0, 0);
+  depth = intersection->reflection_coef < MAX_DEPTH ?
+		intersection->reflection_coef : MAX_DEPTH;
+  while (i < depth)
+  {
+    intersection->t = DBL_MAX;
+    intersection->type = '0';
+    ray.origin = intersection->pos;
+    ray.dir = vector_normalize(vector_substract(ray.dir,
+            vector_scalar(intersection->normal_v,
+                    2 * vector_dot(ray.dir, intersection->normal_v))));
+    get_closest_intersection(world, ray, intersection);
+    if (intersection->type != '0')
+      color = *intersection->color;
+    else
+    {
+      color = new_color(0, 0, 0);
+      intersection->color = &color;
+      return (color);
+    }
+    i++;
+  }
+  return (color);
+}
+
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
 	t_ray      			ray;
@@ -106,7 +139,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	int							i;
 
 	i = 0;
-	color = (t_color){0, 0, 0};
+	color = new_color(0, 0, 0);
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
@@ -114,6 +147,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
+
 	if (intersection.type == '0')
 		return (0);
 	if (intersection.reflection_coef == 0 && intersection.refraction_coef == 0)
@@ -124,8 +158,10 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		color_add(&color, handle_refraction_transparence(world, ray, &intersection));
 	if (intersection.chess->r != -1)
 		color_add(&color, chess_effect(&intersection));
+
 	color_multiply(&color, world.ambient.color);
 	color_scalar(&color, world.ambient.intensity);
+
 	while (i < world.lights_len)
 	{
 		get_light_at(world, &color, world.lights[i], intersection, ray);

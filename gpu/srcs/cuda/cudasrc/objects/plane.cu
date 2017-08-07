@@ -29,18 +29,19 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *int
 	t_vec3d	x;
 	double	n;
 
+
 	intersection_tmp->normal_v = vector_normalize(
 		vector_calculate(plane.pos, plane.up));
 	denominator = vector_dot(ray.dir, intersection_tmp->normal_v);
-	if (denominator != 0)
+	if (denominator != 0 && intersection_tmp->id != plane.id)
 	{
 		x = vector_scalar(vector_calculate(plane.pos, ray.origin), -1);
 		n = vector_dot(x, intersection_tmp->normal_v);
 		t = n / denominator;
-		if (t > 0.0000001 && intersection_tmp->id != plane.id)
+		if (t > 0.0000001)
 		{
 			intersection_tmp->t = t;
-			 intersection_tmp->type = 'p';
+			intersection_tmp->type = 'p';
 			if (denominator > 0)
 				intersection_tmp->normal_v =
 					vector_scalar(intersection_tmp->normal_v, -1);

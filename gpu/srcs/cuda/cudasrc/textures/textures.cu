@@ -8,44 +8,6 @@ extern "C" {
   #include "../../cudaheader/gpu_rt.h"
 }
 
-__host__ __device__ t_color 	handle_reflection(t_world world, t_ray ray,
-															t_intersection *intersection)
-{
-	int				i;
-	int				depth;
-	t_color		color = (t_color){0, 0, 0};
-
-	i = 0;
-	int j = 0;
-	depth = intersection->reflection_coef < MAX_DEPTH ? intersection->reflection_coef : MAX_DEPTH;
-	while(i < depth && j < depth)
-	{
-		intersection->t = DBL_MAX;
-		intersection->type = '0';
-		ray.origin = intersection->pos;
-		ray.dir = vector_normalize(vector_substract(ray.dir,
-			vector_scalar(intersection->normal_v,
-				2 * vector_dot(ray.dir, intersection->normal_v))));
-		get_closest_intersection(world, ray, intersection);
-		if (intersection->type != '0')
-		{
-			color_add(&color, *intersection->color);
-			if (intersection->reflection_coef == 0)
-				i++;
-		}
-		else
-		{
-			color = (t_color){0, 0, 0};
-			*intersection->color = (t_color){0, 0, 0};
-			return (color);
-		}
-		i++;
-		j++;
-	}
-	*intersection->color = color;
-	return (color);
-}
-
 __host__ __device__ t_color 	handle_refraction_transparence(t_world world,
 																			t_ray ray, t_intersection *intersection)
 {
@@ -61,7 +23,7 @@ __host__ __device__ t_color 	handle_refraction_transparence(t_world world,
 	{
 		calc[0] = vector_dot(intersection->normal_v, ray.dir);
 		calc[1] = sqrt(1 - (ref_coef * ref_coef) * (1 - (calc[0] * calc[0])));
-		if (calc[0] > 0)
+		if (calc[0] < 0)
 			calc[2] = (ref_coef * calc[0] - calc[1]);
 		else
 			calc[2] = (ref_coef * calc[0] + calc[1]);
@@ -73,12 +35,11 @@ __host__ __device__ t_color 	handle_refraction_transparence(t_world world,
 	if (get_closest_intersection(world, ray, intersection))
 	{
 		color = *intersection->color;
-		// color_scalar(&color, ref_coef);
-		// color_add(&color, *intersection->color);
-	}
+	// 	color_scalar(&color, ref_coef);
+	// 	color_add(&color, *intersection->color);
+	 }
 	else
 		color = (t_color){0, 0, 0};
-	*intersection->color = color;
 	return (color);
 }
 
