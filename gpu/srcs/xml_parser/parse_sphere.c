@@ -38,6 +38,7 @@ void	parse_sphere(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(s = (t_sphere*)ft_memalloc(sizeof(t_sphere))))
 		show_error("error malloc sphere");
+	s->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
@@ -48,10 +49,14 @@ void	parse_sphere(t_world *world, xmlNodePtr cur)
 			parse_radius(&s->radius, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&s->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+			parse_color(&s->chess, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&s->reflexion_coef, cur);
+			parse_reflection(&s->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_reflection(&s->refraction_coef, cur);
 		cur = cur->next;
 	}
-	add_sphere(&world->spheres_tmp, new_sphere(s));
+	add_sphere(&world->spheres_tmp, new_sphere(s, world->id++));
 	free(s);
 }

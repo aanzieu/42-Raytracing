@@ -51,14 +51,16 @@ __host__ __device__ int		get_paraboloid(t_paraboloid para, t_camera camera, t_ra
 		- (vector_dot(x, v)
 				* (vector_dot(x, v) + 4 * para.distance));
 	eq.res = second_degres(eq.a, eq.b, eq.c);
-	if(eq.res != NOT_A_SOLUTION)
+	if(eq.res != NOT_A_SOLUTION && intersection_tmp->id != para.id)
 	{
 		intersection_tmp->t = eq.res;
 		intersection_tmp->type = 'x';
-		return(1);
+		if (para.refraction_coef != 0 || para.reflection_coef != 0)
+			intersection_tmp->id = para.id;
+		return (1);
 	}
 	intersection_tmp->t = -1.0;
-	return(0);
+	return (0);
 }
 
 __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
@@ -73,10 +75,13 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != 1)
 			{
+				intersection->id = world.paraboloids[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
-				intersection->reflexion_coef = world.paraboloids[i].reflexion_coef;
+				intersection->reflection_coef = world.paraboloids[i].reflection_coef;
+				intersection->refraction_coef = world.paraboloids[i].refraction_coef;
 				intersection->color = &world.paraboloids[i].color;
+				intersection->chess = &world.paraboloids[i].chess;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_paraboloid(world.paraboloids[i], ray,

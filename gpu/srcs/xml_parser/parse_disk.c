@@ -51,6 +51,7 @@ void		parse_disk(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(d = (t_disk*)ft_memalloc(sizeof(t_disk))))
 		show_error("error malloc disk");
+	d->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
@@ -61,12 +62,16 @@ void		parse_disk(t_world *world, xmlNodePtr cur)
 			parse_radius_disk(d, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&d->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+			parse_color(&d->chess, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 			parse_rot(&d->up, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&d->reflexion_coef, cur);
+			parse_reflection(&d->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_reflection(&d->refraction_coef, cur);
 		cur = cur->next;
 	}
-	add_disk(&world->disks_tmp, new_disk(d));
+	add_disk(&world->disks_tmp, new_disk(d, world->id++));
 	free(d);
 }

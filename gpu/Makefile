@@ -49,7 +49,6 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/rotation.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
-				\
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
@@ -60,6 +59,8 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/disk.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
+				\
+				$(SRC_CUDA_DIR)/textures/textures.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
@@ -148,7 +149,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
-	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
+#	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
@@ -193,7 +194,7 @@ obj/%.o: srcs/%.c
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@ 
+	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################
@@ -203,7 +204,7 @@ objcuda/%.o: srcs/%.cu
 clean:
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Library--------"
-	@$(MAKE) $(MAKE_FLAGS) fclean -C $(LIBFT_DIR)
+	@$(MAKE) $(MAKE_FLAGS) #fclean -C $(LIBFT_DIR)
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Output Files--------"
 	@$(RM) $(OBJ) $(OBJ_CUDA)

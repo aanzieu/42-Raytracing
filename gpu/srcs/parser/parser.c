@@ -51,6 +51,8 @@ static void		get_type(t_world *world, t_list *lst, char *str)
 		parse_paraboloid(world, lst->next);
 	else if (ft_strnequ(tmp, "hyperboloid", ft_strlen("hyperboloid")))
 		parse_hyperboloid(world, lst->next);
+	else if (ft_strnequ(tmp, "torus", ft_strlen("torus")))
+		parse_torus(world, lst->next);
 	ft_memdel((void**)&tmp);
 	lst = lst->next;
 }

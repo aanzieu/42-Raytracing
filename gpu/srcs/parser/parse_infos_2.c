@@ -42,14 +42,26 @@ void	parse_intensity(double *intensity_coef, char **tmp, int line)
 	*intensity_coef = ft_atoi_double(tmp[1]);
 }
 
-void	parse_reflexion(double *reflexion_coef, char **tmp, int line)
+void	parse_reflection(double *reflection_coef, char **tmp, int line)
 {
 	if (ft_count_word(tmp) != 3)
 	{
 		ft_putstr_fd("Line : ", 1);
 		ft_putnbr(line);
-		ft_putendl_fd(" Wrong reflexion coeficient format", 1);
+		ft_putendl_fd(" Wrong reflection coeficient format", 1);
 		exit (EXIT_FAILURE);
 	}
-	*reflexion_coef = ft_atoi_double(tmp[1]);
+	*reflection_coef = ft_atoi_double(tmp[1]);
+}
+
+void	parse_refraction(double *refraction_coef, char **tmp, int line)
+{
+	if (ft_count_word(tmp) != 3)
+	{
+		ft_putstr_fd("Line : ", 1);
+		ft_putnbr(line);
+		ft_putendl_fd(" Wrong refraction coeficient format", 1);
+		exit (EXIT_FAILURE);
+	}
+	*refraction_coef = ft_atoi_double(tmp[1]);
 }

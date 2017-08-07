@@ -78,7 +78,8 @@ void		parse_height(double *height, xmlNodePtr cur);
 */
 void		parse_color(t_color *c, xmlNodePtr cur);
 void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
-void		parse_reflection(double *reflexion_coef, xmlNodePtr cur);
+void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
+void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
 void		parse_ambient(t_world *world, xmlNodePtr cur);
 /*
 **	parser_utils.c

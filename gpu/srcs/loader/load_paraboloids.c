@@ -43,4 +43,3 @@ void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tm
 		i++;
 	}
 }
-

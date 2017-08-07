@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -19,8 +19,8 @@
 
 void		get_viewplane(t_world *world)
 {
-	world->viewplane.x_res = WIN_WIDTH / world->render_factor;
-	world->viewplane.y_res = WIN_HEIGHT / world->render_factor;
+	world->viewplane.x_res = (WIN_WIDTH) / world->render_factor;
+	world->viewplane.y_res = (WIN_HEIGHT) / world->render_factor;
 	world->viewplane.x_indent = world->viewplane.width /
 									(double)world->viewplane.x_res;
 	world->viewplane.y_indent = world->viewplane.height /
@@ -29,11 +29,11 @@ void		get_viewplane(t_world *world)
 
 void	data_setup(t_world *world)
 {
-
-	world->mode = 0;
+	world->mode = 2;
 	world->light_type = 1;
-	world->viewplane.width = 0.5;
-	world->viewplane.height = 0.5;
+	world->viewplane.width = (double)((M_PI / 4) / 2);
+	world->viewplane.height = ((double)((double)(WIN_HEIGHT) / (double)(WIN_WIDTH))
+	 														* world->viewplane.width);
 	world->render_factor = 1;
 	world->viewplane.dist = 1;
 	world->line = 0;
@@ -48,8 +48,11 @@ void	data_setup(t_world *world)
 	world->cones_len = 0;
 	world->cylinders = NULL;
 	world->cylinders_len = 0;
+	world->torus = NULL;
+	world->torus_len = 0;
 	world->lights = NULL;
 	world->lights_len = 0;
+	world->id = 0;
 }
 
 static void	load_data(t_world *world)
@@ -240,7 +243,7 @@ void		choose_main_launcher(char **argv, int flags)
 int		main(int argc, char **argv)
 {
 	int			flags;
-	
+
 	flags = 0;
 	if (argc == 2)
 		choose_main_launcher(argv, 0);

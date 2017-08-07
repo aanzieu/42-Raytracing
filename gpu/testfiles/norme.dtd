@@ -1,14 +1,15 @@
-<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid)*>
+<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
-<!ELEMENT plane (origin, normal, tra*, rot*, color, reflection*)>
-<!ELEMENT sphere (pos, tra*, radius, color, reflection*)>
-<!ELEMENT cylinder (pos, normal, radius, rot*, color, reflection*)>
-<!ELEMENT disk (origin, normal, radius, rot*, color, reflection*)>
-<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, color, reflection*)>
-<!ELEMENT paraboloid (top, normal, radius, height, rot*, color, reflection*)>
-<!ELEMENT hyperboloid (top, normal, radius, height, rot*, color, reflection*)>
+<!ELEMENT plane (origin, normal, tra*, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT sphere (pos, tra*, radius, color, chess*, reflection*, refraction*)>
+<!ELEMENT cylinder (pos, normal, radius, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT disk (origin, normal, radius, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT paraboloid (top, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT hyperboloid (top, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, color, chess*, reflection*, refraction*)>
 
 
 <!ELEMENT pos (#PCDATA)>
@@ -23,8 +24,10 @@
 <!ELEMENT normal (#PCDATA)>
 <!ELEMENT radius (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
+<!ELEMENT chess (#PCDATA)>
 <!ELEMENT intensity (#PCDATA)>
 <!ELEMENT reflection (#PCDATA)>
+<!ELEMENT refraction (#PCDATA)>
 
 
 <!ATTLIST scene name CDATA #REQUIRED>
@@ -79,7 +82,16 @@
 	b CDATA #REQUIRED
 	a CDATA #REQUIRED
 >
+<!ATTLIST chess
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+>
+
 <!ATTLIST radius data CDATA #REQUIRED>
+<!ATTLIST radius_small data CDATA #REQUIRED>
+<!ATTLIST radius_big data CDATA #REQUIRED>
 <!ATTLIST height data CDATA #REQUIRED>
 <!ATTLIST intensity data CDATA #REQUIRED>
 <!ATTLIST reflection data CDATA #REQUIRED>
+<!ATTLIST refraction data CDATA #REQUIRED>

@@ -41,6 +41,9 @@ CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
 CUDA_HOSTDEV void		get_closest_hyperboloid(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
 
 
 /*******************************************************************************
@@ -80,6 +83,7 @@ CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 CUDA_HOSTDEV void		rotate(t_vec3d *point, double degrees, char axis);
 CUDA_HOSTDEV void		translate(t_vec3d *point, double x, double y, double z);
 CUDA_HOSTDEV t_vec3d	new_vector(double x, double y, double z);
+CUDA_HOSTDEV t_vec3d	vector_copy(t_vec3d cpy);
 CUDA_HOSTDEV t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_substract(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_cross(t_vec3d vect1, t_vec3d vect2);
@@ -95,6 +99,16 @@ CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
 
 CUDA_HOSTDEV double		deg_to_radians(double deg);
 CUDA_HOSTDEV double		second_degres(double a, double b, double c);
+
+/*******************************************************************************
+**                     TEXTURES_FCTS                                          **
+*******************************************************************************/
+
+CUDA_HOSTDEV t_color 	handle_reflection(t_world world, t_ray ray,
+															t_intersection *intersection);
+CUDA_HOSTDEV t_color 	handle_refraction_transparence(t_world world,
+																			t_ray ray, t_intersection *intersection);
+CUDA_HOSTDEV t_color chess_effect(t_intersection *intersection);
 
 /*******************************************************************************
 **                     RAYTRACERS_FCTS                                        **

@@ -35,14 +35,16 @@ __host__ __device__ int		get_hyperboloid(t_hyperboloid hyper, t_camera camera, t
 		((2.0 * tmp.y * ray.dir.y) / 3.0) + (2.0 * tmp.z * ray.dir.z);
 	eq.c = ((tmp.x * tmp.x) / 4.0) - ((tmp.y * tmp.y) / 3.0) + tmp.z * tmp.z - 1.0;
 	eq.res = second_degres(eq.a, eq.b, eq.c);
-	if(eq.res != NOT_A_SOLUTION)
+	if(eq.res != NOT_A_SOLUTION && intersection_tmp->id != hyper.id)
 	{
 		intersection_tmp->t = eq.res;
 		intersection_tmp->type = 'h';
-		return(1);
+		if (hyper.refraction_coef != 0 || hyper.reflection_coef != 0)
+			 intersection_tmp->id = hyper.id;
+		return (1);
 	}
 	intersection_tmp->t = -1.0;
-	return(0);
+	return (0);
 }
 
 __host__ __device__ void	get_closest_hyperboloid(t_world world, t_ray ray,
@@ -57,10 +59,13 @@ __host__ __device__ void	get_closest_hyperboloid(t_world world, t_ray ray,
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
+				intersection->id = world.hyperboloids[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
-				intersection->reflexion_coef = world.hyperboloids[i].reflexion_coef;
+				intersection->reflection_coef = world.hyperboloids[i].reflection_coef;
+				intersection->refraction_coef = world.hyperboloids[i].refraction_coef;
 				intersection->color = &world.hyperboloids[i].color;
+				intersection->chess = &world.hyperboloids[i].chess;
 				intersection->pos = vector_add(ray.origin,
 						vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_hyperboloid(world.hyperboloids[i], ray,

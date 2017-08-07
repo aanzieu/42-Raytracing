@@ -25,10 +25,12 @@
 
 #define VERSION 1.03.3
 
-#define WIN_WIDTH 640
-#define WIN_HEIGHT 640
+#define WIN_WIDTH 768
+#define WIN_HEIGHT 768
 
 #define SHADOW_BIAS 0
+#define MAX_DEPTH 3
+#define CHESS_PATTERN 4
 
 typedef struct		s_offsets
 {
@@ -94,9 +96,13 @@ typedef struct		s_intersection
 	t_vec3d normal_v;
 	t_vec3d	pos;
 	t_color *color;
-	double	reflexion_coef;
+	t_color	*chess;
+	double	reflection_coef;
+	double	refraction_coef;
 	double	t;
-	char	type;
+	char		type;
+	int			id;
+	int			flag;
 }					t_intersection;
 
 typedef struct		s_ray
@@ -155,21 +161,22 @@ typedef struct		s_world
 	t_cone		*cones;
 	t_paraboloid*paraboloids;
 	t_hyperboloid	*hyperboloids;
-
-	t_sphere		*spheres_tmp;
-	t_plane			*planes_tmp;
-	t_disk			*disks_tmp;
-	t_light			*lights_tmp;
-	t_cylinder		*cylinders_tmp;
-	t_cone			*cones_tmp;
-	t_paraboloid	*paraboloids_tmp;
+	t_torus *torus;
+	t_sphere	*spheres_tmp;
+	t_plane		*planes_tmp;
+	t_disk		*disks_tmp;
+	t_light		*lights_tmp;
+	t_cylinder	*cylinders_tmp;
+	t_cone		*cones_tmp;
+	t_paraboloid*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
+	t_torus *torus_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
 	t_light			*lights_d;
 	t_cone			*cones_d;
-	
+
 	int			spheres_len;
 	int			planes_len;
 	int			cylinders_len;
@@ -178,6 +185,7 @@ typedef struct		s_world
 	int			paraboloids_len;
 	int			hyperboloids_len;
 	int			disks_len;
+	int			torus_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;
@@ -195,10 +203,12 @@ typedef struct		s_world
 	int			line;
 
 	int			render_factor;
-	
+
 	t_offsets	offsets;
 	t_ambient	ambient;
 	int			light_type;
+
+	int			id;
 }					t_world;
 
 void				get_viewplane(t_world *world);

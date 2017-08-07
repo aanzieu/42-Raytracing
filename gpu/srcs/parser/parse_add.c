@@ -12,5 +12,3 @@
 
 #include <object.h>
 #include <light.h>
-
-

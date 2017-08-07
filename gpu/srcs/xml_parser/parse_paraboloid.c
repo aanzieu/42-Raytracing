@@ -36,6 +36,7 @@ void	parse_paraboloid(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(p = (t_paraboloid*)ft_memalloc(sizeof(t_paraboloid))))
 		show_error("error malloc hyperboloid");
+	p->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
@@ -48,12 +49,16 @@ void	parse_paraboloid(t_world *world, xmlNodePtr cur)
 			parse_height(&p->maxm, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&p->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+			parse_color(&p->chess, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 			parse_rot(&p->normal, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&p->reflexion_coef, cur);
+			parse_reflection(&p->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_reflection(&p->refraction_coef, cur);
 		cur = cur->next;
 	}
-	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(p));
+	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(p, world->id++));
 	free(p);
 }

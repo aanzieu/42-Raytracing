@@ -36,6 +36,7 @@ void	parse_cylinder(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(cy = (t_cylinder*)ft_memalloc(sizeof(t_cylinder))))
 		show_error("error malloc cylinder");
+	cy->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
@@ -46,12 +47,16 @@ void	parse_cylinder(t_world *world, xmlNodePtr cur)
 			parse_radius(&cy->radius, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&cy->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+			parse_color(&cy->chess, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 			parse_rot(&cy->up, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&cy->reflexion_coef, cur);
+			parse_reflection(&cy->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_reflection(&cy->refraction_coef, cur);
 		cur = cur->next;
 	}
-	add_cylinder(&world->cylinders_tmp, new_cylinder(cy));
+	add_cylinder(&world->cylinders_tmp, new_cylinder(cy, world->id++));
 	free(cy);
 }

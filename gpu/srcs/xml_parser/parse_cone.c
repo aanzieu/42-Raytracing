@@ -47,10 +47,14 @@ static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)
 		parse_vec3d(&co->max, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 		parse_color(&co->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+		parse_color(&co->chess, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 		parse_rot(&co->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-		parse_reflection(&co->reflexion_coef, cur);
+		parse_reflection(&co->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_reflection(&co->refraction_coef, cur);
 }
 
 void		parse_cone(t_world *world, xmlNodePtr cur)
@@ -60,11 +64,12 @@ void		parse_cone(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(co = (t_cone*)ft_memalloc(sizeof(t_cone))))
 		show_error("error malloc cone");
+	co->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		parse_cone_opt(co, cur);
 		cur = cur->next;
 	}
-	add_cone(&world->cones_tmp, new_cone(co));
+	add_cone(&world->cones_tmp, new_cone(co, world->id++));
 	free(co);
 }

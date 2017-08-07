@@ -36,6 +36,7 @@ void	parse_hyperboloid(t_world *world, xmlNodePtr cur)
 	cur = cur->xmlChildrenNode;
 	if (!(h = (t_hyperboloid*)ft_memalloc(sizeof(t_hyperboloid))))
 		show_error("error malloc hyperboloid");
+	h->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
@@ -51,9 +52,11 @@ void	parse_hyperboloid(t_world *world, xmlNodePtr cur)
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 			parse_rot(&h->normal, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&h->reflexion_coef, cur);
+			parse_reflection(&h->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_reflection(&h->refraction_coef, cur);
 		cur = cur->next;
 	}
-	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(h));
+	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(h, world->id++));
 	free(h);
 }

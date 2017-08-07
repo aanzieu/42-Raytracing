@@ -26,8 +26,12 @@ static void	get_cylinder_next(t_world *world, char **tmp, int i, t_cylinder *cy)
 		parse_point_translation(&cy->pos, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&cy->up, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
-		parse_reflexion(&cy->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<reflection>", ft_strlen("<reflection>")))
+		parse_reflection(&cy->reflection_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraction>", ft_strlen("<refraction>")))
+		parse_refraction(&cy->refraction_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&cy->chess, tmp, world->line);
 }
 
 void		parse_cylinder(t_world *world, t_list *lst)
@@ -38,6 +42,7 @@ void		parse_cylinder(t_world *world, t_list *lst)
 
 	if (!(cy = (t_cylinder *)ft_memalloc(sizeof(t_cylinder))))
 		ft_putendl_fd("Error Malloc Cylinders", 1);
+	cy->chess = (t_color){-1, -1, -1};
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');
@@ -48,6 +53,6 @@ void		parse_cylinder(t_world *world, t_list *lst)
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_cylinder(&world->cylinders_tmp, new_cylinder(cy));
+	add_cylinder(&world->cylinders_tmp, new_cylinder(cy, world->id++));
 	free(cy);
 }

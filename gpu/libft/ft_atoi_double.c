@@ -36,5 +36,5 @@ double	ft_atoi_double(char const *str)
 	while (len-- > 0)
 		res2 /= 10;
 	res2 *= neg;
-	return ((res + ((res > 0) ? -res2 : res2)));
+	return (res + res2);//(res + ((res > 0) ? -res2 : res2)));//
 }

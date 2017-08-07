@@ -29,8 +29,12 @@ static void				get_paraboloid_next(t_world *world, char **tmp,
 		parse_point_translation(&para->top, tmp, world->line);
 	else if (ft_strnequ(tmp[i], "<rotation>", ft_strlen("<rotation>")))
 		parse_rotation_object(&para->normal, tmp, world->line);
-	else if (ft_strnequ(tmp[i], "<reflexion>", ft_strlen("<reflexion>")))
-		parse_reflexion(&para->reflexion_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<reflection>", ft_strlen("<reflection>")))
+		parse_reflection(&para->reflection_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<refraction>", ft_strlen("<refraction>")))
+		parse_refraction(&para->refraction_coef, tmp, world->line);
+	else if (ft_strnequ(tmp[i], "<chess>", ft_strlen("<chess>")))
+		parse_color(&para->chess, tmp, world->line);
 }
 
 void					parse_paraboloid(t_world *world, t_list *lst)
@@ -41,6 +45,7 @@ void					parse_paraboloid(t_world *world, t_list *lst)
 
 	if (!(para = (t_paraboloid *)ft_memalloc(sizeof(t_paraboloid))))
 		ft_putendl_fd("error malloc Paraboloid", 1);
+	para->chess.r = -1;
 	while (lst && !ft_strequ(lst->content, "</surface>"))
 	{
 		tmp = ft_strsplit(lst->content, ' ');
@@ -51,6 +56,6 @@ void					parse_paraboloid(t_world *world, t_list *lst)
 		ft_memdel((void**)&tmp);
 		lst = lst->next;
 	}
-	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(para));
+	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(para, world->id++));
 	free(para);
 }
