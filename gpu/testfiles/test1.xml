@@ -20,14 +20,6 @@
 	<intensity data="1" />
 </light>
 
-<sphere>
-	<pos x="-0.5" y="0" z="0.5" />
-	<tra x="0" y="0" z="0" />
-	<radius data="0.8" />
-	<color r="255" g="255" b="255" a="1" />
-	<reflection data="1" />
-</sphere>
-
 <plane>
 	<origin x="0" y="-1" z="0" />
 	<normal x="0" y="1" z="0" />

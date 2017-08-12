@@ -1,9 +1,10 @@
-<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid)*>
+<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|mobius)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
 <!ELEMENT plane (origin, normal, tra*, rot*, color, reflection*)>
 <!ELEMENT sphere (pos, tra*, radius, color, reflection*)>
+<!ELEMENT mobius (pos, tra*, radius, color, reflection*)>
 <!ELEMENT cylinder (pos, normal, radius, rot*, color, reflection*)>
 <!ELEMENT disk (origin, normal, radius, rot*, color, reflection*)>
 <!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, color, reflection*)>

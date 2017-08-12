@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="Test 1">
+
+<camera>
+	<pos x="0" y="1" z="-10" />
+	<dir x="0" y="0" z="0" />
+	<!-- <tra x="-1" y="0" z="0" /> -->
+</camera>
+<ambient>
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</ambient>
+
+<mobius>
+	<pos x="-3" y="5" z="15" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.8" />
+	<color r="125" g="145" b="135" a="1" />
+	<reflection data="1" />
+</mobius>
+<plane>
+	<origin x="0" y="-2" z="0" />
+	<normal x="0" y="1" z="0" />
+	<rot x="0" y="0" z="0" />
+	<color r="123" g="123" b="200" a="0" />
+	<reflection data="0" />
+</plane>
+<light>
+	<pos x="0" y="10" z="-4" />
+	<color r="255" g="255" b="255" a="0" />
+	<intensity data="3" />
+</light>
+</scene>

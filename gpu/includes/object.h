@@ -69,6 +69,15 @@ typedef struct			s_sphere
 	struct s_sphere		*next;
 }						t_sphere;
 
+typedef struct			s_mobius
+{
+	double				radius;
+	t_vec3d				pos;
+	t_color				color;
+	double				reflexion_coef;
+	struct s_mobius		*next;
+}						t_mobius;
+
 typedef struct			s_paraboloid
 {
 	t_vec3d				top;
@@ -95,6 +104,7 @@ typedef struct			s_hyperboloid
 *******************************************************************************/
 
 t_sphere				*new_sphere(t_sphere *nw);
+t_mobius				*new_mobius(t_mobius *nw);
 t_cone					*new_cone(t_cone *nw);
 t_plane					*new_plan(t_plane *nw);
 t_disk					*new_disk(t_disk *nw);
@@ -103,6 +113,7 @@ t_paraboloid			*new_paraboloid(t_paraboloid *nw);
 t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
+void					add_mobius(t_mobius **alst, t_mobius *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
 void					add_disk(t_disk **alst, t_disk *nw);
 void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
@@ -126,6 +137,7 @@ void					load_paraboloids(t_paraboloid **paraboloids,
 						t_paraboloid *paraboloids_tmp,
 						int *cones_len);
 void			load_hyperboloids(t_hyperboloid **hyperboloids, t_hyperboloid *hyperboloids_tmp, int *hyperboloids_len);
+void			load_mobius(t_mobius **mobius, t_mobius *mobius_tmp, int *mobius_len);
 
 
 

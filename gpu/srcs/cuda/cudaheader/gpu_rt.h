@@ -21,6 +21,9 @@ CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_sphere(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_mobius(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_plane(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
@@ -103,4 +106,12 @@ CUDA_HOSTDEV double		second_degres(double a, double b, double c);
 CUDA_HOSTDEV void				get_up_left(t_world *world);
 CUDA_HOSTDEV int				ray_tracer(t_world world, int x, int y);
 
+CUDA_HOSTDEV int		is_zero(double x);
+//CUDA_HOSTDEV  double	calc_poly(double *coef, int degree, double a);
+CUDA_HOSTDEV  double			solver_n_degree(double *coef, int degree, t_mobius m, t_ray ray);
+CUDA_HOSTDEV void				solve_n(double *coef, double *sol, int deg);
+//CUDA_HOSTDEV double		calc_root(double *coeff, int deg, double l, double r);
+CUDA_HOSTDEV void		solve_second(double *coef, double *sol);
+CUDA_HOSTDEV void	solve_first(double *coef, double *sol);
+CUDA_HOSTDEV  double	sign_of(double a);
 #endif

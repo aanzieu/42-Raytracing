@@ -26,6 +26,8 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 		parse_plane(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"sphere")))
 		parse_sphere(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"mobius")))
+		parse_mobius(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cylinder")))
 		parse_cylinder(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"disk")))

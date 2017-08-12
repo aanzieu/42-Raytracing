@@ -65,6 +65,8 @@ static void	load_data(t_world *world)
 			world->paraboloids_tmp, &world->paraboloids_len);
 	load_hyperboloids(&world->hyperboloids,
 			world->hyperboloids_tmp, &world->hyperboloids_len);
+	load_mobius(&world->mobius,
+			world->mobius_tmp, &world->mobius_len);
 }
 
 static	void		*perform_thread(void *arg)

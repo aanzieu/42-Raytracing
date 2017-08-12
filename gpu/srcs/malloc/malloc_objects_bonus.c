@@ -42,3 +42,17 @@ t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw)
 	hyper->next = NULL;
 	return (hyper);
 }
+
+t_mobius	*new_mobius(t_mobius *nw)
+{
+	t_mobius	*s;
+
+	if (!(s = (t_mobius *)ft_memalloc(sizeof(t_mobius))))
+		ft_putendl_fd("Erroc Malloc on Sphere", 1);
+	s->radius = nw->radius;
+	s->pos = nw->pos;
+	s->color = nw->color;
+	s->reflexion_coef = nw->reflexion_coef;
+	s->next = NULL;
+	return (s);
+}

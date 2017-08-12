@@ -155,6 +155,7 @@ typedef struct		s_world
 	t_cone		*cones;
 	t_paraboloid*paraboloids;
 	t_hyperboloid	*hyperboloids;
+	t_mobius	*mobius;
 
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
@@ -164,6 +165,7 @@ typedef struct		s_world
 	t_cone			*cones_tmp;
 	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
+	t_mobius	*mobius_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -178,6 +180,7 @@ typedef struct		s_world
 	int			paraboloids_len;
 	int			hyperboloids_len;
 	int			disks_len;
+	int			mobius_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;
