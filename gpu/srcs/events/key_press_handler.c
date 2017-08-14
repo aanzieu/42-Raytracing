@@ -40,6 +40,11 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.d = 1;
 	if (event.key.keysym.sym == SDLK_0)
 		world->keys.pad_0 = 1;
+	return ;
+}
+
+void	key_press_handler2(t_world *world, SDL_Event event)
+{
 	if (event.key.keysym.sym == SDLK_1)
 		world->keys.pad_1 = 1;
 	if (event.key.keysym.sym == SDLK_2)
@@ -64,49 +69,10 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.e = 1;
 	if (event.key.keysym.sym == SDLK_p)
 		savebmp(world);
-	// }
-	// if (event.key.keysym.sym == SDLK_RIGHTBRACKET)
-	// 	world->keys.rightbracket = 1;
-	// if (event.key.keysym.sym == SDLK_LEFTBRACKET)
-	// 	world->keys.leftbracket = 1;
-	// if (event.key.keysym.sym == SDLK_j)
-	// 	world->keys.j = 1;
-	// if (event.key.keysym.sym == SDLK_l)
-	// 	world->keys.l = 1;
-	// if (event.key.keysym.sym == SDLK_k)
-	// 	world->keys.k = 1;
-	// if (event.key.keysym.sym == SDLK_i)
-	// 	world->keys.i = 1;
-	return ;
 }
 
-void	key_press_handler2(t_world *world, SDL_Event event)
+void	key_press_handler3(t_world *world)
 {
-	(void)event;
-	(void)world;
-	// if (event.key.keysym.sym == SDLK_q)
-	// {
-	// 	world->keys.w = 0;
-	// 	world->keys.q = 1;
-	// }
-	// if (event.key.keysym.sym == SDLK_w)
-	// {
-	// 	world->keys.q = 0;
-	// 	world->keys.w = 1;
-	// }
-	// if (event.key.keysym.sym == SDLK_KP_4)
-	// 	world->keys.four = 1;
-	// if (event.key.keysym.sym == SDLK_KP_5)
-	// 	world->keys.five = 1;
-	// if (event.key.keysym.sym == SDLK_KP_6)
-	// 	world->keys.six = 1;
-	// if (event.key.keysym.sym == SDLK_KP_8)
-	// 	world->keys.eight = 1;
-}
-
-void	key_press_handler3(t_world *world, SDL_Event event)
-{
-	(void)event;
 	if (world->keys.up == 1)
 		cam_rot(&world->camera, -90	, 'x');
 	if (world->keys.down == 1)
@@ -116,63 +82,20 @@ void	key_press_handler3(t_world *world, SDL_Event event)
 	if (world->keys.right == 1)
 		cam_rot(&world->camera, 90	, 'y');
 	if (world->keys.w == 1)
-	{
-		translate(&world->camera.pos, 0, 0, 0.5);
-		translate(&world->camera.look_at, 0, 0, 0.5);
-		get_camera_axes(&world->camera);
-		// translate(&world->camera.dir_v, 0, 0, 1);
-		// translate(&world->camera.up_v, 0, 0, 1);
-		// translate(&world->camera.right_v, 0, 0, 1);
-	}
+		move_forward(world);
 	if (world->keys.a == 1)
-	{
-		translate(&world->camera.pos, -0.5, 0, 0);
-		translate(&world->camera.look_at, -0.5, 0, 0);
-		get_camera_axes(&world->camera);
-	}
+		move_left(world);
 	if (world->keys.s == 1)
-	{
-		translate(&world->camera.pos, 0, 0, -0.5);
-		translate(&world->camera.look_at, 0, 0, -0.5);
-		get_camera_axes(&world->camera);
-	}
+		move_backward(world);
+}
+
+void	key_press_handler4(t_world *world)
+{
 	if (world->keys.d == 1)
-	{
-		translate(&world->camera.pos, 0.5, 0, 0);
-		translate(&world->camera.look_at, 0.5, 0, 0);
-		get_camera_axes(&world->camera);
-	}
-	if (world->keys.q == 1)
-	{
-		translate(&world->camera.pos, 0, -0.5, 0);
-		translate(&world->camera.look_at, 0, -0.5, 0);
-		get_camera_axes(&world->camera);
-	}
-	if (world->keys.e == 1)
-	{
-		translate(&world->camera.pos, 0, 0.5, 0);
-		translate(&world->camera.look_at, 0, 0.5, 0);
-		get_camera_axes(&world->camera);
-	}
+		move_right(world);
 	if (world->keys.space == 1)
 	{
 		while ((WIN_HEIGHT / world->render_factor) != 32)
-					world->render_factor++;
+			world->render_factor++;
 	}
-	// if (world->keys.rightbracket == 1)
-	// 	world->lights->pos.z += 0.05;
-	// if (world->keys.leftbracket == 1)
-	// 	world->lights->pos.z -= 0.05;
-	// // if (world->keys.q == 1)
-	// // 	sphere_key_handler(world);
-	// // if (world->keys.w == 1)
-	// // 	plane_key_handler(world);
-	// if (world->keys.j == 1)
-	// 	world->lights->pos.x -= 0.1;
-	// if (world->keys.l == 1)
-	// 	world->lights->pos.x += 0.1;
-	// if (world->keys.k == 1)
-	// 	world->lights->pos.y -= 0.1;
-	// if (world->keys.i == 1)
-	// 	world->lights->pos.y += 0.1;
 }

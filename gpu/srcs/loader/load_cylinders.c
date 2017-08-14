@@ -14,8 +14,8 @@
 
 static unsigned int		count_cylinders(t_cylinder *cylinders)
 {
-	t_cylinder *p;
-	unsigned int size;
+	t_cylinder		*p;
+	unsigned int	size;
 
 	size = 0;
 	p = cylinders;
@@ -26,10 +26,12 @@ static unsigned int		count_cylinders(t_cylinder *cylinders)
 	}
 	return (size);
 }
-void			load_cylinders(t_cylinder **cylinders, t_cylinder *cylinders_tmp, int *cylinders_len)
+
+void					load_cylinders(t_cylinder **cylinders,
+								t_cylinder *cylinders_tmp, int *cylinders_len)
 {
-	unsigned int i;
-	t_cylinder *tmp;
+	unsigned int	i;
+	t_cylinder		*tmp;
 
 	i = 0;
 	*cylinders_len = count_cylinders(cylinders_tmp);

@@ -13,7 +13,10 @@
 #include "../../includes/rt.h"
 #include "../../includes/effects.h"
 
-/* add r,g,b and divide by 3 */
+/*
+** add r,g,b and divide by 3
+*/
+
 void		black_and_white_effect(int *pix)
 {
 	int		i;

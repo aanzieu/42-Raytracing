@@ -14,8 +14,8 @@
 
 static unsigned int		count_planes(t_plane *planes)
 {
-	t_plane *p;
-	unsigned int size;
+	t_plane			*p;
+	unsigned int	size;
 
 	size = 0;
 	p = planes;
@@ -27,9 +27,10 @@ static unsigned int		count_planes(t_plane *planes)
 	return (size);
 }
 
-void			load_planes(t_plane **planes, t_plane *planes_tmp, int *planes_len)
+void					load_planes(t_plane **planes, t_plane *planes_tmp,
+															int *planes_len)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	*planes_len = count_planes(planes_tmp);

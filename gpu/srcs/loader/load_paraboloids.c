@@ -14,8 +14,8 @@
 
 static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
 {
-	t_paraboloid *p;
-	unsigned int size;
+	t_paraboloid	*p;
+	unsigned int	size;
 
 	size = 0;
 	p = paraboloids;
@@ -27,14 +27,16 @@ static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
 	return (size);
 }
 
-void			load_paraboloids(t_paraboloid **paraboloids, t_paraboloid *paraboloids_tmp, int *paraboloids_len)
+void				load_paraboloids(t_paraboloid **paraboloids,
+						t_paraboloid *paraboloids_tmp, int *paraboloids_len)
 {
-	unsigned int i;
-	t_paraboloid *tmp;
+	unsigned int	i;
+	t_paraboloid	*tmp;
 
 	i = 0;
 	*paraboloids_len = count_paraboloids(paraboloids_tmp);
-	*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) * *paraboloids_len);
+	*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *
+														*paraboloids_len);
 	tmp = paraboloids_tmp;
 	while (tmp)
 	{

@@ -44,6 +44,26 @@ static void	parse_radius_disk(t_disk *d, xmlNodePtr cur)
 	xmlFree(nb);
 }
 
+void		handle_input_disk(t_disk *d, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
+		parse_vec3d(&d->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
+		parse_vec3d(&d->up, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
+		parse_radius_disk(d, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
+		parse_color(&d->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+		parse_color(&d->chess, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+		parse_rot(&d->up, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&d->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_reflection(&d->refraction_coef, cur);
+}
+
 void		parse_disk(t_world *world, xmlNodePtr cur)
 {
 	t_disk	*d;
@@ -54,22 +74,7 @@ void		parse_disk(t_world *world, xmlNodePtr cur)
 	d->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
-			parse_vec3d(&d->pos, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&d->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
-			parse_radius_disk(d, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&d->color, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
-			parse_color(&d->chess, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&d->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&d->reflection_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_reflection(&d->refraction_coef, cur);
+		handle_input_disk(d, cur);
 		cur = cur->next;
 	}
 	add_disk(&world->disks_tmp, new_disk(d, world->id++));

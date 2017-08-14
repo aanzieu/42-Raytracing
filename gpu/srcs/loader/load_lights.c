@@ -14,8 +14,8 @@
 
 static unsigned int	count_lights(t_light *lights)
 {
-	t_light *p;
-	unsigned int size;
+	t_light			*p;
+	unsigned int	size;
 
 	size = 0;
 	p = lights;
@@ -27,10 +27,11 @@ static unsigned int	count_lights(t_light *lights)
 	return (size);
 }
 
-void			load_lights(t_light **lights, t_light *lights_tmp, int *lights_len)
+void				load_lights(t_light **lights, t_light *lights_tmp,
+															int *lights_len)
 {
-	unsigned int i;
-	t_light *tmp;
+	unsigned int	i;
+	t_light			*tmp;
 
 	i = 0;
 	*lights_len = count_lights(lights_tmp);

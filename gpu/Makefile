@@ -28,7 +28,7 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SDL_FLAGS = `sdl-config --cflags --libs`
-XML_FLAGS = `xml2-config --cflags --libs`
+XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -68,6 +68,9 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 
 SRC =			$(SRC_DIR)/main.c \
+				$(SRC_DIR)/launch_cpu_gpu.c \
+				$(SRC_DIR)/launch_configuration.c \
+				$(SRC_DIR)/data_setup.c \
 				$(SRC_DIR)/main_master.c \
 				$(SRC_DIR)/main_client.c \
 				$(SRC_DIR)/free_memory.c \
@@ -100,9 +103,6 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/events/mouse_handler.c \
 				$(SRC_DIR)/events/screenshot_event.c \
 				\
-				$(SRC_DIR)/parser/parse_add.c \
-				$(SRC_DIR)/parser/parse_add_bonus.c \
-				\
 				$(SRC_DIR)/xml_parser/parser.c \
 				$(SRC_DIR)/xml_parser/parse_camera.c \
 				$(SRC_DIR)/xml_parser/parse_light.c \
@@ -121,6 +121,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
+				$(SRC_DIR)/malloc/malloc_objects1.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
 				\
 				$(SRC_DIR)/server/master.c \
@@ -188,7 +189,7 @@ $(NAMECLIENT): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -g -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu

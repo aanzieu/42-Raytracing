@@ -88,7 +88,7 @@ t_cone		*copy_cone(t_cone *obj)
 	return (NULL);
 }
 
-t_cylinder		*copy_cylinder(t_cylinder *obj)
+t_cylinder	*copy_cylinder(t_cylinder *obj)
 {
 	t_cylinder *news;
 

@@ -21,20 +21,20 @@ typedef	struct	s_pastel
 
 typedef	struct	s_pos
 {
-	int		x;
-	int		y;
-	int		width;
-	int		height;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
 }				t_pos;
 
-void		shell_shading_effect(int *pix);
-void		exposure_color(int *pix);
-void		filter_color(int *pix);
-void		negative_color(int *pix);
-void		bayer_color(int *pix);
-void		solarized_effect(int *pix);
-void		pastel_effect(int *pix, int height, int width);
-void		black_and_white_effect(int *pix);
-void		sepia_effect(int *pix);
-void		eight_bit_effect(int *pix);
+void			shell_shading_effect(int *pix);
+void			exposure_color(int *pix);
+void			filter_color(int *pix);
+void			negative_color(int *pix);
+void			bayer_color(int *pix);
+void			solarized_effect(int *pix);
+void			pastel_effect(int *pix, int height, int width);
+void			black_and_white_effect(int *pix);
+void			sepia_effect(int *pix);
+void			eight_bit_effect(int *pix);
 #endif

@@ -12,28 +12,7 @@
 
 #include <rt.h>
 #include <gpu_rt.h>
-/*
-void	add_sphere_tmp(t_sphere **spheres, double radius, t_vec3d pos)
-{
-	t_sphere *new_sphere;
-	t_sphere *tmp;
 
-	tmp = *spheres;
-	new_sphere = malloc(sizeof(t_sphere));
-	new_sphere->radius = radius;
-	new_sphere->pos = pos;
-	new_sphere->next = NULL;
-
-	if (!tmp)
-		*spheres = new_sphere;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_sphere;
-	}
-}
-*/
 t_plane		*new_plan(t_plane *nw, int id)
 {
 	t_plane	*p;
@@ -125,19 +104,4 @@ t_cylinder	*new_cylinder(t_cylinder *nw, int id)
 	cy->next = NULL;
 	cy->chess = nw->chess;
 	return (cy);
-}
-
-t_light		*new_light(t_light *nw)
-{
-	t_light	*l;
-
-	if (!(l = (t_light *)ft_memalloc(sizeof(t_light))))
-		ft_putendl_fd("Erroc Malloc on Light", 1);
-	l->pos = nw->pos;
-	l->dir = nw->dir;
-	l->dir_v = vector_normalize(vector_calculate(nw->dir, nw->pos));
-	l->color = nw->color;
-	l->intensity_coef = nw->intensity_coef;
-	l->next = NULL;
-	return (l);
 }

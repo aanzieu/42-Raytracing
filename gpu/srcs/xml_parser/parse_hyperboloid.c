@@ -29,6 +29,26 @@ void	add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw)
 	}
 }
 
+void	handle_input_hyperboloid(t_hyperboloid *h, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
+		parse_vec3d(&h->top, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
+		parse_vec3d(&h->normal, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
+		parse_radius(&h->radius, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
+		parse_height(&h->maxm, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
+		parse_color(&h->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+		parse_rot(&h->normal, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&h->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_reflection(&h->refraction_coef, cur);
+}
+
 void	parse_hyperboloid(t_world *world, xmlNodePtr cur)
 {
 	t_hyperboloid *h;
@@ -39,22 +59,7 @@ void	parse_hyperboloid(t_world *world, xmlNodePtr cur)
 	h->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
-			parse_vec3d(&h->top, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&h->normal, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
-			parse_radius(&h->radius, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
-			parse_height(&h->maxm, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&h->color, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&h->normal, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&h->reflection_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_reflection(&h->refraction_coef, cur);
+		handle_input_hyperboloid(h, cur);
 		cur = cur->next;
 	}
 	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(h, world->id++));

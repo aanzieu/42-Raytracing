@@ -14,8 +14,8 @@
 
 static unsigned int			count_spheres(t_sphere *spheres)
 {
-	t_sphere *s;
-	unsigned int size;
+	t_sphere		*s;
+	unsigned int	size;
 
 	size = 0;
 	s = spheres;
@@ -27,10 +27,11 @@ static unsigned int			count_spheres(t_sphere *spheres)
 	return (size);
 }
 
-void			load_spheres(t_sphere **spheres, t_sphere *spheres_tmp, int *spheres_len)
+void						load_spheres(t_sphere **spheres,
+									t_sphere *spheres_tmp, int *spheres_len)
 {
-	unsigned int i;
-	t_sphere *tmp;
+	unsigned int	i;
+	t_sphere		*tmp;
 
 	i = 0;
 	*spheres_len = count_spheres(spheres_tmp);

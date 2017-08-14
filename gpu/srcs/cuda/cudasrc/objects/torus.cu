@@ -6,7 +6,7 @@ extern "C" {
 }
 
 /*
-**	On envoie le rayon et la structure qui contient le plan et la fonction
+**	On envoie le rayon et la structure qui contient le torus et la fonction
 **	ecrit sur 't_vec3d *intersection' les coordonees du point d'intersection
 **	avec le plan
 */

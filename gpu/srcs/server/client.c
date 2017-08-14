@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cluster.h"
-#include "../cuda/cudaheader/gpu_rt.h"
+#include <cluster.h>
+#include <gpu_rt.h>
 
 static void			check_cmd_recv(char cmd, t_data *data, t_cluster *cluster)
 {

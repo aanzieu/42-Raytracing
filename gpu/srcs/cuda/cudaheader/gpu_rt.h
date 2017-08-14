@@ -73,6 +73,10 @@ CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color, t_light light,
 **                     CAMERA_FCTS                                            **
 *******************************************************************************/
 
+CUDA_HOSTDEV void		move_forward(t_world *world);
+CUDA_HOSTDEV void		move_backward(t_world *world);
+CUDA_HOSTDEV void		move_left(t_world *world);
+CUDA_HOSTDEV void		move_right(t_world *world);
 CUDA_HOSTDEV void		cam_rot(t_camera *camera, double degrees, char axis);
 CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 
