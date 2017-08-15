@@ -29,13 +29,14 @@ void		get_viewplane(t_world *world)
 
 void	data_setup(t_world *world)
 {
-	world->mode = 2;
+	world->mode = 0;
 	world->light_type = 1;
 	world->viewplane.width = (double)((M_PI / 4) / 2);
 	world->viewplane.height = ((double)((double)(WIN_HEIGHT) / (double)(WIN_WIDTH))
 	 														* world->viewplane.width);
 	world->render_factor = 1;
 	world->viewplane.dist = 1;
+	world->k = 0;
 	world->line = 0;
 	world->ambient.coef = 0.2;
 	world->offsets.y_min = 0;
@@ -59,6 +60,7 @@ static void	load_data(t_world *world)
 {
 	load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
 	load_planes(&world->planes, world->planes_tmp, &world->planes_len);
+	load_torus(&world->torus, world->torus_tmp, &world->torus_len);
 	load_disks(&world->disks, world->disks_tmp, &world->disks_len);
 	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
 	load_cylinders(&world->cylinders,

@@ -80,8 +80,8 @@ CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 **                     VECTOR_FCTS                                            **
 *******************************************************************************/
 
-CUDA_HOSTDEV void		rotate(t_vec3d *point, double degrees, char axis);
-CUDA_HOSTDEV void		translate(t_vec3d *point, double x, double y, double z);
+CUDA_HOSTDEV void	  	rotate(t_vec3d *point, double degrees, char axis);
+CUDA_HOSTDEV void	  	translate(t_vec3d *point, double x, double y, double z);
 CUDA_HOSTDEV t_vec3d	new_vector(double x, double y, double z);
 CUDA_HOSTDEV t_vec3d	vector_copy(t_vec3d cpy);
 CUDA_HOSTDEV t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2);
@@ -92,6 +92,7 @@ CUDA_HOSTDEV t_vec3d	vector_calculate(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_normalize(t_vec3d vect1);
 CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
+CUDA_HOSTDEV double		vector_magnitude(t_vec3d vect1);
 
 /*******************************************************************************
 **                     MATH_FCTS                                              **
@@ -101,13 +102,25 @@ CUDA_HOSTDEV double		deg_to_radians(double deg);
 CUDA_HOSTDEV double		second_degres(double a, double b, double c);
 
 /*******************************************************************************
+**                     RAYTRACERS_FCTS                                        **
+*******************************************************************************/
+
+CUDA_HOSTDEV void				get_up_left(t_world *world);
+CUDA_HOSTDEV int				ray_tracer(t_world world, int x, int y);
+CUDA_HOSTDEV double			solver_n_degree3(double *coef, int degree);
+CUDA_HOSTDEV void				solve_n(double *coef, double *sol, int deg);
+CUDA_HOSTDEV void	      solve_second(double *coef, double *sol);
+CUDA_HOSTDEV void       solve_first(double *coef, double *sol);
+CUDA_HOSTDEV double     sign_of(double a);
+
+/*******************************************************************************
 **                     TEXTURES_FCTS                                          **
 *******************************************************************************/
 
 CUDA_HOSTDEV t_color 	handle_reflection(t_world world, t_ray ray,
 															t_intersection *intersection);
 CUDA_HOSTDEV t_color 	handle_refraction_transparence(t_world world,
-																			t_ray ray, t_intersection *intersection);
+															t_ray ray, t_intersection *intersection);
 CUDA_HOSTDEV t_color chess_effect(t_intersection *intersection);
 
 /*******************************************************************************

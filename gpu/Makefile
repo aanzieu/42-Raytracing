@@ -49,7 +49,11 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/rotation.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
+				\
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve_next.cu \
+				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
@@ -57,6 +61,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/hyperboloid.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				$(SRC_CUDA_DIR)/objects/disk.cu \
+				$(SRC_CUDA_DIR)/objects/torus.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
@@ -86,6 +91,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/effects/effect_pastel.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
+				$(SRC_DIR)/loader/load_torus.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_hyperboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
@@ -113,6 +119,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_cone.c \
 				$(SRC_DIR)/xml_parser/parse_paraboloid.c \
 				$(SRC_DIR)/xml_parser/parse_hyperboloid.c \
+				$(SRC_DIR)/xml_parser/parse_torus.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \
@@ -149,7 +156,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
-#	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
+	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \

@@ -30,7 +30,7 @@
 
 #define SHADOW_BIAS 0
 #define MAX_DEPTH 3
-#define CHESS_PATTERN 4
+#define CHESS_PATTERN 2
 
 typedef struct		s_offsets
 {
@@ -176,6 +176,7 @@ typedef struct		s_world
 	t_plane			*planes_d;
 	t_light			*lights_d;
 	t_cone			*cones_d;
+	t_torus			*torus_d;
 
 	int			spheres_len;
 	int			planes_len;
@@ -209,6 +210,9 @@ typedef struct		s_world
 	int			light_type;
 
 	int			id;
+
+	int			k;
+
 }					t_world;
 
 void				get_viewplane(t_world *world);

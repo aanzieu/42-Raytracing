@@ -116,11 +116,12 @@ typedef struct			s_torus
 {
 	int						id;
 	t_vec3d				pos;
-	t_vec3d				normal;
 	t_color				color;
 	t_color				chess;
-	double				radius;
-	double				radius2;
+	double				radius_small;
+	double				radius_big;
+	// t_sphere			inner;
+	// t_sphere			outer;
 	double				reflection_coef;
 	double				refraction_coef;
 	struct s_torus *next;
@@ -137,7 +138,7 @@ t_disk					*new_disk(t_disk *nw, int id);
 t_cylinder				*new_cylinder(t_cylinder *nw, int id);
 t_paraboloid			*new_paraboloid(t_paraboloid *nw, int id);
 t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id);
-t_torus				*new_torus(t_torus *nt, int id);
+t_torus					*new_torus(t_torus *nw, int id);
 
 void					add_sphere(t_sphere **alst, t_sphere *nw);
 void					add_plan(t_plane **alst, t_plane *nw);
@@ -146,7 +147,7 @@ void					add_cylinder(t_cylinder **alst, t_cylinder *nw);
 void					add_cone(t_cone **alst, t_cone *nw);
 void					add_paraboloid(t_paraboloid **alst, t_paraboloid *nw);
 void					add_hyperboloid(t_hyperboloid **alst, t_hyperboloid *nw);
-void					add_torus(t_torus **alst, t_torus *nt);
+void					add_torus(t_torus **alst, t_torus *nw);
 
 
 void					load_planes(t_plane **planes, t_plane *planes_tmp,

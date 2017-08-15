@@ -75,17 +75,17 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	world.spheres = spheres_d;
 	CudaSafeCall(cudaMemcpy(planes_d, world.planes, sizeof(t_plane) * world.planes_len, cudaMemcpyHostToDevice));
 	world.planes = planes_d;
-	//	CudaSafeCall(cudaMemcpy(cylinders_d, world.cylinders, sizeof(t_cylinder) * world.cylinders_len, cudaMemcpyHostToDevice));
-	//	world.cylinders = cylinders_d;
+		// CudaSafeCall(cudaMemcpy(cylinders_d, world.cylinders, sizeof(t_cylinder) * world.cylinders_len, cudaMemcpyHostToDevice));
+		// world.cylinders = cylinders_d;
 	CudaSafeCall(cudaMemcpy(cones_d, world.cones, sizeof(t_cone) * world.cones_len, cudaMemcpyHostToDevice));
 	world.cones = cones_d;
 
 	CudaSafeCall(cudaMemcpy(lights_d, world.lights, sizeof(t_light) * world.lights_len, cudaMemcpyHostToDevice));
 	world.lights = lights_d;
-	//	CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));
-	//	world.paraboloids = paraboloids_d;
+		// CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));
+		// world.paraboloids = paraboloids_d;
 	test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
-	//		CudaCheckError();
+			CudaCheckError();
 	if(spheres_d != NULL)
 		CudaSafeCall(cudaFree(spheres_d));
 	if(planes_d != NULL)

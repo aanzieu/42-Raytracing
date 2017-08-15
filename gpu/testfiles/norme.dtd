@@ -9,7 +9,7 @@
 <!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, color, chess*, reflection*, refraction*)>
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT torus (pos, radius_small, radius_big, rot*, color, chess*, reflection*, refraction*)>
 
 
 <!ELEMENT pos (#PCDATA)>
@@ -23,6 +23,8 @@
 <!ELEMENT origin (#PCDATA)>
 <!ELEMENT normal (#PCDATA)>
 <!ELEMENT radius (#PCDATA)>
+<!ELEMENT radius_small (#PCDATA)>
+<!ELEMENT radius_big (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
 <!ELEMENT chess (#PCDATA)>
 <!ELEMENT intensity (#PCDATA)>

@@ -63,11 +63,12 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	intersection_tmp.id = intersection->id;
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
-//	get_closest_disk(world, ray, intersection, &intersection_tmp);
+	get_closest_disk(world, ray, intersection, &intersection_tmp);
 	get_closest_cone(world, ray, intersection, &intersection_tmp);
-//	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
-//	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
-//	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
+	get_closest_torus(world, ray, intersection, &intersection_tmp);
+	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
+	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
+	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
 	if (intersection->type == '0')
 		return (0);
 	else
@@ -147,21 +148,19 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	get_up_left(&world);
 	get_ray_direction(world, &ray, x, y);
 	get_closest_intersection(world, ray, &intersection);
-
 	if (intersection.type == '0')
 		return (0);
+//	return (get_color(*intersection.color)); simple
 	if (intersection.reflection_coef == 0 && intersection.refraction_coef == 0)
-		color = *intersection.color;
+		color_add(&color, *intersection.color);
 	if (intersection.reflection_coef != 0)
 		color_add(&color, handle_reflection(world, ray, &intersection));
 	if (intersection.refraction_coef != 0)
 		color_add(&color, handle_refraction_transparence(world, ray, &intersection));
 	if (intersection.chess->r != -1)
 		color_add(&color, chess_effect(&intersection));
-
 	color_multiply(&color, world.ambient.color);
 	color_scalar(&color, world.ambient.intensity);
-
 	while (i < world.lights_len)
 	{
 		get_light_at(world, &color, world.lights[i], intersection, ray);

@@ -81,5 +81,6 @@ t_list              *ft_lstnew(void const *content, size_t content_size);
 double              ft_atoi_double(char const *str);
 int					ft_count_word(char **s);
 void				ft_swap_str(char **s1, char **s2);
+void                swap_double(double *a, double *b);
 
 #endif

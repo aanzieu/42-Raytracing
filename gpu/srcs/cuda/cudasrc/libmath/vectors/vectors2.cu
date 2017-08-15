@@ -51,3 +51,8 @@ __host__ __device__ double	vector_length(t_vec3d vect1)
 	length = sqrt(pow(vect1.x, 2) + pow(vect1.y, 2) + pow(vect1.z, 2));
 	return (length);
 }
+
+__host__ __device__ double	vector_magnitude(t_vec3d vect1)
+{
+	return (vect1.x * vect1.x + vect1.y * vect1.y + vect1.z * vect1.z);
+}

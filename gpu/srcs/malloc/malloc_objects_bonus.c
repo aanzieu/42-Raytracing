@@ -47,20 +47,22 @@ t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id)
 	return (hyper);
 }
 
-t_torus						*new_torus(t_torus *nw, int id)
+t_torus	*new_torus(t_torus *nw, int id)
 {
-	t_torus	*t;
+	t_torus	*s;
 
-	if (!(t = (t_torus *)ft_memalloc(sizeof(t_torus))))
-		ft_putendl_fd("Erroc Malloc on Torus", 1);
-	t->id = id;
-	t->radius = nw->radius;
-	t->radius2 = nw->radius2;
-	t->pos = nw->pos;
-	t->color = nw->color;
-	t->chess = nw->chess;
-	t->reflection_coef = nw->reflection_coef;
-	t->refraction_coef = nw->refraction_coef;
-	t->next = NULL;
-	return (t);
+	if (!(s = (t_torus *)ft_memalloc(sizeof(t_torus))))
+		ft_putendl_fd("Erroc Malloc on torus", 1);
+	s->radius_small = nw->radius_small;
+	s->radius_big = nw->radius_big;
+	s->pos = nw->pos;
+	// s->inner = nw->inner;
+	// s->outer = nw->outer;
+	s->color = nw->color;
+	s->chess = nw->chess;
+	s->id = id;
+	s->reflection_coef = nw->reflection_coef;
+	s->refraction_coef = nw->refraction_coef;
+	s->next = NULL;
+	return (s);
 }

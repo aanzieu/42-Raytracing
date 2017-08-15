@@ -108,3 +108,24 @@ t_cylinder		*copy_cylinder(t_cylinder *obj)
 	}
 	return (NULL);
 }
+
+t_torus		*copy_torus(t_torus *obj)
+{
+	t_torus *news;
+
+	if (obj)
+	{
+		if (!(news = (t_torus *)malloc(sizeof(t_torus))))
+			ft_putendl_fd("error : can't malloc copy thread to\n", 1);
+		news->pos = obj->pos;
+		news->radius_small = obj->radius_small;
+		news->radius_big = obj->radius_big;
+		news->color = obj->color;
+		news->chess = obj->chess;
+		news->next = NULL;
+		if (news && obj->next)
+			news->next = copy_torus(obj->next);
+		return (news);
+	}
+	return (NULL);
+}
