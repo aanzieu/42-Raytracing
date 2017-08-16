@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/20 15:53:03 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:02:32 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
 		parse_vec3d(&co->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&co->pos, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&co->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_paraboloid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:28:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:20:34 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	handle_input_paraboloid(t_paraboloid *p, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
 		parse_vec3d(&p->top, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&p->top, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&p->normal, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))

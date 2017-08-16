@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:16:39 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:01:50 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	handle_input_cylinder(t_cylinder *cy, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
 		parse_vec3d(&cy->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&cy->pos, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&cy->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))

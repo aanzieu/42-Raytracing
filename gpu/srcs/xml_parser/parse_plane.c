@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:28:28 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:21:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	handle_input_plane(t_plane *p, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
 		parse_vec3d(&p->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&p->pos, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&p->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_hyperboloid.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:17:41 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:19:30 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	handle_input_hyperboloid(t_hyperboloid *h, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
 		parse_vec3d(&h->top, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&h->top, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&h->normal, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))

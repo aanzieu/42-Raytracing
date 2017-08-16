@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/16 12:27:46 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/16 12:52:13 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -218,7 +218,7 @@ fclean: clean
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
 	@$(RM) $(NAME)
-	@$(RF) obj objcuda bin
+	@$(RF) obj objcuda bin screenshots
 
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_disk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 14:15:35 by PZC               #+#    #+#             */
-/*   Updated: 2017/07/18 17:16:55 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:03:17 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void		handle_input_disk(t_disk *d, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
 		parse_vec3d(&d->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&d->pos, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&d->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))

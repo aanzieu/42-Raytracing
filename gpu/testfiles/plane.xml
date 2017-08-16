@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<scene name="Just a plane, lonely plane">
-	<surface type="Plan">
-		<origin> 0 -0.5 1 </origin>
-		<normal> 0 -2 1 </normal>
-		<rotation> 0 0 0 </rotation>
-		<reflexion> 0 </reflexion>
-		<color> 255 245 255 </color>
-	</surface>
-		<surface type="Sphere">
-		<shader ref="red" />
-		<radius> 0.5 </radius>
-		<center> 0 0.2 1 </center>
-		<rotation> 0 0 0 </rotation>
-		<reflexion> 1 </reflexion>		
-		<translation> 0 0 0 </translation>
-		<color> 123 0 253 </color>
-	</surface>
-	<!--<light>
-		<position> 0 0 0 </position>
-		<intensity> 1 </intensity>
-		<color> 255 255 255 </color>
-	</light>-->
-	<!--<light>
-		<position> 0 1 0 </position>
-		<intensity> 1 </intensity>
-		<color> 255 255 255 </color>
-	</light>-->
-	<light>
-		<position> 2 0 -1 </position>
-		<direction> -1 0 -1 </direction>		
-		<intensity> 1 </intensity>
-		<color> 255 255 255 </color>
-	</light>
-	<ambient>
-		<intensity> 0.2 </intensity>
-		<color> 255 255 255 </color>
-	</ambient>
-	<camera type="Camera">
-		<viewPoint> 0 0 -5 </viewPoint>
-		<viewDir> 0 0 0 </viewDir>
-		<!--<viewWidth> 0.75 </viewWidth>
-		<viewHeight> 0.76 </viewHeight>-->
-	</camera>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="Just a plane, lonely planet">
+
+<camera>
+	<pos x="0" y="0" z="-5" />
+	<dir x="0" y="0" z="0" />
+</camera>
+
+<plane>
+	<origin x="0" y="-0.5" z="1" />
+	<normal x="0" y="-2" z="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="255" g="245" b="255" a="1" />
+	<reflection data="0" />
+</plane>
+
+<sphere>
+	<pos x="0" y="0.2" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.5" />
+	<color r="123" g="0" b="123" a="1" />
+	<reflection data="1" />
+</sphere>
+
+<light>
+	<pos x="2" y="0" z="-1" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+
 </scene>

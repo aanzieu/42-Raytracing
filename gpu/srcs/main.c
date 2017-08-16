@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:08:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/16 12:43:33 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			rt(t_world *world)
 	ft_bzero(world->a_h, world->size_main);
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return ;
-	world->window.id = SDL_CreateWindow("Rtv1 v1.2.0", 100, 100, WIN_WIDTH,
+	world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
 															WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 0)
