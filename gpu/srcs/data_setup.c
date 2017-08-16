@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:08:49 by svilau           ###   ########.fr       */
+/*   Updated: 2017/08/15 13:18:18 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			data_setup(t_world *world)
 {
-	world->mode = 2;
+	world->mode = 0;
 	world->light_type = 1;
 	world->viewplane.width = (double)((M_PI / 4) / 2);
 	world->viewplane.height = ((double)((double)(WIN_HEIGHT) /
