@@ -60,14 +60,14 @@
 	<color r="0" g="0" b="255" a="1" />
 </disk> -->
 
- <cone>
+<cone>
 	<pos x="-0.75" y="0" z="0.5" />
 	<normal x="-0.75" y="1" z="0.5" />
 	<radius data="0.2" />
 	<height data="2" />
 	<color r="0" g="0" b="255" a="1" />
 	<reflection data="1" />
-</cone> 
+</cone>
 
 <!-- <paraboloid>
 	<top x="0" y="0" z="0" />
@@ -90,7 +90,7 @@
 	<tra x="0" y="1" z="0" />
 	<radius data="0.5" />
 	<color r="255" g="255" b="255" a="1" />
-	<reflection data="1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
@@ -98,7 +98,7 @@
 	<tra x="0" y="0" z="0" />
 	<radius data="0.5" />
 	<color r="255" g="255" b="255" a="1" />
-	<reflection data="2" />
+	<reflection data="0" />
 </sphere>
 
 </scene>

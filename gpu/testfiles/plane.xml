@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="Just a plane, lonely planet">
+<scene name="Just a plane">
 
 <camera>
 	<pos x="0" y="0" z="-5" />
@@ -14,14 +14,6 @@
 	<color r="255" g="245" b="255" a="1" />
 	<reflection data="0" />
 </plane>
-
-<sphere>
-	<pos x="0" y="0.2" z="1" />
-	<tra x="0" y="0" z="0" />
-	<radius data="0.5" />
-	<color r="123" g="0" b="123" a="1" />
-	<reflection data="1" />
-</sphere>
 
 <light>
 	<pos x="2" y="0" z="-1" />
