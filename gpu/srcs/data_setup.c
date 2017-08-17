@@ -14,7 +14,7 @@
 
 void			data_setup(t_world *world)
 {
-	world->mode = 0;
+	world->mode = 1;
 	world->light_type = 1;
 	world->viewplane.width = (double)((M_PI / 4) / 2);
 	world->viewplane.height = ((double)((double)(WIN_HEIGHT) /
@@ -38,4 +38,6 @@ void			data_setup(t_world *world)
 	world->lights = NULL;
 	world->lights_len = 0;
 	world->id = 0;
+	world->animation_forward = 0;
+	world->recording = 0;
 }

@@ -54,7 +54,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	int 		*a_d = 0;
 	t_sphere	*spheres_d = NULL;
 	t_plane		*planes_d = NULL;
-	//	static t_cylinder	*cylinders_d;
+	t_cylinder	*cylinders_d = NULL;
 	t_cone		*cones_d = NULL;
 	t_light		*lights_d = NULL;
 	//	static t_paraboloid	*paraboloids_d;
@@ -66,7 +66,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	CudaSafeCall(cudaMalloc(&a_d, size));
 	CudaSafeCall(cudaMalloc(&spheres_d, sizeof(t_sphere) * world.spheres_len));
 	CudaSafeCall(cudaMalloc(&planes_d, sizeof(t_plane) * world.planes_len));
-	//	CudaSafeCall(cudaMalloc(&cylinders_d, sizeof(t_cylinder) * world.cylinders_len));
+	CudaSafeCall(cudaMalloc(&cylinders_d, sizeof(t_cylinder) * world.cylinders_len));
 	CudaSafeCall(cudaMalloc(&cones_d, sizeof(t_cone) * world.cones_len));
 	CudaSafeCall(cudaMalloc(&lights_d, sizeof(t_light) * world.lights_len));
 	//	CudaSafeCall(cudaMalloc(&paraboloids_d, sizeof(t_paraboloid) * world.paraboloids_len));
@@ -75,11 +75,10 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	world.spheres = spheres_d;
 	CudaSafeCall(cudaMemcpy(planes_d, world.planes, sizeof(t_plane) * world.planes_len, cudaMemcpyHostToDevice));
 	world.planes = planes_d;
-	//	CudaSafeCall(cudaMemcpy(cylinders_d, world.cylinders, sizeof(t_cylinder) * world.cylinders_len, cudaMemcpyHostToDevice));
-	//	world.cylinders = cylinders_d;
+	CudaSafeCall(cudaMemcpy(cylinders_d, world.cylinders, sizeof(t_cylinder) * world.cylinders_len, cudaMemcpyHostToDevice));
+	world.cylinders = cylinders_d;
 	CudaSafeCall(cudaMemcpy(cones_d, world.cones, sizeof(t_cone) * world.cones_len, cudaMemcpyHostToDevice));
 	world.cones = cones_d;
-
 	CudaSafeCall(cudaMemcpy(lights_d, world.lights, sizeof(t_light) * world.lights_len, cudaMemcpyHostToDevice));
 	world.lights = lights_d;
 	//	CudaSafeCall(cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice));

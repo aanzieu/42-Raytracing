@@ -34,7 +34,7 @@ void			master_config(t_world *world, char *argv)
 void			client_config(t_world *world, char *argv)
 {
 	if (argv == NULL)
-		ft_putstr_fd("usage : ./bin/RT 'MASTER IP'\n", 1);
+		ft_putstr_fd("usage : ./bin/RT map.xml client 'MASTER IP'\n", 1);
 	serveur_address_serveur(argv, world);
 	ft_putstr("Thank you for your patience\n");
 }
@@ -52,5 +52,5 @@ void			choose_main_launcher(char **argv, int flags)
 	else if (flags == 1 && argv[1])
 		master_config(world, argv[1]);
 	else if (flags == 2)
-		client_config(world, argv[1]);
+		client_config(world, argv[3]);
 }
