@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="One sphere">
+<scene name="Tunnel">
 
 <camera>
 	<pos x="0" y="0" z="-10" />
@@ -33,11 +33,11 @@
 
 <!--<cylinder>
 	<pos x="0" y="0" z="1" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="0" y="1" z="1" />
 	<radius data="1" />
-	<rot x="0" y="0" z="0" />	
-	<color r="255" g="125" b="255" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="255" g="125" b="255" a="1" />
 	<reflection data="0" />
 </cylinder>-->
 
@@ -131,21 +131,21 @@
 
 <cylinder>
 	<pos x="-0.5" y="0" z="60" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="-0.5" y="1" z="50" />
 	<radius data="0.2" />
-	<rot x="0" y="0" z="0" />	
-	<color r="200" g="125" b="100" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="200" g="125" b="100" a="1" />
 	<reflection data="0" />
 </cylinder>
 
 <cylinder>
 	<pos x="0.5" y="0" z="50" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="0.5" y="1" z="50" />
 	<radius data="0.2" />
-	<rot x="0" y="0" z="0" />	
-	<color r="200" g="125" b="100" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="200" g="125" b="100" a="1" />
 	<reflection data="1" />
 </cylinder>
 
@@ -157,27 +157,27 @@
 
 <cone>
 	<pos x="0.5" y="0" z="75" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="0.5" y="1" z="75" />
 	<radius data="0.3" />
 	<height data= "0.2" />
 	<min x="0.5" y="-0.5" z="75" />
 	<max x="0.5" y="0.5" z="75" />
-	<rot x="0" y="0" z="0" />	
-	<color r="55" g="50" b="255" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="55" g="50" b="255" a="1" />
 	<reflection data="0" />
 </cone>
 
 <cone>
 	<pos x="-0.5" y="0" z="85" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="-0.5" y="1" z="85" />
 	<radius data="0.3" />
 	<height data= "0.2" />
 	<min x="0.5" y="-0.5" z="85" />
 	<max x="0.5" y="0.5" z="85" />
-	<rot x="0" y="0" z="0" />	
-	<color r="55" g="50" b="255" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="55" g="50" b="255" a="1" />
 	<reflection data="1" />
 </cone>
 
@@ -203,21 +203,21 @@
 
 <cylinder>
 	<pos x="0.5" y="0" z="120" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="0.5" y="1" z="120" />
 	<radius data="0.2" />
-	<rot x="0" y="0" z="0" />	
-	<color r="20" g="30" b="50" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="20" g="30" b="50" a="1" />
 	<reflection data="0" />
 </cylinder>
 
 <cylinder>
 	<pos x="-0.5" y="0" z="120" />
-	<tra x="0" y="0" z="0" />	
+	<tra x="0" y="0" z="0" />
 	<normal x="-0.5" y="1" z="120" />
 	<radius data="0.2" />
-	<rot x="0" y="0" z="0" />	
-	<color r="50" g="30" b="30" a="1" />	
+	<rot x="0" y="0" z="0" />
+	<color r="50" g="30" b="30" a="1" />
 	<reflection data="0" />
 </cylinder>
 
