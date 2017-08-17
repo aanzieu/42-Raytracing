@@ -26,7 +26,7 @@
 # define VERSION 1.03.3
 
 # define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_HEIGHT 1280
 
 # define SHADOW_BIAS 0
 # define MAX_DEPTH 3
