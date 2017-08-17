@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="France's flag">
+
+<ambient>
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.5" />
+</ambient>
+
+<camera>
+	<pos x="0" y="0.3" z="-10" />
+	<dir x="0" y="0" z="1" />
+	<!-- <tra x="-1" y="0" z="0" /> -->
+</camera>
+
+<light>
+	<pos x="0.5" y="0.5" z="-5" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.5" />
+</light>
+
+<light>
+	<pos x="0" y="0.2" z="-5" />
+	<color r="100" g="100" b="100" a="1" />
+	<intensity data="0.4" />
+</light>
+
+<light>
+	<pos x="-0.5" y="0.5" z="-3" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.5" />
+</light>
+
+<!--Blue stripe-->
+
+<sphere>
+	<pos x="0" y="0" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="50" g="50" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0" y="0.3" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="50" g="50" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0" y="0.6" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="50" g="50" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0" y="0.9" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="50" g="50" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<!---->
+
+<!--White stripe-->
+
+<sphere>
+	<pos x="0.5" y="0" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="255" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0.5" y="0.3" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="255" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0.5" y="0.6" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="255" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="0.5" y="0.9" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="255" b="255" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<!---->
+
+<!--Red stripe-->
+
+<sphere>
+	<pos x="1" y="0" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="30" b="20" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="1" y="0.3" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="30" b="20" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="1" y="0.6" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="30" b="20" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<sphere>
+	<pos x="1" y="0.9" z="1" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.4" />
+	<color r="255" g="30" b="20" a="1" />
+	<reflection data="-1" />
+</sphere>
+
+<!---->
+
+<plane>
+	<origin x="0" y="-1" z="0" />
+	<normal x="0" y="1" z="0" />
+	<rot x="0" y="0" z="0" />
+	<color r="123" g="123" b="200" a="1" />
+	<reflection data="0" />
+</plane>
+
+</scene>

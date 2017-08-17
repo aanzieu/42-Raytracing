@@ -40,7 +40,6 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.d = 1;
 	if (event.key.keysym.sym == SDLK_0)
 		world->keys.pad_0 = 1;
-	return ;
 }
 
 void	key_press_handler2(t_world *world, SDL_Event event)
@@ -71,7 +70,19 @@ void	key_press_handler2(t_world *world, SDL_Event event)
 		savebmp(world);
 }
 
-void	key_press_handler3(t_world *world)
+void	key_press_handler3(t_world *world, SDL_Event event)
+{
+	if (event.key.keysym.sym == SDLK_PAGEUP)
+		world->recording = 1;
+	if (event.key.keysym.sym == SDLK_PAGEDOWN)
+		world->recording = 0;
+	if (event.key.keysym.sym == SDLK_HOME)
+		world->animation_forward = 1;
+	if (event.key.keysym.sym == SDLK_END)
+		world->animation_forward = 0;
+}
+
+void	key_press_handler4(t_world *world)
 {
 	if (world->keys.up == 1)
 		cam_rot(&world->camera, -90	, 'x');
@@ -89,7 +100,7 @@ void	key_press_handler3(t_world *world)
 		move_backward(world);
 }
 
-void	key_press_handler4(t_world *world)
+void	key_press_handler5(t_world *world)
 {
 	if (world->keys.d == 1)
 		move_right(world);

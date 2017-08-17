@@ -13,6 +13,7 @@
 #include <cluster.h>
 #include <display.h>
 #include <unistd.h>
+#include <gpu_rt.h>
 
 /*
  ** Initialize Cluster to find if some Client is open
@@ -117,12 +118,21 @@ static void			render_clustering(t_world *world, t_cluster *cluster)
 	{
 		SDL_PollEvent(&event);
 		quit = event_handler(world, event);
+		ft_bzero(cluster->world->a_h, cluster->world->size_main);		
 		if (cluster_stratege(cluster) == 1)
+		{
+			if (world->animation_forward == 1 && cluster->nbr_clients > 0)			
+				move_forward(world);
 			launch_client(cluster, cluster->client_list);
+		}
 		tmp = cluster->nbr_clients;
-		remove_client_if(cluster, &cluster->client_list, NULL, NULL);
+		remove_client_if(cluster, &cluster->client_list, NULL, NULL);		
 		if (cluster->nbr_clients == tmp)
+		{
 			put_buffer_together(cluster, cluster->client_list, 0, 0);
+			if (world->recording == 1 && cluster->nbr_clients > 0)
+				savebmp(world);					
+		}	
 		put_pixel_screen(cluster->world);
 		ft_bzero(cluster->world->a_h, cluster->world->size_main);
 		free_buffer(cluster);

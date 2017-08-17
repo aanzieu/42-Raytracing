@@ -25,8 +25,8 @@
 
 # define VERSION 1.03.3
 
-# define WIN_WIDTH 768
-# define WIN_HEIGHT 768
+# define WIN_WIDTH 320
+# define WIN_HEIGHT 320
 
 # define SHADOW_BIAS 0
 # define MAX_DEPTH 3
@@ -199,6 +199,8 @@ typedef struct		s_world
 
 	t_keys			keys;
 	int				mode;
+	int				animation_forward;
+	int				recording;
 
 	int				line;
 
@@ -239,8 +241,9 @@ void				key_release_handler1(t_world *world, SDL_Event event);
 void				key_release_handler2(t_world *world, SDL_Event event);
 void				key_press_handler1(t_world *world, SDL_Event event);
 void				key_press_handler2(t_world *world, SDL_Event event);
-void				key_press_handler3(t_world *world);
+void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world);
+void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
 
 t_light				*copy_light(t_light *obj);

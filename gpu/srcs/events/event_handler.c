@@ -18,8 +18,9 @@ void	get_event(t_world *world, SDL_Event event)
 	{
 		key_press_handler1(world, event);
 		key_press_handler2(world, event);
-		key_press_handler3(world);
+		key_press_handler3(world, event);
 		key_press_handler4(world);
+		key_press_handler5(world);		
 		if (event.key.keysym.sym == SDLK_e)
 			while (world->render_factor > 1)
 				world->render_factor--;
