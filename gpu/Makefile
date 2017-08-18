@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/16 12:52:13 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/18 13:56:40 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/events/key_release_handler.c \
 				$(SRC_DIR)/events/mouse_handler.c \
 				$(SRC_DIR)/events/screenshot_event.c \
+				$(SRC_DIR)/events/xml_saver.c \
 				\
 				$(SRC_DIR)/xml_parser/parser.c \
 				$(SRC_DIR)/xml_parser/parse_camera.c \

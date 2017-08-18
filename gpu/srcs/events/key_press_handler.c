@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/12 15:29:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/18 13:51:51 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.space = 1;
 	if (event.key.keysym.sym == SDLK_w)
 		world->keys.w = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
 	if (event.key.keysym.sym == SDLK_a)
 		world->keys.a = 1;
 	if (event.key.keysym.sym == SDLK_s)
@@ -40,14 +36,14 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.d = 1;
 	if (event.key.keysym.sym == SDLK_0)
 		world->keys.pad_0 = 1;
-}
-
-void	key_press_handler2(t_world *world, SDL_Event event)
-{
 	if (event.key.keysym.sym == SDLK_1)
 		world->keys.pad_1 = 1;
 	if (event.key.keysym.sym == SDLK_2)
 		world->keys.pad_2 = 1;
+}
+
+void	key_press_handler2(t_world *world, SDL_Event event)
+{
 	if (event.key.keysym.sym == SDLK_3)
 		world->keys.pad_3 = 1;
 	if (event.key.keysym.sym == SDLK_4)
@@ -68,6 +64,8 @@ void	key_press_handler2(t_world *world, SDL_Event event)
 		world->keys.e = 1;
 	if (event.key.keysym.sym == SDLK_p)
 		savebmp(world);
+	if (event.key.keysym.sym == SDLK_o)
+		save_xml_scene(world);
 }
 
 void	key_press_handler3(t_world *world, SDL_Event event)

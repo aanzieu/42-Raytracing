@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 18:06:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/18 13:55:00 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define VERSION 1.03.3
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1280
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 420
 
 # define SHADOW_BIAS 0
 # define MAX_DEPTH 3
@@ -245,6 +245,7 @@ void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world);
 void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
+void				save_xml_scene(t_world *world);
 
 t_light				*copy_light(t_light *obj);
 t_sphere			*copy_sphere(t_sphere *obj);
