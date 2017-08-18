@@ -23,11 +23,11 @@ static void	write_file_name(t_world *w, int nb)
 	if (nb != -1)
 	{
 		num = ft_itoa(nb + 1);
-		path = ft_strjoin("screenshots/image", num);
+		path = ft_strjoin("../../../../../../../Volumes/Storage/goinfre/svilau/photos/image", num);
 		ft_strdel(&num);
 	}
 	else
-		path = ft_strdup("screenshots/image");
+		path = ft_strdup("../../../../../../../Volumes/Storage/goinfre/svilau/photos/image");
 	ext = ft_strjoin(path, ".bmp");
 	ft_strdel(&path);
 	if ((ret = SDL_SaveBMP(w->window.screen, ext)) != 0)
@@ -35,6 +35,8 @@ static void	write_file_name(t_world *w, int nb)
 	ft_putstr("Snapshot ! -> ");
 	ft_putendl(ext);
 	ft_strdel(&ext);
+	if (nb > 1600)
+		exit(0);
 }
 
 /*
@@ -52,9 +54,9 @@ void		savebmp(t_world *world)
 	nb = -1;
 	rep = NULL;
 	f = NULL;
-	if ((rep = opendir("screenshots")) == NULL)
-		system("mkdir screenshots");
-	if ((rep = opendir("screenshots")) == NULL)
+	// if ((rep = opendir("screenshots")) == NULL)
+	// 	system("mkdir screenshots");
+	if ((rep = opendir("../../../../../../../Volumes/Storage/goinfre/svilau/photos")) == NULL)
 		show_error("open screenshots directory error");
 	while ((f = readdir(rep)) != NULL)
 	{
