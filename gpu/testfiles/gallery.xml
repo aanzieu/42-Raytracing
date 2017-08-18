@@ -15,7 +15,7 @@
 <light>
 	<pos x="-2" y="0" z="-5" />
 	<color r="255" g="255" b="255" a="1" />
-	<intensity data="1" />
+	<intensity data="0" />
 </light>
 
 <!-- <cone>
