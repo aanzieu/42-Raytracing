@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                         :+:      :+:    :+:   */
+/*   event_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/22 12:12:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/21 18:47:17 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_event(t_world *world, SDL_Event event)
 		key_press_handler2(world, event);
 		key_press_handler3(world, event);
 		key_press_handler4(world);
-		key_press_handler5(world);		
+		key_press_handler5(world);
 		if (event.key.keysym.sym == SDLK_e)
 			while (world->render_factor > 1)
 				world->render_factor--;
@@ -30,6 +30,8 @@ void	get_event(t_world *world, SDL_Event event)
 		key_release_handler1(world, event);
 		key_release_handler2(world, event);
 	}
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+		mouse_press_handler(world, event);
 }
 
 int		event_handler(t_world *world, SDL_Event event)

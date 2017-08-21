@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/21 11:47:33 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/21 17:39:52 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			rt(t_world *world)
 	world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
 															WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
+	TTF_Init();
 	if (world->mode == 0)
 		launch_cpu(world);
 	else
@@ -78,6 +79,7 @@ void			rt(t_world *world)
 	free(world->a_h);
 	SDL_FreeSurface(world->window.screen);
 	SDL_DestroyWindow(world->window.id);
+	TTF_Quit();
 }
 
 int				main(int argc, char **argv)

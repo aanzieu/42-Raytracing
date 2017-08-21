@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_release_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/23 11:45:19 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/22 00:00:55 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 		world->keys.s = 0;
 	if (event.key.keysym.sym == SDLK_d)
 		world->keys.d = 0;
+	if (event.key.keysym.sym == SDLK_p)
+		world->keys.p = 0;
 	return ;
 }
 

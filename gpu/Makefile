@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/16 12:52:13 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/21 19:03:27 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ MAKE_FLAGS = --no-print-directory
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
 INCLUDEXML = -I/usr/include/libxml2
+INCLUDETTF = -I../frameworks/SDL2_ttf.framework/Headers
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
@@ -118,6 +119,9 @@ SRC =			$(SRC_DIR)/main.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\
+				$(SRC_DIR)/interface/interface_init.c \
+				$(SRC_DIR)/interface/interface_utils.c \
+				\
 				$(SRC_DIR)/malloc/malloc_objects.c \
 				$(SRC_DIR)/malloc/malloc_objects1.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
@@ -152,6 +156,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
+	-Xlinker -framework,SDL2_ttf \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
@@ -164,7 +169,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDETTF) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu

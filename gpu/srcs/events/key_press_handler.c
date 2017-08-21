@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/12 15:29:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/21 23:53:06 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	key_press_handler1(t_world *world, SDL_Event event)
 		world->keys.left = 1;
 	if (event.key.keysym.sym == SDLK_SPACE)
 		world->keys.space = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
-	if (event.key.keysym.sym == SDLK_w)
-		world->keys.w = 1;
 	if (event.key.keysym.sym == SDLK_w)
 		world->keys.w = 1;
 	if (event.key.keysym.sym == SDLK_a)
@@ -67,7 +63,7 @@ void	key_press_handler2(t_world *world, SDL_Event event)
 	if (event.key.keysym.sym == SDLK_e)
 		world->keys.e = 1;
 	if (event.key.keysym.sym == SDLK_p)
-		savebmp(world);
+		world->keys.p = 1;
 }
 
 void	key_press_handler3(t_world *world, SDL_Event event)
@@ -98,12 +94,14 @@ void	key_press_handler4(t_world *world)
 		move_left(world);
 	if (world->keys.s == 1)
 		move_backward(world);
+	if (world->keys.d == 1)
+		move_right(world);
 }
 
 void	key_press_handler5(t_world *world)
 {
-	if (world->keys.d == 1)
-		move_right(world);
+	if (world->keys.p == 1)
+		savebmp(world);
 	if (world->keys.space == 1)
 	{
 		while ((WIN_HEIGHT / world->render_factor) != 32)

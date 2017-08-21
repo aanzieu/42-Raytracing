@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 18:06:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/21 23:53:41 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 
 # include <pthread.h>
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
+# include "../frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h"
 
 # define NB_TH 8
 
 # define VERSION 1.03.3
 
-# define WIN_WIDTH 640
+# define WIN_WIDTH 940
 # define WIN_HEIGHT 640
 
 # define SHADOW_BIAS 0
@@ -44,6 +45,12 @@ typedef struct		s_window
 	SDL_Surface		*screen;
 	SDL_Window		*id;
 }					t_window;
+
+typedef struct		s_interface
+{
+	SDL_Surface		*topbar;
+	SDL_Surface		*sidebar;
+}					t_interface;
 
 typedef struct		s_keys
 {
@@ -69,6 +76,7 @@ typedef struct		s_keys
 	int l;
 	int i;
 	int q;
+	int p;
 	int e;
 	int w;
 	int s;
@@ -151,6 +159,7 @@ typedef struct		s_thread_input
 typedef struct		s_world
 {
 	t_window		window;
+	t_interface		interface;
 	char			*title;
 
 	t_sphere		*spheres;
@@ -244,6 +253,7 @@ void				key_press_handler2(t_world *world, SDL_Event event);
 void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world);
 void				key_press_handler5(t_world *world);
+void				mouse_press_handler(t_world *world, SDL_Event event);
 void				savebmp(t_world *world);
 
 t_light				*copy_light(t_light *obj);

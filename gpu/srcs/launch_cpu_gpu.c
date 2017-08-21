@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   launch_cpu_gpu.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:08:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/22 00:33:26 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "rt.h"
+#include "interface.h"
 #include <gpu_rt.h>
 #include <display.h>
 
@@ -80,6 +81,7 @@ void			launch_cpu(t_world *world)
 		launch_thread(world, 0, WIN_HEIGHT);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
+		init_interface(world);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
 }
@@ -113,6 +115,7 @@ void			launch_gpu(t_world *world)
 				world->viewplane.y_res, *world, 0);
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
+		init_interface(world);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
 }
