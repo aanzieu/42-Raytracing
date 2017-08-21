@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/16 12:43:33 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/21 11:47:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int				main(int argc, char **argv)
 	flags = 0;
 	if (argc == 2)
 		choose_main_launcher(argv, 0);
-	else if (argc > 2)
+	else if (argc == 3)
 	{
 		if ((ft_strcmp("master", argv[2]) == 0))
 			flags = 1;
-		else if ((ft_strcmp("client", argv[2]) == 0))
+		else if ((ft_strcmp("client", argv[1]) == 0))
 			flags = 2;
 		choose_main_launcher(argv, flags);
 	}

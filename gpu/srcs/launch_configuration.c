@@ -6,7 +6,7 @@
 /*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:08:49 by svilau           ###   ########.fr       */
+/*   Updated: 2017/08/21 11:48:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void			choose_main_launcher(char **argv, int flags)
 	else if (flags == 1 && argv[1])
 		master_config(world, argv[1]);
 	else if (flags == 2)
-		client_config(world, argv[3]);
+		client_config(world, argv[2]);
 }
