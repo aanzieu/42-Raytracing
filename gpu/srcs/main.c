@@ -53,7 +53,7 @@ void			rt_cluster(t_world *world)
 	if (!(world->a_h = ft_memalloc(world->size_main)))
 		ft_putendl_fd("Error : Can't malloc client a_h", 1);
 	ft_bzero(world->a_h, world->size_main);
-	if (world->mode == 1)
+	if (world->mode == 0)
 		launch_cpu(world);
 	else
 		launch_gpu(world);

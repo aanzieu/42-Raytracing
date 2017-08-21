@@ -87,18 +87,18 @@
 
 <sphere>
 	<pos x="-1" y="0" z="10" />
+	<radius data="0.5" />	
 	<tra x="0" y="1" z="0" />
-	<radius data="0.5" />
 	<color r="255" g="255" b="255" a="1" />
-	<reflection data="0" />
+	<reflection data="1" />
 </sphere>
 
 <sphere>
 	<pos x="1" y="2" z="2" />
+	<radius data="0.5" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.5" />
 	<color r="255" g="255" b="255" a="1" />
-	<reflection data="0" />
+	<reflection data="1" />
 </sphere>
 
 </scene>

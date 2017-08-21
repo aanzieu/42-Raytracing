@@ -2,14 +2,14 @@
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
-<!ELEMENT plane (origin, normal, tra*, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT sphere (pos, tra*, radius, color, chess*, reflection*, refraction*)>
-<!ELEMENT cylinder (pos, tra*, normal, radius, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT disk (origin, tra*, normal, radius, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT cone (pos, tra*, normal, radius, height, min*, max*, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT paraboloid (top, tra*, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT hyperboloid (top, tra*, normal, radius, height, rot*, color, chess*, reflection*, refraction*)>
-<!ELEMENT torus (top, tra*, normal, radius_small, radius_big, rot*, color, chess*, reflection*, refraction*)>
+<!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT sphere (pos, radius, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT cylinder (pos, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*)>
 
 
 <!ELEMENT pos (#PCDATA)>
