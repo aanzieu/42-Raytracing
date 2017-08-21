@@ -11,8 +11,6 @@
 # **************************************************************************** #
 
 NAME = RT
-NAMEMASTER = RTmaster
-NAMECLIENT = RTclient
 
 MAKE = make
 MAKE_FLAGS = --no-print-directory
@@ -159,29 +157,6 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
-$(NAMEMASTER): $(OBJ) $(OBJ_CUDA)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
-	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
-	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
-	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
-	printf '\033[1;7m'
-	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
-
-$(NAMECLIENT): $(OBJ) $(OBJ_CUDA)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
-	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
-	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
-	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
-	printf '\033[1;7m'
-	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 ###################################################
 ##--- Create repertories for objects .c to .c ---##
 ###################################################
@@ -205,7 +180,7 @@ objcuda/%.o: srcs/%.cu
 clean:
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Library--------"
-	@$(MAKE) $(MAKE_FLAGS) #fclean -C $(LIBFT_DIR)
+	@$(MAKE) $(MAKE_FLAGS) fclean -C $(LIBFT_DIR)
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Output Files--------"
 	@$(RM) $(OBJ) $(OBJ_CUDA)
@@ -221,14 +196,3 @@ fclean: clean
 	@$(RF) obj objcuda bin screenshots
 
 re: fclean all
-
-master : $(NAMEMASTER)
-client : $(NAMECLIENT)
-
-run: $(NAME)
-	./bin/rtv1 ./testfiles/basic.xml
-
-runforever:
-	nodemon -e c,h --watch . --exec make run > /tmp/lala
-
-.PHONY: clean fclean re all run runforever
