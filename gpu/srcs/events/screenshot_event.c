@@ -20,6 +20,7 @@ static void	write_file_name(t_world *w, int nb)
 	char	*ext;
 	int		ret;
 
+	num = NULL;
 	if (nb != -1)
 	{
 		num = ft_itoa(nb + 1);
