@@ -150,6 +150,7 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 
 	if (intersection.type == '0')
 		return (0);
+	if(world.keys.light_none == 1){
 	if (intersection.reflection_coef == 0 && intersection.refraction_coef == 0)
 		color = *intersection.color;
 	if (intersection.reflection_coef != 0)
@@ -158,11 +159,12 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 		color_add(&color, handle_refraction_transparence(world, ray, &intersection));
 	if (intersection.chess->r != -1)
 		color_add(&color, chess_effect(&intersection));
-
+	}
 	color_multiply(&color, world.ambient.color);
 	color_scalar(&color, world.ambient.intensity);
-
-	while (i < world.lights_len)
+	if (world.keys.light_none == 0)
+		color = *intersection.color;
+	while (i < world.lights_len && world.keys.light_none == 1)
 	{
 		get_light_at(world, &color, world.lights[i], intersection, ray);
 		if (world.keys.pad_9 == 1)

@@ -17,7 +17,6 @@
 	<color r="255" g="255" b="255" a="1" />
 	<intensity data="1" />
 </light>
-
 <!-- <cone>
 	<pos x="-0.75" y="0" z="0.5" />
 	<normal x="-0.75" y="1" z="0.5" />
@@ -28,8 +27,8 @@
 </cone> -->
 <sphere>
 	<pos x="0" y="0" z="0" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.2" />
+	<tra x="0" y="0" z="0" />
 	<color r="255" g="0" b="0" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />

@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/12 15:29:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 14:38:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	key_press_handler2(t_world *world, SDL_Event event)
 		world->keys.q = 1;
 	if (event.key.keysym.sym == SDLK_e)
 		world->keys.e = 1;
+	if (event.key.keysym.sym == SDLK_l)
+		world->keys.light_none = 1;
+	if (event.key.keysym.sym == SDLK_k)
+		world->keys.light_none = 0;
 	if (event.key.keysym.sym == SDLK_p)
 		savebmp(world);
 }

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 18:06:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/22 14:11:01 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct		s_keys
 	int pad_9;
 	int j;
 	int k;
-	int l;
+	int light_none;
 	int i;
 	int q;
 	int e;

@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="Just a plane and lonely planet">
-
+<scene name="Just a plane and lonely planet spheres">
 <camera>
-	<pos x="0" y="0" z="-5" />
-	<dir x="0" y="0" z="0" />
-</camera>
-
-<plane>
-	<origin x="0" y="-0.5" z="1" />
-	<normal x="0" y="-2" z="1" />
+	<pos x="0" y="0" z="-10" />
+	<dir x="0" y="0" z="1" />
 	<rot x="0" y="0" z="0" />
-	<color r="255" g="245" b="255" a="1" />
-	<reflection data="0" />
-</plane>
-
-<sphere>
-	<pos x="0" y="0.2" z="1" />
 	<tra x="0" y="0" z="0" />
-	<radius data="0.5" />
-	<color r="123" g="0" b="123" a="1" />
-	<chess r="255" g="255" b="255" />
-</sphere>
-
+</camera>
+<ambient>
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.1" />
+</ambient>
 <light>
-	<pos x="2" y="0" z="-1" />
+	<pos x="-2" y="3" z="-3.5" />
 	<color r="255" g="255" b="255" a="1" />
 	<intensity data="1" />
 </light>
-
+<light>
+	<pos x="-3" y="2" z="-4" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+<plane>
+	<origin x="0" y="-1" z="1" />
+	<normal x="0" y="1" z="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="0" g="45" b="255" a="1" />
+	<reflection data="0" />
+</plane>
+<sphere>
+	<pos x="0" y="0.2" z="1" />
+	<radius data="0.5" />
+	<tra x="0" y="0" z="0" />
+	<color r="123" g="0" b="123" a="1" />
+	<reflection data="0.9" />
+</sphere>
 </scene>

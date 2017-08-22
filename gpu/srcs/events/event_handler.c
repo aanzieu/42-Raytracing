@@ -6,7 +6,7 @@
 /*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/22 12:12:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/22 14:37:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	get_event(t_world *world, SDL_Event event)
 		key_press_handler2(world, event);
 		key_press_handler3(world, event);
 		key_press_handler4(world);
-		key_press_handler5(world);		
-		if (event.key.keysym.sym == SDLK_e)
-			while (world->render_factor > 1)
-				world->render_factor--;
+		key_press_handler5(world);
 	}
 	if (event.type == SDL_KEYUP)
 	{
