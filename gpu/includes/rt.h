@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/21 23:53:41 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 16:33:17 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 # include <pthread.h>
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
 # include "../frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h"
+# include "../frameworks/SDL2_image.framework/Versions/A/Headers/SDL_image.h"
 
 # define NB_TH 8
 
 # define VERSION 1.03.3
 
-# define WIN_WIDTH 940
-# define WIN_HEIGHT 640
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 768
 
 # define SHADOW_BIAS 0
 # define MAX_DEPTH 8
@@ -210,6 +211,7 @@ typedef struct		s_world
 	int				mode;
 	int				animation_forward;
 	int				recording;
+	int				loader;
 
 	int				line;
 

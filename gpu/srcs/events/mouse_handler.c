@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/22 00:32:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 16:50:38 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void listen_cursor_statement(t_world *world)
 		world->keys.p = 1;
 	else
 		world->keys.p = 0;
-	printf("x:%d y:%d\n", cursor_x, cursor_y);
+	//printf("x:%d y:%d\n", cursor_x, cursor_y);
 }
 
 void	mouse_movement(t_world *world)

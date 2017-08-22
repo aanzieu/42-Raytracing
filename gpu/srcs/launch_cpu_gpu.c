@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_cpu_gpu.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/22 00:33:26 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 17:19:56 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void			launch_cpu(t_world *world)
 		put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
 		init_interface(world);
+		create_loader(world);
 		SDL_UpdateWindowSurface(world->window.id);
 	}
 }

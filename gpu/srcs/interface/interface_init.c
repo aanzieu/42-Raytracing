@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:48:38 by PZC               #+#    #+#             */
-/*   Updated: 2017/08/22 00:34:18 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 16:57:58 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,50 @@ static void init_sidebar_bg(t_world *world)
 	SDL_FreeSurface(rect);
 }
 
+void create_loader(t_world *world)
+{
+	SDL_Surface *rect;
+	SDL_Surface *texte;
+	TTF_Font *police;
+	SDL_Color white = {255, 255, 255, 255};
+	SDL_Rect	pos;
+	static int i = 10;
+	
+	pos = interface_set_position(30, WIN_HEIGHT - 30);
+	rect = SDL_CreateRGBSurface(0, i, 5, 32, 0, 0, 0, 0);
+	SDL_FillRect(rect, NULL, SDL_MapRGB(world->window.screen->format, 255, 255, 255));
+	SDL_BlitSurface(rect, NULL, world->window.screen, &pos);
+	SDL_FreeSurface(rect);
+	pos = interface_set_position(30, WIN_HEIGHT - 50);
+	police = TTF_OpenFont("fonts/roboto.ttf", 12);
+	texte = TTF_RenderText_Blended(police, "Loading...", white);
+	SDL_BlitSurface(texte, NULL, world->window.screen, &pos);
+	TTF_CloseFont(police);
+    SDL_FreeSurface(texte);
+	// i += 10;
+	// if (i > 50)
+	// 	i = 10;
+}
+
 void	init_interface(t_world *world)
 {
+	// SDL_Surface *loader;
+	// SDL_Rect 	pos;
+
+	// int initted=IMG_Init(IMG_INIT_PNG);
+	// if(!initted) {
+	//     printf("IMG_Init: Failed to init required jpg and png support!\n");
+	//     printf("IMG_Init: %s\n", IMG_GetError());
+	//     // handle error
+	// }
+
 	init_sidebar_bg(world);
 	init_topbar_bg(world);
 	init_topbar_content(world);
+	// loader = IMG_Load("img/loading.png");
+	// pos = interface_set_position(200, 200);
+	// SDL_BlitSurface(loader, NULL, world->window.screen, &pos);
+	// SDL_FreeSurface(loader);
+
+	// IMG_Quit();
 }

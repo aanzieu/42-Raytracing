@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/22 00:33:35 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/22 16:33:32 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void			data_setup(t_world *world)
 	world->id = 0;
 	world->animation_forward = 1;
 	world->recording = 1;
+	world->loader = 1;
 }
