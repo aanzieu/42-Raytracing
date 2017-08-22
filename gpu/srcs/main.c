@@ -84,6 +84,8 @@ int				main(int argc, char **argv)
 {
 	int	flags;
 
+	(void)argc;
+	(void)argv;	
 	flags = 0;
 	if (argc == 2)
 		choose_main_launcher(argv, 0);

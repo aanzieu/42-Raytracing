@@ -13,6 +13,7 @@
 #include <rt.h>
 #include <gpu_rt.h>
 #include <display.h>
+# include <unistd.h>
 
 static	void	*perform_thread(void *arg)
 {
@@ -78,9 +79,10 @@ void			launch_cpu(t_world *world)
 		quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world, 0, WIN_HEIGHT);
-		put_pixel_screen(world);
+		interface_launch(world->a_h);
+		// put_pixel_screen(world);
 		ft_bzero(world->a_h, world->size_main);
-		SDL_UpdateWindowSurface(world->window.id);
+		// SDL_UpdateWindowSurface(world->window.id);
 	}
 }
 

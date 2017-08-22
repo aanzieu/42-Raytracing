@@ -21,12 +21,17 @@ INCLUDEXML = -I/usr/include/libxml2
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
+SRC_INTERFACE_DIR = srcs/interface
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
+
+GLFW3 = /Users/svilau/brew/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib
+
+GLEW = /Users/svilau/brew/Cellar/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -64,6 +69,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
 
+SRC_INTERFACE = $(SRC_INTERFACE_DIR)/extended.c \
 
 SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/launch_cpu_gpu.c \
@@ -150,8 +156,10 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
+	$(CC) -c $(SRC_INTERFACE)
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"	
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) extended.o $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'

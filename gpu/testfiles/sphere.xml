@@ -28,8 +28,8 @@
 
 <sphere>
 	<pos x="0" y="0" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
+	<tra x="0" y="0" z="0" />	
 	<color r="255" g="125" b="255" a="1" />
 	<reflection data="-1" />
 </sphere>
