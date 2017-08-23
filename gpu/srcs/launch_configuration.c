@@ -18,8 +18,7 @@ void			local_config(t_world *world, char *argv)
 {
 	parse_rtv1(world, argv);
 	load_data(world);
-	rt(world);
-	free_world(world);
+	interface_launch(world, argv);
 }
 
 void			master_config(t_world *world, char *argv)

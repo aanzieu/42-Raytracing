@@ -66,18 +66,18 @@ void			rt(t_world *world)
 	if (!(world->a_h = malloc(world->size_main)))
 		exit(0);
 	ft_bzero(world->a_h, world->size_main);
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		return ;
-	world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
-															WIN_HEIGHT, 0);
-	world->window.screen = SDL_GetWindowSurface(world->window.id);
+	// if (SDL_Init(SDL_INIT_VIDEO) == -1)
+		// return ;
+	// world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
+															// WIN_HEIGHT, 0);
+	// world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 0)
 		launch_cpu(world);
 	else
 		launch_gpu(world);
-	free(world->a_h);
-	SDL_FreeSurface(world->window.screen);
-	SDL_DestroyWindow(world->window.id);
+	// free(world->a_h);
+	// SDL_FreeSurface(world->window.screen);
+	// SDL_DestroyWindow(world->window.id);
 }
 
 int				main(int argc, char **argv)

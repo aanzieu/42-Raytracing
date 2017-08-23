@@ -63,8 +63,8 @@ int				launch_thread(t_world *world, int y_min, int y_max)
 
 void			launch_cpu(t_world *world)
 {
-	int			quit;
-	SDL_Event	event;
+	// int			quit;
+	// SDL_Event	event;
 
 	if (world->clientrender == 1)
 	{
@@ -72,18 +72,21 @@ void			launch_cpu(t_world *world)
 		launch_thread(world, world->offsets.y_min, world->offsets.y_max);
 		return ;
 	}
-	quit = 0;
-	while (quit == 0)
-	{
-		SDL_PollEvent(&event);
-		quit = event_handler(world, event);
+	// quit = 0;
+	// while (quit == 0)
+	// {
+		// SDL_PollEvent(&event);
+		// quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world, 0, WIN_HEIGHT);
-		interface_launch(world->a_h);
+		move_forward(world);
+		move_forward(world);
+		move_forward(world);
+		move_forward(world);		
 		// put_pixel_screen(world);
-		ft_bzero(world->a_h, world->size_main);
+		// ft_bzero(world->a_h, world->size_main);
 		// SDL_UpdateWindowSurface(world->window.id);
-	}
+	// }
 }
 
 /*

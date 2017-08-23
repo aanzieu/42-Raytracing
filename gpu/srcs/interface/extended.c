@@ -10,7 +10,9 @@
 #include <time.h>
 #include <limits.h>
 #include <unistd.h>
-# include <dirent.h>
+#include <dirent.h>
+#include <rt.h>
+#include <colors.h>
 
 #include </Users/svilau/brew/Cellar/glew/2.1.0/include/GL/glew.h>
 #include </Users/svilau/brew/Cellar/glfw/3.2.1/include/GLFW/glfw3.h>
@@ -70,6 +72,18 @@ struct media {
     struct nk_image images[9];
     struct nk_image menu[6];
 };
+
+t_color	int_to_rgb(int color)
+{
+	t_color	rgb_color;
+
+	if (color > 16777215)
+		color = 16777215;
+	rgb_color.b = color & 255;
+	rgb_color.g = (color >> 8) & 255;
+	rgb_color.r = (color >> 16) & 255;
+	return (rgb_color);
+}
 
 /* ===============================================================
  *
@@ -250,7 +264,7 @@ ui_widget_centered(struct nk_context *ctx, struct media *media, float height)
 }
 
 static void
-button_demo(struct nk_context *ctx, struct media *media)
+button_demo(struct nk_context *ctx, struct media *media, t_world *world)
 {
     static int option = 1;
     static int toggle0 = 1;
@@ -291,7 +305,7 @@ button_demo(struct nk_context *ctx, struct media *media)
     ui_header(ctx, media, "Push buttons");
     ui_widget(ctx, media, 35);
     if (nk_button_label(ctx, "Push me"))
-        fprintf(stdout, "pushed!\n");
+        rt(world);  
     ui_widget(ctx, media, 35);
     if (nk_button_image_label(ctx, media->rocket, "Styled", NK_TEXT_CENTERED))
         fprintf(stdout, "rocket!\n");
@@ -527,25 +541,26 @@ icon_load(const char *filename)
 }
 
 static struct nk_image
-screen_load(const char *filename)
+screen_load(int *a_h)
 {
     int x,y,n;
     GLuint tex;
     unsigned char *data;
     int i;
+    t_color tmp;
 
-    x = 32;
-    y = 32;
-    data = malloc(1024 * 4 * sizeof(unsigned char));
-    for (i = 0; i < 1024; i++)
+    x = WIN_WIDTH;
+    y = WIN_HEIGHT;
+    data = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+    for (i = 0; i < WIN_WIDTH * WIN_HEIGHT; i++)
     {
-        //  data[i] = ;        
-        data[4 * i + 0] = 0;
-        data[4 * i + 1] = 0;
-        data[4 * i + 2] = 0;        
+        tmp = int_to_rgb(a_h[i]);
+        data[4 * i + 0] = tmp.r;
+        data[4 * i + 1] = tmp.g;
+        data[4 * i + 2] = tmp.b;        
         data[4 * i + 3] = 255;                
     }
-    if (!data) die("[SDL]: failed to load image: %s", filename);
+    // if (!data) die("[SDL]: failed to load image: %s", filename);
 
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
@@ -559,13 +574,22 @@ screen_load(const char *filename)
     return nk_image_id((int)tex);
 }
 
+static void
+ui_widget_render(struct nk_context *ctx, struct media *media, float height)
+{
+    static const float ratio[] = {(float)WIN_WIDTH};
+    nk_style_set_font(ctx, &media->font_22->handle);
+    nk_layout_row(ctx, NK_STATIC, height, 1, ratio);
+}
+
+
 /* ===============================================================
  *
  *                          RENDER DEMO
  *
  * ===============================================================*/
 static void
-render_demo(struct nk_context *ctx, struct media *media)
+render_demo(struct nk_context *ctx, struct media *media, int *a_h)
 {
     static int image_active;
     struct nk_image screen;
@@ -579,17 +603,17 @@ render_demo(struct nk_context *ctx, struct media *media)
     static int piemenu_active = 0;
     static struct nk_vec2 piemenu_pos;
 
-    screen = screen_load("srcs/interface/images/image5.png");
+    screen = screen_load(a_h);
     int i = 0;
     nk_style_set_font(ctx, &media->font_20->handle);
-    nk_begin(ctx, "Basic Demo", nk_rect(320, 50, 275, 275),
+    nk_begin(ctx, "Basic Demo", nk_rect(0, 0, WIN_WIDTH + 27, WIN_HEIGHT + 60),
         NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE);
 
     /*------------------------------------------------
      *                  SELECTED IMAGE
      *------------------------------------------------*/
     // ui_header(ctx, media, "Selected Image");
-    ui_widget_centered(ctx, media, 32);
+    ui_widget_render(ctx, media, WIN_HEIGHT);
     nk_image(ctx, screen);
 
     nk_style_set_font(ctx, &media->font_14->handle);
@@ -809,14 +833,13 @@ static void text_input(GLFWwindow *win, unsigned int codepoint)
 static void scroll_input(GLFWwindow *win, double _, double yoff)
 {UNUSED(_);nk_input_scroll((struct nk_context*)glfwGetWindowUserPointer(win), nk_vec2(0, (float)yoff));}
 
-int interface_launch(int *a_h)
+int interface_launch(t_world *world, char *argv)
 {
     /* Platform */
     static GLFWwindow *win;
     int width = 0, height = 0;
     int display_width=0, display_height=0;
     
-    a_h[0] = 0;
     /* GUI */
     struct device device;
     struct nk_font_atlas atlas;
@@ -945,8 +968,11 @@ int interface_launch(int *a_h)
 
         /* GUI */
         // basic_demo(&ctx, &media);
-        render_demo(&ctx, &media);
-        // button_demo(&ctx, &media);      
+        if (world->a_h != NULL)
+            render_demo(&ctx, &media, world->a_h);
+            	// free(world->a_h);
+
+        button_demo(&ctx, &media, world);      
         
         // grid_demo(&ctx, &media);
 
@@ -977,6 +1003,5 @@ int interface_launch(int *a_h)
 
     device_shutdown(&device);
     glfwTerminate();
-    exit(0);    
     return 0;
 }

@@ -38,6 +38,7 @@ void			data_setup(t_world *world)
 	world->lights = NULL;
 	world->lights_len = 0;
 	world->id = 0;
-	world->animation_forward = 1;
-	world->recording = 1;
+	world->animation_forward = 0;
+	world->recording = 0;
+	world->a_h = NULL;
 }

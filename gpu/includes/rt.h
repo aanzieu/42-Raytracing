@@ -230,7 +230,7 @@ int					event_handler(t_world *world, SDL_Event event);
 void				memory_allocation_error();
 void				free_world(t_world *world);
 void				mouse_movement(t_world *world);
-int					interface_launch(int *a_h);
+int					interface_launch(t_world *world, char *argv);
 
 /*
 ********************************************************************************
