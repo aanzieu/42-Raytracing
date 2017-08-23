@@ -9,6 +9,8 @@
 #include <math.h>
 #include <time.h>
 #include <limits.h>
+#include <unistd.h>
+# include <dirent.h>
 
 #include </Users/svilau/brew/Cellar/glew/2.1.0/include/GL/glew.h>
 #include </Users/svilau/brew/Cellar/glfw/3.2.1/include/GLFW/glfw3.h>
@@ -256,7 +258,7 @@ button_demo(struct nk_context *ctx, struct media *media)
     static int toggle2 = 1;
 
     nk_style_set_font(ctx, &media->font_20->handle);
-    nk_begin(ctx, "Button Demo", nk_rect(50,50,255,610),
+    nk_begin(ctx, "Button Demo", nk_rect(100,100,255,610),
         NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE);
 
     /*------------------------------------------------
@@ -524,6 +526,77 @@ icon_load(const char *filename)
     return nk_image_id((int)tex);
 }
 
+static struct nk_image
+screen_load(const char *filename)
+{
+    int x,y,n;
+    GLuint tex;
+    unsigned char *data;
+    int i;
+
+    x = 32;
+    y = 32;
+    data = malloc(1024 * 4 * sizeof(unsigned char));
+    for (i = 0; i < 1024; i++)
+    {
+        //  data[i] = ;        
+        data[4 * i + 0] = 0;
+        data[4 * i + 1] = 0;
+        data[4 * i + 2] = 0;        
+        data[4 * i + 3] = 255;                
+    }
+    if (!data) die("[SDL]: failed to load image: %s", filename);
+
+    glGenTextures(1, &tex);
+    glBindTexture(GL_TEXTURE_2D, tex);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    // stbi_image_free(data);
+    return nk_image_id((int)tex);
+}
+
+/* ===============================================================
+ *
+ *                          RENDER DEMO
+ *
+ * ===============================================================*/
+static void
+render_demo(struct nk_context *ctx, struct media *media)
+{
+    static int image_active;
+    struct nk_image screen;
+    static int check0 = 1;
+    static int check1 = 0;
+    static size_t prog = 80;
+    static int selected_item = 0;
+    static int selected_image = 3;
+    static int selected_icon = 0;
+    static const char *items[] = {"Item 0","item 1","item 2"};
+    static int piemenu_active = 0;
+    static struct nk_vec2 piemenu_pos;
+
+    screen = screen_load("srcs/interface/images/image5.png");
+    int i = 0;
+    nk_style_set_font(ctx, &media->font_20->handle);
+    nk_begin(ctx, "Basic Demo", nk_rect(320, 50, 275, 275),
+        NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE);
+
+    /*------------------------------------------------
+     *                  SELECTED IMAGE
+     *------------------------------------------------*/
+    // ui_header(ctx, media, "Selected Image");
+    ui_widget_centered(ctx, media, 32);
+    nk_image(ctx, screen);
+
+    nk_style_set_font(ctx, &media->font_14->handle);
+    nk_end(ctx);
+}
+
+
 static void
 device_init(struct device *dev)
 {
@@ -742,7 +815,8 @@ int interface_launch(int *a_h)
     static GLFWwindow *win;
     int width = 0, height = 0;
     int display_width=0, display_height=0;
-        
+    
+    a_h[0] = 0;
     /* GUI */
     struct device device;
     struct nk_font_atlas atlas;
@@ -770,7 +844,7 @@ int interface_launch(int *a_h)
     glfwGetFramebufferSize(win, &display_width, &display_height);
 
     /* OpenGL */
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    glViewport(0, 0, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
     glewExperimental = 1;
     if (glewInit() != GLEW_OK) {
         fprintf(stderr, "Failed to setup GLEW\n");
@@ -870,16 +944,17 @@ int interface_launch(int *a_h)
         nk_input_end(&ctx);}
 
         /* GUI */
-        basic_demo(&ctx, &media);
-        // button_demo(&ctx, &media);
+        // basic_demo(&ctx, &media);
+        render_demo(&ctx, &media);
+        // button_demo(&ctx, &media);      
+        
         // grid_demo(&ctx, &media);
 
         /* Draw */
         glViewport(0, 0, display_width, display_height);
+        glClearColor(0.3f, 0.3f, 0.3f, 1.0f);        
         glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
         device_draw(&device, &ctx, width, height, scale, NK_ANTI_ALIASING_ON);
-        // glDrawPixels( 640, 640, GL_RGB, GL_INT, a_h);       
         glfwSwapBuffers(win);
     }
 
@@ -902,5 +977,6 @@ int interface_launch(int *a_h)
 
     device_shutdown(&device);
     glfwTerminate();
+    exit(0);    
     return 0;
 }
