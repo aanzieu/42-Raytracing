@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/18 13:55:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/23 17:51:37 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ void				key_press_handler4(t_world *world);
 void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
 void				save_xml_scene(t_world *world);
+char				*ft_itoa_double(double n);
 
 t_light				*copy_light(t_light *obj);
 t_sphere			*copy_sphere(t_sphere *obj);

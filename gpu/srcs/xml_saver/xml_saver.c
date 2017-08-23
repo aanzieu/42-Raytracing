@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 13:52:50 by PZC               #+#    #+#             */
-/*   Updated: 2017/08/18 14:04:54 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/23 17:41:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@ void	save_xml_scene(t_world *world)
 
 	camera = xmlNewChild(root_node, NULL, BAD_CAST "camera", NULL);
 	node = xmlNewChild(camera, NULL, BAD_CAST "pos", NULL);
-	xmlNewProp(node, BAD_CAST "x", BAD_CAST ft_itoa(world->camera.pos.x));
-	xmlNewProp(node, BAD_CAST "y", BAD_CAST ft_itoa(world->camera.pos.y));
-	xmlNewProp(node, BAD_CAST "z", BAD_CAST ft_itoa(world->camera.pos.z));
+	xmlNewProp(node, BAD_CAST "x", BAD_CAST ft_itoa_double(world->camera.pos.x));
+	xmlNewProp(node, BAD_CAST "y", BAD_CAST ft_itoa_double(world->camera.pos.y));
+	xmlNewProp(node, BAD_CAST "z", BAD_CAST ft_itoa_double(world->camera.pos.z));
+
+	node = xmlNewChild(camera, NULL, BAD_CAST "dir", NULL);
+	xmlNewProp(node, BAD_CAST "x", BAD_CAST ft_itoa_double(world->camera.look_at.x));
+	xmlNewProp(node, BAD_CAST "y", BAD_CAST ft_itoa_double(world->camera.look_at.y));
+	xmlNewProp(node, BAD_CAST "z", BAD_CAST ft_itoa_double(world->camera.look_at.z));
 
 	xmlSaveFormatFileEnc("./testfiles/save.xml", doc, "UTF-8", 1);
 
