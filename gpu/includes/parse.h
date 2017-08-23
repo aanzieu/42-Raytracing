@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/18 17:34:14 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:53:19 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ void		parse_ambient(t_world *world, xmlNodePtr cur);
 **	parser_utils.c
 */
 int			is_numeric(const char *str);
+
+void		save_cam_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_spheres_to_xml(t_world *world, xmlNodePtr root_node);
 
 #endif

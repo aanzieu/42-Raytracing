@@ -3,6 +3,33 @@
 <scene name="Cool gallery">
   <camera>
     <pos x="0" y="0" z="-7.000000"/>
-    <dir x="0" y="0" z="1.000000"/>
+    <dir x="0.219297" y="-0.219214" z="0.993988"/>
   </camera>
+  <sphere>
+    <pos x="0.750000" y="0.750000" z="0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="-0.750000" y="0.750000" z="0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="1.000000" y="0.750000" z="-0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="-1.000000" y="0.750000" z="-0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="0.750000" y="-0.750000" z="0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="-0.750000" y="-0.750000" z="0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="1.000000" y="-0.750000" z="-0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="-1.000000" y="-0.750000" z="-0.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="0" y="0.750000" z="0"/>
+  </sphere>
 </scene>
