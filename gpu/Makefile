@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/07/27 18:27:25 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/08/24 12:32:24 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
-				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve_next.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/equation_utils.cu \
 				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
