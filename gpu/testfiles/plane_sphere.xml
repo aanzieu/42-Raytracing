@@ -11,7 +11,7 @@
 	<origin x="0" y="-0.5" z="1" />
 	<normal x="0" y="-2" z="1" />
 	<rot x="0" y="0" z="0" />
-	<color r="255" g="245" b="255" a="1" />
+	<color r="255" g="245" b="255" />
 	<reflection data="0" />
 </plane>
 
@@ -19,13 +19,13 @@
 	<pos x="0" y="0.2" z="1" />
 	<tra x="0" y="0" z="0" />
 	<radius data="0.5" />
-	<color r="123" g="0" b="123" a="1" />
+	<color r="123" g="0" b="123" />
 	<chess r="255" g="255" b="255" />
 </sphere>
 
 <light>
 	<pos x="2" y="0" z="-1" />
-	<color r="255" g="255" b="255" a="1" />
+	<color r="255" g="255" b="255" />
 	<intensity data="1" />
 </light>
 

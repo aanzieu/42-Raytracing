@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xml_saver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/18 13:52:50 by PZC               #+#    #+#             */
-/*   Updated: 2017/08/23 20:08:52 by PZC              ###   ########.fr       */
+/*   Created: 2017/08/24 17:20:24 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/08/24 18:09:07 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		save_xml_scene(t_world *world)
 	xmlCreateIntSubset(doc, BAD_CAST "scene", NULL, BAD_CAST "norme.dtd");
 	save_objects_to_xml(world, root_node);
 
-	//printf("x:%f y:%f z:%f\n", world->camera.look_at.x, world->camera.look_at.y, world->camera.look_at.z);
+	//printf("r:%f g:%f b:%f\n", world->spheres->color.r, world->spheres->color.g, world->spheres->color.b);
 
 	xmlSaveFormatFileEnc("./testfiles/save.xml", doc, "UTF-8", 1);
 	xmlFreeDoc(doc);

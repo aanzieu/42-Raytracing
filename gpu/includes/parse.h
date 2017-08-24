@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/23 18:53:19 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/24 19:15:06 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,8 @@ int			is_numeric(const char *str);
 
 void		save_cam_to_xml(t_world *world, xmlNodePtr root_node);
 void		save_spheres_to_xml(t_world *world, xmlNodePtr root_node);
+xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
 
 #endif

@@ -3,60 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/23 17:40:43 by PZC               #+#    #+#             */
-/*   Updated: 2017/08/24 00:00:33 by PZC              ###   ########.fr       */
+/*   Created: 2017/08/24 18:06:07 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/08/24 18:07:12 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static char *fill_string(char *str, int nb, int neg)
+static int	ft_count_double(double n)
 {
-	int point;
-	int i;
+	int count;
+	int nb;
 
-	i = 26;
-	point = 0;
+	count = 7;
+	nb = n;
+	if (n < 0)
+		count++;
+	if (nb == 0)
+		count++;
 	while (nb)
 	{
-		str[i--] = (nb % 10) + '0';
+		count++;
+		nb /= 10;
+	}
+	return (count);
+}
+
+static char	*fill_string(char *str, int nb, int neg, int size)
+{
+	int point;
+
+	point = 0;
+	size--;
+	while (nb)
+	{
+		str[size--] = (nb % 10) + '0';
 		nb /= 10;
 		point++;
 		while (nb == 0 && point < 6)
 		{
-			str[i--] = '0';
+			str[size--] = '0';
 			point++;
 		}
 		if (point == 6)
-			str[i--] = '.';
+			str[size--] = '.';
 		if (point == 6 && nb == 0)
-			str[i--] = '0';
+			str[size--] = '0';
 	}
 	if (neg)
-		str[i--] = '-';
-	return (&str[++i]);
+		str[size] = '-';
+	return (str);
 }
 
 char		*ft_itoa_double(double n)
 {
 	int		neg;
 	int		nb;
+	int		size;
 	char	*str;
 
-	if (!(str = ft_memalloc(28)))
-		return (NULL);
-	str[27] = '\0';
-	nb = n * 1000000;
-	if (nb == 0)
+	if (n == 0)
 	{
-		str[26] = '0';
-		return (&str[26]);
+		if (!(str = ft_strnew(1)))
+			return (NULL);
+		str[0] = '0';
+		return (str);
 	}
+	size = ft_count_double(n);
+	if (!(str = ft_strnew(size)))
+		return (NULL);
+	nb = n * 1000000;
 	neg = (nb < 0) ? 1 : 0;
 	if (neg)
 		nb *= -1;
-	str = fill_string(str, nb, neg);
-	return (str);
+	return (fill_string(str, nb, neg, size));
 }
