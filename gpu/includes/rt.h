@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/22 14:11:01 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/24 13:31:24 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ typedef struct		s_world
 	t_paraboloid	*paraboloids;
 	t_hyperboloid	*hyperboloids;
 	t_torus			*torus;
+	t_mobius		*mobius;
+
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
 	t_disk			*disks_tmp;
@@ -171,6 +173,7 @@ typedef struct		s_world
 	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
 	t_torus			*torus_tmp;
+	t_mobius		*mobius_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -186,6 +189,7 @@ typedef struct		s_world
 	int				hyperboloids_len;
 	int				disks_len;
 	int				torus_len;
+	int			mobius_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;

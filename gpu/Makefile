@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/16 12:52:13 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/24 13:34:32 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/equation_utils.cu \
+				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
@@ -55,6 +58,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/hyperboloid.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				$(SRC_CUDA_DIR)/objects/disk.cu \
+				$(SRC_CUDA_DIR)/objects/mobius.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
@@ -90,6 +94,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_hyperboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
+				$(SRC_DIR)/loader/load_mobius.c \
 				$(SRC_DIR)/loader/load_cylinders.c \
 				$(SRC_DIR)/loader/load_planes.c \
 				$(SRC_DIR)/loader/load_disks.c \
@@ -106,6 +111,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_light.c \
 				$(SRC_DIR)/xml_parser/parse_plane.c \
 				$(SRC_DIR)/xml_parser/parse_sphere.c \
+				$(SRC_DIR)/xml_parser/parse_mobius.c \
 				$(SRC_DIR)/xml_parser/parse_cylinder.c \
 				$(SRC_DIR)/xml_parser/parse_disk.c \
 				$(SRC_DIR)/xml_parser/parse_cone.c \

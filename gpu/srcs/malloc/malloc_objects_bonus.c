@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 10:37:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 11:50:47 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/24 13:39:17 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,19 @@ t_torus						*new_torus(t_torus *nw, int id)
 	t->refraction_coef = nw->refraction_coef;
 	t->next = NULL;
 	return (t);
+}
+
+t_mobius					*new_mobius(t_mobius *nw)
+{
+	t_mobius	*s;
+
+	if (!(s = (t_mobius *)ft_memalloc(sizeof(t_mobius))))
+		ft_putendl_fd("Erroc Malloc on Sphere", 1);
+	s->radius = nw->radius;
+	s->pos = nw->pos;
+	s->color = nw->color;
+	s->reflection_coef = nw->reflection_coef;
+	s->refraction_coef = nw->refraction_coef;
+	s->next = NULL;
+	return (s);
 }

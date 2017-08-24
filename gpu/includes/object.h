@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/27 09:41:34 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/24 13:38:27 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,17 @@ typedef struct				s_sphere
 	struct s_sphere			*next;
 }							t_sphere;
 
-typedef struct				s_paraboloid
+typedef struct			s_mobius
+{
+	double				radius;
+	t_vec3d				pos;
+	t_color				color;
+	double				reflection_coef;
+	double				refraction_coef;
+	struct s_mobius		*next;
+}						t_mobius;
+
+typedef struct			s_paraboloid
 {
 	int						id;
 	t_vec3d					top;
@@ -140,6 +150,7 @@ t_cylinder					*new_cylinder(t_cylinder *nw, int id);
 t_paraboloid				*new_paraboloid(t_paraboloid *nw, int id);
 t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id);
 t_torus						*new_torus(t_torus *nt, int id);
+t_mobius					*new_mobius(t_mobius *nw);
 
 void						add_sphere(t_sphere **alst, t_sphere *nw);
 void						add_plan(t_plane **alst, t_plane *nw);
@@ -151,6 +162,7 @@ void						add_paraboloid(t_paraboloid **alst,
 void						add_hyperboloid(t_hyperboloid **alst,
 							t_hyperboloid *nw);
 void						add_torus(t_torus **alst, t_torus *nt);
+void						add_mobius(t_mobius **alst, t_mobius *nw);
 
 /*
 ********************************************************************************
@@ -177,5 +189,7 @@ void						load_hyperboloids(t_hyperboloid **hyperboloids,
 void						load_torus(t_torus **torus,
 							t_torus *torus_tmp,
 							int *torus_len);
+void						load_mobius(t_mobius **mobius,
+							t_mobius *mobius_tmp, int *mobius_len);
 
 #endif

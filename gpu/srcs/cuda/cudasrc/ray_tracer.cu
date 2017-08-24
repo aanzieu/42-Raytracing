@@ -62,6 +62,7 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	intersection_tmp.type = '0';
 	intersection_tmp.id = intersection->id;
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
+	get_closest_mobius(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
 	get_closest_disk(world, ray, intersection, &intersection_tmp);
 	get_closest_cone(world, ray, intersection, &intersection_tmp);

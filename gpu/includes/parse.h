@@ -61,6 +61,10 @@ void		parse_paraboloid(t_world *world, xmlNodePtr cur);
 */
 void		parse_hyperboloid(t_world *world, xmlNodePtr cur);
 /*
+**	parse_mobius.c
+*/
+void		parse_mobius(t_world *world, xmlNodePtr cur);
+/*
 **	error_msg.c
 */
 void		show_error(const char *str);
