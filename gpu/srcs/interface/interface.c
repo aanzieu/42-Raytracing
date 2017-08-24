@@ -1,32 +1,27 @@
-/* nuklear - v1.05 - public domain */
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/21 11:47:33 by svilau           ###   ########.fr       */
+/*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/08/24 21:28:57 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
+#define NK_INCLUDE_FONT_BAKING
 #include "../../includes/rt.h"
 #include "header/nuklear.h"
+#include "header/gui.h"
 
 void    gui_calls(struct nk_context *ctx, struct media *media, t_world *world)
 {
-	(void)ctx;
-	(void)media;
-	(void)world;
-	printf("TEST\n");
-	return;
 	// printf("test\n");
-	// basic_demo(&ctx, &media);
-	//     button_demo(ctx, media, world);
-	//     if (world->a_h != NULL)
-	//         render_demo(ctx, media, world->a_h, world->video_buffer);
+//	basic_demo(ctx, media);
+	button_demo(ctx, media, world);
+	if (world->a_h != NULL)
+	   render_demo(ctx, media, world->a_h, world->video_buffer);
 	//     grid_demo(&ctx, &media);
 }

@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/24 19:27:11 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/08/24 21:20:29 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,10 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/extended.c \
 				$(SRC_DIR)/interface/interface.c \
 				$(SRC_DIR)/interface/gui_utils.c \
+				$(SRC_DIR)/interface/basic_demo.c \
+				$(SRC_DIR)/interface/grid_demo.c \
+				$(SRC_DIR)/interface/button_demo.c \
+				$(SRC_DIR)/interface/render_demo.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \
