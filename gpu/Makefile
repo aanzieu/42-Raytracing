@@ -18,6 +18,8 @@ MAKE_FLAGS = --no-print-directory
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
 INCLUDEXML = -I/usr/include/libxml2
+INCLUDENK = -I srcs/interface/
+
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
@@ -70,6 +72,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/colors/colors.cu \
 
 SRC_INTERFACE = $(SRC_INTERFACE_DIR)/extended.c \
+				$(SRC_INTERFACE_DIR)/interface.c \
 
 SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/launch_cpu_gpu.c \
@@ -159,7 +162,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	$(CC) -c $(SRC_INTERFACE) $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"	
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) extended.o $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) extended.o interface.o $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'

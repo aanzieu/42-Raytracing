@@ -41,4 +41,5 @@ void			data_setup(t_world *world)
 	world->animation_forward = 0;
 	world->recording = 0;
 	world->a_h = NULL;
+	world->video_buffer = NULL;
 }

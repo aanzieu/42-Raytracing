@@ -48,8 +48,8 @@
 #endif
 
 struct media {
+    struct nk_font *font_18;    
     struct nk_font *font_14;
-    struct nk_font *font_18;
     struct nk_font *font_20;
     struct nk_font *font_22;
 
@@ -72,6 +72,12 @@ struct media {
     struct nk_image images[9];
     struct nk_image menu[6];
 };
+
+void    gui_calls(struct nk_context *ctx, struct media *media, t_world *world);
+
+
+
+
 
 t_color	int_to_rgb(int color)
 {
@@ -540,35 +546,39 @@ icon_load(const char *filename)
     return nk_image_id((int)tex);
 }
 
-static struct nk_image
-screen_load(int *a_h)
+static void load_video_buffer(int *a_h, unsigned char *video_buffer)
 {
-    int x,y,n;
-    GLuint tex;
-    unsigned char *data;
     int i;
-    t_color tmp;
-
-    x = WIN_WIDTH;
-    y = WIN_HEIGHT;
-    data = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+    t_color tmp;    
+    
     for (i = 0; i < WIN_WIDTH * WIN_HEIGHT; i++)
     {
         tmp = int_to_rgb(a_h[i]);
-        data[4 * i + 0] = tmp.r;
-        data[4 * i + 1] = tmp.g;
-        data[4 * i + 2] = tmp.b;        
-        data[4 * i + 3] = 255;                
+        video_buffer[4 * i + 0] = tmp.r;
+        video_buffer[4 * i + 1] = tmp.g;
+        video_buffer[4 * i + 2] = tmp.b;        
+        video_buffer[4 * i + 3] = 255;                
     }
-    // if (!data) die("[SDL]: failed to load image: %s", filename);
+}
 
+static struct nk_image
+screen_load(int *a_h, unsigned char *video_buffer)
+{
+    int x,y,n;
+    GLuint tex;
+
+    x = WIN_WIDTH;
+    y = WIN_HEIGHT;
+
+    // if (!data) die("[SDL]: failed to load image: %s", filename);
+    load_video_buffer(a_h, video_buffer);
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_NEAREST);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, video_buffer);
     glGenerateMipmap(GL_TEXTURE_2D);
     // stbi_image_free(data);
     return nk_image_id((int)tex);
@@ -589,7 +599,7 @@ ui_widget_render(struct nk_context *ctx, struct media *media, float height)
  *
  * ===============================================================*/
 static void
-render_demo(struct nk_context *ctx, struct media *media, int *a_h)
+render_demo(struct nk_context *ctx, struct media *media, int *a_h, unsigned char *video_buffer)
 {
     static int image_active;
     struct nk_image screen;
@@ -603,7 +613,7 @@ render_demo(struct nk_context *ctx, struct media *media, int *a_h)
     static int piemenu_active = 0;
     static struct nk_vec2 piemenu_pos;
 
-    screen = screen_load(a_h);
+    screen = screen_load(a_h, video_buffer);
     int i = 0;
     nk_style_set_font(ctx, &media->font_20->handle);
     nk_begin(ctx, "Basic Demo", nk_rect(0, 0, WIN_WIDTH + 27, WIN_HEIGHT + 60),
@@ -867,7 +877,7 @@ int interface_launch(t_world *world, char *argv)
     glfwGetFramebufferSize(win, &display_width, &display_height);
 
     /* OpenGL */
-    glViewport(0, 0, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     glewExperimental = 1;
     if (glewInit() != GLEW_OK) {
         fprintf(stderr, "Failed to setup GLEW\n");
@@ -967,14 +977,10 @@ int interface_launch(t_world *world, char *argv)
         nk_input_end(&ctx);}
 
         /* GUI */
-        // basic_demo(&ctx, &media);
+        // gui_calls(&ctx, &media, world);
+        button_demo(&ctx, &media, world);
         if (world->a_h != NULL)
-            render_demo(&ctx, &media, world->a_h);
-            	// free(world->a_h);
-
-        button_demo(&ctx, &media, world);      
-        
-        // grid_demo(&ctx, &media);
+            render_demo(&ctx, &media, world->a_h, world->video_buffer);
 
         /* Draw */
         glViewport(0, 0, display_width, display_height);

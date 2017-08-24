@@ -63,21 +63,20 @@ void			rt(t_world *world)
 {
 	world->size_main = world->viewplane.x_res * world->viewplane.y_res *
 			sizeof(int);
-	if (!(world->a_h = malloc(world->size_main)))
+	if (world->a_h == NULL)
+		if (!(world->a_h = malloc(world->size_main)))
 		exit(0);
+	if (world->video_buffer == NULL)
+	{
+		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
+			exit (0);
+		ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+	}
 	ft_bzero(world->a_h, world->size_main);
-	// if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		// return ;
-	// world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
-															// WIN_HEIGHT, 0);
-	// world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 0)
 		launch_cpu(world);
 	else
 		launch_gpu(world);
-	// free(world->a_h);
-	// SDL_FreeSurface(world->window.screen);
-	// SDL_DestroyWindow(world->window.id);
 }
 
 int				main(int argc, char **argv)

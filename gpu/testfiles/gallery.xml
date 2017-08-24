@@ -59,72 +59,72 @@
 
 <sphere>
 	<pos x="0.75" y="0.75" z="0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="-0.75" y="0.75" z="0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="1" y="0.75" z="-0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="-1" y="0.75" z="-0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="0.75" y="-0.75" z="0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="-0.75" y="-0.75" z="0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="1" y="-0.75" z="-0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="-1" y="-0.75" z="-0.5" />
+	<radius data="0.2" />	
 	<tra x="0" y="0" z="0" />
-	<radius data="0.2" />
 	<color r="236" g="205" b="62" a="1" />
 	<reflection data="0" />
 	<refraction data="0" />
 </sphere>
 <sphere>
 	<pos x="0" y="0" z="0" />
+	<radius data="0.2" />	
 	<tra x="0" y="0.75" z="0" />
-	<radius data="0.2" />
 	<color r="255" g="0" b="0" a="1" />
 	<reflection data="1" />
 	<refraction data="0" />

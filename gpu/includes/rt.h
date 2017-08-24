@@ -17,7 +17,6 @@
 # include <light.h>
 # include <object.h>
 # include "../libft/libft.h"
-
 # include <pthread.h>
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
 
@@ -192,6 +191,7 @@ typedef struct		s_world
 
 	int				clientrender;
 	int				*a_h;
+	unsigned char	*video_buffer;
 	size_t			size_main;
 
 	t_camera		camera;

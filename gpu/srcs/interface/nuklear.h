@@ -294,6 +294,8 @@ extern "C" {
 #define NK_STRING_JOIN_DELAY(arg1, arg2) NK_STRING_JOIN_IMMEDIATE(arg1, arg2)
 #define NK_STRING_JOIN(arg1, arg2) NK_STRING_JOIN_DELAY(arg1, arg2)
 
+#include <rt.h>
+
 #ifdef _MSC_VER
 #define NK_UNIQUE_NAME(name) NK_STRING_JOIN(name,__COUNTER__)
 #else
@@ -23618,5 +23620,4 @@ NK_API void nk_menu_close(struct nk_context *ctx)
 NK_API void
 nk_menu_end(struct nk_context *ctx)
 {nk_contextual_end(ctx);}
-
 #endif
