@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/16 12:52:13 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/24 19:27:11 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,11 @@ MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
-INCLUDEXML = -I/usr/include/libxml2
-INCLUDENK = -I srcs/interface/
-
+INCLUDEXML = -I /usr/include/libxml2
+INCLUDENK = -I srcs/interface/header
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
-SRC_INTERFACE_DIR = srcs/interface
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -31,9 +29,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/svilau/brew/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib
-
-GLEW = /Users/svilau/brew/Cellar/glew/2.1.0/lib/libGLEW.a
+GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -71,8 +68,6 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
 
-SRC_INTERFACE = $(SRC_INTERFACE_DIR)/extended.c \
-				$(SRC_INTERFACE_DIR)/interface.c \
 
 SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/launch_cpu_gpu.c \
@@ -85,6 +80,10 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/display_functions.c \
 				\
 				$(SRC_DIR)/threads/malloc_objects_cpy.c \
+				\
+				$(SRC_DIR)/interface/extended.c \
+				$(SRC_DIR)/interface/interface.c \
+				$(SRC_DIR)/interface/gui_utils.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \
@@ -159,12 +158,11 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
-	$(CC) -c $(SRC_INTERFACE) $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"	
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) extended.o interface.o $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
+    -gencode arch=compute_35,code=compute_35 
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
@@ -175,13 +173,13 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $< -o $@
+	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[0m[✔] %s\n\033[0m' "$<"
 
 ###################################################

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 18:06:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/24 17:42:34 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 # include <dirent.h>
 # include <light.h>
 # include <object.h>
-# include "../libft/libft.h"
 # include <pthread.h>
+
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
+# include "../frameworks/GL.framework/glew/2.1.0/include/GL/glew.h"
+# include "../frameworks/GL.framework/glfw/3.2.1/include/GLFW/glfw3.h"
+# include "../libft/libft.h"
 
 # define NB_TH 8
 

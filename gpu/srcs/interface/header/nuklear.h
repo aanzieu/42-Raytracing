@@ -294,8 +294,6 @@ extern "C" {
 #define NK_STRING_JOIN_DELAY(arg1, arg2) NK_STRING_JOIN_IMMEDIATE(arg1, arg2)
 #define NK_STRING_JOIN(arg1, arg2) NK_STRING_JOIN_DELAY(arg1, arg2)
 
-#include <rt.h>
-
 #ifdef _MSC_VER
 #define NK_UNIQUE_NAME(name) NK_STRING_JOIN(name,__COUNTER__)
 #else
@@ -4169,6 +4167,34 @@ struct nk_context {
     unsigned int count;
     unsigned int seq;
 };
+#ifdef NK_INCLUDE_MEDIA
+struct media {
+    struct nk_font *font_18;    
+	struct nk_font *font_14;
+	struct nk_font *font_20;
+	struct nk_font *font_22;
+
+	struct nk_image unchecked;
+	struct nk_image checked;
+	struct nk_image rocket;
+	struct nk_image cloud;
+	struct nk_image pen;
+	struct nk_image play;
+	struct nk_image pause;
+	struct nk_image stop;
+	struct nk_image prev;
+	struct nk_image next;
+	struct nk_image tools;
+	struct nk_image dir;
+	struct nk_image copy;
+	struct nk_image convert;
+	struct nk_image del;
+	struct nk_image edit;
+	struct nk_image images[9];
+	struct nk_image menu[6];
+};
+#endif
+
 
 /* ==============================================================
  *                          MATH
@@ -4390,7 +4416,7 @@ NK_GLOBAL const struct nk_color nk_yellow = {255,255,0,255};
     found here: www.lolengine.net/wiki/oss/lolremez
 */
 NK_INTERN float
-nk_inv_sqrt(float number)
+__attribute__((unused)) nk_inv_sqrt(float number)
 {
     float x2;
     const float threehalfs = 1.5f;
@@ -4403,13 +4429,13 @@ nk_inv_sqrt(float number)
 }
 
 NK_INTERN float
-nk_sqrt(float x)
+__attribute__((unused)) nk_sqrt(float x)
 {
     return x * nk_inv_sqrt(x);
 }
 
 NK_INTERN float
-nk_sin(float x)
+__attribute__((unused)) nk_sin(float x)
 {
     NK_STORAGE const float a0 = +1.91059300966915117e-31f;
     NK_STORAGE const float a1 = +1.00086760103908896f;
@@ -4423,7 +4449,7 @@ nk_sin(float x)
 }
 
 NK_INTERN float
-nk_cos(float x)
+__attribute__((unused)) nk_cos(float x)
 {
     NK_STORAGE const float a0 = +1.00238601909309722f;
     NK_STORAGE const float a1 = -3.81919947353040024e-2f;
@@ -5057,7 +5083,7 @@ nk_ifloord(double x)
 }
 
 NK_INTERN int
-nk_ifloorf(float x)
+__attribute__((unused)) nk_ifloorf(float x)
 {
     x = (float)((int)x - ((x < 0.0f) ? 1 : 0));
     return (int)x;
