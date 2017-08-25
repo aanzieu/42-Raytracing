@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 19:15:06 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/25 18:55:06 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,23 @@ void		parse_ambient(t_world *world, xmlNodePtr cur);
 **	parser_utils.c
 */
 int			is_numeric(const char *str);
-
+/*
+**	xml_save_objects.c
+*/
 void		save_cam_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_lights_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_ambient_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_planes_to_xml(t_world *world, xmlNodePtr root_node);
 void		save_spheres_to_xml(t_world *world, xmlNodePtr root_node);
+/*
+**	xml_saver_func.c
+*/
 xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
+/*
+**	ft_itoa_double.c
+*/
+char		*ft_itoa_double(double n);
 
 #endif

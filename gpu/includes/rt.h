@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 12:58:13 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/25 18:08:08 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,6 @@ void				key_press_handler4(t_world *world);
 void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
 void				save_xml_scene(t_world *world);
-char				*ft_itoa_double(double n);
 
 t_light				*copy_light(t_light *obj);
 t_sphere			*copy_sphere(t_sphere *obj);

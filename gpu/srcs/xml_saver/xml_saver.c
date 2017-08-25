@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xml_saver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 17:20:24 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/24 18:09:07 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/25 18:58:18 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 static void	save_objects_to_xml(t_world *world, xmlNodePtr root_node)
 {
-	save_cam_to_xml(world, root_node);
+	if (world->planes_len != 0)
+		save_planes_to_xml(world, root_node);
 	if (world->spheres_len != 0)
 		save_spheres_to_xml(world, root_node);
+	if (world->lights_len != 0)
+		save_lights_to_xml(world, root_node);
+	if (world->ambient.intensity)
+		save_ambient_to_xml(world, root_node);
+	save_cam_to_xml(world, root_node);
 }
 
 void		save_xml_scene(t_world *world)
@@ -31,9 +37,6 @@ void		save_xml_scene(t_world *world)
 	xmlNewProp(root_node, BAD_CAST "name", BAD_CAST world->title + 13);
 	xmlCreateIntSubset(doc, BAD_CAST "scene", NULL, BAD_CAST "norme.dtd");
 	save_objects_to_xml(world, root_node);
-
-	//printf("r:%f g:%f b:%f\n", world->spheres->color.r, world->spheres->color.g, world->spheres->color.b);
-
 	xmlSaveFormatFileEnc("./testfiles/save.xml", doc, "UTF-8", 1);
 	xmlFreeDoc(doc);
 	xmlCleanupParser();
