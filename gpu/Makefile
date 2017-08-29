@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/24 13:34:32 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/08/29 17:09:30 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,12 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \
 				$(SRC_DIR)/xml_parser/error_msg.c \
+				\
+				$(SRC_DIR)/xml_saver/ft_itoa_double.c \
+				$(SRC_DIR)/xml_saver/xml_saver.c \
+				$(SRC_DIR)/xml_saver/xml_saver_func.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects_2.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\

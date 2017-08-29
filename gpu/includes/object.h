@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 13:38:27 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/29 17:09:00 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct				s_sphere
 	t_vec3d					pos;
 	t_color					color;
 	t_color					chess;
+	t_color					rgba;
 	double					reflection_coef;
 	double					refraction_coef;
 	struct s_sphere			*next;

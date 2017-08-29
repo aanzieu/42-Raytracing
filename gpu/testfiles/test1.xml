@@ -10,21 +10,29 @@
 
 <light>
 	<pos x="0" y="1" z="0" />
-	<color r="255" g="255" b="255" a="1" />
+	<color r="255" g="255" b="255" />
 	<intensity data="1" />
 </light>
 
 <light>
 	<pos x="2" y="1" z="-3" />
-	<color r="255" g="255" b="255" a="1" />
+	<color r="255" g="255" b="255" />
 	<intensity data="1" />
 </light>
+
+<sphere>
+	<pos x="-0.5" y="0" z="0.5" />
+	<tra x="0" y="0" z="0" />
+	<radius data="0.8" />
+	<color r="255" g="255" b="255" />
+	<reflection data="1" />
+</sphere>
 
 <plane>
 	<origin x="0" y="-1" z="0" />
 	<normal x="0" y="1" z="0" />
 	<rot x="0" y="0" z="0" />
-	<color r="123" g="123" b="200" a="1" />
+	<color r="123" g="123" b="200" />
 	<reflection data="1" />
 </plane>
 
@@ -32,7 +40,7 @@
 	<origin x="-2" y="0" z="0" />
 	<normal x="-3" y="0" z="0" />
 	<rot x="0" y="0" z="0" />
-	<color r="0" g="255" b="255" a="1" />
+	<color r="0" g="255" b="255" />
 	<reflection data="0" />
 </plane>
 
@@ -41,7 +49,7 @@
 	<normal x="-0.75" y="1" z="0.5" />
 	<radius data="0.2" />
 	<height data="2" />
-	<color r="0" g="0" b="255" a="1" />
+	<color r="0" g="0" b="255" />
 	<reflection data="1" />
 </cone>
 
@@ -49,7 +57,7 @@
 	<origin x="1" y="1" z="0" />
 	<normal x="-1" y="-1" z="-1" />
 	<rot x="0" y="0" z="0" />
-	<color r="0" g="255" b="0" a="1" />
+	<color r="0" g="255" b="0" />
 	<reflection data="0.5" />
 </plane> -->
 
