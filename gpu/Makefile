@@ -86,7 +86,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/gui_utils.c \
 				$(SRC_DIR)/interface/basic_demo.c \
 				$(SRC_DIR)/interface/grid_demo.c \
-				$(SRC_DIR)/interface/button_demo.c \
+				$(SRC_DIR)/interface/scene_parameters.c \
 				$(SRC_DIR)/interface/render_demo.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \

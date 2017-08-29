@@ -65,7 +65,7 @@ void			rt(t_world *world)
 			sizeof(int);
 	if (world->a_h == NULL)
 		if (!(world->a_h = malloc(world->size_main)))
-		exit(0);
+			exit(0);
 	if (world->video_buffer == NULL)
 	{
 		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))

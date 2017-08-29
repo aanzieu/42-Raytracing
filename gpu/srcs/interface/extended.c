@@ -345,7 +345,6 @@ int interface_launch(t_world *world, char *argv)
 			sprintf(buffer, "srcs/interface/images/image%d.png", (i+1));
 			media.images[i] = icon_load(buffer);
 		}}
-
 	while (!glfwWindowShouldClose(win))
 	{
 		/* High DPI displays */
@@ -356,7 +355,8 @@ int interface_launch(t_world *world, char *argv)
 		scale.y = (float)display_height/(float)height;
 
 		/* Input */
-		{double x, y;
+		{
+			double x, y;
 			nk_input_begin(&ctx);
 			glfwPollEvents();
 			nk_input_key(&ctx, NK_KEY_DEL, glfwGetKey(win, GLFW_KEY_DELETE) == GLFW_PRESS);
@@ -374,6 +374,7 @@ int interface_launch(t_world *world, char *argv)
 				nk_input_key(&ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
 				nk_input_key(&ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
 				nk_input_key(&ctx, NK_KEY_SHIFT, 1);
+				printf("keypush test\n");
 			} else {
 				nk_input_key(&ctx, NK_KEY_COPY, 0);
 				nk_input_key(&ctx, NK_KEY_PASTE, 0);
@@ -385,9 +386,12 @@ int interface_launch(t_world *world, char *argv)
 			nk_input_button(&ctx, NK_BUTTON_LEFT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS);
 			nk_input_button(&ctx, NK_BUTTON_MIDDLE, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS);
 			nk_input_button(&ctx, NK_BUTTON_RIGHT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS);
-			nk_input_end(&ctx);}
+			nk_input_end(&ctx);
+		}
 
 		/* GUI */
+		if (world->video_buffer != NULL)
+			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 		gui_calls(&ctx, &media, world);
 	//	button_demo(&ctx, &media, world);
 	//	if (world->a_h != NULL)

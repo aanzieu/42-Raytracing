@@ -212,6 +212,7 @@ typedef struct		s_world
 	t_offsets		offsets;
 	t_ambient		ambient;
 	int				light_type;
+	double	intensity;
 
 	int				id;
 }					t_world;

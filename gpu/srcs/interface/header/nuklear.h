@@ -18572,7 +18572,6 @@ nk_begin_titled(struct nk_context *ctx, const char *name, const char *title,
         win = (struct nk_window*)nk_create_window(ctx);
         NK_ASSERT(win);
         if (!win) return 0;
-
         if (flags & NK_WINDOW_BACKGROUND)
             nk_insert_window(ctx, win, NK_INSERT_FRONT);
         else nk_insert_window(ctx, win, NK_INSERT_BACK);

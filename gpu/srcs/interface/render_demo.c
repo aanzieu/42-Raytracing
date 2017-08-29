@@ -73,7 +73,7 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, unsigned
 	screen = screen_load(a_h, video_buffer);
 	//int i = 0;
 	nk_style_set_font(ctx, &media->font_20->handle);
-	nk_begin(ctx, "Basic Demo", nk_rect(0, 0, WIN_WIDTH + 27, WIN_HEIGHT + 60),
+	nk_begin(ctx, "RT World", nk_rect(0, 0, WIN_WIDTH + 27, WIN_HEIGHT + 60),
 			NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE);
 
 	/*------------------------------------------------

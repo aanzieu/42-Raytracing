@@ -37,8 +37,8 @@ void	grid_demo(struct nk_context *ctx, struct media *media)
 				NK_WINDOW_NO_SCROLLBAR))
 	{
 		nk_style_set_font(ctx, &media->font_18->handle);
-		nk_layout_row_dynamic(ctx, 30, 2);
-		nk_label(ctx, "Floating point:", NK_TEXT_RIGHT);
+		nk_layout_row_dynamic(ctx, 25, 2);
+		nk_label(ctx, "Floating point:", NK_TEXT_LEFT);
 		nk_edit_string(ctx, NK_EDIT_FIELD, text[0], &text_len[0], 64, nk_filter_float);
 		nk_label(ctx, "Hexadecimal:", NK_TEXT_RIGHT);
 		nk_edit_string(ctx, NK_EDIT_FIELD, text[1], &text_len[1], 64, nk_filter_hex);

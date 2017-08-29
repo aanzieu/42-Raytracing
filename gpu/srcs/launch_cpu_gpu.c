@@ -79,10 +79,11 @@ void			launch_cpu(t_world *world)
 		// quit = event_handler(world, event);
 		get_viewplane(world);
 		launch_thread(world, 0, WIN_HEIGHT);
-		move_forward(world);
-		move_forward(world);
-		move_forward(world);
-		move_forward(world);		
+		//MERCI STEPHAN JAI GALERE A COMPRENDRE POUQUOI LA CAMERA AVANCEE TOUTE SEULE>>>>>>>>>>> XD
+	//	move_forward(world);
+	//	move_forward(world);
+	//	move_forward(world);
+	//	move_forward(world);		
 		// put_pixel_screen(world);
 		// ft_bzero(world->a_h, world->size_main);
 		// SDL_UpdateWindowSurface(world->window.id);

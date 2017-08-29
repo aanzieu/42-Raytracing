@@ -123,9 +123,11 @@ int ui_piemenu(struct nk_context *ctx, struct nk_vec2 pos, float radius,
 	void
 ui_header(struct nk_context *ctx, struct media *media, const char *title)
 {
-	nk_style_set_font(ctx, &media->font_18->handle);
+	struct	nk_color color = {255, 123, 0, 255};
+	nk_style_set_font(ctx, &media->font_22->handle);
 	nk_layout_row_dynamic(ctx, 20, 1);
-	nk_label(ctx, title, NK_TEXT_LEFT);
+	//nk_label(ctx, title, NK_TEXT_LEFT);
+	nk_label_colored(ctx, title, NK_TEXT_CENTERED, color);
 }
 
 	void
@@ -140,10 +142,46 @@ ui_widget(struct nk_context *ctx, struct media *media, float height)
 	void
 ui_widget_centered(struct nk_context *ctx, struct media *media, float height)
 {
-	static const float ratio[] = {0.15f, 0.50f, 0.35f};
+	static const float ratio[] = {1.0f};
 	nk_style_set_font(ctx, &media->font_22->handle);
-	nk_layout_row(ctx, NK_DYNAMIC, height, 3, ratio);
-	nk_spacing(ctx, 1);
+	nk_layout_row(ctx, NK_DYNAMIC, height, 1, ratio);
+	nk_spacing(ctx, 0);
+}
+
+void
+ui_widget_small_button(struct nk_context *ctx, struct media *media, float height)
+{
+	static const float ratio[] = {0.50f, 0.50f};
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row(ctx, NK_DYNAMIC, height, 2, ratio);
+	nk_spacing(ctx, 0);
+}
+int
+ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value, char *title)
+{
+	//static char field_buffer[64];
+	//static int field_len;
+	double res = *value;
+	//pos = value;
+	// pos = value;
+	// static const float ratio[] = {1.0f};
+	// static double double_len[3];
+	
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row_dynamic(ctx, 25, 1);
+	//nk_edit_string(ctx, NK_EDIT_FIELD, field_buffer, &field_len, 64, nk_filter_default);
+	nk_property_double(ctx, title, -1024.0f, value, 1024.0f, 1, 1);
+	nk_spacing(ctx, 0);
+	return(res == *value ? 0 : 1);
+}
+
+void
+ui_widget_special_mode(struct nk_context *ctx, struct media *media, float height)
+{
+	static const float ratio[] = {0.50f, 0.50f};
+	nk_style_set_font(ctx, &media->font_14->handle);
+	nk_layout_row(ctx, NK_DYNAMIC, height, 2, ratio);
+	nk_spacing(ctx, 0);
 }
 
 t_color	int_to_rgb(int color)
