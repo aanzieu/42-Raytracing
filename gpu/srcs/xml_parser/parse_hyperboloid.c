@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/16 13:19:30 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/29 16:37:02 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	handle_input_hyperboloid(t_hyperboloid *h, xmlNodePtr cur)
 		parse_height(&h->maxm, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 		parse_color(&h->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+		parse_color(&h->chess, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 		parse_rot(&h->normal, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))

@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 17:20:24 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/25 18:58:18 by PZC              ###   ########.fr       */
+/*   Updated: 2017/08/29 16:34:08 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ static void	save_objects_to_xml(t_world *world, xmlNodePtr root_node)
 		save_planes_to_xml(world, root_node);
 	if (world->spheres_len != 0)
 		save_spheres_to_xml(world, root_node);
+	if (world->cylinders_len != 0)
+		save_cylinders_to_xml(world, root_node);
+	if (world->cones_len != 0)
+		save_cones_to_xml(world, root_node);
+	if (world->disks_len != 0)
+		save_disks_to_xml(world, root_node);
+	if (world->paraboloids_len != 0)
+		save_paraboloids_to_xml(world, root_node);
+	if (world->hyperboloids_len != 0)
+		save_hyperboloids_to_xml(world, root_node);
 	if (world->lights_len != 0)
 		save_lights_to_xml(world, root_node);
 	if (world->ambient.intensity)
