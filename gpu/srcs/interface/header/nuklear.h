@@ -4185,7 +4185,12 @@ struct media {
 	struct nk_image prev;
 	struct nk_image next;
 	struct nk_image tools;
-	struct nk_image dir;
+    struct nk_image dir;
+    struct nk_image cone;
+    struct nk_image sphere;
+    struct nk_image plane;
+    struct nk_image disk;
+    struct nk_image cylinder;
 	struct nk_image copy;
 	struct nk_image convert;
 	struct nk_image del;

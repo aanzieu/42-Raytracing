@@ -151,6 +151,19 @@ void						add_paraboloid(t_paraboloid **alst,
 void						add_hyperboloid(t_hyperboloid **alst,
 							t_hyperboloid *nw);
 void						add_torus(t_torus **alst, t_torus *nt);
+/*
+********************************************************************************
+**                     FREE FTCS                                              **
+********************************************************************************
+*/
+void						thread_free_and_add_sphere(t_sphere **s, t_sphere **s_tmp, int *spheres_len, int id);
+void						init_sphere_add(t_sphere *s);
+void						thread_free_and_add_cone(t_cone **c, t_cone **c_tmp, int *len, int id);
+void						init_cone_add(t_cone *c);
+void		thread_free_and_add_plane(t_plane **p, t_plane **p_tmp, int *len, int id);
+void						init_plane_add(t_plane *p);
+void		thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *len, int id);
+void	init_cylinder_add(t_cylinder *cy);
 
 /*
 ********************************************************************************

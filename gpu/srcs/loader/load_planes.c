@@ -10,7 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_plane_add(t_plane *p)
+{
+	p->id = 0;
+	p->up = new_vector(0, 1 , 0);
+	p->pos = new_vector(0, -1 , 0);
+	p->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	p->chess = (t_color){-1, -1, -1};
+	p->reflection_coef = 0;
+	p->refraction_coef = 0;
+	p->next = NULL;
+}
 
 static unsigned int		count_planes(t_plane *planes)
 {
@@ -32,6 +46,12 @@ void					load_planes(t_plane **planes, t_plane *planes_tmp,
 {
 	unsigned int	i;
 
+	if (*planes != NULL)
+	{
+		free(*planes);
+		*planes = NULL;
+		*planes_len = 0;
+	}
 	i = 0;
 	*planes_len = count_planes(planes_tmp);
 	*planes = (t_plane*)malloc(sizeof(t_plane) * (*planes_len));

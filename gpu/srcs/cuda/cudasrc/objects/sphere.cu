@@ -49,7 +49,7 @@ __host__ __device__ static double			get_sphere(t_sphere sphere,
 	{
 		intersection_tmp->t = eq.res;
 		intersection_tmp->type = 's';
-		if (sphere.refraction_coef != 0 || sphere.reflection_coef != 0)
+		//if (sphere.refraction_coef != 0 || sphere.reflection_coef != 0)
 			intersection_tmp->id = sphere.id;
 		return (1);
 	}

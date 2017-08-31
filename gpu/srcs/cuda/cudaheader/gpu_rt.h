@@ -72,7 +72,9 @@ CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color, t_light light,
 /*******************************************************************************
 **                     CAMERA_FCTS                                            **
 *******************************************************************************/
-
+CUDA_HOSTDEV void		get_ray_direction(t_world world, t_ray *ray, int x, int y);
+CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
+						t_intersection *intersection);
 CUDA_HOSTDEV void		move_forward(t_world *world);
 CUDA_HOSTDEV void		move_backward(t_world *world);
 CUDA_HOSTDEV void		move_left(t_world *world);

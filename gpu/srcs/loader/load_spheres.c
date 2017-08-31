@@ -10,7 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_sphere_add(t_sphere *s)
+{
+	s->id = 0;
+	s->radius = 0.2;
+	s->pos = new_vector(0, 0 , -0.5);
+	s->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	s->chess = (t_color){-1, -1, -1};
+	s->reflection_coef = 0;
+	s->refraction_coef = 0;
+	s->next = NULL;
+}
+
 
 static unsigned int			count_spheres(t_sphere *spheres)
 {
@@ -33,6 +48,12 @@ void						load_spheres(t_sphere **spheres,
 	unsigned int	i;
 	t_sphere		*tmp;
 
+	if (*spheres != NULL)
+	{
+		free(*spheres);
+		*spheres = NULL;
+		*spheres_len = 0;
+	}
 	i = 0;
 	*spheres_len = count_spheres(spheres_tmp);
 	*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len);

@@ -88,6 +88,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/grid_demo.c \
 				$(SRC_DIR)/interface/scene_parameters.c \
 				$(SRC_DIR)/interface/render_demo.c \
+				$(SRC_DIR)/interface/delete_objects.c \
+				$(SRC_DIR)/interface/remove_objects.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \
@@ -133,6 +135,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/malloc/malloc_objects.c \
 				$(SRC_DIR)/malloc/malloc_objects1.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
+				\
+				$(SRC_DIR)/threads/free_object_thread.c \
 				\
 				$(SRC_DIR)/server/master.c \
 				$(SRC_DIR)/server/master_send_infos.c \

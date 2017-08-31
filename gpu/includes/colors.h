@@ -21,7 +21,7 @@ typedef struct		s_color
 	double			g;
 	double			b;
 }					t_color;
-
+double	color_to_coef(unsigned int color);
 t_color	int_to_rgb(int color);
 
 #endif

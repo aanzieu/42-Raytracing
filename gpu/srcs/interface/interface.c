@@ -18,11 +18,9 @@
 
 void    gui_calls(struct nk_context *ctx, struct media *media, t_world *world)
 {
-	// printf("test\n");
 	if (world->a_h != NULL)
 	{
-	//	nk_clear(ctx);
-		render_demo(ctx, media, world->a_h, world->video_buffer);
+		render_demo(ctx, media, world->a_h, world);
 		basic_demo(ctx, media);
 		scene_parameters(ctx, media, world);
 		grid_demo(ctx, media);

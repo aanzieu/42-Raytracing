@@ -12,7 +12,7 @@
 
 #include "parse.h"
 
-static double	color_to_coef(unsigned int color)
+double	color_to_coef(unsigned int color)
 {
 	if (color == 0)
 		return (0);

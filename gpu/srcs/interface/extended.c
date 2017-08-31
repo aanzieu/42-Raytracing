@@ -316,6 +316,12 @@ int interface_launch(t_world *world, char *argv)
 
 	/* icons */
 	glEnable(GL_TEXTURE_2D);
+	media.plane = icon_load("srcs/interface/icon/plan.png");
+	media.sphere = icon_load("srcs/interface/icon/sphere.png");
+	media.cone = icon_load("srcs/interface/icon/cone.png");
+	media.cylinder = icon_load("srcs/interface/icon/cylinder.png");
+	media.disk = icon_load("srcs/interface/icon/disk.png");
+	
 	media.unchecked = icon_load("srcs/interface/icon/unchecked.png");
 	media.checked = icon_load("srcs/interface/icon/checked.png");
 	media.rocket = icon_load("srcs/interface/icon/rocket.png");

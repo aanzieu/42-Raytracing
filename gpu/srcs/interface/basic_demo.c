@@ -32,8 +32,8 @@ void	basic_demo(struct nk_context *ctx, struct media *media)
 	static int selected_image = 3;
 	static int selected_icon = 0;
 	static const char *items[] = {"Item 0","item 1","item 2"};
-	static int piemenu_active = 0;
-	static struct nk_vec2 piemenu_pos;
+	// static int piemenu_active = 0;
+	// static struct nk_vec2 piemenu_pos;
 
 	int i = 0;
 	nk_style_set_font(ctx, &media->font_20->handle);
@@ -59,7 +59,7 @@ void	basic_demo(struct nk_context *ctx, struct media *media)
 	 *                  IMAGE POPUP
 	 *------------------------------------------------*/
 	if (image_active) {
-		//struct nk_panel popup;
+		// struct nk_panel popup;
 		if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Image Popup", 0, nk_rect(265, 0, 320, 220))) {
 			nk_layout_row_static(ctx, 82, 82, 3);
 			for (i = 0; i < 9; ++i) {
@@ -113,20 +113,20 @@ void	basic_demo(struct nk_context *ctx, struct media *media)
 	/*------------------------------------------------
 	 *                  PIEMENU
 	 *------------------------------------------------*/
-	if (nk_input_is_mouse_click_down_in_rect(&ctx->input, NK_BUTTON_RIGHT,
-				nk_window_get_bounds(ctx),nk_true)){
-		piemenu_pos = ctx->input.mouse.pos;
-		piemenu_active = 1;
-	}
+	// if (nk_input_is_mouse_click_down_in_rect(&ctx->input, NK_BUTTON_RIGHT,
+	// 			nk_window_get_bounds(ctx),nk_true)){
+	// 	piemenu_pos = ctx->input.mouse.pos;
+	// 	piemenu_active = 1;
+	// }
 
-	if (piemenu_active) {
-		int ret = ui_piemenu(ctx, piemenu_pos, 140, &media->menu[0], 6);
-		if (ret == -2) piemenu_active = 0;
-		if (ret != -1) {
-			fprintf(stdout, "piemenu selected: %d\n", ret);
-			piemenu_active = 0;
-		}
-	}
+	// if (piemenu_active) {
+	// 	int ret = ui_piemenu(ctx, piemenu_pos, 140, &media->menu[0], 6);
+	// 	if (ret == -2) piemenu_active = 0;
+	// 	if (ret != -1) {
+	// 		fprintf(stdout, "piemenu selected: %d\n", ret);
+	// 		piemenu_active = 0;
+	// 	}
+	// }
 	nk_style_set_font(ctx, &media->font_14->handle);
 	nk_end(ctx);
 }
