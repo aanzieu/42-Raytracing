@@ -15,8 +15,8 @@
 
 typedef struct		s_vec2d
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 }					t_vec2d;
 
 typedef struct		s_vec3d

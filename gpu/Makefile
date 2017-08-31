@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/24 21:20:29 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/08/29 17:09:30 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/equation_utils.cu \
+				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
 				$(SRC_CUDA_DIR)/objects/plane.cu \
 				$(SRC_CUDA_DIR)/objects/cylinder.cu \
@@ -59,6 +62,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/hyperboloid.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				$(SRC_CUDA_DIR)/objects/disk.cu \
+				$(SRC_CUDA_DIR)/objects/mobius.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
@@ -88,8 +92,12 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/grid_demo.c \
 				$(SRC_DIR)/interface/scene_parameters.c \
 				$(SRC_DIR)/interface/render_demo.c \
-				$(SRC_DIR)/interface/delete_objects.c \
+				$(SRC_DIR)/interface/mouse_press.c \
 				$(SRC_DIR)/interface/remove_objects.c \
+				$(SRC_DIR)/interface/device_init.c \
+				$(SRC_DIR)/interface/device_init_next.c \
+				$(SRC_DIR)/interface/load_media.c \
+				$(SRC_DIR)/interface/key_press.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \
@@ -104,6 +112,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_hyperboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
+				$(SRC_DIR)/loader/load_mobius.c \
 				$(SRC_DIR)/loader/load_cylinders.c \
 				$(SRC_DIR)/loader/load_planes.c \
 				$(SRC_DIR)/loader/load_disks.c \
@@ -120,6 +129,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_light.c \
 				$(SRC_DIR)/xml_parser/parse_plane.c \
 				$(SRC_DIR)/xml_parser/parse_sphere.c \
+				$(SRC_DIR)/xml_parser/parse_mobius.c \
 				$(SRC_DIR)/xml_parser/parse_cylinder.c \
 				$(SRC_DIR)/xml_parser/parse_disk.c \
 				$(SRC_DIR)/xml_parser/parse_cone.c \
@@ -129,6 +139,12 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \
 				$(SRC_DIR)/xml_parser/error_msg.c \
+				\
+				$(SRC_DIR)/xml_saver/ft_itoa_double.c \
+				$(SRC_DIR)/xml_saver/xml_saver.c \
+				$(SRC_DIR)/xml_saver/xml_saver_func.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects_2.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\

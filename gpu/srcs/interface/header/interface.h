@@ -9,13 +9,13 @@
 #define NK_IMPLEMENTATION
 #include "nuklear.h"
 
-#define WINDOW_WIDTH 1200
-#define WINDOW_HEIGHT 800
+// #define WINDOW_WIDTH 1200
+// #define WINDOW_HEIGHT 800
 
-#define MAX_VERTEX_MEMORY 512 * 1024
-#define MAX_ELEMENT_MEMORY 128 * 1024
 
-#define UNUSED(a) (void)a
+
+
+
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
 #define LEN(a) (sizeof(a)/sizeof(a)[0])
 
@@ -25,26 +25,7 @@
  *
  * ===============================================================*/
 
-struct nk_glfw_vertex {
-	float position[2];
-	float uv[2];
-	nk_byte col[4];
-};
 
-struct device {
-	struct nk_buffer cmds;
-	struct nk_draw_null_texture null;
-	GLuint vbo, vao, ebo;
-	GLuint prog;
-	GLuint vert_shdr;
-	GLuint frag_shdr;
-	GLint attrib_pos;
-	GLint attrib_uv;
-	GLint attrib_col;
-	GLint uniform_tex;
-	GLint uniform_proj;
-	GLuint font_tex;
-};
 
 /* ===============================================================
  *
@@ -53,5 +34,9 @@ struct device {
  * ===============================================================*/
 
 void	gui_calls(struct nk_context *ctx, struct media *media, t_world *world);
+// void 	error_callback(int e, const char *d);
+// void scroll_input(GLFWwindow *win, double _, double yoff);
+// void text_input(GLFWwindow *win, unsigned int codepoint);
+// void die(const char *fmt, ...);
 
 #endif

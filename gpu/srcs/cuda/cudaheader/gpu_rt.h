@@ -8,9 +8,10 @@
 # endif
 #endif
 
-#include <vectors.h>
-#include <object.h>
-#include <rt.h>
+#include <../../../includes/vectors.h>
+#include <../../../includes/object.h>
+#include <../../../includes/equation.h>
+#include <../../../includes/rt.h>
 
 /*******************************************************************************
 **                     INTERSECTION_FONCTION_GET                              **
@@ -19,6 +20,9 @@
 CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
 						t_intersection *intersection);
 CUDA_HOSTDEV void		get_closest_sphere(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_mobius(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_plane(t_world world, t_ray ray,
@@ -45,12 +49,6 @@ CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 
-
-/*******************************************************************************
-**                     OBJECT_GET                                             **
-*******************************************************************************/
-
-
 /*******************************************************************************
 **                     COLOR_FCTS                                             **
 *******************************************************************************/
@@ -66,8 +64,8 @@ CUDA_HOSTDEV int		get_color(t_color color);
 *******************************************************************************/
 
 CUDA_HOSTDEV int		get_shadow(t_light light, t_intersection collision);
-CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color, t_light light,
-						t_intersection intersection, t_ray ray);
+CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color,
+						t_light light, t_intersection intersection, t_ray ray);
 
 /*******************************************************************************
 **                     CAMERA_FCTS                                            **
@@ -100,11 +98,28 @@ CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
 
 /*******************************************************************************
+**                     MATH_UTILS                                             **
+*******************************************************************************/
+
+CUDA_HOSTDEV int		dblsgn(double x);
+CUDA_HOSTDEV int		is_zero(double x);
+CUDA_HOSTDEV void		swap_double(double *a, double *b);
+CUDA_HOSTDEV double		ft_smaller(double a, double b);
+CUDA_HOSTDEV double		sign_of(double a);
+CUDA_HOSTDEV double		check_solution(double res);
+
+/*******************************************************************************
 **                     MATH_FCTS                                              **
 *******************************************************************************/
 
 CUDA_HOSTDEV double		deg_to_radians(double deg);
 CUDA_HOSTDEV double		second_degres(double a, double b, double c);
+CUDA_HOSTDEV int		solve_fourth_case(t_dichotomie c, double *a, double *r);
+CUDA_HOSTDEV int		solve_third_case(t_dichotomie c, double *a, double *r);
+CUDA_HOSTDEV int		solve_second_case(t_dichotomie c, double *a, double *r);
+CUDA_HOSTDEV double		solver_n_degree(double *coef, int degree, t_mobius m,
+						t_ray ray);
+CUDA_HOSTDEV void		solve_n(double *coef, double *sol, int deg);
 
 /*******************************************************************************
 **                     TEXTURES_FCTS                                          **
@@ -120,7 +135,7 @@ CUDA_HOSTDEV t_color chess_effect(t_intersection *intersection);
 **                     RAYTRACERS_FCTS                                        **
 *******************************************************************************/
 
-CUDA_HOSTDEV void				get_up_left(t_world *world);
-CUDA_HOSTDEV int				ray_tracer(t_world world, int x, int y);
+CUDA_HOSTDEV void		get_up_left(t_world *world);
+CUDA_HOSTDEV int		ray_tracer(t_world world, int x, int y);
 
 #endif

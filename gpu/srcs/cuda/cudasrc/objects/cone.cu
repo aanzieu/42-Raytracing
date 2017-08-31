@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 extern "C" {
-	#include <rt.h>
-	#include <vectors.h>
-	#include <gpu_rt.h>
-	#include <equation.h>
+#include "../../cudaheader/gpu_rt.h"
 }
 
 __host__ __device__ static t_vec3d	get_normal_cone(t_cone cone, t_ray ray,

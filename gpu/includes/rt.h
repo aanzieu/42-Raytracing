@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 20:58:51 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/29 17:08:05 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <dirent.h>
 # include <light.h>
 # include <object.h>
+
 # include <pthread.h>
 
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
@@ -33,6 +34,14 @@
 # define SHADOW_BIAS 0
 # define MAX_DEPTH 8
 # define CHESS_PATTERN 4
+typedef struct		s_screen
+{
+	int	width;
+	int height;
+	int display_width;
+	int display_height;
+	t_vec2d			scale;
+}					t_screen;
 
 typedef struct		s_offsets
 {
@@ -68,7 +77,7 @@ typedef struct		s_keys
 	int pad_9;
 	int j;
 	int k;
-	int l;
+	int light_none;
 	int i;
 	int q;
 	int e;
@@ -164,6 +173,8 @@ typedef struct		s_world
 	t_paraboloid	*paraboloids;
 	t_hyperboloid	*hyperboloids;
 	t_torus			*torus;
+	t_mobius		*mobius;
+
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
 	t_disk			*disks_tmp;
@@ -173,6 +184,7 @@ typedef struct		s_world
 	t_paraboloid	*paraboloids_tmp;
 	t_hyperboloid	*hyperboloids_tmp;
 	t_torus			*torus_tmp;
+	t_mobius		*mobius_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -188,6 +200,7 @@ typedef struct		s_world
 	int				hyperboloids_len;
 	int				disks_len;
 	int				torus_len;
+	int			mobius_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;
@@ -215,6 +228,7 @@ typedef struct		s_world
 	double	intensity;
 
 	int				id;
+	t_screen		screen;
 }					t_world;
 
 void				data_setup(t_world *world);
@@ -250,6 +264,7 @@ void				key_press_handler3(t_world *world, SDL_Event event);
 void				key_press_handler4(t_world *world);
 void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
+void				save_xml_scene(t_world *world);
 
 t_light				*copy_light(t_light *obj);
 t_sphere			*copy_sphere(t_sphere *obj);
@@ -279,5 +294,12 @@ void				choose_main_launcher(char **argv, int flags);
 void				local_config(t_world *world, char *argv);
 void				master_config(t_world *world, char *argv);
 void				client_config(t_world *world, char *argv);
+/*
+**	error_msg.c
+*/
+void		show_error(const char *str);
+void		show_error_2(const char *s1, const char *s2);
+
+
 
 #endif

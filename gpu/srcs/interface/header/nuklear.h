@@ -661,6 +661,8 @@ enum nk_keys {
     NK_KEY_NONE,
     NK_KEY_SHIFT,
     NK_KEY_CTRL,
+    NK_KEY_L,
+    NK_KEY_K,
     NK_KEY_DEL,
     NK_KEY_ENTER,
     NK_KEY_TAB,
@@ -4168,6 +4170,62 @@ struct nk_context {
     unsigned int seq;
 };
 #ifdef NK_INCLUDE_MEDIA
+struct icons {
+    struct nk_image desktop;
+    struct nk_image home;
+    struct nk_image computer;
+    struct nk_image directory;
+
+    struct nk_image default_file;
+    struct nk_image text_file;
+    struct nk_image music_file;
+    struct nk_image font_file;
+    struct nk_image img_file;
+    struct nk_image movie_file;
+};
+
+enum file_groups {
+    FILE_GROUP_DEFAULT,
+    FILE_GROUP_TEXT,
+    FILE_GROUP_MUSIC,
+    FILE_GROUP_FONT,
+    FILE_GROUP_IMAGE,
+    FILE_GROUP_MOVIE,
+    FILE_GROUP_MAX
+};
+
+enum file_types {
+    FILE_DEFAULT,
+    FILE_TEXT,
+    FILE_C_SOURCE,
+    FILE_CPP_SOURCE,
+    FILE_HEADER,
+    FILE_CPP_HEADER,
+    FILE_MP3,
+    FILE_WAV,
+    FILE_OGG,
+    FILE_TTF,
+    FILE_BMP,
+    FILE_PNG,
+    FILE_JPEG,
+    FILE_PCX,
+    FILE_TGA,
+    FILE_GIF,
+    FILE_MAX
+};
+
+struct file_group {
+    enum file_groups group;
+    const char *name;
+    struct nk_image *icon;
+};
+
+struct file {
+    enum file_types type;
+    const char *suffix;
+    enum file_groups group;
+};
+
 struct media {
     struct nk_font *font_18;    
 	struct nk_font *font_14;
@@ -4196,7 +4254,29 @@ struct media {
 	struct nk_image del;
 	struct nk_image edit;
 	struct nk_image images[9];
-	struct nk_image menu[6];
+    struct nk_image menu[6];
+    
+    int font;
+    int icon_sheet;
+    struct icons icons;
+    struct file_group group[FILE_GROUP_MAX];
+    struct file files[FILE_MAX];
+};
+
+#define MAX_PATH_LEN 512
+struct file_browser {
+    /* path */
+    char file[MAX_PATH_LEN];
+    char home[MAX_PATH_LEN];
+    char desktop[MAX_PATH_LEN];
+    char directory[MAX_PATH_LEN];
+
+    /* directory content */
+    char **files;
+    char **directories;
+    size_t file_count;
+    size_t dir_count;
+    struct media *media;
 };
 #endif
 

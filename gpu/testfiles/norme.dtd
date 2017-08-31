@@ -1,4 +1,4 @@
-<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus)*>
+<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus|mobius)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
@@ -10,6 +10,7 @@
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
 <!ELEMENT torus (top, normal, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*)>
+<!ELEMENT mobius (pos, radius, tra*, color, reflection*)>
 
 
 <!ELEMENT pos (#PCDATA)>
@@ -23,6 +24,8 @@
 <!ELEMENT origin (#PCDATA)>
 <!ELEMENT normal (#PCDATA)>
 <!ELEMENT radius (#PCDATA)>
+<!ELEMENT radius_small (#PCDATA)>
+<!ELEMENT radius_big (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
 <!ELEMENT chess (#PCDATA)>
 <!ELEMENT intensity (#PCDATA)>
@@ -80,7 +83,6 @@
 	r CDATA #REQUIRED
 	g CDATA #REQUIRED
 	b CDATA #REQUIRED
-	a CDATA #REQUIRED
 >
 <!ATTLIST chess
 	r CDATA #REQUIRED

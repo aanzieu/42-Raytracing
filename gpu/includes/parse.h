@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/18 17:34:14 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/29 16:34:56 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ void		parse_paraboloid(t_world *world, xmlNodePtr cur);
 */
 void		parse_hyperboloid(t_world *world, xmlNodePtr cur);
 /*
-**	error_msg.c
+**	parse_mobius.c
 */
-void		show_error(const char *str);
-void		show_error_2(const char *s1, const char *s2);
+void		parse_mobius(t_world *world, xmlNodePtr cur);
 /*
 **	parse_init_pos.c
 */
@@ -85,5 +84,31 @@ void		parse_ambient(t_world *world, xmlNodePtr cur);
 **	parser_utils.c
 */
 int			is_numeric(const char *str);
+/*
+**	xml_save_objects.c
+*/
+void		save_cam_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_lights_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_ambient_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_planes_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_spheres_to_xml(t_world *world, xmlNodePtr root_node);
+/*
+**	xml_save_objects_2.c
+*/
+void		save_cylinders_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_cones_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_disks_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node);
+/*
+**	xml_saver_func.c
+*/
+xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
+/*
+**	ft_itoa_double.c
+*/
+char		*ft_itoa_double(double n);
 
 #endif
