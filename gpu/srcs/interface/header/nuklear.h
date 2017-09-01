@@ -661,8 +661,10 @@ enum nk_keys {
     NK_KEY_NONE,
     NK_KEY_SHIFT,
     NK_KEY_CTRL,
+
     NK_KEY_L,
     NK_KEY_K,
+    NK_KEY_X,
     NK_KEY_DEL,
     NK_KEY_ENTER,
     NK_KEY_TAB,

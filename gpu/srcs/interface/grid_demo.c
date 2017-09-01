@@ -22,31 +22,48 @@
  *
  * ===============================================================*/
 
-void	grid_demo(struct nk_context *ctx, struct media *media)
+int	find_informations_object(t_world *world, struct nk_context *ctx, struct media *media)
 {
-	static char text[3][64];
-	static int text_len[3];
-	static const char *items[] = {"Item 0","item 1","item 2"};
+	if(world->ob_save == 's')
+		sphere_informations(world, ctx, media);
+	else if(world->ob_save == 'x')
+		cone_informations(world, ctx, media);
+	else if(world->ob_save == 'c')
+		cylinder_informations(world, ctx, media);
+	else if(world->ob_save == 'p')
+		plane_informations(world, ctx, media);
+	else
+		return(0);
+	return(1);
+}
+void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world)
+{
+	// static char text[3][64];
+	// static int text_len[3];
+	static const char *items[] = {"none","mapping","mapping2","mapping3"};
 	static int selected_item = 0;
+	// static struct	nk_color color = {255, 123, 0, 255};
 	static int check = 1;
-
+	static int check2 = 1;
+	
 	int i;
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "Grid Demo", nk_rect(600, 350, 275, 250),
-				NK_WINDOW_TITLE|NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|
-				NK_WINDOW_NO_SCROLLBAR))
+	if (nk_begin(ctx, "Objects", nk_rect(WINDOW_WIDTH - 275, 0, 275, 600),
+				NK_WINDOW_TITLE|NK_WINDOW_BORDER|NK_WINDOW_MOVABLE
+				))
 	{
-		nk_style_set_font(ctx, &media->font_18->handle);
+		ui_header(ctx, media, "---- Informations ----");
+		find_informations_object(world, ctx, media);
+		ui_header(ctx, media, "---- Add Mapping ----");		
 		nk_layout_row_dynamic(ctx, 25, 2);
-		nk_label(ctx, "Floating point:", NK_TEXT_LEFT);
-		nk_edit_string(ctx, NK_EDIT_FIELD, text[0], &text_len[0], 64, nk_filter_float);
-		nk_label(ctx, "Hexadecimal:", NK_TEXT_RIGHT);
-		nk_edit_string(ctx, NK_EDIT_FIELD, text[1], &text_len[1], 64, nk_filter_hex);
-		nk_label(ctx, "Binary:", NK_TEXT_RIGHT);
-		nk_edit_string(ctx, NK_EDIT_FIELD, text[2], &text_len[2], 64, nk_filter_binary);
-		nk_label(ctx, "Checkbox:", NK_TEXT_RIGHT);
-		nk_checkbox_label(ctx, "Check me", &check);
-		nk_label(ctx, "Combobox:", NK_TEXT_RIGHT);
+		nk_style_set_font(ctx, &media->font_18->handle);
+		nk_label(ctx, "Reflection", NK_TEXT_LEFT);
+		if((nk_checkbox_label(ctx, "", &check)) && !check)
+			printf("test check %d\n", check);
+		nk_label(ctx, "Refraction", NK_TEXT_LEFT);
+		if((nk_checkbox_label(ctx, "", &check2)) && !check2)
+			printf("test check %d\n", check2);
+		nk_label(ctx, "Mapping", NK_TEXT_LEFT);
 		if (nk_combo_begin_label(ctx, items[selected_item], nk_vec2(nk_widget_width(ctx), 200))) {
 			nk_layout_row_dynamic(ctx, 25, 1);
 			for (i = 0; i < 3; ++i)

@@ -30,21 +30,67 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	static int toggle1 = 0;
 	static int toggle2 = 1;
 	static int toggle3 = 0;
+	static int image_active;
+	int i = 0;
+	static int selected_image = 3;
+
 	
-
+	
 	nk_style_set_font(ctx, &media->font_20->handle);
-	nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,0,250,610),
-			NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE);
-
+	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,0,250,610),
+			NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE))
+	{
+		ui_header(ctx, media, "---- Open & Save ----");
+		nk_layout_row_static(ctx, 50, 50, 2);
+		if (nk_button_image_label(ctx, media->dir,
+			"Images", NK_TEXT_LEFT))
+			image_active = !image_active;
 	/*------------------------------------------------
 	 *                  MENU SAVE
 	 *------------------------------------------------*/
-
-	nk_menubar_begin(ctx);
-	{
+		if (nk_menu_begin_image(ctx, "Open", media->play, nk_vec2(110,120)))
+		{
+			/* settings */
+			nk_layout_row_dynamic(ctx, 15, 1);
+			if(nk_menu_item_image_label(ctx, media->play,
+				".xml", NK_TEXT_RIGHT))
+				save_xml_scene(world);
+			nk_menu_item_image_label(ctx, media->stop, ".bnp", NK_TEXT_RIGHT);
+			// nk_menu_item_image_label(ctx, media->pause, "Pause", NK_TEXT_RIGHT);
+			// nk_menu_item_image_label(ctx, media->next, "Next", NK_TEXT_RIGHT);
+			// nk_menu_item_image_label(ctx, media->prev, "Prev", NK_TEXT_RIGHT);
+			nk_menu_end(ctx);
+		}
+	// /*------------------------------------------------
+	//  *                  SELECTED IMAGE
+	//  *------------------------------------------------*/
+		ui_header(ctx, media, "---- File Active ----");
+		ui_widget_centered(ctx, media, 100);
+		nk_image(ctx, media->images[selected_image]);
+		if (image_active)
+		{
+			if (nk_popup_begin(ctx, NK_POPUP_STATIC,
+				"Image Popup", 0, nk_rect(265, 0, 320, 220)))
+			{
+				nk_layout_row_static(ctx, 82, 82, 3);
+				for (i = 0; i < 9; ++i)
+				{
+					if (nk_button_image(ctx, media->images[i]))
+					{
+						selected_image = i;
+						image_active = 0;
+						nk_popup_close(ctx);
+					}
+					nk_popup_close(ctx);
+				}
+				nk_popup_end(ctx);
+			}
+		}
+	
+	
 		/* toolbar */
-		ui_header(ctx, media, "---- Add Objects ----");
-		nk_layout_row_static(ctx, 50, 50, 4);
+		// ui_header(ctx, media, "---- Save ----");
+		// nk_layout_row_static(ctx, 50, 50, 2);
 		// if (nk_menu_begin_image(ctx, "Music", media->play, nk_vec2(110,120)))
 		// {
 		// 	/* settings */
@@ -56,33 +102,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		// 	nk_menu_item_image_label(ctx, media->prev, "Prev", NK_TEXT_RIGHT);
 		// 	nk_menu_end(ctx);
 		// }
-		if(nk_button_image(ctx, media->sphere))
-		{
-			if(world->a_h != NULL)
-				thread_free_and_add_sphere(&world->spheres, &world->spheres_tmp, &world->spheres_len, world->id);
-			rt(world);
-		}
-		if(nk_button_image(ctx, media->cone))
-		{
-			if(world->a_h != NULL)
-				thread_free_and_add_cone(&world->cones, &world->cones_tmp, &world->cones_len, world->id);
-			rt(world);
-		}
-		if(nk_button_image(ctx, media->plane))
-		{
-			if(world->a_h != NULL)
-				thread_free_and_add_plane(&world->planes, &world->planes_tmp, &world->planes_len, world->id);
-			rt(world);
-		}
-		if(nk_button_image(ctx, media->cylinder))
-		{
-			if(world->a_h != NULL)
-				thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id);
-			rt(world);
-		}
-		// nk_button_image(ctx, media->disk);
-	}
-	nk_menubar_end(ctx);
+
 
 	/*------------------------------------------------
 	 *                  BUTTON MODE
@@ -122,7 +142,6 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	/*------------------------------------------------
 	 *                  LAUNCH RT
 	 *------------------------------------------------*/
-	// ui_header(ctx, media, "RT");
 	ui_widget_centered(ctx, media, 25);
 	if (nk_button_label(ctx, "Launch"))
 		rt(world);
@@ -135,7 +154,6 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	if (nk_button_symbol_label(ctx, (option == 1)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
 		option = 1;
-	// ui_widget(ctx, media, 35);
 	if (nk_button_symbol_label(ctx, (option == 0)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "SEPIA", NK_TEXT_LEFT))
 		option = 0;
@@ -143,7 +161,6 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	if (nk_button_symbol_label(ctx, (option == 2)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "BAYER", NK_TEXT_LEFT))
 		option = 2;
-		// ui_widget(ctx, media, 35);
 	if (nk_button_symbol_label(ctx, (option == 3)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "8 BITS", NK_TEXT_LEFT))
 		option = 3;
@@ -151,7 +168,6 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	if (nk_button_symbol_label(ctx, (option == 4)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "PASTEL", NK_TEXT_LEFT))
 		option = 4;
-		// ui_widget(ctx, media, 35);
 	if (nk_button_symbol_label(ctx, (option == 5)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "B&W", NK_TEXT_LEFT))
 		option = 5;
@@ -159,7 +175,6 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	if (nk_button_symbol_label(ctx, (option == 6)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "CARTOON", NK_TEXT_LEFT))
 		option = 6;
-		// ui_widget(ctx, media, 35);
 	if (nk_button_symbol_label(ctx, (option == 7)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NEGATIVE", NK_TEXT_LEFT))
 		option = 7;
@@ -169,16 +184,16 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	 *------------------------------------------------*/
 	
 	ui_header(ctx, media, "---- Informations ----");
-	if(ui_widget_value_infos(ctx, media, &world->lights[0].intensity_coef, "Ambient"))
-		rt(world);
+	if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Ambient"))
+		world->redraw = 1;
 
 	/*------------------------------------------------
 	 *                  COLOR TABLES
 	 *------------------------------------------------*/
 
-	static struct	nk_color color = {255, 123, 0, 255};
-	nk_layout_row_dynamic(ctx, 100, 1);
-	nk_color_pick(ctx, &color, NK_RGBA);
+	// static struct	nk_color color = {255, 123, 0, 255};
+	// nk_layout_row_dynamic(ctx, 100, 1);
+	// nk_color_pick(ctx, &color, NK_RGBA);
 	
 	// /*------------------------------------------------
 	//  *                  CONTEXTUAL
@@ -196,6 +211,10 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// 		fprintf(stdout, "pressed edit!\n");
 	// 	nk_contextual_end(ctx);
 	// }
+	
+
+
 	nk_style_set_font(ctx, &media->font_14->handle);
 	nk_end(ctx);
+			}
 }

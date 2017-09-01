@@ -92,12 +92,17 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/grid_demo.c \
 				$(SRC_DIR)/interface/scene_parameters.c \
 				$(SRC_DIR)/interface/render_demo.c \
-				$(SRC_DIR)/interface/mouse_press.c \
+				$(SRC_DIR)/interface/mouse_event/mouse_press_left.c \
+				$(SRC_DIR)/interface/mouse_event/mouse_press_middle.c \
+				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
+				$(SRC_DIR)/interface/object_informations/object_infos.c \
+				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/remove_objects.c \
 				$(SRC_DIR)/interface/device_init.c \
 				$(SRC_DIR)/interface/device_init_next.c \
 				$(SRC_DIR)/interface/load_media.c \
 				$(SRC_DIR)/interface/key_press.c \
+				$(SRC_DIR)/interface/file_browser.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \

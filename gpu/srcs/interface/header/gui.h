@@ -6,8 +6,8 @@
 #define UNUSED(a) (void)a
 
 
-#define MAX_VERTEX_MEMORY 512 * 1024
-#define MAX_ELEMENT_MEMORY 128 * 1024
+#define MAX_VERTEX_MEMORY 1024 * 1024
+#define MAX_ELEMENT_MEMORY 512 * 1024
 
 #ifdef __APPLE__
 #define NK_SHADER_VERSION "#version 150\n"
@@ -63,7 +63,8 @@ void			remove_sphere(t_sphere **s, t_intersection *i);
 void			remove_cone(t_cone **s, t_intersection *i);
 void			remove_cylinder(t_cylinder **s, t_intersection *i);
 void			remove_plane(t_plane **s, t_intersection *i);
-int				mousepress_right(struct nk_context *ctx, t_world *world, struct nk_vec2 pos);
+int				mousepress_middle(struct nk_context *ctx, t_world *world, struct nk_vec2 pos);
+int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos);
 
 /* ===============================================================
  *
@@ -71,11 +72,17 @@ int				mousepress_right(struct nk_context *ctx, t_world *world, struct nk_vec2 p
  *
  * ===============================================================*/
 
-void	basic_demo(struct nk_context *ctx, struct media *media);
-void	grid_demo(struct nk_context *ctx, struct media *media);
+void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world);
+void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
 void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
 
+int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);
+void file_browser_init(struct file_browser *browser, struct media *media);
+void file_browser_free(struct file_browser *browser);
+struct nk_image* media_icon_for_file(struct media *media, const char *file);
+char* file_load(const char* path, size_t* siz);
+void file_browser_reload_directory_content(struct file_browser *browser, const char *path);
 /* ===============================================================
  *
  *                          DEVICE INIT
@@ -105,4 +112,15 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 void	device_draw(struct device *dev, struct nk_context *ctx, t_screen *screen, enum nk_anti_aliasing AA);
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx);
 int	key_press(struct nk_context *ctx, t_world *world);
+
+void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *media);
+void	refresh_sphere(t_world *world, int i);
+void	cone_informations(t_world *world, struct nk_context *ctx, struct media *media);
+void	refresh_cone(t_world *world, int i);
+void	cylinder_informations(t_world *world, struct nk_context *ctx, struct media *media);
+void	refresh_cylinder(t_world *world, int i);
+void	plane_informations(t_world *world, struct nk_context *ctx, struct media *media);
+void	refresh_plane(t_world *world, int i);
+
+
 #endif

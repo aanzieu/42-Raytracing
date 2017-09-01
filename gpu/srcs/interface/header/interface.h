@@ -33,7 +33,7 @@
  *                          *
  * ===============================================================*/
 
-void	gui_calls(struct nk_context *ctx, struct media *media, t_world *world);
+void	gui_calls(struct file_browser *browser, struct nk_context *ctx, struct media *media, t_world *world);
 // void 	error_callback(int e, const char *d);
 // void scroll_input(GLFWwindow *win, double _, double yoff);
 // void text_input(GLFWwindow *win, unsigned int codepoint);

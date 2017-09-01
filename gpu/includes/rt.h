@@ -89,6 +89,7 @@ typedef struct		s_keys
 	int five;
 	int six;
 	int eight;
+	int select;
 }					t_keys;
 
 typedef struct		s_camera
@@ -228,7 +229,11 @@ typedef struct		s_world
 	double	intensity;
 
 	int				id;
+	int				id_save;
+	char			ob_save;
 	t_screen		screen;
+	t_vec2d			xy;
+	int				redraw;
 }					t_world;
 
 void				data_setup(t_world *world);

@@ -44,19 +44,22 @@ void scroll_input(GLFWwindow *win, double _, double yoff)
 	glfwGetWindowUserPointer(win), nk_vec2(0, (float)yoff));
 }
 
-void    gui_calls(struct nk_context *ctx, struct media *media, t_world *world)
+void    gui_calls(struct file_browser *browser, struct nk_context *ctx, struct media *media, t_world *world)
 {
+	(void)browser;
 	if (world->a_h != NULL)
 	{
 		render_demo(ctx, media, world->a_h, world);
-		basic_demo(ctx, media);
+		basic_demo(ctx, media, world);
 		scene_parameters(ctx, media, world);
-		grid_demo(ctx, media);
+		grid_demo(ctx, media, world);
+		// file_browser_run(browser, ctx);
 	}
 	else
 	{
-		basic_demo(ctx, media);
+		basic_demo(ctx, media, world);
 		scene_parameters(ctx, media, world);
-		grid_demo(ctx, media);
+		grid_demo(ctx, media, world);
+		// file_browser_run(browser, ctx);
 	}
 }
