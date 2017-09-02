@@ -15,8 +15,8 @@
 
 typedef	struct	s_pastel
 {
-	int	radius;
-	int	level;
+	int		radius;
+	int		level;
 }				t_pastel;
 
 typedef	struct	s_pos

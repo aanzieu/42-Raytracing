@@ -34,7 +34,7 @@ void				int_to_int(int *src, int *dst, int width, int height)
 	}
 }
 
-static void			reinit_avg(int averages[][4], t_pastel pastel)
+void			reinit_avg(int averages[][4], t_pastel pastel)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ static void			reinit_avg(int averages[][4], t_pastel pastel)
 	}
 }
 
-static void			each_in_radius(t_pastel pastel, t_pos pix,
+void			each_in_radius(t_pastel pastel, t_pos pix,
 										int *from, int averages[][4])
 {
 	int				lvl;
@@ -84,7 +84,7 @@ static void			each_in_radius(t_pastel pastel, t_pos pix,
 	}
 }
 
-static void			filler(t_pastel pastel, t_pos pix,
+void			filler(t_pastel pastel, t_pos pix,
 								int *to, int averages[][4])
 {
 	double			max;
@@ -114,17 +114,18 @@ static void			filler(t_pastel pastel, t_pos pix,
 void				pastel_effect(int *pix, int height, int width)
 {
 	t_pastel	pastel;
-	int			averages[pastel.level][4];
+	int			averages[10][4];
 	int			x;
 	int			y;
 	t_pos		pos;
 	int			*sum;
 
+	
 	pastel.level = 10;
 	pastel.radius = 10;
 	if (pastel.radius >= height * width)
 		return ;
-	sum = malloc(height * width * sizeof(int));
+	sum = ft_memalloc(height * width * sizeof(int));
 	ft_bzero(sum, height * width * sizeof(int));
 	y = -1;
 	while (++y < height)
@@ -140,6 +141,7 @@ void				pastel_effect(int *pix, int height, int width)
 			filler(pastel, pos, sum, averages);
 		}
 	}
+	
 	int_to_int(sum, pix, width, height);
 	free(sum);
 }

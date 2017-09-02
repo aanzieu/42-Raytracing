@@ -306,6 +306,6 @@ void				client_config(t_world *world, char *argv);
 void		show_error(const char *str);
 void		show_error_2(const char *s1, const char *s2);
 
-
+void	effect_application(t_world *world);
 
 #endif

@@ -119,9 +119,13 @@ int interface_launch(t_world *world, char *argv)
 		/* GUI */
 		if (world->video_buffer != NULL && world->redraw == 1){
 			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-			world->redraw = 0;
+			
 			printf("redreaw %d\n", i++);
 			rt(world);
+			if(world->keys.pad_0)
+				effect_application(world);
+			world->redraw = 0;
+			// world->keys.pad_0 = 0;
 		}
 		gui_calls(&browser, &ctx, &media, world);
 

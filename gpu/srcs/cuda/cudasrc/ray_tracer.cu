@@ -87,7 +87,7 @@ __host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_light l
 			color->b = 1;
 		}
 	}
-	else if (world.keys.pad_9 == 1)
+	else if (world.keys.pad_0 == 6)
 	{
 		if(vector_dot(intersection.normal_v, ray.dir) > -0.3 && intersection.type != 'p'
 			&& vector_dot(intersection.normal_v, ray.dir) < 0.0000001)
@@ -185,8 +185,8 @@ __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 	while (i < world.lights_len && world.keys.light_none == 1)
 	{
 		get_light_at(world, &color, world.lights[i], intersection, ray);
-		if (world.keys.pad_9 == 1)
-			cartoon_effect(world, &color, world.lights[i], intersection, ray);
+	//	if (world.keys.pad_0 == 6)
+	//		cartoon_effect(world, &color, world.lights[i], intersection, ray);
 		i++;
 	}
 	return (get_color(color));

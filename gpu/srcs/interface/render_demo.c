@@ -33,7 +33,7 @@ void load_video_buffer(int *a_h, unsigned char *video_buffer)
 {
 	int i;
 	t_color tmp;    
-
+	
 	for (i = 0; i < WIN_WIDTH * WIN_HEIGHT; i++)
 	{
 		tmp = int_to_rgb(a_h[i]);
@@ -69,6 +69,7 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 	struct nk_image screen;
 	struct nk_vec2	pos;
 
+	
 	screen = screen_load(a_h, world->video_buffer);
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if(nk_begin(ctx, world->title, nk_rect(260, 0, WIN_WIDTH, WIN_HEIGHT),
@@ -88,4 +89,5 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 			world->redraw = 1;
 		nk_end(ctx);
 	}
+	// nk_end(ctx);
 }

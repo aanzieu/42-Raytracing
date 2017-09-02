@@ -30,25 +30,28 @@ void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 
 void	effect_application(t_world *world)
 {
-	if (world->keys.pad_1 == 1)
-		eight_bit_effect(world->a_h);
-	else if (world->keys.pad_2 == 1)
-		black_and_white_effect(world->a_h);
-	else if (world->keys.pad_3 == 1)
+	printf("keyspad = %d\n", world->keys.pad_0);
+	if (world->keys.pad_0 == 1)
 		sepia_effect(world->a_h);
-	else if (world->keys.pad_4 == 1)
+	else if (world->keys.pad_0 == 2)
+		bayer_color(world->a_h);
+	else if (world->keys.pad_0 == 3)
+		eight_bit_effect(world->a_h);
+	
+	else if (world->keys.pad_0 == 4)
 		pastel_effect(world->a_h, world->viewplane.y_res,
 								world->viewplane.x_res);
-	else if (world->keys.pad_0 == 1)
-		solarized_effect(world->a_h);
-	else if (world->keys.pad_5 == 1)
-		bayer_color(world->a_h);
-	else if (world->keys.pad_6 == 1)
-		negative_color(world->a_h);
-	else if (world->keys.pad_7 == 1)
-		filter_color(world->a_h);
-	else if (world->keys.pad_9 == 1)
+	else if (world->keys.pad_0 == 5)
+		black_and_white_effect(world->a_h);	
+	// else if (world->keys.pad_0 == 1)
+	// 	solarized_effect(world->a_h);
+
+	// else if (world->keys.pad_0 == 1)
+	// 	filter_color(world->a_h);
+	else if (world->keys.pad_0 == 6)
 		shell_shading_effect(world->a_h);
+	else if (world->keys.pad_0 == 7)
+		negative_color(world->a_h);
 }
 
 void	put_pixel_screen(t_world *world)

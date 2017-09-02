@@ -155,31 +155,64 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	ui_widget_special_mode(ctx, media, 15);
 	if (nk_button_symbol_label(ctx, (option == 1)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
+	{
 		option = 1;
+		world->keys.pad_0 = 0;
+		world->redraw = 1;
+	}
 	if (nk_button_symbol_label(ctx, (option == 0)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "SEPIA", NK_TEXT_LEFT))
+	{	
 		option = 0;
+		world->keys.pad_0 = 1;
+		world->redraw = 1;
+	}
 	ui_widget_special_mode(ctx, media, 15);
 	if (nk_button_symbol_label(ctx, (option == 2)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "BAYER", NK_TEXT_LEFT))
+	{
 		option = 2;
+		world->keys.pad_0 = 2;
+		world->redraw = 1;
+	}
 	if (nk_button_symbol_label(ctx, (option == 3)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "8 BITS", NK_TEXT_LEFT))
+	{	
 		option = 3;
+		world->keys.pad_0 = 3;
+		world->redraw = 1;
+	}
 	ui_widget_special_mode(ctx, media, 15);
 	if (nk_button_symbol_label(ctx, (option == 4)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "PASTEL", NK_TEXT_LEFT))
+	{
 		option = 4;
+		world->keys.pad_0 = 4;
+		world->redraw = 1;
+	}
 	if (nk_button_symbol_label(ctx, (option == 5)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "B&W", NK_TEXT_LEFT))
+	{
 		option = 5;
+		world->keys.pad_0 = 5;
+		world->redraw = 1;
+	}
 	ui_widget_special_mode(ctx, media, 15);
 	if (nk_button_symbol_label(ctx, (option == 6)? 
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "CARTOON", NK_TEXT_LEFT))
+	{
 		option = 6;
+		world->keys.pad_0 = 6;
+		world->redraw = 1;
+	}
+		
 	if (nk_button_symbol_label(ctx, (option == 7)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NEGATIVE", NK_TEXT_LEFT))
+	{
 		option = 7;
+		world->keys.pad_0 = 7;
+		world->redraw = 1;
+	}
 
 	/*------------------------------------------------
 	 *                  INFORMATIONS
