@@ -75,6 +75,8 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 			NK_WINDOW_MOVABLE|NK_WINDOW_NO_SCROLLBAR|NK_WINDOW_TITLE))
 	{
 		pos = nk_window_get_position(ctx);
+		world->pos_render.x = pos.x;
+		world->pos_render.y = pos.y;
 		ui_widget_render(ctx, media, WIN_HEIGHT);
 		nk_image(ctx, screen);
 	/*------------------------------------------------

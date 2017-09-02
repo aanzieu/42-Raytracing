@@ -233,6 +233,7 @@ typedef struct		s_world
 	char			ob_save;
 	t_screen		screen;
 	t_vec2d			xy;
+	t_vec2d			pos_render;
 	int				redraw;
 }					t_world;
 

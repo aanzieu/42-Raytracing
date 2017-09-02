@@ -18,7 +18,7 @@ static void	write_file_name(t_world *w, int nb)
 	char	*path;
 	char	*num;
 	char	*ext;
-	int		ret;
+	// int		ret;
 
 	num = NULL;
 	if (nb != -1)
@@ -30,9 +30,12 @@ static void	write_file_name(t_world *w, int nb)
 	else
 		path = ft_strdup("screenshots/image");
 	ext = ft_strjoin(path, ".bmp");
+	printf("insave\n");
+	
 	ft_strdel(&path);
-	if ((ret = SDL_SaveBMP(w->window.screen, ext)) != 0)
-		show_error("saving png file error");
+	glReadPixels(w->pos_render.x,w->pos_render.y,WIN_WIDTH,WIN_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, w->video_buffer);
+	// if ((ret = saveBMP(w->video_buffer, ext)) != 0)
+	//  	show_error("saving png file error");
 	ft_putstr("Snapshot ! -> ");
 	ft_putendl(ext);
 	ft_strdel(&ext);
@@ -53,6 +56,7 @@ void		savebmp(t_world *world)
 	nb = -1;
 	rep = NULL;
 	f = NULL;
+	
 	if ((rep = opendir("screenshots")) == NULL)
 		system("mkdir screenshots");
 	if ((rep = opendir("screenshots")) == NULL)

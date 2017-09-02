@@ -55,7 +55,9 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 			if(nk_menu_item_image_label(ctx, media->play,
 				".xml", NK_TEXT_RIGHT))
 				save_xml_scene(world);
-			nk_menu_item_image_label(ctx, media->stop, ".bnp", NK_TEXT_RIGHT);
+			if(nk_menu_item_image_label(ctx, media->stop,
+				".bmp", NK_TEXT_RIGHT))
+				savebmp(world);
 			// nk_menu_item_image_label(ctx, media->pause, "Pause", NK_TEXT_RIGHT);
 			// nk_menu_item_image_label(ctx, media->next, "Next", NK_TEXT_RIGHT);
 			// nk_menu_item_image_label(ctx, media->prev, "Prev", NK_TEXT_RIGHT);
