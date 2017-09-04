@@ -73,7 +73,7 @@
   </sphere>
   <sphere>
     <pos x="0" y="0" z="0"/>
-    <radius data="0.200000"/>
+    <radius data="0.600000"/>
     <color r="255" g="0" b="0"/>
     <reflection data="1.000000"/>
     <refraction data="0"/>

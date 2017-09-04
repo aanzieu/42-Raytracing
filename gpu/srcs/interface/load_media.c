@@ -253,7 +253,10 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	media->cone = icon_load("srcs/interface/icon/cone.png");
 	media->cylinder = icon_load("srcs/interface/icon/cylinder.png");
 	media->disk = icon_load("srcs/interface/icon/disk.png");
-	
+
+	media->rec = icon_load("srcs/interface/icon/camera.png");
+	media->rec_on = icon_load("srcs/interface/icon/camera_on.png");
+
 	media->unchecked = icon_load("srcs/interface/icon/unchecked.png");
 	media->checked = icon_load("srcs/interface/icon/checked.png");
 	media->rocket = icon_load("srcs/interface/icon/rocket.png");

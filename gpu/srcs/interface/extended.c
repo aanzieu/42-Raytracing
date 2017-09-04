@@ -28,7 +28,7 @@ void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, MAX_ELEMENT_MEMORY, NULL, GL_STREAM_DRAW);
 	vertices = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 	elements = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY);
-	
+
 	/* fill convert configuration */
 	NK_MEMSET(&config, 0, sizeof(config));
 	config.vertex_layout = vertex_layout;
@@ -56,7 +56,7 @@ int interface_launch(t_world *world, char *argv)
 	/* Platform */
 	(void)argv;
 	static GLFWwindow *win;
-	t_screen	screen;
+
 	/* GUI */
 	struct device device;
 	struct nk_context ctx;
@@ -65,7 +65,7 @@ int interface_launch(t_world *world, char *argv)
 	struct media media;
 	int i = 0;
 
-	init_glfw_start(&win, &ctx, &screen);
+	init_glfw_start(&win, &ctx, &world->screen);
 	/* GUI */
 	device_init(&device);
 	loading_media(&media, &atlas, &ctx, &device);
@@ -73,10 +73,12 @@ int interface_launch(t_world *world, char *argv)
 	while (!glfwWindowShouldClose(win))
 	{
 		/* High DPI displays */
-		glfwGetWindowSize(win, &screen.width, &screen.height);
-		glfwGetFramebufferSize(win, &screen.display_width, &screen.display_height);
-		screen.scale.x = (float)screen.display_width/(float)screen.width;
-		screen.scale.y = (float)screen.display_height/(float)screen.height;
+		glfwSetWindowAspectRatio(win, 16, 9);
+		glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
+		glfwGetWindowSize(win, &world->screen.width, &world->screen.height);
+		glfwGetFramebufferSize(win, &world->screen.display_width, &world->screen.display_height);
+		world->screen.scale.x = (float)world->screen.display_width/(float)world->screen.width;
+		world->screen.scale.y = (float)world->screen.display_height/(float)world->screen.height;
 
 		/* Input */
 		double x, y;
@@ -90,9 +92,9 @@ int interface_launch(t_world *world, char *argv)
 		nk_input_key(&ctx, NK_KEY_RIGHT, glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_UP, glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_DOWN, glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);		
-		nk_input_key(&ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);		
-		nk_input_key(&ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);		
+		nk_input_key(&ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{
@@ -119,7 +121,7 @@ int interface_launch(t_world *world, char *argv)
 		/* GUI */
 		if (world->video_buffer != NULL && world->redraw == 1){
 			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-			
+
 			printf("redreaw %d\n", i++);
 			rt(world);
 			if(world->keys.pad_0)
@@ -130,10 +132,10 @@ int interface_launch(t_world *world, char *argv)
 		gui_calls(&browser, &ctx, &media, world);
 
 		/* Draw */
-		glViewport(0, 0, screen.display_width, screen.display_height);
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);        
+		glViewport(0, 0, world->screen.display_width, world->screen.display_height);
+		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		device_draw(&device, &ctx, &screen, NK_ANTI_ALIASING_ON);
+		device_draw(&device, &ctx, &world->screen, NK_ANTI_ALIASING_ON);
 		glfwSwapBuffers(win);
 	}
 	glDeleteTextures(1,(const GLuint*)&media.unchecked.handle.id);
@@ -149,7 +151,7 @@ int interface_launch(t_world *world, char *argv)
 	glDeleteTextures(1,(const GLuint*)&media.tools.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.dir.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.del.handle.id);
-	
+
 	file_browser_free(&browser);
 	nk_font_atlas_clear(&atlas);
 	nk_free(&ctx);

@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 18:50:50 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/17 14:31:25 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/04 17:49:29 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	write_file_name(t_world *w, int nb)
 		path = ft_strdup("screenshots/image");
 	ext = ft_strjoin(path, ".bmp");
 	printf("insave\n");
-	
+
 	ft_strdel(&path);
-	glReadPixels(w->pos_render.x,w->pos_render.y,WIN_WIDTH,WIN_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, w->video_buffer);
+	glReadPixels(w->pos_render.x, w->pos_render.y, WIN_WIDTH, WIN_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, w->video_buffer);
 	// if ((ret = saveBMP(w->video_buffer, ext)) != 0)
 	//  	show_error("saving png file error");
 	ft_putstr("Snapshot ! -> ");
@@ -56,7 +56,7 @@ void		savebmp(t_world *world)
 	nb = -1;
 	rep = NULL;
 	f = NULL;
-	
+
 	if ((rep = opendir("screenshots")) == NULL)
 		system("mkdir screenshots");
 	if ((rep = opendir("screenshots")) == NULL)

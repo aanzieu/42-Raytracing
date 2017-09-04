@@ -4229,7 +4229,7 @@ struct file {
 };
 
 struct media {
-    struct nk_font *font_18;    
+    struct nk_font *font_18;
 	struct nk_font *font_14;
 	struct nk_font *font_20;
 	struct nk_font *font_22;
@@ -4251,13 +4251,15 @@ struct media {
     struct nk_image plane;
     struct nk_image disk;
     struct nk_image cylinder;
+    struct nk_image rec;
+    struct nk_image rec_on;
 	struct nk_image copy;
 	struct nk_image convert;
 	struct nk_image del;
 	struct nk_image edit;
 	struct nk_image images[9];
     struct nk_image menu[6];
-    
+
     int font;
     int icon_sheet;
     struct icons icons;
@@ -16525,7 +16527,7 @@ NK_API void nk_style_default(struct nk_context *ctx){nk_style_from_table(ctx, 0)
     NK_COLOR(NK_COLOR_HEADER,               40, 40, 40, 255) \
     NK_COLOR(NK_COLOR_BORDER,               65, 65, 65, 255) \
     NK_COLOR(NK_COLOR_BUTTON,               50, 50, 50, 255) \
-    NK_COLOR(NK_COLOR_BUTTON_HOVER,         40, 40, 40, 255) \
+    NK_COLOR(NK_COLOR_BUTTON_HOVER,         255, 255, 0, 255) \
     NK_COLOR(NK_COLOR_BUTTON_ACTIVE,        35, 35, 35, 255) \
     NK_COLOR(NK_COLOR_TOGGLE,               100,100,100,255) \
     NK_COLOR(NK_COLOR_TOGGLE_HOVER,         120,120,120,255) \

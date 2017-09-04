@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/08/29 17:09:30 by PZC              ###   ########.fr        #
+#    Updated: 2017/09/03 18:01:03 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/load_media.c \
 				$(SRC_DIR)/interface/key_press.c \
 				$(SRC_DIR)/interface/file_browser.c \
+				$(SRC_DIR)/interface/topbar.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \
@@ -187,11 +188,11 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"	
+	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35 
+    -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 

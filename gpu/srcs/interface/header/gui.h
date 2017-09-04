@@ -15,8 +15,8 @@
 #define NK_SHADER_VERSION "#version 300 es\n"
 #endif
 
-#define WINDOW_WIDTH 1200
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 1400
+#define WINDOW_HEIGHT 788
 
 struct nk_glfw_vertex {
 	float position[2];
@@ -75,6 +75,7 @@ int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world);
 void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
+void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
 void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
 
 int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 21:28:57 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/04 18:30:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ void    gui_calls(struct file_browser *browser, struct nk_context *ctx, struct m
 		render_demo(ctx, media, world->a_h, world);
 		basic_demo(ctx, media, world);
 		scene_parameters(ctx, media, world);
+		scene_topbar(ctx, media, world);
 		grid_demo(ctx, media, world);
-		// file_browser_run(browser, ctx);
+		//file_browser_run(browser, ctx);
 	}
 	else
 	{
 		basic_demo(ctx, media, world);
-		scene_parameters(ctx, media, world);
+		//scene_parameters(ctx, media, world);
+		scene_topbar(ctx, media, world);
 		grid_demo(ctx, media, world);
-		// file_browser_run(browser, ctx);
+		//file_browser_run(browser, ctx);
 	}
 }

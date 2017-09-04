@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grid_demo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 21:10:56 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/04 16:19:16 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world)
 	// static struct	nk_color color = {255, 123, 0, 255};
 	static int check = 1;
 	static int check2 = 1;
-	
+
 	int i;
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "Objects", nk_rect(WINDOW_WIDTH - 275, 0, 275, 600),
-				NK_WINDOW_TITLE|NK_WINDOW_BORDER|NK_WINDOW_MOVABLE
-				))
+	if (nk_begin(ctx, "Objects", nk_rect(world->screen.width - 275, 52, 275, 600),
+				NK_WINDOW_TITLE|NK_WINDOW_BORDER))
 	{
 		ui_header(ctx, media, "---- Informations ----");
 		find_informations_object(world, ctx, media);
-		ui_header(ctx, media, "---- Add Mapping ----");		
+		ui_header(ctx, media, "---- Add Mapping ----");
 		nk_layout_row_dynamic(ctx, 25, 2);
 		nk_style_set_font(ctx, &media->font_18->handle);
 		nk_label(ctx, "Reflection", NK_TEXT_LEFT);
