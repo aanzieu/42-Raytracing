@@ -36,8 +36,13 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 		world->keys.s = 0;
 	if (event.key.keysym.sym == SDLK_d)
 		world->keys.d = 0;
-	if (event.key.keysym.sym == SDLK_0)
-		world->keys.pad_0 = 0;
+	return ;
+}
+
+void	key_release_handler2(t_world *world, SDL_Event event)
+{
+	(void)event;
+	(void)world;
 	if (event.key.keysym.sym == SDLK_1)
 		world->keys.pad_1 = 0;
 	if (event.key.keysym.sym == SDLK_2)
@@ -60,20 +65,5 @@ void	key_release_handler1(t_world *world, SDL_Event event)
 		world->keys.q = 0;
 	if (event.key.keysym.sym == SDLK_e)
 		world->keys.e = 0;
-	return ;
-}
-
-void	key_release_handler2(t_world *world, SDL_Event event)
-{
-	(void)event;
-	(void)world;
-	// if (event.key.keysym.sym == SDLK_KP_4)
-	// 	world->keys.four = 0;
-	// if (event.key.keysym.sym == SDLK_KP_5)
-	// 	world->keys.five = 0;
-	// if (event.key.keysym.sym == SDLK_KP_6)
-	// 	world->keys.six = 0;
-	// if (event.key.keysym.sym == SDLK_KP_8)
-	// 	world->keys.eight = 0;
 	return ;
 }

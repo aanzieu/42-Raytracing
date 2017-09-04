@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1_malloc_cpy.c                                  :+:      :+:    :+:   */
+/*   malloc_objects_cpy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 13:45:45 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/21 11:39:33 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/08/24 16:22:27 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_cone		*copy_cone(t_cone *obj)
 	return (NULL);
 }
 
-t_cylinder		*copy_cylinder(t_cylinder *obj)
+t_cylinder	*copy_cylinder(t_cylinder *obj)
 {
 	t_cylinder *news;
 
@@ -104,27 +104,6 @@ t_cylinder		*copy_cylinder(t_cylinder *obj)
 		news->next = NULL;
 		if (news && obj->next)
 			news->next = copy_cylinder(obj->next);
-		return (news);
-	}
-	return (NULL);
-}
-
-t_torus		*copy_torus(t_torus *obj)
-{
-	t_torus *news;
-
-	if (obj)
-	{
-		if (!(news = (t_torus *)malloc(sizeof(t_torus))))
-			ft_putendl_fd("error : can't malloc copy thread to\n", 1);
-		news->pos = obj->pos;
-		news->radius_small = obj->radius_small;
-		news->radius_big = obj->radius_big;
-		news->color = obj->color;
-		news->chess = obj->chess;
-		news->next = NULL;
-		if (news && obj->next)
-			news->next = copy_torus(obj->next);
 		return (news);
 	}
 	return (NULL);

@@ -14,8 +14,8 @@
 
 static unsigned int		count_disks(t_disk *disks)
 {
-	t_disk *p;
-	unsigned int size;
+	t_disk			*p;
+	unsigned int	size;
 
 	size = 0;
 	p = disks;
@@ -27,9 +27,10 @@ static unsigned int		count_disks(t_disk *disks)
 	return (size);
 }
 
-void			load_disks(t_disk **disks, t_disk *disks_tmp, int *disks_len)
+void					load_disks(t_disk **disks, t_disk *disks_tmp,
+															int *disks_len)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	*disks_len = count_disks(disks_tmp);

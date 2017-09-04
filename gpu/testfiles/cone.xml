@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="Just a cone">
+<camera>
+	<pos x="0" y="0" z="-10" />
+	<dir x="0" y="0" z="1" />
+	<rot x="0" y="0" z="0" />
+	<tra x="0" y="0" z="0" />
+</camera>
+<ambient>
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.1" />
+</ambient>
+<light>
+	<pos x="-3" y="-2" z="-4" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+<cone>
+	<pos x="0" y="-0.5" z="1" />
+	<normal x="0" y="-2" z="1" />
+	<radius data="0.4" />
+	<height data="2" />
+	<rot x="0" y="0" z="0" />
+	<color r="12" g="24" b="255" a="1" />
+	<reflection data="0.5" />
+</cone>
+</scene>

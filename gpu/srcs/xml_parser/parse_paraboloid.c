@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_paraboloid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:28:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:20:34 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ void	add_paraboloid(t_paraboloid **alst, t_paraboloid *nw)
 	}
 }
 
+void	handle_input_paraboloid(t_paraboloid *p, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
+		parse_vec3d(&p->top, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&p->top, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
+		parse_vec3d(&p->normal, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
+		parse_radius(&p->distance, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
+		parse_height(&p->maxm, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
+		parse_color(&p->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+		parse_color(&p->chess, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+		parse_rot(&p->normal, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&p->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_refraction(&p->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&p->transparence_coef, cur);
+}
+
 void	parse_paraboloid(t_world *world, xmlNodePtr cur)
 {
 	t_paraboloid	*p;
@@ -39,24 +65,7 @@ void	parse_paraboloid(t_world *world, xmlNodePtr cur)
 	p->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"top")))
-			parse_vec3d(&p->top, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&p->normal, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
-			parse_radius(&p->distance, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
-			parse_height(&p->maxm, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&p->color, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
-			parse_color(&p->chess, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&p->normal, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&p->reflection_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_reflection(&p->refraction_coef, cur);
+		handle_input_paraboloid(p, cur);
 		cur = cur->next;
 	}
 	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(p, world->id++));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/18 17:34:14 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/29 16:34:56 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,22 @@ void		parse_paraboloid(t_world *world, xmlNodePtr cur);
 */
 void		parse_hyperboloid(t_world *world, xmlNodePtr cur);
 /*
+**	parse_mobius.c
+*/
+void		parse_mobius(t_world *world, xmlNodePtr cur);
+/*
 **	parse_torus.c
 */
 void		parse_torus(t_world *world, xmlNodePtr cur);
+/*
+**	parse_cube.c
+*/
+void		parse_cube(t_world *world, xmlNodePtr cur);
+/*
+**	parse_triangle.c
+*/
+void		parse_triangle(t_world *world, xmlNodePtr cur);
+
 /*
 **	error_msg.c
 */
@@ -82,35 +95,43 @@ void		parse_height(double *height, xmlNodePtr cur);
 */
 void		parse_color(t_color *c, xmlNodePtr cur);
 void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
+/*
+**	parse_material.c
+*/
 void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
+void		parse_transparence(double *transparence_coef, xmlNodePtr cur);
+
 void		parse_ambient(t_world *world, xmlNodePtr cur);
 /*
 **	parser_utils.c
 */
 int			is_numeric(const char *str);
-
-
-//void		parse_rtv1(t_world *world, char *argv);
-
-//void		parse_camera(t_world *world, t_camera *cam, t_list *lst);
-//void		parse_light(t_world *world, t_list *lst);
-//void		parse_sphere(t_world *world, t_list *lst);
-//void		parse_plane(t_world *world, t_list *lst);
-//void		parse_disk(t_world *world, t_list *lst);
-//void		parse_cylinder(t_world *world, t_list *lst);
-//void		parse_cone(t_world *world, t_list *lst);
-//void		parse_paraboloid(t_world *world, t_list *lst);
-//void		parse_hyperboloid(t_world *world, t_list *lst);
-
-//void		parse_rotation_object(t_vec3d *v, char **tmp, int line);
-//void		parse_point_translation(t_vec3d *v, char **tmp, int line);
-//void		parse_rotation_cam(t_camera *cam, char **tmp, int line);
-//void		parse_color(t_color *c, char **tmp, int line);
-//void		parse_vector(t_vec3d *v, char **tmp, int line);
-//void		parse_point(t_vec3d *v, char **tmp, int line);
-//void		parse_intensity(double *intensity_coef, char **tmp, int line);
-//void		parse_reflexion(double *reflexion_coef, char **tmp, int line);
-//void		parse_ambient(t_world *world, t_list *lst);
+/*
+**	xml_save_objects.c
+*/
+void		save_cam_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_lights_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_ambient_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_planes_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_spheres_to_xml(t_world *world, xmlNodePtr root_node);
+/*
+**	xml_save_objects_2.c
+*/
+void		save_cylinders_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_cones_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_disks_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node);
+/*
+**	xml_saver_func.c
+*/
+xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
+/*
+**	ft_itoa_double.c
+*/
+char		*ft_itoa_double(double n);
 
 #endif

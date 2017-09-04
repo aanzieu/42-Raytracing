@@ -16,7 +16,6 @@
 static void		pixellize_screen(int *pix, int width, int height, int intensity)
 {
 	int		x;
-
 	int		y;
 	int		i;
 	int		j;
@@ -32,15 +31,15 @@ static void		pixellize_screen(int *pix, int width, int height, int intensity)
 			i = -1;
 			while (++i < intensity)
 			{
-			j = -1;
-			while (++j < intensity)
-				pix[width * (y + i) + x + j] = color;
+				j = -1;
+				while (++j < intensity)
+					pix[width * (y + i) + x + j] = color;
 			}
 		}
 	}
 }
 
-void		eight_bit_effect(int *pix)
+void			eight_bit_effect(int *pix)
 {
 	int		i;
 	int		j;
@@ -57,7 +56,7 @@ void		eight_bit_effect(int *pix)
 			pix[i * WIN_WIDTH + j] = value * (1 << 4);
 			++j;
 		}
-	++i;
+		++i;
 	}
 	pixellize_screen(pix, WIN_WIDTH, WIN_HEIGHT, WIN_HEIGHT / 128);
 }

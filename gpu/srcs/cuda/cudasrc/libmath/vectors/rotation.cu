@@ -48,7 +48,7 @@ __host__ __device__ void	cam_rot(t_camera *camera, double degrees, char axis)
 	degrees = (-1) * deg_to_radians(degrees);
 	if (axis == 'z')
 	{
-		return;		
+		return;
 	}
 	else if (axis == 'x')
 	{
@@ -57,7 +57,7 @@ __host__ __device__ void	cam_rot(t_camera *camera, double degrees, char axis)
 		rotate(&camera->look_at, degrees, 'x');
 		camera->look_at.z += camera->pos.z;
 		camera->look_at.y += camera->pos.y;
-		get_camera_axes(camera);	
+		get_camera_axes(camera);
 	}
 	else if (axis == 'y')
 	{
@@ -66,6 +66,6 @@ __host__ __device__ void	cam_rot(t_camera *camera, double degrees, char axis)
 		rotate(&camera->look_at, degrees, 'y');
 		camera->look_at.z += camera->pos.z;
 		camera->look_at.x += camera->pos.x;
-		get_camera_axes(camera);	
+		get_camera_axes(camera);
 	}
 }

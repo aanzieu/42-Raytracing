@@ -47,7 +47,8 @@ void		shell_shading_effect(int *pix)
 			color.r = pix[cur] >> 16;
 			color.g = (pix[cur] & 0x00FF00) >> 8;
 			color.b = (pix[cur] & 0x0000FF);
-			pix[cur] = RGB(limit_color(color.r), limit_color(color.g), limit_color(color.b));
+			pix[cur] = RGB(limit_color(color.r), limit_color(color.g),
+				limit_color(color.b));
 			j++;
 		}
 		i++;

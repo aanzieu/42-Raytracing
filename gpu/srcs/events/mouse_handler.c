@@ -17,6 +17,7 @@ void	mouse_movement(t_world *world)
 {
 	int	mouse_x;
 	int mouse_y;
+
 	SDL_GetRelativeMouseState(&mouse_x, &mouse_y);
 	if (world->keys.space == 1)
 	{

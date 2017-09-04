@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="Cool gallery">
+
+<camera>
+	<pos x="0" y="0" z="-7" />
+	<dir x="0" y="0" z="1" />
+</camera>
+
+<light>
+	<pos x="0" y="0" z="-2" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+<light>
+	<pos x="-2" y="0" z="-5" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+<!-- <cone>
+	<pos x="-0.75" y="0" z="0.5" />
+	<normal x="-0.75" y="1" z="0.5" />
+	<radius data="0.2" />
+	<height data="2" />
+	<color r="0" g="102" b="255" a="1" />
+	<reflection data="0" />
+</cone> -->
+<sphere>
+	<pos x="0" y="0" z="0" />
+	<radius data="0.2" />
+	<tra x="0" y="0" z="0" />
+	<color r="255" g="0" b="0" a="1" />
+	<reflection data="0" />
+	<refraction data="0" />
+</sphere>
+
+<plane>
+	<origin x="0" y="0.75" z="1" />
+	<normal x="0" y="0" z="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="255" g="255" b="255" a="1" />
+	<reflection data="0" />
+</plane>
+<plane>
+	<origin x="0" y="-0.75" z="1" />
+	<normal x="0" y="0" z="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="151" g="20" b="42" a="1" />
+	<reflection data="0" />
+</plane>
+<plane>
+	<origin x="0" y="0" z="2" />
+	<normal x="0" y="0" z="1" />
+	<rot x="0" y="0" z="0" />
+	<color r="125" g="0" b="125" a="1" />
+	<reflection data="2" />
+</plane>
+
+<plane>
+	<origin x="0" y="0" z="-8" />
+	<normal x="0" y="0" z="-7" />
+	<rot x="0" y="0" z="0" />
+	<color r="125" g="0" b="125" a="1" />
+	<reflection data="2" />
+</plane>
+
+<plane>
+	<origin x="1" y="0" z="0" />
+	<normal x="-1" y="0" z="0" />
+	<rot x="0" y="0" z="0" />
+	<color r="125" g="0" b="125" a="1" />
+	<reflection data="2" />
+</plane>
+
+<plane>
+	<origin x="-1" y="0" z="0" />
+	<normal x="1" y="0" z="0" />
+	<rot x="0" y="0" z="0" />
+	<color r="125" g="0" b="125" a="1" />
+	<reflection data="2" />
+</plane>
+
+<!-- <cone>
+	<pos x="0" y="0" z="2" />
+	<normal x="0" y="1" z="2" />
+	<radius data="30" />
+	<height data="1" />
+	<rot x="0" y="0" z="1" />
+	<color r="204" g="255" b="51" a="1" />
+</cone> -->
+
+</scene>

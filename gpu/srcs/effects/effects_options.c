@@ -41,14 +41,13 @@ void		solarized_effect(int *pix)
 	}
 }
 
-
 void		filter_color(int *pix)
 {
 	int		x;
 	int		y;
 	float	invgamma;
 	int		cur;
-	t_color		c;
+	t_color	c;
 
 	invgamma = 0.68;
 	y = -1;
@@ -67,7 +66,9 @@ void		filter_color(int *pix)
 	}
 }
 
-/* Not Fonctionnel, need fixe*/
+/*
+**	Not Fonctionnel, need fixed
+*/
 
 void		exposure_color(int *pix)
 {
@@ -75,7 +76,7 @@ void		exposure_color(int *pix)
 	int		y;
 	float	exposure;
 	int		cur;
-	t_color		c;
+	t_color	c;
 
 	exposure = -0.66f;
 	y = -1;

@@ -14,8 +14,8 @@
 
 static unsigned int	count_cones(t_cone *cones)
 {
-	t_cone *p;
-	unsigned int size;
+	t_cone			*p;
+	unsigned int	size;
 
 	size = 0;
 	p = cones;
@@ -27,10 +27,11 @@ static unsigned int	count_cones(t_cone *cones)
 	return (size);
 }
 
-void			load_cones(t_cone **cones, t_cone *cones_tmp, int *cones_len)
+void				load_cones(t_cone **cones, t_cone *cones_tmp,
+															int *cones_len)
 {
-	unsigned int i;
-	t_cone *tmp;
+	unsigned int	i;
+	t_cone			*tmp;
 
 	i = 0;
 	*cones_len = count_cones(cones_tmp);

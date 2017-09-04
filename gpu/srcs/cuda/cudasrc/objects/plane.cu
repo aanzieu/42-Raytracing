@@ -22,34 +22,33 @@ extern "C" {
 **	avec le plan
 */
 
-__host__ __device__ int		get_plane(t_plane plane, t_ray ray, t_intersection *intersection_tmp)
+__host__ __device__ int		get_plane(t_plane plane, t_ray ray,
+	t_intersection *intersection_tmp)
 {
 	double	t;
-	double	denominator;
-	t_vec3d	x;
-	double	n;
+	double	v, n;
+	t_vec3d	x, normal_v;
 
-
-	intersection_tmp->normal_v = vector_normalize(
-		vector_calculate(plane.pos, plane.up));
-	denominator = vector_dot(ray.dir, intersection_tmp->normal_v);
-	if (denominator != 0 && intersection_tmp->id != plane.id)
+	if (intersection_tmp->id == plane.id)
+		return (0);
+	normal_v = vector_normalize(vector_calculate(plane.pos, plane.up));
+	v = vector_dot(ray.dir, normal_v);
+	if (v != 0)
 	{
 		x = vector_scalar(vector_calculate(plane.pos, ray.origin), -1);
-		n = vector_dot(x, intersection_tmp->normal_v);
-		t = n / denominator;
+		n = vector_dot(x, normal_v);
+		t = n / v;
 		if (t > 0.0000001)
 		{
 			intersection_tmp->t = t;
-			intersection_tmp->type = 'p';
-			if (denominator > 0)
-				intersection_tmp->normal_v =
-					vector_scalar(intersection_tmp->normal_v, -1);
-			if (plane.refraction_coef != 0 || plane.reflection_coef != 0)
-				intersection_tmp->id = plane.id;
+			if (v > 0)
+				intersection_tmp->normal_v = vector_scalar(normal_v, -1);
+			else
+				intersection_tmp->normal_v = normal_v;
 			return (1);
 		}
 	}
+//	intersection_tmp->t = -1;
 	return (0);
 }
 
@@ -65,13 +64,14 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
+				intersection->type = 'p';
 				intersection->id = world.planes[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->type = intersection_tmp->type;
 				intersection->reflection_coef = world.planes[i].reflection_coef;
 				intersection->refraction_coef = world.planes[i].refraction_coef;
-				intersection->color = &world.planes[i].color;
-				intersection->chess = &world.planes[i].chess;
+				intersection->transparence_coef = world.planes[i].transparence_coef;
+				intersection->color = world.planes[i].color;
+				intersection->chess = world.planes[i].chess;
 				intersection->pos = vector_add(ray.origin,
 				vector_scalar(ray.dir, intersection->t));
 				intersection->normal_v = intersection_tmp->normal_v;

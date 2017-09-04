@@ -37,14 +37,16 @@ void	parse_torus(t_world *world, xmlNodePtr cur)
 			parse_radius(&t->radius_big, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&t->color, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+			parse_color(&t->chess, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 			parse_reflection(&t->reflection_coef, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_reflection(&t->refraction_coef, cur);
+			parse_refraction(&t->refraction_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+			parse_transparence(&t->transparence_coef, cur);
 		cur = cur->next;
 	}
-	// s->inner = inner_outer(s, s->radius_big - s->radius_small * 0.5);
-	// s->outer = inner_outer(s, s->radius_big * 2 - s->radius_small * 0.5);
 	add_torus(&world->torus_tmp, new_torus(t, world->id++));
 	free(t);
 }

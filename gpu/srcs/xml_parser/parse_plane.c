@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:28:28 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/08/16 13:21:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@ void	add_plan(t_plane **alst, t_plane *nw)
 	}
 }
 
+void	handle_input_plane(t_plane *p, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
+		parse_vec3d(&p->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"tra")))
+		parse_tra(&p->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
+		parse_vec3d(&p->up, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
+		parse_rot(&p->up, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
+		parse_color(&p->color, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
+		parse_color(&p->chess, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&p->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_refraction(&p->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&p->transparence_coef, cur);
+}
+
 void	parse_plane(t_world *world, xmlNodePtr cur)
 {
 	t_plane *p;
@@ -39,20 +61,7 @@ void	parse_plane(t_world *world, xmlNodePtr cur)
 	p->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"origin")))
-			parse_vec3d(&p->pos, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
-			parse_vec3d(&p->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
-			parse_rot(&p->up, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
-			parse_color(&p->color, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
-			parse_color(&p->chess, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&p->reflection_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_reflection(&p->refraction_coef, cur);
+		handle_input_plane(p, cur);
 		cur = cur->next;
 	}
 	add_plan(&world->planes_tmp, new_plan(p, world->id++));

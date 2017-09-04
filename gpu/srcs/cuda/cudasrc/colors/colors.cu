@@ -15,36 +15,24 @@ extern "C" {
 	#include "gpu_rt.h"
 }
 
-__host__ __device__ void	color_scalar(t_color *color, double coeficient)
+__host__ __device__ t_color new_color(double r, double g, double b)
 {
-	color->r *= coeficient;
-	color->g *= coeficient;
-	color->b *= coeficient;	
+	return ((t_color){r, g, b});
 }
 
-__host__ __device__ void	color_multiply(t_color *color1, t_color color2)
+__host__ __device__ t_color	color_scalar(t_color c1, double coef)
 {
-	color1->r *= color2.r;
-	color1->g *= color2.g;
-	color1->b *= color2.b;	
+	return ((t_color){c1.r * coef, c1.g * coef, c1.b * coef});
 }
 
-__host__ __device__ void	color_add(t_color *color1, t_color color2)
+__host__ __device__ t_color	color_multiply(t_color c1, t_color c2)
 {
-	color1->r += color2.r;
-	color1->g += color2.g;
-	color1->b += color2.b;	
+	return ((t_color){c1.r * c2.r, c1.g * c2.g, c1.b * c2.b});
 }
 
-__host__ __device__ t_color	new_color(double r, double g, double b)
+__host__ __device__ t_color	color_add(t_color c1, t_color c2)
 {
-	t_color	color;
-
-	color.r = r;
-	color.g = g;
-	color.b = b;
-
-	return (color);
+	return ((t_color){c1.r + c2.r, c1.g + c2.g, c1.b + c2.b});
 }
 
 __host__ __device__ int		get_color(t_color color)
@@ -66,8 +54,6 @@ __host__ __device__ int		get_color(t_color color)
 	color.g = color.g > 1 ? 1 : color.g;
 	color.b = color.b < 0 ? 0 : color.b;
 	color.b = color.b > 1 ? 1 : color.b;
-	// color.light = color.light > 1 ? 1 : color.light;
-	// color.light = color.light < 0 ? 0 : color.light;
 	return ((int)(color.b * 255) + (int)(color.g * 255) * 256 +
 									(int)(color.r * 255) * 256 * 256);
 }

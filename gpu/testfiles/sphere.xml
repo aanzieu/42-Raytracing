@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<scene name="Three Sphere">
-	<surface type="Sphere">
-		<radius> 1 </radius>
-		<center> 0 0 1 </center>
-		<rotation> 0 0 0 </rotation>
-		<translation> 0 0 0 </translation>
-		<color> 166 166 166 </color>
-	</surface>
-	<light>
-		<position> 4 0 -10 </position>
-		<intensity> 1 </intensity>
-	</light>
-	<camera type="Camera">
-		<viewPoint> 0 0 -10 </viewPoint>
-		<viewDir> 0 0 1 </viewDir>
-		<!--<viewWidth> 0.75 </viewWidth>
-		<viewHeight> 0.76 </viewHeight>-->
-	</camera>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="One sphere">
+<camera>
+	<pos x="0" y="0" z="-10" />
+	<dir x="0" y="0" z="1" />
+	<rot x="0" y="0" z="0" />
+	<tra x="0" y="0" z="0" />
+</camera>
+<ambient>
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="0.1" />
+</ambient>
+<light>
+	<pos x="3" y="2" z="-4" />
+	<color r="255" g="255" b="255" a="1" />
+	<intensity data="1" />
+</light>
+<sphere>
+	<pos x="0" y="0" z="1" />
+	<radius data="0.4" />
+	<tra x="0" y="0" z="0" />
+	<color r="255" g="125" b="255" a="1" />
+	<reflection data="0" />
+</sphere>
 </scene>

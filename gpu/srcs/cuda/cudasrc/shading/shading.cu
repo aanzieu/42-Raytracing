@@ -41,7 +41,7 @@ __host__ __device__ int		get_shadow(t_world world, t_light light,
 	return (0);
 }
 
-__host__ __device__ void	specular_light(t_world world, t_color *color, t_vec3d ray, t_intersection intersection,
+__host__ __device__ t_color	specular_light(t_world world, t_color color, t_vec3d ray, t_intersection intersection,
 													t_vec3d light_vector, t_light light)
 {
 	t_vec3d reflected_vector;
@@ -52,10 +52,10 @@ __host__ __device__ void	specular_light(t_world world, t_color *color, t_vec3d r
 	reflected_vector = vector_substract(ray, raypos_tmp);
 	reflected_vector = vector_normalize(reflected_vector);
 	specular_angle = pow(vector_dot(light_vector, reflected_vector), 150);
-	color_scalar(&light.color, specular_angle);
-	color_scalar(&light.color, intersection.reflection_coef);
-	color_scalar(&light.color, light.intensity_coef);
-	color_add(color, light.color);
+	light.color = color_scalar(light.color, specular_angle);
+	light.color = color_scalar(light.color, intersection.reflection_coef);
+	light.color = color_scalar(light.color, light.intensity_coef);
+	return (color_add(color, light.color));
 }
 
 __host__ __device__ t_vec3d	get_light_vector(t_world world, t_intersection intersection, t_light light)
@@ -66,24 +66,27 @@ __host__ __device__ t_vec3d	get_light_vector(t_world world, t_intersection inter
 		return(light.dir_v);
 }
 
-__host__ __device__	void	get_light_at(t_world world, t_color *color, t_light light,
+__host__ __device__	t_color	get_light_at(t_world world, t_color color, t_light light,
 													t_intersection intersection, t_ray ray)
 {
-	t_vec3d	light_vector;
-	t_color	tmp;
-	double	angle;
+	t_vec3d		light_vector;
+	t_color		tmp;
+	double		angle;
 
 	tmp =  new_color(0, 0, 0);
 	light_vector = get_light_vector(world, intersection, light);
 	angle = vector_dot(intersection.normal_v, light_vector);
 	if (angle > 0 && get_shadow(world, light, intersection) == 0)
 	{
-		color_add(&tmp, *intersection.color);
-		color_scalar(&tmp, angle);
-		color_scalar(&tmp, light.intensity_coef);
-		color_add(color, tmp);
-		specular_light(world, color, ray.dir, intersection, light_vector, light);
+		tmp = color_add(tmp, intersection.color);
+		tmp = color_scalar(tmp, angle);
+		tmp = color_scalar(tmp, light.intensity_coef);
+		color = color_add(color, tmp);
+		color = specular_light(world, color, ray.dir, intersection, light_vector, light);
 	}
 	else
 		color_add(color, tmp);
+	return (color);
 }
+
+//		color = color_add(color_scalar(tmp, 0.5), color_scalar(color2, 0.5));

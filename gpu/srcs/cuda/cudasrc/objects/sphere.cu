@@ -32,7 +32,7 @@ __host__ __device__ static t_vec3d			get_normal_sphere(t_sphere sphere,
 **	avec la sphere
 */
 
-__host__ __device__ static double			get_sphere(t_sphere sphere,
+__host__ __device__ double			get_sphere(t_sphere sphere,
 		t_ray ray, t_intersection *intersection_tmp)
 {
 	t_vec3d	x;
@@ -44,13 +44,11 @@ __host__ __device__ static double			get_sphere(t_sphere sphere,
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
 	eq.c = vector_dot(x, x) - pow(sphere.radius, 2);
-	eq.res = second_degres(eq.a, eq.b, eq.c);
-	if(eq.res != NOT_A_SOLUTION && intersection_tmp->id != sphere.id)
+	second_degres(&eq);
+	if(eq.res[0] != NOT_A_SOLUTION)
 	{
-		intersection_tmp->t = eq.res;
-		intersection_tmp->type = 's';
-		if (sphere.refraction_coef != 0 || sphere.reflection_coef != 0)
-			intersection_tmp->id = sphere.id;
+		// printf("%f\n", sphere.transparence_coef);
+		intersection_tmp->t = eq.res[0];
 		return (1);
 	}
 	return (0);
@@ -68,17 +66,18 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
-				intersection->id = intersection_tmp->id;
+				intersection->type = 's';
 				intersection->t = intersection_tmp->t;
-				intersection->type = intersection_tmp->type;
+				intersection->id = world.spheres[i].id;
 				intersection->reflection_coef = world.spheres[i].reflection_coef;
 				intersection->refraction_coef = world.spheres[i].refraction_coef;
-				intersection->color = &world.spheres[i].color;
-				intersection->chess = &world.spheres[i].chess;
+				intersection->transparence_coef = world.spheres[i].transparence_coef;
+				intersection->color = world.spheres[i].color;
+				intersection->chess = world.spheres[i].chess;
 				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,
-							intersection_tmp->t));
+					intersection_tmp->t));
 				intersection->normal_v = get_normal_sphere(world.spheres[i],
-														*intersection);
+					*intersection);
 			}
 		}
 		i++;

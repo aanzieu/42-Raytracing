@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<scene name="Three Sphere">
+  <surface type="Cone">
+    <center> -0.75 0 0.5 </center>
+    <normal> -0.75 1 0.5 </normal>
+    <radius> 0.2 </radius>
+    <rotation> 0 0 0 </rotation>
+    <color> 0 102 255 </color>
+    <reflexion> 1 </reflexion>
+    <height> 2 </height>
+    </surface>
+  <surface type="Cylinder">
+    <center> 0.75 0 0.5 </center>
+    <normal> 0.75 1 0.5 </normal>
+    <radius> 0.1 </radius>
+    <rotation> 0 0 0 </rotation>
+    <color> 0 102 255 </color>
+    <reflexion> 1 </reflexion>
+    <height> 1 </height>
+    </surface>
+  <surface type="Cylinder">
+    <center> -1 0 -0.5 </center>
+    <normal> -1 1 -0.5 </normal>
+    <radius> 0.1 </radius>
+    <rotation> 0 0 0 </rotation>
+    <color> 0 102 255 </color>
+    <reflexion> 1 </reflexion>
+    <height> 1 </height>
+    </surface>
+  <surface type="Cylinder">
+    <center> 1 0 -0.5 </center>
+    <normal> 1 1 -0.5 </normal>
+    <radius> 0.1 </radius>
+    <rotation> 0 0 0 </rotation>
+    <color> 0 102 255 </color>
+    <height> 1 </height>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.8 </radius>
+    <center> 0.75 0.75 0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 2 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> -0.75 0.75 0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> 1 0.75 -0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> -1 0.75 -0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> 0.75 -0.75 0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <reflexion> 1 </reflexion>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> -0.75 -0.75 0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> 1 -0.75 -0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> -1 -0.75 -0.5 </center>
+    <rotation> 0 0 0 </rotation>
+    <reflexion> 1 </reflexion>
+    <translation> 0 0 0 </translation>
+    <color> 166 166 166 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Sphere">
+    <shader ref="red" />
+    <radius> 0.2 </radius>
+    <center> 0 0 2 </center>
+    <rotation> 0 0 0 </rotation>
+    <translation> 0 0 0 </translation>
+    <color> 255 0 0 </color>
+    <reflexion> 1 </reflexion>
+    </surface>
+  <surface type="Plan">
+    <origin> 0 0.75 1 </origin>
+    <normal> 0 0 1 </normal>
+    <rotation> 0 0 0 </rotation>
+    <color> 255 255 255 </color>
+    </surface>
+  <surface type="Plan">
+    <origin> 0 -0.75 1 </origin>
+    <normal> 0 0 1 </normal>
+    <rotation> 0 0 0 </rotation>
+    <color> 255 255 255 </color>
+    </surface>
+  <surface type="Plan">
+    <origin> 0 0 2 </origin>
+    <normal> 0 0 1 </normal>
+    <reflexion> 1 </reflexion>
+    <rotation> 0 0 0 </rotation>
+    <color> 125 125 125 </color>
+    </surface>
+  <light>
+    <position> 0 0 -2 </position>
+    <direction> 0 0 0 </direction>
+    <intensity> 1 </intensity>
+    <color> 255 255 255 </color>
+    </light>
+  <ambient>
+    <intensity> 0.2 </intensity>
+    <color> 255 255 255 </color>
+    </ambient>
+  <camera type="Camera">
+    <viewPoint> 0 0 -5 </viewPoint>
+    <viewDir> 0 0 1 </viewDir>
+    </camera>
+</scene>

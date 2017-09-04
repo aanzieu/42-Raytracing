@@ -18,10 +18,11 @@ void		bayer_color(int *pix)
 	int		x;
 	int		y;
 	int		cur;
-	int		bayervalue = 2;
+	int		bayervalue;
 	t_color color;
-	
+
 	y = -1;
+	bayervalue = 2;
 	while (++y < WIN_HEIGHT)
 	{
 		x = -1;
@@ -31,11 +32,11 @@ void		bayer_color(int *pix)
 			color.r = (pix[cur] & 0x0000FF);
 			color.g = (pix[cur] & 0x00FF00) >> 8;
 			color.b = pix[cur] >> 16;
-			if((y / bayervalue) & 1)
+			if ((y / bayervalue) & 1)
 				color.b = 0;
 			else
 				color.r = 0;
-			if((x / bayervalue) & 1)
+			if ((x / bayervalue) & 1)
 				color.g = 0;
 			pix[cur] = RGB(color.r, color.g, color.b);
 		}
