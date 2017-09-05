@@ -79,6 +79,13 @@
     <reflection data="1.000000"/>
     <refraction data="0"/>
   </sphere>
+  <sphere>
+    <pos x="-1.000000" y="-0.750000" z="-0.500000"/>
+    <radius data="0.200000"/>
+    <color r="236" g="205" b="62"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+  </sphere>
   <cylinder>
     <pos x="-0.750000" y="0" z="0.500000"/>
     <normal x="-0.750000" y="1.000000" z="0.500000"/>
