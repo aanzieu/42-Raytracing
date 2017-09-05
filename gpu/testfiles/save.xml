@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
+<<<<<<< HEAD
 <scene name="Cool gallery">
   <plane>
     <origin x="0" y="0.750000" z="1.000000"/>
@@ -94,10 +95,14 @@
     <reflection data="0"/>
     <refraction data="0"/>
   </cylinder>
+=======
+<scene name="Paraboloid">
+>>>>>>> materials
   <cylinder>
     <pos x="-1.000000" y="0" z="-0.500000"/>
     <normal x="-1.000000" y="1.000000" z="-0.500000"/>
     <radius data="0.100000"/>
+<<<<<<< HEAD
     <color r="151" g="20" b="42"/>
     <reflection data="0"/>
     <refraction data="0"/>
@@ -127,5 +132,37 @@
   <camera>
     <pos x="0" y="0" z="-10.000000"/>
     <dir x="0" y="0" z="1.000000"/>
+=======
+    <color r="0" g="102" b="255"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+  </cylinder>
+  <paraboloid>
+    <top x="0" y="-1.000000" z="0"/>
+    <normal x="0" y="3.000000" z="0"/>
+    <radius data="0.200000"/>
+    <height data="1.000000"/>
+    <color r="0" g="102" b="255"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+  </paraboloid>
+  <hyperboloid>
+    <top x="0" y="0" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <radius data="0.200000"/>
+    <height data="1.000000"/>
+    <color r="0" g="255" b="0"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+  </hyperboloid>
+  <light>
+    <pos x="0" y="2.000000" z="-5.000000"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="1.000000"/>
+  </light>
+  <camera>
+    <pos x="0" y="0" z="-15.000000"/>
+    <dir x="0" y="0" z="0"/>
+>>>>>>> materials
   </camera>
 </scene>

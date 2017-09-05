@@ -3,9 +3,9 @@
 <scene name="Test 1">
 
 <camera>
-	<pos x="-1" y="0" z="-10" />
-	<dir x="0" y="0" z="1" />
-	<!-- <tra x="-1" y="0" z="0" /> -->
+  <pos x="-1" y="0" z="-10" />
+  <dir x="0" y="0" z="1" />
+  <!-- <tra x="-1" y="0" z="0" /> -->
 </camera>
 
 <light>

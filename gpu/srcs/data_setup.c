@@ -44,4 +44,8 @@ void			data_setup(t_world *world)
 	world->video_buffer = NULL;
 	world->intensity = 2.1;
 
+	world->triangles = NULL;
+	world->triangles_len = 0;
+	world->cubes = NULL;
+	world->cubes_len = 0;
 }

@@ -57,7 +57,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	t_cylinder	*cylinders_d = NULL;
 	t_cone		*cones_d = NULL;
 	t_light		*lights_d = NULL;
-	//	static t_paraboloid	*paraboloids_d;
+	// static t_paraboloid	*paraboloids_d;
 	size_t		size = 0;
 	dim3		threads_per_block(32, 32);
 	dim3		grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
@@ -87,10 +87,13 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	//		CudaCheckError();
 	if(spheres_d != NULL)
 		CudaSafeCall(cudaFree(spheres_d));
-	if(planes_d != NULL)
-		CudaSafeCall(cudaFree(planes_d));
+	// if(planes_d != NULL)
+	// 	CudaSafeCall(cudaFree(planes_d));
 	if(cones_d != NULL)
 		CudaSafeCall(cudaFree(cones_d));
+	if(cylinders_d != NULL)
+		CudaSafeCall(cudaFree(cylinders_d));
+
 	if(lights_d != NULL)
 		CudaSafeCall(cudaFree(lights_d));
 	CudaSafeCall(cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost));

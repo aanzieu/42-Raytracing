@@ -46,7 +46,7 @@ __host__ __device__ static int	get_mobius(t_mobius m, t_ray ray,
 	s[3] = d.c * d.c * d.e + d.e * d.e * d.e - 2 * d.c * d.c * d.g - 2 * d.e *
 			d.e * d.g + d.e * d.g * d.g;
 	s[0] = (d.b * d.b * d.d + d.d * d.d * d.d - 2 * d.b * d.b *
-			d.f - 2 * d.d * d.d * d.f + d.d * d.f * d.f - 2 * d.b * d.f * d.a - 
+			d.f - 2 * d.d * d.d * d.f + d.d * d.f * d.f - 2 * d.b * d.f * d.a -
 			d.d * d.a * d.a) / s[3];
 	s[1] = (d.e * d.b * d.b - 2 * d.g * d.b * d.b + 2 * d.c * d.b * d.d + 3 *
 			d.e * d.d * d.d - 2 * d.g * d.d * d.d - 4 * d.c * d.b * d.f - 4 *
@@ -56,10 +56,10 @@ __host__ __device__ static int	get_mobius(t_mobius m, t_ray ray,
 			d.e * d.e * d.d - 4 * d.e * d.g * d.d + d.g * d.g * d.d - 2 * d.c *
 			d.c * d.f - 2 * d.e * d.e * d.f + 2 * d.e * d.g * d.f - 2 * d.c *
 			d.g * d.a) / s[3];
-	d.res = solver_n_degree(s, 4, m, ray);
-	if(d.res != NOT_A_SOLUTION)
+	d.res[0] = solver_n_degree(s, 4, m, ray);
+	if(d.res[0] != NOT_A_SOLUTION)
 	{
-		intersection_tmp->t = d.res;
+		intersection_tmp->t = d.res[0];
 		intersection_tmp->type = 'm';
 		return(1);
 	}
@@ -85,7 +85,9 @@ __host__ __device__ void		get_closest_mobius(t_world world, t_ray ray,
 				intersection->t = intersection_tmp->t;
 				intersection->type = intersection_tmp->type;
 				intersection->reflection_coef = world.mobius[i].reflection_coef;
-				intersection->color = &world.mobius[i].color;
+				intersection->refraction_coef = world.mobius[i].refraction_coef;
+				intersection->transparence_coef = world.mobius[i].transparence_coef;
+				intersection->color = world.mobius[i].color;
 				get_normal_mobius(intersection, world.mobius[i], ray);
 			}
 		}

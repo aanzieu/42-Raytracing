@@ -22,20 +22,19 @@ __host__ __device__ int		get_disk(t_disk disk, t_ray ray,
 	t_vec3d	radius_v;
 	t_plane	plane;
 
+	if (intersection_tmp->id == disk.id)
+		return (0);
 	plane.pos = disk.pos;
 	plane.up = disk.up;
-	if (get_plane(plane, ray, intersection_tmp) == 1
-		&& (intersection_tmp->id != plane.id))
+	plane.id = disk.id;
+	if (get_plane(plane, ray, intersection_tmp) == 1)
 	{
-
 		intersection_tmp->pos = vector_add(ray.origin,
 		vector_scalar(ray.dir, intersection_tmp->t));
 		radius_v = vector_calculate(disk.pos, intersection_tmp->pos);
 		if (vector_dot(radius_v, radius_v) <= disk.radius_squared)
 		{
-			intersection_tmp->type = 'd';
-			if (disk.refraction_coef != 0 || disk.reflection_coef != 0)
- 			 intersection_tmp->id = disk.id;
+		 	intersection_tmp->id = disk.id;
 			return (1);
 		}
 	}
@@ -56,11 +55,12 @@ __host__ __device__ void	get_closest_disk(t_world world, t_ray ray,
 			{
 				intersection->id = world.disks[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->type = intersection_tmp->type;
+				intersection->type = 'd';
 				intersection->reflection_coef = world.disks[i].reflection_coef;
 				intersection->refraction_coef = world.disks[i].refraction_coef;
-				intersection->color = &world.disks[i].color;
-				intersection->chess = &world.disks[i].chess;
+				intersection->transparence_coef = world.disks[i].transparence_coef;
+				intersection->color = world.disks[i].color;
+				intersection->chess = world.disks[i].chess;
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
 			}

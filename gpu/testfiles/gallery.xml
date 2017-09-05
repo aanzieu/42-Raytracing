@@ -100,6 +100,7 @@
 	<refraction data="0" />
 </sphere>
 <!-- <sphere>
+
 	<pos x="-1" y="-0.75" z="-0.5" />
 	<radius data="0.2" />
 	<color r="236" g="205" b="62" />

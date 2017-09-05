@@ -39,6 +39,8 @@ void	handle_input_cylinder(t_cylinder *cy, xmlNodePtr cur)
 		parse_vec3d(&cy->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"radius")))
 		parse_radius(&cy->radius, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"height")))
+		parse_height(&cy->height, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 		parse_color(&cy->color, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
@@ -48,7 +50,9 @@ void	handle_input_cylinder(t_cylinder *cy, xmlNodePtr cur)
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 		parse_reflection(&cy->reflection_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-		parse_reflection(&cy->refraction_coef, cur);
+		parse_refraction(&cy->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&cy->transparence_coef, cur);
 }
 
 void	parse_cylinder(t_world *world, xmlNodePtr cur)

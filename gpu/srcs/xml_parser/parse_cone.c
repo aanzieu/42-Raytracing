@@ -56,7 +56,9 @@ static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 		parse_reflection(&co->reflection_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-		parse_reflection(&co->refraction_coef, cur);
+		parse_refraction(&co->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence_coef")))
+		parse_transparence(&co->transparence_coef, cur);
 }
 
 void		parse_cone(t_world *world, xmlNodePtr cur)

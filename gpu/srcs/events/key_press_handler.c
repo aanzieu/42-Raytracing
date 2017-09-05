@@ -100,6 +100,18 @@ void	key_press_handler4(t_world *world)
 		move_left(world);
 	if (world->keys.s == 1)
 		move_backward(world);
+		if (world->keys.q == 1)
+		{
+			translate(&world->camera.pos, 0, -0.5, 0);
+			translate(&world->camera.look_at, 0, -0.5, 0);
+			get_camera_axes(&world->camera);
+		}
+		if (world->keys.e == 1)
+		{
+			translate(&world->camera.pos, 0, 0.5, 0);
+			translate(&world->camera.look_at, 0, 0.5, 0);
+			get_camera_axes(&world->camera);
+		}
 }
 
 void	key_press_handler5(t_world *world)

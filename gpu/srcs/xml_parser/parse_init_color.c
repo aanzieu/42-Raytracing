@@ -66,15 +66,3 @@ void			parse_intensity(double *intensity_coef, xmlNodePtr cur)
 		show_error_2("invalid intensity value > data=", (const char *)nb);
 	xmlFree(nb);
 }
-
-void			parse_reflection(double *reflexion_coef, xmlNodePtr cur)
-{
-	xmlChar *nb;
-
-	nb = xmlGetProp(cur, (const xmlChar *)"data");
-	if (is_numeric((const char *)nb))
-		*reflexion_coef = ft_atoi_double((const char *)nb);
-	else
-		show_error_2("invalid reflection value > data=", (const char *)nb);
-	xmlFree(nb);
-}

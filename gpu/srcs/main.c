@@ -33,6 +33,10 @@ void			load_data(t_world *world)
 	load_planes(&world->planes, world->planes_tmp, &world->planes_len);
 	load_disks(&world->disks, world->disks_tmp, &world->disks_len);
 	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
+	load_triangles(&world->triangles, world->triangles_tmp,
+			&world->triangles_len);
+	load_cubes(&world->cubes, world->cubes_tmp,
+			&world->cubes_len);
 	load_cylinders(&world->cylinders,
 			world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);

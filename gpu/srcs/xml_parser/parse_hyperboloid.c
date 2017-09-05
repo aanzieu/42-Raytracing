@@ -50,7 +50,9 @@ void	handle_input_hyperboloid(t_hyperboloid *h, xmlNodePtr cur)
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 		parse_reflection(&h->reflection_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-		parse_reflection(&h->refraction_coef, cur);
+		parse_refraction(&h->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&h->transparence_coef, cur);
 }
 
 void	parse_hyperboloid(t_world *world, xmlNodePtr cur)

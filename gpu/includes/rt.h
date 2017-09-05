@@ -31,9 +31,10 @@
 # define WIN_WIDTH 720
 # define WIN_HEIGHT 576
 
-# define SHADOW_BIAS 0
-# define MAX_DEPTH 8
-# define CHESS_PATTERN 4
+#define SHADOW_BIAS 0
+#define MAX_DEPTH 3
+#define CHESS_PATTERN 2
+#define BACKGROUND_COLOR 0x42ADD4
 typedef struct		s_screen
 {
 	int	width;
@@ -105,16 +106,18 @@ typedef struct		s_camera
 
 typedef struct		s_intersection
 {
-	t_vec3d			normal_v;
-	t_vec3d			pos;
-	t_color			*color;
-	t_color			*chess;
-	double			reflection_coef;
-	double			refraction_coef;
-	double			t;
-	char			type;
-	int				id;
-	int				flag;
+	t_vec3d normal_v;
+	t_vec3d	pos;
+	t_color color;
+	t_color	chess;
+	double	reflection_coef;
+	double	refraction_coef;
+	double	transparence_coef;
+	double	t;
+	char		type;
+	int			id;
+	int			flag;
+	int			depth;
 }					t_intersection;
 
 typedef struct		s_ray
@@ -175,6 +178,8 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids;
 	t_torus			*torus;
 	t_mobius		*mobius;
+	t_triangle *triangles;
+	t_cube	*cubes;
 
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
@@ -186,6 +191,8 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids_tmp;
 	t_torus			*torus_tmp;
 	t_mobius		*mobius_tmp;
+	t_triangle *triangles_tmp;
+	t_cube *cubes_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -201,7 +208,9 @@ typedef struct		s_world
 	int				hyperboloids_len;
 	int				disks_len;
 	int				torus_len;
-	int			mobius_len;
+	int				mobius_len;
+	int				triangles_len;
+	int				cubes_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;

@@ -76,25 +76,27 @@ __host__ __device__ static double	check_solution_equation(double a, double b)
 	return (-1.0);
 }
 
-__host__ __device__ double			second_degres(double a, double b, double c)
+__host__ __device__ void			second_degres(t_eq *eq)
 {
 	t_solve s;
 
-	s.det = b * b - 4.0 * a * c;
+	s.det = eq->b * eq->b - 4.0 * eq->a * eq->c;
 	if (is_zero(s.det))
 	{
-		s.res = -1.0 * b / (2.0 * a);
-		s.res = check_solution(s.res);
-	}
+		eq->res[0] = -1.0 * eq->b / (2.0 * eq->a);
+		eq->res[0] = check_solution(s.res);
+		eq->res[1] = eq->res[0];
+		eq->res[2] = eq->res[0];
+ 	}
 	else if (s.det >= 0.0)
 	{
-		s.tmp[0] = ((-1) * b + sqrt(s.det)) / (2 * a);
-		s.tmp[1] = ((-1) * b - sqrt(s.det)) / (2 * a);
+		s.tmp[0] = ((-1) * eq->b + sqrt(s.det)) / (2 * eq->a);
+		s.tmp[1] = ((-1) * eq->b - sqrt(s.det)) / (2 * eq->a);
 		s.tmp[0] = check_solution(s.tmp[0]);
 		s.tmp[1] = check_solution(s.tmp[1]);
-		s.res = check_solution_equation(s.tmp[0], s.tmp[1]);
+		eq->res[0] = check_solution_equation(s.tmp[0], s.tmp[1]);
+		eq->res[1] = eq->res[0] == s.tmp[0] ? s.tmp[1] : s.tmp[0];
 	}
 	else
-		s.res = NOT_A_SOLUTION;
-	return (s.res);
+		eq->res[0] = NOT_A_SOLUTION;
 }

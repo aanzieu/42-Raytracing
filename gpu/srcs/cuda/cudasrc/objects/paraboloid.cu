@@ -17,7 +17,8 @@ extern "C" {
 	#include <equation.h>
 }
 
-__host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, t_intersection intersection)
+__host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray,
+	t_intersection intersection)
 {
 	t_vec3d	normal_v;
 	t_vec3d	x;
@@ -33,13 +34,15 @@ __host__ __device__ t_vec3d	get_normal_paraboloid(t_paraboloid para, t_ray ray, 
 	return (normal_v);
 }
 
-__host__ __device__ int		get_paraboloid(t_paraboloid para, t_camera camera, t_ray ray,
+__host__ __device__ int		get_paraboloid(t_paraboloid para, t_ray ray,
 									t_intersection *intersection_tmp)
 {
 	t_vec3d	x;
 	t_vec3d	v;
 	t_eq	eq;
 
+	if (intersection_tmp->id == para.id)
+		return (0);
 	x = vector_calculate(para.top, ray.origin);
 	v = vector_normalize(para.normal);
 	eq.a = vector_dot(ray.dir, ray.dir)
@@ -50,16 +53,13 @@ __host__ __device__ int		get_paraboloid(t_paraboloid para, t_camera camera, t_ra
 	eq.c = vector_dot(x, x)
 		- (vector_dot(x, v)
 				* (vector_dot(x, v) + 4 * para.distance));
-	eq.res = second_degres(eq.a, eq.b, eq.c);
-	if(eq.res != NOT_A_SOLUTION && intersection_tmp->id != para.id)
+	second_degres(&eq);
+	if(eq.res[0] != NOT_A_SOLUTION)
 	{
-		intersection_tmp->t = eq.res;
-		intersection_tmp->type = 'x';
-		if (para.refraction_coef != 0 || para.reflection_coef != 0)
-			intersection_tmp->id = para.id;
+		intersection_tmp->t = eq.res[0];
 		return (1);
 	}
-	intersection_tmp->t = -1.0;
+//	intersection_tmp->t = -1.0;
 	return (0);
 }
 
@@ -71,17 +71,18 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.paraboloids_len)
 	{
-		if (get_paraboloid(world.paraboloids[i], world.camera, ray, intersection_tmp) == 1)
+		if (get_paraboloid(world.paraboloids[i], ray, intersection_tmp) == 1)
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != 1)
 			{
-				intersection->id = world.paraboloids[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->type = intersection_tmp->type;
+				intersection->id = world.paraboloids[i].id;
+				intersection->type = 'x';
 				intersection->reflection_coef = world.paraboloids[i].reflection_coef;
 				intersection->refraction_coef = world.paraboloids[i].refraction_coef;
-				intersection->color = &world.paraboloids[i].color;
-				intersection->chess = &world.paraboloids[i].chess;
+				intersection->transparence_coef = world.paraboloids[i].transparence_coef;
+				intersection->color = world.paraboloids[i].color;
+				intersection->chess = world.paraboloids[i].chess;
 				intersection->pos = vector_add(ray.origin,
 					vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_paraboloid(world.paraboloids[i], ray,

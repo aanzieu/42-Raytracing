@@ -78,7 +78,7 @@ typedef struct		s_eq
 	double			e;
 	double			f;
 	double			g;
-	double			res;
+	double			res[3];
 }					t_eq;
 
 #endif

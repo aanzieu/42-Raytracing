@@ -46,7 +46,9 @@ void	handle_input_plane(t_plane *p, xmlNodePtr cur)
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 		parse_reflection(&p->reflection_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-		parse_reflection(&p->refraction_coef, cur);
+		parse_refraction(&p->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&p->transparence_coef, cur);
 }
 
 void	parse_plane(t_world *world, xmlNodePtr cur)

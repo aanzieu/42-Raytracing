@@ -25,6 +25,7 @@ typedef struct				s_plane
 	t_color					chess;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_plane			*next;
 }							t_plane;
 
@@ -39,6 +40,7 @@ typedef struct				s_disk
 	double					radius_squared;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_disk			*next;
 }							t_disk;
 
@@ -51,8 +53,10 @@ typedef struct				s_cylinder
 	t_color					color;
 	t_color					chess;
 	double					radius;
+	double					height;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_cylinder		*next;
 }							t_cylinder;
 
@@ -69,12 +73,13 @@ typedef struct				s_cone
 	t_vec3d					max;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_cone			*next;
 }							t_cone;
 
 typedef struct				s_sphere
 {
-	int						id;
+	int							id;
 	double					radius;
 	t_vec3d					pos;
 	t_color					color;
@@ -82,22 +87,25 @@ typedef struct				s_sphere
 	t_color					rgba;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_sphere			*next;
 }							t_sphere;
 
 typedef struct			s_mobius
 {
+	int					id;
 	double				radius;
 	t_vec3d				pos;
 	t_color				color;
 	double				reflection_coef;
 	double				refraction_coef;
+	double				transparence_coef;
 	struct s_mobius		*next;
 }						t_mobius;
 
 typedef struct			s_paraboloid
 {
-	int						id;
+	int							id;
 	t_vec3d					top;
 	t_vec3d					normal;
 	t_color					color;
@@ -106,12 +114,13 @@ typedef struct			s_paraboloid
 	double					maxm;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_paraboloid		*next;
 }							t_paraboloid;
 
 typedef struct				s_hyperboloid
 {
-	int						id;
+	int							id;
 	t_vec3d					top;
 	t_vec3d					normal;
 	t_color					color;
@@ -120,6 +129,7 @@ typedef struct				s_hyperboloid
 	double					maxm;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_hyperboloid	*next;
 }							t_hyperboloid;
 
@@ -130,12 +140,42 @@ typedef struct				s_torus
 	t_vec3d					normal;
 	t_color					color;
 	t_color					chess;
-	double					radius;
-	double					radius2;
+	double					radius_small;
+	double					radius_big;
 	double					reflection_coef;
 	double					refraction_coef;
+	double					transparence_coef;
 	struct s_torus			*next;
 }							t_torus;
+
+typedef struct			s_triangle
+{
+	int						id;
+	t_vec3d				pos;
+	t_vec3d				up;
+	t_vec3d				v1;
+	t_vec3d				v2;
+	t_color				color;
+	t_color				chess;
+	double				reflection_coef;
+	double				refraction_coef;
+	double				transparence_coef;
+	struct s_triangle *next;
+}									t_triangle;
+
+typedef struct			s_cube
+{
+	int						id;
+	t_vec3d				pos;
+	t_vec3d				up;
+	t_color				color;
+	t_color				chess;
+	double				size;
+	double				reflection_coef;
+	double				refraction_coef;
+	double				transparence_coef;
+	struct s_cube *next;
+}									t_cube;
 
 /*
 ********************************************************************************
@@ -151,7 +191,9 @@ t_cylinder					*new_cylinder(t_cylinder *nw, int id);
 t_paraboloid				*new_paraboloid(t_paraboloid *nw, int id);
 t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id);
 t_torus						*new_torus(t_torus *nt, int id);
-t_mobius					*new_mobius(t_mobius *nw);
+t_mobius					*new_mobius(t_mobius *nw, int id);
+t_triangle				*new_triangle(t_triangle *nw, int id);
+t_cube						*new_cube(t_cube *nw, int id);
 
 void						add_sphere(t_sphere **alst, t_sphere *nw);
 void						add_plan(t_plane **alst, t_plane *nw);
@@ -162,8 +204,7 @@ void						add_paraboloid(t_paraboloid **alst,
 							t_paraboloid *nw);
 void						add_hyperboloid(t_hyperboloid **alst,
 							t_hyperboloid *nw);
-void						add_torus(t_torus **alst, t_torus *nt);
-void						add_mobius(t_mobius **alst, t_mobius *nw);
+
 
 /*
 ********************************************************************************
@@ -178,6 +219,10 @@ void		thread_free_and_add_plane(t_plane **p, t_plane **p_tmp, int *len, int id);
 void						init_plane_add(t_plane *p);
 void		thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *len, int id);
 void	init_cylinder_add(t_cylinder *cy);
+void						add_torus(t_torus **alst, t_torus *nw);
+void						add_mobius(t_mobius **alst, t_mobius *nw);
+void 						add_triangle(t_triangle **alst, t_triangle *nw);
+void 						add_cube(t_cube **alst, t_cube *nw);
 
 /*
 ********************************************************************************
@@ -206,5 +251,8 @@ void						load_torus(t_torus **torus,
 							int *torus_len);
 void						load_mobius(t_mobius **mobius,
 							t_mobius *mobius_tmp, int *mobius_len);
-
+void 						load_triangles(t_triangle **triangles,
+    					t_triangle *triangles_tmp, int *triangles_len);
+void 						load_cubes(t_cube **cubes,
+    					t_cube *cubes_tmp, int *cubes_len);
 #endif

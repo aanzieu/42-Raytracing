@@ -42,10 +42,17 @@ CUDA_HOSTDEV void		get_closest_disk(t_world world, t_ray ray,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV double		get_sphere(t_sphere sphere, t_ray ray,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV int		get_disk(t_disk disk, t_ray ray,
+						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_hyperboloid(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_triangle(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 
@@ -53,26 +60,23 @@ CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
 **                     COLOR_FCTS                                             **
 *******************************************************************************/
 
-CUDA_HOSTDEV void		color_multiply(t_color *color1, t_color color2);
-CUDA_HOSTDEV void		color_scalar(t_color *color, double coeficient);
-CUDA_HOSTDEV void		color_add(t_color *color1, t_color color2);
-CUDA_HOSTDEV t_color	new_color(double r, double g, double b);
-CUDA_HOSTDEV int		get_color(t_color color);
+CUDA_HOSTDEV t_color		color_multiply(t_color c1, t_color c2);
+CUDA_HOSTDEV t_color		color_scalar(t_color c1, double coef);
+CUDA_HOSTDEV t_color		color_add(t_color c1, t_color c2);
+CUDA_HOSTDEV t_color		new_color(double r, double g, double b);
+CUDA_HOSTDEV int				get_color(t_color color);
 
 /*******************************************************************************
 **                     LIGHTS_FCTS                                            **
 *******************************************************************************/
 
 CUDA_HOSTDEV int		get_shadow(t_light light, t_intersection collision);
-CUDA_HOSTDEV void		get_light_at(t_world world, t_color *color,
-						t_light light, t_intersection intersection, t_ray ray);
+CUDA_HOSTDEV t_color	get_light_at(t_world world, t_color color, t_light light,
+	t_intersection intersection, t_ray ray);
 
 /*******************************************************************************
 **                     CAMERA_FCTS                                            **
 *******************************************************************************/
-CUDA_HOSTDEV void		get_ray_direction(t_world world, t_ray *ray, int x, int y);
-CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
-						t_intersection *intersection);
 CUDA_HOSTDEV void		move_forward(t_world *world);
 CUDA_HOSTDEV void		move_backward(t_world *world);
 CUDA_HOSTDEV void		move_left(t_world *world);
@@ -96,6 +100,18 @@ CUDA_HOSTDEV t_vec3d	vector_calculate(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV t_vec3d	vector_normalize(t_vec3d vect1);
 CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
+CUDA_HOSTDEV double		vector_magnitude(t_vec3d vect1);
+
+/*******************************************************************************
+**                     MATH_UTILS                                             **
+*******************************************************************************/
+
+CUDA_HOSTDEV int		dblsgn(double x);
+CUDA_HOSTDEV int		is_zero(double x);
+CUDA_HOSTDEV void		swap_double(double *a, double *b);
+CUDA_HOSTDEV double		ft_smaller(double a, double b);
+CUDA_HOSTDEV double		sign_of(double a);
+CUDA_HOSTDEV double		check_solution(double res);
 
 /*******************************************************************************
 **                     MATH_UTILS                                             **
@@ -113,29 +129,36 @@ CUDA_HOSTDEV double		check_solution(double res);
 *******************************************************************************/
 
 CUDA_HOSTDEV double		deg_to_radians(double deg);
-CUDA_HOSTDEV double		second_degres(double a, double b, double c);
+CUDA_HOSTDEV void		second_degres(t_eq *eq);
 CUDA_HOSTDEV int		solve_fourth_case(t_dichotomie c, double *a, double *r);
 CUDA_HOSTDEV int		solve_third_case(t_dichotomie c, double *a, double *r);
 CUDA_HOSTDEV int		solve_second_case(t_dichotomie c, double *a, double *r);
 CUDA_HOSTDEV double		solver_n_degree(double *coef, int degree, t_mobius m,
 						t_ray ray);
-CUDA_HOSTDEV void		solve_n(double *coef, double *sol, int deg);
+CUDA_HOSTDEV double		solver_quadra(double *coef, int degree);
 
 /*******************************************************************************
 **                     TEXTURES_FCTS                                          **
 *******************************************************************************/
 
+CUDA_HOSTDEV t_color apply_materials(t_world world, t_ray ray,
+	t_intersection intersection);
 CUDA_HOSTDEV t_color 	handle_reflection(t_world world, t_ray ray,
-															t_intersection *intersection);
-CUDA_HOSTDEV t_color 	handle_refraction_transparence(t_world world,
-																			t_ray ray, t_intersection *intersection);
-CUDA_HOSTDEV t_color chess_effect(t_intersection *intersection);
+	t_intersection *intersection);
+CUDA_HOSTDEV t_color 	handle_refraction(t_world world,
+	t_ray ray, t_intersection *intersection);
+CUDA_HOSTDEV t_color 	handle_transparence(t_world world,
+	t_ray ray, t_intersection *intersection);
+CUDA_HOSTDEV t_color	handle_chess(t_ray ray, t_intersection *intersection);
 
 /*******************************************************************************
 **                     RAYTRACERS_FCTS                                        **
 *******************************************************************************/
-
-CUDA_HOSTDEV void		get_up_left(t_world *world);
+CUDA_HOSTDEV void			get_up_left(t_world *world);
+CUDA_HOSTDEV t_color	ray_tracer_depth(t_world world, t_ray ray,
+	t_intersection intersection);
 CUDA_HOSTDEV int		ray_tracer(t_world world, int x, int y);
+CUDA_HOSTDEV void	get_ray_direction(t_world world, t_ray *ray,
+	int x, int y);
 
 #endif

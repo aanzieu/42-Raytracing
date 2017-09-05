@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/03 18:01:03 by PZC              ###   ########.fr        #
+#    Updated: 2017/08/29 17:09:30 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve_next.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_utils.cu \
 				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
@@ -63,10 +64,13 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/cone.cu \
 				$(SRC_CUDA_DIR)/objects/disk.cu \
 				$(SRC_CUDA_DIR)/objects/mobius.cu \
+				$(SRC_CUDA_DIR)/objects/torus.cu \
+				$(SRC_CUDA_DIR)/objects/triangle.cu \
+				$(SRC_CUDA_DIR)/objects/cube.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
-				$(SRC_CUDA_DIR)/textures/textures.cu \
+				$(SRC_CUDA_DIR)/material/material.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
@@ -115,6 +119,9 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/effects/effect_pastel.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
+				$(SRC_DIR)/loader/load_torus.c \
+				$(SRC_DIR)/loader/load_triangles.c \
+				$(SRC_DIR)/loader/load_cubes.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_hyperboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
@@ -141,8 +148,12 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_cone.c \
 				$(SRC_DIR)/xml_parser/parse_paraboloid.c \
 				$(SRC_DIR)/xml_parser/parse_hyperboloid.c \
+				$(SRC_DIR)/xml_parser/parse_torus.c \
+				$(SRC_DIR)/xml_parser/parse_triangle.c \
+				$(SRC_DIR)/xml_parser/parse_cube.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
+				$(SRC_DIR)/xml_parser/parse_material.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \
 				$(SRC_DIR)/xml_parser/error_msg.c \
 				\
@@ -157,6 +168,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/malloc/malloc_objects.c \
 				$(SRC_DIR)/malloc/malloc_objects1.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus.c \
+				$(SRC_DIR)/malloc/malloc_objects_bonus2.c \
 				\
 				$(SRC_DIR)/threads/free_object_thread.c \
 				\

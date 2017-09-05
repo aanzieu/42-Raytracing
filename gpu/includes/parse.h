@@ -65,6 +65,23 @@ void		parse_hyperboloid(t_world *world, xmlNodePtr cur);
 */
 void		parse_mobius(t_world *world, xmlNodePtr cur);
 /*
+**	parse_torus.c
+*/
+void		parse_torus(t_world *world, xmlNodePtr cur);
+/*
+**	parse_cube.c
+*/
+void		parse_cube(t_world *world, xmlNodePtr cur);
+/*
+**	parse_triangle.c
+*/
+void		parse_triangle(t_world *world, xmlNodePtr cur);
+
+/*
+**	error_msg.c
+*/
+void		parse_mobius(t_world *world, xmlNodePtr cur);
+/*
 **	parse_init_pos.c
 */
 void		parse_vec3d(t_vec3d *v, xmlNodePtr cur);
@@ -77,8 +94,13 @@ void		parse_height(double *height, xmlNodePtr cur);
 */
 void		parse_color(t_color *c, xmlNodePtr cur);
 void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
+/*
+**	parse_material.c
+*/
 void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
+void		parse_transparence(double *transparence_coef, xmlNodePtr cur);
+
 void		parse_ambient(t_world *world, xmlNodePtr cur);
 /*
 **	parser_utils.c

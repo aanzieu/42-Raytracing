@@ -38,8 +38,12 @@ void	parse_mobius(t_world *world, xmlNodePtr cur)
 			parse_color(&s->color, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 			parse_reflection(&s->reflection_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+			parse_refraction(&s->refraction_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+			parse_transparence(&s->transparence_coef, cur);
 		cur = cur->next;
 	}
-	add_mobius(&world->mobius_tmp, new_mobius(s));
+	add_mobius(&world->mobius_tmp, new_mobius(s, world->id++));
 	free(s);
 }
