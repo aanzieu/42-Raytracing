@@ -8,9 +8,8 @@
 </ambient>
 
 <camera>
-	<pos x="0" y="0.3" z="-10" />
+	<pos x="5" y="0.3" z="-10" />
 	<dir x="0" y="0" z="1" />
-	<!-- <tra x="-1" y="0" z="0" /> -->
 </camera>
 
 <light>
@@ -35,34 +34,30 @@
 
 <sphere>
 	<pos x="0" y="0" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="50" g="50" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0" y="0.3" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="50" g="50" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0" y="0.6" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="50" g="50" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0" y="0.9" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="50" g="50" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <!---->
@@ -71,34 +66,30 @@
 
 <sphere>
 	<pos x="0.5" y="0" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="255" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0.5" y="0.3" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="255" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0.5" y="0.6" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="255" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="0.5" y="0.9" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="255" b="255" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <!---->
@@ -107,34 +98,30 @@
 
 <sphere>
 	<pos x="1" y="0" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="30" b="20" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="1" y="0.3" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="30" b="20" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="1" y="0.6" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="30" b="20" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <sphere>
 	<pos x="1" y="0.9" z="1" />
-	<tra x="0" y="0" z="0" />
 	<radius data="0.4" />
 	<color r="255" g="30" b="20" />
-	<reflection data="-1" />
+	<reflection data="0" />
 </sphere>
 
 <!---->

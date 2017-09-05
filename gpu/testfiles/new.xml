@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "norme.dtd">
+<scene name="2 Spheres">
+
+<camera>
+  <pos x="0" y="0" z="-10" />
+  <dir x="0" y="0" z="1" />
+</camera>
+
+<light>
+  <pos x="0" y="0" z="-2" />
+  <dir x="0" y="0" z="1" />
+  <color r="255" g="255" b="255" />
+  <intensity data="1" />
+</light>
+
+<plane>
+  <origin x="0" y="-1.5" z="0" />
+  <normal x="0" y="-1" z="0" />
+  <rot x="0" y="0" z="0" />
+  <color r="200" g="200" b="200" />
+  <chess r="20" g="20" b="20" />
+</plane>
+
+</scene>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_configuration.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/21 11:48:50 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/05 16:51:34 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void			local_config(t_world *world, char *argv)
 {
-	parse_rtv1(world, argv);
-	load_data(world);
+	//parse_rtv1(world, argv);
+	//load_data(world);
 	interface_launch(world, argv);
 }
 

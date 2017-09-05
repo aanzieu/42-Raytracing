@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 22:04:25 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/05 16:53:15 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../includes/rt.h"
 #include "header/nuklear.h"
 #include "header/gui.h"
+#include "parse.h"
 
 /* ===============================================================
  *
@@ -35,7 +36,7 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 	static int toggle4 = 1;
 	static int toggle5 = 0;
 	int i = 0;
-	static int selected_image = 3;
+	//static int selected_image;
 
 	nk_style_set_font(ctx, &media->font_22->handle);
 	if(nk_begin(ctx, "TOPBAR", nk_rect(0,0,world->screen.width,52), NK_WINDOW_BORDER))
@@ -54,7 +55,11 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 					image_active = !image_active;
 				if(nk_menu_item_image_label(ctx, media->icons.default_file,
 					"New file", NK_TEXT_RIGHT))
-					{};
+				{
+					parse_rtv1(world, "testfiles/new.xml");
+					load_data(world);
+					rt(world);
+				}
 				nk_menu_end(ctx);
 			}
 			/* save */
@@ -97,17 +102,20 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 		if (image_active)
 		{
 			if (nk_popup_begin(ctx, NK_POPUP_STATIC,
-				"Image Popup", 0, nk_rect(60, 50, 320, 220)))
+				"Scene Popup", 0, nk_rect(60, 50, 320, 220)))
 			{
 				nk_layout_row_static(ctx, 82, 82, 3);
-				for (i = 0; i < 9; ++i)
+				for (i = 0; i < 2; ++i)
 				{
 					if (nk_button_image(ctx, media->images[i]))
 					{
-						selected_image = i;
-						printf("%d\n", i);
+						//selected_image = i;
 						if (i == 0)
-							image_active_2 = !image_active_2;
+							parse_rtv1(world, "testfiles/1.xml");
+						if (i == 1)
+							parse_rtv1(world, "testfiles/2.xml");
+						load_data(world);
+						image_active_2 = !image_active_2;
 						nk_popup_close(ctx);
 					}
 					nk_popup_close(ctx);
@@ -116,15 +124,13 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 			}
 		}
 		/*------------------------------------------------
-		*                  SELECTED SCENE
+		*                  SELECTED CONFIG
 		*------------------------------------------------*/
 		if (image_active_2)
 		{
 			if (nk_popup_begin(ctx, NK_POPUP_STATIC,
-				"Image Popup", 0, nk_rect(340, 50, 320, 220)))
+				"Config Popup", 0, nk_rect(340, 50, 320, 220)))
 			{
-				//nk_layout_row_static(ctx, 82, 82, 3);
-
 				ui_header(ctx, media, "---- Choose Local/Cluster ----");
 				ui_widget_small_button(ctx, media, 30);
 				if (nk_button_image_label(ctx, (toggle2)

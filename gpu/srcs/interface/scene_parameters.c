@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 21:07:59 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/05 16:06:41 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// static int toggle3 = 0;
 	//static int image_active;
 	// int i = 0;
-	static int selected_image = 3;
 
 
 
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,52,250,610),
-			NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_TITLE))
+			NK_WINDOW_BORDER|NK_WINDOW_TITLE))
 	{
 	// 	ui_header(ctx, media, "---- Open & Save ----");
 	// 	nk_layout_row_static(ctx, 30, 30, 2);
@@ -67,8 +66,8 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// //  *                  SELECTED IMAGE
 	// //  *------------------------------------------------*/
 		ui_header(ctx, media, "---- File Active ----");
-		ui_widget_centered(ctx, media, 100);
-		nk_image(ctx, media->images[selected_image]);
+		ui_widget_centered(ctx, media, 80);
+		nk_image(ctx, media->images[0]);
 	// 	if (image_active)
 	// 	{
 	// 		if (nk_popup_begin(ctx, NK_POPUP_STATIC,

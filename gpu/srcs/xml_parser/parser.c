@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:29:28 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:30:25 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/05 12:11:15 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"triangle")))
 		parse_triangle(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cube")))
-			parse_cube(world, obj);
+		parse_cube(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
 		parse_ambient(world, obj);
 }

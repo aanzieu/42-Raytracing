@@ -119,10 +119,10 @@ int interface_launch(t_world *world, char *argv)
 		nk_input_end(&ctx);
 
 		/* GUI */
-		if (world->video_buffer != NULL && world->redraw == 1){
+		if (world->video_buffer != NULL && world->redraw == 1)
+		{
 			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-
-			printf("redreaw %d\n", i++);
+			printf("redraw %d\n", i++);
 			rt(world);
 			if(world->keys.pad_0)
 				effect_application(world);
