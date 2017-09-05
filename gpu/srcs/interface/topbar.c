@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 20:58:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/04 22:04:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 		if (image_active)
 		{
 			if (nk_popup_begin(ctx, NK_POPUP_STATIC,
-				"Image Popup", 0, nk_rect(40, 50, 320, 220)))
+				"Image Popup", 0, nk_rect(60, 50, 320, 220)))
 			{
 				nk_layout_row_static(ctx, 82, 82, 3);
 				for (i = 0; i < 9; ++i)
@@ -121,11 +121,11 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 		if (image_active_2)
 		{
 			if (nk_popup_begin(ctx, NK_POPUP_STATIC,
-				"Image Popup", 0, nk_rect(300, 50, 320, 220)))
+				"Image Popup", 0, nk_rect(340, 50, 320, 220)))
 			{
 				//nk_layout_row_static(ctx, 82, 82, 3);
 
-				ui_header(ctx, media, "---- Choose mode ----");
+				ui_header(ctx, media, "---- Choose Local/Cluster ----");
 				ui_widget_small_button(ctx, media, 30);
 				if (nk_button_image_label(ctx, (toggle2)
 				? media->checked: media->unchecked, "Local", NK_TEXT_LEFT))
@@ -141,6 +141,7 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 					toggle2 = !toggle2;
 					//rajouter mode Cluster
 				}
+				ui_header(ctx, media, "---- Choose CPU/GPU ----");
 				ui_widget_small_button(ctx, media, 30);
 				if (nk_button_image_label(ctx, (toggle4)
 				? media->checked: media->unchecked, "Cpu", NK_TEXT_LEFT))
@@ -159,7 +160,8 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 				/*------------------------------------------------
 				 *                  LAUNCH RT
 				 *------------------------------------------------*/
-				ui_widget_centered(ctx, media, 25);
+				ui_header(ctx, media, "");
+				ui_widget_centered(ctx, media, 30);
 				if (nk_button_label(ctx, "Launch"))
 				{
 					rt(world);

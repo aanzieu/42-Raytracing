@@ -293,8 +293,9 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
     media_init(media);
 
 	int i;
-	for (i = 0; i < 9; ++i)
+	for (i = 1; i < 9; ++i)
 	{
+		media->images[0] = icon_load("srcs/interface/images/image1.png");
 		char buffer[256];
 		sprintf(buffer, "srcs/interface/images/image%d.png", (i+1));
 		media->images[i] = icon_load(buffer);
