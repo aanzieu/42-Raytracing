@@ -59,8 +59,8 @@ t_torus						*new_torus(t_torus *nw, int id)
 	if (!(t = (t_torus *)ft_memalloc(sizeof(t_torus))))
 		ft_putendl_fd("Erroc Malloc on Torus", 1);
 	t->id = id;
-	t->radius_small = nw->radius_big;
-	t->radius_big = nw->radius_small;
+	t->radius_small = nw->radius_small;
+	t->radius_big = nw->radius_big;
 	t->pos = nw->pos;
 	t->color = nw->color;
 	t->chess = nw->chess;

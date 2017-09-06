@@ -166,11 +166,11 @@ typedef struct			s_triangle
 typedef struct			s_cube
 {
 	int						id;
-	t_vec3d				pos;
+	t_vec3d				min;
+	t_vec3d				max;
 	t_vec3d				up;
 	t_color				color;
 	t_color				chess;
-	double				size;
 	double				reflection_coef;
 	double				refraction_coef;
 	double				transparence_coef;

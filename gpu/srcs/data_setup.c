@@ -37,15 +37,15 @@ void			data_setup(t_world *world)
 	world->torus_len = 0;
 	world->lights = NULL;
 	world->lights_len = 0;
+	world->triangles = NULL;
+	world->triangles_len = 0;
+	world->cubes = NULL;
+	world->cubes_len = 0;
+
 	world->id = 0;
 	world->animation_forward = 0;
 	world->recording = 0;
 	world->a_h = NULL;
 	world->video_buffer = NULL;
 	world->intensity = 2.1;
-
-	world->triangles = NULL;
-	world->triangles_len = 0;
-	world->cubes = NULL;
-	world->cubes_len = 0;
 }

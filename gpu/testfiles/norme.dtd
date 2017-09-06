@@ -2,18 +2,17 @@
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
-<!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT sphere (pos, radius, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT cylinder (pos, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*)>
-<!ELEMENT mobius (pos, radius, tra*, color, reflection*)>
+<!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT sphere (pos, radius, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT cylinder (pos, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT torus (pos, normal*, radius_small, radius_big, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT mobius (pos, radius, tra*, color, reflection*, transparence*)>
 <!ELEMENT triangle (pos, normal, v1, v2, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT cube (pos, normal, size, color, chess*, reflection*, refraction*, transparence*)>
-
+<!ELEMENT cube (min, max, normal*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 
 <!ELEMENT pos (#PCDATA)>
 <!ELEMENT dir (#PCDATA)>
@@ -109,7 +108,6 @@
 <!ATTLIST radius_small data CDATA #REQUIRED>
 <!ATTLIST radius_big data CDATA #REQUIRED>
 <!ATTLIST height data CDATA #REQUIRED>
-<!ATTLIST size data CDATA #REQUIRED>
 <!ATTLIST intensity data CDATA #REQUIRED>
 <!ATTLIST reflection data CDATA #REQUIRED>
 <!ATTLIST refraction data CDATA #REQUIRED>

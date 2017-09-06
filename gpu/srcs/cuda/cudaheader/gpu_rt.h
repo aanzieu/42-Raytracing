@@ -55,6 +55,9 @@ CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_triangle(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_closest_cube(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
 
 /*******************************************************************************
 **                     COLOR_FCTS                                             **

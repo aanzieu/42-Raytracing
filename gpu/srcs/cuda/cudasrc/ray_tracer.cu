@@ -69,6 +69,8 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
 	get_closest_disk(world, ray, intersection, &intersection_tmp);
 	get_closest_cone(world, ray, intersection, &intersection_tmp);
+	get_closest_cube(world, ray, intersection, &intersection_tmp);
+	get_closest_torus(world, ray, intersection, &intersection_tmp);
 	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
 	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
 	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
@@ -129,11 +131,11 @@ __host__ __device__ t_color apply_materials(t_world world, t_ray ray,
 		color = color_add(color_scalar(color, 1 - intersection.transparence_coef),
 		color_scalar(handle_transparence(world, ray, &intersection),
 		intersection.transparence_coef));
-	if (intersection.reflection_coef != 0)
+	if (intersection.reflection_coef > 0)
 		color = color_add(color_scalar(color, 1 - intersection.reflection_coef),
 		color_scalar(handle_reflection(world, ray, &intersection),
 		intersection.reflection_coef));
-	if (intersection.refraction_coef != 0)
+	if (intersection.refraction_coef > 0)
 		color = color_add(color, handle_refraction(world, ray, &intersection));
 	if (intersection.chess.r >= 0)
 		color = color_add(color, handle_chess(ray, &intersection));
@@ -156,7 +158,6 @@ __host__ __device__ t_color		ray_tracer_depth(t_world world, t_ray ray,
 
 	if (intersection.type == '0')
 		return ((t_color){0, 0, 0});
-//		return (color_scalar((t_color){66, 173, 212}, 0.3f / (y + 0.0001f)));
 	color = apply_materials(world, ray, intersection);
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);

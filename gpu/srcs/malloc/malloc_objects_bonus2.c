@@ -6,7 +6,8 @@ t_cube	*new_cube(t_cube *nw, int id)
 
 	if (!(t = (t_cube *)ft_memalloc(sizeof(t_cube))))
 		ft_putendl_fd("Erroc Malloc on cube", 1);
-	t->pos = nw->pos;
+	t->min = nw->min;
+	t->max = nw->max;
 	t->up = nw->up;
 	t->color = nw->color;
 	t->chess = nw->chess;

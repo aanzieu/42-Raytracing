@@ -5,16 +5,6 @@ extern "C" {
 #include <math.h>
 }
 
-#pragma hd_warning_disable
-
-__host__ __device__ static void 	swap_double_cuda(double *a, double *b)
-{
-	double tmp;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
 __host__ __device__ static double	calc_poly(double *coef, int degree, double a)
 {
   double	res;
@@ -82,7 +72,7 @@ __host__ __device__ static void	solve_second(double *coef, double *sol)
       sol[1] = (coef[1] - det) / opti;
       sol[2] = (coef[1] + det) / opti;
       if (sol[1] > sol[2])
-				swap_double_cuda(sol + 1, sol + 2);
+				swap_double(sol + 1, sol + 2);
       sol[3] = MAX_ROOT;
     }
   else
