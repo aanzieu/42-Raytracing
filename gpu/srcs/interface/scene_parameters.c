@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/05 16:06:41 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/05 18:27:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "../../includes/rt.h"
 #include "header/nuklear.h"
 #include "header/gui.h"
+#include <vectors.h>
+#include <gpu_rt.h>
 
 /* ===============================================================
  *
@@ -36,7 +38,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,52,250,610),
+	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,52,250,500),
 			NK_WINDOW_BORDER|NK_WINDOW_TITLE))
 	{
 	// 	ui_header(ctx, media, "---- Open & Save ----");
@@ -66,7 +68,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// //  *                  SELECTED IMAGE
 	// //  *------------------------------------------------*/
 		ui_header(ctx, media, "---- File Active ----");
-		ui_widget_centered(ctx, media, 80);
+		ui_widget_centered(ctx, media, 200);
 		nk_image(ctx, media->images[0]);
 	// 	if (image_active)
 	// 	{
@@ -150,8 +152,8 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	/*------------------------------------------------
 	 *                  SPECIAL MODE
 	 *------------------------------------------------*/
-	ui_header(ctx, media, "---- Special Mode ----");
-	ui_widget_special_mode(ctx, media, 15);
+	ui_header(ctx, media, "---- Effects ----");
+	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (option == 1)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
 	{
@@ -166,7 +168,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		world->keys.pad_0 = 1;
 		world->redraw = 1;
 	}
-	ui_widget_special_mode(ctx, media, 15);
+	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (option == 2)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "BAYER", NK_TEXT_LEFT))
 	{
@@ -181,7 +183,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		world->keys.pad_0 = 3;
 		world->redraw = 1;
 	}
-	ui_widget_special_mode(ctx, media, 15);
+	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (option == 4)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "PASTEL", NK_TEXT_LEFT))
 	{
@@ -196,7 +198,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		world->keys.pad_0 = 5;
 		world->redraw = 1;
 	}
-	ui_widget_special_mode(ctx, media, 15);
+	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (option == 6)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "CARTOON", NK_TEXT_LEFT))
 	{
@@ -246,7 +248,20 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// 	nk_contextual_end(ctx);
 	// }
 
-
+	ui_header(ctx, media, "---- Camera ----");
+	nk_layout_row_static(ctx, 30, 30, 2);
+	if (nk_button_image_label(ctx, media->play,
+		"Images", NK_TEXT_LEFT))
+	{
+		cam_rot(&world->camera, -90	, 'y');
+		world->redraw = 1;
+	}
+	if (nk_button_image_label(ctx, media->pause,
+		"Images", NK_TEXT_LEFT))
+	{
+		cam_rot(&world->camera, 90	, 'y');
+		world->redraw = 1;
+	}
 
 	nk_style_set_font(ctx, &media->font_14->handle);
 	nk_end(ctx);
