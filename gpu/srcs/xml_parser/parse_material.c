@@ -22,11 +22,11 @@ void			parse_refraction(double *refraction_coef, xmlNodePtr cur)
 
 	nb = xmlGetProp(cur, (const xmlChar *)"data");
 	if (is_numeric((const char *)nb))
-  {
+	{
 		*refraction_coef = ft_atoi_double((const char *)nb);
-    if (*refraction_coef >= 1 && *refraction_coef <= 1.5)
-      return (xmlFree(nb));
-  }
+		if (*refraction_coef >= 1 && *refraction_coef <= 1.5)
+			return (xmlFree(nb));
+	}
 	show_error_2("invalid refraction value, should be >= 1 and <= 1.5. > data=",
     (const char *)nb);
 	xmlFree(nb);

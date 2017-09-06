@@ -1,6 +1,6 @@
-prefix=/Users/aanzieu/.brew/Cellar/glew/2.1.0
+prefix=/Users/xpouzenc/.brew/Cellar/glew/2.1.0
 exec_prefix=${prefix}
-libdir=/Users/aanzieu/.brew/Cellar/glew/2.1.0/lib
+libdir=/Users/xpouzenc/.brew/Cellar/glew/2.1.0/lib
 includedir=${prefix}/include
 
 Name: glew

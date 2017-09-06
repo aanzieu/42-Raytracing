@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 18:30:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/06 17:24:49 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void    gui_calls(struct file_browser *browser, struct nk_context *ctx, struct m
 		scene_parameters(ctx, media, world);
 		scene_topbar(ctx, media, world);
 		grid_demo(ctx, media, world);
+		camera_control_bar(ctx, media, world);
 		//file_browser_run(browser, ctx);
 	}
 	else

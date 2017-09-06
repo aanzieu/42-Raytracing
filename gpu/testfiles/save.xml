@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
 <scene name="France's flag">
-  <sphere>
-    <pos x="0" y="-0.4" z="1.000000"/>
-    <radius data="0.600000"/>
-    <color r="50" g="50" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1.5"/>
-  </sphere>
-  <sphere>
-    <pos x="0.400000" y="0.100000" z="2.100000"/>
-    <radius data="0.200000"/>
-    <color r="255" g="255" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1.3"/>
-  </sphere>
   <plane>
     <origin x="0" y="-1.000000" z="0"/>
     <normal x="0" y="1.000000" z="0"/>
     <color r="255" g="23" b="23"/>
-    <chess r="255" g="255" b="255"/>
     <reflection data="0"/>
-    <refraction data="1"/>
+    <refraction data="1.000000"/>
   </plane>
+  <sphere>
+    <pos x="0" y="-0.400000" z="1.000000"/>
+    <radius data="0.600000"/>
+    <color r="50" g="50" b="255"/>
+    <reflection data="0"/>
+    <refraction data="1.500000"/>
+  </sphere>
+  <sphere>
+    <pos x="0.400000" y="0.100000" z="2.100000"/>
+    <radius data="0.200000"/>
+    <color r="252" g="251" b="251"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+  </sphere>
   <light>
     <pos x="0.500000" y="0.500000" z="-5.000000"/>
     <color r="255" g="255" b="255"/>
@@ -43,7 +42,7 @@
     <intensity data="0.500000"/>
   </ambient>
   <camera>
-    <pos x="0.000000" y="0.000000" z="-10.000000"/>
+    <pos x="5.000000" y="0.300000" z="-10.000000"/>
     <dir x="0" y="0" z="1.000000"/>
   </camera>
 </scene>

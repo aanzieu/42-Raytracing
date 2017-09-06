@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/05 18:27:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/06 16:08:06 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,52,250,500),
+	if(nk_begin(ctx, "SCENE PARAMETERS", nk_rect(0,52,250,600),
 			NK_WINDOW_BORDER|NK_WINDOW_TITLE))
 	{
 	// 	ui_header(ctx, media, "---- Open & Save ----");
@@ -249,15 +249,33 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// }
 
 	ui_header(ctx, media, "---- Camera ----");
-	nk_layout_row_static(ctx, 30, 30, 2);
-	if (nk_button_image_label(ctx, media->play,
-		"Images", NK_TEXT_LEFT))
+	nk_layout_row_static(ctx, 30, 30, 6);
+	if (nk_button_image(ctx, media->play))
 	{
 		cam_rot(&world->camera, -90	, 'y');
 		world->redraw = 1;
 	}
-	if (nk_button_image_label(ctx, media->pause,
-		"Images", NK_TEXT_LEFT))
+	if (nk_button_image(ctx, media->prev))
+	{
+		move_left(world);
+		world->redraw = 1;
+	}
+	if (nk_button_image(ctx, media->up))
+	{
+		move_forward(world);
+		world->redraw = 1;
+	}
+	if (nk_button_image(ctx, media->down))
+	{
+		move_backward(world);
+		world->redraw = 1;
+	}
+	if (nk_button_image(ctx, media->next))
+	{
+		move_right(world);
+		world->redraw = 1;
+	}
+	if (nk_button_image(ctx, media->pause))
 	{
 		cam_rot(&world->camera, 90	, 'y');
 		world->redraw = 1;

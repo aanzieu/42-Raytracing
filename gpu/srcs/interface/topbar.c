@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topbar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/05 16:53:15 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/06 17:01:56 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
  *
  * ===============================================================*/
 
-	void
-scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
+void scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 {
-	(void)world;
 	static int image_active;
 	static int image_active_2;
 	static int toggle0 = 0;
@@ -36,7 +34,7 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 	static int toggle4 = 1;
 	static int toggle5 = 0;
 	int i = 0;
-	//static int selected_image;
+	static int selected_image = -1;
 
 	nk_style_set_font(ctx, &media->font_22->handle);
 	if(nk_begin(ctx, "TOPBAR", nk_rect(0,0,world->screen.width,52), NK_WINDOW_BORDER))
@@ -109,12 +107,7 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 				{
 					if (nk_button_image(ctx, media->images[i]))
 					{
-						//selected_image = i;
-						if (i == 0)
-							parse_rtv1(world, "testfiles/1.xml");
-						if (i == 1)
-							parse_rtv1(world, "testfiles/2.xml");
-						load_data(world);
+						selected_image = i;
 						image_active_2 = !image_active_2;
 						nk_popup_close(ctx);
 					}
@@ -170,6 +163,11 @@ scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 				ui_widget_centered(ctx, media, 30);
 				if (nk_button_label(ctx, "Launch"))
 				{
+					if (selected_image == 0)
+						parse_rtv1(world, "testfiles/1.xml");
+					if (selected_image == 1)
+						parse_rtv1(world, "testfiles/2.xml");
+					load_data(world);
 					rt(world);
 					image_active = 0;
 					image_active_2 = 0;

@@ -34,7 +34,7 @@ USAGE:
     and does not contain the actual implementation.
 
     The implementation mode requires to define  the preprocessor macro
-    NK_IMPLEMENTATION in *one* .c/.cpp file before #includeing this file, e.g.:
+    NK_IMPLEMENTATION in *onee* .c/.cpp file before #includeing this file, e.g.:
 
         #define NK_IMPLEMENTATION
         #include "nuklear.h"
@@ -4244,6 +4244,8 @@ struct media {
 	struct nk_image stop;
 	struct nk_image prev;
 	struct nk_image next;
+    struct nk_image up;
+    struct nk_image down;
 	struct nk_image tools;
     struct nk_image dir;
     struct nk_image cone;

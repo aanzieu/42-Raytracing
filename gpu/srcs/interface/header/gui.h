@@ -76,6 +76,7 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world);
 void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
+void 	camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world);
 void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
 
 int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);
@@ -106,13 +107,13 @@ void 	init_glfw_start(GLFWwindow **win, struct nk_context *ctx, t_screen *screen
 void 	error_callback(int e, const char *d);
 void 	scroll_input(GLFWwindow *win, double _, double yoff);
 void 	text_input(GLFWwindow *win, unsigned int codepoint);
-void die(const char *fmt, ...);
+void 	die(const char *fmt, ...);
 
 struct nk_image icon_load(const char *filename);
 void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_context *ctx, struct device *device);
 void	device_draw(struct device *dev, struct nk_context *ctx, t_screen *screen, enum nk_anti_aliasing AA);
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx);
-int	key_press(struct nk_context *ctx, t_world *world);
+int		key_press(struct nk_context *ctx, t_world *world);
 
 void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *media);
 void	refresh_sphere(t_world *world, int i);
