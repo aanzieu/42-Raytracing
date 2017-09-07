@@ -76,6 +76,8 @@ void	cone_informations(t_world *world, struct nk_context *ctx, struct media *med
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cones[i].up.z, "norm : Z"))
 				world->redraw = 1;
+			else if (ui_widget_value_infos(ctx, media, &world->cones[i].height, "height :"))
+				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cones[i].half_angle, "radius"))
         world->redraw = 1;
       else if (ui_widget_value_infos(ctx, media, &world->cones[i].reflection_coef, "reflection_coef :"))
@@ -130,7 +132,9 @@ void	cylinder_informations(t_world *world, struct nk_context *ctx, struct media 
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].up.z, "norm : Z"))
 				world->redraw = 1;
-			else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].radius, "radius"))
+			else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].height, "height :"))
+        world->redraw = 1;
+			else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].radius, "radius :"))
         world->redraw = 1;
       else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].reflection_coef, "reflection_coef :"))
         world->redraw = 1;
