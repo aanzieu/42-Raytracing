@@ -23,8 +23,10 @@ void	init_cylinder_add(t_cylinder *cy)
 	cy->chess = (t_color){-1, -1, -1};
 	cy->color = (t_color)
 	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	cy->height = 0;
 	cy->reflection_coef = 0;
 	cy->refraction_coef = 0;
+	cy->transparence_coef = 0;
 	cy->next = NULL;
 }
 

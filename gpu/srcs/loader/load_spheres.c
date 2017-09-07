@@ -23,9 +23,9 @@ void	init_sphere_add(t_sphere *s)
 	s->chess = (t_color){-1, -1, -1};
 	s->reflection_coef = 0;
 	s->refraction_coef = 0;
+	s->transparence_coef = 0;
 	s->next = NULL;
 }
-
 
 static unsigned int			count_spheres(t_sphere *spheres)
 {

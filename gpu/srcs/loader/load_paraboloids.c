@@ -10,7 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void							init_paraboloid_add(t_paraboloid *p)
+{
+	p->id = 0;
+	p->top = new_vector(0, 0 , 0);
+	p->normal = new_vector(0, -1 , 0);
+	p->distance = 0.05;
+	p->maxm = 0.05;
+	p->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	p->chess = (t_color){-1, -1, -1};
+	p->reflection_coef = 0;
+	p->refraction_coef = 0;
+	p->transparence_coef = 0;
+	p->next = NULL;
+}
 
 static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
 {

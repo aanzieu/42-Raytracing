@@ -4253,6 +4253,12 @@ struct media {
     struct nk_image plane;
     struct nk_image disk;
     struct nk_image cylinder;
+    struct nk_image torus;
+    struct nk_image moebius;
+    struct nk_image cube;
+    struct nk_image hyperboloid;
+    struct nk_image paraboloid;
+    struct nk_image triangle;
     struct nk_image rec;
     struct nk_image rec_on;
 	struct nk_image copy;
@@ -14161,9 +14167,9 @@ nk_button_behavior(nk_flags *state, struct nk_rect r,
             ret = (behavior != NK_BUTTON_DEFAULT) ?
                 nk_input_is_mouse_down(i, NK_BUTTON_LEFT):
 #ifdef NK_BUTTON_TRIGGER_ON_RELEASE
-                nk_input_is_mouse_released(i, NK_BUTTON_LEFT);
-#else
                 nk_input_is_mouse_pressed(i, NK_BUTTON_LEFT);
+#else
+                nk_input_is_mouse_released(i, NK_BUTTON_LEFT);
 #endif
         }
     }

@@ -1,5 +1,20 @@
 
 #include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_mobius_add(t_mobius *m)
+{
+	m->id = 0;
+	m->radius = 0.2;
+	m->pos = new_vector(0, 0 , -0.5);
+	m->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	m->chess = (t_color){-1, -1, -1};
+	m->reflection_coef = 0;
+	m->refraction_coef = 0;
+	m->transparence_coef = 0;
+	m->next = NULL;
+}
 
 static unsigned int			count_mobius(t_mobius *mobius)
 {

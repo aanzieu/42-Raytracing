@@ -10,7 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_torus_add(t_torus *t)
+{
+	t->id = 0;
+	t->radius_small = 0.5;
+	t->radius_big = 1;
+	t->pos = new_vector(0, 0 , 1);
+	t->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	t->chess = (t_color){-1, -1, -1};
+	t->reflection_coef = 0;
+	t->refraction_coef = 0;
+	t->transparence_coef = 0;
+	t->next = NULL;
+}
 
 static unsigned int			count_torus(t_torus *torus)
 {

@@ -29,8 +29,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
-GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+GLFW3 = /usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib
+GLEW = /usr/local/Cellar/glew/2.1.0/lib/libGLEW.a
 ## GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
 ## GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
@@ -90,6 +90,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/display_functions.c \
 				\
 				$(SRC_DIR)/threads/malloc_objects_cpy.c \
+				$(SRC_DIR)/threads/malloc_objects_cpy2.c \
+				$(SRC_DIR)/threads/malloc_objects_cpy3.c \
 				\
 				$(SRC_DIR)/interface/extended.c \
 				$(SRC_DIR)/interface/interface.c \
@@ -102,8 +104,14 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_middle.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
 				$(SRC_DIR)/interface/object_informations/object_infos.c \
+				$(SRC_DIR)/interface/object_informations/object_infos2.c \
+				$(SRC_DIR)/interface/object_informations/object_infos3.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
+				$(SRC_DIR)/interface/object_informations/object_refresh2.c \
+				$(SRC_DIR)/interface/object_informations/object_refresh3.c \
 				$(SRC_DIR)/interface/remove_objects.c \
+				$(SRC_DIR)/interface/remove_objects2.c \
+				$(SRC_DIR)/interface/remove_objects3.c \
 				$(SRC_DIR)/interface/device_init.c \
 				$(SRC_DIR)/interface/device_init_next.c \
 				$(SRC_DIR)/interface/load_media.c \
@@ -174,6 +182,8 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/malloc/malloc_objects_bonus2.c \
 				\
 				$(SRC_DIR)/threads/free_object_thread.c \
+				$(SRC_DIR)/threads/free_object_thread2.c \
+				$(SRC_DIR)/threads/free_object_thread3.c \
 				\
 				$(SRC_DIR)/server/master.c \
 				$(SRC_DIR)/server/master_send_infos.c \

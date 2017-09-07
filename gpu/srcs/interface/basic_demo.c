@@ -37,14 +37,14 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world)
 	// int i = 0;
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "ADD OBJECTS", nk_rect(world->screen.width - 275, 652, 275, 150),
+	if (nk_begin(ctx, "ADD OBJECTS", nk_rect(world->screen.width - 275, 600, 285, 250),
 			NK_WINDOW_BORDER|NK_WINDOW_TITLE|NK_WINDOW_MINIMIZABLE))
 	{
 		nk_menubar_begin(ctx);
 		{
 			/* toolbar */
 			ui_header(ctx, media, "---- Add Objects ----");
-			nk_layout_row_static(ctx, 50, 50, 5);
+			nk_layout_row_static(ctx, 40, 40, 6);
 			// if (nk_menu_begin_image(ctx, "Music", media->play, nk_vec2(110,120)))
 			// {
 			// 	/* settings */
@@ -80,6 +80,49 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world)
 					thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id);
 					world->redraw = 1;
 			}
+			if(nk_button_image(ctx, media->torus))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_torus(&world->torus, &world->torus_tmp, &world->torus_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->moebius))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->disk))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_disk(&world->disks, &world->disks_tmp, &world->disks_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->cube))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_cube(&world->cubes, &world->cubes_tmp, &world->cubes_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->hyperboloid))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_hyperboloid(&world->hyperboloids, &world->hyperboloids_tmp, &world->hyperboloids_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->paraboloid))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_paraboloid(&world->paraboloids, &world->paraboloids_tmp, &world->paraboloids_len, world->id);
+					world->redraw = 1;
+			}
+			if(nk_button_image(ctx, media->triangle))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id);
+					world->redraw = 1;
+			}
+
 			// nk_button_image(ctx, media->disk);
 		}
 		nk_menubar_end(ctx);

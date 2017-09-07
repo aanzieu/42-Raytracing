@@ -11,6 +11,23 @@
 /* ************************************************************************** */
 
 #include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_hyperboloid_add(t_hyperboloid *h)
+{
+	h->id = 0;
+	h->radius = 0.05;
+	h->maxm = 0.05;
+	h->top = new_vector(0, 0 , 1);
+	h->normal = new_vector(0, 1 , 1);
+	h->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	h->chess = (t_color){-1, -1, -1};
+	h->reflection_coef = 0;
+	h->refraction_coef = 0;
+	h->transparence_coef = 0;
+	h->next = NULL;
+}
 
 static unsigned int	count_hyperboloids(t_hyperboloid *hyperboloids)
 {

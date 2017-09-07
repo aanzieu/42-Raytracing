@@ -24,6 +24,8 @@ void	init_cone_add(t_cone *c)
 	c->chess = (t_color){-1, -1, -1};
 	c->reflection_coef = 0;
 	c->refraction_coef = 0;
+	c->transparence_coef = 0;
+	c->height = 0;
 	c->min = new_vector(1, 1, 1);
 	c->max = new_vector(3, 3, 3);
 	c->next = NULL;

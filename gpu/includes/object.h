@@ -97,6 +97,7 @@ typedef struct			s_mobius
 	double				radius;
 	t_vec3d				pos;
 	t_color				color;
+	t_color				chess;
 	double				reflection_coef;
 	double				refraction_coef;
 	double				transparence_coef;
@@ -204,6 +205,10 @@ void						add_paraboloid(t_paraboloid **alst,
 							t_paraboloid *nw);
 void						add_hyperboloid(t_hyperboloid **alst,
 							t_hyperboloid *nw);
+void						add_torus(t_torus **alst, t_torus *nw);
+void						add_mobius(t_mobius **alst, t_mobius *nw);
+void 						add_triangle(t_triangle **alst, t_triangle *nw);
+void 						add_cube(t_cube **alst, t_cube *nw);
 
 
 /*
@@ -215,14 +220,24 @@ void						thread_free_and_add_sphere(t_sphere **s, t_sphere **s_tmp, int *sphere
 void						init_sphere_add(t_sphere *s);
 void						thread_free_and_add_cone(t_cone **c, t_cone **c_tmp, int *len, int id);
 void						init_cone_add(t_cone *c);
-void		thread_free_and_add_plane(t_plane **p, t_plane **p_tmp, int *len, int id);
+void						thread_free_and_add_plane(t_plane **p, t_plane **p_tmp, int *len, int id);
 void						init_plane_add(t_plane *p);
-void		thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *len, int id);
-void	init_cylinder_add(t_cylinder *cy);
-void						add_torus(t_torus **alst, t_torus *nw);
-void						add_mobius(t_mobius **alst, t_mobius *nw);
-void 						add_triangle(t_triangle **alst, t_triangle *nw);
-void 						add_cube(t_cube **alst, t_cube *nw);
+void						thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *len, int id);
+void						init_cylinder_add(t_cylinder *cy);
+void						thread_free_and_add_torus(t_torus **to, t_torus **to_tmp, int *len, int id);
+void						init_torus_add(t_torus *to);
+void						thread_free_and_add_mobius(t_mobius **mo, t_mobius **mo_tmp, int *len, int id);
+void						init_mobius_add(t_mobius *mo);
+void						thread_free_and_add_disk(t_disk **di, t_disk **di_tmp, int *len, int id);
+void						init_disk_add(t_disk *di);
+void						thread_free_and_add_cube(t_cube **cu, t_cube **cu_tmp, int *len, int id);
+void						init_cube_add(t_cube *cu);
+void						thread_free_and_add_hyperboloid(t_hyperboloid **hy, t_hyperboloid **hy_tmp, int *len, int id);
+void						init_hyperboloid_add(t_hyperboloid *hy);
+void						thread_free_and_add_paraboloid(t_paraboloid **p, t_paraboloid **p_tmp, int *len, int id);
+void						init_paraboloid_add(t_paraboloid *p);
+void						thread_free_and_add_triangle(t_triangle **t, t_triangle **t_tmp, int *len, int id);
+void						init_triangle_add(t_triangle *t);
 
 /*
 ********************************************************************************

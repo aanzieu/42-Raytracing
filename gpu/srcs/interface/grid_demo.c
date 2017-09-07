@@ -48,7 +48,7 @@ void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world)
 
 	int i;
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "Objects", nk_rect(world->screen.width - 275, 52, 275, 600),
+	if (nk_begin(ctx, "Objects", nk_rect(world->screen.width - 275, 52, 275, 550),
 				NK_WINDOW_TITLE|NK_WINDOW_BORDER))
 	{
 		ui_header(ctx, media, "---- Informations ----");

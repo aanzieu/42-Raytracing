@@ -23,6 +23,7 @@ void	init_plane_add(t_plane *p)
 	p->chess = (t_color){-1, -1, -1};
 	p->reflection_coef = 0;
 	p->refraction_coef = 0;
+	p->transparence_coef = 0;
 	p->next = NULL;
 }
 

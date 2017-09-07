@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   remove_objects.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 21:29:08 by aanzieu          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
 #include "../../includes/rt.h"
@@ -17,11 +5,11 @@
 #include "header/nuklear.h"
 #include "header/gui.h"
 
-void			remove_sphere(t_sphere **s, t_intersection *i)
+void			remove_torus(t_torus **s, t_intersection *i)
 {
-	t_sphere	*current;
-	t_sphere	*last;
-	t_sphere	*tmp;
+	t_torus	*current;
+	t_torus	*last;
+	t_torus	*tmp;
 
 	current = *s;
 	tmp = NULL;
@@ -46,11 +34,11 @@ void			remove_sphere(t_sphere **s, t_intersection *i)
 	}
 }
 
-void			remove_cone(t_cone **s, t_intersection *i)
+void			remove_mobius(t_mobius **s, t_intersection *i)
 {
-	t_cone	*current;
-	t_cone	*last;
-	t_cone	*tmp;
+	t_mobius	*current;
+	t_mobius	*last;
+	t_mobius	*tmp;
 
 	current = *s;
 	tmp = NULL;
@@ -75,11 +63,11 @@ void			remove_cone(t_cone **s, t_intersection *i)
 	}
 }
 
-void			remove_cylinder(t_cylinder **s, t_intersection *i)
+void			remove_disk(t_disk **s, t_intersection *i)
 {
-	t_cylinder	*current;
-	t_cylinder	*last;
-	t_cylinder	*tmp;
+	t_disk	*current;
+	t_disk	*last;
+	t_disk	*tmp;
 
 	current = *s;
 	tmp = NULL;
@@ -104,11 +92,11 @@ void			remove_cylinder(t_cylinder **s, t_intersection *i)
 	}
 }
 
-void			remove_plane(t_plane **s, t_intersection *i)
+void			remove_cube(t_cube **s, t_intersection *i)
 {
-	t_plane	*current;
-	t_plane	*last;
-	t_plane	*tmp;
+	t_cube	*current;
+	t_cube	*last;
+	t_cube	*tmp;
 
 	current = *s;
 	tmp = NULL;
@@ -133,11 +121,11 @@ void			remove_plane(t_plane **s, t_intersection *i)
 	}
 }
 
-void			remove_paraboloid(t_paraboloid **s, t_intersection *i)
+void			remove_hyperboloid(t_hyperboloid **s, t_intersection *i)
 {
-	t_paraboloid	*current;
-	t_paraboloid	*last;
-	t_paraboloid	*tmp;
+	t_hyperboloid	*current;
+	t_hyperboloid	*last;
+	t_hyperboloid	*tmp;
 
 	current = *s;
 	tmp = NULL;

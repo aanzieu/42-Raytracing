@@ -1,4 +1,19 @@
-#include <rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void	init_cube_add(t_cube *c)
+{
+	c->id = 0;
+	c->min = new_vector(0, 0 , 0);
+	c->max = new_vector(1, 1 , 1);
+	c->color = (t_color)
+	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	c->chess = (t_color){-1, -1, -1};
+	c->reflection_coef = 0;
+	c->refraction_coef = 0;
+	c->transparence_coef = 0;
+	c->next = NULL;
+}
 
 static unsigned int			count_cube(t_cube *cube)
 {
