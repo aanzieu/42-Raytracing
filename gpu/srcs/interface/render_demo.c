@@ -68,7 +68,7 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 {
 	struct nk_image screen;
 	struct nk_vec2	pos;
-
+	
 
 	screen = screen_load(a_h, world->video_buffer);
 	nk_style_set_font(ctx, &media->font_20->handle);
@@ -87,7 +87,14 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 		mousepress_left(ctx, world, pos);
 		if((key_press(ctx, world)))
 			world->redraw = 1;
+	
 		nk_end(ctx);
+	}
+	if(world->redraw == 3)
+	{
+		nk_clear(ctx);
+		
+		world->redraw = 0;
 	}
 	// nk_end(ctx);
 }

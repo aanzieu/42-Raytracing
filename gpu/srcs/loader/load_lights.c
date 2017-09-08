@@ -33,6 +33,12 @@ void				load_lights(t_light **lights, t_light *lights_tmp,
 	unsigned int	i;
 	t_light			*tmp;
 
+	if (*lights != NULL)
+	{
+		free(*lights);
+		*lights = NULL;
+		*lights_len = 0;
+	}
 	i = 0;
 	*lights_len = count_lights(lights_tmp);
 	*lights = (t_light*)malloc(sizeof(t_light) * *lights_len);

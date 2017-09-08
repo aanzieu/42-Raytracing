@@ -82,8 +82,9 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t > 0)
 			{
 				intersection->id = world.cylinders[i].id;
+				intersection->id_save = world.cylinders[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->type = 'c';
+				intersection->type = 'y';
 				intersection->reflection_coef = world.cylinders[i].reflection_coef;
 				intersection->refraction_coef = world.cylinders[i].refraction_coef;
 				intersection->transparence_coef = world.cylinders[i].transparence_coef;

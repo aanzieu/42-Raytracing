@@ -70,6 +70,7 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				intersection->type = 's';
 				intersection->t = intersection_tmp->t;
 				intersection->id = world.spheres[i].id;
+				intersection->id_save = world.spheres[i].id;
 				intersection->reflection_coef = world.spheres[i].reflection_coef;
 				intersection->refraction_coef = world.spheres[i].refraction_coef;
 				intersection->transparence_coef = world.spheres[i].transparence_coef;

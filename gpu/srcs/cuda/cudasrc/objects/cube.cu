@@ -104,11 +104,12 @@ __host__ __device__ void	get_closest_cube(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
 				intersection->t = intersection_tmp->t;
-				intersection->type = 'b';
+				intersection->type = 'c';
 				intersection->reflection_coef = world.cubes[i].reflection_coef;
 				intersection->reflection_coef = world.cubes[i].reflection_coef;
 				intersection->transparence_coef = world.cubes[i].transparence_coef;
 				intersection->id = intersection_tmp->id;
+				intersection->id_save = intersection_tmp->id;
 				intersection->color = world.cubes[i].color;
 				intersection->chess = world.cubes[i].chess;
 				intersection->pos =

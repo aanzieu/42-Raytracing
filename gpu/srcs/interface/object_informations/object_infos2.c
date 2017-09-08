@@ -15,6 +15,7 @@ void	mobius_informations(t_world *world, struct nk_context *ctx, struct media *m
 	{
 		if (world->id_save == world->mobius[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.y, "pos  : Y"))
@@ -63,6 +64,7 @@ void	disk_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->disks[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->disks[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->disks[i].pos.y, "pos  : Y"))
@@ -117,6 +119,7 @@ void	cube_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->cubes[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->cubes[i].min.x, "min  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cubes[i].min.y, "min  : Y"))
@@ -169,6 +172,7 @@ void	triangle_informations(t_world *world, struct nk_context *ctx, struct media 
 	{
 		if (world->id_save == world->triangles[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->triangles[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->triangles[i].pos.y, "pos  : Y"))
@@ -231,6 +235,7 @@ void	paraboloid_informations(t_world *world, struct nk_context *ctx, struct medi
 
     while (i < world->paraboloids_len)
 	{
+    o.id_save = world->id_save;
 		if (world->id_save == world->paraboloids[i].id)
 		{
 			if (ui_widget_value_infos(ctx, media, &world->paraboloids[i].top.x, "pos  : X"))

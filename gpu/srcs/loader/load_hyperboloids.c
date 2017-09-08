@@ -50,10 +50,16 @@ void				load_hyperboloids(t_hyperboloid **hyperboloids,
 	unsigned int	i;
 	t_hyperboloid	*tmp;
 
+	if (*hyperboloids!= NULL)
+	{
+		free(*hyperboloids);
+		*hyperboloids = NULL;
+		*hyperboloids_len = 0;
+	}
+
 	i = 0;
 	*hyperboloids_len = count_hyperboloids(hyperboloids_tmp);
-	*hyperboloids = (t_hyperboloid*)malloc(sizeof(t_hyperboloid) *
-															*hyperboloids_len);
+	*hyperboloids = (t_hyperboloid*)malloc(sizeof(t_hyperboloid) *														*hyperboloids_len);
 	tmp = hyperboloids_tmp;
 	while (tmp)
 	{

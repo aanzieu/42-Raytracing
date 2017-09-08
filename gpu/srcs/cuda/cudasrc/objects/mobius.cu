@@ -60,7 +60,7 @@ __host__ __device__ static int	get_mobius(t_mobius m, t_ray ray,
 	if(d.res[0] != NOT_A_SOLUTION)
 	{
 		intersection_tmp->t = d.res[0];
-		intersection_tmp->type = 'm';
+//		intersection_tmp->type = 'm';
 		return(1);
 	}
 	intersection_tmp->t = -1.0;
@@ -80,10 +80,13 @@ __host__ __device__ void		get_closest_mobius(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t
 					&& intersection_tmp->t != -1)
 			{
+				intersection->type = 'm';
 				intersection->pos = vector_add(ray.origin,
 						vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->t = intersection_tmp->t;
-				intersection->type = intersection_tmp->type;
+		
+				intersection->id_save = world.mobius[i].id;
+				intersection->id = world.mobius[i].id;				
 				intersection->reflection_coef = world.mobius[i].reflection_coef;
 				intersection->refraction_coef = world.mobius[i].refraction_coef;
 				intersection->transparence_coef = world.mobius[i].transparence_coef;

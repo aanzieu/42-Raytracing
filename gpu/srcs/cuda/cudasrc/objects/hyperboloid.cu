@@ -63,6 +63,7 @@ __host__ __device__ void	get_closest_hyperboloid(t_world world, t_ray ray,
 			{
 				intersection->type = 'h';
 				intersection->id = world.hyperboloids[i].id;
+				intersection->id_save = world.hyperboloids[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->reflection_coef = world.hyperboloids[i].reflection_coef;
 				intersection->refraction_coef = world.hyperboloids[i].refraction_coef;

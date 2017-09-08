@@ -269,5 +269,19 @@ void						load_mobius(t_mobius **mobius,
 void 						load_triangles(t_triangle **triangles,
     					t_triangle *triangles_tmp, int *triangles_len);
 void 						load_cubes(t_cube **cubes,
-    					t_cube *cubes_tmp, int *cubes_len);
+						t_cube *cubes_tmp, int *cubes_len);
+						
+
+void		free_plan(t_plane **p_tmp, t_plane **p, int *len);
+void		free_sphere(t_sphere **s_tmp, t_sphere **s, int *len);
+void		free_cone(t_cone **c_tmp, t_cone **c, int *len);
+void		free_cy(t_cylinder **c_tmp, t_cylinder **c, int *len);
+void		free_mobius(t_mobius **l_tmp, t_mobius **l, int *len);
+void		free_torus(t_torus **c_tmp, t_torus **c, int *len);
+void		free_hyper(t_hyperboloid **c_tmp, t_hyperboloid **c, int *len);
+void		free_para(t_paraboloid **p_tmp, t_paraboloid **p, int *len);
+void		free_disk(t_disk **d_tmp, t_disk **d, int *len);
+void		free_cube(t_cube **d_tmp, t_cube **d, int *len);
+void		free_triangle(t_triangle **p_tmp, t_triangle **p, int *len);
+
 #endif

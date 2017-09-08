@@ -76,8 +76,8 @@ void			rt(t_world *world)
 	{
 		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
 			exit (0);
-		ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 	}
+	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));	
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
 		launch_cpu(world);

@@ -12,10 +12,10 @@
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../cuda/cudaheader/gpu_rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "../../../includes/rt.h"
+#include "../../cuda/cudaheader/gpu_rt.h"
+#include "../header/nuklear.h"
+#include "../header/gui.h"
 
 void			remove_sphere(t_sphere **s, t_intersection *i)
 {
@@ -28,7 +28,7 @@ void			remove_sphere(t_sphere **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -57,7 +57,7 @@ void			remove_cone(t_cone **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -86,7 +86,7 @@ void			remove_cylinder(t_cylinder **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -115,7 +115,7 @@ void			remove_plane(t_plane **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -144,7 +144,7 @@ void			remove_paraboloid(t_paraboloid **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;

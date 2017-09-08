@@ -15,7 +15,7 @@ void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *m
 	{
 		if (world->id_save == world->spheres[i].id)
 		{
-			o.id = world->spheres[i].id;
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->spheres[i].pos.x, "pos : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->spheres[i].pos.y, "pos : Y"))
@@ -64,6 +64,7 @@ void	cone_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->cones[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->cones[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cones[i].pos.y, "pos  : Y"))
@@ -120,6 +121,7 @@ void	cylinder_informations(t_world *world, struct nk_context *ctx, struct media 
 	{
 		if (world->id_save == world->cylinders[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->cylinders[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->cylinders[i].pos.y, "pos  : Y"))
@@ -177,6 +179,7 @@ void	plane_informations(t_world *world, struct nk_context *ctx, struct media *me
 	{
 		if (world->id_save == world->planes[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->planes[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->planes[i].pos.y, "pos  : Y"))
@@ -230,6 +233,7 @@ void	torus_informations(t_world *world, struct nk_context *ctx, struct media *me
 	{
 		if (world->id_save == world->torus[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->torus[i].pos.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->torus[i].pos.y, "pos  : Y"))

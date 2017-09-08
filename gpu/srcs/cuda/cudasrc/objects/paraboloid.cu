@@ -76,8 +76,9 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != 1)
 			{
 				intersection->t = intersection_tmp->t;
-				intersection->id = world.paraboloids[i].id;
-				intersection->type = 'a';
+				intersection->id = world.paraboloids[i].id;				
+				intersection->id_save = world.paraboloids[i].id;
+				intersection->type = 'b';
 				intersection->reflection_coef = world.paraboloids[i].reflection_coef;
 				intersection->refraction_coef = world.paraboloids[i].refraction_coef;
 				intersection->transparence_coef = world.paraboloids[i].transparence_coef;

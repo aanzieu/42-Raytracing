@@ -90,6 +90,7 @@ __host__ __device__ void   get_closest_triangle(t_world world, t_ray ray,
 				intersection->type = 't';
 				intersection->t = intersection_tmp->t;
 				intersection->id = world.triangles[i].id;
+				intersection->id_save = world.triangles[i].id;			
 				intersection->reflection_coef = world.triangles[i].reflection_coef;
 				intersection->reflection_coef = world.triangles[i].reflection_coef;
         intersection->transparence_coef = world.triangles[i].transparence_coef;

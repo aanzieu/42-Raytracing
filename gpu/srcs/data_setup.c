@@ -42,6 +42,7 @@ void			data_setup(t_world *world)
 	world->cubes = NULL;
 	world->cubes_len = 0;
 
+	world->redraw = 2;
 	world->id = 0;
 	world->animation_forward = 0;
 	world->recording = 0;

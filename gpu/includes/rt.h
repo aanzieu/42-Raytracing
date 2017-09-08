@@ -116,6 +116,7 @@ typedef struct		s_intersection
 	double	t;
 	char		type;
 	int			id;
+	int			id_save;
 	int			flag;
 	int			depth;
 }					t_intersection;
@@ -178,8 +179,8 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids;
 	t_torus			*torus;
 	t_mobius		*mobius;
-	t_triangle *triangles;
-	t_cube	*cubes;
+	t_triangle 		*triangles;
+	t_cube			*cubes;
 
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
@@ -191,8 +192,8 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids_tmp;
 	t_torus			*torus_tmp;
 	t_mobius		*mobius_tmp;
-	t_triangle *triangles_tmp;
-	t_cube *cubes_tmp;
+	t_triangle 		*triangles_tmp;
+	t_cube			*cubes_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -235,7 +236,7 @@ typedef struct		s_world
 	t_offsets		offsets;
 	t_ambient		ambient;
 	int				light_type;
-	double	intensity;
+	double			intensity;
 
 	int				id;
 	int				id_save;

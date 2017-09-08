@@ -50,6 +50,13 @@ void				load_paraboloids(t_paraboloid **paraboloids,
 	unsigned int	i;
 	t_paraboloid	*tmp;
 
+	if (*paraboloids != NULL)
+	{
+		free(*paraboloids);
+		*paraboloids = NULL;
+		*paraboloids_len = 0;
+	}
+
 	i = 0;
 	*paraboloids_len = count_paraboloids(paraboloids_tmp);
 	*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *

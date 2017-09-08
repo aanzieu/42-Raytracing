@@ -36,6 +36,12 @@ void			load_mobius(t_mobius **mobius, t_mobius *mobius_tmp, int *mobius_len)
 	unsigned int i;
 	t_mobius *tmp;
 
+	if (*mobius != NULL)
+	{
+		free(*mobius);
+		*mobius = NULL;
+		*mobius_len = 0;
+	}
 	i = 0;
 	*mobius_len = count_mobius(mobius_tmp);
 	*mobius = (t_mobius*)malloc(sizeof(t_mobius) * *mobius_len);

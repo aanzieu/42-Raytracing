@@ -81,6 +81,7 @@ __host__ __device__ void	get_closest_torus(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
 				intersection->id = world.torus[i].id;
+				intersection->id_save = world.torus[i].id;				
 				intersection->t = intersection_tmp->t;
 				intersection->type = 'o';
 				intersection->reflection_coef = world.torus[i].reflection_coef;

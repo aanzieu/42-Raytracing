@@ -47,14 +47,26 @@ void scroll_input(GLFWwindow *win, double _, double yoff)
 void    gui_calls(struct file_browser *browser, struct nk_context *ctx, struct media *media, t_world *world)
 {
 	(void)browser;
+
 	if (world->a_h != NULL)
 	{
 		render_demo(ctx, media, world->a_h, world);
+		// printf("rendre ok \n");
 		basic_demo(ctx, media, world);
+		// printf("basic ok \n");
+		
 		scene_parameters(ctx, media, world);
+		// printf("para ok \n");
+		
 		scene_topbar(ctx, media, world);
+		// printf("top ok \n");
+		
 		grid_demo(ctx, media, world);
+		// printf("grid ok \n");
+		
 		camera_control_bar(ctx, media, world);
+		// printf("camera ok \n");
+		
 		//file_browser_run(browser, ctx);
 	}
 	else

@@ -4,13 +4,13 @@
 <!ELEMENT ambient (color, intensity)>
 <!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT sphere (pos, radius, tra*, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT cylinder (pos, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT cylinder (pos, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT torus (pos, normal*, radius_small, radius_big, tra*, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT mobius (pos, radius, tra*, color, reflection*, transparence*)>
+<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT mobius (pos, radius, tra*, color, reflection*)>
 <!ELEMENT triangle (pos, normal, v1, v2, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT cube (min, max, normal*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 

@@ -29,10 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib
-GLEW = /usr/local/Cellar/glew/2.1.0/lib/libGLEW.a
-## GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
-## GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
+##GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
+##GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+ GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+ GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -109,9 +109,9 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh2.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh3.c \
-				$(SRC_DIR)/interface/remove_objects.c \
-				$(SRC_DIR)/interface/remove_objects2.c \
-				$(SRC_DIR)/interface/remove_objects3.c \
+				$(SRC_DIR)/interface/remove_objects/remove_objects.c \
+				$(SRC_DIR)/interface/remove_objects/remove_objects2.c \
+				$(SRC_DIR)/interface/remove_objects/remove_objects3.c \
 				$(SRC_DIR)/interface/device_init.c \
 				$(SRC_DIR)/interface/device_init_next.c \
 				$(SRC_DIR)/interface/load_media.c \
@@ -119,6 +119,9 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/file_browser.c \
 				$(SRC_DIR)/interface/topbar.c \
 				$(SRC_DIR)/interface/camera_controller.c \
+				$(SRC_DIR)/interface/free_objects/free_objects.c \
+				$(SRC_DIR)/interface/free_objects/free_objects_next.c \
+				$(SRC_DIR)/interface/free_objects/free_objects_next2.c \
 				\
 				$(SRC_DIR)/effects/effects_options.c \
 				$(SRC_DIR)/effects/effect_bayer.c \

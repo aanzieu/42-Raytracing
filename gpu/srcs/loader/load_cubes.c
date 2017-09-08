@@ -36,6 +36,12 @@ void                    load_cubes(t_cube **cubes,
 	unsigned int i;
 	t_cube *tmp;
 
+	if (*cubes != NULL)
+	{
+		free(*cubes);
+		*cubes = NULL;
+		*cubes_len = 0;
+	}
 	i = 0;
 	*cubes_len = count_cube(cubes_tmp);
 	*cubes = (t_cube *)malloc(sizeof(t_cube) * *cubes_len);

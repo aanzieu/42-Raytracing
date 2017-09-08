@@ -28,10 +28,25 @@ int	find_informations_object(t_world *world, struct nk_context *ctx, struct medi
 		sphere_informations(world, ctx, media);
 	else if(world->ob_save == 'x')
 		cone_informations(world, ctx, media);
-	else if(world->ob_save == 'c')
+	else if(world->ob_save == 'y')
 		cylinder_informations(world, ctx, media);
 	else if(world->ob_save == 'p')
 		plane_informations(world, ctx, media);
+	else if(world->ob_save == 'b')
+		paraboloid_informations(world, ctx, media);
+	else if(world->ob_save == 'h')
+		hyperboloid_informations(world, ctx, media);
+	else if(world->ob_save == 't')
+		triangle_informations(world, ctx, media);
+	else if(world->ob_save == 'd')
+		disk_informations(world, ctx, media);
+	else if(world->ob_save == 'm')
+		mobius_informations(world, ctx, media);
+	else if(world->ob_save == 'o')
+		torus_informations(world, ctx, media);
+	else if(world->ob_save == 'c')
+		cube_informations(world, ctx, media);
+
 	else
 		return(0);
 	return(1);

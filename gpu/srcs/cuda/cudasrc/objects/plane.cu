@@ -66,6 +66,7 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 			{
 				intersection->type = 'p';
 				intersection->id = world.planes[i].id;
+				intersection->id_save = world.planes[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->reflection_coef = world.planes[i].reflection_coef;
 				intersection->refraction_coef = world.planes[i].refraction_coef;

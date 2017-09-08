@@ -49,6 +49,13 @@ void						load_torus(t_torus **torus,
 	unsigned int	i;
 	t_torus			*tmp;
 
+
+	if (*torus != NULL)
+	{
+		free(*torus);
+		*torus = NULL;
+		*torus_len = 0;
+	}
 	i = 0;
 	*torus_len = count_torus(torus_tmp);
 	*torus = (t_torus*)malloc(sizeof(t_torus) * *torus_len);

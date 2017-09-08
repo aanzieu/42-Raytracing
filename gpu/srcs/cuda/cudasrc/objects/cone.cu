@@ -109,6 +109,7 @@ __host__ __device__ void			get_closest_cone(t_world world, t_ray ray,
 			{
 				intersection->type = 'x';
 				intersection->id = world.cones[i].id;
+				intersection->id_save = world.cones[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->reflection_coef = world.cones[i].reflection_coef;
 				intersection->refraction_coef = world.cones[i].refraction_coef;

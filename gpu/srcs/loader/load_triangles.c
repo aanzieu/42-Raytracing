@@ -37,6 +37,13 @@ void 					load_triangles(t_triangle **triangles,
 	unsigned int	i;
 	t_triangle		*tmp;
 
+	if (*triangles != NULL)
+	{
+		free(*triangles);
+		*triangles = NULL;
+		*triangles_len = 0;
+	}
+
 	i = 0;
 	*triangles_len = count_triangle(triangles_tmp);
 	*triangles = (t_triangle *)malloc(sizeof(t_triangle) * *triangles_len);

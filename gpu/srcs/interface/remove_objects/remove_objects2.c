@@ -1,9 +1,9 @@
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../cuda/cudaheader/gpu_rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "../../../includes/rt.h"
+#include "../../cuda/cudaheader/gpu_rt.h"
+#include "../header/nuklear.h"
+#include "../header/gui.h"
 
 void			remove_torus(t_torus **s, t_intersection *i)
 {
@@ -16,7 +16,7 @@ void			remove_torus(t_torus **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -45,7 +45,7 @@ void			remove_mobius(t_mobius **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -74,7 +74,7 @@ void			remove_disk(t_disk **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -103,7 +103,7 @@ void			remove_cube(t_cube **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;
@@ -132,7 +132,7 @@ void			remove_hyperboloid(t_hyperboloid **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;

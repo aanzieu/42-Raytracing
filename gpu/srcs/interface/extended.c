@@ -127,6 +127,7 @@ int interface_launch(t_world *world, char *argv)
 			if(world->keys.pad_0)
 				effect_application(world);
 			world->redraw = 0;
+			
 			// world->keys.pad_0 = 0;
 		}
 		gui_calls(&browser, &ctx, &media, world);
@@ -137,6 +138,7 @@ int interface_launch(t_world *world, char *argv)
 		glClear(GL_COLOR_BUFFER_BIT);
 		device_draw(&device, &ctx, &world->screen, NK_ANTI_ALIASING_ON);
 		glfwSwapBuffers(win);
+
 	}
 	glDeleteTextures(1,(const GLuint*)&media.unchecked.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.checked.handle.id);

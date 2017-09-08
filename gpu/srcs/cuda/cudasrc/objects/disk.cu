@@ -54,6 +54,7 @@ __host__ __device__ void	get_closest_disk(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t)
 			{
 				intersection->id = world.disks[i].id;
+				intersection->id_save = world.disks[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = 'd';
 				intersection->reflection_coef = world.disks[i].reflection_coef;

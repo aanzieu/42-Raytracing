@@ -1,9 +1,9 @@
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../cuda/cudaheader/gpu_rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "../../../includes/rt.h"
+#include "../../cuda/cudaheader/gpu_rt.h"
+#include "../header/nuklear.h"
+#include "../header/gui.h"
 
 
 void			remove_triangle(t_triangle **s, t_intersection *i)
@@ -17,7 +17,7 @@ void			remove_triangle(t_triangle **s, t_intersection *i)
 	last = NULL;
 	while (current)
 	{
-		if (current->id == i->id)
+		if (current->id == i->id_save)
 		{
 			if (current == *s)
 				*s = current->next;

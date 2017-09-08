@@ -15,6 +15,7 @@ void	hyperboloid_informations(t_world *world, struct nk_context *ctx, struct med
 	{
 		if (world->id_save == world->hyperboloids[i].id)
 		{
+      o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->hyperboloids[i].top.x, "pos  : X"))
 				world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->hyperboloids[i].top.y, "pos  : Y"))

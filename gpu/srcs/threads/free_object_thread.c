@@ -93,17 +93,17 @@ void		thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *le
 	load_cylinders(cy, *cy_tmp, len);
 }
 
-void		thread_free_light(t_light *l)
-{
-	t_light	*fst;
-	t_light	*tmp;
+// void		thread_free_light(t_light *l)
+// {
+// 	t_light	*fst;
+// 	t_light	*tmp;
 
-	fst = l;
-	while (fst != NULL)
-	{
-		tmp = fst->next;
-		free(fst);
-		fst = tmp;
-	}
-	l = NULL;
-}
+// 	fst = l;
+// 	while (fst != NULL)
+// 	{
+// 		tmp = fst->next;
+// 		free(fst);
+// 		fst = tmp;
+// 	}
+// 	l = NULL;
+// }
