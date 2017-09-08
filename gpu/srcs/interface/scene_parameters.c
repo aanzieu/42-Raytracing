@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parameters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/06 16:08:06 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/08 17:24:50 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,23 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Ambient"))
 		world->redraw = 1;
 
+	ui_header(ctx, media, "---- Loader ----");
+	if (world->load != 100) {
+		char *p = ft_itoa(world->load);
+		nk_text(ctx, p, 3, NK_TEXT_LEFT);
+		ft_strdel(&p);
+	}
+	static size_t cur = 0;
+	nk_size max = 100;
+	nk_progress(ctx, &cur, max, 1);
+	if (world->redraw == 1)
+		cur += 10;
+	else
+		cur = 0;
+	//printf("%zu %%\n", world->load);
+	//printf("TEST\n");
+
+
 	/*------------------------------------------------
 	 *                  COLOR TABLES
 	 *------------------------------------------------*/
@@ -248,9 +265,10 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	// 	nk_contextual_end(ctx);
 	// }
 
+
 	ui_header(ctx, media, "---- Camera ----");
 	nk_layout_row_static(ctx, 30, 30, 6);
-	
+
 	if (nk_button_image(ctx, media->prev))
 	{
 		move_left(world);

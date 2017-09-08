@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_controller.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/06 17:15:52 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/06 17:49:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/08 17:24:22 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 
 void camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world)
 {
-	nk_style_set_font(ctx, &media->font_22->handle);
-	if(nk_begin(ctx, "CAMERA BAR", nk_rect((world->screen.width / 2) - 150, world->screen.height - 52, 320, 52), NK_WINDOW_BORDER))
+	//nk_style_set_font(ctx, &media->font_22->handle);
+	if(nk_begin(ctx, "CAMERA BAR", nk_rect((world->screen.width / 2) - 150, world->screen.height - 52, 260, 52), NK_WINDOW_BORDER))
 	{
 		nk_layout_row_begin(ctx, NK_STATIC, 30, 7);
 		{
-			nk_layout_row_push(ctx, 80);
-			nk_label(ctx, "CAMERA", NK_TEXT_CENTERED);
-			//nk_image(ctx, media->play);
+			nk_layout_row_push(ctx, 30);
+			//nk_label(ctx, "CAMERA", NK_TEXT_CENTERED);
+			nk_image(ctx, media->rec);
 			nk_layout_row_push(ctx, 30);
 			if (nk_button_image(ctx, media->play))
 			{

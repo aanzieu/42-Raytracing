@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topbar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/06 17:01:56 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/08 14:59:56 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ void	press_launch(struct nk_context *ctx, t_world *world, int image_active[3])
 			world->redraw = 3;
 		}
 		else if (image_active[2] == 1)
-		{	
+		{
 			clear_world(world);
 			parse_rtv1(world, "testfiles/2.xml");
 			load_data(world);
@@ -197,12 +197,12 @@ void	press_launch(struct nk_context *ctx, t_world *world, int image_active[3])
 			world->redraw = 3;
 		}
 		else if (image_active[2] == 2)
-		{	
+		{
 			clear_world(world);
 			parse_rtv1(world, "testfiles/1.xml");
 			load_data(world);
 			rt(world);
-			world->redraw = 3;						
+			world->redraw = 3;
 		}
 		image_active[0] = 0;
 		image_active[1] = 0;
@@ -230,7 +230,7 @@ void	select_config(struct nk_context *ctx, struct media *media, t_world *world, 
 }
 
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int image_active[3])
-{	
+{
 	int i = 0;
 	/*------------------------------------------------
 	*                  SELECTED SCENE
@@ -270,8 +270,9 @@ void scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 	{
 		nk_layout_row_begin(ctx, NK_STATIC, 30, 5);
 		{
-			nk_layout_row_push(ctx, 60);
-			nk_label(ctx, "RT", NK_TEXT_CENTERED);
+			nk_layout_row_push(ctx, 40);
+			nk_image(ctx, media->rocket);
+			//nk_label(ctx, "RT", NK_TEXT_CENTERED);
 			file_open(ctx, media, world, image_active);
 			file_save(ctx, media, world);
 			file_edit(ctx, media, world);
@@ -279,7 +280,7 @@ void scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 		}
 		nk_layout_row_end(ctx);
 		select_scene(ctx, media, world, image_active);
-		
+
 	}
 	nk_end(ctx);
 }

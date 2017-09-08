@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_cpu_gpu.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:08:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/08 16:59:36 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,17 @@ int				launch_thread(t_world *world, int y_min, int y_max)
 		tab[i].y_max = y_max;
 		if (pthread_create(&world->thread[i], NULL, &perform_thread, &tab[i]))
 			ft_putendl_fd("Error : Can't init launch_rtv1", 1);
+		//printf("%d %%\n", (i * 100) / NB_TH);
 	}
+	//printf("100 %%\n");
 	i = -1;
-	while (++i < NB_TH)
+	world->load = 0;
+	while (++i < NB_TH) {
 		pthread_join(world->thread[i], NULL);
+		world->load = (i * 100) / NB_TH;
+		//printf("%zu %%\n", world->load);
+	}
+	world->load = 100;
 	return (0);
 }
 
@@ -83,7 +90,7 @@ void			launch_cpu(t_world *world)
 	//	move_forward(world);
 	//	move_forward(world);
 	//	move_forward(world);
-	//	move_forward(world);		
+	//	move_forward(world);
 		// put_pixel_screen(world);
 		// ft_bzero(world->a_h, world->size_main);
 		// SDL_UpdateWindowSurface(world->window.id);

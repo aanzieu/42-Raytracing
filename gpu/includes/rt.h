@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/29 17:08:05 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/08 16:53:59 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ typedef struct		s_world
 	t_vec2d			xy;
 	t_vec2d			pos_render;
 	int				redraw;
+	size_t			load;
 }					t_world;
 
 void				data_setup(t_world *world);

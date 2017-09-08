@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 17:27:30 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/08 17:23:36 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 	struct nk_vec2	pos;
 	// (void)a_h;
 
-	
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if(nk_begin(ctx, world->title, nk_rect((world->screen.width - WIN_WIDTH) / 2, (world->screen.height - WIN_HEIGHT) / 2, WIN_WIDTH - 50, WIN_HEIGHT + 50),
 			NK_WINDOW_MOVABLE|NK_WINDOW_NO_SCROLLBAR|NK_WINDOW_TITLE|NK_WINDOW_BACKGROUND))
@@ -94,13 +93,13 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 		mousepress_left(ctx, world, pos);
 		if((key_press(ctx, world)))
 			world->redraw = 1;
-	
+
 		nk_end(ctx);
 	}
 	if(world->redraw == 3)
 	{
 		nk_clear(ctx);
-		
+
 		world->redraw = 0;
 	}
 	// nk_end(ctx);
