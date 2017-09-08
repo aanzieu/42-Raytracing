@@ -250,11 +250,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 
 	ui_header(ctx, media, "---- Camera ----");
 	nk_layout_row_static(ctx, 30, 30, 6);
-	if (nk_button_image(ctx, media->play))
-	{
-		cam_rot(&world->camera, -90	, 'y');
-		world->redraw = 1;
-	}
+	
 	if (nk_button_image(ctx, media->prev))
 	{
 		move_left(world);
@@ -277,7 +273,22 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	}
 	if (nk_button_image(ctx, media->pause))
 	{
-		cam_rot(&world->camera, 90	, 'y');
+	//	translate(&world->camera.pos, -0.1, 0, 0);
+	//	translate(&world->camera.look_at, -0.1, 0, 0);
+	//	get_camera_axes(&world->camera);
+		vector_rot_z(&world->camera.right_v, &world->camera.up_v, deg_to_radians(-10));
+		world->camera.right_v = vector_normalize(world->camera.right_v);
+		world->camera.dir_v = vector_normalize(world->camera.dir_v);
+		world->camera.up_v = vector_normalize(world->camera.up_v);
+		world->redraw = 1;
+	}
+	if (nk_button_image(ctx, media->play))
+	{
+		vector_rot_z(&world->camera.right_v, &world->camera.up_v, deg_to_radians(10));
+		world->camera.right_v = vector_normalize(world->camera.right_v);
+		world->camera.dir_v = vector_normalize(world->camera.dir_v);
+		world->camera.up_v = vector_normalize(world->camera.up_v);
+		// get_camera_axes(&world->camera);
 		world->redraw = 1;
 	}
 

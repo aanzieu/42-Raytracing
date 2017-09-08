@@ -127,6 +127,7 @@ int interface_launch(t_world *world, char *argv)
 			if(world->keys.pad_0)
 				effect_application(world);
 			world->redraw = 0;
+			world->reload_buffer = 1;
 			
 			// world->keys.pad_0 = 0;
 		}

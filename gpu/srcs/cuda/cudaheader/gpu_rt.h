@@ -104,6 +104,13 @@ CUDA_HOSTDEV t_vec3d	vector_normalize(t_vec3d vect1);
 CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
 CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
 CUDA_HOSTDEV double		vector_magnitude(t_vec3d vect1);
+CUDA_HOSTDEV void		vector_rot_y(t_vec3d *z, t_vec3d *x, double angle);
+CUDA_HOSTDEV void		vector_rot_x(t_vec3d *y, t_vec3d *z, double angle);
+CUDA_HOSTDEV void		vector_rot_z(t_vec3d *x, t_vec3d *y, double angle);
+
+
+
+
 
 /*******************************************************************************
 **                     MATH_UTILS                                             **

@@ -66,15 +66,22 @@ struct nk_image screen_load(int *a_h, unsigned char *video_buffer)
 
 void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world)
 {
-	struct nk_image screen;
+	static struct nk_image screen;
 	struct nk_vec2	pos;
-	
+	// (void)a_h;
 
-	screen = screen_load(a_h, world->video_buffer);
+	
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if(nk_begin(ctx, world->title, nk_rect((world->screen.width - WIN_WIDTH) / 2, (world->screen.height - WIN_HEIGHT) / 2, WIN_WIDTH - 50, WIN_HEIGHT + 50),
 			NK_WINDOW_MOVABLE|NK_WINDOW_NO_SCROLLBAR|NK_WINDOW_TITLE|NK_WINDOW_BACKGROUND))
 	{
+		if((world->reload_buffer == 1 && world->redraw == 0) || world->redraw == 3)
+		{
+			// if((screen.handle.ptr) != NULL){
+			// 	screen.handle.ptr = NULL;}
+			screen = screen_load(a_h, world->video_buffer);
+			world->reload_buffer = 0;
+		}
 		pos = nk_window_get_position(ctx);
 		world->pos_render.x = pos.x;
 		world->pos_render.y = pos.y;

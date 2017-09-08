@@ -60,7 +60,7 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world)
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_sphere(&world->spheres, &world->spheres_tmp, &world->spheres_len, world->id);
-				rt(world);
+				world->redraw = 1;
 			}
 			if(nk_button_image(ctx, media->cone))
 			{

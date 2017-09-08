@@ -220,6 +220,7 @@ typedef struct		s_world
 	int				*a_h;
 	unsigned char	*video_buffer;
 	size_t			size_main;
+	int				reload_buffer;
 
 	t_camera		camera;
 	t_viewplane		viewplane;

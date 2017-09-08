@@ -36,7 +36,10 @@ void camera_control_bar(struct nk_context *ctx, struct media *media, t_world *wo
 			nk_layout_row_push(ctx, 30);
 			if (nk_button_image(ctx, media->play))
 			{
-				cam_rot(&world->camera, -90	, 'y');
+				vector_rot_z(&world->camera.right_v, &world->camera.up_v, deg_to_radians(10));
+				world->camera.right_v = vector_normalize(world->camera.right_v);
+				world->camera.dir_v = vector_normalize(world->camera.dir_v);
+				world->camera.up_v = vector_normalize(world->camera.up_v);
 				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 30);
@@ -66,7 +69,10 @@ void camera_control_bar(struct nk_context *ctx, struct media *media, t_world *wo
 			nk_layout_row_push(ctx, 30);
 			if (nk_button_image(ctx, media->pause))
 			{
-				cam_rot(&world->camera, 90	, 'y');
+				vector_rot_z(&world->camera.right_v, &world->camera.up_v, deg_to_radians(-10));
+				world->camera.right_v = vector_normalize(world->camera.right_v);
+				world->camera.dir_v = vector_normalize(world->camera.dir_v);
+				world->camera.up_v = vector_normalize(world->camera.up_v);
 				world->redraw = 1;
 			}
 		}
