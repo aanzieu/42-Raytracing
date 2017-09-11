@@ -28,10 +28,11 @@ __host__ __device__ void	get_ray_direction(t_world world, t_ray *ray,
 	t_vec3d dir_point;
 
 	dir_point = vector_substract(
-								vector_add(world.viewplane.up_left,
+								vector_add(world.viewplane_aa.up_left,
 									vector_scalar(world.camera.right_v,
-										world.viewplane.x_indent * x)),
-								vector_scalar(world.camera.up_v, world.viewplane.y_indent * y));
+										world.viewplane_aa.x_indent * x)),
+										vector_scalar(world.camera.up_v,
+											world.viewplane_aa.y_indent * y));
 	ray->dir_point = dir_point;
 	ray->dir = vector_calculate(world.camera.pos, dir_point);
 	ray->origin = world.camera.pos;
@@ -54,6 +55,17 @@ __host__ __device__ void	get_up_left(t_world *world)
 									vector_scalar(
 										world->camera.right_v,
 										world->viewplane.width / 2.0f));
+	world->viewplane_aa.up_left = vector_substract(
+								vector_add(
+									vector_add(
+										world->camera.pos,
+										world->camera.dir_v),
+									vector_scalar(
+										world->camera.up_v,
+										world->viewplane_aa.height / 2.0f)),
+								vector_scalar(
+									world->camera.right_v,
+									world->viewplane_aa.width / 2.0f));
 }
 
 __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
@@ -161,7 +173,7 @@ __host__ __device__ t_color		ray_tracer_depth(t_world world, t_ray ray,
 //		return (color_scalar((t_color){66, 173, 212}, 0.3f / (y + 0.0001f)));
 	if(world.keys.light_none == 1)
 		color = apply_materials(world, ray, intersection);
-	
+
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);
 	if(world.keys.light_none == 0)
@@ -178,22 +190,46 @@ __host__ __device__ t_color		ray_tracer_depth(t_world world, t_ray ray,
 			cartoon_effect(world, &color, world.lights[i], intersection, ray);
 		i++;
 	}
-	
+
 	return (color);
 }
-
+__host__ __device__ void 	new_intersection(t_intersection *intersection)
+{
+	intersection->t = DBL_MAX;
+	intersection->type = '0';
+	intersection->id = -1;
+	intersection->depth = 0;
+	intersection->color = (t_color){-1, -1, -1};
+	intersection->chess = (t_color){-1, -1, -1};
+	intersection->refraction_coef = 0;
+	intersection->reflection_coef = 0;
+	intersection->transparence_coef = 0;
+}
 __host__ __device__ int		ray_tracer(t_world world, int x, int y)
 {
 	t_ray      			ray;
-	t_color					color;
-	t_intersection	intersection;
+	t_color					color = (t_color){0, 0, 0};
+	t_intersection	intersection; //t_world->aa = 4;
+	int 						i = 0;
+	int							j = 0;
+	int							x_aa = 0;
+	int							y_aa = 0;
 
-	intersection.t = DBL_MAX;
-	intersection.type = '0';
-	intersection.id = -1;
-	intersection.depth = 0;
-	get_up_left(&world);
-	get_ray_direction(world, &ray, x, y);
-	color = ray_tracer_depth(world, ray, intersection);
+	while (i < world.aa)
+	{
+		j = 0;
+		y_aa = y + i;
+		while (j < world.aa)
+		{
+			x_aa = x + j;
+			new_intersection(&intersection);
+			get_up_left(&world);
+			get_ray_direction(world, &ray, x_aa, y_aa);
+			color = color_add(color, ray_tracer_depth(world, ray, intersection));
+			j++;
+		}
+		i++;
+	}
+	color = color_divide(color, world.aa * world.aa);
 	return (get_color(color));
 }

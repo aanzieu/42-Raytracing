@@ -50,6 +50,8 @@ void
 ui_widget_special_mode(struct nk_context *ctx, struct media *media, float height);
 int
 ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value, char *title);
+int
+ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *value, char *title);
 
 
 /* ===============================================================

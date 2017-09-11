@@ -77,6 +77,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
+				$(SRC_CUDA_DIR)/colors/colors2.cu
 
 
 SRC =			$(SRC_DIR)/main.c \

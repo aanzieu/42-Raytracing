@@ -21,11 +21,17 @@ void			get_viewplane(t_world *world)
 {
 	world->viewplane.x_res = (WIN_WIDTH) / world->render_factor;
 	world->viewplane.y_res = (WIN_HEIGHT) / world->render_factor;
+	world->viewplane_aa.x_res = world->win_width / world->render_factor;
+	world->viewplane_aa.y_res = world->win_height / world->render_factor;
 	world->viewplane.x_indent = world->viewplane.width /
 									(double)world->viewplane.x_res;
 	world->viewplane.y_indent = world->viewplane.height /
 									(double)world->viewplane.y_res;
-}
+	world->viewplane_aa.x_indent = world->viewplane_aa.width /
+									(double)world->viewplane_aa.x_res;
+	world->viewplane_aa.y_indent = world->viewplane_aa.height /
+									(double)world->viewplane_aa.y_res;
+																}
 
 void			load_data(t_world *world)
 {
@@ -77,7 +83,7 @@ void			rt(t_world *world)
 		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
 			exit (0);
 	}
-	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));	
+	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
 		launch_cpu(world);
@@ -90,7 +96,7 @@ int				main(int argc, char **argv)
 	int	flags;
 
 	(void)argc;
-	(void)argv;	
+	(void)argv;
 	flags = 0;
 	if (argc == 2)
 		choose_main_launcher(argv, 0);

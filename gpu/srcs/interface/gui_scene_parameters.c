@@ -144,7 +144,11 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		ui_header(ctx, media, "---- Ambient Light ----");
 		if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Intensity"))
 			world->redraw = 1;
-
+			if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
+			{
+				printf("aa: %d\n", world->aa);
+				world->redraw = 1;
+			}
 		/*------------------------------------------------
 		 *                  ADD OBJECT
 		 *------------------------------------------------*/

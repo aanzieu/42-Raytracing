@@ -123,12 +123,13 @@ int interface_launch(t_world *world, char *argv)
 		{
 			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 			printf("redraw %d\n", i++);
+			refresh_viewplane(world);
 			rt(world);
 			if(world->keys.pad_0)
 				effect_application(world);
 			world->redraw = 0;
 			world->reload_buffer = 1;
-			
+
 			// world->keys.pad_0 = 0;
 		}
 		gui_calls(&browser, &ctx, &media, world);

@@ -130,8 +130,8 @@ typedef struct		s_ray
 
 typedef struct		s_viewplane
 {
-	int				x_res;
-	int				y_res;
+	int					x_res;
+	int					y_res;
 	double			x_indent;
 	double			y_indent;
 	double			dist;
@@ -224,6 +224,7 @@ typedef struct		s_world
 
 	t_camera		camera;
 	t_viewplane		viewplane;
+	t_viewplane		viewplane_aa;
 
 	t_keys			keys;
 	int				mode;
@@ -248,8 +249,12 @@ typedef struct		s_world
 	int				redraw;
 	int				img_scene;
 	size_t			load;
+	int				aa;
+	int				win_width;
+	int				win_height;
 }					t_world;
 
+void 				refresh_viewplane(t_world *world);
 void				data_setup(t_world *world);
 void				load_data(t_world *world);
 void				get_viewplane(t_world *world);

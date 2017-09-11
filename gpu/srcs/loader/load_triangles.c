@@ -4,9 +4,10 @@
 void	init_triangle_add(t_triangle *t)
 {
 	t->id = 0;
-	t->pos = new_vector(0, 0 , 0);
-	t->v1 = new_vector(0, 1 , 1);
-	t->v2 = new_vector(1, 1 , 0);
+	t->up = new_vector(0, 0, 1);
+	t->pos = new_vector(0, 1.2, -2);
+	t->v1 = new_vector(-0.3, 1.5, -2);
+	t->v2 = new_vector(0.3, 1.5, -2);
 	t->color = (t_color)
 	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
 	t->chess = (t_color){-1, -1, -1};

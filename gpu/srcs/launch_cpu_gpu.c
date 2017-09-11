@@ -18,23 +18,28 @@
 static	void	*perform_thread(void *arg)
 {
 	t_thread_input	*thread;
-	int				x;
-	int				y;
+	int				x, x_aa;
+	int				y, y_aa;
 
 	thread = (t_thread_input *)arg;
 	y = ((thread->th) * ((thread->y_max - thread->y_min) / NB_TH) +
 															thread->y_min);
+	y_aa = ((thread->th) * ((thread->y_max * thread->world->aa - thread->y_min)
+															/ NB_TH) + thread->y_min);
 	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) /
 													NB_TH) + thread->y_min)
 	{
 		x = 0;
+		x_aa = 0;
 		while (x < thread->world->viewplane.x_res)
 		{
 			thread->world->a_h[(y - thread->y_min) *
 			thread->world->viewplane.x_res + x] =
-				ray_tracer(*thread->world, x, y);
+				ray_tracer(*thread->world, x_aa, y_aa);
+			x_aa += thread->world->aa;
 			x++;
 		}
+		y_aa += thread->world->aa;
 		y++;
 	}
 	pthread_exit(0);

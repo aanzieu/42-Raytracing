@@ -65,6 +65,7 @@ CUDA_HOSTDEV void		get_closest_cube(t_world world, t_ray ray,
 
 CUDA_HOSTDEV t_color		color_multiply(t_color c1, t_color c2);
 CUDA_HOSTDEV t_color		color_scalar(t_color c1, double coef);
+CUDA_HOSTDEV t_color		color_divide(t_color c1, int coef);
 CUDA_HOSTDEV t_color		color_add(t_color c1, t_color c2);
 CUDA_HOSTDEV t_color		new_color(double r, double g, double b);
 CUDA_HOSTDEV int				get_color(t_color color);
