@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 16:19:16 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/08 18:14:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world)
 		}
 	}
 	nk_end(ctx);
-	nk_style_set_font(ctx, &media->font_14->handle);
 }

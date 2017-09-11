@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/09/08 16:59:36 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/08 18:16:00 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				launch_thread(t_world *world, int y_min, int y_max)
 		world->load = (i * 100) / NB_TH;
 		//printf("%zu %%\n", world->load);
 	}
-	world->load = 100;
+	world->load = 30;
 	return (0);
 }
 
