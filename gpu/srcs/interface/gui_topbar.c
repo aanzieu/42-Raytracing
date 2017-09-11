@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   topbar.c                                           :+:      :+:    :+:   */
+/*   gui_topbar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/08 14:59:56 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/11 17:19:25 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	file_open(struct nk_context *ctx, struct media *media, t_world *world, int 
 			parse_rtv1(world, "testfiles/new.xml");
 			load_data(world);
 			rt(world);
+			world->img_scene = 0;
 			world->redraw = 3;
 		}
 		nk_menu_end(ctx);
@@ -179,29 +180,31 @@ void	press_launch(struct nk_context *ctx, t_world *world, int image_active[3])
 {
 	if (nk_button_label(ctx, "Launch"))
 	{
-		if (image_active[2] == 0)
+		if (image_active[2] == 1)
 		{
-			printf("0 - test\n");
 			clear_world(world);
 			parse_rtv1(world, "testfiles/1.xml");
 			load_data(world);
 			rt(world);
-			world->redraw = 3;
-		}
-		else if (image_active[2] == 1)
-		{
-			clear_world(world);
-			parse_rtv1(world, "testfiles/2.xml");
-			load_data(world);
-			rt(world);
+			world->img_scene = 1;
 			world->redraw = 3;
 		}
 		else if (image_active[2] == 2)
 		{
 			clear_world(world);
-			parse_rtv1(world, "testfiles/1.xml");
+			parse_rtv1(world, "testfiles/2.xml");
 			load_data(world);
 			rt(world);
+			world->img_scene = 2;
+			world->redraw = 3;
+		}
+		else if (image_active[2] == 3)
+		{
+			clear_world(world);
+			parse_rtv1(world, "testfiles/2.xml");
+			load_data(world);
+			rt(world);
+			world->img_scene = 3;
 			world->redraw = 3;
 		}
 		image_active[0] = 0;
@@ -241,7 +244,7 @@ void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, i
 			"Scene Popup", 0, nk_rect(60, 50, 320, 220)))
 		{
 			nk_layout_row_static(ctx, 82, 82, 3);
-			for (i = 0; i < 3; ++i)
+			for (i = 1; i < 4; ++i)
 			{
 				if (nk_button_image(ctx, media->images[i]))
 				{
@@ -272,7 +275,6 @@ void scene_topbar(struct nk_context *ctx, struct media *media, t_world *world)
 		{
 			nk_layout_row_push(ctx, 40);
 			nk_image(ctx, media->rocket);
-			//nk_label(ctx, "RT", NK_TEXT_CENTERED);
 			file_open(ctx, media, world, image_active);
 			file_save(ctx, media, world);
 			file_edit(ctx, media, world);

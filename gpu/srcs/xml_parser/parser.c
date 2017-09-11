@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:29:28 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/05 12:11:15 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/11 13:21:00 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		parse_file(t_world *world, const char *docname)
 		show_error("empty file");
 	}
 	title = xmlGetProp(cur, (const xmlChar *)"name");
-	world->title = ft_strjoin("RT - Scene : ", (char*)title);
+	world->title = ft_strjoin("Title : ", (char*)title);
 	xmlFree(title);
 	cur = cur->xmlChildrenNode;
 	while (cur != NULL)

@@ -15,6 +15,16 @@ void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *m
 	{
 		if (world->id_save == world->spheres[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->sphere);
+        nk_layout_row_push(ctx, 60);
+        nk_text(ctx, "SPHERE", ft_strlen("SPHERE"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
+      ui_widget_centered(ctx, media, 10);
       o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->spheres[i].pos.x, "pos : X"))
 				world->redraw = 1;
@@ -32,6 +42,8 @@ void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *m
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+
+      get_color_for_gui(&color, world->spheres[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->spheres[i].color.r = (double)color.r * s;
@@ -40,8 +52,9 @@ void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *m
           world->redraw = 1;
       }
 			refresh_sphere(world, i);
-			ui_widget_centered(ctx, media, 30);
-			if (nk_button_label(ctx, "Delete object"))
+      ui_widget_centered(ctx, media, 10);
+      ui_widget_centered(ctx, media, 30);
+			if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
 			{
 				remove_sphere(&world->spheres_tmp, &o);
 				load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
@@ -64,6 +77,16 @@ void	cone_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->cones[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->cone);
+        nk_layout_row_push(ctx, 60);
+        nk_text(ctx, "CONE", ft_strlen("CONE"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
+      ui_widget_centered(ctx, media, 10);
       o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->cones[i].pos.x, "pos  : X"))
 				world->redraw = 1;
@@ -89,6 +112,7 @@ void	cone_informations(t_world *world, struct nk_context *ctx, struct media *med
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->cones[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->cones[i].color.r = (double)color.r * s;

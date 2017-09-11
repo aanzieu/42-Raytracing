@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/08 17:31:42 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/11 17:17:39 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,17 @@ void    gui_calls(struct file_browser *browser, struct nk_context *ctx, struct m
 
 	if (world->a_h != NULL)
 	{
-		render_demo(ctx, media, world->a_h, world);
-		// printf("rendre ok \n");
-		basic_demo(ctx, media, world);
-		// printf("basic ok \n");
-
-		scene_parameters(ctx, media, world);
-		// printf("para ok \n");
-
 		scene_topbar(ctx, media, world);
-		// printf("top ok \n");
-
+		scene_parameters(ctx, media, world);
 		camera_control_bar(ctx, media, world);
-
-		grid_demo(ctx, media, world);
-		// printf("grid ok \n");
-
-		// printf("camera ok \n");
-
+		render_scene(ctx, media, world->a_h, world);
+		objects_param(ctx, media, world);
 		//file_browser_run(browser, ctx);
 	}
 	else
 	{
-		basic_demo(ctx, media, world);
-		//scene_parameters(ctx, media, world);
 		scene_topbar(ctx, media, world);
-		grid_demo(ctx, media, world);
+		objects_param(ctx, media, world);
 		//file_browser_run(browser, ctx);
 	}
 }

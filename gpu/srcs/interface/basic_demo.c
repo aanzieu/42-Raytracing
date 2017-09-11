@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_demo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:55:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/04 16:28:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/11 13:47:06 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world)
 	// int i = 0;
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "ADD OBJECTS", nk_rect(world->screen.width - 275, 600, 285, 250),
+	if (nk_begin(ctx, "ADD OBJECTS", nk_rect(0, 602, 250, 200),
 			NK_WINDOW_BORDER|NK_WINDOW_TITLE|NK_WINDOW_MINIMIZABLE))
 	{
 		nk_menubar_begin(ctx);

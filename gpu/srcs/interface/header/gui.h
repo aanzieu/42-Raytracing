@@ -79,12 +79,11 @@ int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 po
  *
  * ===============================================================*/
 
-void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world);
-void	grid_demo(struct nk_context *ctx, struct media *media, t_world *world);
+void	objects_param(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
 void 	camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world);
-void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
+void	render_scene(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
 
 int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);
 void file_browser_init(struct file_browser *browser, struct media *media);
@@ -145,6 +144,8 @@ void	refresh_hyperboloid(t_world *world, int i);
 void	hyperboloid_informations(t_world *world, struct nk_context *ctx, struct media *media);
 void	refresh_triangle(t_world *world, int i);
 void	triangle_informations(t_world *world, struct nk_context *ctx, struct media *media);
+
+void 	get_color_for_gui(struct nk_color *color, t_color o, double s);
 
 
 

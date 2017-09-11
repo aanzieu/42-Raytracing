@@ -141,19 +141,33 @@ int interface_launch(t_world *world, char *argv)
 		glfwSwapBuffers(win);
 
 	}
+	glDeleteTextures(1,(const GLuint*)&media.plane.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.sphere.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.cone.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.cylinder.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.disk.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.paraboloid.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.hyperboloid.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.moebius.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.cube.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.torus.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.triangle.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.cam.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.rec.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.rec_on.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_rot_left.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_rot_right.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_right.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_left.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_up.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.a_down.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.unchecked.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.checked.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.rocket.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.cloud.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.pen.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.play.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.pause.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.stop.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.next.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.prev.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.tools.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.dir.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.del.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.convert.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.icons.default_file.handle.id);
 
 	file_browser_free(&browser);
 	nk_font_atlas_clear(&atlas);

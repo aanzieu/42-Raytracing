@@ -4237,16 +4237,12 @@ struct media {
 	struct nk_image unchecked;
 	struct nk_image checked;
 	struct nk_image rocket;
-	struct nk_image cloud;
-	struct nk_image pen;
-	struct nk_image play;
-	struct nk_image pause;
-	struct nk_image stop;
-	struct nk_image prev;
-	struct nk_image next;
-    struct nk_image up;
-    struct nk_image down;
-	struct nk_image tools;
+	struct nk_image a_rot_left;
+	struct nk_image a_rot_right;
+	struct nk_image a_left;
+	struct nk_image a_right;
+    struct nk_image a_up;
+    struct nk_image a_down;
     struct nk_image dir;
     struct nk_image cone;
     struct nk_image sphere;
@@ -4259,12 +4255,11 @@ struct media {
     struct nk_image hyperboloid;
     struct nk_image paraboloid;
     struct nk_image triangle;
+    struct nk_image cam;
     struct nk_image rec;
     struct nk_image rec_on;
-	struct nk_image copy;
 	struct nk_image convert;
 	struct nk_image del;
-	struct nk_image edit;
 	struct nk_image images[9];
     struct nk_image menu[6];
 
@@ -16535,7 +16530,7 @@ NK_API void nk_style_default(struct nk_context *ctx){nk_style_from_table(ctx, 0)
     NK_COLOR(NK_COLOR_HEADER,               40, 40, 40, 255) \
     NK_COLOR(NK_COLOR_BORDER,               65, 65, 65, 255) \
     NK_COLOR(NK_COLOR_BUTTON,               50, 50, 50, 255) \
-    NK_COLOR(NK_COLOR_BUTTON_HOVER,         255, 255, 0, 255) \
+    NK_COLOR(NK_COLOR_BUTTON_HOVER,         255, 123, 0, 255) \
     NK_COLOR(NK_COLOR_BUTTON_ACTIVE,        35, 35, 35, 255) \
     NK_COLOR(NK_COLOR_TOGGLE,               100,100,100,255) \
     NK_COLOR(NK_COLOR_TOGGLE_HOVER,         120,120,120,255) \

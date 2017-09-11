@@ -259,29 +259,23 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	media->cube = icon_load("srcs/interface/icon/cube.png");
 	media->torus = icon_load("srcs/interface/icon/torus.png");
 	media->triangle = icon_load("srcs/interface/icon/triangle.png");
-
-	media->rec = icon_load("srcs/interface/icon/camera.png");
+	media->cam = icon_load("srcs/interface/icon/cam.png");
+    media->rec = icon_load("srcs/interface/icon/camera.png");
 	media->rec_on = icon_load("srcs/interface/icon/camera_on.png");
-
-    media->play = icon_load("srcs/interface/icon/rot_left.png");
-    media->pause = icon_load("srcs/interface/icon/rot_right.png");
-    media->next =  icon_load("srcs/interface/icon/right.png");
-    media->prev =  icon_load("srcs/interface/icon/left.png");
-    media->up =  icon_load("srcs/interface/icon/up.png");
-    media->down =  icon_load("srcs/interface/icon/down.png");
-
+    media->a_rot_left = icon_load("srcs/interface/icon/rot_left.png");
+    media->a_rot_right = icon_load("srcs/interface/icon/rot_right.png");
+    media->a_right = icon_load("srcs/interface/icon/right.png");
+    media->a_left = icon_load("srcs/interface/icon/left.png");
+    media->a_up = icon_load("srcs/interface/icon/up.png");
+    media->a_down = icon_load("srcs/interface/icon/down.png");
 	media->unchecked = icon_load("srcs/interface/icon/unchecked.png");
 	media->checked = icon_load("srcs/interface/icon/checked.png");
 	media->rocket = icon_load("srcs/interface/icon/rt.png");
-	media->cloud = icon_load("srcs/interface/icon/cloud.png");
-	media->pen = icon_load("srcs/interface/icon/pen.png");
-	media->stop = icon_load("srcs/interface/icon/stop.png");
-	media->tools = icon_load("srcs/interface/icon/tools.png");
-	media->dir = icon_load("srcs/interface/icon/directory.png");
-	media->copy = icon_load("srcs/interface/icon/copy.png");
-	media->convert = icon_load("srcs/interface/icon/export.png");
-	media->del = icon_load("srcs/interface/icon/delete.png");
-	media->edit = icon_load("srcs/interface/icon/edit.png");
+    media->del = icon_load("srcs/interface/icon/delete.png");
+    media->dir = icon_load("srcs/interface/icon/directory.png");
+    media->convert = icon_load("srcs/interface/icon/export.png");
+    media->icons.default_file = icon_load("srcs/interface/icon/default.png");
+
 	media->menu[0] = icon_load("srcs/interface/icon/plan.png");
 	media->menu[1] = icon_load("srcs/interface/icon/sphere.png");
 	media->menu[2] = icon_load("srcs/interface/icon/cone.png");
@@ -289,21 +283,12 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	media->menu[4] = icon_load("srcs/interface/icon/disk.png");
 	media->menu[5] = icon_load("srcs/interface/icon/volume.png");
 
-	media->icons.home = icon_load("srcs/interface/icon/home.png");
-    media->icons.directory = icon_load("srcs/interface/icon/directory.png");
-    media->icons.computer = icon_load("srcs/interface/icon/computer.png");
-    media->icons.desktop = icon_load("srcs/interface/icon/desktop.png");
-    media->icons.default_file = icon_load("srcs/interface/icon/default.png");
-    media->icons.text_file = icon_load("srcs/interface/icon/text.png");
-    media->icons.music_file = icon_load("srcs/interface/icon/music.png");
-    media->icons.font_file =  icon_load("srcs/interface/icon/font.png");
-    media->icons.img_file = icon_load("srcs/interface/icon/img.png");
-    media->icons.movie_file = icon_load("srcs/interface/icon/movie.png");
     media_init(media);
 
-    media->images[0] = icon_load("testfiles/1.png");
-    media->images[1] = icon_load("testfiles/2.png");
-    media->images[2] = icon_load("testfiles/3.png");
+    media->images[0] = icon_load("testfiles/0.png");
+    media->images[1] = icon_load("testfiles/1.png");
+    media->images[2] = icon_load("testfiles/2.png");
+    media->images[3] = icon_load("testfiles/3.png");
 
 	// int i;
 	// for (i = 0; i < 1; ++i)

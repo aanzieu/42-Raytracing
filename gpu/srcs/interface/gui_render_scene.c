@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_demo.c                                      :+:      :+:    :+:   */
+/*   gui_render_scene.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/08 18:19:48 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/11 17:18:44 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ struct nk_image screen_load(int *a_h, unsigned char *video_buffer)
 	return nk_image_id((int)tex);
 }
 
-void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world *world)
+void	render_scene(struct nk_context *ctx, struct media *media, int *a_h, t_world *world)
 {
 	static struct nk_image screen;
 	struct nk_vec2	pos;
@@ -94,14 +94,14 @@ void	render_demo(struct nk_context *ctx, struct media *media, int *a_h, t_world 
 		mousepress_left(ctx, world, pos);
 		if((key_press(ctx, world)))
 			world->redraw = 1;
-
-		nk_end(ctx);
 	}
+	
+
 	if(world->redraw == 3)
 	{
 		nk_clear(ctx);
-
 		world->redraw = 0;
 	}
-	// nk_end(ctx);
+
+	nk_end(ctx);
 }

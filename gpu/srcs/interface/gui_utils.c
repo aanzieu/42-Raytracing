@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 21:17:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/11 17:49:29 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,3 +188,9 @@ t_color	int_to_rgb(int color)
 	return (rgb_color);
 }
 
+void 	get_color_for_gui(struct nk_color *color, t_color o, double s)
+{
+	color->r = o.r / s;
+    color->g = o.g / s;
+    color->b = o.b / s;
+}
