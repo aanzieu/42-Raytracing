@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/11 15:32:43 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/12 13:55:46 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,9 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/gui_scene_parameters.c \
 				$(SRC_DIR)/interface/gui_render_scene.c \
 				$(SRC_DIR)/interface/gui_topbar.c \
+				$(SRC_DIR)/interface/gui_topbar2.c \
 				$(SRC_DIR)/interface/gui_cam_controller.c \
+				$(SRC_DIR)/interface/launch_scenes.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_left.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_middle.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
@@ -119,6 +121,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/load_media.c \
 				$(SRC_DIR)/interface/key_press.c \
 				$(SRC_DIR)/interface/file_browser.c \
+				$(SRC_DIR)/interface/free_objects/free_world.c \
 				$(SRC_DIR)/interface/free_objects/free_objects.c \
 				$(SRC_DIR)/interface/free_objects/free_objects_next.c \
 				$(SRC_DIR)/interface/free_objects/free_objects_next2.c \

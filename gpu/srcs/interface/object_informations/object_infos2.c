@@ -15,12 +15,21 @@ void	mobius_informations(t_world *world, struct nk_context *ctx, struct media *m
 	{
 		if (world->id_save == world->mobius[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->moebius);
+        nk_layout_row_push(ctx, 150);
+        nk_text(ctx, "MOBIUS", ft_strlen("MOBIUS"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
       o.id_save = world->id_save;
-			if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.x, "pos  : X"))
+			if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.x, "pos : X"))
 				world->redraw = 1;
-			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.y, "pos  : Y"))
+			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.y, "pos : Y"))
 				world->redraw = 1;
-			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.z, "pos  : Z"))
+			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].pos.z, "pos : Z"))
         world->redraw = 1;
 			else if (ui_widget_value_infos(ctx, media, &world->mobius[i].radius, "radius :"))
         world->redraw = 1;
@@ -32,6 +41,7 @@ void	mobius_informations(t_world *world, struct nk_context *ctx, struct media *m
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->mobius[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->mobius[i].color.r = (double)color.r * s;
@@ -40,8 +50,9 @@ void	mobius_informations(t_world *world, struct nk_context *ctx, struct media *m
           world->redraw = 1;
       }
 			refresh_mobius(world, i);
+      ui_widget_centered(ctx, media, 10);
       ui_widget_centered(ctx, media, 30);
-      if (nk_button_label(ctx, "Delete object"))
+      if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
       {
         remove_mobius(&world->mobius_tmp, &o);
         load_mobius(&world->mobius, world->mobius_tmp, &world->mobius_len);
@@ -64,6 +75,15 @@ void	disk_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->disks[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->disk);
+        nk_layout_row_push(ctx, 150);
+        nk_text(ctx, "DISK", ft_strlen("DISK"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
       o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->disks[i].pos.x, "pos  : X"))
 				world->redraw = 1;
@@ -87,6 +107,7 @@ void	disk_informations(t_world *world, struct nk_context *ctx, struct media *med
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->disks[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->disks[i].color.r = (double)color.r * s;
@@ -95,8 +116,9 @@ void	disk_informations(t_world *world, struct nk_context *ctx, struct media *med
           world->redraw = 1;
       }
 			refresh_disk(world, i);
+      ui_widget_centered(ctx, media, 10);
       ui_widget_centered(ctx, media, 30);
-      if (nk_button_label(ctx, "Delete object"))
+      if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
       {
         remove_disk(&world->disks_tmp, &o);
         load_disks(&world->disks, world->disks_tmp, &world->disks_len);
@@ -119,6 +141,15 @@ void	cube_informations(t_world *world, struct nk_context *ctx, struct media *med
 	{
 		if (world->id_save == world->cubes[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->cube);
+        nk_layout_row_push(ctx, 150);
+        nk_text(ctx, "CUBE", ft_strlen("CUBE"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
       o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->cubes[i].min.x, "min  : X"))
 				world->redraw = 1;
@@ -140,6 +171,7 @@ void	cube_informations(t_world *world, struct nk_context *ctx, struct media *med
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->cubes[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->cubes[i].color.r = (double)color.r * s;
@@ -148,8 +180,9 @@ void	cube_informations(t_world *world, struct nk_context *ctx, struct media *med
           world->redraw = 1;
       }
 			refresh_cube(world, i);
+      ui_widget_centered(ctx, media, 10);
       ui_widget_centered(ctx, media, 30);
-      if (nk_button_label(ctx, "Delete object"))
+      if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
       {
         remove_cube(&world->cubes_tmp, &o);
         load_cubes(&world->cubes, world->cubes_tmp, &world->cubes_len);
@@ -172,6 +205,15 @@ void	triangle_informations(t_world *world, struct nk_context *ctx, struct media 
 	{
 		if (world->id_save == world->triangles[i].id)
 		{
+      nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->triangle);
+        nk_layout_row_push(ctx, 150);
+        nk_text(ctx, "TRIANGLE", ft_strlen("TRIANGLE"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
       o.id_save = world->id_save;
 			if (ui_widget_value_infos(ctx, media, &world->triangles[i].pos.x, "pos  : X"))
 				world->redraw = 1;
@@ -205,6 +247,7 @@ void	triangle_informations(t_world *world, struct nk_context *ctx, struct media 
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->triangles[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->triangles[i].color.r = (double)color.r * s;
@@ -213,8 +256,9 @@ void	triangle_informations(t_world *world, struct nk_context *ctx, struct media 
           world->redraw = 1;
       }
 			refresh_triangle(world, i);
+      ui_widget_centered(ctx, media, 10);
       ui_widget_centered(ctx, media, 30);
-      if (nk_button_label(ctx, "Delete object"))
+      if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
       {
         remove_triangle(&world->triangles_tmp, &o);
         load_triangles(&world->triangles, world->triangles_tmp, &world->triangles_len);
@@ -235,6 +279,15 @@ void	paraboloid_informations(t_world *world, struct nk_context *ctx, struct medi
 
     while (i < world->paraboloids_len)
 	{
+    nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+      {
+        nk_layout_row_push(ctx, 60);
+        nk_image(ctx, media->paraboloid);
+        nk_layout_row_push(ctx, 150);
+        nk_text(ctx, "PARABOLOID", ft_strlen("PARABOLOID"), NK_TEXT_LEFT);
+      }
+      nk_layout_row_end(ctx);
+
     o.id_save = world->id_save;
 		if (world->id_save == world->paraboloids[i].id)
 		{
@@ -262,6 +315,7 @@ void	paraboloid_informations(t_world *world, struct nk_context *ctx, struct medi
         world->redraw = 1;
       ui_header(ctx, media, "---- Colors ----");
       nk_layout_row_dynamic(ctx, 125, 1);
+      get_color_for_gui(&color, world->paraboloids[i].color, s);
       if (nk_color_pick(ctx, &color, NK_RGB))
       {
           world->cubes[i].color.r = (double)color.r * s;
@@ -270,11 +324,12 @@ void	paraboloid_informations(t_world *world, struct nk_context *ctx, struct medi
           world->redraw = 1;
       }
 			refresh_paraboloid(world, i);
+      ui_widget_centered(ctx, media, 10);
       ui_widget_centered(ctx, media, 30);
-      if (nk_button_label(ctx, "Delete object"))
+      if (nk_button_image_label(ctx, media->del, "Delete object", NK_TEXT_CENTERED))
       {
-        remove_hyperboloid(&world->hyperboloids_tmp, &o);
-        load_hyperboloids(&world->hyperboloids, world->hyperboloids_tmp, &world->hyperboloids_len);
+        remove_paraboloid(&world->paraboloids_tmp, &o);
+        load_paraboloids(&world->paraboloids, world->paraboloids_tmp, &world->paraboloids_len);
         world->redraw = 1;
       }
 			break;

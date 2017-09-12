@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   remove_objects3.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/09/12 15:25:47 by xpouzenc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
 #include "../../../includes/rt.h"
@@ -5,8 +17,7 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-
-void			remove_triangle(t_triangle **s, t_intersection *i)
+void	remove_triangle(t_triangle **s, t_intersection *i)
 {
 	t_triangle	*current;
 	t_triangle	*last;

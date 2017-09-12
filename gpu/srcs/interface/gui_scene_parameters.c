@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/11 17:40:17 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/12 11:28:20 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 	static int hd = 1;
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "Scene parameters", nk_rect(0,52,250,650),
+	if (nk_begin(ctx, "Scene parameters", nk_rect(0,52,250,world->screen.height - 52),
 			NK_WINDOW_BORDER|NK_WINDOW_TITLE))
 	{
 		/*------------------------------------------------
@@ -144,11 +144,9 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		ui_header(ctx, media, "---- Ambient Light ----");
 		if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Intensity"))
 			world->redraw = 1;
-			if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
-			{
-				printf("aa: %d\n", world->aa);
-				world->redraw = 1;
-			}
+		if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
+			world->redraw = 1;
+
 		/*------------------------------------------------
 		 *                  ADD OBJECT
 		 *------------------------------------------------*/

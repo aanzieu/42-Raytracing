@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="Cool gallery">
+<scene name="gallery">
   <plane>
     <origin x="0" y="0.750000" z="1.000000"/>
     <normal x="0" y="0" z="1.000000"/>

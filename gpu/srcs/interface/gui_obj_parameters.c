@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/11 16:21:40 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/12 16:12:51 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "header/nuklear.h"
 #include "header/gui.h"
 
-int	find_informations_object(t_world *world, struct nk_context *ctx, struct media *media)
+int		find_informations_object(t_world *world, struct nk_context *ctx, struct media *media)
 {
 	if(world->ob_save == 's')
 		sphere_informations(world, ctx, media);
@@ -57,7 +57,7 @@ void	objects_param(struct nk_context *ctx, struct media *media, t_world *world)
 	//int i;
 
 	nk_style_set_font(ctx, &media->font_20->handle);
-	if (nk_begin(ctx, "Object parameters", nk_rect(world->screen.width - 275, 52, 275, world->screen.height),
+	if (nk_begin(ctx, "Object parameters", nk_rect(world->screen.width - 250, 52, 250, world->screen.height - 52),
 				NK_WINDOW_TITLE|NK_WINDOW_BORDER))
 	{
 		ui_header(ctx, media, "---- Selected Object ----");

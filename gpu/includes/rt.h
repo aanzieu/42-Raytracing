@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/11 13:18:15 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/12 12:04:33 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define VERSION 1.03.3
 
-# define WIN_WIDTH 720
-# define WIN_HEIGHT 576
+# define WIN_WIDTH 896
+# define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
 #define MAX_DEPTH 3

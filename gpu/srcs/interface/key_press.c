@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_press.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/12 16:14:19 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/09/12 17:01:29 by xpouzenc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
@@ -15,8 +25,5 @@ int	key_press(struct nk_context *ctx, t_world *world)
 		world->keys.light_none = 0;
 	else
 		return (0);
-	return(1);
-	// rt(world);
-	
-	
+	return (1);
 }
