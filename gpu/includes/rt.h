@@ -35,6 +35,7 @@
 #define MAX_DEPTH 3
 #define CHESS_PATTERN 2
 #define BACKGROUND_COLOR 0x42ADD4
+
 typedef struct		s_screen
 {
 	int	width;
@@ -49,6 +50,8 @@ typedef struct		s_offsets
 	int				y_min;
 	int				y_max;
 	int				render_factor;
+	int				aa;
+	//float			ambient;
 }					t_offsets;
 
 typedef struct		s_window
@@ -252,6 +255,7 @@ typedef struct		s_world
 	int				aa;
 	int				win_width;
 	int				win_height;
+	int				mode_cluster;
 }					t_world;
 
 void 				refresh_viewplane(t_world *world);
@@ -324,6 +328,8 @@ void				client_config(t_world *world, char *argv);
 void		show_error(const char *str);
 void		show_error_2(const char *s1, const char *s2);
 
+void				int_to_int(int *src, int *dst, int width, int height);
 void	effect_application(t_world *world);
+void	clear_world(t_world *world);
 
 #endif

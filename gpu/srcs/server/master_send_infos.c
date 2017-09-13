@@ -17,13 +17,32 @@ static void		receive_status(t_client *clients, char ok)
 	if (ok == 'c')
 		clients->status |= SEND_CAMERA;
 	if (ok == 's')
+	
 		clients->status |= SEND_SPHERES;
 	if (ok == 'p')
 		clients->status |= SEND_PLANS;
-	if (ok == 'n')
-		clients->status |= SEND_CONES;
+	// if (ok == 'y')
+	// 	clients->status |= SEND_CONES;
 	if (ok == 'l')
 		clients->status |= SEND_LIGHTS;
+	// if (ok == 'y')
+	// 	clients->status |= SEND_CYLINDERS;
+	if (ok == 'z')
+		clients->status |= SEND_AMBIANT;
+	if (ok == 'k')
+		clients->status |= SEND_KEYS;
+	// if (ok == 'h')
+	// 	clients->status |= SEND_HYPERBOLOID;
+	// if (ok == 'o')
+	// 	clients->status |= SEND_TORUS;
+	// if (ok == 'm')
+	// 	clients->status |= SEND_MOBIUS;
+	// if (ok == 't')
+	// 	clients->status |= SEND_TRIANGLE;
+	// if (ok == 'u')
+	// 	clients->status |= SEND_CUBE;
+	// if (ok == 'd')
+	// 	clients->status |= SEND_DISK;
 }
 
 int				send_informations(t_client *clients,

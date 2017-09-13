@@ -28,19 +28,31 @@
 # define SEND_SPHERES 0
 # define SEND_PLANS 0
 # define SEND_CONES 0
-# define SEND_CYLINDERS 4
-# define SEND_DISK 4
-# define SEND_HYPERBOLOID 4
-# define SEND_PARABOLOID 4
+# define SEND_CYLINDERS 0
+# define SEND_DISK 0
+# define SEND_HYPERBOLOID 0
+# define SEND_PARABOLOID 0
+# define SEND_TORUS 0
+# define SEND_MOEBIUS 0
+# define SEND_CUBE 0
+# define SEND_TRIANGLE 0
+# define SEND_AMBIANT 0
+# define SEND_KEYS 0
 
 # define SPHERES 's'
 # define LIGHTS 'l'
 # define PLANS 'p'
-# define CONES 'n'
+# define CONES 'x'
 # define CYLINDERS 'y'
 # define DISK 'd'
 # define HYPERBOLOID 'h'
 # define PARABOLOID 'b'
+# define TORUS 'o'
+# define MOEBIUS 'm'
+# define TRIANGLE 't'
+# define CUBE 'u'
+# define AMBIANT 'z'
+# define KEYS 'k'
 
 typedef struct			s_data
 {
@@ -83,6 +95,7 @@ typedef struct			s_cluster
 ********************************************************************************
 */
 
+
 void					rt_cluster(t_world *world);
 int						serveur_address_serveur(char *ip, t_world *world);
 int						data_recv(t_data *data, size_t size);
@@ -97,6 +110,12 @@ void					free_obj(t_world *world, char cmd);
 **                     MASTER CLUSTERING                                      **
 ********************************************************************************
 */
+
+void			render_clustering(t_world *world, t_cluster *cluster);
+void			put_buffer_together(t_cluster *cluster, t_client *clients,
+		int x, int y);
+void			cluster_initialize(t_world *world, t_cluster *cluster);
+void			*init_client(void *arg);
 
 int						send_informations_all(t_cluster *cluster,
 						char cmd, void *arg, size_t arg_size);

@@ -102,10 +102,10 @@ int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
 			world->ob_save = intersection.type;			
 			world->keys.select = 1;
 			if(move_object(world, ctx, &padding, &intersection))
-				printf("%d id \n", world->id_save);
+				return(1);
 			printf("%d id world \n", world->id_save);
 			printf("%d id inter \n", intersection.id_save);
-			world->redraw = 1;
+			return(1);//world->redraw = 1;
 				
 		}
 	}

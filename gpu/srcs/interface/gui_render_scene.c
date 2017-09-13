@@ -69,7 +69,8 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 {
 	static struct nk_image	screen;
 	struct nk_vec2			pos;
-	// (void)a_h;
+	(void)a_h;
+
 
 	if (nk_begin(ctx, world->title,\
 		nk_rect((world->screen.width - (WIN_WIDTH + 15)) / 2,\
@@ -80,9 +81,8 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 	{
 		if ((world->reload_buffer == 1 && world->redraw == 0) || world->redraw == 3)
 		{
-			// if((screen.handle.ptr) != NULL){
-			// 	screen.handle.ptr = NULL;}
-			screen = screen_load(a_h, world->video_buffer);
+			printf("je REDRAW le SCREEN\n");
+			screen = screen_load(world->a_h, world->video_buffer);
 			world->reload_buffer = 0;
 		}
 		pos = nk_window_get_position(ctx);
@@ -90,9 +90,7 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 		world->pos_render.y = pos.y;
 		ui_widget_render(ctx, media, WIN_HEIGHT);
 		nk_image(ctx, screen);
-		mousepress_middle(ctx, world, pos);
-		mousepress_left(ctx, world, pos);
-		if ((key_press(ctx, world)))
+		if(mousepress_middle(ctx, world, pos) || mousepress_left(ctx, world, pos) || (key_press(ctx, world)))
 			world->redraw = 1;
 	}
 	if (world->redraw == 3)

@@ -19,7 +19,7 @@
  ** Initialize Cluster to find if some Client is open
 */
 
-static void			*init_client(void *arg)
+void			*init_client(void *arg)
 {
 	t_client	*new;
 	t_cluster	*self;
@@ -44,7 +44,7 @@ static void			*init_client(void *arg)
 	return (NULL);
 }
 
-static void			cluster_initialize(t_world *world, t_cluster *cluster)
+void			cluster_initialize(t_world *world, t_cluster *cluster)
 {
 	int					ret;
 	int					port_offs;
@@ -73,7 +73,7 @@ static void			cluster_initialize(t_world *world, t_cluster *cluster)
 	pthread_create(&cluster->client_thread, NULL, &init_client, cluster);
 }
 
-static void			put_buffer_together(t_cluster *cluster, t_client *clients,
+void			put_buffer_together(t_cluster *cluster, t_client *clients,
 		int x, int y)
 {
 	int	nbr_clients;
@@ -107,37 +107,70 @@ static void			put_buffer_together(t_cluster *cluster, t_client *clients,
 **	Render Clustering
 */
 
-static void			render_clustering(t_world *world, t_cluster *cluster)
+void			cluster_to_world(t_cluster *cluster, t_world *world, int x, int y)
 {
-	int			quit;
-	SDL_Event	event;
-	int			tmp;
-
-	quit = 0;
-	while (quit == 0)
+	while (y < world->viewplane.y_res)
 	{
-		SDL_PollEvent(&event);
-		quit = event_handler(world, event);
+		x = 0;
+		while(x < world->viewplane.x_res)
+		{
+			world->a_h[y * world->viewplane.x_res + x] = cluster->world->a_h[y * world->viewplane.x_res + x];
+			//printf("%d couleur pix world->a_h\n", world->a_h[y * world->viewplane.x_res + x]);
+			x++;
+		}
+		y++;
+	}
+}
+
+
+void			render_clustering(t_world *world, t_cluster *cluster)
+{
+	// int			quit;
+	// SDL_Event	event;
+	int			tmp;
+	(void)world;
+	// quit = 0;
+	//  while(1)
+	//  {
+		cluster->world->size_main =
+		world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+		if(cluster->world->a_h == NULL)
+		{
+			if (!(cluster->world->a_h = ft_memalloc(cluster->world->size_main)))
+				ft_putendl_fd("Error : Can't malloc cluster", 1);
+		}
+		// SDL_PollEvent(&event);
+		// quit = event_handler(world, event);
 		ft_bzero(cluster->world->a_h, cluster->world->size_main);		
 		if (cluster_stratege(cluster) == 1)
 		{
-			if (world->animation_forward == 1 && cluster->nbr_clients > 0)			
-				move_forward(world);
+			// if (world->animation_forward == 1 && cluster->nbr_clients > 0)			
+			// 	move_forward(world);
 			launch_client(cluster, cluster->client_list);
 		}
 		tmp = cluster->nbr_clients;
 		remove_client_if(cluster, &cluster->client_list, NULL, NULL);		
 		if (cluster->nbr_clients == tmp)
 		{
+			// printf("print ambiant %f\n", world->ambient.intensity);
+			//printf("nbr de client = %d\n", cluster->nbr_clients);
 			put_buffer_together(cluster, cluster->client_list, 0, 0);
-			if (world->recording == 1 && cluster->nbr_clients > 0)
-				savebmp(world);					
-		}	
-		put_pixel_screen(cluster->world);
-		ft_bzero(cluster->world->a_h, cluster->world->size_main);
+			//printf("%d couleur cluster->a_h\n", cluster->world->a_h[600]);
+			//cluster_to_world(cluster, world, 0, 0);
+			// printf("%d couleur pix world->a_h\n", world->a_h[600]);
+			// if(cluster->nbr_clients  0)
+				// break;
+			// 	savebmp(world);					
+		}
+		// if (world->a_h != NULL)
+		// 	break;
+	// }
+		// int_to_int(cluster->world->a_h, world->a_h, WIN_WIDTH, WIN_HEIGHT);
+		// put_pixel_screen(cluster->world);
+		//ft_bzero(cluster->world->a_h, cluster->world->size_main);
 		free_buffer(cluster);
-		SDL_UpdateWindowSurface(cluster->world->window.id);
-	}
+		// SDL_UpdateWindowSurface(cluster->world->window.id);
+	//  }
 }
 
 /*
@@ -146,20 +179,20 @@ static void			render_clustering(t_world *world, t_cluster *cluster)
 
 void				master_cluster(t_world *world)
 {
-	t_cluster	cluster;
-
-	if (SDL_Init(SDL_INIT_VIDEO) == -1)
-		return ;
-	world->window.id =
-		SDL_CreateWindow("RT v3.0.0", 100, 100, WIN_WIDTH, WIN_HEIGHT, 0);
-	world->window.screen = SDL_GetWindowSurface(world->window.id);
-	cluster_initialize(world, &cluster);
-	cluster.world->size_main =
-		world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
-	if (!(cluster.world->a_h = malloc(cluster.world->size_main)))
-		ft_putendl_fd("Error : Can't malloc cluster", 1);
-	ft_bzero(cluster.world->a_h, cluster.world->size_main);
-	render_clustering(world, &cluster);
-	SDL_FreeSurface(world->window.screen);
-	SDL_DestroyWindow(world->window.id);
+	// t_cluster	cluster;
+	(void)world;
+	// // if (SDL_Init(SDL_INIT_VIDEO) == -1)
+	// // 	return ;
+	// // world->window.id =
+	// // 	SDL_CreateWindow("RT v3.0.0", 100, 100, WIN_WIDTH, WIN_HEIGHT, 0);
+	// // world->window.screen = SDL_GetWindowSurface(world->window.id);
+	// cluster_initialize(world, &cluster);
+	// cluster.world->size_main =
+	// 	world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+	// if (!(cluster.world->a_h = malloc(cluster.world->size_main)))
+	// 	ft_putendl_fd("Error : Can't malloc cluster", 1);
+	// ft_bzero(cluster.world->a_h, cluster.world->size_main);
+	// render_clustering(world, &cluster);
+	// SDL_FreeSurface(world->window.screen);
+	// SDL_DestroyWindow(world->window.id);
 }

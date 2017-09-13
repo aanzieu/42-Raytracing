@@ -100,6 +100,7 @@ void		scene_topbar(struct nk_context *ctx, struct media *media,\
 	//nk_style_set_font(ctx, &media->font_22->handle);
 	if (nk_begin(ctx, "TOPBAR", nk_rect(0, 0, world->screen.width, 52),\
 		NK_WINDOW_BORDER))
+
 	{
 		nk_layout_row_begin(ctx, NK_STATIC, 30, 5);
 		{

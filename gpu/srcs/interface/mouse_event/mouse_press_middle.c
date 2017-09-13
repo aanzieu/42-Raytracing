@@ -15,7 +15,7 @@ int     remove_object_3(t_world *world, t_intersection *i)
 		  &world->hyperboloids_len);
 		  return(1);
   	}
- 	else if (i->type == 'a')
+ 	if (i->type == 'a')
  	{
   		remove_paraboloid(&world->paraboloids_tmp, i);
   		load_paraboloids(&world->paraboloids, world->paraboloids_tmp,
@@ -30,24 +30,24 @@ int			remove_object_2(t_world *world, t_intersection *i)
 	if (i->type == 'o')
   	{
   		remove_torus(&world->torus_tmp, i);
-		  load_torus(&world->torus, world->torus_tmp, &world->torus_len);
-		  return(1);
+		 load_torus(&world->torus, world->torus_tmp, &world->torus_len);
+		 return(1);
   	}
- 	else if (i->type == 'm')
+ 	if (i->type == 'm')
   	{
   		remove_mobius(&world->mobius_tmp, i);
 		  load_mobius(&world->mobius, world->mobius_tmp, &world->mobius_len);
 		  return(1);
   	}
- 	else if (i->type == 'd')
+ 	if (i->type == 'd')
   	{
   		remove_disk(&world->disks_tmp, i);
 		  load_disks(&world->disks, world->disks_tmp, &world->disks_len);
 		  return(1);
   	}
- 	else if (i->type == 'c')
+ 	if (i->type == 'c')
  	{
-  		remove_cube(&world->cubes_tmp, i);
+  		  remove_cube(&world->cubes_tmp, i);
 		  load_cubes(&world->cubes, world->cubes_tmp, &world->cubes_len);
 		  return(1);
   	}
@@ -56,37 +56,36 @@ int			remove_object_2(t_world *world, t_intersection *i)
 
 int			remove_object(t_world *world, t_intersection *i)
 {
-    if (i->type != '0')
-    {
-		printf("%c type\n", i->type);
+    //if (i->type != '0')
+    //{
 	    if (i->type == 's')
 	    {
 	    	remove_sphere(&world->spheres_tmp, i);
 			load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
 			return(1);
       	}
-    	else if (i->type == 'x')
+    	if (i->type == 'x')
       	{
 	    	remove_cone(&world->cones_tmp, i);
 			load_cones(&world->cones, world->cones_tmp, &world->cones_len);
 			return(1);
       	}
-     	else if (i->type == 'y')
+     	if (i->type == 'y')
 	    {
 		    remove_cylinder(&world->cylinders_tmp, i);
     		load_cylinders(&world->cylinders, world->cylinders_tmp,
 			&world->cylinders_len);
 			return(1);
      	}
-     	else if (i->type == 'p')
+     	if (i->type == 'p')
       	{
       		remove_plane(&world->planes_tmp, i);
 			load_planes(&world->planes, world->planes_tmp, &world->planes_len);
 			return(1);  
       	}
       	return(remove_object_2(world, i));
-    }
-	return (0);
+    //}
+	//return (0);
 }
 
 int		mousepress_middle(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
@@ -111,8 +110,8 @@ int		mousepress_middle(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 		{
 			if(remove_object(world, &intersection) == 1)
 			{
-				printf("redraw\n");
-				world->redraw = 1;
+				return(1);//world->redraw = 1;
+				
 			}
 		}
 	}

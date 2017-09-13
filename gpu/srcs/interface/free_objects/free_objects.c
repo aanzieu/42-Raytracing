@@ -111,3 +111,4 @@ void	free_light(t_light **l_tmp, t_light **l, int *len)
 	*len = 0;
 	*l = NULL;
 }
+

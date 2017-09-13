@@ -24,6 +24,7 @@ static unsigned int	count_lights(t_light *lights)
 		size++;
 		p = p->next;
 	}
+	printf("LIght len SIZE = %d\n", size);
 	return (size);
 }
 
@@ -40,7 +41,11 @@ void				load_lights(t_light **lights, t_light *lights_tmp,
 		*lights_len = 0;
 	}
 	i = 0;
-	*lights_len = count_lights(lights_tmp);
+	if((*lights_len = count_lights(lights_tmp)) == 0)
+	{
+		printf("PAS DE LIGHTS\n");
+		return;
+	}
 	*lights = (t_light*)malloc(sizeof(t_light) * *lights_len);
 	tmp = lights_tmp;
 	while (tmp)

@@ -21,11 +21,11 @@
 static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 						t_world *world)
 {
-	static int toggle[2];
+	static int toggle[2] = {1, 0};
 
 	(void)world;
-	toggle[0] = 1;
-	toggle[1] = 0;
+	// toggle[0] = 1;
+	// toggle[1] = 0;
 	ui_header(ctx, media, "---- Choose Local/Cluster ----");
 	ui_widget_small_button(ctx, media, 30);
 	if (nk_button_image_label(ctx, (toggle[0])
@@ -33,13 +33,14 @@ static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 	{
 		toggle[0] = !toggle[0];
 		toggle[1] = !toggle[1];
-		//rajouter mode Local
+		world->mode_cluster = 0;
 	}
 	if (nk_button_image_label(ctx, (toggle[1])
 	? media->checked : media->unchecked, "Cluster", NK_TEXT_LEFT))
 	{
 		toggle[1] = !toggle[1];
 		toggle[0] = !toggle[0];
+		world->mode_cluster = 1;
 		//rajouter mode Cluster
 	}
 }
@@ -47,10 +48,10 @@ static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 static void	select_gpu_cpu(struct nk_context *ctx, struct media *media,\
 						t_world *world)
 {
-	static int toggle[2];
+	static int toggle[2] = {1, 0};
 
-	toggle[0] = 1;
-	toggle[1] = 0;
+	// toggle[0] = 1;
+	// toggle[1] = 0;
 	ui_header(ctx, media, "---- Choose CPU/GPU ----");
 	ui_widget_small_button(ctx, media, 30);
 	if (nk_button_image_label(ctx, (toggle[0])

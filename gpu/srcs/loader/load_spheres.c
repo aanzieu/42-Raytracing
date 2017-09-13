@@ -39,6 +39,7 @@ static unsigned int			count_spheres(t_sphere *spheres)
 		size++;
 		s = s->next;
 	}
+	printf("spheres len SIZE = %d\n", size);
 	return (size);
 }
 
@@ -48,15 +49,20 @@ void						load_spheres(t_sphere **spheres,
 	unsigned int	i;
 	t_sphere		*tmp;
 
-	if (*spheres != NULL)
+	if (*spheres_len != 0)
 	{
 		free(*spheres);
 		*spheres = NULL;
 		*spheres_len = 0;
 	}
 	i = 0;
-	*spheres_len = count_spheres(spheres_tmp);
-	*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len);
+	if((*spheres_len = count_spheres(spheres_tmp)) == 0)
+	{
+		printf("PAS DE SPHERES\n");
+		return;
+	}
+	if(!(*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len)))
+		show_error("Don't Malloc\n");
 	tmp = spheres_tmp;
 	while (tmp)
 	{

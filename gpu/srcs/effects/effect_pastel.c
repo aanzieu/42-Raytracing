@@ -27,6 +27,7 @@ void				int_to_int(int *src, int *dst, int width, int height)
 		j = 0;
 		while (j < width)
 		{
+			// printf("couleur de src = %d\n", src[i * width + j]);
 			dst[i * width + j] = src[i * width + j];
 			j++;
 		}

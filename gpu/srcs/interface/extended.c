@@ -8,6 +8,7 @@
 #define NK_INCLUDE_DEFAULT_FONT
 #include "header/interface.h"
 #include "header/gui.h"
+#include "cluster.h"
 
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx)
 {
@@ -57,6 +58,12 @@ int interface_launch(t_world *world, char *argv)
 	(void)argv;
 	static GLFWwindow *win;
 
+	t_cluster	cluster;
+
+	cluster_initialize(world, &cluster);
+	printf("test init cluster\n");
+		// ft_bzero(cluster.world->a_h, cluster.world->size_main);
+
 	/* GUI */
 	struct device device;
 	struct nk_context ctx;
@@ -65,7 +72,7 @@ int interface_launch(t_world *world, char *argv)
 	struct media media;
 	int i = 0;
 
-	init_glfw_start(&win, &ctx, &world->screen);
+	init_glfw_start(&win, &ctx, &(cluster).world->screen);
 	/* GUI */
 	device_init(&device);
 	loading_media(&media, &atlas, &ctx, &device);
@@ -75,10 +82,10 @@ int interface_launch(t_world *world, char *argv)
 		/* High DPI displays */
 		glfwSetWindowAspectRatio(win, 16, 9);
 		glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		glfwGetWindowSize(win, &world->screen.width, &world->screen.height);
-		glfwGetFramebufferSize(win, &world->screen.display_width, &world->screen.display_height);
-		world->screen.scale.x = (float)world->screen.display_width/(float)world->screen.width;
-		world->screen.scale.y = (float)world->screen.display_height/(float)world->screen.height;
+		glfwGetWindowSize(win, &(cluster).world->screen.width, &(cluster).world->screen.height);
+		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
+		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
+		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
 
 		/* Input */
 		double x, y;
@@ -119,26 +126,35 @@ int interface_launch(t_world *world, char *argv)
 		nk_input_end(&ctx);
 
 		/* GUI */
-		if (world->video_buffer != NULL && world->redraw == 1)
+		if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
 		{
-			ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+			ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 			printf("redraw %d\n", i++);
-			refresh_viewplane(world);
-			rt(world);
-			if(world->keys.pad_0)
-				effect_application(world);
-			world->redraw = 0;
-			world->reload_buffer = 1;
+			// printf("print sphere.pos.x %f\n", world->spheres[1].pos.x);
+			refresh_viewplane(cluster.world);
+			if (cluster.world->mode_cluster == 1)
+			{
+				ft_putstr("Waiting for connection...\n");
+				render_clustering(world, &cluster);
+				ft_putstr("End of connexion, get started again\n");
+			}
+			else
+				rt(cluster.world);
+			//printf("couleur de world %d\n", world->a_h[640]);
+			if(cluster.world->keys.pad_0)
+				effect_application(cluster.world);
+			cluster.world->redraw = 0;
+			cluster.world->reload_buffer = 1;
 
 			// world->keys.pad_0 = 0;
 		}
-		gui_calls(&browser, &ctx, &media, world);
+		gui_calls(&browser, &ctx, &media, cluster.world);
 
 		/* Draw */
-		glViewport(0, 0, world->screen.display_width, world->screen.display_height);
+		glViewport(0, 0, cluster.world->screen.display_width, cluster.world->screen.display_height);
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		device_draw(&device, &ctx, &world->screen, NK_ANTI_ALIASING_ON);
+		device_draw(&device, &ctx, &(cluster.world->screen), NK_ANTI_ALIASING_ON);
 		glfwSwapBuffers(win);
 
 	}

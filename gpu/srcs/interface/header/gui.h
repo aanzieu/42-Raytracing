@@ -151,7 +151,7 @@ void 	get_color_for_gui(struct nk_color *color, t_color o, double s);
 void	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world);
 void	header_info(struct nk_context *ctx, struct nk_image img, char *n);
 
-void	clear_world(t_world *world);
+
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[3]);
 void	press_launch(struct nk_context *ctx, t_world *world, int img_active[3]);
 

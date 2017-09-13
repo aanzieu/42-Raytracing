@@ -36,6 +36,7 @@ void			data_setup(t_world *world)
 	world->ambient.coef = 0.2;
 	world->offsets.y_min = 0;
 	world->offsets.y_max = 0;
+
 	world->spheres = NULL;
 	world->spheres_len = 0;
 	world->planes = NULL;
@@ -53,6 +54,7 @@ void			data_setup(t_world *world)
 	world->cubes = NULL;
 	world->cubes_len = 0;
 
+	world->keys.light_none = 0;
 	world->reload_buffer = 1;
 	world->redraw = 2;
 	world->id = 0;

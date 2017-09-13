@@ -29,10 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
-GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
-# GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
-# GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
+#GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
+#GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+ GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+ GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -231,7 +231,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
+    -gencode arch=compute_35,code=compute_35 
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 

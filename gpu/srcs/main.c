@@ -56,19 +56,31 @@ void			load_data(t_world *world)
 
 void			rt_cluster(t_world *world)
 {
+	printf("test dans le rt_cluster\n");
 	world->clientrender = 1;
 	world->render_factor = world->offsets.render_factor;
-	if (world->a_h != NULL)
-		free(world->a_h);
-	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min)
-		* sizeof(int);
-	if (!(world->a_h = ft_memalloc(world->size_main)))
-		ft_putendl_fd("Error : Can't malloc client a_h", 1);
+	world->aa = world->offsets.aa;
+
+	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min) * sizeof(int);
+	if (world->a_h == NULL)
+	{
+		if (!(world->a_h = ft_memalloc(world->size_main)))
+			ft_putendl_fd("Error : Can't malloc client a_h", 1);
+		// printf("avant free a_h\n");
+		// free(world->a_h);
+		// printf("apres free a_h\n");
+	}
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
+	{
+		printf("laucnh CPU\n");
 		launch_cpu(world);
+	}
 	else
+	{
+	//	printf("laucnh GPU\n");
 		launch_gpu(world);
+	}
 }
 
 void			rt(t_world *world)
@@ -83,12 +95,29 @@ void			rt(t_world *world)
 		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
 			exit (0);
 	}
+	printf("%d gpu test\n", world->mode);
+	printf("%d gpu test\n", world->clientrender);
 	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 	ft_bzero(world->a_h, world->size_main);
+	if(world->mode_cluster == 1)
+	{
+		return;
+		// ft_putstr("Waiting for connection...\n");
+		// master_cluster(world);
+		// ft_putstr("End of connexion, get started again\n");
+		// return;
+	}
 	if (world->mode == 0)
+	{
+		printf("laucnh CPU\n");
 		launch_cpu(world);
-	else
+	}
+	else 
+	{
+
 		launch_gpu(world);
+		printf("laucnh GPU\n");
+	}
 }
 
 int				main(int argc, char **argv)

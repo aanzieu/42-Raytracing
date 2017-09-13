@@ -12,6 +12,8 @@
 
 #include <cluster.h>
 #include <unistd.h>
+#include <rt.h>
+
 
 /*
  ** MISE EN PLACE DE RECEPTION DONNEE CLIENT_CLUSTERING EN BOUCLE
@@ -29,14 +31,19 @@ void				client_loop(int sockfd, t_cluster *cluster, t_data *data)
 	data_used = 0;
 	if ((ret = recv(sockfd, &data_size, 8, 0)) <= 0)
 		return ;
-	if (data_size)
-	{
+	printf("VALEUR DE DATA SIZE =  %zu\n", data_size);
+	if (data_size || data_size == 0)
+	{	
 		if (data_recv(data, data_size) == 0)
 			printf("Error : zero data\n");
 		recv(sockfd, data->data, data_size, 0);
 		data->used = data_size;
+		printf("VALEUR DE DATA SIZE 2 =  %zu\n", data_size);
+		
 	}
 	process_send(cmd, data, cluster, sockfd);
+	printf("SORS DE PROCESS_SEND\n");
+	
 	client_loop(sockfd, cluster, data);
 }
 
@@ -80,6 +87,7 @@ int					serveur_address_serveur(char *ip, t_world *world)
 	data.total = 0;
 	sockfd = client_init(ip);
 	cluster.world = world;
+	data_setup(cluster.world);
 	client_loop(sockfd, &cluster, &data);
 	return (0);
 }

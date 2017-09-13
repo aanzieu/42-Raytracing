@@ -182,7 +182,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_plane(&world->planes, &world->planes_tmp, &world->planes_len, world->id);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->disk))
