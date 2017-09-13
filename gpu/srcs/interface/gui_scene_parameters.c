@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 11:28:20 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/13 17:18:56 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 					world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
-			if(nk_button_image(ctx, media->moebius))
+			if(nk_button_image(ctx, media->mobius))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id);

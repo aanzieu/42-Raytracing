@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   object_refresh.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/09/13 18:03:28 by xpouzenc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
 #include "../../../includes/rt.h"
@@ -11,7 +23,8 @@ void	refresh_sphere(t_world *world, int i)
 	tmp = world->spheres_tmp;
 	while (tmp)
 	{
-		if (tmp->id == world->id_save){
+		if (tmp->id == world->id_save)
+		{
 			tmp->pos = world->spheres[i].pos;
 			tmp->radius = world->spheres[i].radius;
 			tmp->color = world->spheres[i].color;
@@ -21,7 +34,7 @@ void	refresh_sphere(t_world *world, int i)
 			tmp->refraction_coef = world->spheres[i].refraction_coef;
 			tmp->transparence_coef = world->spheres[i].transparence_coef;
 			break ;
-			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -33,19 +46,19 @@ void	refresh_cone(t_world *world, int i)
 	tmp = world->cones_tmp;
 	while (tmp)
 	{
-		if (tmp->id == world->id_save){
-    	tmp->pos = world->cones[i].pos;
-      tmp->up = world->cones[i].up;
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->cones[i].pos;
+			tmp->up = world->cones[i].up;
 			tmp->half_angle = world->cones[i].half_angle;
 			tmp->height = world->cones[i].height;
 			tmp->color = world->cones[i].color;
 			tmp->chess = world->cones[i].chess;
-			// tmp->rgba = world->cones[i].rgba;
 			tmp->reflection_coef = world->cones[i].reflection_coef;
 			tmp->refraction_coef = world->cones[i].refraction_coef;
 			tmp->transparence_coef = world->cones[i].transparence_coef;
 			break ;
-			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -57,19 +70,19 @@ void	refresh_cylinder(t_world *world, int i)
 	tmp = world->cylinders_tmp;
 	while (tmp)
 	{
-		if (tmp->id == world->id_save){
-      tmp->pos = world->cylinders[i].pos;
-      tmp->up = world->cylinders[i].up;
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->cylinders[i].pos;
+			tmp->up = world->cylinders[i].up;
 			tmp->radius = world->cylinders[i].radius;
 			tmp->height = world->cylinders[i].height;
 			tmp->color = world->cylinders[i].color;
 			tmp->chess = world->cylinders[i].chess;
-			// tmp->rgba = world->cones[i].rgba;
 			tmp->reflection_coef = world->cylinders[i].reflection_coef;
 			tmp->refraction_coef = world->cylinders[i].refraction_coef;
 			tmp->transparence_coef = world->cylinders[i].transparence_coef;
 			break ;
-			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -81,17 +94,17 @@ void	refresh_plane(t_world *world, int i)
 	tmp = world->planes_tmp;
 	while (tmp)
 	{
-		if (tmp->id == world->id_save){
-      tmp->pos = world->planes[i].pos;
-  		tmp->up = world->planes[i].up;
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->planes[i].pos;
+			tmp->up = world->planes[i].up;
 			tmp->color = world->planes[i].color;
 			tmp->chess = world->planes[i].chess;
-			// tmp->rgba = world->cones[i].rgba;
 			tmp->reflection_coef = world->planes[i].reflection_coef;
 			tmp->refraction_coef = world->planes[i].refraction_coef;
 			tmp->transparence_coef = world->planes[i].transparence_coef;
 			break ;
-			}
+		}
 		tmp = tmp->next;
 	}
 }
@@ -103,19 +116,19 @@ void	refresh_torus(t_world *world, int i)
 	tmp = world->torus_tmp;
 	while (tmp)
 	{
-		if (tmp->id == world->id_save){
-      tmp->pos = world->torus[i].pos;
-      tmp->normal = world->torus[i].normal;
-      tmp->radius_small = world->torus[i].radius_small;
-      tmp->radius_big = world->torus[i].radius_big;
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->torus[i].pos;
+			tmp->normal = world->torus[i].normal;
+			tmp->radius_small = world->torus[i].radius_small;
+			tmp->radius_big = world->torus[i].radius_big;
 			tmp->color = world->torus[i].color;
 			tmp->chess = world->torus[i].chess;
-			// tmp->rgba = world->cones[i].rgba;
 			tmp->reflection_coef = world->torus[i].reflection_coef;
 			tmp->refraction_coef = world->torus[i].refraction_coef;
 			tmp->transparence_coef = world->torus[i].transparence_coef;
 			break ;
-			}
+		}
 		tmp = tmp->next;
 	}
 }

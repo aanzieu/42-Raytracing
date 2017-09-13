@@ -255,7 +255,7 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	media->disk = icon_load("srcs/interface/icon/disk.png");
 	media->paraboloid = icon_load("srcs/interface/icon/paraboloid.png");
 	media->hyperboloid = icon_load("srcs/interface/icon/hyperboloid.png");
-	media->moebius = icon_load("srcs/interface/icon/moebius.png");
+	media->mobius = icon_load("srcs/interface/icon/moebius.png");
 	media->cube = icon_load("srcs/interface/icon/cube.png");
 	media->torus = icon_load("srcs/interface/icon/torus.png");
 	media->triangle = icon_load("srcs/interface/icon/triangle.png");

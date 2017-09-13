@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/11 17:49:29 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/13 15:49:19 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,9 +199,39 @@ t_color	int_to_rgb(int color)
 	return (rgb_color);
 }
 
-void 	get_color_for_gui(struct nk_color *color, t_color o, double s)
+void	get_color_for_gui(struct nk_color *color, t_color o, double s)
 {
 	color->r = o.r / s;
-    color->g = o.g / s;
-    color->b = o.b / s;
+	color->g = o.g / s;
+	color->b = o.b / s;
+}
+
+void	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
+{
+	static struct nk_color	color;
+	static const double		s = 1.0/255.0;
+
+	nk_layout_row_dynamic(ctx, 125, 1);
+	color.r = o->r / s;
+	color.g = o->g / s;
+	color.b = o->b / s;
+	if (nk_color_pick(ctx, &color, NK_RGB))
+	{
+		o->r = (double)color.r * s;
+		o->g = (double)color.g * s;
+		o->b = (double)color.b * s;
+		world->redraw = 1;
+	}
+}
+
+void	header_info(struct nk_context *ctx, struct nk_image img, char *n)
+{
+	nk_layout_row_begin(ctx, NK_STATIC, 60, 2);
+	{
+	nk_layout_row_push(ctx, 60);
+	nk_image(ctx, img);
+	nk_layout_row_push(ctx, 150);
+	nk_text(ctx, n, ft_strlen(n), NK_TEXT_LEFT);
+	}
+	nk_layout_row_end(ctx);
 }

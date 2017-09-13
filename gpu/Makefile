@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/12 13:55:46 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/13 17:56:22 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,9 +107,17 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_left.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_middle.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
-				$(SRC_DIR)/interface/object_informations/object_infos.c \
-				$(SRC_DIR)/interface/object_informations/object_infos2.c \
-				$(SRC_DIR)/interface/object_informations/object_infos3.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_spheres.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_planes.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_cones.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_disks.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_cubes.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_triangles.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_cylinders.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_paraboloids.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_hyperboloids.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_torus.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_mobius.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh2.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh3.c \

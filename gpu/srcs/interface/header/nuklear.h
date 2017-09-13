@@ -4250,7 +4250,7 @@ struct media {
     struct nk_image disk;
     struct nk_image cylinder;
     struct nk_image torus;
-    struct nk_image moebius;
+    struct nk_image mobius;
     struct nk_image cube;
     struct nk_image hyperboloid;
     struct nk_image paraboloid;
