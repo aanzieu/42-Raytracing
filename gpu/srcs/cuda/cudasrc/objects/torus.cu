@@ -15,6 +15,7 @@ extern "C" {
 	#include "gpu_rt.h"
 	#include <vectors.h>
 }
+#include "../algebra.h"
 
 /*
 **	On envoie le rayon et la structure qui contient le torus et la fonction
@@ -41,6 +42,10 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 {
 	double	a[5];
 	double	equ[8];
+	double	roots[4];
+	double	res = DBL_MAX;
+	double	nb_roots = 0;
+	int			i = 0;
 
 	if (intersection_tmp->id == to.id)
 		return (0);
@@ -58,12 +63,21 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 	a[2] = 2.0 * equ[4] * equ[6] + equ[5] * equ[5] - equ[1];
 	a[3] = 2.0 * equ[5] * equ[6] - equ[2];
 	a[4] = equ[6] * equ[6] - equ[3];
-	if ((equ[7] = solver_quadra(a, 4)) > 0)
+	if ((nb_roots = solve_quartic(a, roots)) > 0)
 	{
-		intersection_tmp->t = equ[7];
-		return (1);
+		while (i <= nb_roots)
+		{
+			if (roots[i] < res && roots[i] > 1) // SURFACE_TOLERANCE
+				res = roots[i];
+			i++;
+			// nb_roots--;
+		}
+		if (res != DBL_MAX)
+		{
+			intersection_tmp->t = res;
+			return (1);
+		}
 	}
-//	intersection_tmp->t = -1.0;
 	return (0);
 }
 

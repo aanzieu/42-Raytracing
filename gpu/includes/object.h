@@ -85,6 +85,7 @@ typedef struct				s_sphere
 	t_color					color;
 	t_color					chess;
 	t_color					rgba;
+	int							negative;
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
@@ -166,7 +167,8 @@ typedef struct			s_triangle
 typedef struct			s_cube
 {
 	int						id;
-	t_vec3d				pos;
+	t_vec3d				min;
+	t_vec3d				max;
 	t_vec3d				up;
 	t_color				color;
 	t_color				chess;

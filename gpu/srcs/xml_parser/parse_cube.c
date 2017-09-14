@@ -19,8 +19,10 @@ void	add_cube(t_cube **alst, t_cube *nw)
 
 void 	handle_input_cube(t_cube *c, xmlNodePtr cur)
 {
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
-		parse_vec3d(&c->pos, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"min")))
+		parse_vec3d(&c->min, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"max")))
+		parse_vec3d(&c->max, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"normal")))
 		parse_vec3d(&c->up, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"size")))

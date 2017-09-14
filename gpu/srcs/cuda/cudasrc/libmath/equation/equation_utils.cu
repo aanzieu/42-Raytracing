@@ -43,3 +43,12 @@ __host__ __device__ void		swap_double(double *a, double *b)
 	*a = *b;
 	*b = tmp;
 }
+
+__host__ __device__ double    clamp(double min, double max, double value)
+{
+  if (value >= min && value <= max)
+    return (value);
+  if (value < min)
+    return (min);
+  return (max);
+}

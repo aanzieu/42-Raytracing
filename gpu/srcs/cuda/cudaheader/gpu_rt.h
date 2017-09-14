@@ -1,17 +1,20 @@
 #ifndef CUDA_MD_H
 # define CUDA_MD_H
-#ifndef CUDA_HOSTDEV
-# ifdef __CUDA_ARCH__
-# define CUDA_HOSTDEV __host__ __device__
-# else
-# define CUDA_HOSTDEV
+#  ifndef CUDA_HOSTDEV
+#   ifdef __CUDA_ARCH__
+#    define CUDA_HOSTDEV __host__ __device__
+#   else
+#    define CUDA_HOSTDEV
+#   endif
 # endif
-#endif
 
-#include <../../../includes/vectors.h>
-#include <../../../includes/object.h>
-#include <../../../includes/equation.h>
-#include <../../../includes/rt.h>
+# include <../../../includes/vectors.h>
+# include <../../../includes/object.h>
+# include <../../../includes/equation.h>
+# include <../../../includes/rt.h>
+
+# define MAX_DEPTH_GPU 4
+# define SURFACE_TOLERANCE 0.00000001
 
 /*******************************************************************************
 **                     INTERSECTION_FONCTION_GET                              **
@@ -22,10 +25,16 @@ CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_sphere(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_next_sphere(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_mobius(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_plane(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void		get_next_plane(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_cone(t_world world, t_ray ray,
@@ -55,11 +64,15 @@ CUDA_HOSTDEV void		get_closest_torus(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_triangle(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV void	get_closest_cube(t_world world, t_ray ray,
+						t_intersection *intersection,
+						t_intersection *intersection_tmp);
 
 /*******************************************************************************
 **                     COLOR_FCTS                                             **
 *******************************************************************************/
 
+CUDA_HOSTDEV t_color color_divide(t_color color, int quo);
 CUDA_HOSTDEV t_color		color_multiply(t_color c1, t_color c2);
 CUDA_HOSTDEV t_color		color_scalar(t_color c1, double coef);
 CUDA_HOSTDEV t_color		color_add(t_color c1, t_color c2);
@@ -109,10 +122,12 @@ CUDA_HOSTDEV double		vector_magnitude(t_vec3d vect1);
 
 CUDA_HOSTDEV int		dblsgn(double x);
 CUDA_HOSTDEV int		is_zero(double x);
-CUDA_HOSTDEV void		swap_double(double *a, double *b);
+//CUDA_HOSTDEV void		swap_double(double *a, double *b);
+CUDA_HOSTDEV void 	swap_double_cuda(double *a, double *b);
 CUDA_HOSTDEV double		ft_smaller(double a, double b);
 CUDA_HOSTDEV double		sign_of(double a);
 CUDA_HOSTDEV double		check_solution(double res);
+CUDA_HOSTDEV double    clamp(double min, double max, double value);
 
 /*******************************************************************************
 **                     MATH_FCTS                                              **
@@ -125,28 +140,54 @@ CUDA_HOSTDEV int		solve_third_case(t_dichotomie c, double *a, double *r);
 CUDA_HOSTDEV int		solve_second_case(t_dichotomie c, double *a, double *r);
 CUDA_HOSTDEV double		solver_n_degree(double *coef, int degree, t_mobius m,
 						t_ray ray);
-CUDA_HOSTDEV double		solver_quadra(double *coef, int degree);
+CUDA_HOSTDEV void		swap_double(double *a, double *b);
+CUDA_HOSTDEV void		delta_neg(double p, double q, double *res, double trans);
+CUDA_HOSTDEV int		cardan_method(double p, double q, double *res, double trans);
+CUDA_HOSTDEV int		solve_quadratic(double *coef, double *res);
+CUDA_HOSTDEV int		solve_cubic(double *coef, double *res);
+CUDA_HOSTDEV void		set_pqr_quartic(double *pqr, double *coef);
+CUDA_HOSTDEV void		init_to_send_cubic(double p, double q, double r, double *coef);
+CUDA_HOSTDEV int		init_and_send_second(double *pqr, double y0, double *res);
+CUDA_HOSTDEV int		solve_quartic(double *coef, double *res);
 
 /*******************************************************************************
-**                     TEXTURES_FCTS                                          **
+**                     TEXTURES_FCTS_CPU                                      **
 *******************************************************************************/
 
-CUDA_HOSTDEV t_color apply_materials(t_world world, t_ray ray,
-	t_intersection intersection);
-CUDA_HOSTDEV t_color 	handle_reflection(t_world world, t_ray ray,
+CUDA_HOSTDEV t_color apply_materials_cpu(t_world world, t_ray ray,
+	t_intersection intersection, t_color color);
+CUDA_HOSTDEV t_color 	handle_reflection_cpu(t_world world, t_ray ray,
 	t_intersection *intersection);
-CUDA_HOSTDEV t_color 	handle_refraction(t_world world,
+CUDA_HOSTDEV t_color 	handle_refraction_cpu(t_world world,
 	t_ray ray, t_intersection *intersection);
-CUDA_HOSTDEV t_color 	handle_transparence(t_world world,
+CUDA_HOSTDEV t_color 	handle_transparence_cpu(t_world world,
 	t_ray ray, t_intersection *intersection);
-CUDA_HOSTDEV t_color	handle_chess(t_ray ray, t_intersection *intersection);
+
+/*******************************************************************************
+**                     TEXTURES_FCTS_GPU                                      **
+*******************************************************************************/
+
+CUDA_HOSTDEV t_color	apply_materials_gpu(t_world world, t_ray ray,
+	t_intersection intersection, t_color color);
+CUDA_HOSTDEV t_color 	handle_reflection_gpu(t_world world, t_ray *ray,
+	t_intersection *intersection, int *flag);
+CUDA_HOSTDEV t_color 	handle_refraction_gpu(t_world world,
+	t_ray *ray, t_intersection *intersection, int *flag);
+CUDA_HOSTDEV t_color 	handle_transparence_gpu(t_world world,
+	t_ray *ray, t_intersection *intersection, int *flag);
+CUDA_HOSTDEV t_color	handle_chess(t_ray ray, t_intersection intersection);
 
 /*******************************************************************************
 **                     RAYTRACERS_FCTS                                        **
 *******************************************************************************/
+
+CUDA_HOSTDEV t_intersection new_inter(void);
 CUDA_HOSTDEV void			get_up_left(t_world *world);
-CUDA_HOSTDEV t_color	ray_tracer_depth(t_world world, t_ray ray,
+CUDA_HOSTDEV int			ray_tracer_cpu(t_world world, int x, int y);
+CUDA_HOSTDEV int			ray_tracer_gpu(t_world world, int x, int y);
+CUDA_HOSTDEV t_color	ray_tracer_depth_cpu(t_world world, t_ray ray,
 	t_intersection intersection);
-CUDA_HOSTDEV int		ray_tracer(t_world world, int x, int y);
+CUDA_HOSTDEV t_color	ray_tracer_depth_gpu(t_world world, t_ray ray,
+	t_intersection intersection);
 
 #endif

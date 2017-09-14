@@ -14,11 +14,20 @@
 
 void			data_setup(t_world *world)
 {
-	world->mode = 0;
-	world->light_type = 1;
+	world->aa = 1;
+	world->win_width = WIN_WIDTH * world->aa;
+	world->win_height = WIN_HEIGHT * world->aa;
+
 	world->viewplane.width = (double)((M_PI / 4) / 2);
 	world->viewplane.height = ((double)((double)(WIN_HEIGHT) /
 								(double)(WIN_WIDTH)) * world->viewplane.width);
+
+	world->viewplane_aa.width = (double)((M_PI / 4) / 2);
+	world->viewplane_aa.height = ((double)((double)(world->win_height) /
+								(double)(world->win_width)) * world->viewplane_aa.width);
+
+	world->mode = 1;
+	world->light_type = 1;
 	world->render_factor = 1;
 	world->viewplane.dist = 1;
 	world->line = 0;

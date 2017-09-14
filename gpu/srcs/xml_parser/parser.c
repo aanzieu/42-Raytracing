@@ -43,7 +43,7 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"triangle")))
 		parse_triangle(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cube")))
-			parse_cube(world, obj);
+		parse_cube(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
 		parse_ambient(world, obj);
 }

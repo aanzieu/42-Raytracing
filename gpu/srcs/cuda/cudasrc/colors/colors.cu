@@ -14,6 +14,10 @@ extern "C" {
 	#include <rt.h>
 	#include "gpu_rt.h"
 }
+__host__ __device__ t_color color_divide(t_color color, int quo)
+{
+	return ((t_color){color.r / quo, color.g / quo, color.b / quo});
+}
 
 __host__ __device__ t_color new_color(double r, double g, double b)
 {

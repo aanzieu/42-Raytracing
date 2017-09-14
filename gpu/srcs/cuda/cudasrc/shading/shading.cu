@@ -78,14 +78,12 @@ __host__ __device__	t_color	get_light_at(t_world world, t_color color, t_light l
 	angle = vector_dot(intersection.normal_v, light_vector);
 	if (angle > 0 && get_shadow(world, light, intersection) == 0)
 	{
-		tmp = color_add(tmp, intersection.color);
+		tmp = color_add(color, intersection.color);
 		tmp = color_scalar(tmp, angle);
 		tmp = color_scalar(tmp, light.intensity_coef);
 		color = color_add(color, tmp);
 		color = specular_light(world, color, ray.dir, intersection, light_vector, light);
 	}
-	else
-		color_add(color, tmp);
 	return (color);
 }
 

@@ -59,8 +59,8 @@ t_torus						*new_torus(t_torus *nw, int id)
 	if (!(t = (t_torus *)ft_memalloc(sizeof(t_torus))))
 		ft_putendl_fd("Erroc Malloc on Torus", 1);
 	t->id = id;
-	t->radius_small = nw->radius_big;
-	t->radius_big = nw->radius_small;
+	t->radius_small = nw->radius_small;
+	t->radius_big = nw->radius_big;
 	t->pos = nw->pos;
 	t->color = nw->color;
 	t->chess = nw->chess;
@@ -98,6 +98,25 @@ t_triangle	*new_triangle(t_triangle *nw, int id)
 	t->v1 = nw->v1;
 	t->v2 = nw->v2;
 	t->up = nw->up;
+	t->color = nw->color;
+	t->chess = nw->chess;
+	t->id = id;
+	t->reflection_coef = nw->reflection_coef;
+	t->refraction_coef = nw->refraction_coef;
+	t->transparence_coef = nw->transparence_coef;
+	t->next = NULL;
+	return (t);
+}
+
+t_cube	*new_cube(t_cube *nw, int id)
+{
+	t_cube	*t;
+
+	if (!(t = (t_cube *)ft_memalloc(sizeof(t_cube))))
+		ft_putendl_fd("Erroc Malloc on cube", 1);
+	t->min = nw->min;
+	t->max = nw->max;
+//	t->up = nw->up;
 	t->color = nw->color;
 	t->chess = nw->chess;
 	t->id = id;

@@ -19,12 +19,21 @@
 
 void			get_viewplane(t_world *world)
 {
-	world->viewplane.x_res = (WIN_WIDTH) / world->render_factor;
-	world->viewplane.y_res = (WIN_HEIGHT) / world->render_factor;
+	world->viewplane.x_res = WIN_WIDTH / world->render_factor;
+	world->viewplane.y_res = WIN_HEIGHT / world->render_factor;
+
+	world->viewplane_aa.x_res = world->win_width / world->render_factor;
+	world->viewplane_aa.y_res = world->win_height / world->render_factor;
+
 	world->viewplane.x_indent = world->viewplane.width /
 									(double)world->viewplane.x_res;
 	world->viewplane.y_indent = world->viewplane.height /
 									(double)world->viewplane.y_res;
+
+	world->viewplane_aa.x_indent = world->viewplane_aa.width /
+									(double)world->viewplane_aa.x_res;
+	world->viewplane_aa.y_indent = world->viewplane_aa.height /
+									(double)world->viewplane_aa.y_res;
 }
 
 void			load_data(t_world *world)
@@ -37,6 +46,8 @@ void			load_data(t_world *world)
 			&world->triangles_len);
 	load_cubes(&world->cubes, world->cubes_tmp,
 			&world->cubes_len);
+	load_torus(&world->torus, world->torus_tmp,
+			&world->torus_len);
 	load_cylinders(&world->cylinders,
 			world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
@@ -74,7 +85,7 @@ void			rt(t_world *world)
 	ft_bzero(world->a_h, world->size_main);
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return ;
-	world->window.id = SDL_CreateWindow(world->title, 100, 100, WIN_WIDTH,
+	world->window.id = SDL_CreateWindow(world->title, 900, 500, WIN_WIDTH,
 															WIN_HEIGHT, 0);
 	world->window.screen = SDL_GetWindowSurface(world->window.id);
 	if (world->mode == 0)

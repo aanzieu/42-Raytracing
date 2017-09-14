@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
 
-# define NB_TH 8
+# define NB_TH 4
 
 # define VERSION 1.03.3
 
@@ -29,7 +29,7 @@
 #define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
-#define MAX_DEPTH 3
+#define MAX_DEPTH 4
 #define CHESS_PATTERN 2
 #define BACKGROUND_COLOR 0x42ADD4
 
@@ -98,10 +98,13 @@ typedef struct		s_intersection
 	t_vec3d	pos;
 	t_color color;
 	t_color	chess;
+	double	negative;
 	double	reflection_coef;
 	double	refraction_coef;
 	double	transparence_coef;
 	double	t;
+	double	t1;
+	double	t2;
 	char		type;
 	int			id;
 	int			flag;
@@ -117,8 +120,8 @@ typedef struct		s_ray
 
 typedef struct		s_viewplane
 {
-	int				x_res;
-	int				y_res;
+	int					x_res;
+	int					y_res;
 	double			x_indent;
 	double			y_indent;
 	double			dist;
@@ -209,6 +212,7 @@ typedef struct		s_world
 
 	t_camera		camera;
 	t_viewplane		viewplane;
+	t_viewplane		viewplane_aa;
 
 	t_keys			keys;
 	int				mode;
@@ -224,6 +228,11 @@ typedef struct		s_world
 	int					light_type;
 
 	int					id;
+	int					win_height;
+	int					win_width;
+	int					aa;
+	t_vec3d			save_dir;
+	t_vec3d			save_pos;
 }					t_world;
 
 void				data_setup(t_world *world);

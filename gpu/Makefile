@@ -40,6 +40,7 @@ RF = rm -rf
 
 SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/ray_tracer.cu \
+				$(SRC_CUDA_DIR)/algebra.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors2.cu \
@@ -66,7 +67,8 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
-				$(SRC_CUDA_DIR)/material/material.cu \
+				$(SRC_CUDA_DIR)/material/material_cpu.cu \
+				$(SRC_CUDA_DIR)/material/material_gpu.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
@@ -176,8 +178,8 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 \
-	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
+	-gencode arch=compute_35,code=sm_35 \
+	-gencode arch=compute_30,code=compute_30
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
