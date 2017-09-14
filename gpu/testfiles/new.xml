@@ -50,6 +50,7 @@
   <pos x="-0.5" y="0.5" z="1" />
   <radius data="0.4" />
   <color r="20" g="20" b="120" />
+  <chess r="255" g="255" b="255" />
   <refraction data="1.1" />
 </sphere>
 

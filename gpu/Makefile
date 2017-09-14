@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/13 17:56:22 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/14 13:35:15 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-#GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
-#GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
- GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
- GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
+GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
+GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+# GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+# GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -118,6 +118,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_hyperboloids.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_torus.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_mobius.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_utils.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh2.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh3.c \
@@ -223,7 +224,7 @@ OBJ_CUDA = $(patsubst srcs/%.cu, objcuda/%.o, $(SRC_CUDA))
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_CUDA)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
+	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
@@ -243,13 +244,13 @@ obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
-	printf '\033[0m[✔] %s\n\033[0m' "$<"
+	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $(INCLUDENK) $< -o $@
-	printf '\033[0m[✔] %s\n\033[0m' "$<"
+	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
 ###################################################
 ##--- Clean only objects .o                      ##
