@@ -43,8 +43,10 @@ void                    load_cubes(t_cube **cubes,
 		*cubes_len = 0;
 	}
 	i = 0;
-	*cubes_len = count_cube(cubes_tmp);
-	*cubes = (t_cube *)malloc(sizeof(t_cube) * *cubes_len);
+	if((*cubes_len = count_cube(cubes_tmp)) == 0)
+		return;
+	if(!(*cubes = (t_cube *)malloc(sizeof(t_cube) * *cubes_len)))
+			show_error("Don't Malloc\n");
 	tmp = cubes_tmp;
 	while (tmp)
 	{

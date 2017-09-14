@@ -57,8 +57,10 @@ void					load_disks(t_disk **disks, t_disk *disks_tmp,
 		*disks_len = 0;
 	}
 	i = 0;
-	*disks_len = count_disks(disks_tmp);
-	*disks = (t_disk*)malloc(sizeof(t_disk) * (*disks_len));
+	if((*disks_len = count_disks(disks_tmp)) == 0)
+		return;
+	if(!(*disks = (t_disk*)malloc(sizeof(t_disk) * (*disks_len))))
+				show_error("Don't Malloc\n");
 	tmp = disks_tmp;
 	while (tmp)
 	{

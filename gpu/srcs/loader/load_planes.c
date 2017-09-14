@@ -55,10 +55,9 @@ void					load_planes(t_plane **planes, t_plane *planes_tmp,
 	}
 	i = 0;
 	if((*planes_len = count_planes(planes_tmp)) == 0)
-	{
 		return;
-	}
-	*planes = (t_plane*)malloc(sizeof(t_plane) * (*planes_len));
+	if(!(*planes = (t_plane*)malloc(sizeof(t_plane) * (*planes_len))))
+			show_error("Don't Malloc\n");
 	while (planes_tmp)
 	{
 		(*planes)[i] = *planes_tmp;

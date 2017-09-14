@@ -44,11 +44,13 @@ int	find_object(t_world *world, t_intersection *inter, t_vec2d *pos,struct nk_co
 				vitesse = vector_length(vector_substract(world->spheres[i].pos, ray1.origin)) * 0.01;
 				coeff1 = vector_substract(world->spheres[i].pos, ray1.dir);
 				coeff2 = vector_substract(world->spheres[i].pos, ray2.dir);
-				world->spheres[i].pos.x += (coeff1.x - coeff2.x);// * vitesse;
+				world->spheres[i].pos.x += (coeff1.x - coeff2.x);
+				world->spheres[i].pos.y += (coeff1.y - coeff2.y);// * vitesse;
 				while(tmp)
 				{
 					if(tmp->id == world->id_save){
 						tmp->pos.x += (coeff1.x - coeff2.x);
+						tmp->pos.y += (coeff1.y - coeff2.y);
 						break;
 					}
 					tmp = tmp->next;

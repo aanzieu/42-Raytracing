@@ -43,8 +43,10 @@ void			load_mobius(t_mobius **mobius, t_mobius *mobius_tmp, int *mobius_len)
 		*mobius_len = 0;
 	}
 	i = 0;
-	*mobius_len = count_mobius(mobius_tmp);
-	*mobius = (t_mobius*)malloc(sizeof(t_mobius) * *mobius_len);
+	if((*mobius_len = count_mobius(mobius_tmp)) == 0)
+		return;
+	if(!(*mobius = (t_mobius*)malloc(sizeof(t_mobius) * *mobius_len)))
+				show_error("Don't Malloc\n");
 	tmp = mobius_tmp;
 	while (tmp)
 	{

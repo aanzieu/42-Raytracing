@@ -27,23 +27,33 @@ inline void __cudaSafeCall( cudaError err, const char *file, const int line )
 	return;
 }
 
-inline void __cudaCheckError( const char *file, const int line )
-{
-#ifdef CUDA_ERROR_CHECK
-	cudaError err = cudaGetLastError();
-	if (cudaSuccess != err)
-	{
-		fprintf( stderr, "cudaCheckError() failed at %s:%i : %s\n",
-				file, line, cudaGetErrorString( err ) );
-		exit( -1 );
-	}
-#endif
-	return;
-}
+
+void checkCUDAError(const char *msg) {
+  cudaError_t err = cudaGetLastError();
+  if( cudaSuccess != err) {
+    fprintf(stderr, "Cuda error: %s: %s.\n", msg, cudaGetErrorString( err) ); 
+	system("pause");
+    exit(EXIT_FAILURE); 
+  }
+} 
+
+//inline void __cudaCheckError( const char *file, const int line )
+//{
+//#ifdef CUDA_ERROR_CHECK
+//	cudaError err = cudaGetLastError();
+//	if (cudaSuccess != err)
+//	{
+//		fprintf( stderr, "cudaCheckError() failed at %s:%i : %s\n",
+//				file, line, cudaGetErrorString( err ) );
+//		exit( -1 );
+//	}
+//#endif
+//	return;
+//}
 
 __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world world)
 {
-		int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int index = row * constw + col;
 	a[index] = ray_tracer(world, col, row + world.offsets.y_min);
@@ -64,7 +74,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	
 	size_t		size = 0;
 	
-	dim3		threads_per_block(16, 16);
+	dim3		threads_per_block(32, 32);
 	dim3		grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
 
 	size = constw * consth * sizeof(int);
@@ -94,9 +104,23 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 //cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice);
 	//	world.paraboloids = paraboloids_d;
 	
-	test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
+
+	//We set the recursion limit for CDP to max_depth.
+    //cudaDeviceSetLimit(cudaLimitDevRuntimeSyncDepth, MAX_DEPTH);
 	
-//		CudaCheckError();
+
+	size_t depth;
+  	cudaDeviceSetLimit(cudaLimitStackSize, 1024*sizeof(float));
+  	cudaDeviceGetLimit(&depth, cudaLimitStackSize);
+
+	checkCUDAError("pre-raytraceRay error");
+	
+	test <<< grid_size, threads_per_block>>> (a_d, constw, consth, world);
+	checkCUDAError("raytraceRay error");
+
+	cudaDeviceSynchronize();
+
+//	CudaCheckError();
 	
 	if(spheres_d != NULL)
 		cudaFree(spheres_d);

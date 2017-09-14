@@ -107,20 +107,19 @@ void			put_buffer_together(t_cluster *cluster, t_client *clients,
 **	Render Clustering
 */
 
-void			cluster_to_world(t_cluster *cluster, t_world *world, int x, int y)
-{
-	while (y < world->viewplane.y_res)
-	{
-		x = 0;
-		while(x < world->viewplane.x_res)
-		{
-			world->a_h[y * world->viewplane.x_res + x] = cluster->world->a_h[y * world->viewplane.x_res + x];
-			//printf("%d couleur pix world->a_h\n", world->a_h[y * world->viewplane.x_res + x]);
-			x++;
-		}
-		y++;
-	}
-}
+// void			cluster_to_world(t_cluster *cluster, t_world *world, int x, int y)
+// {
+// 	while (y < world->viewplane.y_res)
+// 	{
+// 		x = 0;
+// 		while(x < world->viewplane.x_res)
+// 		{
+// 			world->a_h[y * world->viewplane.x_res + x] = cluster->world->a_h[y * world->viewplane.x_res + x];
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 
 void			render_clustering(t_world *world, t_cluster *cluster)
@@ -152,23 +151,17 @@ void			render_clustering(t_world *world, t_cluster *cluster)
 		remove_client_if(cluster, &cluster->client_list, NULL, NULL);		
 		if (cluster->nbr_clients == tmp)
 		{
-			// printf("print ambiant %f\n", world->ambient.intensity);
-			//printf("nbr de client = %d\n", cluster->nbr_clients);
 			put_buffer_together(cluster, cluster->client_list, 0, 0);
-			//printf("%d couleur cluster->a_h\n", cluster->world->a_h[600]);
 			//cluster_to_world(cluster, world, 0, 0);
-			// printf("%d couleur pix world->a_h\n", world->a_h[600]);
 			// if(cluster->nbr_clients  0)
 				// break;
 			// 	savebmp(world);					
 		}
-		// if (world->a_h != NULL)
-		// 	break;
+		free_buffer(cluster);
 	// }
 		// int_to_int(cluster->world->a_h, world->a_h, WIN_WIDTH, WIN_HEIGHT);
 		// put_pixel_screen(cluster->world);
 		//ft_bzero(cluster->world->a_h, cluster->world->size_main);
-		free_buffer(cluster);
 		// SDL_UpdateWindowSurface(cluster->world->window.id);
 	//  }
 }

@@ -57,8 +57,10 @@ void						load_torus(t_torus **torus,
 		*torus_len = 0;
 	}
 	i = 0;
-	*torus_len = count_torus(torus_tmp);
-	*torus = (t_torus*)malloc(sizeof(t_torus) * *torus_len);
+	if((*torus_len = count_torus(torus_tmp)) == 0)
+		return;
+	if(!(*torus = (t_torus*)malloc(sizeof(t_torus) * *torus_len)))
+			show_error("Don't Malloc\n");
 	tmp = torus_tmp;
 	while (tmp)
 	{

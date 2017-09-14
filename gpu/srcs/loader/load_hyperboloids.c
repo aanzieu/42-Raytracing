@@ -58,8 +58,10 @@ void				load_hyperboloids(t_hyperboloid **hyperboloids,
 	}
 
 	i = 0;
-	*hyperboloids_len = count_hyperboloids(hyperboloids_tmp);
-	*hyperboloids = (t_hyperboloid*)malloc(sizeof(t_hyperboloid) *														*hyperboloids_len);
+	if((*hyperboloids_len = count_hyperboloids(hyperboloids_tmp)) == 0)
+		return;
+	if(!(*hyperboloids = (t_hyperboloid*)malloc(sizeof(t_hyperboloid) *	*hyperboloids_len)))
+				show_error("Don't Malloc\n");
 	tmp = hyperboloids_tmp;
 	while (tmp)
 	{

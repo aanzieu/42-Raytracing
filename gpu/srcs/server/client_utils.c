@@ -14,55 +14,95 @@
 
 void			free_obj_next(t_world *world, char cmd)
 {
-	if (cmd == 'y' && world->cylinders != NULL)
+	if (cmd == 'y')
 	{
-		free_cy(&world->cylinders_tmp, &world->cylinders, &world->cylinders_len);
+		if(world->cylinders != NULL)
+			free(world->cylinders);
+		world->cylinders = NULL;
+		world->cylinders_len = 0;
 	}
-	// if (cmd == 'd' && world->disks != NULL)
-	// {
-	// 	free(world->disks);
-	// 	world->disks = NULL;
-	// 	world->disks_len = 0;
-	// }
+	if (cmd == 'd')
+	{
+		if(world->disks != NULL)
+			free(world->disks);
+		world->disks = NULL;
+		world->disks_len = 0;
+	}
+	if (cmd == 'h')
+	{
+		if(world->hyperboloids != NULL)
+			free(world->hyperboloids);
+		world->hyperboloids = NULL;
+		world->hyperboloids_len = 0;
+	}
+	if (cmd == 'b')
+	{
+		if(world->paraboloids != NULL)
+			free(world->paraboloids);
+		world->paraboloids = NULL;
+		world->paraboloids_len = 0;
+	}
+	if (cmd == 'o')
+	{
+		if(world->torus != NULL)
+			free(world->torus);
+		world->torus = NULL;
+		world->torus_len = 0;
+	}
+	if (cmd == 'm')
+	{
+		if(world->mobius != NULL)
+			free(world->mobius);
+		world->mobius = NULL;
+		world->mobius_len = 0;
+	}
+	if (cmd == 't')
+	{
+		if(world->triangles != NULL)
+			free(world->triangles);
+		world->triangles = NULL;
+		world->triangles_len = 0;
+	}
+	if (cmd == 'u')
+	{
+		if(world->cubes != NULL)
+			free(world->cubes);
+		world->cubes = NULL;
+		world->cubes_len = 0;
+	}
 }
 
 void				free_obj(t_world *world, char cmd)
 {
-	if (cmd == 's')// && world->spheres != NULL)
+	if (cmd == 's')
 	{
 		if(world->spheres != NULL)
-		{
-			printf("avant le free de spheres dans free obj \n");
 			free(world->spheres);
-			printf("apres le free de spheres dans free obj \n");
-			world->spheres = NULL;
-			world->spheres_len = 0;
-		}
-	//	printf("sors de free spheres\n");		
+		world->spheres = NULL;
+		world->spheres_len = 0;
 	}
-	if (cmd == 'p' && world->planes != NULL)
+	if (cmd == 'p')
 	{
 		if(world->planes != NULL)
 			free(world->planes);
 		world->planes = NULL;
 		world->planes_len = 0;
 	}
-	// // if (cmd == 'x' && world->cones != NULL)
-	// // {
-	// // 	free(world->cones);
-	// // 	world->cones = NULL;
-	// // 	world->cones_len = 0;
-	// // }
-	if (cmd == 'l')// && world->lights != NULL)
+	if (cmd == 'x')
+	{
+		if(world->cones != NULL)
+			free(world->cones);
+		world->cones = NULL;
+		world->cones_len = 0;
+	}
+	if (cmd == 'l')
 	{
 		if(world->lights != NULL)
 			free(world->lights);
 		world->lights= NULL;
 		world->lights_len = 0;
-	
-		printf("sors de free lights\n");
 	}
-	// // free_obj_next(world, cmd);
+	free_obj_next(world, cmd);
 }
 
 int					data_grow(t_data *data, size_t size)

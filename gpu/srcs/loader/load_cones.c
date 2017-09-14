@@ -59,8 +59,10 @@ void				load_cones(t_cone **cones, t_cone *cones_tmp,
 		*cones_len = 0;
 	}
 	i = 0;
-	*cones_len = count_cones(cones_tmp);
-	*cones = (t_cone*)malloc(sizeof(t_cone) * *cones_len);
+	if((*cones_len = count_cones(cones_tmp)) == 0)
+		return;
+	if(!(*cones = (t_cone*)malloc(sizeof(t_cone) * *cones_len)))
+			show_error("Don't Malloc\n");
 	tmp = cones_tmp;
 	while (tmp)
 	{

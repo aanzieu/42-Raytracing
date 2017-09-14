@@ -42,11 +42,9 @@ void				load_lights(t_light **lights, t_light *lights_tmp,
 	}
 	i = 0;
 	if((*lights_len = count_lights(lights_tmp)) == 0)
-	{
-		printf("PAS DE LIGHTS\n");
 		return;
-	}
-	*lights = (t_light*)malloc(sizeof(t_light) * *lights_len);
+	if(!(*lights = (t_light*)malloc(sizeof(t_light) * *lights_len)))
+				show_error("Don't Malloc\n");
 	tmp = lights_tmp;
 	while (tmp)
 	{

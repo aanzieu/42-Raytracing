@@ -46,8 +46,10 @@ void 					load_triangles(t_triangle **triangles,
 	}
 
 	i = 0;
-	*triangles_len = count_triangle(triangles_tmp);
-	*triangles = (t_triangle *)malloc(sizeof(t_triangle) * *triangles_len);
+	if((*triangles_len = count_triangle(triangles_tmp)) == 0)
+		return;
+	if(!(*triangles = (t_triangle *)malloc(sizeof(t_triangle) * *triangles_len)))
+			show_error("Don't Malloc\n");
 	tmp = triangles_tmp;
 	while (tmp)
 	{

@@ -21,7 +21,6 @@ static void			*dup_data_obj(t_cluster *cluster, char cmd, void *ret)
 		size = sizeof(t_sphere) * cluster->world->spheres_len;
 		if ((ret = ft_memalloc(size)) != NULL)
 			ret = ft_memcpy(ret, cluster->world->spheres, size);
-		printf("valeur de SIZE SPHERE LEN BUFF INFO %zu\n", size);
 	}
 	if (cmd == 'p')
 	{
@@ -40,6 +39,48 @@ static void			*dup_data_obj(t_cluster *cluster, char cmd, void *ret)
 		size = sizeof(t_cylinder) * cluster->world->cylinders_len;
 		if ((ret = ft_memalloc(size)) != NULL)
 			ret = ft_memcpy(ret, cluster->world->cylinders, size);
+	}
+	if (cmd == 'd')
+	{
+		size = sizeof(t_disk) * cluster->world->disks_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->disks, size);
+	}
+	if (cmd == 'h')
+	{
+		size = sizeof(t_hyperboloid) * cluster->world->hyperboloids_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->hyperboloids, size);
+	}
+	if (cmd == 'b')
+	{
+		size = sizeof(t_paraboloid) * cluster->world->paraboloids_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->paraboloids, size);
+	}
+	if (cmd == 'o')
+	{
+		size = sizeof(t_torus) * cluster->world->torus_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->torus, size);
+	}
+	if (cmd == 'm')
+	{
+		size = sizeof(t_mobius) * cluster->world->mobius_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->mobius, size);
+	}
+	if (cmd == 't')
+	{
+		size = sizeof(t_triangle) * cluster->world->triangles_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->triangles, size);
+	}
+	if (cmd == 'u')
+	{
+		size = sizeof(t_cylinder) * cluster->world->cubes_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->cubes, size);
 	}
 	return (ret);
 }
@@ -78,27 +119,78 @@ static void			*dup_data(t_cluster *cluster, char cmd, void *ret)
 int			send_buffer_obj_next(t_cluster *cluster,
 		t_client *clients, void *buffer)
 {
-	(void)cluster;
-	(void)clients;
-	(void)buffer;
-	// if ((clients->status & SEND_CONES) == 0)
-	// {
-	// 	if (!(buffer = dup_data_obj(cluster, 'x', NULL)))
-	// 		return (0);
-	// 	send_informations(clients, 'x', buffer,
-	// 			cluster->world->cones_len * sizeof(t_cone));
-	// 	free(buffer);
-	// 	// return (1);
-	// }
-	// if ((clients->status & SEND_CYLINDERS) == 0)
-	// {
-	// 	if (!(buffer = dup_data_obj(cluster, 'y', NULL)))
-	// 		return (0);
-	// 	send_informations(clients, 'y', buffer,
-	// 			cluster->world->cylinders_len * sizeof(t_cylinder));
-	// 	free(buffer);
-	// 	// return(1);
-	// }
+	if ((clients->status & SEND_CONES) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'x', NULL)))
+			return (0);
+		send_informations(clients, 'x', buffer,
+				cluster->world->cones_len * sizeof(t_cone));
+		free(buffer);
+	}
+	if ((clients->status & SEND_CYLINDERS) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'y', NULL)))
+			return (0);
+		send_informations(clients, 'y', buffer,
+				cluster->world->cylinders_len * sizeof(t_cylinder));
+		free(buffer);
+	}
+	if ((clients->status & SEND_HYPERBOLOID) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'h', NULL)))
+			return (0);
+		send_informations(clients, 'h', buffer,
+				cluster->world->hyperboloids_len * sizeof(t_hyperboloid));
+		free(buffer);
+	}
+	if ((clients->status & SEND_PARABOLOID) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'b', NULL)))
+			return (0);
+		send_informations(clients, 'b', buffer,
+				cluster->world->paraboloids_len * sizeof(t_paraboloid));
+		free(buffer);
+	}
+	if ((clients->status & SEND_DISK) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'd', NULL)))
+			return (0);
+		send_informations(clients, 'd', buffer,
+				cluster->world->disks_len * sizeof(t_disk));
+		free(buffer);
+	}
+	if ((clients->status & SEND_TORUS) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'o', NULL)))
+			return (0);
+		send_informations(clients, 'o', buffer,
+				cluster->world->torus_len * sizeof(t_torus));
+		free(buffer);
+	}
+	if ((clients->status & SEND_MOEBIUS) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 'm', NULL)))
+			return (0);
+		send_informations(clients, 'm', buffer,
+				cluster->world->mobius_len * sizeof(t_mobius));
+		free(buffer);
+	}	
+	if ((clients->status & SEND_TRIANGLE) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 't', NULL)))
+			return (0);
+		send_informations(clients, 't', buffer,
+				cluster->world->triangles_len * sizeof(t_triangle));
+		free(buffer);
+	}
+		if ((clients->status & SEND_CUBE) == 0)
+	{
+	if (!(buffer = dup_data_obj(cluster, 'u', NULL)))
+			return (0);
+		send_informations(clients, 'u', buffer,
+				cluster->world->cubes_len * sizeof(t_cube));
+		free(buffer);
+	}
 	return (1);
 }
 
@@ -113,14 +205,14 @@ static int			send_buffer_obj(t_cluster *cluster,
 				cluster->world->planes_len * sizeof(t_plane));
 		free(buffer);
 	}
-	// if ((clients->status & SEND_SPHERES) == 0)
-	// {
-	// 	if (!(buffer = dup_data_obj(cluster, 's', NULL)))
-	// 		return (0);
-	// 	send_informations(clients, 's', buffer,
-	// 			cluster->world->spheres_len * sizeof(t_sphere));
-	// 	free(buffer);
-	// }
+	if ((clients->status & SEND_SPHERES) == 0)
+	{
+		if (!(buffer = dup_data_obj(cluster, 's', NULL)))
+			return (0);
+		send_informations(clients, 's', buffer,
+				cluster->world->spheres_len * sizeof(t_sphere));
+		free(buffer);
+	}
 	return (send_buffer_obj_next(cluster, clients, buffer));
 }
 
@@ -159,18 +251,5 @@ int					send_buffer_clients(t_cluster *cluster, t_client *clients)
 				buffer, cluster->world->lights_len * sizeof(t_light));
 		free(buffer);
 	}
-	if ((clients->status & SEND_SPHERES) == 0)// && cluster->world->spheres_len != 0)
-
-	{
-		if (!(buffer = dup_data_obj(cluster, 's', NULL)))
-			return (0);
-		printf("jenvoie information de spheres 's' avec spheres_len = %lu\n", cluster->world->spheres_len * sizeof(t_sphere));
-		send_informations(clients, 's', buffer,
-				cluster->world->spheres_len * sizeof(t_sphere));
-		free(buffer);
-	}
-	if(buffer != NULL)
-		printf("buffer pas vide\n");
-	// free(buffer);
 	return (send_buffer_obj(cluster, clients, buffer));
 }

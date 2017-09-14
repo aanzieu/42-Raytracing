@@ -171,8 +171,8 @@ __host__ __device__ t_color		ray_tracer_depth(t_world world, t_ray ray,
 	if (intersection.type == '0')
 		return ((t_color){0, 0, 0});
 //		return (color_scalar((t_color){66, 173, 212}, 0.3f / (y + 0.0001f)));
-//	if(world.keys.light_none == 1)
-//		color = apply_materials(world, ray, intersection);
+	if(world.keys.light_none == 1 && world.mode == 0)
+		color = apply_materials(world, ray, intersection);
 
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);

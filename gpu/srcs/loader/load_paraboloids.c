@@ -58,9 +58,10 @@ void				load_paraboloids(t_paraboloid **paraboloids,
 	}
 
 	i = 0;
-	*paraboloids_len = count_paraboloids(paraboloids_tmp);
-	*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *
-														*paraboloids_len);
+	if((*paraboloids_len = count_paraboloids(paraboloids_tmp)) == 0)
+		return;
+	if(!(*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *	*paraboloids_len)))
+		show_error("Don't Malloc\n");
 	tmp = paraboloids_tmp;
 	while (tmp)
 	{

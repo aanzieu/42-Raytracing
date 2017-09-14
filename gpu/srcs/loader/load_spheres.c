@@ -57,10 +57,7 @@ void						load_spheres(t_sphere **spheres,
 	}
 	i = 0;
 	if((*spheres_len = count_spheres(spheres_tmp)) == 0)
-	{
-		printf("PAS DE SPHERES\n");
 		return;
-	}
 	if(!(*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len)))
 		show_error("Don't Malloc\n");
 	tmp = spheres_tmp;

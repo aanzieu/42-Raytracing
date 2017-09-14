@@ -32,7 +32,7 @@
 # define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
-#define MAX_DEPTH 3
+#define MAX_DEPTH 1
 #define CHESS_PATTERN 2
 #define BACKGROUND_COLOR 0x42ADD4
 
@@ -51,6 +51,8 @@ typedef struct		s_offsets
 	int				y_max;
 	int				render_factor;
 	int				aa;
+	int				id_save;
+	char			ob_save;
 	//float			ambient;
 }					t_offsets;
 

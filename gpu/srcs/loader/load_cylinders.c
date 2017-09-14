@@ -58,8 +58,10 @@ void					load_cylinders(t_cylinder **cylinders,
 		*cylinders_len = 0;
 	}
 	i = 0;
-	*cylinders_len = count_cylinders(cylinders_tmp);
-	*cylinders = (t_cylinder*)malloc(sizeof(t_cylinder) * *cylinders_len);
+	if((*cylinders_len = count_cylinders(cylinders_tmp)) == 0)
+		return;
+	if(!(*cylinders = (t_cylinder*)malloc(sizeof(t_cylinder) * *cylinders_len)))
+			show_error("Don't Malloc\n");
 	tmp = cylinders_tmp;
 	while (tmp)
 	{
