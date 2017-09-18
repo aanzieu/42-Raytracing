@@ -51,6 +51,7 @@ typedef struct		s_offsets
 	int				y_max;
 	int				render_factor;
 	int				aa;
+	int				mode;
 	int				id_save;
 	char			ob_save;
 	//float			ambient;

@@ -64,7 +64,7 @@ void			rt_cluster(t_world *world)
 	world->aa = world->offsets.aa;
 	world->id_save = world->offsets.id_save;
 	world->ob_save = world->offsets.ob_save;
-
+	world->mode = world->offsets.mode;
 	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min) * sizeof(int);
 	if (world->a_h == NULL)
 	{
@@ -77,12 +77,13 @@ void			rt_cluster(t_world *world)
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
 	{
+
 		printf("laucnh CPU\n");
 		launch_cpu(world);
 	}
 	else
 	{
-	//	printf("laucnh GPU\n");
+		printf("laucnh GPU\n");
 		launch_gpu(world);
 	}
 }

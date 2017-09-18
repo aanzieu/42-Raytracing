@@ -65,6 +65,7 @@ static void		send_offsets(t_client *clients, t_cluster *cluster, int nbr)
 			offsets.y_max = offsets.y_min + (double)WIN_HEIGHT / cluster->nbr_clients;
 			offsets.render_factor = cluster->world->render_factor;
 			offsets.aa = cluster->world->aa;
+			offsets.mode = cluster->world->mode;
 			offsets.ob_save = cluster->world->ob_save;
 			offsets.id_save = cluster->world->id_save;
 			// offsets.intensity = cluster->world->ambient.intensity;
