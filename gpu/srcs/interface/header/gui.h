@@ -149,6 +149,7 @@ void	triangle_informations(t_world *world, struct nk_context *ctx, struct media 
 
 
 void	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world);
+void	draw_chess_color(struct nk_context *ctx, t_world *world, t_color *c);
 void	header_info(struct nk_context *ctx, struct nk_image img, char *n);
 
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[3]);

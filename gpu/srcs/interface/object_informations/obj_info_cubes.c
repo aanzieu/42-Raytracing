@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 17:30:01 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:07:05 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void		cube_informations(t_world *world, struct nk_context *ctx,\
 			draw_infos(ctx, media, world, i);
 			ui_header(ctx, media, "---- Colors ----");
 			draw_color_picker(ctx, &world->cubes[i].color, world);
+			ui_widget_centered(ctx, media, 30);
+			draw_chess_color(ctx, world, &world->cubes[i].chess);
 			refresh_cube(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			break ;

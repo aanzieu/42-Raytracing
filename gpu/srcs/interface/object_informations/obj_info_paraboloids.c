@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 17:51:29 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:21:55 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,32 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
+static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 						int i)
 {
-	if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].top.x, "POS X:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].top.x, "POS X:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].top.y, "POS Y:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].top.y, "POS Y:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].top.z, "POS Z:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].top.z, "POS Z:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].normal.x, "NORMAL X:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].normal.x, "NORMAL X:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].normal.y, "NORMAL Y:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].normal.y, "NORMAL Y:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].normal.z, "NORMAL Z:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].normal.z, "NORMAL Z:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].distance, "DISTANCE:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].distance, "DISTANCE:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].maxm, "MAXM:"))
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].maxm, "MAXM:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].reflection_coef,\
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].reflection_coef,\
 			"REFLECTION:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].refraction_coef,\
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].refraction_coef,\
 			"REFRACTION:"))
 		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->paraboloids[i].transparence_coef,\
+	if (ui_widget_value_infos(c, m, &w->paraboloids[i].transparence_coef,\
 			"TRANSPARENCE:"))
 		w->redraw = 1;
 }
@@ -78,6 +78,8 @@ void		paraboloid_informations(t_world *world, struct nk_context *ctx,\
 			draw_infos(ctx, media, world, i);
 			ui_header(ctx, media, "---- Colors ----");
 			draw_color_picker(ctx, &world->paraboloids[i].color, world);
+			ui_widget_centered(ctx, media, 30);
+			draw_chess_color(ctx, world, &world->paraboloids[i].chess);
 			refresh_paraboloid(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			break ;

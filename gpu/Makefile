@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/14 13:35:15 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/18 12:26:42 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-#GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
-#GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
- GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
- GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
+GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
+GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+# GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+# GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra

@@ -3,7 +3,7 @@
 <scene name="2 Spheres">
 
 <camera>
-  <pos x="0" y="0" z="-100" />
+  <pos x="0" y="0" z="-20" />
   <dir x="0" y="0" z="1" />
   <rot x="0" y="0" z="0" />
   <tra x="0" y="0" z="0" />

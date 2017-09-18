@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 17:14:02 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 17:15:46 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:08:38 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void		mobius_informations(t_world *world, struct nk_context *ctx,\
 			draw_infos(ctx, media, world, i);
 			ui_header(ctx, media, "---- Colors ----");
 			draw_color_picker(ctx, &world->mobius[i].color, world);
+			ui_widget_centered(ctx, media, 30);
+			draw_chess_color(ctx, world, &world->mobius[i].chess);
 			refresh_mobius(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			break ;

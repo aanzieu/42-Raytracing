@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/14 13:43:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:01:34 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,32 @@ void	header_info(struct nk_context *ctx, struct nk_image img, char *n)
 		nk_text(ctx, n, ft_strlen(n), NK_TEXT_LEFT);
 	}
 	nk_layout_row_end(ctx);
+}
+
+void	draw_chess_color(struct nk_context *ctx, t_world *world, t_color *c)
+{
+	static int check = 1;
+
+	if (c->r != -1)
+		check = 0;
+	else
+		check = 1;
+	if (nk_checkbox_label(ctx, "ADD CHESS COLOR", &check))
+		world->redraw = 1;
+	if (!check)
+	{
+		if (c->r == -1)
+		{
+			c->r = 0;
+			c->g = 0;
+			c->b = 0;
+		}
+		draw_color_picker(ctx, c, world);
+	}
+	else
+	{
+		c->r = -1;
+		c->g = -1;
+		c->b = -1;
+	}
 }

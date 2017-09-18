@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/14 17:50:52 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:01:26 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,6 @@ static void	draw_delete_button(struct nk_context *ctx, struct media *media,\
 	}
 }
 
-void	reset_chess_color(struct nk_context *ctx, t_world *world, t_color *c)
-{
-	static int check = 1;
-
-	if (c->r != -1)
-		check = 0;
-	else
-		check = 1;
-	if (nk_checkbox_label(ctx, "ADD CHESS COLOR", &check))
-		world->redraw = 1;
-	if (!check)
-		draw_color_picker(ctx, c, world);
-	else
-	{
-		c->r = -1;
-		c->g = -1;
-		c->b = -1;
-	}
-}
-
 void		sphere_informations(t_world *world, struct nk_context *ctx,\
 								struct media *media)
 {
@@ -90,7 +70,7 @@ void		sphere_informations(t_world *world, struct nk_context *ctx,\
 			ui_header(ctx, media, "---- Colors ----");
 			draw_color_picker(ctx, &world->spheres[i].color, world);
 			ui_widget_centered(ctx, media, 30);
-			reset_chess_color(ctx, world, &world->spheres[i].chess);
+			draw_chess_color(ctx, world, &world->spheres[i].chess);
 			refresh_sphere(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			break ;

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 16:39:00 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:04:40 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void		cone_informations(t_world *world, struct nk_context *ctx,\
 			draw_infos(ctx, media, world, i);
 			ui_header(ctx, media, "---- Colors ----");
 			draw_color_picker(ctx, &world->cones[i].color, world);
+			ui_widget_centered(ctx, media, 30);
+			draw_chess_color(ctx, world, &world->cones[i].chess);
 			refresh_cone(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			break ;
