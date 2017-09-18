@@ -6,20 +6,20 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 18:06:29 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/26 17:50:35 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 16:53:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rt.h"
 #include "../cuda/cudaheader/gpu_rt.h"
 
-void	init_sphere_add(t_sphere *s)
+void						init_sphere_add(t_sphere *s)
 {
 	s->id = 0;
 	s->radius = 0.2;
-	s->pos = new_vector(0, 0 , -0.5);
+	s->pos = new_vector(0, 0, -0.5);
 	s->color = (t_color)
-	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	{color_to_coef(36), color_to_coef(205), color_to_coef(62)};
 	s->chess = (t_color){-1, -1, -1};
 	s->reflection_coef = 0;
 	s->refraction_coef = 0;
@@ -44,7 +44,7 @@ static unsigned int			count_spheres(t_sphere *spheres)
 }
 
 void						load_spheres(t_sphere **spheres,
-									t_sphere *spheres_tmp, int *spheres_len)
+							t_sphere *spheres_tmp, int *spheres_len)
 {
 	unsigned int	i;
 	t_sphere		*tmp;
@@ -56,9 +56,9 @@ void						load_spheres(t_sphere **spheres,
 		*spheres_len = 0;
 	}
 	i = 0;
-	if((*spheres_len = count_spheres(spheres_tmp)) == 0)
-		return;
-	if(!(*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len)))
+	if ((*spheres_len = count_spheres(spheres_tmp)) == 0)
+		return ;
+	if (!(*spheres = (t_sphere*)malloc(sizeof(t_sphere) * *spheres_len)))
 		show_error("Don't Malloc\n");
 	tmp = spheres_tmp;
 	while (tmp)

@@ -6,12 +6,13 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 10:38:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 18:05:20 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 15:42:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <effects.h>
+#include <colors.h>
 
 void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 {
@@ -30,19 +31,19 @@ void	pixel_to_image(SDL_Surface *surface, int x, int y, Uint32 color)
 
 void	effect_application(t_world *world)
 {
-	printf("keyspad = %d\n", world->keys.pad_0);
+	int		averages[10][4];
 	if (world->keys.pad_0 == 1)
-		sepia_effect(world->a_h);
+		sepia_effect(world->a_h, (t_color){0,0,0});
 	else if (world->keys.pad_0 == 2)
-		bayer_color(world->a_h);
+		bayer_color(world->a_h, 2);
 	else if (world->keys.pad_0 == 3)
 		eight_bit_effect(world->a_h);
 	
 	else if (world->keys.pad_0 == 4)
 		pastel_effect(world->a_h, world->viewplane.y_res,
-								world->viewplane.x_res);
+								world->viewplane.x_res, averages);
 	else if (world->keys.pad_0 == 5)
-		black_and_white_effect(world->a_h);	
+		black_and_white_effect(world->a_h, (t_color){0, 0, 0});
 	// else if (world->keys.pad_0 == 1)
 	// 	solarized_effect(world->a_h);
 

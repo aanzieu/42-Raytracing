@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/23 09:23:45 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 09:25:06 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 15:10:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 ** add r,g,b and divide by 3
 */
 
-void		black_and_white_effect(int *pix)
+void		black_and_white_effect(int *pix, t_color color)
 {
 	int		i;
 	int		j;
 	int		grey;
 	int		cur;
-	t_color	color;
 
 	i = 0;
 	while (i < WIN_HEIGHT)

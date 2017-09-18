@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 10:37:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/24 13:39:17 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 17:13:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,43 +86,4 @@ t_mobius					*new_mobius(t_mobius *nw, int id)
 	s->transparence_coef = nw->transparence_coef;
 	s->next = NULL;
 	return (s);
-}
-
-t_triangle	*new_triangle(t_triangle *nw, int id)
-{
-	t_triangle	*t;
-
-	if (!(t = (t_triangle *)ft_memalloc(sizeof(t_triangle))))
-		ft_putendl_fd("Erroc Malloc on triangle", 1);
-	t->pos = nw->pos;
-	t->v1 = nw->v1;
-	t->v2 = nw->v2;
-	t->up = nw->up;
-	t->color = nw->color;
-	t->chess = nw->chess;
-	t->id = id;
-	t->reflection_coef = nw->reflection_coef;
-	t->refraction_coef = nw->refraction_coef;
-	t->transparence_coef = nw->transparence_coef;
-	t->next = NULL;
-	return (t);
-}
-
-t_cube	*new_cube(t_cube *nw, int id)
-{
-	t_cube	*t;
-
-	if (!(t = (t_cube *)ft_memalloc(sizeof(t_cube))))
-		ft_putendl_fd("Erroc Malloc on cube", 1);
-	t->min = nw->min;
-	t->max = nw->max;
-//	t->up = nw->up;
-	t->color = nw->color;
-	t->chess = nw->chess;
-	t->id = id;
-	t->reflection_coef = nw->reflection_coef;
-	t->refraction_coef = nw->refraction_coef;
-	t->transparence_coef = nw->transparence_coef;
-	t->next = NULL;
-	return (t);
 }

@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:10:07 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/29 16:36:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/18 17:34:08 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	save_cylinders_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->cylinders->color, "color", object);
 		if (world->cylinders->chess.r != -1)
 			node = xml_save_rgb(&world->cylinders->chess, "chess", object);
-		node = xml_save_one_data(world->cylinders->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->cylinders->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->cylinders->reflection_coef,
+				"reflection", object);
+		node = xml_save_one_data(world->cylinders->refraction_coef,
+				"refraction", object);
 		world->cylinders = world->cylinders->next;
 	}
 	world->cylinders = ptr;
@@ -40,7 +42,7 @@ void	save_cones_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_cone	*ptr;
+	t_cone		*ptr;
 
 	ptr = world->cones;
 	while (world->cones != NULL)
@@ -55,8 +57,10 @@ void	save_cones_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->cones->color, "color", object);
 		if (world->cones->chess.r != -1)
 			node = xml_save_rgb(&world->cones->chess, "chess", object);
-		node = xml_save_one_data(world->cones->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->cones->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->cones->reflection_coef,
+				"reflection", object);
+		node = xml_save_one_data(world->cones->refraction_coef,
+				"refraction", object);
 		world->cones = world->cones->next;
 	}
 	world->cones = ptr;
@@ -66,7 +70,7 @@ void	save_disks_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_disk	*ptr;
+	t_disk		*ptr;
 
 	ptr = world->disks;
 	while (world->disks != NULL)
@@ -78,8 +82,10 @@ void	save_disks_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->disks->color, "color", object);
 		if (world->disks->chess.r != -1)
 			node = xml_save_rgb(&world->disks->chess, "chess", object);
-		node = xml_save_one_data(world->disks->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->disks->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->disks->reflection_coef, "reflection",
+				object);
+		node = xml_save_one_data(world->disks->refraction_coef, "refraction",
+				object);
 		world->disks = world->disks->next;
 	}
 	world->disks = ptr;
@@ -87,8 +93,8 @@ void	save_disks_to_xml(t_world *world, xmlNodePtr root_node)
 
 void	save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node)
 {
-	xmlNodePtr	object;
-	xmlNodePtr	node;
+	xmlNodePtr		object;
+	xmlNodePtr		node;
 	t_paraboloid	*ptr;
 
 	ptr = world->paraboloids;
@@ -97,13 +103,16 @@ void	save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node)
 		object = xmlNewChild(root_node, NULL, BAD_CAST "paraboloid", NULL);
 		node = xml_save_vec3d(&world->paraboloids->top, "top", object);
 		node = xml_save_vec3d(&world->paraboloids->normal, "normal", object);
-		node = xml_save_one_data(world->paraboloids->distance, "radius", object);
+		node = xml_save_one_data(world->paraboloids->distance,
+				"radius", object);
 		node = xml_save_one_data(world->paraboloids->maxm, "height", object);
 		node = xml_save_rgb(&world->paraboloids->color, "color", object);
 		if (world->paraboloids->chess.r != -1)
 			node = xml_save_rgb(&world->paraboloids->chess, "chess", object);
-		node = xml_save_one_data(world->paraboloids->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->paraboloids->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->paraboloids->reflection_coef,
+				"reflection", object);
+		node = xml_save_one_data(world->paraboloids->refraction_coef,
+				"refraction", object);
 		world->paraboloids = world->paraboloids->next;
 	}
 	world->paraboloids = ptr;
@@ -111,8 +120,8 @@ void	save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node)
 
 void	save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node)
 {
-	xmlNodePtr	object;
-	xmlNodePtr	node;
+	xmlNodePtr		object;
+	xmlNodePtr		node;
 	t_hyperboloid	*ptr;
 
 	ptr = world->hyperboloids;
@@ -126,8 +135,10 @@ void	save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->hyperboloids->color, "color", object);
 		if (world->hyperboloids->chess.r != -1)
 			node = xml_save_rgb(&world->hyperboloids->chess, "chess", object);
-		node = xml_save_one_data(world->hyperboloids->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->hyperboloids->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->hyperboloids->reflection_coef,
+				"reflection", object);
+		node = xml_save_one_data(world->hyperboloids->refraction_coef,
+				"refraction", object);
 		world->hyperboloids = world->hyperboloids->next;
 	}
 	world->hyperboloids = ptr;

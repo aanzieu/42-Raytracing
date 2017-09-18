@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:03:42 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/29 14:26:10 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/18 17:31:24 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	save_lights_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_light	*ptr;
+	t_light		*ptr;
 
 	ptr = world->lights;
 	while (world->lights != NULL)
@@ -35,7 +35,8 @@ void	save_lights_to_xml(t_world *world, xmlNodePtr root_node)
 		object = xmlNewChild(root_node, NULL, BAD_CAST "light", NULL);
 		node = xml_save_vec3d(&world->lights->pos, "pos", object);
 		node = xml_save_rgb(&world->lights->color, "color", object);
-		node = xml_save_one_data(world->lights->intensity_coef, "intensity", object);
+		node = xml_save_one_data(world->lights->intensity_coef, "intensity",
+				object);
 		world->lights = world->lights->next;
 	}
 	world->lights = ptr;
@@ -55,7 +56,7 @@ void	save_planes_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_plane	*ptr;
+	t_plane		*ptr;
 
 	ptr = world->planes;
 	while (world->planes != NULL)
@@ -66,8 +67,10 @@ void	save_planes_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->planes->color, "color", object);
 		if (world->planes->chess.r != -1)
 			node = xml_save_rgb(&world->planes->chess, "chess", object);
-		node = xml_save_one_data(world->planes->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->planes->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->planes->reflection_coef, "reflection",
+				object);
+		node = xml_save_one_data(world->planes->refraction_coef, "refraction",
+				object);
 		world->planes = world->planes->next;
 	}
 	world->planes = ptr;
@@ -88,8 +91,10 @@ void	save_spheres_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->spheres->color, "color", object);
 		if (world->spheres->chess.r != -1)
 			node = xml_save_rgb(&world->spheres->chess, "chess", object);
-		node = xml_save_one_data(world->spheres->reflection_coef, "reflection", object);
-		node = xml_save_one_data(world->spheres->refraction_coef, "refraction", object);
+		node = xml_save_one_data(world->spheres->reflection_coef, "reflection",
+				object);
+		node = xml_save_one_data(world->spheres->refraction_coef, "refraction",
+				object);
 		world->spheres = world->spheres->next;
 	}
 	world->spheres = ptr;

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 11:16:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/19 14:17:49 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 16:50:36 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 void							init_paraboloid_add(t_paraboloid *p)
 {
 	p->id = 0;
-	p->top = new_vector(0, 0 , 0);
-	p->normal = new_vector(0, -1 , 0);
+	p->top = new_vector(0, 0, 0);
+	p->normal = new_vector(0, -1, 0);
 	p->distance = 0.05;
 	p->maxm = 0.05;
 	p->color = (t_color)
-	{color_to_coef(236), color_to_coef(205), color_to_coef(62)};
+	{color_to_coef(6), color_to_coef(205), color_to_coef(62)};
 	p->chess = (t_color){-1, -1, -1};
 	p->reflection_coef = 0;
 	p->refraction_coef = 0;
@@ -29,7 +29,7 @@ void							init_paraboloid_add(t_paraboloid *p)
 	p->next = NULL;
 }
 
-static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
+static unsigned int				count_paraboloids(t_paraboloid *paraboloids)
 {
 	t_paraboloid	*p;
 	unsigned int	size;
@@ -44,7 +44,7 @@ static unsigned int	count_paraboloids(t_paraboloid *paraboloids)
 	return (size);
 }
 
-void				load_paraboloids(t_paraboloid **paraboloids,
+void							load_paraboloids(t_paraboloid **paraboloids,
 						t_paraboloid *paraboloids_tmp, int *paraboloids_len)
 {
 	unsigned int	i;
@@ -56,11 +56,11 @@ void				load_paraboloids(t_paraboloid **paraboloids,
 		*paraboloids = NULL;
 		*paraboloids_len = 0;
 	}
-
 	i = 0;
-	if((*paraboloids_len = count_paraboloids(paraboloids_tmp)) == 0)
-		return;
-	if(!(*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *	*paraboloids_len)))
+	if ((*paraboloids_len = count_paraboloids(paraboloids_tmp)) == 0)
+		return ;
+	if (!(*paraboloids = (t_paraboloid*)malloc(sizeof(t_paraboloid) *
+					*paraboloids_len)))
 		show_error("Don't Malloc\n");
 	tmp = paraboloids_tmp;
 	while (tmp)

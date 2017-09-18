@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_object_thread2.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 17:01:33 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/09/18 17:01:47 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/rt.h"
 #include "../../includes/parse.h"
 
-void		thread_free_and_add_torus(t_torus **to, t_torus **to_tmp, int *len, int id)
+void		thread_free_and_add_torus(t_torus **to,
+		t_torus **to_tmp, int *len, int id)
 {
 	t_torus	*new;
 
-	if(*to != NULL)
+	if (*to != NULL)
 	{
 		free(*to);
 		*len = 0;
@@ -22,11 +34,12 @@ void		thread_free_and_add_torus(t_torus **to, t_torus **to_tmp, int *len, int id
 	load_torus(to, *to_tmp, len);
 }
 
-void		thread_free_and_add_mobius(t_mobius **mo, t_mobius **mo_tmp, int *len, int id)
+void		thread_free_and_add_mobius(t_mobius **mo,
+		t_mobius **mo_tmp, int *len, int id)
 {
 	t_mobius	*new;
 
-	if(*mo != NULL)
+	if (*mo != NULL)
 	{
 		free(*mo);
 		*len = 0;
@@ -42,11 +55,12 @@ void		thread_free_and_add_mobius(t_mobius **mo, t_mobius **mo_tmp, int *len, int
 	load_mobius(mo, *mo_tmp, len);
 }
 
-void		thread_free_and_add_disk(t_disk **di, t_disk **di_tmp, int *len, int id)
+void		thread_free_and_add_disk(t_disk **di,
+		t_disk **di_tmp, int *len, int id)
 {
 	t_disk	*new;
 
-	if(*di != NULL)
+	if (*di != NULL)
 	{
 		free(*di);
 		*len = 0;
@@ -62,11 +76,12 @@ void		thread_free_and_add_disk(t_disk **di, t_disk **di_tmp, int *len, int id)
 	load_disks(di, *di_tmp, len);
 }
 
-void		thread_free_and_add_cube(t_cube **cu, t_cube **cu_tmp, int *len, int id)
+void		thread_free_and_add_cube(t_cube **cu,
+		t_cube **cu_tmp, int *len, int id)
 {
 	t_cube	*new;
 
-	if(*cu != NULL)
+	if (*cu != NULL)
 	{
 		free(*cu);
 		*len = 0;
@@ -82,11 +97,12 @@ void		thread_free_and_add_cube(t_cube **cu, t_cube **cu_tmp, int *len, int id)
 	load_cubes(cu, *cu_tmp, len);
 }
 
-void		thread_free_and_add_hyperboloid(t_hyperboloid **hy, t_hyperboloid **hy_tmp, int *len, int id)
+void		thread_free_and_add_hyperboloid(t_hyperboloid **hy,
+		t_hyperboloid **hy_tmp, int *len, int id)
 {
 	t_hyperboloid	*new;
 
-	if(*hy != NULL)
+	if (*hy != NULL)
 	{
 		free(*hy);
 		*len = 0;

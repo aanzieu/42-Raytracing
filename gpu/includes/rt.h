@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 12:04:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:06:06 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,12 +305,6 @@ void				key_press_handler5(t_world *world);
 void				savebmp(t_world *world);
 void				save_xml_scene(t_world *world);
 
-t_light				*copy_light(t_light *obj);
-t_sphere			*copy_sphere(t_sphere *obj);
-t_plane				*copy_plan(t_plane *obj);
-t_cone				*copy_cone(t_cone *obj);
-t_cylinder			*copy_cylinder(t_cylinder *obj);
-
 /*
 ********************************************************************************
 **                     CLUSTERING                                        	  **
@@ -339,8 +333,8 @@ void				client_config(t_world *world, char *argv);
 void		show_error(const char *str);
 void		show_error_2(const char *s1, const char *s2);
 
-void				int_to_int(int *src, int *dst, int width, int height);
-void	effect_application(t_world *world);
+void		int_to_int(int *src, int *dst, int width, int height);
+void		effect_application(t_world *world);
 void	clear_world(t_world *world);
 
 #endif

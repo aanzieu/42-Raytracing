@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_object_thread3.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 17:02:01 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/09/18 17:02:29 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/rt.h"
 #include "../../includes/parse.h"
 
-void		thread_free_and_add_paraboloid(t_paraboloid **p, t_paraboloid **p_tmp, int *len, int id)
+void		thread_free_and_add_paraboloid(t_paraboloid **p,
+		t_paraboloid **p_tmp, int *len, int id)
 {
 	t_paraboloid	*new;
 
-	if(*p != NULL)
+	if (*p != NULL)
 	{
 		free(*p);
 		*len = 0;
@@ -22,11 +34,12 @@ void		thread_free_and_add_paraboloid(t_paraboloid **p, t_paraboloid **p_tmp, int
 	load_paraboloids(p, *p_tmp, len);
 }
 
-void		thread_free_and_add_triangle(t_triangle **t, t_triangle **t_tmp, int *len, int id)
+void		thread_free_and_add_triangle(t_triangle **t,
+		t_triangle **t_tmp, int *len, int id)
 {
 	t_triangle	*new;
 
-	if(*t != NULL)
+	if (*t != NULL)
 	{
 		free(*t);
 		*len = 0;

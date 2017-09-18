@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/16 13:02:32 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/18 17:17:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ void		add_cone(t_cone **alst, t_cone *nw)
 	}
 }
 
+static void	parse_cone_opt_next(t_cone *co, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&co->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_refraction(&co->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence_coef")))
+		parse_transparence(&co->transparence_coef, cur);
+}
+
 static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
@@ -53,12 +63,7 @@ static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)
 		parse_color(&co->chess, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"rot")))
 		parse_rot(&co->up, cur);
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-		parse_reflection(&co->reflection_coef, cur);
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-		parse_refraction(&co->refraction_coef, cur);
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence_coef")))
-		parse_transparence(&co->transparence_coef, cur);
+	parse_cone_opt_next(co, cur);
 }
 
 void		parse_cone(t_world *world, xmlNodePtr cur)

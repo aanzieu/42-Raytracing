@@ -6,12 +6,14 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/22 11:28:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 09:44:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 15:57:30 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EFFECTS_H
 # define EFFECTS_H
+
+#include "colors.h"
 
 typedef	struct	s_pastel
 {
@@ -23,19 +25,21 @@ typedef	struct	s_pos
 {
 	int			x;
 	int			y;
-	int			width;
-	int			height;
+	int			i;
+	int			j;
+	int			w;
+	int			h;
 }				t_pos;
 
 void			shell_shading_effect(int *pix);
 void			exposure_color(int *pix);
 void			filter_color(int *pix);
 void			negative_color(int *pix);
-void			bayer_color(int *pix);
+void			bayer_color(int *pix, int bayervalue);
 void			solarized_effect(int *pix);
-void			pastel_effect(int *pix, int height, int width);
-void			black_and_white_effect(int *pix);
-void			sepia_effect(int *pix);
+void			pastel_effect(int *pix, int height, int width, int averages[10][4]);
+void			black_and_white_effect(int *pix, t_color color);
+void			sepia_effect(int *pix, t_color color);
 void			eight_bit_effect(int *pix);
 void			anaglyph(t_world *world);
 

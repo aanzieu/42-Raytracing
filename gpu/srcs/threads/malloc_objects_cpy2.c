@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   malloc_objects_cpy2.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 17:02:51 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/09/18 17:09:42 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
 
-t_torus			*copy_torus(t_torus *obj)
+t_torus				*copy_torus(t_torus *obj)
 {
-	t_torus 	*news;
+	t_torus		*news;
 
 	if (obj)
 	{
@@ -21,7 +32,7 @@ t_torus			*copy_torus(t_torus *obj)
 	return (NULL);
 }
 
-t_mobius		*copy_mobius(t_mobius *obj)
+t_mobius			*copy_mobius(t_mobius *obj)
 {
 	t_mobius *news;
 
@@ -40,9 +51,9 @@ t_mobius		*copy_mobius(t_mobius *obj)
 	return (NULL);
 }
 
-t_disk		*copy_disk(t_disk *obj)
+t_disk				*copy_disk(t_disk *obj)
 {
-	t_disk 	*news;
+	t_disk	*news;
 
 	if (obj)
 	{
@@ -61,9 +72,9 @@ t_disk		*copy_disk(t_disk *obj)
 	return (NULL);
 }
 
-t_cube		*copy_cube(t_cube *obj)
+t_cube				*copy_cube(t_cube *obj)
 {
-	t_cube 	*news;
+	t_cube	*news;
 
 	if (obj)
 	{

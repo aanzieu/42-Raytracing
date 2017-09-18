@@ -6,23 +6,21 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/23 09:22:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 17:12:54 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 14:54:25 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rt.h"
 #include "../../includes/effects.h"
 
-void		bayer_color(int *pix)
+void		bayer_color(int *pix, int bayervalue)
 {
 	int		x;
 	int		y;
 	int		cur;
-	int		bayervalue;
 	t_color color;
 
 	y = -1;
-	bayervalue = 2;
 	while (++y < WIN_HEIGHT)
 	{
 		x = -1;

@@ -6,13 +6,13 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:19:35 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:17:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-double	color_to_coef(unsigned int color)
+double			color_to_coef(unsigned int color)
 {
 	if (color == 0)
 		return (0);

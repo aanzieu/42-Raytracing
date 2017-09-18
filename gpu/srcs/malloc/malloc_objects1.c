@@ -6,12 +6,12 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:54:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 13:22:02 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/18 17:11:30 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
-#include <gpu_rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
 
 t_light		*new_light(t_light *nw)
 {

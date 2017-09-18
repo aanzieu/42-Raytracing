@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:29:28 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/11 13:21:00 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 17:49:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 /*
 **	Find objects and execute their own parsing associate
 */
+
+static void		get_object_node_next(t_world *world, xmlNodePtr obj)
+{
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"paraboloid")))
+		parse_paraboloid(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"hyperboloid")))
+		parse_hyperboloid(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"torus")))
+		parse_torus(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"triangle")))
+		parse_triangle(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cube")))
+		parse_cube(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
+		parse_ambient(world, obj);
+}
 
 static void		get_object_node(t_world *world, xmlNodePtr obj)
 {
@@ -34,18 +50,7 @@ static void		get_object_node(t_world *world, xmlNodePtr obj)
 		parse_disk(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cone")))
 		parse_cone(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"paraboloid")))
-		parse_paraboloid(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"hyperboloid")))
-		parse_hyperboloid(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"torus")))
-		parse_torus(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"triangle")))
-		parse_triangle(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cube")))
-		parse_cube(world, obj);
-	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
-		parse_ambient(world, obj);
+	get_object_node_next(world, obj);
 }
 
 /*

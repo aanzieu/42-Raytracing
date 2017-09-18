@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   malloc_objects_cpy3.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 17:09:50 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/09/18 17:10:14 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <rt.h>
+#include "../../includes/rt.h"
 
 t_paraboloid		*copy_paraboloid(t_paraboloid *obj)
 {
@@ -21,9 +32,9 @@ t_paraboloid		*copy_paraboloid(t_paraboloid *obj)
 	return (NULL);
 }
 
-t_triangle		*copy_triangle(t_triangle *obj)
+t_triangle			*copy_triangle(t_triangle *obj)
 {
-	t_triangle 	*news;
+	t_triangle	*news;
 
 	if (obj)
 	{

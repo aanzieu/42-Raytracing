@@ -1,4 +1,16 @@
-#include "parse.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_cube.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 17:14:24 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/09/18 17:15:23 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/parse.h"
 
 void	add_cube(t_cube **alst, t_cube *nw)
 {
@@ -17,7 +29,7 @@ void	add_cube(t_cube **alst, t_cube *nw)
 	}
 }
 
-void 	handle_input_cube(t_cube *c, xmlNodePtr cur)
+void	handle_input_cube(t_cube *c, xmlNodePtr cur)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"min")))
 		parse_vec3d(&c->min, cur);
