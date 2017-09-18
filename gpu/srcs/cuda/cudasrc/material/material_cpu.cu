@@ -80,8 +80,8 @@ __host__ __device__ t_vec3d tabs(t_vec3d v)
 __host__ __device__ t_color handle_chess(t_ray ray,
   t_intersection intersection)
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 	t_color		color;
   t_vec3d   pos;
 
@@ -103,8 +103,8 @@ __host__ __device__ t_color handle_chess(t_ray ray,
 	{
 		x = atan2(intersection.normal_v.z, intersection.normal_v.x) / M_PI + 1;
 	  y = acos(intersection.normal_v.y) / M_PI;
-		if ((fmod(x * CHESS_PATTERN, 1) > 0.5) ^
-        (fmod(y * CHESS_PATTERN, 1) > 0.5) == 0)
+		if ((fmodf(x * CHESS_PATTERN, 1) > 0.5) ^
+        (fmodf(y * CHESS_PATTERN, 1) > 0.5) == 0)
 			color = intersection.chess;
 		else
 			color = intersection.color;
