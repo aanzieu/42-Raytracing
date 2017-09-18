@@ -17,15 +17,6 @@ extern "C" {
 	#include <equation.h>
 }
 
-__host__ __device__ static t_vec3d			get_normal_sphere(t_sphere sphere,
-		t_intersection intersection)
-{
-	t_vec3d normal;
-
-	normal = vector_normalize(vector_calculate(sphere.pos, intersection.pos));
-	return (normal);
-}
-
 /*
 **	On envoie le rayon et la structure qui contient la sphere et la fonction
 **	ecrit sur 't_vec3d *intersection' les coordonees du point d'intersection
@@ -47,9 +38,12 @@ __host__ __device__ double			get_sphere(t_sphere sphere,
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
 	{
+		// tfar = eq.res[1] < eq.res[2] ? eq.res[2] : eq.res[1];
 		// printf("%f\n", sphere.transparence_coef);
 		intersection_tmp->id = sphere.id;
 		intersection_tmp->t = eq.res[0];
+		// intersection_tmp->t1 = eq.res[0];//tnear; //intersection_tmp->t;
+		// intersection_tmp->t2 = eq.res[1];//tfar;
 		return (1);
 	}
 	return (0);
@@ -78,8 +72,8 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				intersection->chess = world.spheres[i].chess;
 				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,
 					intersection_tmp->t));
-				intersection->normal_v = get_normal_sphere(world.spheres[i],
-					*intersection);
+				intersection->normal_v = vector_normalize(
+					vector_calculate(world.spheres[i].pos, intersection->pos));
 			}
 		}
 		i++;

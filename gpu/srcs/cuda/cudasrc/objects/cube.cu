@@ -114,8 +114,7 @@ __host__ __device__ void	get_closest_cube(t_world world, t_ray ray,
 				intersection->chess = world.cubes[i].chess;
 				intersection->pos =
 					vector_add(ray.origin, vector_scalar(ray.dir, intersection->t));
-				intersection->normal_v =
-					get_normal_cube(world.cubes[i], ray, *intersection);
+				intersection->normal_v = get_normal_cube(world.cubes[i], ray, *intersection);
 			}
 		}
 		i++;

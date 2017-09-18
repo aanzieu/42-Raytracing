@@ -3,16 +3,17 @@
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
 <!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT sphere (pos, radius, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT sphere (pos, radius, tra*, color, chess*, negative*, reflection*, refraction*, transparence*)>
 <!ELEMENT cylinder (pos, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT cone (pos, normal, radius, height, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT torus (top, normal, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT torus (pos, normal*, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT mobius (pos, radius, tra*, color, reflection*)>
 <!ELEMENT triangle (pos, normal, v1, v2, color, chess*, reflection*, refraction*, transparence*)>
-<!ELEMENT cube (min, max, normal*, tra*, color, chess*, reflection*, refraction*, transparence*)>
+
+<!ELEMENT cube (min, max, normal*, color, chess*, reflection*, refraction*, transparence*)>
 
 <!ELEMENT pos (#PCDATA)>
 <!ELEMENT dir (#PCDATA)>
@@ -33,6 +34,7 @@
 <!ELEMENT color (#PCDATA)>
 <!ELEMENT chess (#PCDATA)>
 <!ELEMENT intensity (#PCDATA)>
+<!ELEMENT negative (#PCDATA)>
 <!ELEMENT reflection (#PCDATA)>
 <!ELEMENT refraction (#PCDATA)>
 <!ELEMENT transparence (#PCDATA)>
@@ -109,6 +111,7 @@
 <!ATTLIST radius_big data CDATA #REQUIRED>
 <!ATTLIST height data CDATA #REQUIRED>
 <!ATTLIST intensity data CDATA #REQUIRED>
+<!ATTLIST negative data CDATA #REQUIRED>
 <!ATTLIST reflection data CDATA #REQUIRED>
 <!ATTLIST refraction data CDATA #REQUIRED>
 <!ATTLIST transparence data CDATA #REQUIRED>

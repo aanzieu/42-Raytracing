@@ -24,7 +24,7 @@
 # include "../frameworks/GL.framework/glfw/3.2.1/include/GLFW/glfw3.h"
 # include "../libft/libft.h"
 
-# define NB_TH 8
+# define NB_TH 4
 
 # define VERSION 1.03.3
 
@@ -32,7 +32,7 @@
 # define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
-#define MAX_DEPTH 3
+#define MAX_DEPTH 4
 #define CHESS_PATTERN 2
 #define BACKGROUND_COLOR 0x42ADD4
 
@@ -115,10 +115,13 @@ typedef struct		s_intersection
 	t_vec3d	pos;
 	t_color color;
 	t_color	chess;
+	double	negative;
 	double	reflection_coef;
 	double	refraction_coef;
 	double	transparence_coef;
 	double	t;
+	double	t1;
+	double	t2;
 	char		type;
 	int			id;
 	int			id_save;
@@ -259,6 +262,9 @@ typedef struct		s_world
 	int				win_width;
 	int				win_height;
 	int				mode_cluster;
+
+	t_vec3d			save_dir;
+	t_vec3d			save_pos;
 }					t_world;
 
 void 				refresh_viewplane(t_world *world);
@@ -271,7 +277,7 @@ void				launch_gpu(t_world *world);
 void				send_buffer(t_world *world, int port);
 void				rt(t_world *world);
 void				render_cuda(int *a_h, unsigned int constw,
-					unsigned int consth, t_world *world, int reset);
+					unsigned int consth, t_world world, int reset);
 void				sphere_key_handler(t_world	*world);
 void				plane_key_handler(t_world *world);
 void				render(t_world *world);

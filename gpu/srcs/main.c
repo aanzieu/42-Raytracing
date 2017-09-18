@@ -31,7 +31,7 @@ void			get_viewplane(t_world *world)
 									(double)world->viewplane_aa.x_res;
 	world->viewplane_aa.y_indent = world->viewplane_aa.height /
 									(double)world->viewplane_aa.y_res;
-																}
+}
 
 void			load_data(t_world *world)
 {
@@ -43,6 +43,8 @@ void			load_data(t_world *world)
 			&world->triangles_len);
 	load_cubes(&world->cubes, world->cubes_tmp,
 			&world->cubes_len);
+	load_torus(&world->torus, world->torus_tmp,
+			&world->torus_len);
 	load_cylinders(&world->cylinders,
 			world->cylinders_tmp, &world->cylinders_len);
 	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
@@ -109,6 +111,7 @@ void			rt(t_world *world)
 		// ft_putstr("End of connexion, get started again\n");
 		// return;
 	}
+
 	if (world->mode == 0)
 	{
 		printf("laucnh CPU\n");

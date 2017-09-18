@@ -3,25 +3,25 @@
 <scene name="2 Spheres">
 
 <camera>
-  <pos x="0" y="0" z="-100" />
+  <pos x="0" y="0" z="-5" />
   <dir x="0" y="0" z="1" />
   <rot x="0" y="0" z="0" />
   <tra x="0" y="0" z="0" />
 </camera>
 
 <light>
-  <pos x="0" y="0" z="-2" />
-  <dir x="0" y="2" z="1" />
+  <pos x="0" y="0" z="0" />
+  <dir x="0" y="-1" z="0" />
   <color r="255" g="255" b="255" />
-  <intensity data="1" />
+  <intensity data="0.7" />
 </light>
 
-<!--light>
+<light>
   <pos x="0" y="0" z="5" />
   <dir x="0" y="0" z="1" />
-  <color r="255" g="255" b="255" a="0.5" />
-  <intensity data="1" />
-</light-->
+  <color r="255" g="255" b="255" />
+  <intensity data="0.7" />
+</light>
 
 <ambient>
   <color r="255" g="255" b="255" />
@@ -29,63 +29,76 @@
 </ambient>
 
 <plane>
-  <origin x="0" y="0" z="4" />
-  <normal x="0" y="0" z="1" />
-  <rot x="0" y="0" z="0" />
-  <color r="255" g="255" b="255" />
-  <!--chess r="0" g="0" b="0" />-->
-  <reflection data="0.8" />
-</plane>
-
-<plane>
-  <origin x="0" y="-0.1" z="0" />
+  <origin x="0" y="-1" z="0" />
   <normal x="0" y="1" z="0" />
   <rot x="0" y="0" z="0" />
   <color r="255" g="255" b="255" />
   <chess r="0" g="0" b="0" />
-  <reflection data="0.9" />
 </plane>
 
 <sphere>
-  <pos x="-0.5" y="0.5" z="1" />
+  <pos x="-0.5" y="0" z="1.5" />
   <radius data="0.4" />
-  <color r="20" g="20" b="120" />
-  <chess r="255" g="255" b="255" />
-  <refraction data="1.1" />
+  <color r="155" g="255" b="155" />
+  <reflection data="0.1" />
+</sphere>
+<sphere>
+  <pos x="0.25" y="0" z="1.5" />
+  <radius data="0.4" />
+  <color r="155" g="255" b="155" />
+  <reflection data="0.5" />
+</sphere>
+<sphere>
+  <pos x="1" y="0" z="1.5" />
+  <radius data="0.4" />
+  <color r="155" g="255" b="155" />
+  <reflection data="0.9" />
 </sphere>
 
 <sphere>
-  <pos x="0.5" y="0.5" z="1" />
+  <pos x="-0.5" y="0.75" z="1.5" />
   <radius data="0.4" />
-  <color r="120" g="20" b="20" />
+  <color r="155" g="255" b="155" />
+  <transparence data="0.1" />
+</sphere>
+<sphere>
+  <pos x="0.25" y="0.75" z="1.5" />
+  <radius data="0.4" />
+  <color r="155" g="255" b="155" />
+  <transparence data="0.5" />
+</sphere><sphere>
+  <pos x="1" y="0.75" z="1.5" />
+  <radius data="0.4" />
+  <color r="155" g="255" b="155" />
+  <transparence data="0.9" />
+</sphere>
+
+<sphere>
+  <pos x="-0.5" y="1.5" z="1.5" />
+  <radius data="0.4" />
+  <color r="155" g="255" b="155" />
   <refraction data="1.2" />
 </sphere>
-
 <sphere>
-  <pos x="1.5" y="0.5" z="1" />
+  <pos x="0.25" y="1.5" z="1.5" />
   <radius data="0.4" />
-  <color r="20" g="120" b="20" />
-  <refraction data="1.3" />
-</sphere>
-
-<sphere>
-  <pos x="2.5" y="0.5" z="1" />
-  <radius data="0.4" />
-  <color r="20" g="20" b="20" />
-  <refraction data="1.4" />
-</sphere>
-<sphere>
-  <pos x="3.5" y="0.5" z="1" />
-  <radius data="0.4" />
-  <color r="20" g="20" b="20" />
+  <color r="155" g="255" b="155" />
   <refraction data="1.5" />
 </sphere>
 <sphere>
-  <pos x="4.5" y="0.5" z="1" />
+  <pos x="1" y="1.5" z="1.5" />
   <radius data="0.4" />
-  <color r="20" g="20" b="20" />
-  <refraction data="1.5" />
+  <color r="155" g="255" b="155" />
+  <refraction data="8" />
 </sphere>
+
+<!--triangle>
+  <pos x="0" y="-0.05" z="-10" />
+  <normal x="0" y="0" z="1" />
+  <v1 x="-0.25" y="0.15" z="-10" />
+  <v2 x="0.25" y="0.15" z="-10" />
+  <color r="1" g="0" b="255"/>
+</triangle>-->
 <!--cylinder>
   <pos x="-0.5" y="0" z="0" />
   <normal x="0" y="1" z="0" />
@@ -95,14 +108,7 @@
   <reflection data="0" />
 </cylinder> -->
 
-<!-- <triangle>
-  <pos x="0" y="0" z="0" />
-  <normal x="1" y="0" z="0" />
-  <v1 x="0" y="1.2" z="0" />
-  <v2 x="1" y="1.2" z="0" />
-  <color r="1" g="0" b="255" a="1" />
-  <reflection data="1" />
-</triangle> -->
+
 
 <!-- <cone>
   <pos x="1" y="0.3" z="0" />

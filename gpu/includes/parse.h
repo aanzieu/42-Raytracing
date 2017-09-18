@@ -97,6 +97,7 @@ void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
 /*
 **	parse_material.c
 */
+void 		parse_negative(int *negative, xmlNodePtr cur);
 void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
 void		parse_transparence(double *transparence_coef, xmlNodePtr cur);

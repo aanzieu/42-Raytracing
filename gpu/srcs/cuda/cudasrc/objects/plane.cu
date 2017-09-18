@@ -21,13 +21,16 @@ extern "C" {
 **	ecrit sur 't_vec3d *intersection' les coordonees du point d'intersection
 **	avec le plan
 */
-
+__host__ __device__ double nrm(t_vec3d t1)
+{
+	return (sqrt(pow(t1.x, 2) + pow(t1.y, 2) + pow(t1.z, 2)));
+}
 __host__ __device__ int		get_plane(t_plane plane, t_ray ray,
 	t_intersection *intersection_tmp)
 {
 	double	t;
 	double	v, n;
-	t_vec3d	x, normal_v;
+	t_vec3d	x, normal_v, norm, pos;
 
 	if (intersection_tmp->id == plane.id)
 		return (0);
@@ -42,13 +45,16 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray,
 		{
 			intersection_tmp->t = t;
 			if (v > 0)
-				intersection_tmp->normal_v = vector_scalar(normal_v, -1);
+				norm = vector_scalar(normal_v, -1);
 			else
-				intersection_tmp->normal_v = normal_v;
+				norm = normal_v;
+			pos = vector_add(ray.origin, vector_scalar(ray.dir, t));
+			intersection_tmp->color = plane.color;
+			intersection_tmp->normal_v = norm;
+			intersection_tmp->pos = pos;
 			return (1);
 		}
 	}
-//	intersection_tmp->t = -1;
 	return (0);
 }
 
@@ -68,13 +74,13 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 				intersection->id = world.planes[i].id;
 				intersection->id_save = world.planes[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->reflection_coef = world.planes[i].reflection_coef;
-				intersection->refraction_coef = world.planes[i].refraction_coef;
-				intersection->transparence_coef = world.planes[i].transparence_coef;
-				intersection->color = world.planes[i].color;
+				intersection->reflection_coef = 0;//world.planes[i].reflection_coef;
+				intersection->refraction_coef = 0;//world.planes[i].refraction_coef;
+				intersection->transparence_coef = 0;//world.planes[i].transparence_coef;
+				intersection->color = world.planes[i].color;//intersection_tmp->color;//world.planes[i].color;
 				intersection->chess = world.planes[i].chess;
-				intersection->pos = vector_add(ray.origin,
-				vector_scalar(ray.dir, intersection->t));
+				intersection->pos = intersection_tmp->pos;//vector_add(ray.origin,
+//				vector_scalar(ray.dir, intersection->t));
 				intersection->normal_v = intersection_tmp->normal_v;
 			}
 		}

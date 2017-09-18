@@ -44,13 +44,15 @@ __host__ __device__ int		get_cylinder(t_world world, t_cylinder cylinder,
 
  	if (intersection_tmp->id == cylinder.id)
 		return (0);
+
 	axis = vector_normalize(vector_substract(cylinder.up, cylinder.pos));
+
 	x = vector_substract(ray.origin, cylinder.pos);
+
 	eq.a = vector_dot(ray.dir, ray.dir) - pow(vector_dot(ray.dir, axis), 2);
-	eq.b = 2 * (vector_dot(ray.dir, x) - (vector_dot(ray.dir, axis)
-		* vector_dot(x, axis)));
-	eq.c = vector_dot(x, x) - pow(vector_dot(x, axis), 2)
-		- pow(cylinder.radius, 2);
+	eq.b = 2 * (vector_dot(ray.dir, x) - (vector_dot(ray.dir, axis) * vector_dot(x, axis)));
+	eq.c = vector_dot(x, x) - pow(vector_dot(x, axis), 2) - pow(cylinder.radius, 2);
+
 	second_degres(&eq);
 	if (eq.res[0] != NOT_A_SOLUTION)
 	{

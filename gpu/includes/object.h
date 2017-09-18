@@ -85,6 +85,7 @@ typedef struct				s_sphere
 	t_color					color;
 	t_color					chess;
 	t_color					rgba;
+	int							negative;
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;

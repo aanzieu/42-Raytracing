@@ -29,10 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
-GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
-# GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
-# GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
+#GLFW3 = /Users/xpouzenc/.brew/opt/glfw/lib/libglfw.3.2.dylib
+#GLEW = /Users/xpouzenc/.brew/opt/glew/lib/libGLEW.a
+ GLFW3 = frameworks/GL.framework/glfw/3.2.1/lib/libglfw.3.2.dylib
+ GLEW = frameworks/GL.framework/glew/2.1.0/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -46,6 +46,7 @@ RF = rm -rf
 
 SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/ray_tracer.cu \
+				$(SRC_CUDA_DIR)/algebra.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors2.cu \
@@ -72,7 +73,8 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
-				$(SRC_CUDA_DIR)/material/material.cu \
+				$(SRC_CUDA_DIR)/material/material_cpu.cu \
+				$(SRC_CUDA_DIR)/material/material_gpu.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
