@@ -10,16 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include <rt.h>
+#include <display.h>
 #include "parse.h"
+
+static void	update_surface(int *a_h, SDL_Surface *img)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < WIN_HEIGHT)
+	{
+		j = 0;
+		while (j < WIN_WIDTH)
+		{
+			pixel_to_image(img, j, i, a_h[i * WIN_WIDTH + j]);		
+			j++;
+		}
+		i++;
+	}
+}
 
 static void	write_file_name(t_world *w, int nb)
 {
 	char	*path;
 	char	*num;
 	char	*ext;
-	// int		ret;
+	SDL_Surface		*img;	
+	int		ret;
 
+	(void)w;
 	num = NULL;
 	if (nb != -1)
 	{
@@ -33,9 +55,10 @@ static void	write_file_name(t_world *w, int nb)
 	printf("insave\n");
 
 	ft_strdel(&path);
-	glReadPixels(w->pos_render.x, w->pos_render.y, WIN_WIDTH, WIN_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, w->video_buffer);
-	// if ((ret = saveBMP(w->video_buffer, ext)) != 0)
-	//  	show_error("saving png file error");
+	img = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32, 0, 0, 0, 0);
+	update_surface(w->a_h, img);
+	if ((ret = SDL_SaveBMP(img, ext)) != 0)
+	 	show_error("saving png file error");
 	ft_putstr("Snapshot ! -> ");
 	ft_putendl(ext);
 	ft_strdel(&ext);

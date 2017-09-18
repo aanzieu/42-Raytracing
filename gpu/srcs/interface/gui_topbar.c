@@ -53,7 +53,10 @@ static void	file_save(struct nk_context *ctx, struct media *media,\
 			save_xml_scene(world);
 		if (nk_menu_item_image_label(ctx, media->convert, "Save as bitmap",\
 			NK_TEXT_RIGHT))
-			savebmp(world);
+		{
+			if (world->a_h != NULL)
+				savebmp(world);
+		}
 		nk_menu_end(ctx);
 	}
 }
