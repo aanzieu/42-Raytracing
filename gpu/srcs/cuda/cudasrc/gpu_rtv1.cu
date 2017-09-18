@@ -37,17 +37,6 @@ void checkCUDAError(const char *msg) {
   }
 }
 
-// __global__ void sendImageToWorld(int* a_h, int x, int y, int *a_d)
-// {
-//
-//   int xx = (blockIdx.x * blockDim.x) + threadIdx.x;
-//   int yy = (blockIdx.y * blockDim.y) + threadIdx.y;
-//   int index = xx + (yy * x);
-//
-//   if(xx <= x && yy <= y)
-//     a_h[index] = a_d[index];
-// }
-
 __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world world)
 {
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
@@ -56,18 +45,8 @@ __global__ void test(int *a, unsigned int constw, unsigned int consth, t_world w
 	int yy = world.aa * row + world.offsets.y_min; 					//thread->y_max * thread->world->aa + world.offsets.y_min);
 	int xx = world.aa * col; //
 	// if (col < constw && row < consth)
-		a[index] = ray_tracer_gpu(world, xx, yy);// + world.offsets.y_min);
+	a[index] = ray_tracer_gpu(world, xx, yy);// + world.offsets.y_min);
 }
-
-
-
-//__global__ void test(int *a, unsigned int constw, unsigned int consth, t_world world)
-//{
-//	int col = blockIdx.x * blockDim.x + threadIdx.x;
-//	int row = blockIdx.y * blockDim.y + threadIdx.y;
-//	int index = row * constw + col;
-//	a[index] = ray_tracer(world, col, row + world.offsets.y_min);
-//}
 
 extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, t_world world, int reset)
 {
@@ -85,6 +64,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	t_torus					*torus_d = NULL;
 	t_mobius				*mobius_d = NULL;
 	t_cube				*cubes_d = NULL;
+	t_h_cube				*h_cubes_d = NULL;
 	t_triangle			*triangles_d = NULL;
 	t_paraboloid			*paraboloids_d = NULL;
 	t_hyperboloid		*hyperboloids_d = NULL;
@@ -97,44 +77,46 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// cudaMalloc((void**)&a_d, (int)constw * (int)consth * sizeof(int));
  	// cudaMemcpy(a_d, a_h, (int)constw * (int)consth * sizeof(int), cudaMemcpyHostToDevice);
 	// checkCUDAError("before malloc objs");
-	
-	
+
+
 	cudaMalloc(&spheres_d, sizeof(t_sphere) * world.spheres_len);
 	cudaMalloc(&planes_d, sizeof(t_plane) * world.planes_len);
-	
+
 	cudaMalloc(&cylinders_d, sizeof(t_cylinder) * world.cylinders_len);
 	cudaMalloc(&cubes_d, sizeof(t_cube) * world.cubes_len);
+	cudaMalloc(&h_cubes_d, sizeof(t_h_cube) * world.h_cubes_len);
 	cudaMalloc(&triangles_d, sizeof(t_triangle) * world.triangles_len);
-	
+
 	cudaMalloc(&torus_d, sizeof(t_torus) * world.torus_len);
-	
+
 	cudaMalloc(&mobius_d, sizeof(t_mobius) * world.mobius_len);
 	cudaMalloc(&paraboloids_d, sizeof(t_paraboloid) * world.paraboloids_len);
 	cudaMalloc(&hyperboloids_d, sizeof(t_hyperboloid) * world.hyperboloids_len);
 	cudaMalloc(&cones_d, sizeof(t_cone) * world.cones_len);
 	cudaMalloc(&disks_d, sizeof(t_disk) * world.disks_len);
-	
+
 	cudaMalloc(&lights_d, sizeof(t_light) * world.lights_len);
-	
+
 	// checkCUDAError("after malloc objs -- before memcpy objs");
-	
+
 	cudaMemcpy(spheres_d, world.spheres, sizeof(t_sphere) * world.spheres_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(planes_d, world.planes, sizeof(t_plane) * world.planes_len, cudaMemcpyHostToDevice);
-	
+
 	cudaMemcpy(cylinders_d, world.cylinders, sizeof(t_cylinder) * world.cylinders_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(cubes_d, world.cubes, sizeof(t_cube) * world.cubes_len, cudaMemcpyHostToDevice);
+	cudaMemcpy(h_cubes_d, world.h_cubes, sizeof(t_h_cube) * world.h_cubes_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(triangles_d, world.triangles, sizeof(t_triangle) * world.triangles_len, cudaMemcpyHostToDevice);
-	
+
 	cudaMemcpy(torus_d, world.torus, sizeof(t_torus) * world.torus_len, cudaMemcpyHostToDevice);
-	
+
 	cudaMemcpy(mobius_d, world.mobius, sizeof(t_mobius) * world.mobius_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(paraboloids_d, world.paraboloids, sizeof(t_paraboloid) * world.paraboloids_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(hyperboloids_d, world.hyperboloids, sizeof(t_hyperboloid) * world.hyperboloids_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(cones_d, world.cones, sizeof(t_cone) * world.cones_len, cudaMemcpyHostToDevice);
 	cudaMemcpy(disks_d, world.disks, sizeof(t_disk) * world.disks_len, cudaMemcpyHostToDevice);
-	
+
 	cudaMemcpy(lights_d, world.lights, sizeof(t_light) * world.lights_len, cudaMemcpyHostToDevice);
-	
+
 	// checkCUDAError("after memcpy -- before world obj cpy");
 
 	world.planes = planes_d;
@@ -143,6 +125,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	world.torus = torus_d;
 	world.mobius = mobius_d;
 	world.cubes = cubes_d;
+	world.h_cubes = h_cubes_d;
 	world.triangles = triangles_d;
 	world.cones = cones_d;
 	world.hyperboloids = hyperboloids_d;
@@ -152,9 +135,9 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// cudaSetDevice(device);
 	// cudaDeviceSetLimit(cudaLimitDevRuntimeSyncDepth, 0);
 	// checkCUDAError("before RT");
-	
+
 	test <<< grid_size, threads_per_block >>> (a_d, constw, consth, world);
-	
+
 	// checkCUDAError("after RT");
 	// cudaDeviceSynchronize();
 	// checkCUDAError("end4");
@@ -166,6 +149,8 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		cudaFree(planes_d);
 	 if(cubes_d != NULL)
 	 	cudaFree(cubes_d);
+	 if(h_cubes_d != NULL)
+	 	cudaFree(h_cubes_d);
 	 if(cylinders_d != NULL)
 	 	cudaFree(cylinders_d);
 	 if(cones_d != NULL)

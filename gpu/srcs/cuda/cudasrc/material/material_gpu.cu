@@ -15,14 +15,9 @@ __host__ __device__ t_color 	handle_reflection_gpu(t_world world, t_ray *ray,
   t_intersection  intersection_tmp;
   t_ray           ray_tmp;
 
-  intersection_tmp = new_inter();
-  intersection_tmp.t = DBL_MAX;
+  new_intersection(&intersection_tmp);
   intersection_tmp.id = intersection->id;
-  intersection_tmp.type = '0';
   intersection_tmp.depth = intersection->depth + 1;
-  intersection_tmp.reflection_coef = 0;
-  intersection_tmp.refraction_coef = 0;
-  intersection_tmp.transparence_coef = 0;
   ray_tmp.origin = intersection->pos;
   ray_tmp.dir = vector_normalize(vector_substract(ray->dir,
     vector_scalar(intersection->normal_v,
@@ -45,15 +40,10 @@ __host__ __device__ t_color 	handle_transparence_gpu(t_world world,
   t_intersection  intersection_tmp;
   t_ray           ray_tmp;
 
-  // intersection_tmp = new_inter();
-  intersection_tmp.t = DBL_MAX;
+  new_intersection(&intersection_tmp);
   intersection_tmp.id = intersection->id;
   intersection_tmp.pos = intersection->pos;
-  intersection_tmp.type = '0';
   intersection_tmp.depth = intersection->depth + 1;
-  intersection_tmp.reflection_coef = 0;
-  intersection_tmp.refraction_coef = 0;
-  intersection_tmp.transparence_coef = 0;
   ray_tmp.origin = intersection->pos;
   ray_tmp.dir = ray->dir;
   get_closest_intersection(world, ray_tmp, &intersection_tmp);
@@ -80,26 +70,21 @@ __host__ __device__ t_color 	handle_refraction_gpu(t_world world,
   double          k;
   t_vec3d         n;
 
-  // intersection_tmp = new_inter()/;
-  intersection_tmp.t = DBL_MAX;
+  new_intersection(&intersection_tmp);
   intersection_tmp.id = intersection->id;
   intersection_tmp.pos = intersection->pos;
-  intersection_tmp.type = '0';
   intersection_tmp.depth = intersection->depth + 1;
-  intersection_tmp.reflection_coef = 0;
-  intersection_tmp.refraction_coef = 0;
-  intersection_tmp.transparence_coef = 0;
   ray_tmp.origin = intersection->pos;
   cosi = clamp(-1, 1, vector_dot(ray->dir, intersection->normal_v));
   etai = 1.0;
-  etat = intersection->refraction_coef;
+  etat = intersection->refraction_coef + 1.;
   n = intersection->normal_v;
   if (cosi < 0)
     cosi = -cosi;
   else
   {
     swap_double(&etai, &etat);
-    // n = vector_scalar(n, -1);
+    n = vector_scalar(n, -1);
   }
   eta = etai / etat;
   k = 1.0 - eta * eta * (1.0 - cosi * cosi);
@@ -115,5 +100,5 @@ __host__ __device__ t_color 	handle_refraction_gpu(t_world world,
     *ray = ray_tmp;
     *flag = 0;
     return (intersection_tmp.color);
-    }
+  }
 }

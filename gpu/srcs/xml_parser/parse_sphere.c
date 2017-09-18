@@ -43,8 +43,6 @@ void	handle_input_sphere(t_sphere *s, xmlNodePtr cur)
 		parse_color(&s->color, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"chess")))
 		parse_color(&s->chess, cur);
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"negative")))
-		parse_negative(&s->negative, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
 		parse_reflection(&s->reflection_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))

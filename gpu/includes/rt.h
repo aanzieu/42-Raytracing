@@ -191,6 +191,7 @@ typedef struct		s_world
 	t_mobius		*mobius;
 	t_triangle 		*triangles;
 	t_cube			*cubes;
+	t_h_cube			*h_cubes;
 
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
@@ -204,6 +205,7 @@ typedef struct		s_world
 	t_mobius		*mobius_tmp;
 	t_triangle 		*triangles_tmp;
 	t_cube			*cubes_tmp;
+	t_h_cube			*h_cubes_tmp;
 
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
@@ -222,6 +224,7 @@ typedef struct		s_world
 	int				mobius_len;
 	int				triangles_len;
 	int				cubes_len;
+	int				h_cubes_len;
 
 	pthread_t		thread[NB_TH];
 	int				th;

@@ -22,6 +22,12 @@ int     remove_object_3(t_world *world, t_intersection *i)
 		   &world->paraboloids_len);
 		   return(1);
 	}
+  if (i->type == 'u')
+ 	{
+		  remove_h_cube(&world->h_cubes_tmp, i);
+		  load_h_cubes(&world->h_cubes, world->h_cubes_tmp, &world->h_cubes_len);
+		  return(1);
+	}
 	return(0);
 }
 
@@ -81,7 +87,7 @@ int			remove_object(t_world *world, t_intersection *i)
       	{
       		remove_plane(&world->planes_tmp, i);
 			load_planes(&world->planes, world->planes_tmp, &world->planes_len);
-			return(1);  
+			return(1);
       	}
       	return(remove_object_2(world, i));
     //}
@@ -111,7 +117,7 @@ int		mousepress_middle(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 			if(remove_object(world, &intersection) == 1)
 			{
 				return(1);//world->redraw = 1;
-				
+
 			}
 		}
 	}

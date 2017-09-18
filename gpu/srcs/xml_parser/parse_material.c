@@ -52,10 +52,11 @@ void			parse_refraction(double *refraction_coef, xmlNodePtr cur)
 	if (is_numeric((const char *)nb))
 	{
 		*refraction_coef = ft_atoi_double((const char *)nb);
-		return (xmlFree(nb));
-	}
-	show_error_2("invalid refraction value, should be >= 1 and <= 5. > data=",
-			(const char *)nb);
+    if (*refraction_coef > 0)
+      return (xmlFree(nb));
+  }
+	show_error_2("invalid refraction value, should be > 0. > data=",
+    (const char *)nb);
 	xmlFree(nb);
 }
 

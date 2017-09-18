@@ -39,3 +39,24 @@ void	refresh_triangle(t_world *world, int i)
 		tmp = tmp->next;
 	}
 }
+
+void	refresh_h_cube(t_world *world, int i)
+{
+	t_h_cube	*tmp;
+
+	tmp = world->h_cubes_tmp;
+	while (tmp)
+	{
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->h_cubes[i].pos;
+			tmp->color = world->h_cubes[i].color;
+			tmp->chess = world->h_cubes[i].chess;
+			tmp->reflection_coef = world->h_cubes[i].reflection_coef;
+			tmp->refraction_coef = world->h_cubes[i].refraction_coef;
+			tmp->transparence_coef = world->h_cubes[i].transparence_coef;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+}

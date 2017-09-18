@@ -1,118 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="France's flag">
-  <plane>
-    <origin x="0" y="-1.000000" z="0"/>
-    <normal x="0" y="1.000000" z="0"/>
-    <color r="123" g="123" b="200"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </plane>
-  <!-- <sphere>
-    <pos x="1" y="0" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="50" g="50" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere> -->
-  <!-- <sphere>
-    <pos x="0" y="0.300000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="50" g="50" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="0" y="0.600000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="50" g="50" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere> -->
-  <sphere>
-    <pos x="0" y="0.900000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="50" g="50" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="0.500000" y="0" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="255" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="0.500000" y="0.300000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="255" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="0.500000" y="0.600000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="255" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="0.500000" y="0.900000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="255" b="255"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="1.000000" y="0" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="30" b="20"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="1.000000" y="0.300000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="30" b="20"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="1.000000" y="0.600000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="30" b="20"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <sphere>
-    <pos x="1.000000" y="0.900000" z="1.000000"/>
-    <radius data="0.400000"/>
-    <color r="255" g="30" b="20"/>
-    <reflection data="0"/>
-    <refraction data="1"/>
-  </sphere>
-  <light>
-    <pos x="0.500000" y="0.500000" z="-5.000000"/>
-    <color r="255" g="255" b="255"/>
-    <intensity data="0.500000"/>
-  </light>
-  <light>
-    <pos x="0" y="0.200000" z="-5.000000"/>
-    <color r="100" g="100" b="100"/>
-    <intensity data="0.400000"/>
-  </light>
-  <light>
-    <pos x="-0.500000" y="0.500000" z="-3.000000"/>
-    <color r="255" g="255" b="255"/>
-    <intensity data="0.500000"/>
-  </light>
-  <ambient>
-    <color r="255" g="255" b="255"/>
-    <intensity data="0.500000"/>
-  </ambient>
-  <camera>
-    <pos x="5.000000" y="0.300000" z="-10.000000"/>
-    <dir x="0" y="0" z="1.000000"/>
-  </camera>
+<scene name="2 Spheres">
+<camera>
+  <pos x="-7.800000" y="3" z="-20.1" />
+  <dir x="0.347532" y="-0.054830" z="0.922895" />
+  <rot x="0" y="0" z="0" />
+  <tra x="0" y="0" z="0" />
+</camera>
+
+<light>
+  <pos x="-2" y="0" z="-5" />
+  <dir x="0" y="-1" z="0" />
+  <color r="103" g="104" b="83" />
+  <intensity data="0.3" />
+</light>
+<light>
+  <pos x="0" y="0" z="5" />
+  <dir x="0" y="0" z="1" />
+  <color r="104" g="165" b="143" />
+  <intensity data="0.7" />
+</light>
+<ambient>
+  <color r="255" g="255" b="255" />
+  <intensity data="0.4" />
+</ambient>
+
+<plane>
+  <origin x="0" y="-1" z="0" />
+  <normal x="0" y="1" z="0" />
+  <rot x="0" y="0" z="0" />
+  <color r="255" g="255" b="255" />
+  <chess r="0" g="0" b="0" />
+  <reflection data="0.999999" />
+</plane>
+
+<sphere>
+  <pos x="0.8" y="0" z="0" />
+  <radius data="2" />
+  <color r="64" g="164" b="114" />
+  <reflection data="0.7" />
+</sphere>
+
+<sphere>
+  <pos x="5.5" y="0" z="3.5" />
+  <radius data="1" />
+  <color r="194" g="90" b="79" />
+  <refraction data="0.5" />
+</sphere>
+<sphere>
+  <pos x="-2.2" y="0" z="2.2" />
+  <radius data="1" />
+  <color r="138" g="105" b="100" />
+  <refraction data="0.325" />
+</sphere>
+<!-- <sphere>
+  <pos x="0.8" y="0" z="0" />
+  <radius data="1" />
+  <color r="205" g="255" b="205" />-->
+  <!-- <reflection data="0.7" /> -->
+<!-- </sphere> -->
+
 </scene>

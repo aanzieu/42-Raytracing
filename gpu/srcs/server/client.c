@@ -39,6 +39,8 @@ static void			check_cmd_recv(char cmd, t_data *data, t_cluster *cluster)
 		updated_objs(data, cmd, data->used / sizeof(t_triangle), cluster);
 	if (cmd == 'u')
 		updated_objs(data, cmd, data->used / sizeof(t_cube), cluster);
+	if (cmd == 'e')
+		updated_objs(data, cmd, data->used / sizeof(t_h_cube), cluster);
 }
 
 void				process_send(char cmd, t_data *data,

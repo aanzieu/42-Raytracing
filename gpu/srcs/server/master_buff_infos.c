@@ -82,6 +82,12 @@ static void			*dup_data_obj(t_cluster *cluster, char cmd, void *ret)
 		if ((ret = ft_memalloc(size)) != NULL)
 			ret = ft_memcpy(ret, cluster->world->cubes, size);
 	}
+	if (cmd == 'e')
+	{
+		size = sizeof(t_cylinder) * cluster->world->h_cubes_len;
+		if ((ret = ft_memalloc(size)) != NULL)
+			ret = ft_memcpy(ret, cluster->world->h_cubes, size);
+	}
 	return (ret);
 }
 
@@ -174,7 +180,7 @@ int			send_buffer_obj_next(t_cluster *cluster,
 		send_informations(clients, 'm', buffer,
 				cluster->world->mobius_len * sizeof(t_mobius));
 		free(buffer);
-	}	
+	}
 	if ((clients->status & SEND_TRIANGLE) == 0)
 	{
 		if (!(buffer = dup_data_obj(cluster, 't', NULL)))
@@ -183,12 +189,20 @@ int			send_buffer_obj_next(t_cluster *cluster,
 				cluster->world->triangles_len * sizeof(t_triangle));
 		free(buffer);
 	}
-		if ((clients->status & SEND_CUBE) == 0)
+	if ((clients->status & SEND_CUBE) == 0)
 	{
 	if (!(buffer = dup_data_obj(cluster, 'u', NULL)))
 			return (0);
 		send_informations(clients, 'u', buffer,
 				cluster->world->cubes_len * sizeof(t_cube));
+		free(buffer);
+	}
+	if ((clients->status & SEND_H_CUBE) == 0)
+	{
+	if (!(buffer = dup_data_obj(cluster, 'b', NULL)))
+			return (0);
+		send_informations(clients, 'b', buffer,
+				cluster->world->h_cubes_len * sizeof(t_h_cube));
 		free(buffer);
 	}
 	return (1);

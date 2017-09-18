@@ -29,8 +29,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
-GLEW = frameworks/glew/lib/libGLEW.a
+GLFW3 = /Users/huweber/.brew/opt/glfw/lib/libglfw.3.2.dylib
+GLEW = /Users/huweber/.brew/opt/glew/lib/libGLEW.a
+# GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
+# GLEW = frameworks/glew/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
@@ -43,8 +45,9 @@ RF = rm -rf
 ###################################################
 
 SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
-				$(SRC_CUDA_DIR)/ray_tracer.cu \
-				$(SRC_CUDA_DIR)/algebra.cu \
+				$(SRC_CUDA_DIR)/ray_tracer_cpu.cu \
+				$(SRC_CUDA_DIR)/ray_tracer_gpu.cu \
+				$(SRC_CUDA_DIR)/ray_tracer_utils.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors.cu \
 				$(SRC_CUDA_DIR)/libmath/vectors/vectors2.cu \
@@ -53,8 +56,9 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/libmath/conversion/angles.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_resolve.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/solve_quartic.cu \
+				$(SRC_CUDA_DIR)/libmath/equation/solve_quadratic.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve.cu \
-				$(SRC_CUDA_DIR)/libmath/equation/n_degree_resolve_next.cu \
 				$(SRC_CUDA_DIR)/libmath/equation/equation_utils.cu \
 				\
 				$(SRC_CUDA_DIR)/objects/sphere.cu \
@@ -68,6 +72,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/objects/torus.cu \
 				$(SRC_CUDA_DIR)/objects/triangle.cu \
 				$(SRC_CUDA_DIR)/objects/cube.cu \
+				$(SRC_CUDA_DIR)/objects/hollow_cube.cu \
 				\
 				$(SRC_CUDA_DIR)/shading/shading.cu \
 				\
@@ -112,6 +117,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_cones.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_disks.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_cubes.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_h_cubes.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_triangles.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_cylinders.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_paraboloids.c \
@@ -149,6 +155,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/loader/load_torus.c \
 				$(SRC_DIR)/loader/load_triangles.c \
 				$(SRC_DIR)/loader/load_cubes.c \
+				$(SRC_DIR)/loader/load_h_cubes.c \
 				$(SRC_DIR)/loader/load_paraboloids.c \
 				$(SRC_DIR)/loader/load_hyperboloids.c \
 				$(SRC_DIR)/loader/load_spheres.c \
@@ -178,6 +185,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_torus.c \
 				$(SRC_DIR)/xml_parser/parse_triangle.c \
 				$(SRC_DIR)/xml_parser/parse_cube.c \
+				$(SRC_DIR)/xml_parser/parse_h_cube.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parse_material.c \
@@ -233,7 +241,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35 
+    -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 

@@ -15,7 +15,6 @@ extern "C" {
 	#include "gpu_rt.h"
 	#include <vectors.h>
 }
-#include "../algebra.h"
 
 /*
 **	On envoie le rayon et la structure qui contient le torus et la fonction
@@ -65,13 +64,11 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 	a[4] = equ[6] * equ[6] - equ[3];
 	if ((nb_roots = solve_quartic(a, roots)) > 0)
 	{
-
-		while (i <= nb_roots)
+		while (i < nb_roots)
 		{
-			if (roots[i] < res && roots[i] > 1) // SURFACE_TOLERANCE
+			if (roots[i] < res && roots[i] > SURFACE_TOLERANCE)
 				res = roots[i];
 			i++;
-			// nb_roots--;
 		}
 		if (res != DBL_MAX)
 		{
@@ -95,7 +92,7 @@ __host__ __device__ void	get_closest_torus(t_world world, t_ray ray,
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
 				intersection->id = world.torus[i].id;
-				intersection->id_save = world.torus[i].id;				
+				intersection->id_save = world.torus[i].id;
 				intersection->t = intersection_tmp->t;
 				intersection->type = 'o';
 				intersection->reflection_coef = world.torus[i].reflection_coef;

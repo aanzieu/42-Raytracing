@@ -53,7 +53,7 @@ void	device_draw(struct device *dev, struct nk_context *ctx,\
 		{0.0f, 0.0f,-1.0f, 0.0f}, {-1.0f,1.0f, 0.0f, 1.0f},};
 	const struct nk_draw_command *cmd;
 	const nk_draw_index *offset = NULL;
-	
+
 	ortho[0][0] /= (GLfloat)screen->width;
 	ortho[1][1] /= (GLfloat)screen->height;
 	set_up_global_state(dev, ortho);

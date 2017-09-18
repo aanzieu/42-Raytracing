@@ -85,7 +85,6 @@ t_sphere	*new_sphere(t_sphere *nw, int id)
 	s->color = nw->color;
 	s->chess = nw->chess;
 	s->reflection_coef = nw->reflection_coef;
-	s->negative = nw->negative;
 	s->refraction_coef = nw->refraction_coef;
 	s->transparence_coef = nw->transparence_coef;
 	s->next = NULL;

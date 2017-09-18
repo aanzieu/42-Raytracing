@@ -85,7 +85,6 @@ typedef struct				s_sphere
 	t_color					color;
 	t_color					chess;
 	t_color					rgba;
-	int							negative;
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
@@ -179,6 +178,18 @@ typedef struct			s_cube
 	struct s_cube *next;
 }									t_cube;
 
+typedef struct			s_h_cube
+{
+	int						id;
+	t_vec3d				pos;
+	t_color				color;
+	t_color				chess;
+	double				reflection_coef;
+	double				refraction_coef;
+	double				transparence_coef;
+	struct s_h_cube *next;
+}									t_h_cube;
+
 /*
 ********************************************************************************
 **                     FCTS_OBJ                                               **
@@ -196,6 +207,7 @@ t_torus						*new_torus(t_torus *nt, int id);
 t_mobius					*new_mobius(t_mobius *nw, int id);
 t_triangle				*new_triangle(t_triangle *nw, int id);
 t_cube						*new_cube(t_cube *nw, int id);
+t_h_cube					*new_h_cube(t_h_cube *nw, int id);
 
 void						add_sphere(t_sphere **alst, t_sphere *nw);
 void						add_plan(t_plane **alst, t_plane *nw);
@@ -210,6 +222,7 @@ void						add_torus(t_torus **alst, t_torus *nw);
 void						add_mobius(t_mobius **alst, t_mobius *nw);
 void 						add_triangle(t_triangle **alst, t_triangle *nw);
 void 						add_cube(t_cube **alst, t_cube *nw);
+void 						add_h_cube(t_h_cube **alst, t_h_cube *nw);
 
 
 /*
@@ -233,6 +246,8 @@ void						thread_free_and_add_disk(t_disk **di, t_disk **di_tmp, int *len, int i
 void						init_disk_add(t_disk *di);
 void						thread_free_and_add_cube(t_cube **cu, t_cube **cu_tmp, int *len, int id);
 void						init_cube_add(t_cube *cu);
+void						thread_free_and_add_h_cube(t_h_cube **cu, t_h_cube **cu_tmp, int *len, int id);
+void						init_h_cube_add(t_h_cube *cu);
 void						thread_free_and_add_hyperboloid(t_hyperboloid **hy, t_hyperboloid **hy_tmp, int *len, int id);
 void						init_hyperboloid_add(t_hyperboloid *hy);
 void						thread_free_and_add_paraboloid(t_paraboloid **p, t_paraboloid **p_tmp, int *len, int id);
@@ -271,7 +286,9 @@ void 						load_triangles(t_triangle **triangles,
     					t_triangle *triangles_tmp, int *triangles_len);
 void 						load_cubes(t_cube **cubes,
 						t_cube *cubes_tmp, int *cubes_len);
-						
+void 						load_h_cubes(t_h_cube **cubes,
+						t_h_cube *cubes_tmp, int *cubes_len);
+
 
 void		free_plan(t_plane **p_tmp, t_plane **p, int *len);
 void		free_sphere(t_sphere **s_tmp, t_sphere **s, int *len);
@@ -283,6 +300,7 @@ void		free_hyper(t_hyperboloid **c_tmp, t_hyperboloid **c, int *len);
 void		free_para(t_paraboloid **p_tmp, t_paraboloid **p, int *len);
 void		free_disk(t_disk **d_tmp, t_disk **d, int *len);
 void		free_cube(t_cube **d_tmp, t_cube **d, int *len);
+void		free_h_cube(t_h_cube **d_tmp, t_h_cube **d, int *len);
 void		free_triangle(t_triangle **p_tmp, t_triangle **p, int *len);
 
 #endif

@@ -42,6 +42,8 @@ static void		receive_status(t_client *clients, char ok)
 		clients->status |= SEND_TRIANGLE;
 	if (ok == 'u')
 		clients->status |= SEND_CUBE;
+	if (ok == 'b')
+		clients->status |= SEND_H_CUBE;
 	if (ok == 'd')
 		clients->status |= SEND_DISK;
 }

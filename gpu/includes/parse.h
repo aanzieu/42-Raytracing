@@ -73,12 +73,15 @@ void		parse_torus(t_world *world, xmlNodePtr cur);
 */
 void		parse_cube(t_world *world, xmlNodePtr cur);
 /*
+**	parse_h_cube.c
+*/
+void		parse_h_cube(t_world *world, xmlNodePtr cur);
+/*
 **	parse_triangle.c
 */
 void		parse_triangle(t_world *world, xmlNodePtr cur);
-
 /*
-**	error_msg.c
+**	parse_mobius.c
 */
 void		parse_mobius(t_world *world, xmlNodePtr cur);
 /*

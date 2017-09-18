@@ -4252,6 +4252,7 @@ struct media {
     struct nk_image torus;
     struct nk_image mobius;
     struct nk_image cube;
+    struct nk_image h_cube;
     struct nk_image hyperboloid;
     struct nk_image paraboloid;
     struct nk_image triangle;

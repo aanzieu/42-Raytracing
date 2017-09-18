@@ -45,3 +45,32 @@ void	remove_triangle(t_triangle **s, t_intersection *i)
 		}
 	}
 }
+
+void			remove_h_cube(t_h_cube **s, t_intersection *i)
+{
+	t_h_cube	*current;
+	t_h_cube	*last;
+	t_h_cube	*tmp;
+
+	current = *s;
+	tmp = NULL;
+	last = NULL;
+	while (current)
+	{
+		if (current->id == i->id_save)
+		{
+			if (current == *s)
+				*s = current->next;
+			else
+				last->next = current->next;
+			tmp = current;
+			current = current->next;
+			free(tmp);
+		}
+		else
+		{
+			last = current;
+			current = current->next;
+		}
+	}
+}

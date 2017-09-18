@@ -32,6 +32,26 @@ void	free_cube(t_cube **d_tmp, t_cube **d, int *len)
 	*d = NULL;
 }
 
+void	free_h_cube(t_h_cube **d_tmp, t_h_cube **d, int *len)
+{
+	t_h_cube	*next;
+
+	while (*d_tmp)
+	{
+		next = (*d_tmp)->next;
+		free(*d_tmp);
+		(*d_tmp) = next;
+	}
+	if (*d != NULL)
+	{
+		free(*d);
+		*len = 0;
+		*d = NULL;
+	}
+	*d = 0;
+	*d = NULL;
+}
+
 void	free_triangle(t_triangle **p_tmp, t_triangle **p, int *len)
 {
 	t_triangle	*next;

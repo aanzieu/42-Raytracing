@@ -88,7 +88,7 @@ void		thread_free_and_add_cube(t_cube **cu,
 		*cu = NULL;
 	}
 	if (!(new = (t_cube*)ft_memalloc(sizeof(t_cube))))
-		show_error("error malloc sphere");
+		show_error("error malloc cube");
 	init_cube_add(new);
 	*len = 0;
 	*cu = NULL;
@@ -109,7 +109,7 @@ void		thread_free_and_add_hyperboloid(t_hyperboloid **hy,
 		*hy = NULL;
 	}
 	if (!(new = (t_hyperboloid*)ft_memalloc(sizeof(t_hyperboloid))))
-		show_error("error malloc sphere");
+		show_error("error malloc hyperboloid");
 	init_hyperboloid_add(new);
 	*len = 0;
 	*hy = NULL;

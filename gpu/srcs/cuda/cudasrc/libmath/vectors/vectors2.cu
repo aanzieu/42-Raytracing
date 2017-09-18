@@ -38,17 +38,11 @@ __host__ __device__ t_vec3d	vector_cross(t_vec3d vect1, t_vec3d vect2)
 
 __host__ __device__ double	vector_dot(t_vec3d vect1, t_vec3d vect2)
 {
-	// double result;
-	//
-	// result = vect1.x * vect2.x + vect1.y * vect2.y + vect1.z * vect2.z;
 	return (vect1.x * vect2.x + vect1.y * vect2.y + vect1.z * vect2.z);
 }
 
 __host__ __device__ double	vector_length(t_vec3d vect1)
 {
-	// double length;
-	//
-	// length = sqrt(pow(vect1.x, 2) + pow(vect1.y, 2) + pow(vect1.z, 2));
 	return (sqrt(pow(vect1.x, 2) + pow(vect1.y, 2) + pow(vect1.z, 2)));
 }
 

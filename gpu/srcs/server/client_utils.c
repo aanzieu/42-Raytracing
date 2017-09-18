@@ -70,6 +70,13 @@ void			free_obj_next(t_world *world, char cmd)
 		world->cubes = NULL;
 		world->cubes_len = 0;
 	}
+	if (cmd == 'e')
+	{
+		if(world->h_cubes != NULL)
+			free(world->h_cubes);
+		world->h_cubes = NULL;
+		world->h_cubes_len = 0;
+	}
 }
 
 void				free_obj(t_world *world, char cmd)

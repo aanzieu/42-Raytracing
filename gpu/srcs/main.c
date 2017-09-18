@@ -43,6 +43,8 @@ void			load_data(t_world *world)
 			&world->triangles_len);
 	load_cubes(&world->cubes, world->cubes_tmp,
 			&world->cubes_len);
+	load_h_cubes(&world->h_cubes, world->h_cubes_tmp,
+			&world->h_cubes_len);
 	load_torus(&world->torus, world->torus_tmp,
 			&world->torus_len);
 	load_cylinders(&world->cylinders,
@@ -118,7 +120,7 @@ void			rt(t_world *world)
 		printf("laucnh CPU\n");
 		launch_cpu(world);
 	}
-	else 
+	else
 	{
 
 		launch_gpu(world);

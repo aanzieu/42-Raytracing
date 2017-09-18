@@ -28,6 +28,8 @@ static void		get_object_node_next(t_world *world, xmlNodePtr obj)
 		parse_triangle(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"cube")))
 		parse_cube(world, obj);
+	if (!(xmlStrcmp(obj->name, (const xmlChar *)"h_cube")))
+		parse_h_cube(world, obj);
 	if (!(xmlStrcmp(obj->name, (const xmlChar *)"ambient")))
 		parse_ambient(world, obj);
 }

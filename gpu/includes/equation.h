@@ -28,6 +28,7 @@
 #define CUBIC_ROOT(A)		(pow(A, 1.0 / 3.0))
 #define CHECK_COEF(A)		((A < -ZERO_DP) ? (-1) : (A > ZERO_DP))
 #define POW(A)				((A) * (A))
+// #define SURFACE_TOLERANCE 0.1
 
 /*
 ** Structure for Equation N degrees

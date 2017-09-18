@@ -40,6 +40,8 @@ int		find_informations_object(t_world *world, struct nk_context *ctx, struct med
 		torus_informations(world, ctx, media);
 	else if(world->ob_save == 'c')
 		cube_informations(world, ctx, media);
+	else if(world->ob_save == 'u')
+		h_cube_informations(world, ctx, media);
 	else
 		return (0);
 	return (1);

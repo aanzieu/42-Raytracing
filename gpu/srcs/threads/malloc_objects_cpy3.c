@@ -52,3 +52,21 @@ t_triangle			*copy_triangle(t_triangle *obj)
 	}
 	return (NULL);
 }
+
+t_h_cube		*copy_h_cube(t_h_cube *obj)
+{
+	t_h_cube 	*news;
+
+	if (obj)
+	{
+		if (!(news = (t_h_cube *)malloc(sizeof(t_h_cube))))
+			ft_putendl_fd("error : can't malloc copy thread hollow cube\n", 1);
+		news->pos = obj->pos;
+		news->color = obj->color;
+		news->next = NULL;
+		if (news && obj->next)
+			news->next = copy_h_cube(obj->next);
+		return (news);
+	}
+	return (NULL);
+}

@@ -16,6 +16,8 @@ static void		clear_world2(t_world *world)
 {
 	if (world->cubes_tmp != NULL)
 		free_cube(&world->cubes_tmp, &world->cubes, &world->cubes_len);
+	if (world->h_cubes_tmp != NULL)
+		free_h_cube(&world->h_cubes_tmp, &world->h_cubes, &world->h_cubes_len);
 	if (world->triangles_tmp != NULL)
 		free_triangle(&world->triangles_tmp, &world->triangles,\
 					&world->triangles_len);

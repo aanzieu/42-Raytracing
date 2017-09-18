@@ -1,4 +1,4 @@
-<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus|mobius|triangle|cube)*>
+<!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus|mobius|triangle|cube|h_cube)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity)>
 <!ELEMENT ambient (color, intensity)>
@@ -12,8 +12,8 @@
 <!ELEMENT torus (pos, normal*, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT mobius (pos, radius, tra*, color, reflection*)>
 <!ELEMENT triangle (pos, normal, v1, v2, color, chess*, reflection*, refraction*, transparence*)>
-
 <!ELEMENT cube (min, max, normal*, color, chess*, reflection*, refraction*, transparence*)>
+<!ELEMENT h_cube (pos, color, chess*, reflection*, refraction*, transparence*)>
 
 <!ELEMENT pos (#PCDATA)>
 <!ELEMENT dir (#PCDATA)>

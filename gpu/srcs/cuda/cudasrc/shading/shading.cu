@@ -17,6 +17,20 @@ extern "C" {
 }
 #include <float.h>
 
+__host__ __device__ t_color	direct_light(t_world world, t_color color,
+	t_light light, t_ray ray)
+{
+	t_vec3d	light_vector;
+	t_color	direct_light;
+	double 	angle;
+
+	direct_light = new_color(10, 10, 10);
+	light_vector = light.dir_v;
+	angle = vector_dot(vector_scalar(world.camera.dir_v, -1), light_vector);
+	direct_light = color_scalar(direct_light, angle);
+	return (color_add(color, direct_light));
+}
+
 __host__ __device__ int		get_shadow(t_world world, t_light light,
 													t_intersection collision)
 {

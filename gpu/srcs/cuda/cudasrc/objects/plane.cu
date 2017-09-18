@@ -74,13 +74,12 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 				intersection->id = world.planes[i].id;
 				intersection->id_save = world.planes[i].id;
 				intersection->t = intersection_tmp->t;
-				intersection->reflection_coef = 0;//world.planes[i].reflection_coef;
-				intersection->refraction_coef = 0;//world.planes[i].refraction_coef;
-				intersection->transparence_coef = 0;//world.planes[i].transparence_coef;
-				intersection->color = world.planes[i].color;//intersection_tmp->color;//world.planes[i].color;
+				intersection->reflection_coef = world.planes[i].reflection_coef;
+				intersection->refraction_coef = world.planes[i].refraction_coef;
+				intersection->transparence_coef = world.planes[i].transparence_coef;
+				intersection->color = world.planes[i].color;
 				intersection->chess = world.planes[i].chess;
-				intersection->pos = intersection_tmp->pos;//vector_add(ray.origin,
-//				vector_scalar(ray.dir, intersection->t));
+				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
 			}
 		}

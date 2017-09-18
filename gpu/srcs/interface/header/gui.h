@@ -69,6 +69,7 @@ void			remove_torus(t_torus **s, t_intersection *i);
 void			remove_mobius(t_mobius **s, t_intersection *i);
 void			remove_disk(t_disk **s, t_intersection *i);
 void			remove_cube(t_cube **s, t_intersection *i);
+void			remove_h_cube(t_h_cube **s, t_intersection *i);
 void			remove_hyperboloid(t_hyperboloid **s, t_intersection *i);
 void			remove_paraboloid(t_paraboloid **s, t_intersection *i);
 void			remove_triangle(t_triangle **s, t_intersection *i);
@@ -140,6 +141,8 @@ void	refresh_disk(t_world *world, int i);
 void	disk_informations(t_world *world, struct nk_context *ctx, struct media *media);
 void	refresh_cube(t_world *world, int i);
 void	cube_informations(t_world *world, struct nk_context *ctx, struct media *media);
+void	refresh_h_cube(t_world *world, int i);
+void	h_cube_informations(t_world *world, struct nk_context *ctx, struct media *media);
 void	refresh_paraboloid(t_world *world, int i);
 void	paraboloid_informations(t_world *world, struct nk_context *ctx, struct media *media);
 void	refresh_hyperboloid(t_world *world, int i);
@@ -154,7 +157,5 @@ void	header_info(struct nk_context *ctx, struct nk_image img, char *n);
 
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[3]);
 void	press_launch(struct nk_context *ctx, t_world *world, int img_active[3]);
-
-
 
 #endif

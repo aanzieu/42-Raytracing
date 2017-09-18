@@ -25,7 +25,7 @@ void		thread_free_and_add_paraboloid(t_paraboloid **p,
 		*p = NULL;
 	}
 	if (!(new = (t_paraboloid*)ft_memalloc(sizeof(t_paraboloid))))
-		show_error("error malloc sphere");
+		show_error("error malloc paraboloid");
 	init_paraboloid_add(new);
 	*len = 0;
 	*p = NULL;
@@ -46,11 +46,31 @@ void		thread_free_and_add_triangle(t_triangle **t,
 		*t = NULL;
 	}
 	if (!(new = (t_triangle*)ft_memalloc(sizeof(t_triangle))))
-		show_error("error malloc sphere");
+		show_error("error malloc triangle");
 	init_triangle_add(new);
 	*len = 0;
 	*t = NULL;
 	add_triangle(t_tmp, new_triangle(new, id));
 	free(new);
 	load_triangles(t, *t_tmp, len);
+}
+
+void		thread_free_and_add_h_cube(t_h_cube **cu, t_h_cube **cu_tmp, int *len, int id)
+{
+	t_h_cube	*new;
+
+	if(*cu != NULL)
+	{
+		free(*cu);
+		*len = 0;
+		*cu = NULL;
+	}
+	if (!(new = (t_h_cube*)ft_memalloc(sizeof(t_h_cube))))
+		show_error("error malloc hollow cube");
+	init_h_cube_add(new);
+	*len = 0;
+	*cu = NULL;
+	add_h_cube(cu_tmp, new_h_cube(new, id));
+	free(new);
+	load_h_cubes(cu, *cu_tmp, len);
 }

@@ -38,12 +38,8 @@ __host__ __device__ double			get_sphere(t_sphere sphere,
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
 	{
-		// tfar = eq.res[1] < eq.res[2] ? eq.res[2] : eq.res[1];
-		// printf("%f\n", sphere.transparence_coef);
 		intersection_tmp->id = sphere.id;
 		intersection_tmp->t = eq.res[0];
-		// intersection_tmp->t1 = eq.res[0];//tnear; //intersection_tmp->t;
-		// intersection_tmp->t2 = eq.res[1];//tfar;
 		return (1);
 	}
 	return (0);

@@ -35,6 +35,7 @@
 # define SEND_TORUS 0
 # define SEND_MOEBIUS 0
 # define SEND_CUBE 0
+# define SEND_H_CUBE 0
 # define SEND_TRIANGLE 0
 # define SEND_AMBIANT 0
 # define SEND_KEYS 0
@@ -51,6 +52,7 @@
 # define MOEBIUS 'm'
 # define TRIANGLE 't'
 # define CUBE 'u'
+# define H_CUBE 'e'
 # define AMBIANT 'z'
 # define KEYS 'k'
 

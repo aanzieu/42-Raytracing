@@ -122,7 +122,12 @@ void	basic_demo(struct nk_context *ctx, struct media *media, t_world *world)
 					thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id);
 					world->redraw = 1;
 			}
-
+			if(nk_button_image(ctx, media->h_cube))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_h_cube(&world->h_cubes, &world->h_cubes_tmp, &world->h_cubes_len, world->id);
+					world->redraw = 1;
+			}
 			// nk_button_image(ctx, media->disk);
 		}
 		nk_menubar_end(ctx);

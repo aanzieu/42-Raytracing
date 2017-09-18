@@ -12,7 +12,7 @@
 
 #include <rt.h>
 
-void 	refresh_viewplane(t_world *world)
+void 			refresh_viewplane(t_world *world)
 {
 	world->win_width = WIN_WIDTH * world->aa;
 	world->win_height = WIN_HEIGHT * world->aa;
@@ -24,11 +24,28 @@ void 	refresh_viewplane(t_world *world)
 								(double)(world->win_width)) * world->viewplane_aa.width);
 }
 
+void 			data_setup_2(t_world *world)
+{
+	world->cubes = NULL;
+	world->cubes_len = 0;
+	world->h_cubes = NULL;
+	world->h_cubes_len = 0;
+	world->keys.light_none = 0;
+	world->reload_buffer = 1;
+	world->redraw = 2;
+	world->id = 0;
+	world->animation_forward = 0;
+	world->recording = 0;
+	world->a_h = NULL;
+	world->video_buffer = NULL;
+	world->intensity = 2.1;
+	world->img_scene = 0;
+}
+
 void			data_setup(t_world *world)
 {
 	world->aa = 1;
 	refresh_viewplane(world);
-
 	world->mode = 0;
 	world->anaglyph_depth = 3;
 	world->light_type = 1;
@@ -38,7 +55,6 @@ void			data_setup(t_world *world)
 	world->ambient.coef = 0.2;
 	world->offsets.y_min = 0;
 	world->offsets.y_max = 0;
-
 	world->spheres = NULL;
 	world->spheres_len = 0;
 	world->planes = NULL;
@@ -53,18 +69,5 @@ void			data_setup(t_world *world)
 	world->lights_len = 0;
 	world->triangles = NULL;
 	world->triangles_len = 0;
-	world->cubes = NULL;
-	world->cubes_len = 0;
-
-	world->keys.light_none = 0;
-	world->reload_buffer = 1;
-	world->redraw = 2;
-	world->id = 0;
-	world->animation_forward = 0;
-	world->recording = 0;
-	world->a_h = NULL;
-	world->video_buffer = NULL;
-	world->intensity = 2.1;
-
-	world->img_scene = 0;
+	data_setup_2(world);
 }
