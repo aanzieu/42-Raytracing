@@ -238,6 +238,7 @@ typedef struct		s_world
 
 	t_keys			keys;
 	int				mode;
+	int				anaglyph_depth;
 	int				animation_forward;
 	int				recording;
 

@@ -37,4 +37,6 @@ void			pastel_effect(int *pix, int height, int width);
 void			black_and_white_effect(int *pix);
 void			sepia_effect(int *pix);
 void			eight_bit_effect(int *pix);
+void			anaglyph(t_world *world);
+
 #endif

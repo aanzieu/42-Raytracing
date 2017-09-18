@@ -186,15 +186,3 @@ ui_widget_special_mode(struct nk_context *ctx, struct media *media, float height
 	nk_layout_row(ctx, NK_DYNAMIC, height, 2, ratio);
 	nk_spacing(ctx, 0);
 }
-
-t_color	int_to_rgb(int color)
-{
-	t_color	rgb_color;
-
-	if (color > 16777215)
-		color = 16777215;
-	rgb_color.b = color & 255;
-	rgb_color.g = (color >> 8) & 255;
-	rgb_color.r = (color >> 16) & 255;
-	return (rgb_color);
-}

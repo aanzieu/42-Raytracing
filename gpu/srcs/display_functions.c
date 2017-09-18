@@ -52,6 +52,8 @@ void	effect_application(t_world *world)
 		shell_shading_effect(world->a_h);
 	else if (world->keys.pad_0 == 7)
 		negative_color(world->a_h);
+	else if (world->keys.pad_0 == 8)
+		anaglyph(world);
 }
 
 // void	put_pixel_screen(t_world *world)

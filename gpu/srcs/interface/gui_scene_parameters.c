@@ -134,6 +134,14 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 			world->keys.pad_0 = 7;
 			world->redraw = 1;
 		}
+		ui_widget_special_mode(ctx, media, 20);
+		if (nk_button_symbol_label(ctx, (option == 8)?
+		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "ANAGLYPH", NK_TEXT_LEFT))
+		{
+			option = 8;
+			world->keys.pad_0 = 8;
+			world->redraw = 1;
+		}
 
 		/*------------------------------------------------
 		 *                  AMBIENT

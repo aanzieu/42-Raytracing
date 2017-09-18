@@ -143,6 +143,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/effects/effect_negative.c \
 				$(SRC_DIR)/effects/effect_sepia.c \
 				$(SRC_DIR)/effects/effect_pastel.c \
+				$(SRC_DIR)/effects/effect_anaglyph.c \
 				\
 				$(SRC_DIR)/loader/load_cones.c \
 				$(SRC_DIR)/loader/load_torus.c \
