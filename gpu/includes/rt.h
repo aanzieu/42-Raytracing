@@ -32,7 +32,7 @@
 # define WIN_HEIGHT 640
 
 #define SHADOW_BIAS 0
-#define MAX_DEPTH 1
+#define MAX_DEPTH 3
 #define CHESS_PATTERN 2
 #define BACKGROUND_COLOR 0x42ADD4
 
@@ -160,6 +160,7 @@ typedef struct		s_2deg
 typedef struct		s_thread_input
 {
 	int				th;
+	int				aa;
 	int				y_min;
 	int				y_max;
 	struct s_world	*world;
@@ -264,13 +265,13 @@ void 				refresh_viewplane(t_world *world);
 void				data_setup(t_world *world);
 void				load_data(t_world *world);
 void				get_viewplane(t_world *world);
-int					launch_thread(t_world *world, int y_min, int y_max);
+int					launch_thread(t_world *world, int y_min, int y_max, int aam);
 void				launch_cpu(t_world *world);
 void				launch_gpu(t_world *world);
 void				send_buffer(t_world *world, int port);
 void				rt(t_world *world);
 void				render_cuda(int *a_h, unsigned int constw,
-					unsigned int consth, t_world world, int reset);
+					unsigned int consth, t_world *world, int reset);
 void				sphere_key_handler(t_world	*world);
 void				plane_key_handler(t_world *world);
 void				render(t_world *world);

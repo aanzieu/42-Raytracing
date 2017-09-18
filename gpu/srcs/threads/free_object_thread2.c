@@ -17,7 +17,7 @@ void		thread_free_and_add_torus(t_torus **to, t_torus **to_tmp, int *len, int id
 	init_torus_add(new);
 	*len = 0;
 	*to = NULL;
-	add_torus(to_tmp, new_torus(new, id++));
+	add_torus(to_tmp, new_torus(new, id));
 	free(new);
 	load_torus(to, *to_tmp, len);
 }
@@ -37,7 +37,7 @@ void		thread_free_and_add_mobius(t_mobius **mo, t_mobius **mo_tmp, int *len, int
 	init_mobius_add(new);
 	*len = 0;
 	*mo = NULL;
-	add_mobius(mo_tmp, new_mobius(new, id++));
+	add_mobius(mo_tmp, new_mobius(new, id));
 	free(new);
 	load_mobius(mo, *mo_tmp, len);
 }
@@ -57,7 +57,7 @@ void		thread_free_and_add_disk(t_disk **di, t_disk **di_tmp, int *len, int id)
 	init_disk_add(new);
 	*len = 0;
 	*di = NULL;
-	add_disk(di_tmp, new_disk(new, id++));
+	add_disk(di_tmp, new_disk(new, id));
 	free(new);
 	load_disks(di, *di_tmp, len);
 }
@@ -77,7 +77,7 @@ void		thread_free_and_add_cube(t_cube **cu, t_cube **cu_tmp, int *len, int id)
 	init_cube_add(new);
 	*len = 0;
 	*cu = NULL;
-	add_cube(cu_tmp, new_cube(new, id++));
+	add_cube(cu_tmp, new_cube(new, id));
 	free(new);
 	load_cubes(cu, *cu_tmp, len);
 }
@@ -97,7 +97,7 @@ void		thread_free_and_add_hyperboloid(t_hyperboloid **hy, t_hyperboloid **hy_tmp
 	init_hyperboloid_add(new);
 	*len = 0;
 	*hy = NULL;
-	add_hyperboloid(hy_tmp, new_hyperboloid(new, id++));
+	add_hyperboloid(hy_tmp, new_hyperboloid(new, id));
 	free(new);
 	load_hyperboloids(hy, *hy_tmp, len);
 }

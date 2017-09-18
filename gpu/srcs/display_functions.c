@@ -54,30 +54,30 @@ void	effect_application(t_world *world)
 		negative_color(world->a_h);
 }
 
-void	put_pixel_screen(t_world *world)
-{
-	int	i;
-	int	j;
-	int	y;
-	int	x;
+// void	put_pixel_screen(t_world *world)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	y;
+// 	int	x;
 
-	i = 0;
-	y = 0;
-	effect_application(world);
-	while (i < WIN_HEIGHT)
-	{
-		j = 0;
-		x = 0;
-		while (j < WIN_WIDTH)
-		{
-			pixel_to_image(world->window.screen, j, i,
-					world->a_h[y * world->viewplane.x_res + x]);
-			j++;
-			if (j % world->render_factor == 0)
-				x++;
-		}
-		i++;
-		if (i % world->render_factor == 0)
-			y++;
-	}
-}
+// 	i = 0;
+// 	y = 0;
+// 	effect_application(world);
+// 	while (i < WIN_HEIGHT)
+// 	{
+// 		j = 0;
+// 		x = 0;
+// 		while (j < WIN_WIDTH)
+// 		{
+// 			pixel_to_image(world->window.screen, j, i,
+// 					world->a_h[y * world->viewplane.x_res + x]);
+// 			j++;
+// 			if (j % world->render_factor == 0)
+// 				x++;
+// 		}
+// 		i++;
+// 		if (i % world->render_factor == 0)
+// 			y++;
+// 	}
+// }

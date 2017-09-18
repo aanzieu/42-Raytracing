@@ -17,7 +17,7 @@ void		thread_free_and_add_paraboloid(t_paraboloid **p, t_paraboloid **p_tmp, int
 	init_paraboloid_add(new);
 	*len = 0;
 	*p = NULL;
-	add_paraboloid(p_tmp, new_paraboloid(new, id++));
+	add_paraboloid(p_tmp, new_paraboloid(new, id));
 	free(new);
 	load_paraboloids(p, *p_tmp, len);
 }
@@ -37,7 +37,7 @@ void		thread_free_and_add_triangle(t_triangle **t, t_triangle **t_tmp, int *len,
 	init_triangle_add(new);
 	*len = 0;
 	*t = NULL;
-	add_triangle(t_tmp, new_triangle(new, id++));
+	add_triangle(t_tmp, new_triangle(new, id));
 	free(new);
 	load_triangles(t, *t_tmp, len);
 }

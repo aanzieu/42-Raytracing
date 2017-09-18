@@ -171,5 +171,6 @@ CUDA_HOSTDEV t_color	ray_tracer_depth(t_world world, t_ray ray,
 CUDA_HOSTDEV int		ray_tracer(t_world world, int x, int y);
 CUDA_HOSTDEV void	get_ray_direction(t_world world, t_ray *ray,
 	int x, int y);
+CUDA_HOSTDEV void 	new_intersection(t_intersection *intersection);
 
 #endif

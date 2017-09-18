@@ -84,8 +84,8 @@ typedef struct			s_cluster
 	int					sockfd;
 	int					nbr_clients;
 	int					th;
-	int					y_min;
-	int					y_max;
+	double					y_min;
+	double					y_max;
 	struct s_world		*world;
 }						t_cluster;
 

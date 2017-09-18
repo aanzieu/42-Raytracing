@@ -28,7 +28,7 @@ void		thread_free_and_add_plane(t_plane **p, t_plane **p_tmp, int *len, int id)
 	init_plane_add(new);
 	*len = 0;
 	*p = NULL;
-	add_plan(p_tmp, new_plan(new, id++));
+	add_plan(p_tmp, new_plan(new, id));
 	free(new);
 	load_planes(p, *p_tmp, len);
 }
@@ -48,7 +48,7 @@ void		thread_free_and_add_sphere(t_sphere **s, t_sphere **s_tmp, int *len, int i
 	init_sphere_add(new);
 	*len = 0;
 	*s = NULL;
-	add_sphere(s_tmp, new_sphere(new, id++));
+	add_sphere(s_tmp, new_sphere(new, id));
 	free(new);
 	load_spheres(s, *s_tmp, len);
 }
@@ -68,7 +68,7 @@ void		thread_free_and_add_cone(t_cone **c, t_cone **c_tmp, int *len, int id)
 	init_cone_add(new);
 	*len = 0;
 	*c = NULL;
-	add_cone(c_tmp, new_cone(new, id++));
+	add_cone(c_tmp, new_cone(new, id));
 	free(new);
 	load_cones(c, *c_tmp, len);
 }
@@ -88,7 +88,7 @@ void		thread_free_and_add_cylinder(t_cylinder **cy, t_cylinder **cy_tmp, int *le
 	init_cylinder_add(new);
 	*len = 0;
 	*cy = NULL;
-	add_cylinder(cy_tmp, new_cylinder(new, id++));
+	add_cylinder(cy_tmp, new_cylinder(new, id));
 	free(new);
 	load_cylinders(cy, *cy_tmp, len);
 }
