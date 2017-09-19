@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 16:06:17 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:30:41 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	file_open(struct nk_context *ctx, struct media *media,\
 	{
 		nk_layout_row_dynamic(ctx, 20, 1);
 		if (nk_menu_item_image_label(ctx, media->dir, "Open...", NK_TEXT_RIGHT))
-			img_active[0] = !img_active[0];
+			img_active[0] = 1;
 		if (nk_menu_item_image_label(ctx, media->icons.default_file,\
 			"New file", NK_TEXT_RIGHT))
 		{
@@ -100,10 +100,8 @@ void		scene_topbar(struct nk_context *ctx, struct media *media,\
 {
 	static int img_active[3];
 
-	//nk_style_set_font(ctx, &media->font_22->handle);
 	if (nk_begin(ctx, "TOPBAR", nk_rect(0, 0, world->screen.width, 52),\
 		NK_WINDOW_BORDER))
-
 	{
 		nk_layout_row_begin(ctx, NK_STATIC, 30, 5);
 		{

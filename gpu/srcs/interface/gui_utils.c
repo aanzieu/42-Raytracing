@@ -6,13 +6,14 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/14 13:30:51 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/19 13:18:43 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
 #include "../../includes/rt.h"
+#include "../../includes/parse.h"
 #include "header/nuklear.h"
 #include "header/gui.h"
 #include "../../includes/equation.h"
@@ -189,6 +190,61 @@ ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *valu
 	nk_property_int(ctx, title, 1, value, 32, 1, 1);
 	nk_spacing(ctx, 0);
 	return(res == *value ? 0 : 1);
+}
+int
+ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *value, char *title)
+{
+	int		step;
+	char	*nb;
+
+	step = (*value == 1) ? 1 : 2;
+	nb = ft_itoa(*value);
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row_dynamic(ctx, 15, 1);
+	nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
+	nk_layout_row_begin(ctx, NK_STATIC, 40, 3);
+	{
+		nk_layout_row_push(ctx, 10);
+		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
+		ft_strdel(&nb);
+		nk_layout_row_push(ctx, 180);
+		nk_slider_int(ctx, 0, value, 16, step);
+		if (*value == 0)
+			*value = 1;
+		nk_layout_row_push(ctx, 10);
+		nk_text(ctx, "16", ft_strlen("16"), NK_TEXT_LEFT);
+	}
+	nk_layout_row_end(ctx);
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT))
+			return(1);
+	return (0);
+}
+int
+ui_widget_value_slider_float(struct nk_context *ctx, struct media *media, double *value, char *title)
+{
+	float	tmp;
+	char	*nb;
+
+	tmp = (float)*value;
+	nb = ft_itoa((*value * 100));
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row_dynamic(ctx, 15, 1);
+	nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
+	nk_layout_row_begin(ctx, NK_STATIC, 40, 3);
+	{
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
+		ft_strdel(&nb);
+		nk_layout_row_push(ctx, 155);
+		nk_slider_float(ctx, 0, &tmp, 1.0f, 0.1f);
+		*value = tmp;
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, "100", ft_strlen("100"), NK_TEXT_LEFT);
+	}
+	nk_layout_row_end(ctx);
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT))
+			return(1);
+	return (0);
 }
 
 void

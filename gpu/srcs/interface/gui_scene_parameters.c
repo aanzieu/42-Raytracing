@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/13 17:18:56 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:44:38 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,16 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		ui_widget_centered(ctx, media, 5);
 
 		ui_header(ctx, media, "---- Ambient Light ----");
-		if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Intensity"))
+		// if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Intensity"))
+		// 	world->redraw = 1;
+		//if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
+			//world->redraw = 1;
+		if (ui_widget_value_slider_float(ctx, media, &world->ambient.intensity, "Intensity (0-100%)"))
 			world->redraw = 1;
-		if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
+		ui_widget_centered(ctx, media, 30);
+		nk_style_set_font(ctx, &media->font_14->handle);
+		draw_choose_color(ctx, world, &world->ambient.color);
+		if (ui_widget_value_slider_int(ctx, media, &world->aa, "Anti-Aliasing (1x-16x)"))
 			world->redraw = 1;
 
 		/*------------------------------------------------

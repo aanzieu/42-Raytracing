@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 14:40:10 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 14:45:03 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:31:31 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,3 @@ void	free_light(t_light **l_tmp, t_light **l, int *len)
 	*len = 0;
 	*l = NULL;
 }
-

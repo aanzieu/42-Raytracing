@@ -145,6 +145,7 @@ int interface_launch(t_world *world, char *argv)
 				effect_application(cluster.world);
 			cluster.world->redraw = 0;
 			cluster.world->reload_buffer = 1;
+			//cluster.world->aa = 1;
 
 			// world->keys.pad_0 = 0;
 		}

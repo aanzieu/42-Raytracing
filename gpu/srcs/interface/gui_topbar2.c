@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 13:53:25 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:25:35 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 	static int toggle[2] = {1, 0};
 
 	(void)world;
-	// toggle[0] = 1;
-	// toggle[1] = 0;
 	ui_header(ctx, media, "---- Choose Local/Cluster ----");
 	ui_widget_small_button(ctx, media, 30);
 	if (nk_button_image_label(ctx, (toggle[0])
@@ -41,7 +39,6 @@ static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 		toggle[1] = !toggle[1];
 		toggle[0] = !toggle[0];
 		world->mode_cluster = 1;
-		//rajouter mode Cluster
 	}
 }
 
@@ -50,8 +47,6 @@ static void	select_gpu_cpu(struct nk_context *ctx, struct media *media,\
 {
 	static int toggle[2] = {1, 0};
 
-	// toggle[0] = 1;
-	// toggle[1] = 0;
 	ui_header(ctx, media, "---- Choose CPU/GPU ----");
 	ui_widget_small_button(ctx, media, 30);
 	if (nk_button_image_label(ctx, (toggle[0])
@@ -74,7 +69,7 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 					t_world *world, int img_active[3])
 {
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Config Popup", 0,\
-		nk_rect(340, 50, 320, 220)))
+		nk_rect(380, 52, 320, 220)))
 	{
 		select_local_cluster(ctx, media, world);
 		select_gpu_cpu(ctx, media, world);
@@ -86,32 +81,48 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 	}
 }
 
+static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
+							int img_active[3])
+{
+	int	i;
+
+	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
+		nk_rect(60, 52, 320, 220)))
+	{
+		i = 1;
+		nk_layout_row_static(ctx, 82, 82, 3);
+		while (i < 4)
+		{
+			if (nk_button_image(ctx, media->images[i]))
+			{
+				img_active[2] = i;
+				img_active[1] = !img_active[1];
+				nk_popup_close(ctx);
+			}
+			nk_popup_close(ctx);
+			i++;
+		}
+		nk_popup_end(ctx);
+	}
+}
+
 void		select_scene(struct nk_context *ctx, struct media *media,\
 					t_world *world, int img_active[3])
 {
-	int i;
-
 	if (img_active[0])
 	{
-		if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
-			nk_rect(60, 50, 320, 220)))
+		if (nk_input_is_mouse_hovering_rect(&ctx->input,\
+			nk_rect(60, 40, 640, 232)))
 		{
-			i = 1;
-			nk_layout_row_static(ctx, 82, 82, 3);
-			while (i < 4)
-			{
-				if (nk_button_image(ctx, media->images[i]))
-				{
-					img_active[2] = i;
-					img_active[1] = !img_active[1];
-					nk_popup_close(ctx);
-				}
-				nk_popup_close(ctx);
-				i++;
-			}
-			nk_popup_end(ctx);
+			draw_popup_scene(ctx, media, img_active);
+			if (img_active[1])
+				select_config(ctx, media, world, img_active);
 		}
-		if (img_active[1])
-			select_config(ctx, media, world, img_active);
+		else
+		{
+			img_active[0] = 0;
+			img_active[1] = 0;
+		}
 	}
+	nk_popup_end(ctx);
 }
