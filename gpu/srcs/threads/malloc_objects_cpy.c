@@ -60,6 +60,7 @@ t_sphere	*copy_sphere(t_sphere *obj)
 		news->radius = obj->radius;
 		news->pos = obj->pos;
 		news->color = obj->color;
+		news->perlin = obj->perlin;
 		news->next = NULL;
 		if (news && obj->next)
 			news->next = copy_sphere(obj->next);

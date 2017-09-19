@@ -87,6 +87,7 @@ t_sphere	*new_sphere(t_sphere *nw, int id)
 	s->reflection_coef = nw->reflection_coef;
 	s->refraction_coef = nw->refraction_coef;
 	s->transparence_coef = nw->transparence_coef;
+	s->perlin = nw->perlin;
 	s->next = NULL;
 	return (s);
 }

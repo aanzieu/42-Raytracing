@@ -16,6 +16,63 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
+static int	get_preset_info(t_sphere s)
+{
+	if (s.perlin.pre_set == WOOD)
+		return (1);
+	if (s.perlin.pre_set == GLASS)
+		return (2);
+	if (s.perlin.pre_set == MARBLE)
+		return (3);
+	return (0);
+}
+
+static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
+						int i)
+{
+	int option;
+
+	option = get_preset_info(w->spheres[i]);
+	ui_header(ctx, m, "---- Perlin Presets ----");
+	ui_widget_special_mode(ctx, m, 20);
+	if (nk_button_symbol_label(ctx, (option == 0)?
+		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
+	{
+		option = 1;
+		if (w->spheres[i].perlin.is_set == 1)
+			w->spheres[i].perlin.is_set = 0;
+		w->spheres[i].perlin.pre_set = 0;
+		// world->redraw = 1;
+	}
+	if (nk_button_symbol_label(ctx, (option == 1)?
+		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
+	{
+		option = 1;
+		if (w->spheres[i].perlin.is_set == 1)
+			w->spheres[i].perlin.is_set = 0;
+		w->spheres[i].perlin.pre_set = WOOD;
+		// world->redraw = 1;
+	}
+	if (nk_button_symbol_label(ctx, (option == 2)?
+	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
+	{
+		option = 2;
+		if (w->spheres[i].perlin.is_set == 1)
+			w->spheres[i].perlin.is_set = 0;
+		w->spheres[i].perlin.pre_set = GLASS;
+		// world->redraw = 1;
+	}
+	// ui_widget_special_mode(ctx, m, 20);
+	if (nk_button_symbol_label(ctx, (option == 3)?
+	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "GLASS", NK_TEXT_LEFT))
+	{
+		option = 3;
+		if (w->spheres[i].perlin.is_set == 1)
+			w->spheres[i].perlin.is_set = 0;
+		w->spheres[i].perlin.pre_set = MARBLE;
+		// world->redraw = 1;
+	}
+}
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
 {
@@ -36,6 +93,23 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 	else if (ui_widget_value_infos(ctx, m, &w->spheres[i].transparence_coef,\
 			"TRANSPARENCE:"))
 		w->redraw = 1;
+	else if (ui_widget_value_infos(ctx, m, &w->spheres[i].perlin.scale,\
+			"PERLIN NOISE SCALE:"))
+	{
+		if (w->spheres[i].perlin.is_set == 0 && w->spheres[i].perlin.scale > 0)
+			w->spheres[i].perlin.is_set = 1;
+		if (w->spheres[i].perlin.scale > 0 && w->spheres[i].perlin.amount > 0)
+			w->redraw = 1;
+	}
+	else if (ui_widget_value_infos(ctx, m, &w->spheres[i].perlin.amount,\
+			"PERLIN NOISE AMOUNT:"))
+	{
+		if (w->spheres[i].perlin.is_set == 0 && w->spheres[i].perlin.amount > 0)
+			w->spheres[i].perlin.is_set = 1;
+		if (w->spheres[i].perlin.scale > 0 && w->spheres[i].perlin.amount > 0)
+			w->redraw = 1;
+	}
+	draw_infos2(ctx, m, w, i);
 }
 
 static void	draw_delete_button(struct nk_context *ctx, struct media *media,\

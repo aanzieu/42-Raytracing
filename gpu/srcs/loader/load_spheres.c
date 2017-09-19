@@ -24,6 +24,10 @@ void						init_sphere_add(t_sphere *s)
 	s->reflection_coef = 0;
 	s->refraction_coef = 0;
 	s->transparence_coef = 0;
+	s->perlin.is_set = 0;
+	s->perlin.pre_set = 0;
+	s->perlin.scale = 0;
+	s->perlin.amount = 0;
 	s->next = NULL;
 }
 

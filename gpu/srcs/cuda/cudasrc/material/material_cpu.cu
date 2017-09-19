@@ -1,5 +1,4 @@
 #include <cuda.h>
-#include <stdio.h>
 #include <float.h>
 
 extern "C" {

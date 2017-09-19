@@ -16,6 +16,18 @@
 # include "vectors.h"
 # include "colors.h"
 
+# define WOOD 1
+# define GLASS 2
+# define MARBLE 3
+
+typedef struct				s_perlin
+{
+	int							is_set;
+	int							pre_set;
+	double					scale;
+	double					amount;
+}											t_perlin;
+
 typedef struct				s_plane
 {
 	int						id;
@@ -88,6 +100,7 @@ typedef struct				s_sphere
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_sphere			*next;
 }							t_sphere;
 

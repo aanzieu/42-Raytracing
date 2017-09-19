@@ -25,16 +25,10 @@ CUDA_HOSTDEV double		get_closest_intersection(t_world world, t_ray ray,
 CUDA_HOSTDEV void		get_closest_sphere(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
-CUDA_HOSTDEV void		get_next_sphere(t_world world, t_ray ray,
-						t_intersection *intersection,
-						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_mobius(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_plane(t_world world, t_ray ray,
-						t_intersection *intersection,
-						t_intersection *intersection_tmp);
-CUDA_HOSTDEV void		get_next_plane(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV void		get_closest_cone(t_world world, t_ray ray,
@@ -51,7 +45,7 @@ CUDA_HOSTDEV void		get_closest_disk(t_world world, t_ray ray,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV int		get_plane(t_plane plane, t_ray ray,
 						t_intersection *intersection_tmp);
-CUDA_HOSTDEV double		get_sphere(t_sphere sphere, t_ray ray,
+CUDA_HOSTDEV double		get_sphere(t_world world, t_sphere sphere, t_ray ray,
 						t_intersection *intersection_tmp);
 CUDA_HOSTDEV int		get_disk(t_disk disk, t_ray ray,
 						t_intersection *intersection_tmp);
@@ -170,7 +164,7 @@ CUDA_HOSTDEV int		init_and_send_second(double *pqr, double y0, double *res);
 CUDA_HOSTDEV int		solve_quartic(double *coef, double *res);
 
 /*******************************************************************************
-**                     TEXTURES_FCTS_CPU                                      **
+**                     TEXTURES_CPU_FCTS                                      **
 *******************************************************************************/
 
 CUDA_HOSTDEV t_color apply_materials_cpu(t_world world, t_ray ray,
@@ -183,7 +177,7 @@ CUDA_HOSTDEV t_color 	handle_transparence_cpu(t_world world,
 	t_ray ray, t_intersection *intersection);
 
 /*******************************************************************************
-**                     TEXTURES_FCTS_GPU                                      **
+**                     TEXTURES_GPU_FCTS                                      **
 *******************************************************************************/
 
 CUDA_HOSTDEV t_color	apply_materials_gpu(t_world world, t_ray ray,
@@ -222,5 +216,15 @@ CUDA_HOSTDEV void			get_ray_direction(t_world world, t_ray *ray,
 
 CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color,
 	t_light lights, t_intersection intersection, t_ray ray);
+
+/*******************************************************************************
+**                     PERLIN_NOISE_FCTS                                      **
+*******************************************************************************/
+
+CUDA_HOSTDEV double apply_noise(t_world world, double x, double y,
+	double z);
+CUDA_HOSTDEV t_vec3d normal_perturbation(t_world world, t_vec3d normal,
+	t_vec3d intersection_pos, t_perlin perlin);
+CUDA_HOSTDEV t_color wood(t_world world, t_vec3d point, t_perlin perlin);
 
 #endif

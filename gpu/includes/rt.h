@@ -256,6 +256,8 @@ typedef struct		s_world
 	int				mode_cluster;
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
+
+	int					p[512];
 }					t_world;
 
 void				refresh_viewplane(t_world *world);

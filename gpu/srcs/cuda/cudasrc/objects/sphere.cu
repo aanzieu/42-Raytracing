@@ -23,7 +23,7 @@ extern "C" {
 **	avec la sphere
 */
 
-__host__ __device__ double			get_sphere(t_sphere sphere,
+__host__ __device__ double			get_sphere(t_world world, t_sphere sphere,
 		t_ray ray, t_intersection *intersection_tmp)
 {
 	t_vec3d	x;
@@ -53,7 +53,7 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 	i = 0;
 	while (i < world.spheres_len)
 	{
-		if (get_sphere(world.spheres[i], ray, intersection_tmp) == 1)
+		if (get_sphere(world, world.spheres[i], ray, intersection_tmp) == 1)
 		{
 			if (intersection_tmp->t < intersection->t && intersection_tmp->t != -1)
 			{
@@ -64,12 +64,15 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				intersection->reflection_coef = world.spheres[i].reflection_coef;
 				intersection->refraction_coef = world.spheres[i].refraction_coef;
 				intersection->transparence_coef = world.spheres[i].transparence_coef;
-				intersection->color = world.spheres[i].color;
 				intersection->chess = world.spheres[i].chess;
 				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,
 					intersection_tmp->t));
+				intersection->color = world.spheres[i].color;
 				intersection->normal_v = vector_normalize(
 					vector_calculate(world.spheres[i].pos, intersection->pos));
+				if (world.spheres[i].perlin.is_set == 1)
+					intersection->normal_v = normal_perturbation(world,
+						intersection->normal_v, intersection->pos, world.spheres[i].perlin);
 			}
 		}
 		i++;

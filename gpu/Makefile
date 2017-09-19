@@ -76,6 +76,7 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				\
 				$(SRC_CUDA_DIR)/material/material_cpu.cu \
 				$(SRC_CUDA_DIR)/material/material_gpu.cu \
+				$(SRC_CUDA_DIR)/material/perlin_noise.cu \
 				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
