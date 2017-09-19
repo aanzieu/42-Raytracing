@@ -79,14 +79,16 @@ void			rt_cluster(t_world *world)
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
 	{
-
 		printf("laucnh CPU\n");
 		launch_cpu(world);
+		printf("fin de cpu\n");
 	}
 	else
 	{
 		printf("laucnh GPU\n");
 		launch_gpu(world);
+		printf("fin de GPU\n");
+		
 	}
 }
 

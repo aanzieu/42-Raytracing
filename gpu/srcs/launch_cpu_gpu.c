@@ -143,9 +143,8 @@ void			launch_gpu(t_world *world)
 {
 	// int						quit;
 	// SDL_Event				event;
-	static pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
+//	static pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
 
-	printf("gpu\n");
 	if (world->clientrender == 1)
 	{
 	//	pthread_mutex_lock(&mutex);
@@ -155,6 +154,7 @@ void			launch_gpu(t_world *world)
 		// get_viewplane(world);
 		render_cuda(world->a_h, WIN_WIDTH,
 				world->offsets.y_max - world->offsets.y_min, *world, 0);
+		printf("Je sors de render Cuda\n");
 	//	pthread_mutex_unlock(&mutex);
 		return ;
 	}
