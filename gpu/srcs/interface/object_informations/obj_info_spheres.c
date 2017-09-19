@@ -20,15 +20,15 @@ static int	get_preset_info(t_sphere s)
 {
 	if (s.perlin.pre_set == WOOD)
 		return (1);
-	if (s.perlin.pre_set == GLASS)
-		return (2);
 	if (s.perlin.pre_set == MARBLE)
+		return (2);
+	if (s.perlin.pre_set == GLASS)
 		return (3);
 	return (0);
 }
 
 static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
-						int i)
+	int i)
 {
 	int option;
 
@@ -39,10 +39,7 @@ static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
 		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
 	{
 		option = 1;
-		if (w->spheres[i].perlin.is_set == 1)
-			w->spheres[i].perlin.is_set = 0;
 		w->spheres[i].perlin.pre_set = 0;
-		// world->redraw = 1;
 	}
 	if (nk_button_symbol_label(ctx, (option == 1)?
 		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
@@ -51,7 +48,8 @@ static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
 		if (w->spheres[i].perlin.is_set == 1)
 			w->spheres[i].perlin.is_set = 0;
 		w->spheres[i].perlin.pre_set = WOOD;
-		// world->redraw = 1;
+		w->spheres[i].perlin.scale = 0.19;
+		w->redraw = 1;
 	}
 	if (nk_button_symbol_label(ctx, (option == 2)?
 	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
@@ -59,8 +57,9 @@ static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
 		option = 2;
 		if (w->spheres[i].perlin.is_set == 1)
 			w->spheres[i].perlin.is_set = 0;
-		w->spheres[i].perlin.pre_set = GLASS;
-		// world->redraw = 1;
+		w->spheres[i].perlin.pre_set = MARBLE;
+		w->spheres[i].perlin.scale = 0.9;
+		w->redraw = 1;
 	}
 	// ui_widget_special_mode(ctx, m, 20);
 	if (nk_button_symbol_label(ctx, (option == 3)?
@@ -69,7 +68,7 @@ static void	draw_infos2(struct nk_context *ctx, struct media *m, t_world *w,\
 		option = 3;
 		if (w->spheres[i].perlin.is_set == 1)
 			w->spheres[i].perlin.is_set = 0;
-		w->spheres[i].perlin.pre_set = MARBLE;
+		w->spheres[i].perlin.pre_set = GLASS;
 		// world->redraw = 1;
 	}
 }

@@ -45,7 +45,7 @@ __host__ __device__ double			get_sphere(t_world world, t_sphere sphere,
 	return (0);
 }
 
-__host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
+__host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,\
 				t_intersection *intersection, t_intersection *intersection_tmp)
 {
 	int i;
@@ -65,14 +65,12 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,
 				intersection->refraction_coef = world.spheres[i].refraction_coef;
 				intersection->transparence_coef = world.spheres[i].transparence_coef;
 				intersection->chess = world.spheres[i].chess;
-				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,
+				intersection->pos = vector_add(ray.origin, vector_scalar(ray.dir,\
 					intersection_tmp->t));
 				intersection->color = world.spheres[i].color;
-				intersection->normal_v = vector_normalize(
+				intersection->normal_v = vector_normalize(\
 					vector_calculate(world.spheres[i].pos, intersection->pos));
-				if (world.spheres[i].perlin.is_set == 1)
-					intersection->normal_v = normal_perturbation(world,
-						intersection->normal_v, intersection->pos, world.spheres[i].perlin);
+				apply_noise_dist(world, intersection, world.spheres[i].perlin);
 			}
 		}
 		i++;

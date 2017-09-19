@@ -69,6 +69,7 @@ typedef struct				s_cylinder
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_cylinder		*next;
 }							t_cylinder;
 
@@ -86,6 +87,7 @@ typedef struct				s_cone
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_cone			*next;
 }							t_cone;
 
@@ -114,6 +116,7 @@ typedef struct				s_mobius
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_mobius			*next;
 }							t_mobius;
 
@@ -129,6 +132,7 @@ typedef struct				s_paraboloid
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_paraboloid		*next;
 }							t_paraboloid;
 
@@ -144,6 +148,7 @@ typedef struct				s_hyperboloid
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_hyperboloid	*next;
 }							t_hyperboloid;
 
@@ -159,6 +164,7 @@ typedef struct				s_torus
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_torus			*next;
 }							t_torus;
 
@@ -174,6 +180,7 @@ typedef struct				s_triangle
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_triangle		*next;
 }							t_triangle;
 
@@ -188,6 +195,7 @@ typedef struct				s_cube
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_cube			*next;
 }							t_cube;
 
@@ -200,6 +208,7 @@ typedef struct				s_h_cube
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin			perlin;
 	struct s_h_cube			*next;
 }							t_h_cube;
 

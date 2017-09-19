@@ -247,6 +247,64 @@ ui_widget_value_slider_float(struct nk_context *ctx, struct media *media, double
 	return (0);
 }
 
+int
+ui_widget_value_slider_float_ref(struct nk_context *ctx, struct media *media,\
+	double *value, char *title)
+{
+	float	tmp;
+	char	*nb;
+
+	tmp = (float)*value;
+	nb = ft_itoa((*value * 100));
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row_dynamic(ctx, 15, 1);
+	nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
+	nk_layout_row_begin(ctx, NK_STATIC, 40, 3);
+	{
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
+		ft_strdel(&nb);
+		nk_layout_row_push(ctx, 155);
+		nk_slider_float(ctx, 0, &tmp, 1.5f, 0.1f);
+		*value = tmp;
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, "150", ft_strlen("150"), NK_TEXT_LEFT);
+	}
+	nk_layout_row_end(ctx);
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT))
+			return(1);
+	return (0);
+}
+
+int
+ui_widget_value_slider_float_p_a(struct nk_context *ctx, struct media *media,\
+	double *value, char *title)
+{
+	float	tmp;
+	char	*nb;
+
+	tmp = (float)*value;
+	nb = ft_itoa((*value));
+	nk_style_set_font(ctx, &media->font_18->handle);
+	nk_layout_row_dynamic(ctx, 15, 1);
+	nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
+	nk_layout_row_begin(ctx, NK_STATIC, 40, 3);
+	{
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
+		ft_strdel(&nb);
+		nk_layout_row_push(ctx, 155);
+		nk_slider_float(ctx, 0, &tmp, 50.0f, 0.1f);
+		*value = tmp;
+		nk_layout_row_push(ctx, 25);
+		nk_text(ctx, "50", ft_strlen("50"), NK_TEXT_LEFT);
+	}
+	nk_layout_row_end(ctx);
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT))
+			return(1);
+	return (0);
+}
+
 void
 ui_widget_special_mode(struct nk_context *ctx, struct media *media, float height)
 {

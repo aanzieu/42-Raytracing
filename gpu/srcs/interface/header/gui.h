@@ -58,6 +58,10 @@ int
 ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *value, char *title);
 int
 ui_widget_value_slider_float(struct nk_context *ctx, struct media *media, double *value, char *title);
+int
+ui_widget_value_slider_float_ref(struct nk_context *ctx, struct media *media, double *value, char *title);
+int
+ui_widget_value_slider_float_p_a(struct nk_context *ctx, struct media *media, double *value, char *title);
 
 
 /* ===============================================================

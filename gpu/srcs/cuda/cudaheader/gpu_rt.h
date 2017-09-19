@@ -227,6 +227,16 @@ CUDA_HOSTDEV double apply_noise(t_world world, double x, double y,
 	double z);
 CUDA_HOSTDEV t_vec3d normal_perturbation(t_world world, t_vec3d normal,
 	t_vec3d intersection_pos, t_perlin perlin);
-CUDA_HOSTDEV t_color wood(t_world world, t_vec3d point, t_perlin perlin);
+
+/*******************************************************************************
+**                     PERLIN_PRESETS_FCTS                                    **
+*******************************************************************************/
+
+CUDA_HOSTDEV t_color apply_marble(t_world world, t_vec3d pos,\
+	t_color color, t_perlin perlin);
+CUDA_HOSTDEV t_color apply_wood(t_world world, t_vec3d pos,\
+	t_color color, t_perlin perlin);
+CUDA_HOSTDEV void 	apply_noise_dist(t_world world,\
+	t_intersection *intersection, t_perlin perlin);
 
 #endif
