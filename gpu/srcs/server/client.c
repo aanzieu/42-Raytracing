@@ -6,14 +6,26 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 16:19:51 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 17:02:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 13:15:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cluster.h>
-#include <gpu_rt.h>
+#include "../../includes/cluster.h"
+#include "../cuda/cudaheader/gpu_rt.h"
 
-static void			check_cmd_recv(char cmd, t_data *data, t_cluster *cluster)
+void			check_cmd_recv_next(char cmd, t_data *data, t_cluster *cluster)
+{
+	if (cmd == 'm')
+		updated_objs(data, cmd, data->used / sizeof(t_mobius), cluster);
+	if (cmd == 't')
+		updated_objs(data, cmd, data->used / sizeof(t_triangle), cluster);
+	if (cmd == 'u')
+		updated_objs(data, cmd, data->used / sizeof(t_cube), cluster);
+	if (cmd == 'e')
+		updated_objs(data, cmd, data->used / sizeof(t_h_cube), cluster);
+}
+
+void			check_cmd_recv(char cmd, t_data *data, t_cluster *cluster)
 {
 	if (cmd == 's')
 		updated_objs(data, cmd, data->used / sizeof(t_sphere), cluster);
@@ -33,23 +45,16 @@ static void			check_cmd_recv(char cmd, t_data *data, t_cluster *cluster)
 		updated_objs(data, cmd, data->used / sizeof(t_paraboloid), cluster);
 	if (cmd == 'o')
 		updated_objs(data, cmd, data->used / sizeof(t_torus), cluster);
-	if (cmd == 'm')
-		updated_objs(data, cmd, data->used / sizeof(t_mobius), cluster);
-	if (cmd == 't')
-		updated_objs(data, cmd, data->used / sizeof(t_triangle), cluster);
-	if (cmd == 'u')
-		updated_objs(data, cmd, data->used / sizeof(t_cube), cluster);
-	if (cmd == 'e')
-		updated_objs(data, cmd, data->used / sizeof(t_h_cube), cluster);
+	check_cmd_recv_next(cmd, data, cluster);
 }
 
-void				process_send(char cmd, t_data *data,
+void			process_send(char cmd, t_data *data,
 		t_cluster *cluster, int sockfd)
 {
 	size_t	main_size;
 
-	main_size = sizeof(int) * (WIN_WIDTH *
-			(cluster->world->offsets.y_max - cluster->world->offsets.y_min));
+	main_size = WIN_WIDTH * (cluster->world->offsets.y_max -
+			cluster->world->offsets.y_min) * sizeof(int);
 	if (cmd == 'c')
 		ft_memcpy(&cluster->world->camera, data->data, sizeof(t_camera));
 	if (cmd == 'z')

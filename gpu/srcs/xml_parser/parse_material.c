@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 17:18:12 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:20:53 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 13:01:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void			parse_refraction(double *refraction_coef, xmlNodePtr cur)
 	if (is_numeric((const char *)nb))
 	{
 		*refraction_coef = ft_atoi_double((const char *)nb);
-    if (*refraction_coef > 0)
-      return (xmlFree(nb));
-  }
+		if (*refraction_coef > 0)
+			return (xmlFree(nb));
+	}
 	show_error_2("invalid refraction value, should be > 0. > data=",
-    (const char *)nb);
+			(const char *)nb);
 	xmlFree(nb);
 }
 

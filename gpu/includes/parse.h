@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:45:49 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/08/29 16:34:56 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/19 15:09:35 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
 /*
 **	parse_material.c
 */
-void 		parse_negative(int *negative, xmlNodePtr cur);
+void		parse_negative(int *negative, xmlNodePtr cur);
 void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
 void		parse_transparence(double *transparence_coef, xmlNodePtr cur);

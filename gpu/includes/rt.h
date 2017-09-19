@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:06:06 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 15:14:07 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@
 # define WIN_WIDTH 896
 # define WIN_HEIGHT 640
 
-#define SHADOW_BIAS 0
-#define MAX_DEPTH 4
-#define CHESS_PATTERN 2
-#define BACKGROUND_COLOR 0x42ADD4
+# define SHADOW_BIAS 0
+# define MAX_DEPTH 4
+# define CHESS_PATTERN 2
+# define BACKGROUND_COLOR 0x42ADD4
 
 typedef struct		s_screen
 {
-	int	width;
-	int height;
-	int display_width;
-	int display_height;
+	int				width;
+	int				height;
+	int				display_width;
+	int				display_height;
 	t_vec2d			scale;
 }					t_screen;
 
@@ -54,7 +54,6 @@ typedef struct		s_offsets
 	int				mode;
 	int				id_save;
 	char			ob_save;
-	//float			ambient;
 }					t_offsets;
 
 typedef struct		s_window
@@ -65,69 +64,69 @@ typedef struct		s_window
 
 typedef struct		s_keys
 {
-	int up;
-	int down;
-	int left;
-	int right;
-	int space;
-	int rightbracket;
-	int leftbracket;
-	int pad_0;
-	int pad_1;
-	int pad_2;
-	int pad_3;
-	int pad_4;
-	int pad_5;
-	int pad_6;
-	int pad_7;
-	int pad_8;
-	int pad_9;
-	int j;
-	int k;
-	int light_none;
-	int i;
-	int q;
-	int e;
-	int w;
-	int s;
-	int a;
-	int d;
-	int	four;
-	int five;
-	int six;
-	int eight;
-	int select;
+	int				up;
+	int				down;
+	int				left;
+	int				right;
+	int				space;
+	int				rightbracket;
+	int				leftbracket;
+	int				pad_0;
+	int				pad_1;
+	int				pad_2;
+	int				pad_3;
+	int				pad_4;
+	int				pad_5;
+	int				pad_6;
+	int				pad_7;
+	int				pad_8;
+	int				pad_9;
+	int				j;
+	int				k;
+	int				light_none;
+	int				i;
+	int				q;
+	int				e;
+	int				w;
+	int				s;
+	int				a;
+	int				d;
+	int				four;
+	int				five;
+	int				six;
+	int				eight;
+	int				select;
 }					t_keys;
 
 typedef struct		s_camera
 {
-	t_vec3d	pos;
-	t_vec3d look_at;
-	t_vec3d	dir_v;
-	t_vec3d	up_v;
-	t_vec3d	right_v;
-	int		rotation;
-	double	fov;
+	t_vec3d			pos;
+	t_vec3d			look_at;
+	t_vec3d			dir_v;
+	t_vec3d			up_v;
+	t_vec3d			right_v;
+	int				rotation;
+	double			fov;
 }					t_camera;
 
 typedef struct		s_intersection
 {
-	t_vec3d normal_v;
-	t_vec3d	pos;
-	t_color color;
-	t_color	chess;
-	double	negative;
-	double	reflection_coef;
-	double	refraction_coef;
-	double	transparence_coef;
-	double	t;
-	double	t1;
-	double	t2;
-	char		type;
-	int			id;
-	int			id_save;
-	int			flag;
-	int			depth;
+	t_vec3d			normal_v;
+	t_vec3d			pos;
+	t_color			color;
+	t_color			chess;
+	double			negative;
+	double			reflection_coef;
+	double			refraction_coef;
+	double			transparence_coef;
+	double			t;
+	double			t1;
+	double			t2;
+	char			type;
+	int				id;
+	int				id_save;
+	int				flag;
+	int				depth;
 }					t_intersection;
 
 typedef struct		s_ray
@@ -139,8 +138,8 @@ typedef struct		s_ray
 
 typedef struct		s_viewplane
 {
-	int					x_res;
-	int					y_res;
+	int				x_res;
+	int				y_res;
 	double			x_indent;
 	double			y_indent;
 	double			dist;
@@ -178,7 +177,6 @@ typedef struct		s_world
 {
 	t_window		window;
 	char			*title;
-
 	t_sphere		*spheres;
 	t_plane			*planes;
 	t_disk			*disks;
@@ -189,10 +187,9 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids;
 	t_torus			*torus;
 	t_mobius		*mobius;
-	t_triangle 		*triangles;
+	t_triangle		*triangles;
 	t_cube			*cubes;
-	t_h_cube			*h_cubes;
-
+	t_h_cube		*h_cubes;
 	t_sphere		*spheres_tmp;
 	t_plane			*planes_tmp;
 	t_disk			*disks_tmp;
@@ -203,15 +200,13 @@ typedef struct		s_world
 	t_hyperboloid	*hyperboloids_tmp;
 	t_torus			*torus_tmp;
 	t_mobius		*mobius_tmp;
-	t_triangle 		*triangles_tmp;
+	t_triangle		*triangles_tmp;
 	t_cube			*cubes_tmp;
-	t_h_cube			*h_cubes_tmp;
-
+	t_h_cube		*h_cubes_tmp;
 	t_sphere		*spheres_d;
 	t_plane			*planes_d;
 	t_light			*lights_d;
 	t_cone			*cones_d;
-
 	int				spheres_len;
 	int				planes_len;
 	int				cylinders_len;
@@ -225,35 +220,27 @@ typedef struct		s_world
 	int				triangles_len;
 	int				cubes_len;
 	int				h_cubes_len;
-
 	pthread_t		thread[NB_TH];
 	int				th;
-
 	int				clientrender;
 	int				*a_h;
 	unsigned char	*video_buffer;
 	size_t			size_main;
 	int				reload_buffer;
-
 	t_camera		camera;
 	t_viewplane		viewplane;
 	t_viewplane		viewplane_aa;
-
 	t_keys			keys;
 	int				mode;
 	int				anaglyph_depth;
 	int				animation_forward;
 	int				recording;
-
 	int				line;
-
 	int				render_factor;
-
 	t_offsets		offsets;
 	t_ambient		ambient;
 	int				light_type;
 	double			intensity;
-
 	int				id;
 	int				id_save;
 	char			ob_save;
@@ -267,16 +254,16 @@ typedef struct		s_world
 	int				win_width;
 	int				win_height;
 	int				mode_cluster;
-
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
 }					t_world;
 
-void 				refresh_viewplane(t_world *world);
+void				refresh_viewplane(t_world *world);
 void				data_setup(t_world *world);
 void				load_data(t_world *world);
 void				get_viewplane(t_world *world);
-int					launch_thread(t_world *world, int y_min, int y_max, int aam);
+int					launch_thread(t_world *world,
+					int y_min, int y_max, int aam);
 void				launch_cpu(t_world *world);
 void				launch_gpu(t_world *world);
 void				send_buffer(t_world *world, int port);
@@ -333,11 +320,11 @@ void				client_config(t_world *world, char *argv);
 /*
 **	error_msg.c
 */
-void		show_error(const char *str);
-void		show_error_2(const char *s1, const char *s2);
+void				show_error(const char *str);
+void				show_error_2(const char *s1, const char *s2);
 
-void		int_to_int(int *src, int *dst, int width, int height);
-void		effect_application(t_world *world);
-void	clear_world(t_world *world);
+void				int_to_int(int *src, int *dst, int width, int height);
+void				effect_application(t_world *world);
+void				clear_world(t_world *world);
 
 #endif

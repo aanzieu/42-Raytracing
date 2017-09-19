@@ -6,11 +6,31 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 14:48:56 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 16:52:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 14:41:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cluster.h"
+
+static void		receive_status2(t_client *clients, char ok)
+{
+	if (ok == 'h')
+		clients->status |= SEND_HYPERBOLOID;
+	if (ok == 'b')
+		clients->status |= SEND_PARABOLOID;
+	if (ok == 'o')
+		clients->status |= SEND_TORUS;
+	if (ok == 'm')
+		clients->status |= SEND_MOEBIUS;
+	if (ok == 't')
+		clients->status |= SEND_TRIANGLE;
+	if (ok == 'u')
+		clients->status |= SEND_CUBE;
+	if (ok == 'e')
+		clients->status |= SEND_H_CUBE;
+	if (ok == 'd')
+		clients->status |= SEND_DISK;
+}
 
 static void		receive_status(t_client *clients, char ok)
 {
@@ -30,22 +50,7 @@ static void		receive_status(t_client *clients, char ok)
 		clients->status |= SEND_AMBIANT;
 	if (ok == 'k')
 		clients->status |= SEND_KEYS;
-	if (ok == 'h')
-		clients->status |= SEND_HYPERBOLOID;
-	if (ok == 'p')
-		clients->status |= SEND_PARABOLOID;
-	if (ok == 'o')
-		clients->status |= SEND_TORUS;
-	if (ok == 'm')
-		clients->status |= SEND_MOEBIUS;
-	if (ok == 't')
-		clients->status |= SEND_TRIANGLE;
-	if (ok == 'u')
-		clients->status |= SEND_CUBE;
-	if (ok == 'b')
-		clients->status |= SEND_H_CUBE;
-	if (ok == 'd')
-		clients->status |= SEND_DISK;
+	receive_status2(clients, ok);
 }
 
 int				send_informations(t_client *clients,

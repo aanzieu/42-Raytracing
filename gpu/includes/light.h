@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:36:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/06/23 17:10:01 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 15:02:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct			s_light
 	t_vec3d				dir;
 	t_vec3d				dir_v;
 	t_color				color;
-	double		intensity_coef;
+	double				intensity_coef;
 	struct s_light		*next;
 }						t_light;
 

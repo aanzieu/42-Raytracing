@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 14:50:53 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 15:00:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 14:59:35 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ typedef struct		s_color
 	double			b;
 }					t_color;
 
-
-typedef struct	s_cl
+typedef struct		s_cl
 {
-	int			r;
-	int			g;
-	int			b;
-}				t_cl;
+	int				r;
+	int				g;
+	int				b;
+}					t_cl;
 
-double	color_to_coef(unsigned int color);
+double				color_to_coef(unsigned int color);
 
 #endif

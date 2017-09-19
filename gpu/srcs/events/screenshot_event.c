@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 18:50:50 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/04 17:49:29 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/19 13:04:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <display.h>
 #include "parse.h"
 
-static void	update_surface(int *a_h, SDL_Surface *img)
+static void		update_surface(int *a_h, SDL_Surface *img)
 {
 	int i;
 	int j;
@@ -26,22 +26,21 @@ static void	update_surface(int *a_h, SDL_Surface *img)
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			pixel_to_image(img, j, i, a_h[i * WIN_WIDTH + j]);		
+			pixel_to_image(img, j, i, a_h[i * WIN_WIDTH + j]);
 			j++;
 		}
 		i++;
 	}
 }
 
-static void	write_file_name(t_world *w, int nb)
+static void		write_file_name(t_world *w, int nb)
 {
-	char	*path;
-	char	*num;
-	char	*ext;
-	SDL_Surface		*img;	
-	int		ret;
+	char			*path;
+	char			*num;
+	char			*ext;
+	SDL_Surface		*img;
+	int				ret;
 
-	(void)w;
 	num = NULL;
 	if (nb != -1)
 	{
@@ -52,13 +51,12 @@ static void	write_file_name(t_world *w, int nb)
 	else
 		path = ft_strdup("screenshots/image");
 	ext = ft_strjoin(path, ".bmp");
-	printf("insave\n");
-
+	ft_printf("insave\n");
 	ft_strdel(&path);
 	img = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32, 0, 0, 0, 0);
 	update_surface(w->a_h, img);
 	if ((ret = SDL_SaveBMP(img, ext)) != 0)
-	 	show_error("saving png file error");
+		show_error("saving png file error");
 	ft_putstr("Snapshot ! -> ");
 	ft_putendl(ext);
 	ft_strdel(&ext);
@@ -70,7 +68,7 @@ static void	write_file_name(t_world *w, int nb)
 ** to determinate the id of the new image
 */
 
-void		savebmp(t_world *world)
+void			savebmp(t_world *world)
 {
 	DIR				*rep;
 	int				nb;
@@ -79,7 +77,6 @@ void		savebmp(t_world *world)
 	nb = -1;
 	rep = NULL;
 	f = NULL;
-
 	if ((rep = opendir("screenshots")) == NULL)
 		system("mkdir screenshots");
 	if ((rep = opendir("screenshots")) == NULL)

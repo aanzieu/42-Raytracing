@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/18 17:48:15 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/09/19 14:38:33 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -210,9 +210,13 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/server/master.c \
 				$(SRC_DIR)/server/master_send_infos.c \
 				$(SRC_DIR)/server/master_buff_infos.c \
+				$(SRC_DIR)/server/master_buff_infos_next.c \
+				$(SRC_DIR)/server/master_dup_data.c \
 				$(SRC_DIR)/server/master_utils.c \
 				$(SRC_DIR)/server/client.c \
+				$(SRC_DIR)/server/data_grow.c \
 				$(SRC_DIR)/server/client_recev_infos.c \
+				$(SRC_DIR)/server/client_recev_infos_next.c \
 				$(SRC_DIR)/server/client_utils.c \
 
 ###################################################

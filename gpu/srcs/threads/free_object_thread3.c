@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 17:02:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:02:29 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 12:59:11 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ void		thread_free_and_add_triangle(t_triangle **t,
 	load_triangles(t, *t_tmp, len);
 }
 
-void		thread_free_and_add_h_cube(t_h_cube **cu, t_h_cube **cu_tmp, int *len, int id)
+void		thread_free_and_add_h_cube(t_h_cube **cu, t_h_cube **cu_tmp,
+		int *len, int id)
 {
 	t_h_cube	*new;
 
-	if(*cu != NULL)
+	if (*cu != NULL)
 	{
 		free(*cu);
 		*len = 0;

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 16:19:30 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 16:51:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 15:01:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,39 +86,37 @@ typedef struct			s_cluster
 	int					sockfd;
 	int					nbr_clients;
 	int					th;
-	double					y_min;
-	double					y_max;
+	double				y_min;
+	double				y_max;
 	struct s_world		*world;
 }						t_cluster;
 
 /*
-********************************************************************************
-**                     CLIENT_CLUSTERING                                      **
-********************************************************************************
+*******************************************************************************
+**                     CLIENT_CLUSTERING                                     **
+*******************************************************************************
 */
-
 
 void					rt_cluster(t_world *world);
 int						serveur_address_serveur(char *ip, t_world *world);
 int						data_recv(t_data *data, size_t size);
 void					process_send(char cmd, t_data *data,
-											t_cluster *cluster, int sockfd);
+						t_cluster *cluster, int sockfd);
 void					updated_objs(t_data *data, char cmd, short n,
-											t_cluster *cluster);
+						t_cluster *cluster);
 void					free_obj(t_world *world, char cmd);
 
 /*
-********************************************************************************
-**                     MASTER CLUSTERING                                      **
-********************************************************************************
+*******************************************************************************
+**                     MASTER CLUSTERING                                     **
+*******************************************************************************
 */
 
-void			render_clustering(t_world *world, t_cluster *cluster);
-void			put_buffer_together(t_cluster *cluster, t_client *clients,
-		int x, int y);
-void			cluster_initialize(t_world *world, t_cluster *cluster);
-void			*init_client(void *arg);
-
+void					render_clustering(t_world *world, t_cluster *cluster);
+void					put_buffer_together(t_cluster *cluster,
+						t_client *clients, int x, int y);
+void					cluster_initialize(t_world *world, t_cluster *cluster);
+void					*init_client(void *arg);
 int						send_informations_all(t_cluster *cluster,
 						char cmd, void *arg, size_t arg_size);
 int						send_informations(t_client *clients,
@@ -128,7 +126,11 @@ int						launch_client(t_cluster *cluster, t_client *client);
 void					remove_client_if(t_cluster *cluster, t_client **alst,
 						t_client *last, t_client *tmp);
 int						send_buffer_clients(t_cluster *cluster,
-													t_client *clients);
+						t_client *clients);
 void					free_buffer(t_cluster *cluster);
-
+void					updated_objs_next3(t_data *data, char cmd,
+						short n, t_cluster *cluster);
+void					*dup_data_obj(t_cluster *cluster, char cmd, void *ret);
+int						send_buffer_obj(t_cluster *cluster,
+						t_client *clients, void *buffer);
 #endif

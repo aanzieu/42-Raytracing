@@ -6,12 +6,12 @@
 /*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/08/21 11:47:33 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 12:56:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
-#include <gpu_rt.h>
+#include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
 
 t_color				remove_color_channel(t_color color, char filter)
 {
@@ -20,14 +20,15 @@ t_color				remove_color_channel(t_color color, char filter)
 	else if (filter == 'r')
 	{
 		color.g = 0;
-		color.b = 0;		
+		color.b = 0;
 	}
-	return color;
+	return (color);
 }
 
-void				filter_anaglyph(t_world *world, t_color *buffer, int size, char filter)
+void				filter_anaglyph(t_world *world, t_color *buffer, int size,
+		char filter)
 {
-	int 	i;
+	int		i;
 	t_color	color;
 
 	i = 0;
@@ -46,14 +47,14 @@ void				anaglyph(t_world *world)
 	t_color *red;
 	t_color	*cyan;
 	t_color	color;
-	int size;
-	int i;
+	int		size;
+	int		i;
 
 	i = 0;
 	color = new_color(0, 0, 0);
 	size = world->viewplane.x_res * world->viewplane.y_res;
 	red = (t_color *)malloc(size * sizeof(t_color));
-	cyan = (t_color *)malloc(size * sizeof(t_color));	
+	cyan = (t_color *)malloc(size * sizeof(t_color));
 	filter_anaglyph(world, red, size, 'r');
 	filter_anaglyph(world, cyan, size, 'c');
 	while (i < size)
@@ -61,12 +62,10 @@ void				anaglyph(t_world *world)
 		if (i - world->anaglyph_depth >= 0 && i + world->anaglyph_depth < size)
 		{
 			color = color_add(color, red[i - world->anaglyph_depth]);
-			// printf("First %f %f %f - ", color.r, color.g, color.b);
 			color = color_add(color, cyan[i + world->anaglyph_depth]);
-			// printf("Second %f %f %f\n", color.r, color.g, color.b);
 		}
 		world->a_h[i] = rgb_to_int(color);
-		color = color_scalar(color, 0);		
+		color = color_scalar(color, 0);
 		i++;
 	}
 }

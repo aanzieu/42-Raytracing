@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 15:32:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 17:33:12 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 13:52:08 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static void		send_offsets(t_client *clients, t_cluster *cluster, int nbr)
 		if (clients)
 		{
 			offsets.y_min = nbr * (double)WIN_HEIGHT / cluster->nbr_clients;
-			offsets.y_max = offsets.y_min + (double)WIN_HEIGHT / cluster->nbr_clients;
+			offsets.y_max = offsets.y_min + (double)WIN_HEIGHT /
+				cluster->nbr_clients;
 			offsets.render_factor = cluster->world->render_factor;
 			offsets.aa = cluster->world->aa;
 			offsets.mode = cluster->world->mode;
 			offsets.ob_save = cluster->world->ob_save;
 			offsets.id_save = cluster->world->id_save;
-			// offsets.intensity = cluster->world->ambient.intensity;
 			clients->offsets.y_min = offsets.y_min;
 			clients->offsets.y_max = offsets.y_max;
 			clients->main_size = sizeof(int)

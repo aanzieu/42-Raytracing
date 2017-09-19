@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 17:09:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:10:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/19 12:59:35 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ t_triangle			*copy_triangle(t_triangle *obj)
 	return (NULL);
 }
 
-t_h_cube		*copy_h_cube(t_h_cube *obj)
+t_h_cube			*copy_h_cube(t_h_cube *obj)
 {
-	t_h_cube 	*news;
+	t_h_cube	*news;
 
 	if (obj)
 	{
