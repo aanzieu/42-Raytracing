@@ -95,6 +95,8 @@ CUDA_HOSTDEV void		move_forward(t_world *world);
 CUDA_HOSTDEV void		move_backward(t_world *world);
 CUDA_HOSTDEV void		move_left(t_world *world);
 CUDA_HOSTDEV void		move_right(t_world *world);
+CUDA_HOSTDEV void		move_up(t_world *world);
+CUDA_HOSTDEV void		move_down(t_world *world);
 CUDA_HOSTDEV void		cam_rot(t_camera *camera, double degrees, char axis);
 CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 
@@ -104,17 +106,17 @@ CUDA_HOSTDEV void		get_camera_axes(t_camera *camera);
 
 CUDA_HOSTDEV void			rotate(t_vec3d *point, double degrees, char axis);
 CUDA_HOSTDEV void			translate(t_vec3d *point, double x, double y, double z);
-CUDA_HOSTDEV t_vec3d	new_vector(double x, double y, double z);
-CUDA_HOSTDEV t_vec3d	vector_copy(t_vec3d cpy);
-CUDA_HOSTDEV t_vec3d	vector_add(t_vec3d vect1, t_vec3d vect2);
-CUDA_HOSTDEV t_vec3d	vector_substract(t_vec3d vect1, t_vec3d vect2);
-CUDA_HOSTDEV t_vec3d	vector_cross(t_vec3d vect1, t_vec3d vect2);
-CUDA_HOSTDEV t_vec3d	vector_scalar(t_vec3d vect1, double scalar);
-CUDA_HOSTDEV t_vec3d	vector_calculate(t_vec3d vect1, t_vec3d vect2);
-CUDA_HOSTDEV t_vec3d	vector_normalize(t_vec3d vect1);
-CUDA_HOSTDEV double		vector_dot(t_vec3d vect1, t_vec3d vect2);
-CUDA_HOSTDEV double		vector_length(t_vec3d vect1);
-CUDA_HOSTDEV double		vector_magnitude(t_vec3d vect1);
+CUDA_HOSTDEV t_vec3d		new_vector(double x, double y, double z);
+CUDA_HOSTDEV t_vec3d		vector_copy(t_vec3d cpy);
+CUDA_HOSTDEV t_vec3d		vector_add(t_vec3d vect1, t_vec3d vect2);
+CUDA_HOSTDEV t_vec3d		vector_substract(t_vec3d vect1, t_vec3d vect2);
+CUDA_HOSTDEV t_vec3d		vector_cross(t_vec3d vect1, t_vec3d vect2);
+CUDA_HOSTDEV t_vec3d		vector_scalar(t_vec3d vect1, double scalar);
+CUDA_HOSTDEV t_vec3d		vector_calculate(t_vec3d vect1, t_vec3d vect2);
+CUDA_HOSTDEV t_vec3d		vector_normalize(t_vec3d vect1);
+CUDA_HOSTDEV double			vector_dot(t_vec3d vect1, t_vec3d vect2);
+CUDA_HOSTDEV double			vector_length(t_vec3d vect1);
+CUDA_HOSTDEV double			vector_magnitude(t_vec3d vect1);
 CUDA_HOSTDEV void			vector_rot_y(t_vec3d *z, t_vec3d *x, double angle);
 CUDA_HOSTDEV void			vector_rot_x(t_vec3d *y, t_vec3d *z, double angle);
 CUDA_HOSTDEV void			vector_rot_z(t_vec3d *x, t_vec3d *y, double angle);
@@ -126,9 +128,9 @@ CUDA_HOSTDEV void			vector_rot_z(t_vec3d *x, t_vec3d *y, double angle);
 CUDA_HOSTDEV int			dblsgn(double x);
 CUDA_HOSTDEV int			is_zero(double x);
 CUDA_HOSTDEV void			swap_double(double *a, double *b);
-CUDA_HOSTDEV double		ft_smaller(double a, double b);
-CUDA_HOSTDEV double		sign_of(double a);
-CUDA_HOSTDEV double		check_solution(double res);
+CUDA_HOSTDEV double			ft_smaller(double a, double b);
+CUDA_HOSTDEV double			sign_of(double a);
+CUDA_HOSTDEV double			check_solution(double res);
 
 /*******************************************************************************
 **                     MATH_UTILS                                             **

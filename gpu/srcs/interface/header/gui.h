@@ -52,6 +52,8 @@ int
 ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value, char *title);
 int
 ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *value, char *title);
+int
+ui_widget_value_infos_cam(struct nk_context *ctx, struct media *media, double *value, char *title);
 
 
 /* ===============================================================

@@ -166,6 +166,19 @@ ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value
 	nk_spacing(ctx, 0);
 	return(res == *value ? 0 : 1);
 }
+
+int
+ui_widget_value_infos_cam(struct nk_context *ctx, struct media *media, double *value, char *title)
+{
+	double res = *value;
+	(void)media;
+//	nk_style_set_font(ctx, &media->font_14->handle);
+//	nk_layout_row_dynamic(ctx, 15, 1);
+	nk_property_double(ctx, title, -100.0f, value, 100.0f, 1, 1);
+//	nk_spacing(ctx, 0);
+	return(res == *value ? 0 : 1);
+}
+
 int
 ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *value, char *title)
 {
