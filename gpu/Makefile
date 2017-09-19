@@ -29,10 +29,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/huweber/.brew/opt/glfw/lib/libglfw.3.2.dylib
-GLEW = /Users/huweber/.brew/opt/glew/lib/libGLEW.a
-# GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
-# GLEW = frameworks/glew/lib/libGLEW.a
+GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
+GLEW = frameworks/glew/lib/libGLEW.a
 
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
