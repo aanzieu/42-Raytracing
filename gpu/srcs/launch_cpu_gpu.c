@@ -148,14 +148,14 @@ void			launch_gpu(t_world *world)
 	printf("gpu\n");
 	if (world->clientrender == 1)
 	{
-		pthread_mutex_lock(&mutex);
+	//	pthread_mutex_lock(&mutex);
 		printf("je suis dans gpu cluster\n");
 		refresh_viewplane_cluster(world);
 		get_viewplane_cluster(world);
 		// get_viewplane(world);
 		render_cuda(world->a_h, WIN_WIDTH,
 				world->offsets.y_max - world->offsets.y_min, *world, 0);
-		pthread_mutex_unlock(&mutex);
+	//	pthread_mutex_unlock(&mutex);
 		return ;
 	}
 	// quit = 0;
