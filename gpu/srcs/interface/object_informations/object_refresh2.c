@@ -32,6 +32,7 @@ void	refresh_mobius(t_world *world, int i)
 			tmp->reflection_coef = world->mobius[i].reflection_coef;
 			tmp->refraction_coef = world->mobius[i].refraction_coef;
 			tmp->transparence_coef = world->mobius[i].transparence_coef;
+			tmp->perlin = world->mobius[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -56,6 +57,7 @@ void	refresh_disk(t_world *world, int i)
 			tmp->reflection_coef = world->disks[i].reflection_coef;
 			tmp->refraction_coef = world->disks[i].refraction_coef;
 			tmp->transparence_coef = world->disks[i].transparence_coef;
+			tmp->perlin = world->disks[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -79,6 +81,7 @@ void	refresh_cube(t_world *world, int i)
 			tmp->reflection_coef = world->cubes[i].reflection_coef;
 			tmp->refraction_coef = world->cubes[i].refraction_coef;
 			tmp->transparence_coef = world->cubes[i].transparence_coef;
+			tmp->perlin = world->cubes[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -103,6 +106,7 @@ void	refresh_paraboloid(t_world *world, int i)
 			tmp->reflection_coef = world->paraboloids[i].reflection_coef;
 			tmp->refraction_coef = world->paraboloids[i].refraction_coef;
 			tmp->transparence_coef = world->paraboloids[i].transparence_coef;
+			tmp->perlin = world->paraboloids[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -127,6 +131,7 @@ void	refresh_hyperboloid(t_world *world, int i)
 			tmp->reflection_coef = world->hyperboloids[i].reflection_coef;
 			tmp->refraction_coef = world->hyperboloids[i].refraction_coef;
 			tmp->transparence_coef = world->hyperboloids[i].transparence_coef;
+			tmp->perlin = world->hyperboloids[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;

@@ -26,6 +26,10 @@ void							init_triangle_add(t_triangle *t)
 	t->reflection_coef = 0;
 	t->refraction_coef = 0;
 	t->transparence_coef = 0;
+	t->perlin.is_set = 0;
+	t->perlin.pre_set = 0;
+	t->perlin.scale = 0;
+	t->perlin.amount = 0;
 	t->next = NULL;
 }
 

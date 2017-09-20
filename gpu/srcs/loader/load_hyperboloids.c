@@ -26,6 +26,10 @@ void							init_hyperboloid_add(t_hyperboloid *h)
 	h->reflection_coef = 0;
 	h->refraction_coef = 0;
 	h->transparence_coef = 0;
+	h->perlin.is_set = 0;
+	h->perlin.pre_set = 0;
+	h->perlin.scale = 0;
+	h->perlin.amount = 0;
 	h->next = NULL;
 }
 

@@ -16,6 +16,17 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
+int			get_preset_info(t_perlin p)
+{
+	if (p.pre_set == WOOD)
+		return (1);
+	if (p.pre_set == MARBLE)
+		return (2);
+	if (p.pre_set == GLASS)
+		return (3);
+	return (0);
+}
+
 int	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
 {
 	static struct nk_color	color;

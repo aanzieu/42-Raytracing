@@ -28,6 +28,7 @@ t_paraboloid				*new_paraboloid(t_paraboloid *nw, int id)
 	para->reflection_coef = nw->reflection_coef;
 	para->refraction_coef = nw->refraction_coef;
 	para->transparence_coef = nw->transparence_coef;
+	para->perlin = nw->perlin;
 	para->next = NULL;
 	return (para);
 }
@@ -48,6 +49,7 @@ t_hyperboloid				*new_hyperboloid(t_hyperboloid *nw, int id)
 	hyper->maxm = nw->maxm;
 	hyper->color = nw->color;
 	hyper->chess = nw->chess;
+	hyper->perlin = nw->perlin;
 	hyper->next = NULL;
 	return (hyper);
 }
@@ -67,6 +69,7 @@ t_torus						*new_torus(t_torus *nw, int id)
 	t->reflection_coef = nw->reflection_coef;
 	t->refraction_coef = nw->refraction_coef;
 	t->transparence_coef = nw->transparence_coef;
+	t->perlin = nw->perlin;
 	t->next = NULL;
 	return (t);
 }
@@ -84,6 +87,7 @@ t_mobius					*new_mobius(t_mobius *nw, int id)
 	s->reflection_coef = nw->reflection_coef;
 	s->refraction_coef = nw->refraction_coef;
 	s->transparence_coef = nw->transparence_coef;
+	s->perlin = nw->perlin;
 	s->next = NULL;
 	return (s);
 }

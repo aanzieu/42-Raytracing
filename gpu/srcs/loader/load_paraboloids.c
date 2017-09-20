@@ -26,6 +26,10 @@ void							init_paraboloid_add(t_paraboloid *p)
 	p->reflection_coef = 0;
 	p->refraction_coef = 0;
 	p->transparence_coef = 0;
+	p->perlin.is_set = 0;
+	p->perlin.pre_set = 0;
+	p->perlin.scale = 0;
+	p->perlin.amount = 0;
 	p->next = NULL;
 }
 

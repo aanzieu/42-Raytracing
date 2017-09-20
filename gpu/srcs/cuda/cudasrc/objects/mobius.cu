@@ -84,14 +84,15 @@ __host__ __device__ void		get_closest_mobius(t_world world, t_ray ray,
 				intersection->pos = vector_add(ray.origin,
 						vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->t = intersection_tmp->t;
-		
+
 				intersection->id_save = world.mobius[i].id;
-				intersection->id = world.mobius[i].id;				
+				intersection->id = world.mobius[i].id;
 				intersection->reflection_coef = world.mobius[i].reflection_coef;
 				intersection->refraction_coef = world.mobius[i].refraction_coef;
 				intersection->transparence_coef = world.mobius[i].transparence_coef;
 				intersection->color = world.mobius[i].color;
 				get_normal_mobius(intersection, world.mobius[i], ray);
+				apply_noise_dist(world, intersection, world.mobius[i].perlin);
 			}
 		}
 		i++;

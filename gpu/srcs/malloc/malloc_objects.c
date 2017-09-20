@@ -27,6 +27,7 @@ t_plane		*new_plan(t_plane *nw, int id)
 	p->reflection_coef = nw->reflection_coef;
 	p->refraction_coef = nw->refraction_coef;
 	p->transparence_coef = nw->transparence_coef;
+	p->perlin = nw->perlin;
 	p->next = NULL;
 	return (p);
 }
@@ -47,6 +48,7 @@ t_disk		*new_disk(t_disk *nw, int id)
 	d->refraction_coef = nw->refraction_coef;
 	d->transparence_coef = nw->transparence_coef;
 	d->chess = nw->chess;
+	d->perlin = nw->perlin;
 	d->next = NULL;
 	return (d);
 }
@@ -69,6 +71,7 @@ t_cone		*new_cone(t_cone *nw, int id)
 	c->transparence_coef = nw->transparence_coef;
 	c->min = nw->min;
 	c->max = nw->max;
+	c->perlin = nw->perlin;
 	c->next = NULL;
 	return (c);
 }
@@ -109,6 +112,7 @@ t_cylinder	*new_cylinder(t_cylinder *nw, int id)
 	cy->reflection_coef = nw->reflection_coef;
 	cy->refraction_coef = nw->refraction_coef;
 	cy->transparence_coef = nw->transparence_coef;
+	cy->perlin = nw->perlin;
 	cy->next = NULL;
 	return (cy);
 }

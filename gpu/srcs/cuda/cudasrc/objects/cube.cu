@@ -115,6 +115,7 @@ __host__ __device__ void	get_closest_cube(t_world world, t_ray ray,
 				intersection->pos =
 					vector_add(ray.origin, vector_scalar(ray.dir, intersection->t));
 				intersection->normal_v = get_normal_cube(world.cubes[i], ray, *intersection);
+				apply_noise_dist(world, intersection, world.cubes[i].perlin);
 			}
 		}
 		i++;

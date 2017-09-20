@@ -23,6 +23,10 @@ void						init_h_cube_add(t_h_cube *c)
 	c->reflection_coef = 0;
 	c->refraction_coef = 0;
 	c->transparence_coef = 0;
+	c->perlin.is_set = 0;
+	c->perlin.pre_set = 0;
+	c->perlin.scale = 0;
+	c->perlin.amount = 0;
 	c->next = NULL;
 }
 

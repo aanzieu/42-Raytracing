@@ -27,6 +27,10 @@ void						init_cylinder_add(t_cylinder *cy)
 	cy->reflection_coef = 0;
 	cy->refraction_coef = 0;
 	cy->transparence_coef = 0;
+	cy->perlin.is_set = 0;
+	cy->perlin.pre_set = 0;
+	cy->perlin.scale = 0;
+	cy->perlin.amount = 0;
 	cy->next = NULL;
 }
 

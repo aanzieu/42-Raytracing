@@ -39,6 +39,7 @@ typedef struct				s_plane
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin	perlin;
 	struct s_plane			*next;
 }							t_plane;
 
@@ -54,6 +55,7 @@ typedef struct				s_disk
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_perlin	perlin;
 	struct s_disk			*next;
 }							t_disk;
 

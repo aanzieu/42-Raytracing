@@ -28,6 +28,10 @@ void					init_cone_add(t_cone *c)
 	c->height = 0;
 	c->min = new_vector(1, 1, 1);
 	c->max = new_vector(3, 3, 3);
+	c->perlin.is_set = 0;
+	c->perlin.pre_set = 0;
+	c->perlin.scale = 0;
+	c->perlin.amount = 0;
 	c->next = NULL;
 }
 

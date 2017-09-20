@@ -28,6 +28,7 @@ t_triangle					*new_triangle(t_triangle *nw, int id)
 	t->reflection_coef = nw->reflection_coef;
 	t->refraction_coef = nw->refraction_coef;
 	t->transparence_coef = nw->transparence_coef;
+	t->perlin = nw->perlin;
 	t->next = NULL;
 	return (t);
 }
@@ -46,6 +47,7 @@ t_cube						*new_cube(t_cube *nw, int id)
 	t->reflection_coef = nw->reflection_coef;
 	t->refraction_coef = nw->refraction_coef;
 	t->transparence_coef = nw->transparence_coef;
+	t->perlin = nw->perlin;
 	t->next = NULL;
 	return (t);
 }
@@ -63,6 +65,7 @@ t_h_cube					*new_h_cube(t_h_cube *nw, int id)
 	t->reflection_coef = nw->reflection_coef;
 	t->refraction_coef = nw->refraction_coef;
 	t->transparence_coef = nw->transparence_coef;
+	t->perlin = nw->perlin;
 	t->next = NULL;
 	return (t);
 }

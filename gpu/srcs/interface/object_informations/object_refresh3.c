@@ -34,6 +34,7 @@ void	refresh_triangle(t_world *world, int i)
 			tmp->reflection_coef = world->triangles[i].reflection_coef;
 			tmp->refraction_coef = world->triangles[i].refraction_coef;
 			tmp->transparence_coef = world->triangles[i].transparence_coef;
+			tmp->perlin = world->triangles[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -55,6 +56,7 @@ void	refresh_h_cube(t_world *world, int i)
 			tmp->reflection_coef = world->h_cubes[i].reflection_coef;
 			tmp->refraction_coef = world->h_cubes[i].refraction_coef;
 			tmp->transparence_coef = world->h_cubes[i].transparence_coef;
+			tmp->perlin = world->h_cubes[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;

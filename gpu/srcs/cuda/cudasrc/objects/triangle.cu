@@ -153,6 +153,7 @@ __host__ __device__ void   get_closest_triangle(t_world world, t_ray ray,
 				intersection->pos =
 					vector_add(ray.origin, vector_scalar(ray.dir, intersection->t));
 				intersection->normal_v = intersection_tmp->normal_v;
+        apply_noise_dist(world, intersection, world.triangles[i].perlin);
 			}
 		}
 		i++;

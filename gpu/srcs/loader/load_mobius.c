@@ -24,6 +24,10 @@ void						init_mobius_add(t_mobius *m)
 	m->reflection_coef = 0;
 	m->refraction_coef = 0;
 	m->transparence_coef = 0;
+	m->perlin.is_set = 0;
+	m->perlin.pre_set = 0;
+	m->perlin.scale = 0;
+	m->perlin.amount = 0;
 	m->next = NULL;
 }
 

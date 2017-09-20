@@ -26,6 +26,10 @@ void					init_disk_add(t_disk *d)
 	d->reflection_coef = 0;
 	d->refraction_coef = 0;
 	d->transparence_coef = 0;
+	d->perlin.is_set = 0;
+	d->perlin.pre_set = 0;
+	d->perlin.scale = 0;
+	d->perlin.amount = 0;
 	d->next = NULL;
 }
 

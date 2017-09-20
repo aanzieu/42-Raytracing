@@ -58,6 +58,7 @@ void	refresh_cone(t_world *world, int i)
 			tmp->reflection_coef = world->cones[i].reflection_coef;
 			tmp->refraction_coef = world->cones[i].refraction_coef;
 			tmp->transparence_coef = world->cones[i].transparence_coef;
+			tmp->perlin = world->cones[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -82,6 +83,7 @@ void	refresh_cylinder(t_world *world, int i)
 			tmp->reflection_coef = world->cylinders[i].reflection_coef;
 			tmp->refraction_coef = world->cylinders[i].refraction_coef;
 			tmp->transparence_coef = world->cylinders[i].transparence_coef;
+			tmp->perlin = world->cylinders[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -104,6 +106,7 @@ void	refresh_plane(t_world *world, int i)
 			tmp->reflection_coef = world->planes[i].reflection_coef;
 			tmp->refraction_coef = world->planes[i].refraction_coef;
 			tmp->transparence_coef = world->planes[i].transparence_coef;
+			tmp->perlin = world->planes[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
@@ -128,6 +131,7 @@ void	refresh_torus(t_world *world, int i)
 			tmp->reflection_coef = world->torus[i].reflection_coef;
 			tmp->refraction_coef = world->torus[i].refraction_coef;
 			tmp->transparence_coef = world->torus[i].transparence_coef;
+			tmp->perlin = world->torus[i].perlin;
 			break ;
 		}
 		tmp = tmp->next;
