@@ -30,7 +30,7 @@ __host__ __device__ static int bbox(t_torus to, t_ray ray)
 	x = vector_calculate(to.pos, ray.origin);
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
-	eq.c = vector_dot(x, x) - pow(to.radius_small + to.radius_small + 0.1, 2);
+	eq.c = vector_dot(x, x) - pow(to.radius_big + to.radius_small + 0.1, 2);
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
 		return (1);
@@ -81,7 +81,7 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 	{
 		while (i < nb_roots)
 		{
-			if (roots[i] < res && roots[i] > SURFACE_TOLERANCE)
+			if (roots[i] < res && roots[i] > 0.1)
 				res = roots[i];
 			i++;
 		}
