@@ -22,6 +22,21 @@ extern "C" {
 **	avec le plan
 */
 
+__host__ __device__ static int bbox(t_torus to, t_ray ray)
+{
+	t_vec3d	x;
+	t_eq		eq;
+
+	x = vector_calculate(to.pos, ray.origin);
+	eq.a = vector_dot(ray.dir, ray.dir);
+	eq.b = 2 * vector_dot(ray.dir, x);
+	eq.c = vector_dot(x, x) - pow(to.radius_small + to.radius_small + 0.1, 2);
+	second_degres(&eq);
+	if(eq.res[0] != NOT_A_SOLUTION)
+		return (1);
+	return (-1);
+}
+
 __host__ __device__ t_vec3d get_normal_torus(t_intersection *intersection,
 		t_torus to, t_ray ray)
 {
@@ -46,7 +61,7 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 	double	nb_roots = 0;
 	int			i = 0;
 
-	if (intersection_tmp->id == to.id)
+	if (intersection_tmp->id == to.id || !bbox(to, ray))
 		return (0);
 	ray.origin = vector_calculate(to.pos, ray.origin);
 	equ[0] = 4.0 * to.radius_big * to.radius_big;

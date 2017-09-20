@@ -22,6 +22,21 @@ extern "C" {
 **	avec le plan
 */
 
+__host__ __device__ static int bbox(t_h_cube cu, t_ray ray)
+{
+	t_vec3d	x;
+	t_eq		eq;
+
+	x = vector_calculate(cu.pos, ray.origin);
+	eq.a = vector_dot(ray.dir, ray.dir);
+	eq.b = 2 * vector_dot(ray.dir, x);
+	eq.c = vector_dot(x, x) - 10.90;
+	second_degres(&eq);
+	if(eq.res[0] != NOT_A_SOLUTION)
+		return (1);
+	return (-1);
+}
+
 __host__ __device__ t_vec3d get_normal_hollow_cube(t_intersection *intersection,
 		t_h_cube cu)
 {
@@ -44,7 +59,7 @@ __host__ __device__ int	get_hollow_cube(t_h_cube cu, t_ray ray,
 	double	nb_roots = 0;
 	int			i = 0;
 
-	if (intersection_tmp->id == cu.id)
+	if (intersection_tmp->id == cu.id || !bbox(cu, ray))
 		return (0);
 	ray.origin = vector_calculate(cu.pos, ray.origin);
   a[0] = (pow(ray.dir.x, 4) + pow(ray.dir.y, 4) + pow(ray.dir.z, 4));
