@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 15:09:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/20 14:54:10 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vectors.h"
 # include "colors.h"
+# include "light.h"
 
 # define WOOD 1
 # define GLASS 2
@@ -22,11 +23,11 @@
 
 typedef struct				s_perlin
 {
-	int							is_set;
-	int							pre_set;
+	int						is_set;
+	int						pre_set;
 	double					scale;
 	double					amount;
-}											t_perlin;
+}							t_perlin;
 
 typedef struct				s_plane
 {
@@ -286,6 +287,9 @@ void						init_paraboloid_add(t_paraboloid *p);
 void						thread_free_and_add_triangle(t_triangle **t,
 							t_triangle **t_tmp, int *len, int id);
 void						init_triangle_add(t_triangle *t);
+void						thread_free_and_add_light(t_light **l,
+							t_light **l_tmp, int *len, int id);
+void						init_light_add(t_light *l);
 
 /*
 ********************************************************************************

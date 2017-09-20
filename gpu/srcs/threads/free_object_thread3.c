@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_object_thread3.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 17:02:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 12:59:11 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/20 14:45:18 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,25 @@ void		thread_free_and_add_h_cube(t_h_cube **cu, t_h_cube **cu_tmp,
 	add_h_cube(cu_tmp, new_h_cube(new, id));
 	free(new);
 	load_h_cubes(cu, *cu_tmp, len);
+}
+
+void		thread_free_and_add_light(t_light **l, t_light **l_tmp,
+		int *len, int id)
+{
+	t_light	*new;
+
+	if (*l != NULL)
+	{
+		free(*l);
+		*len = 0;
+		*l = NULL;
+	}
+	if (!(new = (t_light*)ft_memalloc(sizeof(t_light))))
+		show_error("error malloc light");
+	init_light_add(new);
+	*len = 0;
+	*l = NULL;
+	add_light(l_tmp, new_light(new, id));
+	free(new);
+	load_lights(l, *l_tmp, len);
 }

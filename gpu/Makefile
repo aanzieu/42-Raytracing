@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/19 14:38:33 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/09/20 14:09:26 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_hyperboloids.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_torus.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_mobius.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_lights.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_utils.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh2.c \

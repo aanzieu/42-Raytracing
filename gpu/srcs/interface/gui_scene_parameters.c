@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 17:44:38 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 16:17:00 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		}
 
 		ui_widget_centered(ctx, media, 5);
+		if (ui_widget_value_slider_int(ctx, media, &world->aa, "Anti-Aliasing (1x-16x)"))
+			world->redraw = 1;
 
 		/*------------------------------------------------
 		 *                  SPECIAL MODE
@@ -159,8 +161,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		ui_widget_centered(ctx, media, 30);
 		nk_style_set_font(ctx, &media->font_14->handle);
 		draw_choose_color(ctx, world, &world->ambient.color);
-		if (ui_widget_value_slider_int(ctx, media, &world->aa, "Anti-Aliasing (1x-16x)"))
-			world->redraw = 1;
+		
 
 		/*------------------------------------------------
 		 *                  ADD OBJECT
@@ -190,7 +191,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->plane))
@@ -204,62 +205,104 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_disk(&world->disks, &world->disks_tmp, &world->disks_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->torus))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_torus(&world->torus, &world->torus_tmp, &world->torus_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->cube))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_cube(&world->cubes, &world->cubes_tmp, &world->cubes_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->triangle))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->hyperboloid))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_hyperboloid(&world->hyperboloids, &world->hyperboloids_tmp, &world->hyperboloids_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->paraboloid))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_paraboloid(&world->paraboloids, &world->paraboloids_tmp, &world->paraboloids_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->mobius))
 			{
 				if(world->a_h != NULL)
 					thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id++);
-					world->redraw = 1;
+				world->redraw = 1;
 			}
 			nk_layout_row_push(ctx, 40);
 			if(nk_button_image(ctx, media->h_cube))
 			{
 				if(world->a_h != NULL)
-				{
 					thread_free_and_add_h_cube(&world->h_cubes, &world->h_cubes_tmp, &world->h_cubes_len, world->id++);
-					printf("thread\n");
-				}
+				world->redraw = 1;
+			}
+			nk_layout_row_push(ctx, 40);
+			if(nk_button_image(ctx, media->light))
+			{
+				if(world->a_h != NULL)
+					thread_free_and_add_light(&world->lights, &world->lights_tmp, &world->lights_len, world->id++);
 				world->redraw = 1;
 			}
 		}
 		nk_layout_row_end(ctx);
+
+		if (world->lights_len)
+		{
+			t_light *tmp;
+			char	*light;
+			char	*id;
+			int		i;
+
+			i = 1;
+			tmp = world->lights_tmp;
+			ui_widget_centered(ctx, media, 10);
+			ui_header(ctx, media, "---- Lights ----");
+			nk_layout_row_begin(ctx, NK_STATIC, 30, 1);
+			{
+				while (tmp)
+				{
+					nk_layout_row_push(ctx, 200);
+					id = ft_itoa(i++);
+					light = ft_strjoin("Light ", id);
+					ft_strdel(&id);
+					if (nk_button_text(ctx, light, ft_strlen(light)))
+					{
+						world->ob_save = 'l';
+						world->id_save = tmp->id;
+					}
+					ft_strdel(&light);
+					tmp = tmp->next;
+				}
+				// nk_layout_row_push(ctx, 200);
+				// if (nk_button_text(ctx, "ADD LIGHT", ft_strlen("ADD LIGHT")))
+				// {
+				// 	if(world->a_h != NULL)
+				// 		thread_free_and_add_light(&world->lights, &world->lights_tmp, &world->lights_len, world->id++);
+				// 	world->redraw = 1;
+				// }
+			}
+			nk_layout_row_end(ctx);
+		}
 
 		/*------------------------------------------------
 		 *                  LOADER

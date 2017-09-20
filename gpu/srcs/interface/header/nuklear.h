@@ -4256,6 +4256,7 @@ struct media {
     struct nk_image hyperboloid;
     struct nk_image paraboloid;
     struct nk_image triangle;
+    struct nk_image light;
     struct nk_image cam;
     struct nk_image rec;
     struct nk_image rec_on;

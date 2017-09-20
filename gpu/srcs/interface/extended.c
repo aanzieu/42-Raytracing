@@ -171,6 +171,7 @@ int interface_launch(t_world *world, char *argv)
 	glDeleteTextures(1,(const GLuint*)&media.h_cube.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.torus.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.triangle.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.light.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.cam.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.rec.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.rec_on.handle.id);

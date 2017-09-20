@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:27:36 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 12:09:27 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	parse_light(t_world *world, xmlNodePtr cur)
 			parse_intensity(&l->intensity_coef, cur);
 		cur = cur->next;
 	}
-	add_light(&world->lights_tmp, new_light(l));
+	add_light(&world->lights_tmp, new_light(l, world->id++));
 	free(l);
 }

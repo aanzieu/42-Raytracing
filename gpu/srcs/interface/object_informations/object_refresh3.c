@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 18:03:41 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 14:29:05 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,24 @@ void	refresh_h_cube(t_world *world, int i)
 			tmp->reflection_coef = world->h_cubes[i].reflection_coef;
 			tmp->refraction_coef = world->h_cubes[i].refraction_coef;
 			tmp->transparence_coef = world->h_cubes[i].transparence_coef;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	refresh_light(t_world *world, int i)
+{
+	t_light	*tmp;
+
+	tmp = world->lights_tmp;
+	while (tmp)
+	{
+		if (tmp->id == world->id_save)
+		{
+			tmp->pos = world->lights[i].pos;
+			tmp->color = world->lights[i].color;
+			tmp->intensity_coef = world->lights[i].intensity_coef;
 			break ;
 		}
 		tmp = tmp->next;

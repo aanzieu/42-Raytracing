@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 15:25:47 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 14:25:47 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,35 @@ void			remove_h_cube(t_h_cube **s, t_intersection *i)
 		{
 			if (current == *s)
 				*s = current->next;
+			else
+				last->next = current->next;
+			tmp = current;
+			current = current->next;
+			free(tmp);
+		}
+		else
+		{
+			last = current;
+			current = current->next;
+		}
+	}
+}
+
+void			remove_light(t_light **l, t_intersection *i)
+{
+	t_light	*current;
+	t_light	*last;
+	t_light	*tmp;
+
+	current = *l;
+	tmp = NULL;
+	last = NULL;
+	while (current)
+	{
+		if (current->id == i->id_save)
+		{
+			if (current == *l)
+				*l = current->next;
 			else
 				last->next = current->next;
 			tmp = current;

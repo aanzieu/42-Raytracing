@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   load_lights.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 18:10:12 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 16:46:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/20 14:51:44 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rt.h"
+#include "../cuda/cudaheader/gpu_rt.h"
+
+void				init_light_add(t_light *l)
+{
+	l->id = 0;
+	l->pos = new_vector(0, 0, 0);
+	l->color = (t_color)
+	{color_to_coef(255), color_to_coef(255), color_to_coef(255)};
+	l->intensity_coef = 0.1;
+	l->next = NULL;
+}
 
 static unsigned int	count_lights(t_light *lights)
 {

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 17:00:15 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 11:53:50 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 	struct nk_vec2			pos;
 	(void)a_h;
 
-
+	nk_style_set_font(ctx, &media->font_18->handle);
 	if (nk_begin(ctx, world->title,\
 		nk_rect((world->screen.width - (WIN_WIDTH + 15)) / 2,\
 				(world->screen.height - (WIN_HEIGHT + 48)) / 2,\

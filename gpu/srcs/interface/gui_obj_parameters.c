@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 16:12:51 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/20 13:22:01 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,32 @@
 
 int		find_informations_object(t_world *world, struct nk_context *ctx, struct media *media)
 {
-	if(world->ob_save == 's')
+	if (world->ob_save == 's')
 		sphere_informations(world, ctx, media);
-	else if(world->ob_save == 'x')
+	else if (world->ob_save == 'x')
 		cone_informations(world, ctx, media);
-	else if(world->ob_save == 'y')
+	else if (world->ob_save == 'y')
 		cylinder_informations(world, ctx, media);
-	else if(world->ob_save == 'p')
+	else if (world->ob_save == 'p')
 		plane_informations(world, ctx, media);
-	else if(world->ob_save == 'b')
+	else if (world->ob_save == 'b')
 		paraboloid_informations(world, ctx, media);
-	else if(world->ob_save == 'h')
+	else if (world->ob_save == 'h')
 		hyperboloid_informations(world, ctx, media);
-	else if(world->ob_save == 't')
+	else if (world->ob_save == 't')
 		triangle_informations(world, ctx, media);
-	else if(world->ob_save == 'd')
+	else if (world->ob_save == 'd')
 		disk_informations(world, ctx, media);
-	else if(world->ob_save == 'm')
+	else if (world->ob_save == 'm')
 		mobius_informations(world, ctx, media);
-	else if(world->ob_save == 'o')
+	else if (world->ob_save == 'o')
 		torus_informations(world, ctx, media);
-	else if(world->ob_save == 'c')
+	else if (world->ob_save == 'c')
 		cube_informations(world, ctx, media);
-	else if(world->ob_save == 'u')
+	else if (world->ob_save == 'u')
 		h_cube_informations(world, ctx, media);
+	else if (world->ob_save == 'l')
+		light_informations(world, ctx, media);
 	else
 		return (0);
 	return (1);

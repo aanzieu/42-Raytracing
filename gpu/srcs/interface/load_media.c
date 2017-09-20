@@ -248,6 +248,7 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 
 	/* icons */
 	glEnable(GL_TEXTURE_2D);
+    media->light = icon_load("srcs/interface/icon/light.png");
 	media->plane = icon_load("srcs/interface/icon/plan.png");
 	media->sphere = icon_load("srcs/interface/icon/sphere.png");
 	media->cone = icon_load("srcs/interface/icon/cone.png");
