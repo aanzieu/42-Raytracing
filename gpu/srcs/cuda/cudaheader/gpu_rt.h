@@ -84,7 +84,7 @@ CUDA_HOSTDEV int			rgb_to_int(t_color color);
 **                     LIGHTS_FCTS                                            **
 *******************************************************************************/
 
-CUDA_HOSTDEV int		get_shadow(t_light light, t_intersection collision);
+CUDA_HOSTDEV double		get_shadow(t_light light, t_intersection collision);
 CUDA_HOSTDEV t_color	get_light_at(t_world world, t_color color, t_light light,
 	t_intersection intersection, t_ray ray);
 
