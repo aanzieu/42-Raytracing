@@ -17,7 +17,7 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-void	remove_triangle(t_triangle **s, t_intersection *i)
+void			remove_triangle(t_triangle **s, t_intersection *i)
 {
 	t_triangle	*current;
 	t_triangle	*last;

@@ -129,7 +129,7 @@ int interface_launch(t_world *world, char *argv)
 		if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
 		{
 			ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-			printf("redraw %d\n", i++);
+			ft_printf("Redraw Scène next time %d \n", i++);
 			// printf("print sphere.pos.x %f\n", world->spheres[1].pos.x);
 			refresh_viewplane(cluster.world);
 			if (cluster.world->mode_cluster == 1)

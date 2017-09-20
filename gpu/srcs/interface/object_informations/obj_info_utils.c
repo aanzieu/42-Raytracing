@@ -16,10 +16,11 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-void	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
+int	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
 {
 	static struct nk_color	color;
 	static const double		s = 1.0 / 255.0;
+	static int				press ;
 
 	nk_layout_row_dynamic(ctx, 125, 1);
 	color.r = o->r / s;
@@ -30,8 +31,15 @@ void	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
 		o->r = (double)color.r * s;
 		o->g = (double)color.g * s;
 		o->b = (double)color.b * s;
-		world->redraw = 1;
+		press = 2;
 	}
+	if(nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
+	{
+		press = -1;
+		world->redraw = 1;
+		return(1);
+	}
+	return(0);
 }
 
 void	header_info(struct nk_context *ctx, struct nk_image img, char *n)
@@ -81,8 +89,5 @@ void	draw_choose_color(struct nk_context *ctx, t_world *world, t_color *c)
 	if (nk_checkbox_label(ctx, "CHOOSE COLOR", &check))
 		world->redraw = 0;
 	if (!check)
-	{
 		draw_color_picker(ctx, c, world);
-		world->redraw = 0;
-	}
 }
