@@ -127,6 +127,14 @@ void		save_disks_to_xml(t_world *world, xmlNodePtr root_node);
 void		save_paraboloids_to_xml(t_world *world, xmlNodePtr root_node);
 void		save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node);
 /*
+**	xml_save_objects_3.c
+*/
+void	save_torus_to_xml(t_world *world, xmlNodePtr root_node);
+void	save_mobius_to_xml(t_world *world, xmlNodePtr root_node);
+void	save_h_cubes_to_xml(t_world *world, xmlNodePtr root_node);
+void	save_cubes_to_xml(t_world *world, xmlNodePtr root_node);
+void	save_triangles_to_xml(t_world *world, xmlNodePtr root_node);
+/*
 **	xml_saver_func.c
 */
 xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);

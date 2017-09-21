@@ -91,7 +91,7 @@ static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
 	{
 		i = 1;
 		nk_layout_row_static(ctx, 82, 82, 4);
-		while (i < 5)
+		while (i < 6)
 		{
 			if (nk_button_image(ctx, media->images[i]))
 			{

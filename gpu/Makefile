@@ -199,6 +199,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_saver/xml_saver_func.c \
 				$(SRC_DIR)/xml_saver/xml_save_objects.c \
 				$(SRC_DIR)/xml_saver/xml_save_objects_2.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects_3.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\

@@ -88,6 +88,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		121, 50, 45, 127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72,
 		243, 141, 128, 195, 78, 66, 215, 61, 156, 180
 	};
+
 	cudaMalloc(&p, sizeof(int) * 512);
 	cudaMemcpy(p, p_test, sizeof(int) * 256, cudaMemcpyHostToDevice);
 	cudaMemcpy((p + 256), p_test, sizeof(int) * 256, cudaMemcpyHostToDevice);
@@ -137,7 +138,6 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	world.lights = lights_d;
 
 	test <<< grid_size, threads_per_block >>> (a_d, constw, consth, world);
-	printf("test2\n");
 	cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost);
 
 	if (spheres_d != NULL)
@@ -170,5 +170,4 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 		cudaFree(a_d);
 	if (p != NULL)
 		cudaFree(p);
-	printf("test3\n");
 }

@@ -12,6 +12,14 @@
 
 #include "rt.h"
 #include "parse.h"
+static void save_objects_to_xml_next(t_world *world, xmlNodePtr root_node)
+{
+	if (world->lights_len != 0)
+		save_lights_to_xml(world, root_node);
+	if (world->ambient.intensity)
+		save_ambient_to_xml(world, root_node);
+	save_cam_to_xml(world, root_node);
+}
 
 static void	save_objects_to_xml(t_world *world, xmlNodePtr root_node)
 {
@@ -29,11 +37,17 @@ static void	save_objects_to_xml(t_world *world, xmlNodePtr root_node)
 		save_paraboloids_to_xml(world, root_node);
 	if (world->hyperboloids_len != 0)
 		save_hyperboloids_to_xml(world, root_node);
-	if (world->lights_len != 0)
-		save_lights_to_xml(world, root_node);
-	if (world->ambient.intensity)
-		save_ambient_to_xml(world, root_node);
-	save_cam_to_xml(world, root_node);
+	if (world->torus_len != 0)
+		save_torus_to_xml(world, root_node);
+	if (world->mobius_len != 0)
+		save_mobius_to_xml(world, root_node);
+	if (world->h_cubes_len != 0)
+		save_h_cubes_to_xml(world, root_node);
+	if (world->cubes_len != 0)
+		save_cubes_to_xml(world, root_node);
+	if (world->triangles_len != 0)
+		save_triangles_to_xml(world, root_node);
+	save_objects_to_xml_next(world, root_node);
 }
 
 void		save_xml_scene(t_world *world)
