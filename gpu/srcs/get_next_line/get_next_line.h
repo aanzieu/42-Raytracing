@@ -6,7 +6,7 @@
 /*   By: svilau <svilau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 09:41:54 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 17:33:47 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/21 10:17:59 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 typedef struct		s_gnl
 {
-    char			*str;
-    int				fd;
-    struct s_gnl	*next;
-    struct s_gnl	*prw;
+	char			*str;
+	int				fd;
+	struct s_gnl	*next;
+	struct s_gnl	*prw;
 }					t_gnl;
 
 int					get_next_line(const int fd, char **line);

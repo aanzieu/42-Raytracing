@@ -171,4 +171,7 @@ void	header_info(struct nk_context *ctx, struct nk_image img, char *n);
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[3]);
 void	press_launch(struct nk_context *ctx, t_world *world, int img_active[3]);
 
+void	draw_p_presets(struct nk_context *c, struct media *m, t_world *w, t_perlin *perlin);
+void 	draw_infos_next(struct nk_context *c, struct media *m, t_perlin *perlin, t_world *w);
+
 #endif

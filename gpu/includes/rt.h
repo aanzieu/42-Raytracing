@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 15:14:07 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/21 10:21:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,8 +256,7 @@ typedef struct		s_world
 	int				mode_cluster;
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
-
-	int					p[512];
+	int				p[512];
 }					t_world;
 
 void				refresh_viewplane(t_world *world);

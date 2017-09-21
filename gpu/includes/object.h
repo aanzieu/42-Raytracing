@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:45:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/20 14:54:10 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/21 10:20:03 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct				s_plane
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
-	struct s_perlin	perlin;
+	struct s_perlin			perlin;
 	struct s_plane			*next;
 }							t_plane;
 
@@ -55,7 +55,7 @@ typedef struct				s_disk
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
-	struct s_perlin	perlin;
+	struct s_perlin			perlin;
 	struct s_disk			*next;
 }							t_disk;
 

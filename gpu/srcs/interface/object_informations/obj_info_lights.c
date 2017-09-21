@@ -19,14 +19,10 @@
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
 {
-	if (ui_widget_value_infos(ctx, m, &w->lights[i].pos.x, "POS X:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->lights[i].pos.y, "POS Y:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->lights[i].pos.z, "POS Z:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->lights[i].intensity_coef, "INTENSITY:"))
-		w->redraw = 1;
+	ui_widget_value_infos(ctx, m, &w->lights[i].pos.x, "POS X:");
+	ui_widget_value_infos(ctx, m, &w->lights[i].pos.y, "POS Y:");
+	ui_widget_value_infos(ctx, m, &w->lights[i].pos.z, "POS Z:");
+	ui_widget_value_infos(ctx, m, &w->lights[i].intensity_coef, "INTENSITY:");
 }
 
 static void	draw_delete_button(struct nk_context *ctx, struct media *media,\

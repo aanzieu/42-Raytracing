@@ -16,105 +16,23 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-static void draw_p_presets_next(struct nk_context *ctx, t_world *w, int i)
-{
-	int option;
-
-	option = get_preset_info(w->triangles[i].perlin);
-	if (nk_button_symbol_label(ctx, (option == 2) ?
-	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
-	{
-		option = 2;
-		if (w->triangles[i].perlin.is_set == 1)
-			w->triangles[i].perlin.is_set = 0;
-		w->triangles[i].perlin.pre_set = MARBLE;
-		w->triangles[i].perlin.scale = 0.9;
-		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(ctx, (option == 3) ?
-	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "GLASS", NK_TEXT_LEFT))
-	{
-		option = 3;
-		if (w->triangles[i].perlin.is_set == 1)
-			w->triangles[i].perlin.is_set = 0;
-		w->triangles[i].perlin.pre_set = GLASS;
-	}
-}
-
-static void	draw_p_presets(struct nk_context *ctx, struct media *m,\
-	t_world *w, int i)
-{
-	int option;
-
-	option = get_preset_info(w->triangles[i].perlin);
-	ui_header(ctx, m, "---- Perlin Presets ----");
-	ui_widget_special_mode(ctx, m, 20);
-	if (nk_button_symbol_label(ctx, (option == 0) ?
-		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
-	{
-		option = 0;
-		w->triangles[i].perlin.pre_set = 0;
-		w->triangles[i].perlin.is_set = 0;
-		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(ctx, (option == 1) ?
-		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
-	{
-		option = 1;
-		if (w->triangles[i].perlin.is_set == 1)
-			w->triangles[i].perlin.is_set = 0;
-		w->triangles[i].perlin.pre_set = WOOD;
-		w->triangles[i].perlin.scale = 0.19;
-		w->redraw = 1;
-	}
-	draw_p_presets_next(ctx, w, i);
-}
-
-static void	draw_infos_next(struct nk_context *ctx, struct media *m,\
-							t_world *w, int i)
-{
-	if (ui_widget_value_infos(ctx, m, &w->triangles[i].up.x, "NORMAL X:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].up.y, "NORMAL Y:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].up.z, "NORMAL Z:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].reflection_coef,\
-			"REFLECTION:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].refraction_coef,\
-			"REFRACTION:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].transparence_coef,\
-			"TRANSPARENCE:"))
-		w->redraw = 1;
-		else
-			draw_infos_next(ctx, m, w, i);
-		draw_p_presets(ctx, m, w, i);
-}
-
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
 {
-	if (ui_widget_value_infos(ctx, m, &w->triangles[i].pos.x, "POS X:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].pos.y, "POS Y:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].pos.z, "POS Z:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v1.x, "SIDE1 X:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v1.y, "SIDE1 Y:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v1.z, "SIDE1 Z:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v2.x, "SIDE2 X:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v2.y, "SIDE2 Y:"))
-		w->redraw = 1;
-	else if (ui_widget_value_infos(ctx, m, &w->triangles[i].v2.z, "SIDE2 Z:"))
-		w->redraw = 1;
-	draw_infos_next(ctx, m, w, i);
+	ui_widget_value_infos(ctx, m, &w->triangles[i].pos.x, "POS X:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].pos.y, "POS Y:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].pos.z, "POS Z:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v1.x, "SIDE1 X:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v1.y, "SIDE1 Y:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v1.z, "SIDE1 Z:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.x, "SIDE2 X:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.y, "SIDE2 Y:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.z, "SIDE2 Z:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].reflection_coef,"REFLECTION:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].refraction_coef,"REFRACTION:");
+	ui_widget_value_infos(ctx, m, &w->triangles[i].transparence_coef,"TRANSPARENCE:");
+	draw_infos_next(ctx, m, &w->triangles[i].perlin, w);
+	draw_p_presets(ctx, m, w, &w->triangles[i].perlin);
 }
 
 static void	draw_delete_button(struct nk_context *ctx, struct media *media,\

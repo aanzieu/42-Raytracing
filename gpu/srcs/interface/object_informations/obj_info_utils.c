@@ -16,6 +16,79 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
+static void draw_p_presets_next(struct nk_context *c, t_world *w, t_perlin *perlin)
+{
+	int option;
+
+	option = get_preset_info(*perlin);
+	if (nk_button_symbol_label(c, (option == 2) ?
+	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
+	{
+		option = 2;
+		if (perlin->is_set == 1)
+			perlin->is_set = 0;
+		perlin->pre_set = MARBLE;
+		perlin->scale = 0.9;
+		w->redraw = 1;
+	}
+	if (nk_button_symbol_label(c, (option == 3) ?
+	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "GLASS", NK_TEXT_LEFT))
+	{
+		option = 3;
+		if (perlin->is_set == 1)
+			perlin->is_set = 0;
+		perlin->pre_set = GLASS;
+	}
+}
+
+void	draw_p_presets(struct nk_context *c, struct media *m, t_world *w, t_perlin *perlin)
+{
+	int option;
+
+	option = get_preset_info(*perlin);
+	ui_header(c, m, "---- Perlin Presets ----");
+	ui_widget_special_mode(c, m, 20);
+	if (nk_button_symbol_label(c, (option == 0) ?
+		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
+	{
+		option = 0;
+		perlin->pre_set = 0;
+		perlin->is_set = 0;
+		w->redraw = 1;
+	}
+	if (nk_button_symbol_label(c, (option == 1) ?
+		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
+	{
+		option = 1;
+		if (perlin->is_set == 1)
+			perlin->is_set = 0;
+		perlin->pre_set = WOOD;
+		perlin->scale = 0.19;
+		w->redraw = 1;
+	}
+	draw_p_presets_next(c, w, perlin);
+}
+
+void draw_infos_next(struct nk_context *c, struct media *m, t_perlin *perlin, t_world *w)
+{
+	if (ui_widget_value_infos(c, m, &perlin->scale, "PERLIN NOISE SCALE:"))
+	{
+		if (perlin->is_set == 0 && perlin->scale > 0)
+			perlin->is_set = 1;
+		if (perlin->scale > 0 && perlin->amount > 0)
+			w->redraw = 1;
+	}
+	else if (ui_widget_value_infos(c, m, &perlin->amount, "PERLIN NOISE AMOUNT:"))
+	{
+		if (perlin->is_set == 0 && perlin->amount > 0)
+			perlin->is_set = 1;
+		if (perlin->scale > 0 && perlin->amount > 0)
+			w->redraw = 1;
+	}
+}
+
+
+
 int			get_preset_info(t_perlin p)
 {
 	if (p.pre_set == WOOD)
