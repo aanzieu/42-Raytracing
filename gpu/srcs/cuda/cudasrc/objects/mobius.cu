@@ -22,7 +22,7 @@ __host__ __device__ static int bbox(t_mobius m, t_ray ray)
 	x = vector_calculate(m.pos, ray.origin);
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
-	eq.c = vector_dot(x, x) - 0.64;
+	eq.c = vector_dot(x, x) - (m.radius * m.radius + 2);
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
 		return (1);
@@ -58,7 +58,7 @@ __host__ __device__ static int	get_mobius(t_mobius m, t_ray ray,
 	d.f = ray.origin.z;
 	d.g = ray.dir.z;
 
-	if (intersection_tmp->id == m.id || !bbox(m, ray))
+	if (intersection_tmp->id == m.id || (bbox(m, ray) == -1))
 		return (0);
 	s[3] = d.c * d.c * d.e + d.e * d.e * d.e - 2 * d.c * d.c * d.g - 2 * d.e *
 			d.e * d.g + d.e * d.g * d.g;

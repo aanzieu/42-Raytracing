@@ -61,7 +61,7 @@ __host__ __device__ int	get_torus(t_torus to, t_ray ray,
 	double	nb_roots = 0;
 	int			i = 0;
 
-	if (intersection_tmp->id == to.id || !bbox(to, ray))
+	if (intersection_tmp->id == to.id || (bbox(to, ray) == -1))
 		return (0);
 	ray.origin = vector_calculate(to.pos, ray.origin);
 	equ[0] = 4.0 * to.radius_big * to.radius_big;

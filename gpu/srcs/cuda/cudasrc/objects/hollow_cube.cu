@@ -30,7 +30,7 @@ __host__ __device__ static int bbox(t_h_cube cu, t_ray ray)
 	x = vector_calculate(cu.pos, ray.origin);
 	eq.a = vector_dot(ray.dir, ray.dir);
 	eq.b = 2 * vector_dot(ray.dir, x);
-	eq.c = vector_dot(x, x) - 10.90;
+	eq.c = vector_dot(x, x) - 12;
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
 		return (1);
@@ -59,7 +59,7 @@ __host__ __device__ int	get_hollow_cube(t_h_cube cu, t_ray ray,
 	double	nb_roots = 0;
 	int			i = 0;
 
-	if (intersection_tmp->id == cu.id || !bbox(cu, ray))
+	if (intersection_tmp->id == cu.id || (bbox(cu, ray) == -1))
 		return (0);
 	ray.origin = vector_calculate(cu.pos, ray.origin);
   a[0] = (pow(ray.dir.x, 4) + pow(ray.dir.y, 4) + pow(ray.dir.z, 4));
