@@ -66,7 +66,7 @@ static void	select_gpu_cpu(struct nk_context *ctx, struct media *media,\
 }
 
 static void	select_config(struct nk_context *ctx, struct media *media,\
-					t_world *world, int img_active[3])
+					t_world *world, int img_active[4])
 {
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Config Popup", 0,\
 		nk_rect(380, 52, 320, 220)))
@@ -82,16 +82,16 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 }
 
 static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
-							int img_active[3])
+								int img_active[4])
 {
 	int	i;
 
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
-		nk_rect(60, 52, 320, 220)))
+		nk_rect(90, 52, 320, 220)))
 	{
 		i = 1;
-		nk_layout_row_static(ctx, 82, 82, 3);
-		while (i < 4)
+		nk_layout_row_static(ctx, 82, 82, 4);
+		while (i < 5)
 		{
 			if (nk_button_image(ctx, media->images[i]))
 			{
@@ -107,7 +107,7 @@ static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
 }
 
 void		select_scene(struct nk_context *ctx, struct media *media,\
-					t_world *world, int img_active[3])
+					t_world *world, int img_active[4])
 {
 	if (img_active[0])
 	{

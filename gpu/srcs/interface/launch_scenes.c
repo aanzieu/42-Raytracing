@@ -49,6 +49,8 @@ void		press_launch(struct nk_context *ctx, t_world *world,\
 			launch_scene_select(world, 2);
 		else if (img_active[2] == 3)
 			launch_scene_select(world, 3);
+		else if (img_active[2] == 4)
+			launch_scene_select(world, 4);
 		img_active[0] = 0;
 		img_active[1] = 0;
 		nk_popup_close(ctx);

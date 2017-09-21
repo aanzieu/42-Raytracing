@@ -88,7 +88,7 @@ void			rt_cluster(t_world *world)
 		printf("laucnh GPU\n");
 		launch_gpu(world);
 		printf("fin de GPU\n");
-		
+
 	}
 }
 

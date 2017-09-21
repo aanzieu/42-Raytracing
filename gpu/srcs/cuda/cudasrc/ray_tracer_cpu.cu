@@ -72,7 +72,6 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 										t_intersection *intersection)
 {
 	t_intersection	intersection_tmp;
-
 	intersection_tmp.t = DBL_MAX;
 	intersection_tmp.type = '0';
 	intersection_tmp.id = intersection->id;

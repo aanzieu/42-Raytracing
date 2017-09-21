@@ -256,9 +256,11 @@ typedef struct		s_world
 	int				mode_cluster;
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
-	int				p[512];
+
+	int					*p;
 }					t_world;
 
+void 			perlin_noise_setup(t_world *world);
 void				refresh_viewplane(t_world *world);
 void				data_setup(t_world *world);
 void				load_data(t_world *world);

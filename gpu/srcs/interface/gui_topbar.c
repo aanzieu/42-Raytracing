@@ -98,7 +98,7 @@ static void	video_launch(struct nk_context *ctx, struct media *media,\
 void		scene_topbar(struct nk_context *ctx, struct media *media,\
 					t_world *world)
 {
-	static int img_active[3];
+	static int img_active[4];
 
 	if (nk_begin(ctx, "TOPBAR", nk_rect(0, 0, world->screen.width, 52),\
 		NK_WINDOW_BORDER))

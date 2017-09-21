@@ -16,7 +16,7 @@
 void							init_triangle_add(t_triangle *t)
 {
 	t->id = 0;
-	t->up = new_vector(0, 0, 1);
+	// t->up = new_vector(0, 0, 1);
 	t->pos = new_vector(0, 1.2, -2);
 	t->v1 = new_vector(-0.3, 1.5, -2);
 	t->v2 = new_vector(0.3, 1.5, -2);

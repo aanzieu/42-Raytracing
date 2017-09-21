@@ -39,7 +39,6 @@ __host__ __device__ t_vec3d	get_normal_cube(t_cube cu, t_ray ray,
 	normal.y = (p.y / fabs(d.y) * bias);
 	normal.z = (p.z / fabs(d.z) * bias);
 	normal = vector_normalize(normal);
-//	normal = (t_vec3d){0, 0, 1};
 	return (normal);
 }
 
@@ -56,8 +55,8 @@ __host__ __device__ int			get_cube(t_cube cu, t_ray ray,
 	invdir.x = 1.0 / ray.dir.x;
 	invdir.y = 1.0 / ray.dir.y;
 	invdir.z = 1.0 / ray.dir.z;
-	bounds[0] = cu.min;//(t_vec3d){-1, -1, -1};//cu.vec1;
-	bounds[1] = cu.max;//(t_vec3d){1, 1, 1};//cu.vec2;
+	bounds[0] = cu.min;
+	bounds[1] = cu.max;
 	sign[0] = (invdir.x < 0) ? 1 : 0;
 	sign[1] = (invdir.y < 0) ? 1 : 0;
 	sign[2] = (invdir.z < 0) ? 1 : 0;
@@ -96,7 +95,6 @@ __host__ __device__ void	get_closest_cube(t_world world, t_ray ray,
 	int i;
 
 	i = 0;
-//printf("%f %f %f\n", world.cube[i].min.x, world.cube[i].min.y, world.cube[i].min.z);
 	while (i < world.cubes_len)
 	{
 		if (get_cube(world.cubes[i], ray, intersection_tmp) == 1)

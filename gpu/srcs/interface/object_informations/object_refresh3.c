@@ -26,7 +26,7 @@ void	refresh_triangle(t_world *world, int i)
 		if (tmp->id == world->id_save)
 		{
 			tmp->pos = world->triangles[i].pos;
-			tmp->up = world->triangles[i].up;
+			// tmp->up = world->triangles[i].up;
 			tmp->v1 = world->triangles[i].v1;
 			tmp->v2 = world->triangles[i].v2;
 			tmp->color = world->triangles[i].color;

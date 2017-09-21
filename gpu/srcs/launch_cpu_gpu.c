@@ -98,6 +98,15 @@ void 	refresh_viewplane_cluster(t_world *world)
 
 void			launch_cpu(t_world *world)
 {
+	int i;
+
+	i = -1;
+	if (!world->p)
+	{
+		if (!(world->p = (int *)malloc(512 * sizeof(int))))
+			show_error("Error malloc noise\n");
+		perlin_noise_setup(world);
+	}
 	if (world->clientrender == 1)
 	{
 		ft_printf("Calculating on Cpu\n");

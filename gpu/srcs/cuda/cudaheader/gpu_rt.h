@@ -75,9 +75,9 @@ CUDA_HOSTDEV t_color		color_scalar(t_color c1, double coef);
 CUDA_HOSTDEV t_color		color_divide(t_color c1, int coef);
 CUDA_HOSTDEV t_color		color_add(t_color c1, t_color c2);
 CUDA_HOSTDEV t_color		new_color(double r, double g, double b);
-CUDA_HOSTDEV int			get_color(t_color color);
+CUDA_HOSTDEV int				get_color(t_color color);
 CUDA_HOSTDEV t_color		int_to_rgb(int color);
-CUDA_HOSTDEV int			rgb_to_int(t_color color);
+CUDA_HOSTDEV int				rgb_to_int(t_color color);
 
 
 /*******************************************************************************
@@ -224,18 +224,18 @@ CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color,
 *******************************************************************************/
 
 CUDA_HOSTDEV double apply_noise(t_world world, double x, double y,
-	double z);
+	double z, int *p);
 CUDA_HOSTDEV t_vec3d normal_perturbation(t_world world, t_vec3d normal,
-	t_vec3d intersection_pos, t_perlin perlin);
+	t_vec3d intersection_pos, t_perlin perlin, int *p);
 
 /*******************************************************************************
 **                     PERLIN_PRESETS_FCTS                                    **
 *******************************************************************************/
 
-CUDA_HOSTDEV t_color apply_marble(t_world world, t_vec3d pos,\
-	t_color color, t_perlin perlin);
-CUDA_HOSTDEV t_color apply_wood(t_world world, t_vec3d pos,\
-	t_color color, t_perlin perlin);
+// CUDA_HOSTDEV t_color apply_marble(t_world world, t_vec3d pos,\
+// 	t_color color, t_perlin perlin);
+// CUDA_HOSTDEV t_color apply_wood(t_world world, t_vec3d pos,\
+// 	t_color color, t_perlin perlin);
 CUDA_HOSTDEV void 	apply_noise_dist(t_world world,\
 	t_intersection *intersection, t_perlin perlin);
 

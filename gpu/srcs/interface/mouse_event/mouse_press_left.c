@@ -63,20 +63,20 @@ int	find_object(t_world *world, t_intersection *inter, t_vec2d *pos,struct nk_co
 	world->xy.x = pos->x;
 	world->xy.y = pos->y;
 	return(0);
-	
+
 }
 
 int	move_object(t_world *world, struct nk_context *ctx, t_vec2d *pos, t_intersection *i)
 {
 	int	find = 1;
-	
+
 	if(ctx->input.keyboard.keys[NK_KEY_X].down != 0)
 	{
 		if((find = find_object(world, i, pos, ctx)) == 1)
 			return(1);
 	}
 	return(0);
-		
+
 }
 
 
@@ -91,24 +91,24 @@ int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
 	intersection.id = -1;
 	if(ctx->input.mouse.buttons[NK_BUTTON_LEFT].down)
 	{
-		padding.x = ctx->input.mouse.pos.x - pos.x;;
+		padding.x = ctx->input.mouse.pos.x - pos.x;
 		padding.y = ctx->input.mouse.pos.y - pos.y - 40;
 		if(padding.x < 0 || padding.y < 0 || padding.x > WIN_WIDTH || padding.y > WIN_HEIGHT)
-			return (0);	
+			return (0);
 		get_up_left(world);
 		get_ray_direction(*(world), &ray, padding.x, padding.y);
 		get_closest_intersection(*(world), ray, &intersection);
 		if(intersection.t != INFINITY)
-		{	
+		{
 			world->id_save = intersection.id_save;
-			world->ob_save = intersection.type;			
+			world->ob_save = intersection.type;
 			world->keys.select = 1;
 			if(move_object(world, ctx, &padding, &intersection))
 				return(1);
 			printf("%d id world \n", world->id_save);
 			printf("%d id inter \n", intersection.id_save);
 			return(1);//world->redraw = 1;
-				
+
 		}
 	}
 	return(0);

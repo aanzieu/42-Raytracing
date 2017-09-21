@@ -23,7 +23,7 @@ extern "C" {
 **	avec la sphere
 */
 
-__host__ __device__ double			get_sphere(t_world world, t_sphere sphere,
+__host__ __device__ double 	get_sphere(t_world world, t_sphere sphere,
 		t_ray ray, t_intersection *intersection_tmp)
 {
 	t_vec3d	x;
@@ -46,7 +46,7 @@ __host__ __device__ double			get_sphere(t_world world, t_sphere sphere,
 }
 
 __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,\
-				t_intersection *intersection, t_intersection *intersection_tmp)
+	t_intersection *intersection, t_intersection *intersection_tmp)
 {
 	int i;
 

@@ -291,6 +291,7 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
     media->images[1] = icon_load("testfiles/1.png");
     media->images[2] = icon_load("testfiles/2.png");
     media->images[3] = icon_load("testfiles/3.png");
+    media->images[4] = icon_load("testfiles/4.png");
 
 	// int i;
 	// for (i = 0; i < 1; ++i)
