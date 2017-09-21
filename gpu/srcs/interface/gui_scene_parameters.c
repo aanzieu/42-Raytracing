@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/20 16:17:00 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/21 20:04:36 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,8 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 		// 	world->redraw = 1;
 		//if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
 			//world->redraw = 1;
-		if (ui_widget_value_slider_float(ctx, media, &world->ambient.intensity, "Intensity (0-100%)"))
+		nk_style_set_font(ctx, &media->font_18->handle);
+		if (ui_slide_float_0_to_1(ctx, &world->ambient.intensity, "Intensity:"))
 			world->redraw = 1;
 		ui_widget_centered(ctx, media, 30);
 		nk_style_set_font(ctx, &media->font_14->handle);

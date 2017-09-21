@@ -57,11 +57,11 @@ ui_widget_value_infos_cam(struct nk_context *ctx, struct media *media, double *v
 int
 ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *value, char *title);
 int
-ui_widget_value_slider_float(struct nk_context *ctx, struct media *media, double *value, char *title);
+ui_slide_float_0_to_1(struct nk_context *ctx, double *value, char *title);
 int
-ui_widget_value_slider_float_ref(struct nk_context *ctx, struct media *media, double *value, char *title);
+ui_slide_float_0_to_2(struct nk_context *ctx, double *value, char *title);
 int
-ui_widget_value_slider_float_p_a(struct nk_context *ctx, struct media *media, double *value, char *title);
+ui_slide_float_0_to_100(struct nk_context *ctx, double *value, char *title);
 
 
 /* ===============================================================
@@ -164,9 +164,10 @@ void	refresh_light(t_world *world, int i);
 
 int		get_preset_info(t_perlin p);
 int		draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world);
-void	draw_chess_color(struct nk_context *ctx, t_world *world, t_color *c);
+void	draw_chess_color(struct nk_context *ctx, struct media *m, t_world *world, t_color *c);
 void	draw_choose_color(struct nk_context *ctx, t_world *world, t_color *c);
 void	header_info(struct nk_context *ctx, struct nk_image img, char *n);
+void	draw_apply_button(struct nk_context *c, struct media *m, t_world *w);
 
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[3]);
 void	press_launch(struct nk_context *ctx, t_world *world, int img_active[3]);

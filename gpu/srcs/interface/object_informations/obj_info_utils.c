@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/19 17:44:06 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/21 19:33:40 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,97 +16,23 @@
 #include "../header/nuklear.h"
 #include "../header/gui.h"
 
-static void draw_p_presets_next(struct nk_context *c, t_world *w, t_perlin *perlin)
+void	draw_apply_button(struct nk_context *c, struct media *m, t_world *w)
 {
-	int option;
-
-	option = get_preset_info(*perlin);
-	if (nk_button_symbol_label(c, (option == 2) ?
-	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
-	{
-		option = 2;
-		if (perlin->is_set == 1)
-			perlin->is_set = 0;
-		perlin->pre_set = MARBLE;
-		perlin->scale = 0.9;
+	ui_widget_centered(c, m, 20);
+	nk_style_set_font(c, &m->font_14->handle);
+	if (nk_button_label(c, "APPLY"))
 		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(c, (option == 3) ?
-	NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "GLASS", NK_TEXT_LEFT))
-	{
-		option = 3;
-		if (perlin->is_set == 1)
-			perlin->is_set = 0;
-		perlin->pre_set = GLASS;
-	}
+	ui_widget_centered(c, m, 5);
+	nk_style_set_font(c, &m->font_14->handle);
 }
 
-void	draw_p_presets(struct nk_context *c, struct media *m, t_world *w, t_perlin *perlin)
-{
-	int option;
-
-	option = get_preset_info(*perlin);
-	ui_header(c, m, "---- Perlin Presets ----");
-	ui_widget_special_mode(c, m, 20);
-	if (nk_button_symbol_label(c, (option == 0) ?
-		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
-	{
-		option = 0;
-		perlin->pre_set = 0;
-		perlin->is_set = 0;
-		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(c, (option == 1) ?
-		NK_SYMBOL_CIRCLE_SOLID:NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
-	{
-		option = 1;
-		if (perlin->is_set == 1)
-			perlin->is_set = 0;
-		perlin->pre_set = WOOD;
-		perlin->scale = 0.19;
-		w->redraw = 1;
-	}
-	draw_p_presets_next(c, w, perlin);
-}
-
-void draw_infos_next(struct nk_context *c, struct media *m, t_perlin *perlin, t_world *w)
-{
-	if (ui_widget_value_infos(c, m, &perlin->scale, "PERLIN NOISE SCALE:"))
-	{
-		if (perlin->is_set == 0 && perlin->scale > 0)
-			perlin->is_set = 1;
-		if (perlin->scale > 0 && perlin->amount > 0)
-			w->redraw = 1;
-	}
-	else if (ui_widget_value_infos(c, m, &perlin->amount, "PERLIN NOISE AMOUNT:"))
-	{
-		if (perlin->is_set == 0 && perlin->amount > 0)
-			perlin->is_set = 1;
-		if (perlin->scale > 0 && perlin->amount > 0)
-			w->redraw = 1;
-	}
-}
-
-
-
-int			get_preset_info(t_perlin p)
-{
-	if (p.pre_set == WOOD)
-		return (1);
-	if (p.pre_set == MARBLE)
-		return (2);
-	if (p.pre_set == GLASS)
-		return (3);
-	return (0);
-}
-
-int	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
+int		draw_color_picker(struct nk_context *ctx, t_color *o, t_world *w)
 {
 	static struct nk_color	color;
 	static const double		s = 1.0 / 255.0;
-	static int				press ;
+	static int				press;
 
-	nk_layout_row_dynamic(ctx, 125, 1);
+	nk_layout_row_dynamic(ctx, 100, 1);
 	color.r = o->r / s;
 	color.g = o->g / s;
 	color.b = o->b / s;
@@ -117,13 +43,13 @@ int	draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world)
 		o->b = (double)color.b * s;
 		press = 2;
 	}
-	if(nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
 	{
 		press = -1;
-		world->redraw = 1;
-		return(1);
+		w->redraw = 1;
+		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 void	header_info(struct nk_context *ctx, struct nk_image img, char *n)
@@ -138,7 +64,8 @@ void	header_info(struct nk_context *ctx, struct nk_image img, char *n)
 	nk_layout_row_end(ctx);
 }
 
-void	draw_chess_color(struct nk_context *ctx, t_world *world, t_color *c)
+void	draw_chess_color(struct nk_context *ctx, struct media *m,\
+						t_world *world, t_color *c)
 {
 	static int check = 1;
 
@@ -146,6 +73,7 @@ void	draw_chess_color(struct nk_context *ctx, t_world *world, t_color *c)
 		check = 0;
 	else
 		check = 1;
+	nk_style_set_font(ctx, &m->font_14->handle);
 	if (nk_checkbox_label(ctx, "ADD CHESS COLOR", &check))
 		world->redraw = 1;
 	if (!check)
