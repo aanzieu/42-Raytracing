@@ -1,0 +1,1311 @@
+./scripts/norme/ray_tracer.c:								world->viewplane.up_left,
+./scripts/norme/ray_tracer.c:									world->camera.right_v,
+./scripts/norme/ray_tracer.c:									world->viewplane.x_indent * x)),
+./scripts/norme/ray_tracer.c:								world->camera.up_v,
+./scripts/norme/ray_tracer.c:								world->viewplane.y_indent * y));
+./scripts/norme/ray_tracer.c:					world->camera.pos,
+./scripts/norme/ray_tracer.c:	ray->origin = world->camera.pos;
+./scripts/norme/ray_tracer.c:		if (get_shadow(world, intersection, world->lights) == 1)
+./scripts/norme/ray_tracer.c:			return (get_light_at(world->lights, intersection));
+./scripts/norme/ray_tracer.c-e:								world->viewplane.up_left,
+./scripts/norme/ray_tracer.c-e:									world->camera.right_v,
+./scripts/norme/ray_tracer.c-e:									world->viewplane.x_indent * x)),
+./scripts/norme/ray_tracer.c-e:								world->camera.up_v,
+./scripts/norme/ray_tracer.c-e:								world->viewplane.y_indent * y));
+./scripts/norme/ray_tracer.c-e:					world->camera.pos,
+./scripts/norme/ray_tracer.c-e:	ray->origin = world->camera.pos;
+./scripts/norme/ray_tracer.c-e:		if (get_shadow(world, intersection, world->lights) == 1)
+./scripts/norme/ray_tracer.c-e:			return (get_light_at(world->lights, intersection));
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, 0, 0, 1);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, 0, 0, 1);
+./srcs/cuda/cudasrc/camera/camera.cu://	get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, 0, 0, -1);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, 0, 0, -1);
+./srcs/cuda/cudasrc/camera/camera.cu:	//get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, -1, 0, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, -1, 0, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	//get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, 1, 0, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, 1, 0, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	//get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, 0, -1, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, 0, -1, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	//get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.pos, 0, 1, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	translate(&world->camera.look_at, 0, 1, 0);
+./srcs/cuda/cudasrc/camera/camera.cu:	//get_camera_axes(&world->camera);
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:	world->viewplane.up_left = vector_substract(
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.pos,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.dir_v),
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.up_v,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->viewplane.height / 2.0f)),
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:										world->camera.right_v,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:										world->viewplane.width / 2.0f));
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:	world->viewplane_aa.up_left = vector_substract(
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.pos,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.dir_v),
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->camera.up_v,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:											world->viewplane_aa.height / 2.0f)),
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:										world->camera.right_v,
+./srcs/cuda/cudasrc/ray_tracer_cpu.cu:										world->viewplane_aa.width / 2.0f));
+./srcs/data_setup.c:      world->p[256 + i] = permutation_tmp[i];
+./srcs/data_setup.c:			world->p[i] = permutation_tmp[i];
+./srcs/data_setup.c:	world->win_width = WIN_WIDTH * world->aa;
+./srcs/data_setup.c:	world->win_height = WIN_HEIGHT * world->aa;
+./srcs/data_setup.c:	world->viewplane.width = (double)((M_PI / 4) / 2);
+./srcs/data_setup.c:	world->viewplane.height = ((double)((double)(WIN_HEIGHT) /
+./srcs/data_setup.c:								(double)(WIN_WIDTH)) * world->viewplane.width);
+./srcs/data_setup.c:	world->viewplane_aa.width = (double)((M_PI / 4) / 2);
+./srcs/data_setup.c:	world->viewplane_aa.height = ((double)((double)(world->win_height) /
+./srcs/data_setup.c:								(double)(world->win_width)) * world->viewplane_aa.width);
+./srcs/data_setup.c:	world->cubes = NULL;
+./srcs/data_setup.c:	world->cubes_len = 0;
+./srcs/data_setup.c:	world->h_cubes = NULL;
+./srcs/data_setup.c:	world->h_cubes_len = 0;
+./srcs/data_setup.c:	world->keys.light_none = 0;
+./srcs/data_setup.c:	world->reload_buffer = 1;
+./srcs/data_setup.c:	world->redraw = 2;
+./srcs/data_setup.c:	world->id = 0;
+./srcs/data_setup.c:	world->animation_forward = 0;
+./srcs/data_setup.c:	world->recording = 0;
+./srcs/data_setup.c:	world->a_h = NULL;
+./srcs/data_setup.c:	world->video_buffer = NULL;
+./srcs/data_setup.c:	world->intensity = 2.1;
+./srcs/data_setup.c:	world->img_scene = 0;
+./srcs/data_setup.c:	world->aa = 1;
+./srcs/data_setup.c:	world->mode = 0;
+./srcs/data_setup.c:	world->anaglyph_depth = 3;
+./srcs/data_setup.c:	world->light_type = 1;
+./srcs/data_setup.c:	world->render_factor = 1;
+./srcs/data_setup.c:	world->viewplane.dist = 1;
+./srcs/data_setup.c:	world->line = 0;
+./srcs/data_setup.c:	world->ambient.coef = 0.2;
+./srcs/data_setup.c:	world->offsets.y_min = 0;
+./srcs/data_setup.c:	world->offsets.y_max = 0;
+./srcs/data_setup.c:	world->spheres = NULL;
+./srcs/data_setup.c:	world->spheres_len = 0;
+./srcs/data_setup.c:	world->planes = NULL;
+./srcs/data_setup.c:	world->planes_len = 0;
+./srcs/data_setup.c:	world->cones = NULL;
+./srcs/data_setup.c:	world->cones_len = 0;
+./srcs/data_setup.c:	world->cylinders = NULL;
+./srcs/data_setup.c:	world->cylinders_len = 0;
+./srcs/data_setup.c:	world->torus = NULL;
+./srcs/data_setup.c:	world->torus_len = 0;
+./srcs/data_setup.c:	world->lights = NULL;
+./srcs/data_setup.c:	world->lights_len = 0;
+./srcs/data_setup.c:	world->triangles = NULL;
+./srcs/data_setup.c:	world->triangles_len = 0;
+./srcs/display_functions.c:**	else if(world->keys.pad_8 == 1)
+./srcs/display_functions.c:**		exposure_color(world->a_h);
+./srcs/display_functions.c:	if (world->keys.pad_0 == 1)
+./srcs/display_functions.c:		sepia_effect(world->a_h, (t_color){0,0,0});
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 2)
+./srcs/display_functions.c:		bayer_color(world->a_h, 2);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 3)
+./srcs/display_functions.c:		eight_bit_effect(world->a_h);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 4)
+./srcs/display_functions.c:		pastel_effect(world->a_h, world->viewplane.y_res,
+./srcs/display_functions.c:								world->viewplane.x_res, averages);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 5)
+./srcs/display_functions.c:		black_and_white_effect(world->a_h, (t_color){0, 0, 0});
+./srcs/display_functions.c:	// else if (world->keys.pad_0 == 1)
+./srcs/display_functions.c:	// 	solarized_effect(world->a_h);
+./srcs/display_functions.c:	// else if (world->keys.pad_0 == 1)
+./srcs/display_functions.c:	// 	filter_color(world->a_h);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 6)
+./srcs/display_functions.c:		shell_shading_effect(world->a_h);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 7)
+./srcs/display_functions.c:		negative_color(world->a_h);
+./srcs/display_functions.c:	else if (world->keys.pad_0 == 8)
+./srcs/display_functions.c:// 			pixel_to_image(world->window.screen, j, i,
+./srcs/display_functions.c:// 					world->a_h[y * world->viewplane.x_res + x]);
+./srcs/display_functions.c:// 			if (j % world->render_factor == 0)
+./srcs/display_functions.c:// 		if (i % world->render_factor == 0)
+./srcs/effects/effect_anaglyph.c:		color = int_to_rgb(world->a_h[i]);
+./srcs/effects/effect_anaglyph.c:	size = world->viewplane.x_res * world->viewplane.y_res;
+./srcs/effects/effect_anaglyph.c:		if (i - world->anaglyph_depth >= 0 && i + world->anaglyph_depth < size)
+./srcs/effects/effect_anaglyph.c:			color = color_add(color, red[i - world->anaglyph_depth]);
+./srcs/effects/effect_anaglyph.c:			color = color_add(color, cyan[i + world->anaglyph_depth]);
+./srcs/effects/effect_anaglyph.c:		world->a_h[i] = rgb_to_int(color);
+./srcs/events/event_handler.c:**	if (world->keys.up == 1)
+./srcs/events/event_handler.c:**	if (world->keys.right == 1)
+./srcs/events/key_press_handler.c:		world->keys.up = 1;
+./srcs/events/key_press_handler.c:		world->keys.down = 1;
+./srcs/events/key_press_handler.c:		world->keys.right = 1;
+./srcs/events/key_press_handler.c:		world->keys.left = 1;
+./srcs/events/key_press_handler.c:		world->keys.space = 1;
+./srcs/events/key_press_handler.c:		world->keys.w = 1;
+./srcs/events/key_press_handler.c:		world->keys.a = 1;
+./srcs/events/key_press_handler.c:		world->keys.s = 1;
+./srcs/events/key_press_handler.c:		world->keys.d = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_0 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_1 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_2 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_3 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_4 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_5 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_6 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_7 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_8 = 1;
+./srcs/events/key_press_handler.c:		world->keys.pad_9 = 1;
+./srcs/events/key_press_handler.c:		world->keys.q = 1;
+./srcs/events/key_press_handler.c:		world->keys.e = 1;
+./srcs/events/key_press_handler.c:		world->keys.light_none = 1;
+./srcs/events/key_press_handler.c:		world->keys.light_none = 0;
+./srcs/events/key_press_handler.c:		world->recording = 1;
+./srcs/events/key_press_handler.c:		world->recording = 0;
+./srcs/events/key_press_handler.c:		world->animation_forward = 1;
+./srcs/events/key_press_handler.c:		world->animation_forward = 0;
+./srcs/events/key_press_handler.c:	if (world->keys.up == 1)
+./srcs/events/key_press_handler.c:		cam_rot(&world->camera, -90	, 'x');
+./srcs/events/key_press_handler.c:	if (world->keys.down == 1)
+./srcs/events/key_press_handler.c:		cam_rot(&world->camera, 90	, 'x');
+./srcs/events/key_press_handler.c:	if (world->keys.left == 1)
+./srcs/events/key_press_handler.c:		cam_rot(&world->camera, -90	, 'y');
+./srcs/events/key_press_handler.c:	if (world->keys.right == 1)
+./srcs/events/key_press_handler.c:		cam_rot(&world->camera, 90	, 'y');
+./srcs/events/key_press_handler.c:	if (world->keys.w == 1)
+./srcs/events/key_press_handler.c:	if (world->keys.a == 1)
+./srcs/events/key_press_handler.c:	if (world->keys.s == 1)
+./srcs/events/key_press_handler.c:	if (world->keys.q == 1)
+./srcs/events/key_press_handler.c:		translate(&world->camera.pos, 0, -0.5, 0);
+./srcs/events/key_press_handler.c:		translate(&world->camera.look_at, 0, -0.5, 0);
+./srcs/events/key_press_handler.c:		get_camera_axes(&world->camera);
+./srcs/events/key_press_handler.c:	if (world->keys.e == 1)
+./srcs/events/key_press_handler.c:		translate(&world->camera.pos, 0, 0.5, 0);
+./srcs/events/key_press_handler.c:		translate(&world->camera.look_at, 0, 0.5, 0);
+./srcs/events/key_press_handler.c:		get_camera_axes(&world->camera);
+./srcs/events/key_press_handler.c:	if (world->keys.d == 1)
+./srcs/events/key_press_handler.c:	if (world->keys.space == 1)
+./srcs/events/key_press_handler.c:		while ((WIN_HEIGHT / world->render_factor) != 32)
+./srcs/events/key_press_handler.c:			world->render_factor++;
+./srcs/events/key_release_handler.c:		world->keys.up = 0;
+./srcs/events/key_release_handler.c:		world->keys.down = 0;
+./srcs/events/key_release_handler.c:		world->keys.right = 0;
+./srcs/events/key_release_handler.c:		world->keys.left = 0;
+./srcs/events/key_release_handler.c:		world->keys.space = 0;
+./srcs/events/key_release_handler.c:		world->render_factor = 1;
+./srcs/events/key_release_handler.c:		world->keys.w = 0;
+./srcs/events/key_release_handler.c:		world->keys.a = 0;
+./srcs/events/key_release_handler.c:		world->keys.s = 0;
+./srcs/events/key_release_handler.c:		world->keys.d = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_1 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_2 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_3 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_4 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_5 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_6 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_7 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_8 = 0;
+./srcs/events/key_release_handler.c:		world->keys.pad_9 = 0;
+./srcs/events/key_release_handler.c:		world->keys.q = 0;
+./srcs/events/key_release_handler.c:		world->keys.e = 0;
+./srcs/events/mouse_handler.c:	if (world->keys.space == 1)
+./srcs/events/mouse_handler.c:			cam_rot(&world->camera, -90	, 'y');
+./srcs/events/mouse_handler.c:			cam_rot(&world->camera, 90	, 'y');
+./srcs/events/mouse_handler.c:			cam_rot(&world->camera, -90	, 'x');
+./srcs/events/mouse_handler.c:			cam_rot(&world->camera, 90	, 'x');
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_sphere(&world->spheres, &world->spheres_tmp, &world->spheres_len, world->id);
+./srcs/interface/basic_demo.c:				world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_cone(&world->cones, &world->cones_tmp, &world->cones_len, world->id);
+./srcs/interface/basic_demo.c:				world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_plane(&world->planes, &world->planes_tmp, &world->planes_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_torus(&world->torus, &world->torus_tmp, &world->torus_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_disk(&world->disks, &world->disks_tmp, &world->disks_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_cube(&world->cubes, &world->cubes_tmp, &world->cubes_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_hyperboloid(&world->hyperboloids, &world->hyperboloids_tmp, &world->hyperboloids_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_paraboloid(&world->paraboloids, &world->paraboloids_tmp, &world->paraboloids_len, world->id);
+./srcs/interface/basic_demo.c:					world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id);
+./srcs/interface/basic_demo.c:				world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_h_cube(&world->h_cubes, &world->h_cubes_tmp, &world->h_cubes_len, world->id);
+./srcs/interface/basic_demo.c:				world->redraw = 1;
+./srcs/interface/basic_demo.c:				if(ret == 2 && world->a_h != NULL)
+./srcs/interface/basic_demo.c:					thread_free_and_add_cone(&world->cones, &world->cones_tmp, &world->cones_len, world->id);
+./srcs/interface/basic_demo.c:				world->redraw = 1;
+./srcs/interface/extended.c:		// ft_bzero(cluster.world->a_h, cluster.world->size_main);
+./srcs/interface/extended.c:	init_glfw_start(&win, &ctx, &(cluster).world->screen);
+./srcs/interface/extended.c:		glfwGetWindowSize(win, &(cluster).world->screen.width, &(cluster).world->screen.height);
+./srcs/interface/extended.c:		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
+./srcs/interface/extended.c:		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
+./srcs/interface/extended.c:		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
+./srcs/interface/extended.c:		if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
+./srcs/interface/extended.c:			ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+./srcs/interface/extended.c:			// printf("print sphere.pos.x %f\n", world->spheres[1].pos.x);
+./srcs/interface/extended.c:			if (cluster.world->mode_cluster == 1)
+./srcs/interface/extended.c:			//printf("couleur de world %d\n", world->a_h[640]);
+./srcs/interface/extended.c:			if(cluster.world->keys.pad_0)
+./srcs/interface/extended.c:			cluster.world->redraw = 0;
+./srcs/interface/extended.c:			cluster.world->reload_buffer = 1;
+./srcs/interface/extended.c:			//cluster.world->aa = 1;
+./srcs/interface/extended.c:			// world->keys.pad_0 = 0;
+./srcs/interface/extended.c:		glViewport(0, 0, cluster.world->screen.display_width, cluster.world->screen.display_height);
+./srcs/interface/extended.c:		device_draw(&device, &ctx, &(cluster.world->screen), NK_ANTI_ALIASING_ON);
+./srcs/interface/free_objects/free_world.c:	if (world->cubes_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_cube(&world->cubes_tmp, &world->cubes, &world->cubes_len);
+./srcs/interface/free_objects/free_world.c:	if (world->h_cubes_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_h_cube(&world->h_cubes_tmp, &world->h_cubes, &world->h_cubes_len);
+./srcs/interface/free_objects/free_world.c:	if (world->triangles_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_triangle(&world->triangles_tmp, &world->triangles,\
+./srcs/interface/free_objects/free_world.c:					&world->triangles_len);
+./srcs/interface/free_objects/free_world.c:	if (world->title != NULL)
+./srcs/interface/free_objects/free_world.c:		free(world->title);
+./srcs/interface/free_objects/free_world.c:		world->title = NULL;
+./srcs/interface/free_objects/free_world.c:	if (world->video_buffer != NULL)
+./srcs/interface/free_objects/free_world.c:		free(world->video_buffer);
+./srcs/interface/free_objects/free_world.c:		world->video_buffer = NULL;
+./srcs/interface/free_objects/free_world.c:	if (world->a_h != NULL)
+./srcs/interface/free_objects/free_world.c:		free(world->a_h);
+./srcs/interface/free_objects/free_world.c:		world->a_h = NULL;
+./srcs/interface/free_objects/free_world.c:	if (world->lights_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_light(&world->lights_tmp, &world->lights, &world->lights_len);
+./srcs/interface/free_objects/free_world.c:	if (world->spheres_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_sphere(&world->spheres_tmp, &world->spheres, &world->spheres_len);
+./srcs/interface/free_objects/free_world.c:	if (world->planes_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_plan(&world->planes_tmp, &world->planes, &world->planes_len);
+./srcs/interface/free_objects/free_world.c:	if (world->cylinders_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_cy(&world->cylinders_tmp, &world->cylinders,\
+./srcs/interface/free_objects/free_world.c:				&world->cylinders_len);
+./srcs/interface/free_objects/free_world.c:	if (world->cones_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_cone(&world->cones_tmp, &world->cones, &world->cones_len);
+./srcs/interface/free_objects/free_world.c:	if (world->mobius_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_mobius(&world->mobius_tmp, &world->mobius, &world->mobius_len);
+./srcs/interface/free_objects/free_world.c:	if (world->torus_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_torus(&world->torus_tmp, &world->torus, &world->torus_len);
+./srcs/interface/free_objects/free_world.c:	if (world->hyperboloids_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_hyper(&world->hyperboloids_tmp, &world->hyperboloids,\
+./srcs/interface/free_objects/free_world.c:				&world->hyperboloids_len);
+./srcs/interface/free_objects/free_world.c:	if (world->paraboloids_tmp != NULL)
+./srcs/interface/free_objects/free_world.c:		free_para(&world->paraboloids_tmp, &world->paraboloids,\
+./srcs/interface/free_objects/free_world.c:				&world->paraboloids_len);
+./srcs/interface/gui_cam_controller.c:		world->redraw = 1;
+./srcs/interface/gui_cam_controller.c:		world->redraw = 1;
+./srcs/interface/gui_cam_controller.c:		world->redraw = 1;
+./srcs/interface/gui_cam_controller.c:		world->redraw = 1;
+./srcs/interface/gui_cam_controller.c:		vector_rot_y(&world->camera.right_v, &world->camera.dir_v, \
+./srcs/interface/gui_cam_controller.c:		vector_rot_y(&world->camera.right_v, &world->camera.dir_v, \
+./srcs/interface/gui_cam_controller.c:	world->camera.right_v = vector_normalize(world->camera.right_v);
+./srcs/interface/gui_cam_controller.c:	world->camera.dir_v = vector_normalize(world->camera.dir_v);
+./srcs/interface/gui_cam_controller.c:	world->camera.up_v = vector_normalize(world->camera.up_v);
+./srcs/interface/gui_cam_controller.c:	world->redraw = 1;
+./srcs/interface/gui_cam_controller.c:	if (nk_begin(ctx, "CAMERA BAR", nk_rect((world->screen.width / 2) - 150, \
+./srcs/interface/gui_cam_controller.c:		world->screen.height - 104, 260, 104), NK_WINDOW_BORDER))
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.pos.x, "POS X:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.look_at.x, "LAT X:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.pos.y, "POS Y:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.look_at.y, "LAT Y:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.pos.z, "POS Z:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_cam_controller.c:		if (ui_widget_value_infos_cam(ctx, media, &world->camera.look_at.z, "LAT Z:"))
+./srcs/interface/gui_cam_controller.c:			get_camera_axes(&world->camera);
+./srcs/interface/gui_cam_controller.c:			world->redraw = 1;}
+./srcs/interface/gui_obj_parameters.c:	if (world->ob_save == 'd')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'm')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'o')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'c')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'u')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'l')
+./srcs/interface/gui_obj_parameters.c:	if (world->ob_save == 's')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'x')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'y')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'p')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'b')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 'h')
+./srcs/interface/gui_obj_parameters.c:	else if (world->ob_save == 't')
+./srcs/interface/gui_obj_parameters.c:		nk_rect(world->screen.width - 250, 52, 250, world->screen.height - 52),\
+./srcs/interface/gui_render_scene.c:	if (nk_begin(ctx, world->title,\
+./srcs/interface/gui_render_scene.c:		nk_rect((world->screen.width - (WIN_WIDTH + 15)) / 2,\
+./srcs/interface/gui_render_scene.c:				(world->screen.height - (WIN_HEIGHT + 48)) / 2,\
+./srcs/interface/gui_render_scene.c:		if ((world->reload_buffer == 1 && world->redraw == 0) || world->redraw == 3)
+./srcs/interface/gui_render_scene.c:			screen = screen_load(world->a_h, world->video_buffer);
+./srcs/interface/gui_render_scene.c:			world->reload_buffer = 0;
+./srcs/interface/gui_render_scene.c:		world->pos_render.x = pos.x;
+./srcs/interface/gui_render_scene.c:		world->pos_render.y = pos.y;
+./srcs/interface/gui_render_scene.c:			world->redraw = 1;
+./srcs/interface/gui_render_scene.c:	if (world->redraw == 3)
+./srcs/interface/gui_render_scene.c:		world->redraw = 0;
+./srcs/interface/gui_scene_parameters.c:	if (nk_begin(ctx, "Scene parameters", nk_rect(0,52,250,world->screen.height - 52),
+./srcs/interface/gui_scene_parameters.c:		nk_text(ctx, world->title, ft_strlen(world->title), NK_TEXT_LEFT);
+./srcs/interface/gui_scene_parameters.c:		nk_image(ctx, media->images[world->img_scene]);
+./srcs/interface/gui_scene_parameters.c:			world->keys.light_none = 1;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.light_none = 0;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		if (ui_slide_int_0_to_16(ctx, &world->aa, "Anti-Aliasing :"))
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 0;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 1;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 2;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 3;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 4;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 5;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 6;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 7;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			world->keys.pad_0 = 8;
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		// if(ui_widget_value_infos(ctx, media, &world->ambient.intensity, "Intensity"))
+./srcs/interface/gui_scene_parameters.c:		// 	world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		//if(ui_widget_value_infos_int(ctx, media, &world->aa, "Anti Aliasing"))
+./srcs/interface/gui_scene_parameters.c:			//world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		if (ui_slide_float_0_to_1(ctx, &world->ambient.intensity, "Intensity:"))
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		draw_choose_color(ctx, world, &world->ambient.color);
+./srcs/interface/gui_scene_parameters.c:			if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:				thread_free_and_add_light(&world->lights, &world->lights_tmp, &world->lights_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:			world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:		if (world->lights_len)
+./srcs/interface/gui_scene_parameters.c:			tmp = world->lights_tmp;
+./srcs/interface/gui_scene_parameters.c:						world->ob_save = 'l';
+./srcs/interface/gui_scene_parameters.c:						world->id_save = tmp->id;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_sphere(&world->spheres, &world->spheres_tmp, &world->spheres_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_cone(&world->cones, &world->cones_tmp, &world->cones_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_plane(&world->planes, &world->planes_tmp, &world->planes_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_disk(&world->disks, &world->disks_tmp, &world->disks_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_torus(&world->torus, &world->torus_tmp, &world->torus_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_cube(&world->cubes, &world->cubes_tmp, &world->cubes_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_hyperboloid(&world->hyperboloids, &world->hyperboloids_tmp, &world->hyperboloids_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_paraboloid(&world->paraboloids, &world->paraboloids_tmp, &world->paraboloids_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:				if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:					thread_free_and_add_h_cube(&world->h_cubes, &world->h_cubes_tmp, &world->h_cubes_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:				world->redraw = 1;
+./srcs/interface/gui_scene_parameters.c:			// 	if(world->a_h != NULL)
+./srcs/interface/gui_scene_parameters.c:			// 		thread_free_and_add_light(&world->lights, &world->lights_tmp, &world->lights_len, world->id++);
+./srcs/interface/gui_scene_parameters.c:			// 	world->redraw = 1;
+./srcs/interface/gui_topbar.c:			world->img_scene = 0;
+./srcs/interface/gui_topbar.c:			world->redraw = 3;
+./srcs/interface/gui_topbar.c:			if (world->a_h != NULL)
+./srcs/interface/gui_topbar.c:	if (nk_begin(ctx, "TOPBAR", nk_rect(0, 0, world->screen.width, 52),\
+./srcs/interface/gui_topbar2.c:		world->mode_cluster = 0;
+./srcs/interface/gui_topbar2.c:		world->mode_cluster = 1;
+./srcs/interface/gui_topbar2.c:		world->mode = 0;
+./srcs/interface/gui_topbar2.c:		world->mode = 1;
+./srcs/interface/interface.c:	if (world->a_h != NULL)
+./srcs/interface/interface.c:		render_scene(ctx, media, world->a_h, world);
+./srcs/interface/key_press.c:		world->keys.light_none = 1;
+./srcs/interface/key_press.c:		world->keys.light_none = 0;
+./srcs/interface/launch_scenes.c:	world->img_scene = i;
+./srcs/interface/launch_scenes.c:	world->redraw = 3;
+./srcs/interface/mouse_event/mouse_press_left.c:	t_sphere *tmp = world->spheres_tmp;
+./srcs/interface/mouse_event/mouse_press_left.c:	get_ray_direction(*(world), &ray1, world->xy.x, world->xy.y);
+./srcs/interface/mouse_event/mouse_press_left.c:		while(i < world->spheres_len)
+./srcs/interface/mouse_event/mouse_press_left.c:			if(world->id_save == world->spheres[i].id)
+./srcs/interface/mouse_event/mouse_press_left.c:				vitesse = vector_length(vector_substract(world->spheres[i].pos, ray1.origin)) * 0.01;
+./srcs/interface/mouse_event/mouse_press_left.c:				coeff1 = vector_substract(world->spheres[i].pos, ray1.dir);
+./srcs/interface/mouse_event/mouse_press_left.c:				coeff2 = vector_substract(world->spheres[i].pos, ray2.dir);
+./srcs/interface/mouse_event/mouse_press_left.c:				world->spheres[i].pos.x += (coeff1.x - coeff2.x);
+./srcs/interface/mouse_event/mouse_press_left.c:				world->spheres[i].pos.y += (coeff1.y - coeff2.y);// * vitesse;
+./srcs/interface/mouse_event/mouse_press_left.c:					if(tmp->id == world->id_save){
+./srcs/interface/mouse_event/mouse_press_left.c:	world->xy.x = pos->x;
+./srcs/interface/mouse_event/mouse_press_left.c:	world->xy.y = pos->y;
+./srcs/interface/mouse_event/mouse_press_left.c:			world->id_save = intersection.id_save;
+./srcs/interface/mouse_event/mouse_press_left.c:			world->ob_save = intersection.type;
+./srcs/interface/mouse_event/mouse_press_left.c:			world->keys.select = 1;
+./srcs/interface/mouse_event/mouse_press_left.c:			printf("%d id world \n", world->id_save);
+./srcs/interface/mouse_event/mouse_press_left.c:			return(1);//world->redraw = 1;
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_hyperboloid(&world->hyperboloids_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		load_hyperboloids(&world->hyperboloids, world->hyperboloids_tmp,
+./srcs/interface/mouse_event/mouse_press_middle.c:		  &world->hyperboloids_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_paraboloid(&world->paraboloids_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		load_paraboloids(&world->paraboloids, world->paraboloids_tmp,
+./srcs/interface/mouse_event/mouse_press_middle.c:		   &world->paraboloids_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_triangle(&world->triangles_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		load_triangles(&world->triangles, world->triangles_tmp,
+./srcs/interface/mouse_event/mouse_press_middle.c:		      &world->triangles_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:		  remove_h_cube(&world->h_cubes_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:		  load_h_cubes(&world->h_cubes, world->h_cubes_tmp, &world->h_cubes_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_torus(&world->torus_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:		 load_torus(&world->torus, world->torus_tmp, &world->torus_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_mobius(&world->mobius_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:		  load_mobius(&world->mobius, world->mobius_tmp, &world->mobius_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		remove_disk(&world->disks_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:		  load_disks(&world->disks, world->disks_tmp, &world->disks_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:  		  remove_cube(&world->cubes_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:		  load_cubes(&world->cubes, world->cubes_tmp, &world->cubes_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:	    	remove_sphere(&world->spheres_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:			load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:	    	remove_cone(&world->cones_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:			load_cones(&world->cones, world->cones_tmp, &world->cones_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:		    remove_cylinder(&world->cylinders_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:    		load_cylinders(&world->cylinders, world->cylinders_tmp,
+./srcs/interface/mouse_event/mouse_press_middle.c:			&world->cylinders_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:      		remove_plane(&world->planes_tmp, i);
+./srcs/interface/mouse_event/mouse_press_middle.c:			load_planes(&world->planes, world->planes_tmp, &world->planes_len);
+./srcs/interface/mouse_event/mouse_press_middle.c:			   return (1);//world->redraw = 1;
+./srcs/interface/object_informations/obj_info_cones.c:		remove_cone(&world->cones_tmp, &o);
+./srcs/interface/object_informations/obj_info_cones.c:		load_cones(&world->cones, world->cones_tmp, &world->cones_len);
+./srcs/interface/object_informations/obj_info_cones.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_cones.c:	while (i < world->cones_len)
+./srcs/interface/object_informations/obj_info_cones.c:		if (world->id_save == world->cones[i].id)
+./srcs/interface/object_informations/obj_info_cones.c:			draw_color_picker(ctx, &world->cones[i].color, world);
+./srcs/interface/object_informations/obj_info_cones.c:			draw_chess_color(ctx, media, world, &world->cones[i].chess);
+./srcs/interface/object_informations/obj_info_cones.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_cubes.c:		remove_cube(&world->cubes_tmp, &o);
+./srcs/interface/object_informations/obj_info_cubes.c:		load_cubes(&world->cubes, world->cubes_tmp,\
+./srcs/interface/object_informations/obj_info_cubes.c:						&world->cubes_len);
+./srcs/interface/object_informations/obj_info_cubes.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_cubes.c:	while (i < world->cubes_len)
+./srcs/interface/object_informations/obj_info_cubes.c:		if (world->id_save == world->cubes[i].id)
+./srcs/interface/object_informations/obj_info_cubes.c:			draw_color_picker(ctx, &world->cubes[i].color, world);
+./srcs/interface/object_informations/obj_info_cubes.c:			draw_chess_color(ctx, media, world, &world->cubes[i].chess);
+./srcs/interface/object_informations/obj_info_cubes.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_cylinders.c:		remove_cylinder(&world->cylinders_tmp, &o);
+./srcs/interface/object_informations/obj_info_cylinders.c:		load_cylinders(&world->cylinders, world->cylinders_tmp,\
+./srcs/interface/object_informations/obj_info_cylinders.c:						&world->cylinders_len);
+./srcs/interface/object_informations/obj_info_cylinders.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_cylinders.c:	while (i < world->cylinders_len)
+./srcs/interface/object_informations/obj_info_cylinders.c:		if (world->id_save == world->cylinders[i].id)
+./srcs/interface/object_informations/obj_info_cylinders.c:			draw_color_picker(ctx, &world->cylinders[i].color, world);
+./srcs/interface/object_informations/obj_info_cylinders.c:			draw_chess_color(ctx, media, world, &world->cylinders[i].chess);
+./srcs/interface/object_informations/obj_info_cylinders.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_disks.c:		remove_disk(&world->disks_tmp, &o);
+./srcs/interface/object_informations/obj_info_disks.c:		load_disks(&world->disks, world->disks_tmp,\
+./srcs/interface/object_informations/obj_info_disks.c:						&world->disks_len);
+./srcs/interface/object_informations/obj_info_disks.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_disks.c:	while (i < world->disks_len)
+./srcs/interface/object_informations/obj_info_disks.c:		if (world->id_save == world->disks[i].id)
+./srcs/interface/object_informations/obj_info_disks.c:			draw_color_picker(ctx, &world->disks[i].color, world);
+./srcs/interface/object_informations/obj_info_disks.c:			draw_chess_color(ctx, media, world, &world->disks[i].chess);
+./srcs/interface/object_informations/obj_info_disks.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_h_cubes.c:		remove_h_cube(&world->h_cubes_tmp, &o);
+./srcs/interface/object_informations/obj_info_h_cubes.c:		load_h_cubes(&world->h_cubes, world->h_cubes_tmp, &world->h_cubes_len);
+./srcs/interface/object_informations/obj_info_h_cubes.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_h_cubes.c:	while (i < world->h_cubes_len)
+./srcs/interface/object_informations/obj_info_h_cubes.c:		if (world->id_save == world->h_cubes[i].id)
+./srcs/interface/object_informations/obj_info_h_cubes.c:			draw_color_picker(ctx, &world->h_cubes[i].color, world);
+./srcs/interface/object_informations/obj_info_h_cubes.c:			draw_chess_color(ctx, media, world, &world->h_cubes[i].chess);
+./srcs/interface/object_informations/obj_info_h_cubes.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_hyperboloids.c:		remove_hyperboloid(&world->hyperboloids_tmp, &o);
+./srcs/interface/object_informations/obj_info_hyperboloids.c:		load_hyperboloids(&world->hyperboloids, world->hyperboloids_tmp,\
+./srcs/interface/object_informations/obj_info_hyperboloids.c:						&world->hyperboloids_len);
+./srcs/interface/object_informations/obj_info_hyperboloids.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_hyperboloids.c:	while (i < world->hyperboloids_len)
+./srcs/interface/object_informations/obj_info_hyperboloids.c:		if (world->id_save == world->hyperboloids[i].id)
+./srcs/interface/object_informations/obj_info_hyperboloids.c:			draw_color_picker(ctx, &world->hyperboloids[i].color, world);
+./srcs/interface/object_informations/obj_info_hyperboloids.c:			draw_chess_color(ctx, media, world, &world->hyperboloids[i].chess);
+./srcs/interface/object_informations/obj_info_hyperboloids.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_lights.c:		remove_light(&world->lights_tmp, &o);
+./srcs/interface/object_informations/obj_info_lights.c:		load_lights(&world->lights, world->lights_tmp,\
+./srcs/interface/object_informations/obj_info_lights.c:						&world->lights_len);
+./srcs/interface/object_informations/obj_info_lights.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_lights.c:	while (i < world->lights_len)
+./srcs/interface/object_informations/obj_info_lights.c:		if (world->id_save == world->lights[i].id)
+./srcs/interface/object_informations/obj_info_lights.c:			draw_color_picker(ctx, &world->lights[i].color, world);
+./srcs/interface/object_informations/obj_info_lights.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_mobius.c:		remove_mobius(&world->mobius_tmp, &o);
+./srcs/interface/object_informations/obj_info_mobius.c:		load_mobius(&world->mobius, world->mobius_tmp,\
+./srcs/interface/object_informations/obj_info_mobius.c:						&world->mobius_len);
+./srcs/interface/object_informations/obj_info_mobius.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_mobius.c:	while (i < world->mobius_len)
+./srcs/interface/object_informations/obj_info_mobius.c:		if (world->id_save == world->mobius[i].id)
+./srcs/interface/object_informations/obj_info_mobius.c:			draw_color_picker(ctx, &world->mobius[i].color, world);
+./srcs/interface/object_informations/obj_info_mobius.c:			draw_chess_color(ctx, media, world, &world->mobius[i].chess);
+./srcs/interface/object_informations/obj_info_mobius.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_paraboloids.c:		remove_paraboloid(&world->paraboloids_tmp, &o);
+./srcs/interface/object_informations/obj_info_paraboloids.c:		load_paraboloids(&world->paraboloids, world->paraboloids_tmp,\
+./srcs/interface/object_informations/obj_info_paraboloids.c:						&world->paraboloids_len);
+./srcs/interface/object_informations/obj_info_paraboloids.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_paraboloids.c:	while (i < world->paraboloids_len)
+./srcs/interface/object_informations/obj_info_paraboloids.c:		if (world->id_save == world->paraboloids[i].id)
+./srcs/interface/object_informations/obj_info_paraboloids.c:			draw_color_picker(ctx, &world->paraboloids[i].color, world);
+./srcs/interface/object_informations/obj_info_paraboloids.c:			draw_chess_color(ctx, media, world, &world->paraboloids[i].chess);
+./srcs/interface/object_informations/obj_info_paraboloids.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_planes.c:		remove_plane(&world->planes_tmp, &o);
+./srcs/interface/object_informations/obj_info_planes.c:		load_planes(&world->planes, world->planes_tmp, &world->planes_len);
+./srcs/interface/object_informations/obj_info_planes.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_planes.c:	while (i < world->planes_len)
+./srcs/interface/object_informations/obj_info_planes.c:		if (world->id_save == world->planes[i].id)
+./srcs/interface/object_informations/obj_info_planes.c:			draw_color_picker(ctx, &world->planes[i].color, world);
+./srcs/interface/object_informations/obj_info_planes.c:			draw_chess_color(ctx, media, world, &world->planes[i].chess);
+./srcs/interface/object_informations/obj_info_planes.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_spheres.c:		remove_sphere(&world->spheres_tmp, &o);
+./srcs/interface/object_informations/obj_info_spheres.c:		load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
+./srcs/interface/object_informations/obj_info_spheres.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_spheres.c:	while (i < world->spheres_len)
+./srcs/interface/object_informations/obj_info_spheres.c:		if (world->id_save == world->spheres[i].id)
+./srcs/interface/object_informations/obj_info_spheres.c:			draw_color_picker(ctx, &world->spheres[i].color, world);
+./srcs/interface/object_informations/obj_info_spheres.c:			draw_chess_color(ctx, media, world, &world->spheres[i].chess);
+./srcs/interface/object_informations/obj_info_spheres.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_torus.c:		remove_torus(&world->torus_tmp, &o);
+./srcs/interface/object_informations/obj_info_torus.c:		load_torus(&world->torus, world->torus_tmp, &world->torus_len);
+./srcs/interface/object_informations/obj_info_torus.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_torus.c:	while (i < world->torus_len)
+./srcs/interface/object_informations/obj_info_torus.c:		if (world->id_save == world->torus[i].id)
+./srcs/interface/object_informations/obj_info_torus.c:			draw_color_picker(ctx, &world->torus[i].color, world);
+./srcs/interface/object_informations/obj_info_torus.c:			draw_chess_color(ctx, media, world, &world->torus[i].chess);
+./srcs/interface/object_informations/obj_info_torus.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_triangles.c:		remove_triangle(&world->triangles_tmp, &o);
+./srcs/interface/object_informations/obj_info_triangles.c:		load_triangles(&world->triangles, world->triangles_tmp,\
+./srcs/interface/object_informations/obj_info_triangles.c:						&world->triangles_len);
+./srcs/interface/object_informations/obj_info_triangles.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_triangles.c:	while (i < world->triangles_len)
+./srcs/interface/object_informations/obj_info_triangles.c:		if (world->id_save == world->triangles[i].id)
+./srcs/interface/object_informations/obj_info_triangles.c:			draw_color_picker(ctx, &world->triangles[i].color, world);
+./srcs/interface/object_informations/obj_info_triangles.c:			draw_chess_color(ctx, media, world, &world->triangles[i].chess);
+./srcs/interface/object_informations/obj_info_triangles.c:			draw_delete_button(ctx, media, world, world->id_save);
+./srcs/interface/object_informations/obj_info_utils.c:		world->redraw = 1;
+./srcs/interface/object_informations/obj_info_utils.c:		world->redraw = 0;
+./srcs/interface/object_informations/object_refresh.c:	tmp = world->spheres_tmp;
+./srcs/interface/object_informations/object_refresh.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh.c:			tmp->pos = world->spheres[i].pos;
+./srcs/interface/object_informations/object_refresh.c:			tmp->radius = world->spheres[i].radius;
+./srcs/interface/object_informations/object_refresh.c:			tmp->color = world->spheres[i].color;
+./srcs/interface/object_informations/object_refresh.c:			tmp->chess = world->spheres[i].chess;
+./srcs/interface/object_informations/object_refresh.c:			tmp->rgba = world->spheres[i].rgba;
+./srcs/interface/object_informations/object_refresh.c:			tmp->reflection_coef = world->spheres[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->refraction_coef = world->spheres[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->transparence_coef = world->spheres[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->perlin = world->spheres[i].perlin;
+./srcs/interface/object_informations/object_refresh.c:	tmp = world->cones_tmp;
+./srcs/interface/object_informations/object_refresh.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh.c:			tmp->pos = world->cones[i].pos;
+./srcs/interface/object_informations/object_refresh.c:			tmp->up = world->cones[i].up;
+./srcs/interface/object_informations/object_refresh.c:			tmp->half_angle = world->cones[i].half_angle;
+./srcs/interface/object_informations/object_refresh.c:			tmp->height = world->cones[i].height;
+./srcs/interface/object_informations/object_refresh.c:			tmp->color = world->cones[i].color;
+./srcs/interface/object_informations/object_refresh.c:			tmp->chess = world->cones[i].chess;
+./srcs/interface/object_informations/object_refresh.c:			tmp->reflection_coef = world->cones[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->refraction_coef = world->cones[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->transparence_coef = world->cones[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->perlin = world->cones[i].perlin;
+./srcs/interface/object_informations/object_refresh.c:	tmp = world->cylinders_tmp;
+./srcs/interface/object_informations/object_refresh.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh.c:			tmp->pos = world->cylinders[i].pos;
+./srcs/interface/object_informations/object_refresh.c:			tmp->up = world->cylinders[i].up;
+./srcs/interface/object_informations/object_refresh.c:			tmp->radius = world->cylinders[i].radius;
+./srcs/interface/object_informations/object_refresh.c:			tmp->height = world->cylinders[i].height;
+./srcs/interface/object_informations/object_refresh.c:			tmp->color = world->cylinders[i].color;
+./srcs/interface/object_informations/object_refresh.c:			tmp->chess = world->cylinders[i].chess;
+./srcs/interface/object_informations/object_refresh.c:			tmp->reflection_coef = world->cylinders[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->refraction_coef = world->cylinders[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->transparence_coef = world->cylinders[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->perlin = world->cylinders[i].perlin;
+./srcs/interface/object_informations/object_refresh.c:	tmp = world->planes_tmp;
+./srcs/interface/object_informations/object_refresh.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh.c:			tmp->pos = world->planes[i].pos;
+./srcs/interface/object_informations/object_refresh.c:			tmp->up = world->planes[i].up;
+./srcs/interface/object_informations/object_refresh.c:			tmp->color = world->planes[i].color;
+./srcs/interface/object_informations/object_refresh.c:			tmp->chess = world->planes[i].chess;
+./srcs/interface/object_informations/object_refresh.c:			tmp->reflection_coef = world->planes[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->refraction_coef = world->planes[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->transparence_coef = world->planes[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->perlin = world->planes[i].perlin;
+./srcs/interface/object_informations/object_refresh.c:	tmp = world->torus_tmp;
+./srcs/interface/object_informations/object_refresh.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh.c:			tmp->pos = world->torus[i].pos;
+./srcs/interface/object_informations/object_refresh.c:			tmp->normal = world->torus[i].normal;
+./srcs/interface/object_informations/object_refresh.c:			tmp->radius_small = world->torus[i].radius_small;
+./srcs/interface/object_informations/object_refresh.c:			tmp->radius_big = world->torus[i].radius_big;
+./srcs/interface/object_informations/object_refresh.c:			tmp->color = world->torus[i].color;
+./srcs/interface/object_informations/object_refresh.c:			tmp->chess = world->torus[i].chess;
+./srcs/interface/object_informations/object_refresh.c:			tmp->reflection_coef = world->torus[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->refraction_coef = world->torus[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->transparence_coef = world->torus[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh.c:			tmp->perlin = world->torus[i].perlin;
+./srcs/interface/object_informations/object_refresh2.c:	tmp = world->mobius_tmp;
+./srcs/interface/object_informations/object_refresh2.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh2.c:			tmp->pos = world->mobius[i].pos;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->radius = world->mobius[i].radius;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->color = world->mobius[i].color;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->chess = world->mobius[i].chess;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->reflection_coef = world->mobius[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->refraction_coef = world->mobius[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->transparence_coef = world->mobius[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->perlin = world->mobius[i].perlin;
+./srcs/interface/object_informations/object_refresh2.c:	tmp = world->disks_tmp;
+./srcs/interface/object_informations/object_refresh2.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh2.c:			tmp->pos = world->disks[i].pos;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->up = world->disks[i].up;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->radius = world->disks[i].radius;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->radius_squared = world->disks[i].radius_squared;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->color = world->disks[i].color;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->chess = world->disks[i].chess;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->reflection_coef = world->disks[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->refraction_coef = world->disks[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->transparence_coef = world->disks[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->perlin = world->disks[i].perlin;
+./srcs/interface/object_informations/object_refresh2.c:	tmp = world->cubes_tmp;
+./srcs/interface/object_informations/object_refresh2.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh2.c:			tmp->min = world->cubes[i].min;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->max = world->cubes[i].max;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->up = world->cubes[i].up;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->color = world->cubes[i].color;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->chess = world->cubes[i].chess;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->reflection_coef = world->cubes[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->refraction_coef = world->cubes[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->transparence_coef = world->cubes[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->perlin = world->cubes[i].perlin;
+./srcs/interface/object_informations/object_refresh2.c:	tmp = world->paraboloids_tmp;
+./srcs/interface/object_informations/object_refresh2.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh2.c:			tmp->top = world->paraboloids[i].top;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->normal = world->paraboloids[i].normal;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->distance = world->paraboloids[i].distance;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->maxm = world->paraboloids[i].maxm;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->color = world->paraboloids[i].color;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->chess = world->paraboloids[i].chess;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->reflection_coef = world->paraboloids[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->refraction_coef = world->paraboloids[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->transparence_coef = world->paraboloids[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->perlin = world->paraboloids[i].perlin;
+./srcs/interface/object_informations/object_refresh2.c:	tmp = world->hyperboloids_tmp;
+./srcs/interface/object_informations/object_refresh2.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh2.c:			tmp->top = world->hyperboloids[i].top;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->normal = world->hyperboloids[i].normal;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->maxm = world->hyperboloids[i].maxm;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->radius = world->hyperboloids[i].radius;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->color = world->hyperboloids[i].color;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->chess = world->hyperboloids[i].chess;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->reflection_coef = world->hyperboloids[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->refraction_coef = world->hyperboloids[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->transparence_coef = world->hyperboloids[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh2.c:			tmp->perlin = world->hyperboloids[i].perlin;
+./srcs/interface/object_informations/object_refresh3.c:	tmp = world->triangles_tmp;
+./srcs/interface/object_informations/object_refresh3.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh3.c:			tmp->pos = world->triangles[i].pos;
+./srcs/interface/object_informations/object_refresh3.c:			// tmp->up = world->triangles[i].up;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->v1 = world->triangles[i].v1;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->v2 = world->triangles[i].v2;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->color = world->triangles[i].color;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->chess = world->triangles[i].chess;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->reflection_coef = world->triangles[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->refraction_coef = world->triangles[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->transparence_coef = world->triangles[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->perlin = world->triangles[i].perlin;
+./srcs/interface/object_informations/object_refresh3.c:	tmp = world->h_cubes_tmp;
+./srcs/interface/object_informations/object_refresh3.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh3.c:			tmp->pos = world->h_cubes[i].pos;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->color = world->h_cubes[i].color;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->chess = world->h_cubes[i].chess;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->reflection_coef = world->h_cubes[i].reflection_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->refraction_coef = world->h_cubes[i].refraction_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->transparence_coef = world->h_cubes[i].transparence_coef;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->perlin = world->h_cubes[i].perlin;
+./srcs/interface/object_informations/object_refresh3.c:	tmp = world->lights_tmp;
+./srcs/interface/object_informations/object_refresh3.c:		if (tmp->id == world->id_save)
+./srcs/interface/object_informations/object_refresh3.c:			tmp->pos = world->lights[i].pos;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->color = world->lights[i].color;
+./srcs/interface/object_informations/object_refresh3.c:			tmp->intensity_coef = world->lights[i].intensity_coef;
+./srcs/launch_cpu_gpu.c:		while (x < thread->world->viewplane.x_res)
+./srcs/launch_cpu_gpu.c:			thread->world->a_h[(y - thread->y_min) *
+./srcs/launch_cpu_gpu.c:			thread->world->viewplane.x_res + x] =
+./srcs/launch_cpu_gpu.c:			x_aa += thread->world->aa;
+./srcs/launch_cpu_gpu.c:		y_aa += thread->world->aa;
+./srcs/launch_cpu_gpu.c:		if (pthread_create(&world->thread[i], NULL, &perform_thread, &tab[i]))
+./srcs/launch_cpu_gpu.c:		pthread_join(world->thread[i], NULL);
+./srcs/launch_cpu_gpu.c:	world->viewplane.x_res = (double)(WIN_WIDTH) / world->render_factor;
+./srcs/launch_cpu_gpu.c:	world->viewplane.y_res = (double)(world->offsets.y_max - world->offsets.y_min) / world->render_factor;
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.x_res = world->win_width / world->render_factor;
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.y_res = world->win_height / world->render_factor;
+./srcs/launch_cpu_gpu.c:	world->viewplane.x_indent = world->viewplane.width /
+./srcs/launch_cpu_gpu.c:									(double)world->viewplane.x_res;
+./srcs/launch_cpu_gpu.c:	world->viewplane.y_indent = world->viewplane.height /
+./srcs/launch_cpu_gpu.c:									(double)world->viewplane.y_res;
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.x_indent = world->viewplane_aa.width /
+./srcs/launch_cpu_gpu.c:									(double)world->viewplane_aa.x_res;
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.y_indent = world->viewplane_aa.height /	(double)world->viewplane_aa.y_res;
+./srcs/launch_cpu_gpu.c:	world->win_width = WIN_WIDTH * world->aa;
+./srcs/launch_cpu_gpu.c:	world->win_height = (WIN_HEIGHT) * world->aa;
+./srcs/launch_cpu_gpu.c:	world->viewplane.width = (double)((M_PI / 4) / 2);
+./srcs/launch_cpu_gpu.c:	world->viewplane.height = ((double)((double)(world->win_height) /
+./srcs/launch_cpu_gpu.c:								(double)(WIN_WIDTH)) * world->viewplane.width);
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.width = (double)((M_PI / 4) / 2);
+./srcs/launch_cpu_gpu.c:	world->viewplane_aa.height = ((double)((double)(world->win_height) /
+./srcs/launch_cpu_gpu.c:								(double)(world->win_width)) * world->viewplane_aa.width);
+./srcs/launch_cpu_gpu.c:	if (!world->p)
+./srcs/launch_cpu_gpu.c:		if (!(world->p = (int *)malloc(512 * sizeof(int))))
+./srcs/launch_cpu_gpu.c:	if (world->clientrender == 1)
+./srcs/launch_cpu_gpu.c:		launch_thread(world, world->offsets.y_min, world->offsets.y_max, world->offsets.aa);
+./srcs/launch_cpu_gpu.c:	launch_thread(world, 0, WIN_HEIGHT, world->aa);
+./srcs/launch_cpu_gpu.c:	if (world->clientrender == 1)
+./srcs/launch_cpu_gpu.c:		render_cuda(world->a_h, WIN_WIDTH,
+./srcs/launch_cpu_gpu.c:				world->offsets.y_max - world->offsets.y_min, *world, 0);
+./srcs/launch_cpu_gpu.c:	render_cuda(world->a_h, world->viewplane.x_res,
+./srcs/launch_cpu_gpu.c:		world->viewplane.y_res, *world, 0);
+./srcs/main.c:	world->viewplane.x_res = (WIN_WIDTH) / world->render_factor;
+./srcs/main.c:	world->viewplane.y_res = (WIN_HEIGHT) / world->render_factor;
+./srcs/main.c:	world->viewplane_aa.x_res = world->win_width / world->render_factor;
+./srcs/main.c:	world->viewplane_aa.y_res = world->win_height / world->render_factor;
+./srcs/main.c:	world->viewplane.x_indent = world->viewplane.width /
+./srcs/main.c:									(double)world->viewplane.x_res;
+./srcs/main.c:	world->viewplane.y_indent = world->viewplane.height /
+./srcs/main.c:									(double)world->viewplane.y_res;
+./srcs/main.c:	world->viewplane_aa.x_indent = world->viewplane_aa.width /
+./srcs/main.c:									(double)world->viewplane_aa.x_res;
+./srcs/main.c:	world->viewplane_aa.y_indent = world->viewplane_aa.height /
+./srcs/main.c:									(double)world->viewplane_aa.y_res;
+./srcs/main.c:	load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
+./srcs/main.c:	load_planes(&world->planes, world->planes_tmp, &world->planes_len);
+./srcs/main.c:	load_disks(&world->disks, world->disks_tmp, &world->disks_len);
+./srcs/main.c:	load_cones(&world->cones, world->cones_tmp, &world->cones_len);
+./srcs/main.c:	load_triangles(&world->triangles, world->triangles_tmp,
+./srcs/main.c:			&world->triangles_len);
+./srcs/main.c:	load_cubes(&world->cubes, world->cubes_tmp,
+./srcs/main.c:			&world->cubes_len);
+./srcs/main.c:	load_h_cubes(&world->h_cubes, world->h_cubes_tmp,
+./srcs/main.c:			&world->h_cubes_len);
+./srcs/main.c:	load_torus(&world->torus, world->torus_tmp,
+./srcs/main.c:			&world->torus_len);
+./srcs/main.c:	load_cylinders(&world->cylinders,
+./srcs/main.c:			world->cylinders_tmp, &world->cylinders_len);
+./srcs/main.c:	load_lights(&world->lights, world->lights_tmp, &world->lights_len);
+./srcs/main.c:	load_paraboloids(&world->paraboloids,
+./srcs/main.c:			world->paraboloids_tmp, &world->paraboloids_len);
+./srcs/main.c:	load_hyperboloids(&world->hyperboloids,
+./srcs/main.c:			world->hyperboloids_tmp, &world->hyperboloids_len);
+./srcs/main.c:	load_mobius(&world->mobius,
+./srcs/main.c:			world->mobius_tmp, &world->mobius_len);
+./srcs/main.c:	world->clientrender = 1;
+./srcs/main.c:	world->render_factor = world->offsets.render_factor;
+./srcs/main.c:	world->aa = world->offsets.aa;
+./srcs/main.c:	world->id_save = world->offsets.id_save;
+./srcs/main.c:	world->ob_save = world->offsets.ob_save;
+./srcs/main.c:	world->mode = world->offsets.mode;
+./srcs/main.c:	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min) * sizeof(int);
+./srcs/main.c:	if (world->a_h == NULL)
+./srcs/main.c:		if (!(world->a_h = ft_memalloc(world->size_main)))
+./srcs/main.c:		// free(world->a_h);
+./srcs/main.c:	ft_bzero(world->a_h, world->size_main);
+./srcs/main.c:	if (world->mode == 0)
+./srcs/main.c:	world->size_main = world->viewplane.x_res * world->viewplane.y_res *
+./srcs/main.c:	if (world->a_h == NULL)
+./srcs/main.c:		if (!(world->a_h = malloc(world->size_main)))
+./srcs/main.c:	if (world->video_buffer == NULL)
+./srcs/main.c:		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
+./srcs/main.c:	printf("%d gpu test\n", world->mode);
+./srcs/main.c:	printf("%d gpu test\n", world->clientrender);
+./srcs/main.c:	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+./srcs/main.c:	ft_bzero(world->a_h, world->size_main);
+./srcs/main.c:	if(world->mode_cluster == 1)
+./srcs/main.c:	if (world->mode == 0)
+./srcs/main_master.c:					cluster->world->a_h[y * WIN_WIDTH + x] = clients->buffer[i];
+./srcs/main_master.c:// 	while (y < world->viewplane.y_res)
+./srcs/main_master.c:// 		while(x < world->viewplane.x_res)
+./srcs/main_master.c:// 			world->a_h[y * world->viewplane.x_res + x] = cluster->world->a_h[y * world->viewplane.x_res + x];
+./srcs/main_master.c:		cluster->world->size_main =
+./srcs/main_master.c:		world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+./srcs/main_master.c:		if(cluster->world->a_h == NULL)
+./srcs/main_master.c:			if (!(cluster->world->a_h = ft_memalloc(cluster->world->size_main)))
+./srcs/main_master.c:		ft_bzero(cluster->world->a_h, cluster->world->size_main);		
+./srcs/main_master.c:			// if (world->animation_forward == 1 && cluster->nbr_clients > 0)			
+./srcs/main_master.c:		// int_to_int(cluster->world->a_h, world->a_h, WIN_WIDTH, WIN_HEIGHT);
+./srcs/main_master.c:		//ft_bzero(cluster->world->a_h, cluster->world->size_main);
+./srcs/main_master.c:		// SDL_UpdateWindowSurface(cluster->world->window.id);
+./srcs/main_master.c:	// // world->window.id =
+./srcs/main_master.c:	// // world->window.screen = SDL_GetWindowSurface(world->window.id);
+./srcs/main_master.c:	// cluster.world->size_main =
+./srcs/main_master.c:	// 	world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+./srcs/main_master.c:	// if (!(cluster.world->a_h = malloc(cluster.world->size_main)))
+./srcs/main_master.c:	// ft_bzero(cluster.world->a_h, cluster.world->size_main);
+./srcs/main_master.c:	// SDL_FreeSurface(world->window.screen);
+./srcs/main_master.c:	// SDL_DestroyWindow(world->window.id);
+./srcs/render.c:	while (y < world->viewplane.y_res)
+./srcs/render.c:		while (x < world->viewplane.x_res)
+./srcs/render.c:			pixel_to_image(world->window.screen, x, y, color);
+./srcs/server/client.c:	main_size = WIN_WIDTH * (cluster->world->offsets.y_max -
+./srcs/server/client.c:			cluster->world->offsets.y_min) * sizeof(int);
+./srcs/server/client.c:		ft_memcpy(&cluster->world->camera, data->data, sizeof(t_camera));
+./srcs/server/client.c:		ft_memcpy(&cluster->world->ambient, data->data, sizeof(t_ambient));
+./srcs/server/client.c:		ft_memcpy(&cluster->world->keys, data->data, sizeof(t_keys));
+./srcs/server/client.c:		ft_memcpy(data->data, cluster->world->a_h, data->used);
+./srcs/server/client.c:		ft_memcpy(&cluster->world->offsets, data->data, data->used);
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->cubes = (t_cube*)malloc(sizeof(t_cube) * n)))
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->cubes, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->cubes, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->cubes_len = n;
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->cylinders =
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->cylinders, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->cylinders, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->cylinders_len = n;
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->hyperboloids =
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->hyperboloids, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->hyperboloids, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->hyperboloids_len = n;
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->lights = (t_light*)malloc(sizeof(t_light) * n)))
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->lights, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->lights, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->lights_len = n;
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->spheres =
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->spheres, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->spheres, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->spheres_len = n;
+./srcs/server/client_recev_infos.c:		if (!(cluster->world->planes =
+./srcs/server/client_recev_infos.c:		ft_bzero(cluster->world->planes, n);
+./srcs/server/client_recev_infos.c:		ft_memcpy(cluster->world->planes, data->data, data->used);
+./srcs/server/client_recev_infos.c:		cluster->world->planes_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->cones = (t_cone*)malloc(sizeof(t_cone) * n)))
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->cones, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->cones, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->cones_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->paraboloids =
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->paraboloids, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->paraboloids, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->paraboloids_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->disks = (t_disk*)malloc(sizeof(t_disk) * n)))
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->disks, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->disks, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->disks_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->h_cubes =
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->h_cubes, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->h_cubes, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->h_cubes_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->triangles =
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->triangles, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->triangles, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->triangles_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->torus =
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->torus, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->torus, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->torus_len = n;
+./srcs/server/client_recev_infos_next.c:		if (!(cluster->world->mobius = (t_mobius*)malloc(sizeof(t_mobius) * n)))
+./srcs/server/client_recev_infos_next.c:		ft_bzero(cluster->world->mobius, n);
+./srcs/server/client_recev_infos_next.c:		ft_memcpy(cluster->world->mobius, data->data, data->used);
+./srcs/server/client_recev_infos_next.c:		cluster->world->mobius_len = n;
+./srcs/server/client_utils.c:		if (world->paraboloids != NULL)
+./srcs/server/client_utils.c:			free(world->paraboloids);
+./srcs/server/client_utils.c:		world->paraboloids = NULL;
+./srcs/server/client_utils.c:		world->paraboloids_len = 0;
+./srcs/server/client_utils.c:		if (world->cylinders != NULL)
+./srcs/server/client_utils.c:			free(world->cylinders);
+./srcs/server/client_utils.c:		world->cylinders = NULL;
+./srcs/server/client_utils.c:		world->cylinders_len = 0;
+./srcs/server/client_utils.c:		if (world->disks != NULL)
+./srcs/server/client_utils.c:			free(world->disks);
+./srcs/server/client_utils.c:		world->disks = NULL;
+./srcs/server/client_utils.c:		world->disks_len = 0;
+./srcs/server/client_utils.c:		if (world->hyperboloids != NULL)
+./srcs/server/client_utils.c:			free(world->hyperboloids);
+./srcs/server/client_utils.c:		world->hyperboloids = NULL;
+./srcs/server/client_utils.c:		world->hyperboloids_len = 0;
+./srcs/server/client_utils.c:		if (world->triangles != NULL)
+./srcs/server/client_utils.c:			free(world->triangles);
+./srcs/server/client_utils.c:		world->triangles = NULL;
+./srcs/server/client_utils.c:		world->triangles_len = 0;
+./srcs/server/client_utils.c:		if (world->cubes != NULL)
+./srcs/server/client_utils.c:			free(world->cubes);
+./srcs/server/client_utils.c:		world->cubes = NULL;
+./srcs/server/client_utils.c:		world->cubes_len = 0;
+./srcs/server/client_utils.c:		if (world->h_cubes != NULL)
+./srcs/server/client_utils.c:			free(world->h_cubes);
+./srcs/server/client_utils.c:		world->h_cubes = NULL;
+./srcs/server/client_utils.c:		world->h_cubes_len = 0;
+./srcs/server/client_utils.c:		if (world->torus != NULL)
+./srcs/server/client_utils.c:			free(world->torus);
+./srcs/server/client_utils.c:		world->torus = NULL;
+./srcs/server/client_utils.c:		world->torus_len = 0;
+./srcs/server/client_utils.c:		if (world->mobius != NULL)
+./srcs/server/client_utils.c:			free(world->mobius);
+./srcs/server/client_utils.c:		world->mobius = NULL;
+./srcs/server/client_utils.c:		world->mobius_len = 0;
+./srcs/server/client_utils.c:		if (world->lights != NULL)
+./srcs/server/client_utils.c:			free(world->lights);
+./srcs/server/client_utils.c:		world->lights = NULL;
+./srcs/server/client_utils.c:		world->lights_len = 0;
+./srcs/server/client_utils.c:		if (world->spheres != NULL)
+./srcs/server/client_utils.c:			free(world->spheres);
+./srcs/server/client_utils.c:		world->spheres = NULL;
+./srcs/server/client_utils.c:		world->spheres_len = 0;
+./srcs/server/client_utils.c:		if (world->planes != NULL)
+./srcs/server/client_utils.c:			free(world->planes);
+./srcs/server/client_utils.c:		world->planes = NULL;
+./srcs/server/client_utils.c:		world->planes_len = 0;
+./srcs/server/client_utils.c:		if (world->cones != NULL)
+./srcs/server/client_utils.c:			free(world->cones);
+./srcs/server/client_utils.c:		world->cones = NULL;
+./srcs/server/client_utils.c:		world->cones_len = 0;
+./srcs/server/master.c:		if (pthread_create(&cluster->world->thread[i], NULL, &sd_cli, &tab[i]))
+./srcs/server/master.c:		if ((err = pthread_join(cluster->world->thread[i], &status)))
+./srcs/server/master.c:			offsets.render_factor = cluster->world->render_factor;
+./srcs/server/master.c:			offsets.aa = cluster->world->aa;
+./srcs/server/master.c:			offsets.mode = cluster->world->mode;
+./srcs/server/master.c:			offsets.ob_save = cluster->world->ob_save;
+./srcs/server/master.c:			offsets.id_save = cluster->world->id_save;
+./srcs/server/master_buff_infos.c:			ret = ft_memcpy(ret, &cluster->world->keys, sizeof(t_keys));
+./srcs/server/master_buff_infos.c:		size = sizeof(t_light) * cluster->world->lights_len;
+./srcs/server/master_buff_infos.c:			ret = ft_memcpy(ret, cluster->world->lights, size);
+./srcs/server/master_buff_infos.c:			ret = ft_memcpy(ret, &cluster->world->camera, sizeof(t_camera));
+./srcs/server/master_buff_infos.c:			ret = ft_memcpy(ret, &cluster->world->ambient, sizeof(t_ambient));
+./srcs/server/master_buff_infos.c:				buffer, cluster->world->lights_len * sizeof(t_light));
+./srcs/server/master_buff_infos_next.c:				cluster->world->paraboloids_len * sizeof(t_paraboloid));
+./srcs/server/master_buff_infos_next.c:				cluster->world->disks_len * sizeof(t_disk));
+./srcs/server/master_buff_infos_next.c:				cluster->world->torus_len * sizeof(t_torus));
+./srcs/server/master_buff_infos_next.c:				cluster->world->cones_len * sizeof(t_cone));
+./srcs/server/master_buff_infos_next.c:				cluster->world->cylinders_len * sizeof(t_cylinder));
+./srcs/server/master_buff_infos_next.c:				cluster->world->hyperboloids_len * sizeof(t_hyperboloid));
+./srcs/server/master_buff_infos_next.c:				cluster->world->mobius_len * sizeof(t_mobius));
+./srcs/server/master_buff_infos_next.c:				cluster->world->triangles_len * sizeof(t_triangle));
+./srcs/server/master_buff_infos_next.c:				cluster->world->cubes_len * sizeof(t_cube));
+./srcs/server/master_buff_infos_next.c:				cluster->world->planes_len * sizeof(t_plane));
+./srcs/server/master_buff_infos_next.c:				cluster->world->spheres_len * sizeof(t_sphere));
+./srcs/server/master_buff_infos_next.c:				cluster->world->h_cubes_len * sizeof(t_h_cube));
+./srcs/server/master_dup_data.c:		size = sizeof(t_torus) * cluster->world->torus_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->torus, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_mobius) * cluster->world->mobius_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->mobius, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_cylinder) * cluster->world->cylinders_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->cylinders, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_triangle) * cluster->world->triangles_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->triangles, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_cube) * cluster->world->cubes_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->cubes, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_h_cube) * cluster->world->h_cubes_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->h_cubes, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_disk) * cluster->world->disks_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->disks, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_hyperboloid) * cluster->world->hyperboloids_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->hyperboloids, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_paraboloid) * cluster->world->paraboloids_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->paraboloids, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_sphere) * cluster->world->spheres_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->spheres, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_plane) * cluster->world->planes_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->planes, size);
+./srcs/server/master_dup_data.c:		size = sizeof(t_cone) * cluster->world->cones_len;
+./srcs/server/master_dup_data.c:			ret = ft_memcpy(ret, cluster->world->cones, size);
+./srcs/xml_parser/parse_camera.c:			parse_vec3d(&world->camera.pos, cur);
+./srcs/xml_parser/parse_camera.c:			parse_vec3d(&world->camera.look_at, cur);
+./srcs/xml_parser/parse_camera.c:			parse_tra(&world->camera.pos, cur);
+./srcs/xml_parser/parse_camera.c:			parse_rot_cam(&world->camera, cur);
+./srcs/xml_parser/parse_camera.c:	get_camera_axes(&world->camera);
+./srcs/xml_parser/parse_cone.c:	add_cone(&world->cones_tmp, new_cone(co, world->id++));
+./srcs/xml_parser/parse_cube.c:	add_cube(&world->cubes_tmp, new_cube(c, world->id++));
+./srcs/xml_parser/parse_cylinder.c:	add_cylinder(&world->cylinders_tmp, new_cylinder(cy, world->id++));
+./srcs/xml_parser/parse_disk.c:	add_disk(&world->disks_tmp, new_disk(d, world->id++));
+./srcs/xml_parser/parse_h_cube.c:	add_h_cube(&world->h_cubes_tmp, new_h_cube(c, world->id++));
+./srcs/xml_parser/parse_hyperboloid.c:	add_hyperboloid(&world->hyperboloids_tmp, new_hyperboloid(h, world->id++));
+./srcs/xml_parser/parse_init_color.c:	world->ambient.color = a->color;
+./srcs/xml_parser/parse_init_color.c:	world->ambient.intensity = a->intensity;
+./srcs/xml_parser/parse_light.c:	add_light(&world->lights_tmp, new_light(l, world->id++));
+./srcs/xml_parser/parse_mobius.c:	add_mobius(&world->mobius_tmp, new_mobius(s, world->id++));
+./srcs/xml_parser/parse_paraboloid.c:	add_paraboloid(&world->paraboloids_tmp, new_paraboloid(p, world->id++));
+./srcs/xml_parser/parse_plane.c:	add_plan(&world->planes_tmp, new_plan(p, world->id++));
+./srcs/xml_parser/parse_sphere.c:	add_sphere(&world->spheres_tmp, new_sphere(s, world->id++));
+./srcs/xml_parser/parse_torus.c:	add_torus(&world->torus_tmp, new_torus(t, world->id++));
+./srcs/xml_parser/parse_triangle.c:	add_triangle(&world->triangles_tmp, new_triangle(t, world->id++));
+./srcs/xml_parser/parser.c:	world->title = ft_strjoin("Title : ", (char*)title);
+./srcs/xml_saver/xml_save_objects.c:	node = xml_save_vec3d(&world->camera.pos, "pos", object);
+./srcs/xml_saver/xml_save_objects.c:	node = xml_save_vec3d(&world->camera.look_at, "dir", object);
+./srcs/xml_saver/xml_save_objects.c:	ptr = world->lights;
+./srcs/xml_saver/xml_save_objects.c:	while (world->lights != NULL)
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_vec3d(&world->lights->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_rgb(&world->lights->color, "color", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->lights->intensity_coef, "intensity",
+./srcs/xml_saver/xml_save_objects.c:		world->lights = world->lights->next;
+./srcs/xml_saver/xml_save_objects.c:	world->lights = ptr;
+./srcs/xml_saver/xml_save_objects.c:	node = xml_save_rgb(&world->ambient.color, "color", object);
+./srcs/xml_saver/xml_save_objects.c:	node = xml_save_one_data(world->ambient.intensity, "intensity", object);
+./srcs/xml_saver/xml_save_objects.c:	ptr = world->planes;
+./srcs/xml_saver/xml_save_objects.c:	while (world->planes != NULL)
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_vec3d(&world->planes->pos, "origin", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_vec3d(&world->planes->up, "normal", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_rgb(&world->planes->color, "color", object);
+./srcs/xml_saver/xml_save_objects.c:		if (world->planes->chess.r != -1)
+./srcs/xml_saver/xml_save_objects.c:			node = xml_save_rgb(&world->planes->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->planes->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->planes->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects.c:		world->planes = world->planes->next;
+./srcs/xml_saver/xml_save_objects.c:	world->planes = ptr;
+./srcs/xml_saver/xml_save_objects.c:	ptr = world->spheres;
+./srcs/xml_saver/xml_save_objects.c:	while (world->spheres != NULL)
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_vec3d(&world->spheres->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->spheres->radius, "radius", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_rgb(&world->spheres->color, "color", object);
+./srcs/xml_saver/xml_save_objects.c:		if (world->spheres->chess.r != -1)
+./srcs/xml_saver/xml_save_objects.c:			node = xml_save_rgb(&world->spheres->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->spheres->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects.c:		node = xml_save_one_data(world->spheres->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects.c:		world->spheres = world->spheres->next;
+./srcs/xml_saver/xml_save_objects.c:	world->spheres = ptr;
+./srcs/xml_saver/xml_save_objects_2.c:	ptr = world->cylinders;
+./srcs/xml_saver/xml_save_objects_2.c:	while (world->cylinders != NULL)
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cylinders->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cylinders->up, "normal", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cylinders->radius, "radius", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_rgb(&world->cylinders->color, "color", object);
+./srcs/xml_saver/xml_save_objects_2.c:		if (world->cylinders->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_2.c:			node = xml_save_rgb(&world->cylinders->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cylinders->reflection_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cylinders->refraction_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		world->cylinders = world->cylinders->next;
+./srcs/xml_saver/xml_save_objects_2.c:	world->cylinders = ptr;
+./srcs/xml_saver/xml_save_objects_2.c:	ptr = world->cones;
+./srcs/xml_saver/xml_save_objects_2.c:	while (world->cones != NULL)
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cones->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cones->up, "normal", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cones->half_angle, "radius", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cones->height, "height", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cones->min, "min", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->cones->max, "max", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_rgb(&world->cones->color, "color", object);
+./srcs/xml_saver/xml_save_objects_2.c:		if (world->cones->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_2.c:			node = xml_save_rgb(&world->cones->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cones->reflection_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->cones->refraction_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		world->cones = world->cones->next;
+./srcs/xml_saver/xml_save_objects_2.c:	world->cones = ptr;
+./srcs/xml_saver/xml_save_objects_2.c:	ptr = world->disks;
+./srcs/xml_saver/xml_save_objects_2.c:	while (world->disks != NULL)
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->disks->pos, "origin", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->disks->up, "normal", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->disks->radius, "radius", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_rgb(&world->disks->color, "color", object);
+./srcs/xml_saver/xml_save_objects_2.c:		if (world->disks->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_2.c:			node = xml_save_rgb(&world->disks->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->disks->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->disks->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_2.c:		world->disks = world->disks->next;
+./srcs/xml_saver/xml_save_objects_2.c:	world->disks = ptr;
+./srcs/xml_saver/xml_save_objects_2.c:	ptr = world->paraboloids;
+./srcs/xml_saver/xml_save_objects_2.c:	while (world->paraboloids != NULL)
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->paraboloids->top, "top", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->paraboloids->normal, "normal", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->paraboloids->distance,
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->paraboloids->maxm, "height", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_rgb(&world->paraboloids->color, "color", object);
+./srcs/xml_saver/xml_save_objects_2.c:		if (world->paraboloids->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_2.c:			node = xml_save_rgb(&world->paraboloids->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->paraboloids->reflection_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->paraboloids->refraction_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		world->paraboloids = world->paraboloids->next;
+./srcs/xml_saver/xml_save_objects_2.c:	world->paraboloids = ptr;
+./srcs/xml_saver/xml_save_objects_2.c:	ptr = world->hyperboloids;
+./srcs/xml_saver/xml_save_objects_2.c:	while (world->hyperboloids != NULL)
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->hyperboloids->top, "top", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_vec3d(&world->hyperboloids->normal, "normal", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->hyperboloids->radius, "radius", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->hyperboloids->maxm, "height", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_rgb(&world->hyperboloids->color, "color", object);
+./srcs/xml_saver/xml_save_objects_2.c:		if (world->hyperboloids->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_2.c:			node = xml_save_rgb(&world->hyperboloids->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->hyperboloids->reflection_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		node = xml_save_one_data(world->hyperboloids->refraction_coef,
+./srcs/xml_saver/xml_save_objects_2.c:		world->hyperboloids = world->hyperboloids->next;
+./srcs/xml_saver/xml_save_objects_2.c:	world->hyperboloids = ptr;
+./srcs/xml_saver/xml_save_objects_3.c:	ptr = world->torus;
+./srcs/xml_saver/xml_save_objects_3.c:	while (world->torus != NULL)
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->torus->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->torus->radius_small, "radius_small",\
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->torus->radius_big, "radius_big", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_rgb(&world->torus->color, "color", object);
+./srcs/xml_saver/xml_save_objects_3.c:		if (world->torus->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_3.c:			node = xml_save_rgb(&world->torus->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->torus->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->torus->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_3.c:		world->torus = world->torus->next;
+./srcs/xml_saver/xml_save_objects_3.c:	world->torus = ptr;
+./srcs/xml_saver/xml_save_objects_3.c:	ptr = world->mobius;
+./srcs/xml_saver/xml_save_objects_3.c:	while (world->mobius != NULL)
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->mobius->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->mobius->radius, "radius", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_rgb(&world->mobius->color, "color", object);
+./srcs/xml_saver/xml_save_objects_3.c:		if (world->mobius->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_3.c:			node = xml_save_rgb(&world->mobius->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->mobius->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->mobius->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_3.c:		world->mobius = world->mobius->next;
+./srcs/xml_saver/xml_save_objects_3.c:	world->mobius = ptr;
+./srcs/xml_saver/xml_save_objects_3.c:	ptr = world->h_cubes;
+./srcs/xml_saver/xml_save_objects_3.c:	while (world->h_cubes != NULL)
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->h_cubes->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_rgb(&world->h_cubes->color, "color", object);
+./srcs/xml_saver/xml_save_objects_3.c:		if (world->h_cubes->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_3.c:			node = xml_save_rgb(&world->h_cubes->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->h_cubes->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->h_cubes->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_3.c:		world->h_cubes = world->h_cubes->next;
+./srcs/xml_saver/xml_save_objects_3.c:	world->h_cubes = ptr;
+./srcs/xml_saver/xml_save_objects_3.c:	ptr = world->cubes;
+./srcs/xml_saver/xml_save_objects_3.c:	while (world->cubes != NULL)
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->cubes->min, "min", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->cubes->max, "max", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_rgb(&world->cubes->color, "color", object);
+./srcs/xml_saver/xml_save_objects_3.c:		if (world->cubes->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_3.c:			node = xml_save_rgb(&world->cubes->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->cubes->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->cubes->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_3.c:		world->cubes = world->cubes->next;
+./srcs/xml_saver/xml_save_objects_3.c:	world->cubes = ptr;
+./srcs/xml_saver/xml_save_objects_3.c:	ptr = world->triangles;
+./srcs/xml_saver/xml_save_objects_3.c:	while (world->triangles != NULL)
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->triangles->pos, "pos", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->triangles->v1, "v1", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_vec3d(&world->triangles->v2, "v2", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_rgb(&world->triangles->color, "color", object);
+./srcs/xml_saver/xml_save_objects_3.c:		if (world->triangles->chess.r != -1)
+./srcs/xml_saver/xml_save_objects_3.c:			node = xml_save_rgb(&world->triangles->chess, "chess", object);
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->triangles->reflection_coef, "reflection",
+./srcs/xml_saver/xml_save_objects_3.c:		node = xml_save_one_data(world->triangles->refraction_coef, "refraction",
+./srcs/xml_saver/xml_save_objects_3.c:		world->triangles = world->triangles->next;
+./srcs/xml_saver/xml_save_objects_3.c:	world->triangles = ptr;
+./srcs/xml_saver/xml_saver.c:	if (world->lights_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->ambient.intensity)
+./srcs/xml_saver/xml_saver.c:	if (world->planes_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->spheres_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->cylinders_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->cones_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->disks_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->paraboloids_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->hyperboloids_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->torus_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->mobius_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->h_cubes_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->cubes_len != 0)
+./srcs/xml_saver/xml_saver.c:	if (world->triangles_len != 0)
+./srcs/xml_saver/xml_saver.c:	xmlNewProp(root_node, BAD_CAST "name", BAD_CAST(world->title + 13));
+./tmp/ray_tracer.txt:								world->viewplane.up_left,
+./tmp/ray_tracer.txt:									world->camera.right_v,
+./tmp/ray_tracer.txt:									world->viewplane.x_indent * x)),
+./tmp/ray_tracer.txt:								world->camera.up_v,
+./tmp/ray_tracer.txt:								world->viewplane.y_indent * y));
+./tmp/ray_tracer.txt:					world->camera.pos,
+./tmp/ray_tracer.txt:	ray->origin = world->camera.pos;
+./tmp/ray_tracer.txt:		if (get_shadow(world, intersection, world->lights) == 1)
+./tmp/ray_tracer.txt:			return (get_light_at(world->lights, intersection));
+./tmp/rt_main:	world->spheres_len = 1;
+./tmp/rt_main:	world->planes_len = 1;
+./tmp/rt_main:	world->cones_len = 1;
+./tmp/rt_main:	world->cylinders_len = 1;
+./tmp/rt_main:	world->lights_len = 1;
+./tmp/rt_main:	world->viewplane.width = 0.28;
+./tmp/rt_main:	world->viewplane.height = 0.28;
+./tmp/rt_main:	world->viewplane.x_res = 400;
+./tmp/rt_main:	world->viewplane.y_res = 400;
+./tmp/rt_main:	world->viewplane.x_indent = world->viewplane.width /
+./tmp/rt_main:									(double)world->viewplane.x_res;
+./tmp/rt_main:	world->viewplane.y_indent = world->viewplane.height /
+./tmp/rt_main:									(double)world->viewplane.y_res;
+./tmp/rt_main:	world->viewplane.dist = 1;
+./tmp/rt_main:	world->line = 0;
+./tmp/rt_main:	world->camera.pos = new_vector(0, 0, 0);
+./tmp/rt_main:	//world->camera.to = new_vector(0, 0, 1);
+./tmp/rt_main:	world->camera.dir_v = new_vector(0, 0, 1);
+./tmp/rt_main:	world->camera.up_v = new_vector(0, 1, 0);
+./tmp/rt_main:	world->camera.right_v = new_vector(1, 0, 0);
+./tmp/rt_main:	world->spheres = (t_sphere*)malloc(sizeof(t_sphere) * 1);
+./tmp/rt_main:	world->planes = (t_plane*)malloc(sizeof(t_plane) * world->planes_len);
+./tmp/rt_main:	world->cones = (t_cone*)malloc(sizeof(t_cone) * world->cones_len);
+./tmp/rt_main:	world->cylinders = (t_cylinder*)malloc(sizeof(t_cylinder) * world->cylinders_len);
+./tmp/rt_main:	world->lights = (t_light*)malloc(sizeof(t_light) * world->lights_len);
+./tmp/rt_main:	world->spheres[0].radius = 0.2;
+./tmp/rt_main:	world->spheres[0].pos.x = 0.5;
+./tmp/rt_main:	world->spheres[0].pos.y = 0;
+./tmp/rt_main:	world->spheres[0].pos.z = 7;
+./tmp/rt_main:	// world->spheres[1].radius = 0.1;
+./tmp/rt_main:	// world->spheres[1].pos.x = 0.1;
+./tmp/rt_main:	// world->spheres[1].pos.y = 0;
+./tmp/rt_main:	// world->spheres[1].pos.z = 6;
+./tmp/rt_main:	// world->spheres[2].radius = 0.1;
+./tmp/rt_main:	// world->spheres[2].pos.x = -0.2;
+./tmp/rt_main:	// world->spheres[2].pos.y = 0;
+./tmp/rt_main:	// world->spheres[2].pos.z = 5;
+./tmp/rt_main:	world->lights[0].pos.x = 1;
+./tmp/rt_main:	world->lights[0].pos.y = 0;
+./tmp/rt_main:	world->lights[0].pos.z = 5;
+./tmp/rt_main:	world->planes[0].pos.x = 0;
+./tmp/rt_main:	world->planes[0].pos.y = -0.5;
+./tmp/rt_main:	world->planes[0].pos.z = 1;
+./tmp/rt_main:	world->planes[0].up.x = 0;
+./tmp/rt_main:	world->planes[0].up.y = 0;
+./tmp/rt_main:	world->planes[0].up.z = 1;
+./tmp/rt_main:	world->cones[0].pos.x = 0;
+./tmp/rt_main:	world->cones[0].pos.y = 0;
+./tmp/rt_main:	world->cones[0].pos.z = 7;
+./tmp/rt_main:	world->cones[0].up.x = 0;
+./tmp/rt_main:	world->cones[0].up.y = 1;
+./tmp/rt_main:	world->cones[0].up.z = 7;
+./tmp/rt_main:	world->cones[0].half_angle = 20;
+./tmp/rt_main:	world->cylinders[0].pos.x = 0;
+./tmp/rt_main:	world->cylinders[0].pos.y = 0;
+./tmp/rt_main:	world->cylinders[0].pos.z = 7;
+./tmp/rt_main:	world->cylinders[0].up.x = 0;
+./tmp/rt_main:	world->cylinders[0].up.y = 1;
+./tmp/rt_main:	world->cylinders[0].up.z = 7;
+./tmp/rt_main:	world->cylinders[0].radius = 0.1;
+./tmp/rt_main:	// world->planes[1].pos.x = -0.2;
+./tmp/rt_main:	// world->planes[1].pos.y = -0.4;
+./tmp/rt_main:	// world->planes[1].pos.z = 1;
+./tmp/rt_main:	// world->planes[1].up.x = 0;
+./tmp/rt_main:	// world->planes[1].up.y = 0;
+./tmp/rt_main:	// world->planes[1].up.z = 1;
+./tmp/rt_main:	// add_sphere_tmp(&world->spheres, 0.1, new_vector(0, 0, 7));
+./tmp/rt_main:	// world->spheres[0].radius = 0.1;
+./tmp/rt_main:	// world->spheres[0].pos = new_vector(0, 0, 7);
+./tmp/rt_main:	world->spheres[0].color = sphere_c;
+./tmp/rt_main:	// world->spheres[2].color = sphere_c;	
+./tmp/rt_main:	world->planes[0].color = plane_c;
+./tmp/rt_main:	world->cones[0].color = plane_c;
+./tmp/rt_main:	world->cylinders[0].color = plane_c;	
+./tmp/rt_main:	// world->planes[1].color = plane_c;
+./tmp/rt_main:// 	// if (world->render_type == "cpu")
+./tmp/rt_main:// 	size = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+./tmp/rt_main:// 	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);	
+./tmp/rt_main:	world->window.id = SDL_CreateWindow("Rtv1 v0.9.1", 100, 100, WIN_WIDTH,
+./tmp/rt_main:	world->window.screen = SDL_GetWindowSurface(world->window.id);
+./tmp/rt_main:	size_main = world->viewplane.x_res * world->viewplane.y_res * sizeof(int);
+./tmp/rt_main:		render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 0);
+./tmp/rt_main:		SDL_UpdateWindowSurface(world->window.id);
+./tmp/rt_main:	render_cuda(a_h, world->viewplane.x_res, world->viewplane.y_res, *world, 1);
+./tmp/rt_main:	SDL_FreeSurface(world->window.screen);
+./tmp/rt_main:	SDL_DestroyWindow(world->window.id);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_paraboloids.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:34:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:12:48 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->paraboloids[i].normal.z, "NORMAL Z:");
 	ui_widget_value_infos(c, m, &w->paraboloids[i].distance, "DISTANCE:");
 	ui_widget_value_infos(c, m, &w->paraboloids[i].maxm, "MAXM:");
-	ui_widget_value_infos(c, m, &w->paraboloids[i].reflection_coef,\
-						"REFLECTION:");
-	ui_widget_value_infos(c, m, &w->paraboloids[i].refraction_coef,\
-						"REFRACTION:");
-	ui_widget_value_infos(c, m, &w->paraboloids[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->paraboloids[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->paraboloids[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->paraboloids[i].transparence_coef,\
+						"Transparence:");
 	draw_infos_next(c, m, &w->paraboloids[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->paraboloids[i].perlin);

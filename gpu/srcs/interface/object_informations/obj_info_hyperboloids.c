@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_hyperboloids.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:29:15 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:10:00 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->hyperboloids[i].normal.z, "NORMAL Z:");
 	ui_widget_value_infos(c, m, &w->hyperboloids[i].radius, "RADIUS:");
 	ui_widget_value_infos(c, m, &w->hyperboloids[i].maxm, "MAXM:");
-	ui_widget_value_infos(c, m, &w->hyperboloids[i].reflection_coef,\
+	ui_slide_float_0_to_1(c, &w->hyperboloids[i].reflection_coef,\
 						"REFLECTION:");
-	ui_widget_value_infos(c, m, &w->hyperboloids[i].refraction_coef,\
+	ui_slide_float_0_to_2(c, &w->hyperboloids[i].refraction_coef,\
 						"REFRACTION:");
-	ui_widget_value_infos(c, m, &w->hyperboloids[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->hyperboloids[i].transparence_coef,\
+						"Transparence:");
 	draw_infos_next(c, m, &w->hyperboloids[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->hyperboloids[i].perlin);

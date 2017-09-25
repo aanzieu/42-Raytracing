@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_lights.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/21 18:30:39 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:15:15 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.x, "POS X:");
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.y, "POS Y:");
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.z, "POS Z:");
-	ui_widget_value_infos(ctx, m, &w->lights[i].intensity_coef, "INTENSITY:");
+	ui_slide_float_0_to_1(ctx, &w->lights[i].intensity_coef, "INTENSITY:");
 	draw_apply_button(ctx, m, w);
 }
 

@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/09/08 18:16:00 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/25 15:11:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				launch_thread(t_world *world, int y_min, int y_max, int aa)
 			ft_putendl_fd("Error : Can't init launch_rtv1", 1);
 	}
 	i = -1;
-	world->load = 0;
 	while (++i < NB_TH)
 		pthread_join(world->thread[i], NULL);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_disks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:27:30 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:09:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->disks[i].up.y, "NORMAL Y:");
 	ui_widget_value_infos(c, m, &w->disks[i].up.z, "NORMAL Z:");
 	ui_widget_value_infos(c, m, &w->disks[i].radius, "RADIUS:");
-	ui_widget_value_infos(c, m, &w->disks[i].reflection_coef, "REFLECTION:");
-	ui_widget_value_infos(c, m, &w->disks[i].refraction_coef, "REFRACTION:");
-	ui_widget_value_infos(c, m, &w->disks[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->disks[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->disks[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->disks[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->disks[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->disks[i].perlin);

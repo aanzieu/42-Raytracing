@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_obj_parameters.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/21 18:43:09 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:15:57 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		objects_param(struct nk_context *ctx, struct media *media,\
 		nk_rect(world->screen.width - 250, 52, 250, world->screen.height - 52),\
 		NK_WINDOW_TITLE | NK_WINDOW_BORDER))
 	{
-		ui_header(ctx, media, "---- Selected Object ----");
+		ui_header(ctx, media, "---- Selected Object");
 		find_informations_object(world, ctx, media);
 	}
 	nk_style_set_font(ctx, &media->font_20->handle);

@@ -187,6 +187,8 @@ int interface_launch(t_world *world, char *argv)
 	glDeleteTextures(1,(const GLuint*)&media.dir.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.del.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.convert.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.zoom_in.handle.id);
+	glDeleteTextures(1,(const GLuint*)&media.zoom_out.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.icons.default_file.handle.id);
 
 	file_browser_free(&browser);

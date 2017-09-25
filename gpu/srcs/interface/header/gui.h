@@ -55,14 +55,11 @@ ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *valu
 int
 ui_widget_value_infos_cam(struct nk_context *ctx, struct media *media, double *value, char *title);
 int
-ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *value, char *title);
+ui_slide_int_0_to_16(struct nk_context *ctx, int *value, char *title);
 int
 ui_slide_float_0_to_1(struct nk_context *ctx, double *value, char *title);
 int
 ui_slide_float_0_to_2(struct nk_context *ctx, double *value, char *title);
-int
-ui_slide_float_0_to_100(struct nk_context *ctx, double *value, char *title);
-
 
 /* ===============================================================
  *
@@ -96,6 +93,7 @@ int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 void	objects_param(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
+void	draw_topbar_add_objects(struct nk_context *c, struct media *m, t_world *w);
 void 	camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world);
 void	render_scene(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
 

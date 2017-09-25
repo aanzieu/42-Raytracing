@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_spheres.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 19:46:14 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:23:41 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->spheres[i].pos.y, "POS Y:");
 	ui_widget_value_infos(c, m, &w->spheres[i].pos.z, "POS Z:");
 	ui_widget_value_infos(c, m, &w->spheres[i].radius, "RADIUS:");
-	draw_apply_button(c, m, w);
 	ui_slide_float_0_to_1(c, &w->spheres[i].reflection_coef, "REFLECTION:");
 	ui_slide_float_0_to_2(c, &w->spheres[i].refraction_coef, "REFRACTION:");
-	ui_slide_float_0_to_1(c, &w->spheres[i].transparence_coef, "TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->spheres[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->spheres[i].perlin, w);
+	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->spheres[i].perlin);
 }
 
@@ -61,7 +61,7 @@ void		sphere_informations(t_world *world, struct nk_context *ctx,\
 			header_info(ctx, media->sphere, "SPHERE");
 			draw_infos(ctx, media, world, i);
 			ui_widget_centered(ctx, media, 5);
-			ui_header(ctx, media, "---- Colors ----");
+			ui_header(ctx, media, "---- Colors");
 			nk_style_set_font(ctx, &media->font_14->handle);
 			draw_color_picker(ctx, &world->spheres[i].color, world);
 			ui_widget_centered(ctx, media, 30);

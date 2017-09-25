@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_scenes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:54:11 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 14:10:08 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/22 14:05:33 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	launch_scene_select(t_world *world, int i)
 }
 
 void		press_launch(struct nk_context *ctx, t_world *world,\
-						int img_active[3])
+						int img_active[4])
 {
 	if (nk_button_label(ctx, "Launch"))
 	{
@@ -51,6 +51,8 @@ void		press_launch(struct nk_context *ctx, t_world *world,\
 			launch_scene_select(world, 3);
 		else if (img_active[2] == 4)
 			launch_scene_select(world, 4);
+		else if (img_active[2] == 5)
+			launch_scene_select(world, 5);
 		img_active[0] = 0;
 		img_active[1] = 0;
 		nk_popup_close(ctx);

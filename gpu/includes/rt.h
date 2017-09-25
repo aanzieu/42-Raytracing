@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/21 10:21:16 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/25 15:16:43 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,6 @@ typedef struct		s_world
 	t_vec2d			pos_render;
 	int				redraw;
 	int				img_scene;
-	size_t			load;
 	int				aa;
 	int				win_width;
 	int				win_height;
@@ -257,7 +256,7 @@ typedef struct		s_world
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
 
-	int					*p;
+	int				*p;
 }					t_world;
 
 void 			perlin_noise_setup(t_world *world);

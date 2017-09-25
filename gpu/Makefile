@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
+#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/21 17:02:00 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/25 14:52:50 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
+#GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
+GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
 GLEW = frameworks/glew/lib/libGLEW.a
 
 CC = gcc
@@ -107,6 +108,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/gui_render_scene.c \
 				$(SRC_DIR)/interface/gui_topbar.c \
 				$(SRC_DIR)/interface/gui_topbar2.c \
+				$(SRC_DIR)/interface/gui_topbar_add_obj.c \
 				$(SRC_DIR)/interface/gui_cam_controller.c \
 				$(SRC_DIR)/interface/launch_scenes.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_left.c \

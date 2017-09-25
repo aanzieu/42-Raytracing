@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_planes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:35:46 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:13:03 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->planes[i].up.x, "NORMAL X:");
 	ui_widget_value_infos(c, m, &w->planes[i].up.y, "NORMAL Y:");
 	ui_widget_value_infos(c, m, &w->planes[i].up.z, "NORMAL Z:");
-	ui_widget_value_infos(c, m, &w->planes[i].reflection_coef,\
-						"REFLECTION:");
-	ui_widget_value_infos(c, m, &w->planes[i].refraction_coef,\
-						"REFRACTION:");
-	ui_widget_value_infos(c, m, &w->planes[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->planes[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->planes[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->planes[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->planes[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->planes[i].perlin);

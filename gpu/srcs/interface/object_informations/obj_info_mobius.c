@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_mobius.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 17:14:02 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:32:52 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:11:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->mobius[i].pos.y, "POS Y:");
 	ui_widget_value_infos(c, m, &w->mobius[i].pos.z, "POS Z:");
 	ui_widget_value_infos(c, m, &w->mobius[i].radius, "RADIUS:");
-	ui_widget_value_infos(c, m, &w->mobius[i].reflection_coef, "REFLECTION:");
-	ui_widget_value_infos(c, m, &w->mobius[i].refraction_coef, "REFRACTION:");
-	ui_widget_value_infos(c, m, &w->mobius[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->mobius[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->mobius[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->mobius[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->mobius[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->mobius[i].perlin);

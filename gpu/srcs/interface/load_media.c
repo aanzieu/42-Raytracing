@@ -277,6 +277,8 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
     media->dir = icon_load("srcs/interface/icon/directory.png");
     media->convert = icon_load("srcs/interface/icon/export.png");
     media->icons.default_file = icon_load("srcs/interface/icon/default.png");
+    media->zoom_in = icon_load("srcs/interface/icon/zoom_in.png");
+    media->zoom_out = icon_load("srcs/interface/icon/zoom_out.png");
 
 	media->menu[0] = icon_load("srcs/interface/icon/plan.png");
 	media->menu[1] = icon_load("srcs/interface/icon/sphere.png");

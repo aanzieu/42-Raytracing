@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 19:33:40 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:16:20 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	draw_chess_color(struct nk_context *ctx, struct media *m,\
 	else
 		check = 1;
 	nk_style_set_font(ctx, &m->font_14->handle);
-	if (nk_checkbox_label(ctx, "ADD CHESS COLOR", &check))
+	if (nk_checkbox_label(ctx, "CHESS COLOR", &check))
 		world->redraw = 1;
 	if (!check)
 	{

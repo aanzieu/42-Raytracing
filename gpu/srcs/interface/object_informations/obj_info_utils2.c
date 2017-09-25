@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 20:04:23 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:12:32 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		draw_p_presets(struct nk_context *c, struct media *m, t_world *w,\
 	int	option;
 
 	option = get_preset_info(*p);
-	ui_header(c, m, "---- Perlin Presets ----");
+	ui_header(c, m, "---- Perlin Presets");
 	ui_widget_special_mode(c, m, 20);
 	if (nk_button_symbol_label(c, (option == 0) ?
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "NONE", NK_TEXT_LEFT))
@@ -73,16 +73,15 @@ void		draw_p_presets(struct nk_context *c, struct media *m, t_world *w,\
 void		draw_infos_next(struct nk_context *c, struct media *m, t_perlin *p,\
 						t_world *w)
 {
-	ui_header(c, m, "---- Perlin Noise ----");
 	nk_style_set_font(c, &m->font_14->handle);
-	if (ui_slide_float_0_to_1(c, &p->scale, "SCALE:"))
+	if (ui_slide_float_0_to_1(c, &p->scale, "PERLIN SCALE:"))
 	{
 		if (p->is_set == 0 && p->scale > 0)
 			p->is_set = 1;
 		if (p->scale > 0 && p->amount > 0)
 			w->redraw = 1;
 	}
-	else if (ui_widget_value_infos(c, m, &p->amount, "AMOUNT:"))
+	else if (ui_widget_value_infos(c, m, &p->amount, "PERLIN AMOUNT:"))
 	{
 		if (p->is_set == 0 && p->amount > 0)
 			p->is_set = 1;

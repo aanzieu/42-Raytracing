@@ -4260,6 +4260,8 @@ struct media {
     struct nk_image cam;
     struct nk_image rec;
     struct nk_image rec_on;
+    struct nk_image zoom_in;
+    struct nk_image zoom_out;
 	struct nk_image convert;
 	struct nk_image del;
 	struct nk_image images[9];

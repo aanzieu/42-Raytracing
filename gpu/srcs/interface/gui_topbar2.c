@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_topbar2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/19 17:25:35 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/22 14:51:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 					t_world *world, int img_active[4])
 {
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Config Popup", 0,\
-		nk_rect(380, 52, 320, 220)))
+		nk_rect(340, 52, 280, 280)))
 	{
 		select_local_cluster(ctx, media, world);
 		select_gpu_cpu(ctx, media, world);
@@ -87,10 +87,10 @@ static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
 	int	i;
 
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
-		nk_rect(90, 52, 320, 220)))
+		nk_rect(60, 52, 280, 280)))
 	{
 		i = 1;
-		nk_layout_row_static(ctx, 82, 82, 4);
+		nk_layout_row_static(ctx, 82, 82, 3);
 		while (i < 6)
 		{
 			if (nk_button_image(ctx, media->images[i]))
@@ -112,7 +112,7 @@ void		select_scene(struct nk_context *ctx, struct media *media,\
 	if (img_active[0])
 	{
 		if (nk_input_is_mouse_hovering_rect(&ctx->input,\
-			nk_rect(60, 40, 640, 232)))
+			nk_rect(60, 40, 570, 292)))
 		{
 			draw_popup_scene(ctx, media, img_active);
 			if (img_active[1])

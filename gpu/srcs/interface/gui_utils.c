@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/21 19:55:54 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 14:26:48 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,17 +125,17 @@ int ui_piemenu(struct nk_context *ctx, struct nk_vec2 pos, float radius,
 	void
 ui_header(struct nk_context *ctx, struct media *media, const char *title)
 {
-	struct	nk_color color = {255, 123, 0, 255};
-	nk_style_set_font(ctx, &media->font_22->handle);
+	struct nk_color	color = {255, 123, 0, 255};
+	nk_style_set_font(ctx, &media->font_20->handle);
 	nk_layout_row_dynamic(ctx, 20, 1);
-	nk_label_colored(ctx, title, NK_TEXT_CENTERED, color);
+	nk_label_colored(ctx, title, NK_TEXT_LEFT, color);
 }
 
 	void
 ui_widget(struct nk_context *ctx, struct media *media, float height)
 {
 	static const float ratio[] = {0.15f, 0.85f};
-	nk_style_set_font(ctx, &media->font_22->handle);
+	nk_style_set_font(ctx, &media->font_20->handle);
 	nk_layout_row(ctx, NK_DYNAMIC, height, 2, ratio);
 	nk_spacing(ctx, 1);
 }
@@ -143,7 +143,7 @@ ui_widget(struct nk_context *ctx, struct media *media, float height)
 	void
 ui_widget_centered(struct nk_context *ctx, struct media *media, float height)
 {
-	nk_style_set_font(ctx, &media->font_22->handle);
+	nk_style_set_font(ctx, &media->font_14->handle);
 	nk_layout_row_dynamic(ctx, height, 1);
 	nk_spacing(ctx, 0);
 }
@@ -190,8 +190,7 @@ ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *valu
 	nk_spacing(ctx, 0);
 	return(res == *value ? 0 : 1);
 }
-int
-ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *value, char *title)
+int	ui_slide_int_0_to_16(struct nk_context *ctx, int *value, char *title)
 {
 	int		step;
 	char	*nb;
@@ -199,20 +198,19 @@ ui_widget_value_slider_int(struct nk_context *ctx, struct media *media, int *val
 
 	step = (*value == 1) ? 1 : 2;
 	nb = ft_itoa(*value);
-	nk_style_set_font(ctx, &media->font_18->handle);
-	nk_layout_row_dynamic(ctx, 15, 1);
-	nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
-	nk_layout_row_begin(ctx, NK_STATIC, 40, 3);
+	nk_layout_row_begin(ctx, NK_STATIC, 20, 4);
 	{
-		nk_layout_row_push(ctx, 10);
+		nk_layout_row_push(ctx, 80);
+		nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
+		nk_layout_row_push(ctx, 15);
 		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
 		ft_strdel(&nb);
-		nk_layout_row_push(ctx, 180);
+		nk_layout_row_push(ctx, 90);
 		if(nk_slider_int(ctx, 0, value, 16, step))
 			press = 2;
 		if (*value == 0)
 			*value = 1;
-		nk_layout_row_push(ctx, 10);
+		nk_layout_row_push(ctx, 15);
 		nk_text(ctx, "16", ft_strlen("16"), NK_TEXT_LEFT);
 	}
 	nk_layout_row_end(ctx);
@@ -240,7 +238,7 @@ int	ui_slide_float_0_to_1(struct nk_context *ctx, double *value,\
 		nk_layout_row_push(ctx, 15);
 		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
 		ft_strdel(&nb);
-		nk_layout_row_push(ctx, 100);
+		nk_layout_row_push(ctx, 90);
 		if(nk_slider_float(ctx, 0, &tmp, 1.0f, 0.1f))
 			press = 2;
 		*value = tmp;
@@ -272,40 +270,8 @@ int	ui_slide_float_0_to_2(struct nk_context *ctx, double *value,\
 		nk_layout_row_push(ctx, 15);
 		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
 		ft_strdel(&nb);
-		nk_layout_row_push(ctx, 100);
+		nk_layout_row_push(ctx, 90);
 		if(nk_slider_float(ctx, 0, &tmp, 2.0f, 0.2f))
-			press = 2;
-		*value = tmp;
-		nk_layout_row_push(ctx, 15);
-		nk_text(ctx, "100", ft_strlen("100"), NK_TEXT_LEFT);
-	}
-	nk_layout_row_end(ctx);
-	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
-	{
-		press = -1;
-		return (1);
-	}
-	return (0);
-}
-
-int	ui_slide_float_0_to_100(struct nk_context *ctx, double *value,\
-									char *title)
-{
-	float		tmp;
-	char		*nb;
-	static int	press;
-
-	tmp = (float)*value;
-	nb = ft_itoa(round(*value * 100));
-	nk_layout_row_begin(ctx, NK_STATIC, 20, 4);
-	{
-		nk_layout_row_push(ctx, 80);
-		nk_text(ctx, title, ft_strlen(title), NK_TEXT_LEFT);
-		nk_layout_row_push(ctx, 15);
-		nk_text(ctx, nb, ft_strlen(nb), NK_TEXT_LEFT);
-		ft_strdel(&nb);
-		nk_layout_row_push(ctx, 100);
-		if(nk_slider_float(ctx, 0, &tmp, 100.0f, 1.0f))
 			press = 2;
 		*value = tmp;
 		nk_layout_row_push(ctx, 15);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_torus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:39:22 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:13:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->torus[i].pos.z, "POS Z:");
 	ui_widget_value_infos(c, m, &w->torus[i].radius_small, "OUTTER RADIUS:");
 	ui_widget_value_infos(c, m, &w->torus[i].radius_big, "INNER RADIUS:");
-	ui_widget_value_infos(c, m, &w->torus[i].reflection_coef, "REFLECTION:");
-	ui_widget_value_infos(c, m, &w->torus[i].refraction_coef, "REFRACTION:");
-	ui_widget_value_infos(c, m, &w->torus[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->torus[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->torus[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->torus[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->torus[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->torus[i].perlin);

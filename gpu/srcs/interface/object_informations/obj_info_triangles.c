@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_triangles.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/21 18:39:11 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:15:02 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.x, "SIDE2 X:");
 	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.y, "SIDE2 Y:");
 	ui_widget_value_infos(ctx, m, &w->triangles[i].v2.z, "SIDE2 Z:");
-	ui_widget_value_infos(ctx, m, &w->triangles[i].reflection_coef,\
-						"REFLECTION:");
-	ui_widget_value_infos(ctx, m, &w->triangles[i].refraction_coef,\
-						"REFRACTION:");
-	ui_widget_value_infos(ctx, m, &w->triangles[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(ctx, &w->triangles[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(ctx, &w->triangles[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(ctx, &w->triangles[i].transparence_coef,\
+						"Transparence:");
 	draw_infos_next(ctx, m, &w->triangles[i].perlin, w);
 	draw_apply_button(ctx, m, w);
 	draw_p_presets(ctx, m, w, &w->triangles[i].perlin);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_h_cubes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/21 18:28:26 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:09:29 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->h_cubes[i].pos.x, "POS X:");
 	ui_widget_value_infos(c, m, &w->h_cubes[i].pos.y, "POS Y:");
 	ui_widget_value_infos(c, m, &w->h_cubes[i].pos.z, "POS Z:");
-	ui_widget_value_infos(c, m, &w->h_cubes[i].reflection_coef, "REFLECTION:");
-	ui_widget_value_infos(c, m, &w->h_cubes[i].refraction_coef, "REFRACTION:");
-	ui_widget_value_infos(c, m, &w->h_cubes[i].transparence_coef,\
-						"TRANSPARENCE:");
+	ui_slide_float_0_to_1(c, &w->h_cubes[i].reflection_coef, "REFLECTION:");
+	ui_slide_float_0_to_2(c, &w->h_cubes[i].refraction_coef, "REFRACTION:");
+	ui_slide_float_0_to_1(c, &w->h_cubes[i].transparence_coef, "Transparence:");
 	draw_infos_next(c, m, &w->h_cubes[i].perlin, w);
 	draw_apply_button(c, m, w);
 	draw_p_presets(c, m, w, &w->h_cubes[i].perlin);
