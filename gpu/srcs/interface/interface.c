@@ -29,7 +29,7 @@ void	die(const char *fmt, ...)
 
 void	error_callback(int e, const char *d)
 {
-	printf("Error %d: %s\n", e, d);
+	ft_printf("Error %d: %s\n", e, d);
 }
 
 void	text_input(GLFWwindow *win, unsigned int codepoint)
@@ -56,12 +56,10 @@ void	gui_calls(struct file_browser *browser, struct nk_context *ctx,\
 		render_scene(ctx, media, world->a_h, world);
 		objects_param(ctx, media, world);
 		scene_topbar(ctx, media, world);
-		//file_browser_run(browser, ctx);
 	}
 	else
 	{
 		objects_param(ctx, media, world);
 		scene_topbar(ctx, media, world);
-		//file_browser_run(browser, ctx);
 	}
 }

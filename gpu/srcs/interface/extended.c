@@ -102,6 +102,13 @@ int interface_launch(t_world *world, char *argv)
 		nk_input_key(&ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_S, glfwGetKey(win, GLFW_KEY_S) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_A, glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_D, glfwGetKey(win, GLFW_KEY_D) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
+		nk_input_key(&ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{

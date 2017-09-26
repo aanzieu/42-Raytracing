@@ -18,68 +18,6 @@
 #include "../header/gui.h"
 #include "float.h"
 
-int	find_object(t_world *world, t_intersection *inter, t_vec2d *pos,struct nk_context *ctx)
-{
-	int	i = 0;
-	t_sphere *tmp = world->spheres_tmp;
-
-	(void)ctx;
-	float	vitesse;
-	t_ray ray1;
-	t_ray ray2;
-
-	//Fonctionne MAL a revoir
-	t_vec3d coeff1;
-	t_vec3d coeff2;
-	get_up_left(world);
-	get_ray_direction(*(world), &ray1, world->xy.x, world->xy.y);
-	get_ray_direction(*(world), &ray2, pos->x, pos->y);
-	if(inter->type == 's')
-	{
-		while(i < world->spheres_len)
-		{
-			// printf("test\n");
-			if(world->id_save == world->spheres[i].id)
-			{
-				vitesse = vector_length(vector_substract(world->spheres[i].pos, ray1.origin)) * 0.01;
-				coeff1 = vector_substract(world->spheres[i].pos, ray1.dir);
-				coeff2 = vector_substract(world->spheres[i].pos, ray2.dir);
-				world->spheres[i].pos.x += (coeff1.x - coeff2.x);
-				world->spheres[i].pos.y += (coeff1.y - coeff2.y);// * vitesse;
-				while(tmp)
-				{
-					if(tmp->id == world->id_save){
-						tmp->pos.x += (coeff1.x - coeff2.x);
-						tmp->pos.y += (coeff1.y - coeff2.y);
-						break;
-					}
-					tmp = tmp->next;
-				}
-				return(1);
-			}
-			i++;
-		}
-	}
-	world->xy.x = pos->x;
-	world->xy.y = pos->y;
-	return(0);
-
-}
-
-int	move_object(t_world *world, struct nk_context *ctx, t_vec2d *pos, t_intersection *i)
-{
-	int	find = 1;
-
-	if(ctx->input.keyboard.keys[NK_KEY_X].down != 0)
-	{
-		if((find = find_object(world, i, pos, ctx)) == 1)
-			return(1);
-	}
-	return(0);
-
-}
-
-
 int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
 {
 	t_ray      		ray;
@@ -103,11 +41,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
 			world->id_save = intersection.id_save;
 			world->ob_save = intersection.type;
 			world->keys.select = 1;
-			if(move_object(world, ctx, &padding, &intersection))
-				return(1);
-			printf("%d id world \n", world->id_save);
-			printf("%d id inter \n", intersection.id_save);
-			return(1);//world->redraw = 1;
+			return(1);
 
 		}
 	}
