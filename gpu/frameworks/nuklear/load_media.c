@@ -6,15 +6,31 @@
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_DEFAULT_FONT
 
-#include "header/stb_image.h"
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
 #include <assert.h>
 #include <sys/types.h>
 #include <pwd.h>
 #include <uuid/uuid.h>
 #include <unistd.h>
+#include "stb_image.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
+
+void    die(const char *fmt, ...)
+{
+    va_list ap;
+
+    va_start(ap, fmt);
+    vfprintf(stderr, fmt, ap);
+    va_end(ap);
+    fputs("\n", stderr);
+    exit(EXIT_FAILURE);
+}
+
+void    error_callback(int e, const char *d)
+{
+    printf("Error %d: %s\n", e, d);
+}
 
 char* file_load(const char* path, size_t* siz)
 {
@@ -237,10 +253,10 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	 * e.g.: ctx->style.font.height = 20. */
 	nk_font_atlas_init_default(atlas);
 	nk_font_atlas_begin(atlas);
-	media->font_14 = nk_font_atlas_add_from_file(atlas, "srcs/interface/extra_font/Roboto-Regular.ttf", 14.0f, &cfg);
-	media->font_18 = nk_font_atlas_add_from_file(atlas, "srcs/interface/extra_font/Roboto-Regular.ttf", 18.0f, &cfg);
-	media->font_20 = nk_font_atlas_add_from_file(atlas, "srcs/interface/extra_font/Roboto-Regular.ttf", 20.0f, &cfg);
-	media->font_22 = nk_font_atlas_add_from_file(atlas, "srcs/interface/extra_font/Roboto-Regular.ttf", 22.0f, &cfg);
+	media->font_14 = nk_font_atlas_add_from_file(atlas, "frameworks/nuklear/extra_font/Roboto-Regular.ttf", 14.0f, &cfg);
+	media->font_18 = nk_font_atlas_add_from_file(atlas, "frameworks/nuklear/extra_font/Roboto-Regular.ttf", 18.0f, &cfg);
+	media->font_20 = nk_font_atlas_add_from_file(atlas, "frameworks/nuklear/extra_font/Roboto-Regular.ttf", 20.0f, &cfg);
+	media->font_22 = nk_font_atlas_add_from_file(atlas, "frameworks/nuklear/extra_font/Roboto-Regular.ttf", 22.0f, &cfg);
 	image = nk_font_atlas_bake(atlas, &w, &h, NK_FONT_ATLAS_RGBA32);
 	device_upload_atlas(device, image, w, h);
 	nk_font_atlas_end(atlas, nk_handle_id((int)device->font_tex), &device->null);

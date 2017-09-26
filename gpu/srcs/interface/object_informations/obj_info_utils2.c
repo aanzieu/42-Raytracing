@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/25 13:12:32 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:30:55 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 static void	draw_p_presets_next(struct nk_context *c, t_world *w, t_perlin *p)
 {

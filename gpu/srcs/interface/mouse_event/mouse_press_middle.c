@@ -2,8 +2,8 @@
 #define NK_INCLUDE_FONT_BAKING
 #include "../../../includes/rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 #include "float.h"
 
 int     remove_object_3(t_world *world, t_intersection *i)

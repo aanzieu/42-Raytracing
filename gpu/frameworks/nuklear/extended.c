@@ -6,8 +6,8 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
-#include "header/interface.h"
-#include "header/gui.h"
+#include "interface.h"
+#include "gui.h"
 #include "cluster.h"
 
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx)
@@ -102,13 +102,6 @@ int interface_launch(t_world *world, char *argv)
 		nk_input_key(&ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
 		nk_input_key(&ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_S, glfwGetKey(win, GLFW_KEY_S) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_A, glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_D, glfwGetKey(win, GLFW_KEY_D) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{
@@ -137,7 +130,6 @@ int interface_launch(t_world *world, char *argv)
 		{
 			ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 			ft_printf("Redraw Scène next time %d \n", i++);
-			// printf("print sphere.pos.x %f\n", world->spheres[1].pos.x);
 			refresh_viewplane(cluster.world);
 			if (cluster.world->mode_cluster == 1)
 			{
@@ -147,14 +139,10 @@ int interface_launch(t_world *world, char *argv)
 			}
 			else
 				rt(cluster.world);
-			//printf("couleur de world %d\n", world->a_h[640]);
-			if(cluster.world->keys.pad_0)
+			if (cluster.world->keys.pad_0)
 				effect_application(cluster.world);
 			cluster.world->redraw = 0;
 			cluster.world->reload_buffer = 1;
-			//cluster.world->aa = 1;
-
-			// world->keys.pad_0 = 0;
 		}
 		gui_calls(&browser, &ctx, &media, cluster.world);
 

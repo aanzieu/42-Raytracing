@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press.c                                        :+:      :+:    :+:   */
+/*   interface.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/12 16:14:19 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 16:25:12 by xpouzenc         ###   ########.fr       */
+/*   Created: 2017/09/26 16:05:35 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/09/26 16:14:28 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define NK_INCLUDE_MEDIA
-#define NK_INCLUDE_FONT_BAKING
-#include "rt.h"
-#include "../cuda/cudaheader/gpu_rt.h"
-#include "nuklear.h"
-#include "gui.h"
+#ifndef INTERFACE_H
+# define INTERFACE_H
 
-int	key_press(struct nk_context *ctx, t_world *world)
-{
-	if (ctx->input.keyboard.keys[NK_KEY_L].down)
-		world->keys.light_none = 1;
-	else if (ctx->input.keyboard.keys[NK_KEY_K].down)
-		world->keys.light_none = 0;
-	else
-		return (0);
-	return (1);
-}
+# include "../../../includes/rt.h"
+
+# define STB_IMAGE_IMPLEMENTATION
+# include "stb_image.h"
+
+# define NK_IMPLEMENTATION
+# include "nuklear.h"
+
+# define MIN(a,b) ((a) < (b) ? (a) : (b))
+# define LEN(a) (sizeof(a)/sizeof(a)[0])
+
+void	gui_calls(struct file_browser *browser, struct nk_context *ctx,\
+		struct media *media, t_world *world);
+
+#endif

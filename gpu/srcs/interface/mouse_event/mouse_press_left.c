@@ -6,16 +6,16 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 18:02:40 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:31:29 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
+#include "rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 #include "float.h"
 
 int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)

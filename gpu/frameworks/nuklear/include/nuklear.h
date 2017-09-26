@@ -4238,17 +4238,17 @@ struct file {
 
 struct media {
     struct nk_font *font_18;
-	struct nk_font *font_14;
-	struct nk_font *font_20;
-	struct nk_font *font_22;
+    struct nk_font *font_14;
+    struct nk_font *font_20;
+    struct nk_font *font_22;
 
-	struct nk_image unchecked;
-	struct nk_image checked;
-	struct nk_image rocket;
-	struct nk_image a_rot_left;
-	struct nk_image a_rot_right;
-	struct nk_image a_left;
-	struct nk_image a_right;
+    struct nk_image unchecked;
+    struct nk_image checked;
+    struct nk_image rocket;
+    struct nk_image a_rot_left;
+    struct nk_image a_rot_right;
+    struct nk_image a_left;
+    struct nk_image a_right;
     struct nk_image a_up;
     struct nk_image a_down;
     struct nk_image dir;
@@ -4270,9 +4270,9 @@ struct media {
     struct nk_image rec_on;
     struct nk_image zoom_in;
     struct nk_image zoom_out;
-	struct nk_image convert;
-	struct nk_image del;
-	struct nk_image images[9];
+    struct nk_image convert;
+    struct nk_image del;
+    struct nk_image images[9];
     struct nk_image menu[6];
 
     int font;

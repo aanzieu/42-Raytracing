@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
+#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/26 13:01:54 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/09/26 17:25:40 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
-INCLUDEXML = -I /usr/include/libxml2
-INCLUDENK = -I srcs/interface/header
+INCLUDEXML = -I /Users/$(USER)/.brew/include/libxml2
+INCLUDENK = -I frameworks/nuklear/include
 
 SRC_DIR = srcs
 SRC_CUDA_DIR = srcs/cuda/cudasrc
+SRC_NUKLEAR = frameworks/nuklear
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -85,6 +86,10 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/colors/colors.cu \
 				$(SRC_CUDA_DIR)/colors/colors2.cu
 
+SRC_NUK =		$(SRC_NUKLEAR)/device_init.c \
+				$(SRC_NUKLEAR)/device_init_next.c \
+				$(SRC_NUKLEAR)/load_media.c \
+				$(SRC_NUKLEAR)/extended.c \
 
 SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/launch_cpu_gpu.c \
@@ -100,7 +105,6 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/threads/malloc_objects_cpy2.c \
 				$(SRC_DIR)/threads/malloc_objects_cpy3.c \
 				\
-				$(SRC_DIR)/interface/extended.c \
 				$(SRC_DIR)/interface/interface.c \
 				$(SRC_DIR)/interface/gui_utils.c \
 				$(SRC_DIR)/interface/gui_obj_parameters.c \
@@ -135,11 +139,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/remove_objects/remove_objects.c \
 				$(SRC_DIR)/interface/remove_objects/remove_objects2.c \
 				$(SRC_DIR)/interface/remove_objects/remove_objects3.c \
-				$(SRC_DIR)/interface/device_init.c \
-				$(SRC_DIR)/interface/device_init_next.c \
-				$(SRC_DIR)/interface/load_media.c \
 				$(SRC_DIR)/interface/key_press.c \
-				$(SRC_DIR)/interface/file_browser.c \
 				$(SRC_DIR)/interface/free_objects/free_world.c \
 				$(SRC_DIR)/interface/free_objects/free_objects.c \
 				$(SRC_DIR)/interface/free_objects/free_objects_next.c \
@@ -230,7 +230,9 @@ SRC =			$(SRC_DIR)/main.c \
 ##--- Use Patsubst to find .o from .c         ---##
 ###################################################
 
-OBJ		= $(patsubst srcs/%.c, obj/%.o, $(SRC))
+OBJ		 = $(patsubst srcs/%.c, obj/%.o, $(SRC))
+.SILENT:
+OBJ_NUK	 = $(patsubst frameworks/%.c, objnuklear/%.o, $(SRC_NUK))
 .SILENT:
 OBJ_CUDA = $(patsubst srcs/%.cu, objcuda/%.o, $(SRC_CUDA))
 .SILENT:
@@ -241,14 +243,14 @@ OBJ_CUDA = $(patsubst srcs/%.cu, objcuda/%.o, $(SRC_CUDA))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_CUDA)
+$(NAME): $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
 	-gencode arch=compute_30,code=compute_30 \
     -gencode arch=compute_35,code=compute_35
 	printf '\033[1;7m'
@@ -260,6 +262,12 @@ $(NAME): $(OBJ) $(OBJ_CUDA)
 
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
+	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
+	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
+
+objnuklear/%.o: frameworks/%.c
+	if [ ! -d objnuklear ]; then mkdir -p objnuklear; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
@@ -281,7 +289,7 @@ clean:
 	@$(MAKE) $(MAKE_FLAGS) fclean -C $(LIBFT_DIR)
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Output Files--------"
-	@$(RM) $(OBJ) $(OBJ_CUDA)
+	@$(RM) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
 
 ###################################################
 ##--- Clean ALl                                  ##
@@ -292,6 +300,6 @@ fclean: clean
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
 	rm -rf LibraryTmp
 	@$(RM) $(NAME)
-	@$(RF) obj objcuda bin screenshots
+	@$(RF) obj objcuda objnuklear bin screenshots
 
 re: fclean all

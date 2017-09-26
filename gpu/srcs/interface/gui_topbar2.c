@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   gui_topbar2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/22 14:51:09 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:25:55 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../../includes/light.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "light.h"
+#include "nuklear.h"
+#include "gui.h"
 #include "parse.h"
 
 static void	select_local_cluster(struct nk_context *ctx, struct media *media,\

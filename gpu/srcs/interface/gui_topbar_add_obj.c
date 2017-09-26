@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   gui_topbar_add_obj.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 14:36:02 by PZC               #+#    #+#             */
-/*   Updated: 2017/09/25 15:04:28 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:25:44 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../../includes/light.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "light.h"
+#include "nuklear.h"
+#include "gui.h"
 
 static void	draw_topbar_add_objects_4(struct nk_context *c, struct media *m,\
 								t_world *w)

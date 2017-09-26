@@ -5,7 +5,6 @@
 
 #define UNUSED(a) (void)a
 
-
 #define MAX_VERTEX_MEMORY 1024 * 1024
 #define MAX_ELEMENT_MEMORY 512 * 1024
 
@@ -95,7 +94,7 @@ void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *worl
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
 void	draw_topbar_add_objects(struct nk_context *c, struct media *m, t_world *w);
 void 	camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world);
-void	render_scene(struct nk_context *ctx, struct media *media, int *a_h, t_world *world);
+void	render_scene(struct nk_context *ctx, struct media *media, t_world *world);
 
 int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);
 void file_browser_init(struct file_browser *browser, struct media *media);

@@ -6,16 +6,16 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/20 14:25:47 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:29:11 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
+#include "rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void			remove_triangle(t_triangle **s, t_intersection *i)
 {

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/06 11:30:46 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 13:52:31 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:59:35 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_DEFAULT_FONT
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 #include <assert.h>
 
 void	defaut_opengl_state()

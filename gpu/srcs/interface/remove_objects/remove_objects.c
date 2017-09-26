@@ -6,16 +6,16 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/12 15:25:23 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:29:32 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
+#include "rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void			remove_sphere(t_sphere **s, t_intersection *i)
 {

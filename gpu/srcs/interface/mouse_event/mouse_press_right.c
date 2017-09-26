@@ -2,6 +2,6 @@
 #define NK_INCLUDE_FONT_BAKING
 #include "../../../includes/rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 #include "float.h"

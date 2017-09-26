@@ -6,16 +6,16 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/20 11:53:50 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:27:37 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
+#include "rt.h"
 #include "../cuda/cudaheader/gpu_rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void			ui_widget_render(struct nk_context *ctx, struct media *media,\
 								float height)
@@ -65,19 +65,18 @@ struct nk_image	screen_load(int *a_h, unsigned char *video_buffer)
 }
 
 void			render_scene(struct nk_context *ctx, struct media *media,\
-							int *a_h, t_world *world)
+							t_world *world)
 {
 	static struct nk_image	screen;
 	struct nk_vec2			pos;
-	(void)a_h;
 
 	nk_style_set_font(ctx, &media->font_18->handle);
 	if (nk_begin(ctx, world->title,\
 		nk_rect((world->screen.width - (WIN_WIDTH + 15)) / 2,\
-				(world->screen.height - (WIN_HEIGHT + 48)) / 2,\
-				WIN_WIDTH + 15, WIN_HEIGHT + 48), NK_WINDOW_MOVABLE |\
-				NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_TITLE | NK_WINDOW_BACKGROUND\
-				| NK_WINDOW_CLOSABLE))
+		(world->screen.height - (WIN_HEIGHT + 48)) / 2,\
+		WIN_WIDTH + 15, WIN_HEIGHT + 48), NK_WINDOW_MOVABLE |\
+		NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_TITLE | NK_WINDOW_BACKGROUND\
+		| NK_WINDOW_CLOSABLE))
 	{
 		if ((world->reload_buffer == 1 && world->redraw == 0) || world->redraw == 3)
 		{
@@ -90,7 +89,7 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 		world->pos_render.y = pos.y;
 		ui_widget_render(ctx, media, WIN_HEIGHT);
 		nk_image(ctx, screen);
-		if(mousepress_middle(ctx, world, pos) || mousepress_left(ctx, world, pos) || (key_press(ctx, world)))
+		if (mousepress_middle(ctx, world, pos) || mousepress_left(ctx, world, pos) || (key_press(ctx, world)))
 			world->redraw = 1;
 	}
 	if (world->redraw == 3)

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   gui_cam_controller.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/06 17:15:52 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 00:00:47 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:28:02 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 #include "parse.h"
 
 static void	rot_camera(t_world *world, size_t i)

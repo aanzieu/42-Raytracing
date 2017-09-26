@@ -6,15 +6,15 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/20 14:29:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:31:10 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void	refresh_triangle(t_world *world, int i)
 {
@@ -26,7 +26,6 @@ void	refresh_triangle(t_world *world, int i)
 		if (tmp->id == world->id_save)
 		{
 			tmp->pos = world->triangles[i].pos;
-			// tmp->up = world->triangles[i].up;
 			tmp->v1 = world->triangles[i].v1;
 			tmp->v2 = world->triangles[i].v2;
 			tmp->color = world->triangles[i].color;

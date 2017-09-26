@@ -6,16 +6,16 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 15:26:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:29:19 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
+#include "rt.h"
 #include "../../cuda/cudaheader/gpu_rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void			remove_torus(t_torus **s, t_intersection *i)
 {

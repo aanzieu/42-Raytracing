@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_lights.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/25 17:15:15 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:30:22 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)

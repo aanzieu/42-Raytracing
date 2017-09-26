@@ -6,15 +6,15 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:52:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/13 18:03:28 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:31:00 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void	refresh_sphere(t_world *world, int i)
 {

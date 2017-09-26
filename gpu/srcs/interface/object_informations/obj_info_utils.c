@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   obj_info_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/25 13:16:20 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:30:51 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../../includes/rt.h"
-#include "../header/nuklear.h"
-#include "../header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void	draw_apply_button(struct nk_context *c, struct media *m, t_world *w)
 {

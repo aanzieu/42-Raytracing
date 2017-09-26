@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   gui_scene_parameters.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 00:03:06 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:26:16 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 #include <vectors.h>
 #include <gpu_rt.h>
 

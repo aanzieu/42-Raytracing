@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   gui_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/25 14:26:48 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:25:33 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "../../includes/parse.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
-#include "../../includes/equation.h"
+#include "rt.h"
+#include "parse.h"
+#include "nuklear.h"
+#include "gui.h"
+#include "equation.h"
 
 /* ===============================================================
  *

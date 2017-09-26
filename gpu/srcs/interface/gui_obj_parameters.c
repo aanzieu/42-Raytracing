@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   gui_obj_parameters.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/25 13:15:57 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 16:27:44 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 static void	find_informations_object2(t_world *world, struct nk_context *ctx,\
 								struct media *media)

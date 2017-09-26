@@ -6,31 +6,15 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:35:23 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:03:03 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
-#include "../../includes/rt.h"
-#include "header/nuklear.h"
-#include "header/gui.h"
-
-void	die(const char *fmt, ...)
-{
-	va_list ap;
-
-	va_start(ap, fmt);
-	vfprintf(stderr, fmt, ap);
-	va_end(ap);
-	fputs("\n", stderr);
-	exit(EXIT_FAILURE);
-}
-
-void	error_callback(int e, const char *d)
-{
-	ft_printf("Error %d: %s\n", e, d);
-}
+#include "rt.h"
+#include "nuklear.h"
+#include "gui.h"
 
 void	text_input(GLFWwindow *win, unsigned int codepoint)
 {
@@ -53,7 +37,7 @@ void	gui_calls(struct file_browser *browser, struct nk_context *ctx,\
 	{
 		scene_parameters(ctx, media, world);
 		camera_control_bar(ctx, media, world);
-		render_scene(ctx, media, world->a_h, world);
+		render_scene(ctx, media, world);
 		objects_param(ctx, media, world);
 		scene_topbar(ctx, media, world);
 	}
