@@ -17,57 +17,96 @@ extern "C" {
 }
 #include <float.h>
 
-__host__ __device__ int		limit_cylinder(t_cylinder cylinder, t_ray ray,
-		t_intersection *intersection_tmp, t_vec3d axis, t_vec3d x, t_eq eq)
+__host__ __device__ static void		get_normal_cylinder(t_cylinder cylinder,\
+		t_intersection *intersection_tmp)
 {
-	double b[2];
+	t_vec3d		pos;
+	double		tmp;
 
-	b[0] = vector_dot(ray.dir, axis) * eq.res[0] + vector_dot(x, axis);
-	b[1] = vector_dot(ray.dir, axis) * eq.res[1] + vector_dot(x, axis);
-	intersection_tmp->normal_v = vector_normalize(
-		vector_substract(vector_substract(
-				intersection_tmp->pos, cylinder.pos), vector_scalar(axis, b[0])));
-	if (cylinder.height <= 0)
-		return (1);
-	if ((b[0] > 0 && b[0] < cylinder.height)
-		|| (b[1] > 0 && b[1] < cylinder.height))
-		return (1);
-	return (0);
+	pos = vector_substract(intersection_tmp->pos,\
+		vector_add(cylinder.pos, cylinder.up));
+	tmp = vector_dot(cylinder.up, pos) / vector_dot(cylinder.up, cylinder.up);
+	pos = vector_add(vector_add(cylinder.pos, cylinder.up),\
+		vector_scalar(cylinder.up, tmp));
+	intersection_tmp->normal_v = vector_normalize(\
+		vector_substract(intersection_tmp->pos, pos));
 }
 
-__host__ __device__ int		get_cylinder(t_world world, t_cylinder cylinder,
-							t_ray ray, t_intersection *intersection_tmp)
+__host__ __device__ static double	limit_cylinder_next(t_eq eq,\
+		t_cylinder cyl, t_ray ray)
+{
+	t_vec3d pos[2];
+	t_vec3d caps[2];
+
+	pos[0] = vector_add(ray.origin, vector_scalar(ray.dir, eq.res[0]));
+	pos[1] = vector_add(cyl.pos, vector_scalar(cyl.up, cyl.height));
+	caps[0] = vector_substract(pos[0], cyl.pos);
+	caps[1] = vector_substract(pos[0], pos[1]);
+	if (vector_dot(cyl.up, caps[0]) > SURFACE_TOLERANCE\
+		&& vector_dot(cyl.up, caps[1]) < SURFACE_TOLERANCE)
+		return (eq.res[0]);
+	eq.res[0] = ((vector_dot(cyl.up, cyl.pos) -\
+				vector_dot(cyl.up, ray.origin)) / vector_dot(cyl.up, ray.dir));
+	eq.res[1] = ((vector_dot(cyl.up, pos[1]) -\
+				vector_dot(cyl.up, ray.origin)) / vector_dot(cyl.up, ray.dir));
+	if (eq.res[0] < eq.res[1] && eq.res[0] > SURFACE_TOLERANCE)
+	{
+		pos[0] = vector_add(ray.origin, vector_scalar(ray.dir, eq.res[0]));
+		caps[0] = vector_substract(pos[0], cyl.pos);
+		if (sqrt(vector_dot(caps[0], caps[0])) < cyl.radius)
+			return (eq.res[0]);
+	}
+	else if (eq.res[1] < eq.res[0] && eq.res[1] > SURFACE_TOLERANCE)
+	{
+		pos[0] = vector_add(ray.origin, vector_scalar(ray.dir, eq.res[1]));
+		caps[1] = vector_substract(pos[0], pos[1]);
+		if (sqrt(vector_dot(caps[1], caps[1])) < cyl.radius)
+			return (eq.res[1]);
+	}
+	return (-1);
+}
+__host__ __device__ static int limit_cylinder(t_eq eq, t_cylinder cylinder,\
+		t_ray ray, t_intersection *intersection_tmp)
+{
+	double	t_save;
+
+	if (eq.res[1] > eq.res[0])
+		eq.res[1] = eq.res[0];
+	t_save = eq.res[1];
+	if (cylinder.height > 0)
+		if ((eq.res[1] = limit_cylinder_next(eq, cylinder, ray)) == -1)
+			return (-1);
+	intersection_tmp->t = eq.res[0] == t_save ? eq.res[1] : eq.res[0];
+	intersection_tmp->pos = vector_add(ray.origin,
+		vector_scalar(ray.dir, intersection_tmp->t));
+	if (intersection_tmp->t == t_save)
+		get_normal_cylinder(cylinder, intersection_tmp);
+	else
+		intersection_tmp->normal_v = (t_vec3d){0, 1, 0};
+	return (1);
+}
+__host__ __device__ int		get_cylinder(t_world world, t_cylinder cylinder,\
+		t_ray ray, t_intersection *intersection_tmp)
 {
 	t_eq		eq;
-	t_vec3d axis;
 	t_vec3d x;
+	t_vec3d axis_v[2];
 
  	if (intersection_tmp->id == cylinder.id)
 		return (0);
-
-	axis = vector_normalize(vector_substract(cylinder.up, cylinder.pos));
-
 	x = vector_substract(ray.origin, cylinder.pos);
-
-	eq.a = vector_dot(ray.dir, ray.dir) - pow(vector_dot(ray.dir, axis), 2);
-	eq.b = 2 * (vector_dot(ray.dir, x) - (vector_dot(ray.dir, axis) * vector_dot(x, axis)));
-	eq.c = vector_dot(x, x) - pow(vector_dot(x, axis), 2) - pow(cylinder.radius, 2);
-
+	cylinder.up = vector_normalize(cylinder.up);
+	axis_v[0] = vector_scalar(cylinder.up, vector_dot(ray.dir, cylinder.up));
+	axis_v[0] = vector_substract(ray.dir, axis_v[0]);
+	axis_v[1] = vector_scalar(cylinder.up, vector_dot(x, cylinder.up));
+	axis_v[1] = vector_substract(x, axis_v[1]);
+	eq.a = vector_dot(axis_v[0], axis_v[0]);
+	eq.b = 2 * vector_dot(axis_v[0], axis_v[1]);
+	eq.c = vector_dot(axis_v[1], axis_v[1]) - cylinder.radius * cylinder.radius;
 	second_degres(&eq);
 	if (eq.res[0] != NOT_A_SOLUTION)
-	{
-		intersection_tmp->t = eq.res[0];
-		intersection_tmp->pos = vector_add(ray.origin,
-			vector_scalar(ray.dir, intersection_tmp->t));
-		x = vector_substract(ray.origin, cylinder.pos);
-		// intersection_tmp->normal_v = vector_normalize(
-		// 	vector_substract(vector_substract(
-		// 			intersection_tmp->pos, cylinder.pos),
-		// 			vector_scalar(axis, b[0])));
-		if (limit_cylinder(cylinder, ray, intersection_tmp, axis, x, eq))
-			return (1);
-	}
- 	intersection_tmp->t = -1;
+		return (limit_cylinder(eq, cylinder, ray, intersection_tmp));
+	intersection_tmp->t = -1;
 	return (-1);
 }
 
@@ -95,7 +134,7 @@ __host__ __device__ void	get_closest_cylinder(t_world world, t_ray ray,
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
 				apply_noise_dist(world, intersection, world.cylinders[i].perlin);
-				}
+			}
 		}
 		i++;
 	}
