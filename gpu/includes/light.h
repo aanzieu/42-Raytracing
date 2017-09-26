@@ -17,6 +17,9 @@
 # include "colors.h"
 
 # define AMBIENT_LIGHT WHITE
+# define LIGHT_P 0
+# define LIGHT_BOX 1
+# define LIGHT_SPHERE 2
 
 typedef struct			s_ambient
 {
@@ -27,7 +30,8 @@ typedef struct			s_ambient
 
 typedef struct			s_light
 {
-	int					id;
+	int						id;
+	int						type;
 	t_vec3d				pos;
 	t_vec3d				dir;
 	t_vec3d				dir_v;

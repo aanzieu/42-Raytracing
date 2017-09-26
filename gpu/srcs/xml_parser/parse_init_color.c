@@ -66,3 +66,20 @@ void			parse_intensity(double *intensity_coef, xmlNodePtr cur)
 		show_error_2("invalid intensity value > data=", (const char *)nb);
 	xmlFree(nb);
 }
+
+void 			parse_type(int *type, xmlNodePtr cur)
+{
+	xmlChar *type_l;
+
+	type_l = xmlGetProp(cur, (const xmlChar *)"data");
+	if (!(ft_strcmp((char *)type_l, "POINT")))
+		*type = LIGHT_P;
+	else if (!(ft_strcmp((char *)type_l, "BOX")))
+		*type = LIGHT_BOX;
+	else if (!(ft_strcmp((char *)type_l, "SPHERE")))
+		*type = LIGHT_SPHERE;
+	else
+		show_error_2("invalid light type value. data=",\
+		 (const char *)type_l);
+	xmlFree(type_l);
+}

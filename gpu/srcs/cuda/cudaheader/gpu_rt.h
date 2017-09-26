@@ -61,6 +61,8 @@ CUDA_HOSTDEV void		get_closest_triangle(t_world world, t_ray ray,
 CUDA_HOSTDEV void	get_closest_cube(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
+CUDA_HOSTDEV int	get_cube(t_cube cu, t_ray ray,
+	t_intersection *intersection_tmp);
 CUDA_HOSTDEV void	get_closest_hollow_cube(t_world world, t_ray ray,
 						t_intersection *intersection,
 						t_intersection *intersection_tmp);
@@ -218,6 +220,8 @@ CUDA_HOSTDEV void			get_ray_direction(t_world world, t_ray *ray,
 
 CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color,
 	t_light lights, t_intersection intersection, t_ray ray);
+CUDA_HOSTDEV int	get_light_box(t_light light,
+	t_intersection intersection, t_ray ray);
 
 /*******************************************************************************
 **                     PERLIN_NOISE_FCTS                                      **

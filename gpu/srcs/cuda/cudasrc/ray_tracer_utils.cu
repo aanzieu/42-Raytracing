@@ -10,6 +10,26 @@ extern "C" {
 #include <float.h>
 #include <cuda.h>
 
+__host__ __device__ int get_light_box(t_light light,\
+	t_intersection intersection, t_ray ray)
+{
+	t_cube					light_box;
+	t_intersection 	intersection_tmp;
+
+	if (light.type != LIGHT_BOX)
+		return (0);
+	new_intersection(&intersection_tmp);
+	intersection_tmp.t = intersection.t;
+	light_box.min = light.pos;
+	light_box.max = (t_vec3d){light.pos.x + 0.6, light.pos.y + 0.15,\
+		light.pos.z + 0.6};
+	if (get_cube(light_box, ray, &intersection_tmp) == 1)
+		if (intersection_tmp.t < intersection.t && \
+				intersection_tmp.t > SURFACE_TOLERANCE)
+		return (1);
+	return (0);
+}
+
 __host__ __device__ void new_intersection(t_intersection *new_i)
 {
 	new_i->id = -1;

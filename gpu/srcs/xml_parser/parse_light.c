@@ -46,6 +46,8 @@ void	parse_light(t_world *world, xmlNodePtr cur)
 			parse_color(&l->color, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"intensity")))
 			parse_intensity(&l->intensity_coef, cur);
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"type")))
+			parse_type(&l->type, cur);
 		cur = cur->next;
 	}
 	add_light(&world->lights_tmp, new_light(l, world->id++));

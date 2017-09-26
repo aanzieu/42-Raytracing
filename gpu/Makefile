@@ -17,7 +17,8 @@ MAKE_FLAGS = --no-print-directory
 
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
-INCLUDEXML = -I /Users/$(USER)/.brew/include/libxml2
+INCLUDEXML =  -I /Users/$(USER)/.brew/opt/libxml2/include/libxml2
+# INCLUDEXML = -I /Users/$(USER)/.brew/include/libxml2
 INCLUDENK = -I frameworks/nuklear/include
 
 SRC_DIR = srcs
@@ -133,6 +134,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_lights.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_utils.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_utils2.c \
+				$(SRC_DIR)/interface/object_informations/obj_info_utils3.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh2.c \
 				$(SRC_DIR)/interface/object_informations/object_refresh3.c \
@@ -298,7 +300,7 @@ clean:
 fclean: clean
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
-	rm -rf LibraryTmp
+	# rm -rf LibraryTmp
 	@$(RM) $(NAME)
 	@$(RF) obj objcuda objnuklear bin screenshots
 

@@ -1,6 +1,6 @@
 <!ELEMENT scene (camera|light|ambient|sphere|plane|cylinder|disk|cone|paraboloid|hyperboloid|torus|mobius|triangle|cube|h_cube)*>
 <!ELEMENT camera (pos, dir, rot*, tra*)>
-<!ELEMENT light (pos, dir*, color*, intensity)>
+<!ELEMENT light (pos, dir*, color*, intensity, type*)>
 <!ELEMENT ambient (color, intensity)>
 <!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*)>
 <!ELEMENT sphere (pos, radius, tra*, color, chess*, negative*, reflection*, refraction*, transparence*)>
@@ -38,6 +38,7 @@
 <!ELEMENT reflection (#PCDATA)>
 <!ELEMENT refraction (#PCDATA)>
 <!ELEMENT transparence (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
 
 <!ATTLIST scene name CDATA #REQUIRED>
 <!ATTLIST pos
@@ -115,3 +116,4 @@
 <!ATTLIST reflection data CDATA #REQUIRED>
 <!ATTLIST refraction data CDATA #REQUIRED>
 <!ATTLIST transparence data CDATA #REQUIRED>
+<!ATTLIST type data CDATA #REQUIRED>

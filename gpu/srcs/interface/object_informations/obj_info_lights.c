@@ -24,6 +24,7 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.z, "POS Z:");
 	ui_slide_float_0_to_1(ctx, &w->lights[i].intensity_coef, "INTENSITY:");
 	draw_apply_button(ctx, m, w);
+	draw_light_type(ctx, m, w, &w->lights[i].type);
 }
 
 static void	draw_delete_button(struct nk_context *ctx, struct media *media,\

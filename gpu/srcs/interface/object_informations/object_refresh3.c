@@ -74,6 +74,7 @@ void	refresh_light(t_world *world, int i)
 			tmp->pos = world->lights[i].pos;
 			tmp->color = world->lights[i].color;
 			tmp->intensity_coef = world->lights[i].intensity_coef;
+			tmp->type = world->lights[i].type;
 			break ;
 		}
 		tmp = tmp->next;

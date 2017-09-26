@@ -76,17 +76,17 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	intersection_tmp.type = '0';
 	intersection_tmp.id = intersection->id;
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
-	get_closest_mobius(world, ray, intersection, &intersection_tmp);
-	get_closest_torus(world, ray, intersection, &intersection_tmp);
+	// get_closest_mobius(world, ray, intersection, &intersection_tmp);
+	// get_closest_torus(world, ray, intersection, &intersection_tmp);
 	get_closest_plane(world, ray, intersection, &intersection_tmp);
-	get_closest_disk(world, ray, intersection, &intersection_tmp);
-	get_closest_cone(world, ray, intersection, &intersection_tmp);
-	get_closest_cube(world, ray, intersection, &intersection_tmp);
-	get_closest_hollow_cube(world, ray, intersection, &intersection_tmp);
-	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
-	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
-	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
-	get_closest_triangle(world, ray, intersection, &intersection_tmp);
+	// get_closest_disk(world, ray, intersection, &intersection_tmp);
+	// get_closest_cone(world, ray, intersection, &intersection_tmp);
+	// get_closest_cube(world, ray, intersection, &intersection_tmp);
+	// get_closest_hollow_cube(world, ray, intersection, &intersection_tmp);
+	// get_closest_cylinder(world, ray, intersection, &intersection_tmp);
+	// get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
+	// get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
+	// get_closest_triangle(world, ray, intersection, &intersection_tmp);
 	if (intersection->type == '0')
 		return (0);
 	return (1);
@@ -110,7 +110,7 @@ __host__ __device__ t_color apply_materials_cpu(t_world world, t_ray ray,
 	return (color);
 }
 
-__host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,
+__host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 				t_intersection intersection)
 {
 	t_color					color;
@@ -133,6 +133,10 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,
 		cartoon_effect(world, &color, world.lights[i], intersection, ray);
 	while (i < world.lights_len && world.keys.light_none == 1)
 	{
+		if (get_light_box(world.lights[i], intersection, ray) == 1)
+			color = color_scalar(color_divide(
+				color_add((t_color){0.5, 0.5, 0.5}, world.lights[i].color), 2),
+				0.5 + 0.5 / world.lights[i].intensity_coef);
 		color = get_light_at(world, color, world.lights[i], intersection, ray);
 		if (world.keys.pad_9 == 1)
 			cartoon_effect(world, &color, world.lights[i], intersection, ray);

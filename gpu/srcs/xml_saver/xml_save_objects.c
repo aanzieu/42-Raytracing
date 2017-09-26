@@ -37,6 +37,8 @@ void	save_lights_to_xml(t_world *world, xmlNodePtr root_node)
 		node = xml_save_rgb(&world->lights->color, "color", object);
 		node = xml_save_one_data(world->lights->intensity_coef, "intensity",
 				object);
+		node = xml_save_one_data_str(world->lights->type, "type",
+				object);
 		world->lights = world->lights->next;
 	}
 	world->lights = ptr;

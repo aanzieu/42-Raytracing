@@ -97,6 +97,7 @@ void		parse_height(double *height, xmlNodePtr cur);
 */
 void		parse_color(t_color *c, xmlNodePtr cur);
 void		parse_intensity(double *intensity_coef, xmlNodePtr cur);
+void		parse_type(int *type, xmlNodePtr cur);
 /*
 **	parse_material.c
 */
@@ -139,6 +140,7 @@ void	save_triangles_to_xml(t_world *world, xmlNodePtr root_node);
 */
 xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_one_data_str(int data, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
 /*
 **	ft_itoa_double.c

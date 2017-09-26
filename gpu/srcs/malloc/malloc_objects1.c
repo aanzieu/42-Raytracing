@@ -24,6 +24,7 @@ t_light		*new_light(t_light *nw, int id)
 	l->dir = nw->dir;
 	l->dir_v = vector_normalize(vector_calculate(nw->dir, nw->pos));
 	l->color = nw->color;
+	l->type = nw->type;
 	l->intensity_coef = nw->intensity_coef;
 	l->next = NULL;
 	return (l);

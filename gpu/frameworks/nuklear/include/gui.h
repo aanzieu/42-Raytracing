@@ -169,6 +169,7 @@ void	draw_apply_button(struct nk_context *c, struct media *m, t_world *w);
 void	select_scene(struct nk_context *ctx, struct media *media, t_world *world, int img_active[4]);
 void	press_launch(struct nk_context *ctx, t_world *world, int img_active[4]);
 
+void	draw_light_type(struct nk_context *c, struct media *m, t_world *w, int *type);
 void	draw_p_presets(struct nk_context *c, struct media *m, t_world *w, t_perlin *perlin);
 void 	draw_infos_next(struct nk_context *c, struct media *m, t_perlin *perlin, t_world *w);
 
