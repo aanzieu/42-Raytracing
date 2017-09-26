@@ -6,7 +6,7 @@
 #    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/25 14:52:50 by PZC              ###   ########.fr        #
+#    Updated: 2017/09/26 13:01:54 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SDL_FLAGS = `sdl-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
-#GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
-GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
+GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
+#GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
 GLEW = frameworks/glew/lib/libGLEW.a
 
 CC = gcc
@@ -267,6 +267,7 @@ obj/%.o: srcs/%.c
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
+	#printf '\033[31m[✔] %s\n\033[0m' "--Set up Env Clang 7.3.0--------"
 	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
@@ -289,6 +290,7 @@ clean:
 fclean: clean
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
+	rm -rf LibraryTmp
 	@$(RM) $(NAME)
 	@$(RF) obj objcuda bin screenshots
 
