@@ -19,6 +19,7 @@ __host__ __device__ void	move_forward(t_world *world)
 {
 	translate(&world->camera.pos, 0, 0, 1);
 	translate(&world->camera.look_at, 0, 0, 1);
+	world->redraw = 1;
 //	get_camera_axes(&world->camera);
 }
 
@@ -26,6 +27,7 @@ __host__ __device__ void	move_backward(t_world *world)
 {
 	translate(&world->camera.pos, 0, 0, -1);
 	translate(&world->camera.look_at, 0, 0, -1);
+	world->redraw = 1;
 	//get_camera_axes(&world->camera);
 }
 
@@ -33,6 +35,7 @@ __host__ __device__ void	move_left(t_world *world)
 {
 	translate(&world->camera.pos, -1, 0, 0);
 	translate(&world->camera.look_at, -1, 0, 0);
+	world->redraw = 1;
 	//get_camera_axes(&world->camera);
 }
 
@@ -40,6 +43,7 @@ __host__ __device__ void	move_right(t_world *world)
 {
 	translate(&world->camera.pos, 1, 0, 0);
 	translate(&world->camera.look_at, 1, 0, 0);
+	world->redraw = 1;
 	//get_camera_axes(&world->camera);
 }
 
@@ -47,6 +51,7 @@ __host__ __device__ void	move_down(t_world *world)
 {
 	translate(&world->camera.pos, 0, -1, 0);
 	translate(&world->camera.look_at, 0, -1, 0);
+	world->redraw = 1;
 	//get_camera_axes(&world->camera);
 }
 
@@ -55,6 +60,7 @@ __host__ __device__ void	move_up(t_world *world)
 {
 	translate(&world->camera.pos, 0, 1, 0);
 	translate(&world->camera.look_at, 0, 1, 0);
+	world->redraw = 1;
 	//get_camera_axes(&world->camera);
 }
 

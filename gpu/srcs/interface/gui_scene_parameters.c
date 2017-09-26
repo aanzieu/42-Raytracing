@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/25 15:09:24 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/26 00:03:06 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ scene_parameters(struct nk_context *ctx, struct media *media, t_world *world)
 
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if (nk_begin(ctx, "Scene parameters", nk_rect(0,52,250,world->screen.height - 52),
-			NK_WINDOW_BORDER|NK_WINDOW_TITLE))
+			NK_WINDOW_BORDER|NK_WINDOW_TITLE|NK_WINDOW_BACKGROUND))
 	{
 		/*------------------------------------------------
 		 *                  SCENE INFO
