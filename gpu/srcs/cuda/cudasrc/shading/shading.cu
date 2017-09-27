@@ -18,7 +18,7 @@ extern "C" {
 }
 #include <float.h>
 
-__host__ __device__ t_color	direct_light(t_world world, t_color color,
+__host__ __device__ t_color	direct_light(t_world world, t_color color,\
 	t_light light, t_ray ray)
 {
 	t_vec3d	light_vector;
@@ -32,12 +32,7 @@ __host__ __device__ t_color	direct_light(t_world world, t_color color,
 	return (color_add(color, direct_light));
 }
 
-// __host__ __device__ double 				frand_a_b(double a, double b)
-// {
-//     return ((rand() / (double)RAND_MAX) * (b-a) + a);
-// }
-
-__host__ __device__ static double  get_distributed_shadow(t_world world,
+__host__ __device__ static double  get_distributed_shadow(t_world world,\
 	t_light light, t_intersection collision)
 {
 	t_intersection	collision_tmp;

@@ -25,8 +25,13 @@ static int	get_light_type(int type)
 	return (0);
 }
 
+<<<<<<< Updated upstream
 void		draw_light_type(struct nk_context *c, struct media *m,\
 							t_world *w, int *type)
+=======
+void			draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
+	int *type, double *intensity)
+>>>>>>> Stashed changes
 {
 	int	option;
 
@@ -37,6 +42,8 @@ void		draw_light_type(struct nk_context *c, struct media *m,\
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "POINT", NK_TEXT_LEFT))
 	{
 		option = 0;
+		if (*type == LIGHT_BOX && *intensity >= 0.2)
+			*intensity -= 0.2;
 		*type = LIGHT_P;
 		w->redraw = 1;
 	}
@@ -44,6 +51,8 @@ void		draw_light_type(struct nk_context *c, struct media *m,\
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "BOX", NK_TEXT_LEFT))
 	{
 		option = 1;
+		if (*type == LIGHT_P && *intensity <= 0.8)
+			*intensity += 0.2;
 		*type = LIGHT_BOX;
 		w->redraw = 1;
 	}

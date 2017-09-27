@@ -21,8 +21,8 @@ __host__ __device__ int get_light_box(t_light light,\
 	new_intersection(&intersection_tmp);
 	intersection_tmp.t = intersection.t;
 	light_box.min = light.pos;
-	light_box.max = (t_vec3d){light.pos.x + 0.6, light.pos.y + 0.15,\
-		light.pos.z + 0.6};
+	light_box.max = (t_vec3d){light.pos.x + 0.85, light.pos.y + 0.12,\
+		light.pos.z + 0.85};
 	if (get_cube(light_box, ray, &intersection_tmp) == 1)
 		if (intersection_tmp.t < intersection.t && \
 				intersection_tmp.t > SURFACE_TOLERANCE)

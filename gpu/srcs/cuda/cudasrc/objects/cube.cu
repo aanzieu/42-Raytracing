@@ -27,8 +27,8 @@ __host__ __device__ t_vec3d	get_normal_cube(t_cube cu, t_ray ray,
 	t_vec3d		p;
 	t_vec3d		d;
 	double		bias;
-	t_vec3d		vmin = cu.min;//(t_vec3d){-1, -1, -1};//cu.vec1;
-	t_vec3d		vmax = cu.max;//(t_vec3d){1, 1, 1};//cu.vec2;
+	t_vec3d		vmin = cu.min;
+	t_vec3d		vmax = cu.max;
 
   c = vector_scalar(vector_add(vmin, vmax), 0.5f);
   p = vector_substract(intersection.pos, c);
@@ -79,10 +79,10 @@ __host__ __device__ int			get_cube(t_cube cu, t_ray ray,
 	if (tzmax < tmax)
 	tmax = tzmax;
 	t = tmin;
-	if (t <= 1.00000001)
+	if (t <= 1.0 + SURFACE_TOLERANCE)
 	{
 			t = tmax;
-			if (t <= 1.00000001)
+			if (t <= 1.0 + SURFACE_TOLERANCE)
 				return (-1);
 	}
 	intersection_tmp->t = t;
