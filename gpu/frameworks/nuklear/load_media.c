@@ -264,44 +264,44 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 
 	/* icons */
 	glEnable(GL_TEXTURE_2D);
-    media->light = icon_load("srcs/interface/icon/light.png");
-	media->plane = icon_load("srcs/interface/icon/plan.png");
-	media->sphere = icon_load("srcs/interface/icon/sphere.png");
-	media->cone = icon_load("srcs/interface/icon/cone.png");
-	media->cylinder = icon_load("srcs/interface/icon/cylinder.png");
-	media->disk = icon_load("srcs/interface/icon/disk.png");
-	media->paraboloid = icon_load("srcs/interface/icon/paraboloid.png");
-	media->hyperboloid = icon_load("srcs/interface/icon/hyperboloid.png");
-	media->mobius = icon_load("srcs/interface/icon/moebius.png");
-	media->cube = icon_load("srcs/interface/icon/cube.png");
-	media->h_cube = icon_load("srcs/interface/icon/h_cube.png");
-	media->torus = icon_load("srcs/interface/icon/torus.png");
-	media->triangle = icon_load("srcs/interface/icon/triangle.png");
-	media->cam = icon_load("srcs/interface/icon/cam.png");
-    media->rec = icon_load("srcs/interface/icon/camera.png");
-	media->rec_on = icon_load("srcs/interface/icon/camera_on.png");
-    media->a_rot_left = icon_load("srcs/interface/icon/rot_left.png");
-    media->a_rot_right = icon_load("srcs/interface/icon/rot_right.png");
-    media->a_right = icon_load("srcs/interface/icon/right.png");
-    media->a_left = icon_load("srcs/interface/icon/left.png");
-    media->a_up = icon_load("srcs/interface/icon/up.png");
-    media->a_down = icon_load("srcs/interface/icon/down.png");
-	media->unchecked = icon_load("srcs/interface/icon/unchecked.png");
-	media->checked = icon_load("srcs/interface/icon/checked.png");
-	media->rocket = icon_load("srcs/interface/icon/rt.png");
-    media->del = icon_load("srcs/interface/icon/delete.png");
-    media->dir = icon_load("srcs/interface/icon/directory.png");
-    media->convert = icon_load("srcs/interface/icon/export.png");
-    media->icons.default_file = icon_load("srcs/interface/icon/default.png");
-    media->zoom_in = icon_load("srcs/interface/icon/zoom_in.png");
-    media->zoom_out = icon_load("srcs/interface/icon/zoom_out.png");
+    media->light = icon_load("frameworks/nuklear/icon/light.png");
+	media->plane = icon_load("frameworks/nuklear/icon/plan.png");
+	media->sphere = icon_load("frameworks/nuklear/icon/sphere.png");
+	media->cone = icon_load("frameworks/nuklear/icon/cone.png");
+	media->cylinder = icon_load("frameworks/nuklear/icon/cylinder.png");
+	media->disk = icon_load("frameworks/nuklear/icon/disk.png");
+	media->paraboloid = icon_load("frameworks/nuklear/icon/paraboloid.png");
+	media->hyperboloid = icon_load("frameworks/nuklear/icon/hyperboloid.png");
+	media->mobius = icon_load("frameworks/nuklear/icon/moebius.png");
+	media->cube = icon_load("frameworks/nuklear/icon/cube.png");
+	media->h_cube = icon_load("frameworks/nuklear/icon/h_cube.png");
+	media->torus = icon_load("frameworks/nuklear/icon/torus.png");
+	media->triangle = icon_load("frameworks/nuklear/icon/triangle.png");
+	media->cam = icon_load("frameworks/nuklear/icon/cam.png");
+    media->rec = icon_load("frameworks/nuklear/icon/camera.png");
+	media->rec_on = icon_load("frameworks/nuklear/icon/camera_on.png");
+    media->a_rot_left = icon_load("frameworks/nuklear/icon/rot_left.png");
+    media->a_rot_right = icon_load("frameworks/nuklear/icon/rot_right.png");
+    media->a_right = icon_load("frameworks/nuklear/icon/right.png");
+    media->a_left = icon_load("frameworks/nuklear/icon/left.png");
+    media->a_up = icon_load("frameworks/nuklear/icon/up.png");
+    media->a_down = icon_load("frameworks/nuklear/icon/down.png");
+	media->unchecked = icon_load("frameworks/nuklear/icon/unchecked.png");
+	media->checked = icon_load("frameworks/nuklear/icon/checked.png");
+	media->rocket = icon_load("frameworks/nuklear/icon/rt.png");
+    media->del = icon_load("frameworks/nuklear/icon/delete.png");
+    media->dir = icon_load("frameworks/nuklear/icon/directory.png");
+    media->convert = icon_load("frameworks/nuklear/icon/export.png");
+    media->icons.default_file = icon_load("frameworks/nuklear/icon/default.png");
+    media->zoom_in = icon_load("frameworks/nuklear/icon/zoom_in.png");
+    media->zoom_out = icon_load("frameworks/nuklear/icon/zoom_out.png");
 
-	media->menu[0] = icon_load("srcs/interface/icon/plan.png");
-	media->menu[1] = icon_load("srcs/interface/icon/sphere.png");
-	media->menu[2] = icon_load("srcs/interface/icon/cone.png");
-	media->menu[3] = icon_load("srcs/interface/icon/cylinder.png");
-	media->menu[4] = icon_load("srcs/interface/icon/disk.png");
-	media->menu[5] = icon_load("srcs/interface/icon/volume.png");
+	media->menu[0] = icon_load("frameworks/nuklear/icon/plan.png");
+	media->menu[1] = icon_load("frameworks/nuklear/icon/sphere.png");
+	media->menu[2] = icon_load("frameworks/nuklear/icon/cone.png");
+	media->menu[3] = icon_load("frameworks/nuklear/icon/cylinder.png");
+	media->menu[4] = icon_load("frameworks/nuklear/icon/disk.png");
+	media->menu[5] = icon_load("frameworks/nuklear/icon/volume.png");
 
     media_init(media);
 
@@ -316,7 +316,7 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	// for (i = 0; i < 1; ++i)
 	// {
 	// 	char buffer[256];
-	// 	sprintf(buffer, "srcs/interface/images/image%d.png", (i+1));
+	// 	sprintf(buffer, "frameworks/nuklear/images/image%d.png", (i+1));
 	// 	media->images[i] = icon_load(buffer);
 	// }
 

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:31:29 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:57:27 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@
 #include "gui.h"
 #include "float.h"
 
-int		mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 pos)
+int		mousepress_left(struct nk_context *ctx, t_world *world,\
+						struct nk_vec2 pos)
 {
-	t_ray      		ray;
+	t_ray			ray;
 	t_intersection	intersection;
-	t_vec2d			padding;
+	t_vec2d			pad;
 
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
-	if(ctx->input.mouse.buttons[NK_BUTTON_LEFT].down)
+	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down)
 	{
-		padding.x = ctx->input.mouse.pos.x - pos.x;
-		padding.y = ctx->input.mouse.pos.y - pos.y - 40;
-		if(padding.x < 0 || padding.y < 0 || padding.x > WIN_WIDTH || padding.y > WIN_HEIGHT)
+		pad.x = ctx->input.mouse.pos.x - pos.x;
+		pad.y = ctx->input.mouse.pos.y - pos.y - 40;
+		if (pad.x < 0 || pad.y < 0 || pad.x > WIN_WIDTH || pad.y > WIN_HEIGHT)
 			return (0);
 		get_up_left(world);
-		get_ray_direction(*(world), &ray, padding.x, padding.y);
+		get_ray_direction(*(world), &ray, pad.x, pad.y);
 		get_closest_intersection(*(world), ray, &intersection);
-		if(intersection.t != INFINITY)
+		if (intersection.t != INFINITY)
 		{
 			world->id_save = intersection.id_save;
 			world->ob_save = intersection.type;
 			world->keys.select = 1;
-			return(1);
-
+			return (1);
 		}
 	}
-	return(0);
+	return (0);
 }

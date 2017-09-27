@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:26:07 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:35:25 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,25 +86,6 @@ static void	file_edit(struct nk_context *ctx, struct media *media)
 	}
 }
 
-// static void	video_launch(struct nk_context *ctx, struct media *media,\
-// 					t_world *world)
-// {
-// 	static int toggle0;
-// 	static int toggle1;
-
-// 	(void)world;
-// 	toggle0 = 0;
-// 	toggle1 = 1;
-// 	nk_layout_row_push(ctx, 100);
-// 	if (nk_button_image_label(ctx, (toggle0)
-// 	? media->rec_on : media->rec, "      Record", NK_TEXT_RIGHT))
-// 	{
-// 		toggle0 = !toggle0;
-// 		toggle1 = !toggle1;
-// 		// mode video active ou non !
-// 	}
-// }
-
 void		scene_topbar(struct nk_context *ctx, struct media *media,\
 					t_world *world)
 {
@@ -121,7 +102,6 @@ void		scene_topbar(struct nk_context *ctx, struct media *media,\
 			file_save(ctx, media, world);
 			file_edit(ctx, media);
 			add_object(ctx, media, world);
-			//video_launch(ctx, media, world);
 		}
 		nk_layout_row_end(ctx);
 		select_scene(ctx, media, world, img_active);

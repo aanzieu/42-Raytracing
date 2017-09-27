@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/26 17:25:40 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/09/27 17:21:09 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ MAKE_FLAGS = --no-print-directory
 INCLUDE = -I includes -I libft
 INCLUDECUDA = -I srcs/cuda/cudaheader
 INCLUDEXML =  -I /Users/$(USER)/.brew/opt/libxml2/include/libxml2
-# INCLUDEXML = -I /Users/$(USER)/.brew/include/libxml2
 INCLUDENK = -I frameworks/nuklear/include
 
 SRC_DIR = srcs
@@ -108,8 +107,12 @@ SRC =			$(SRC_DIR)/main.c \
 				\
 				$(SRC_DIR)/interface/interface.c \
 				$(SRC_DIR)/interface/gui_utils.c \
+				$(SRC_DIR)/interface/gui_utils2.c \
+				$(SRC_DIR)/interface/gui_utils3.c \
 				$(SRC_DIR)/interface/gui_obj_parameters.c \
 				$(SRC_DIR)/interface/gui_scene_parameters.c \
+				$(SRC_DIR)/interface/gui_scene_parameters2.c \
+				$(SRC_DIR)/interface/gui_effect_button.c \
 				$(SRC_DIR)/interface/gui_render_scene.c \
 				$(SRC_DIR)/interface/gui_topbar.c \
 				$(SRC_DIR)/interface/gui_topbar2.c \

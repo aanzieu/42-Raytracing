@@ -1,10 +1,10 @@
 #!/bin/bash
 
-brew update
-brew install glew
-brew install libxml2
-brew install glfw
-xcode-select --install
+#brew update
+#brew install glew
+#brew install libxml2
+#brew install glfw
+#xcode-select --install
 git clone https://MrPandawan@bitbucket.org/MrPandawan/clang7.3.git clang7
 if [ ! -d LibraryTmp ]; then mkdir -p LibraryTmp; fi
 if [ ! -d clangtmp ]; then mkdir -p clangtmp; fi

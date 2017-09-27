@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   device_init_next.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/06 11:30:46 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 16:59:35 by xpouzenc         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_ALLOCATOR

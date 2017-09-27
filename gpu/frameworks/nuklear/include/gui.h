@@ -40,25 +40,18 @@ struct device {
 
 
 void	ui_widget(struct nk_context *ctx, struct media *media, float height);
-void	ui_header(struct nk_context *ctx, struct media *media, const char *title);
-void	ui_widget_centered(struct nk_context *ctx, struct media *media, float height);
-int		ui_piemenu(struct nk_context *ctx, struct nk_vec2 pos, float radius,
-		struct nk_image *icons, int item_count);
-void	ui_widget_small_button(struct nk_context *ctx, struct media *media, float height);
-void
-ui_widget_special_mode(struct nk_context *ctx, struct media *media, float height);
-int
-ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value, char *title);
-int
-ui_widget_value_infos_int(struct nk_context *ctx, struct media *media, int *value, char *title);
-int
-ui_widget_value_infos_cam(struct nk_context *ctx, struct media *media, double *value, char *title);
-int
-ui_slide_int_0_to_16(struct nk_context *ctx, int *value, char *title);
-int
-ui_slide_float_0_to_1(struct nk_context *ctx, double *value, char *title);
-int
-ui_slide_float_0_to_2(struct nk_context *ctx, double *value, char *title);
+void	ui_header(struct nk_context *ctx, struct media *media, const char *str);
+void	ui_widget_centered(struct nk_context *ctx, struct media *m, float h);
+void	ui_widget_small_button(struct nk_context *ctx, struct media *m, float h);
+void	ui_widget_special_mode(struct nk_context *ctx, struct media *m, float h);
+int		ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *value, char *title);
+int		ui_widget_value_infos_cam(struct nk_context *ctx, double *value, char *title);
+int		ui_slide_float_intensity(struct nk_context *ctx, double *value, char *title);
+void	ui_slide_float_perlin(struct nk_context *ctx, t_perlin *p, double *value, char *title);
+void	ui_slide_int_0_to_16(struct nk_context *ctx, t_world *w, int step, char *title);
+void	ui_slide_float_0_to_1(struct nk_context *ctx, double *value, char *title);
+void	ui_slide_float_0_to_2(struct nk_context *ctx, double *value, char *title);
+void	text_float_left(struct nk_context *ctx, char *str, int w);
 
 /* ===============================================================
  *
@@ -91,10 +84,12 @@ int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 
 void	objects_param(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
+void	scene_parameters_next(struct nk_context *ctx, struct media *media, t_world *world);
+void	scene_effects(struct nk_context *ctx, struct media *media, t_world *world, int option);
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
 void	draw_topbar_add_objects(struct nk_context *c, struct media *m, t_world *w);
-void 	camera_control_bar(struct nk_context *ctx, struct media *media, t_world *world);
-void	render_scene(struct nk_context *ctx, struct media *media, t_world *world);
+void 	camera_control_bar(struct nk_context *ctx, struct media *m, t_world *w);
+void	render_scene(struct nk_context *ctx, struct media *media, t_world *w);
 
 int 	file_browser_run(struct file_browser *browser, struct nk_context *ctx);
 void file_browser_init(struct file_browser *browser, struct media *media);

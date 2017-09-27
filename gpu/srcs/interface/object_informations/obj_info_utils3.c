@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_info_utils2.c                                  :+:      :+:    :+:   */
+/*   obj_info_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 16:30:55 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:28:10 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	get_light_type(int type)
 	return (0);
 }
 
-void			draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
-	int *type)
+void		draw_light_type(struct nk_context *c, struct media *m,\
+							t_world *w, int *type)
 {
 	int	option;
 

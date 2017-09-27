@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:27:37 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:50:31 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,24 @@
 #include "nuklear.h"
 #include "gui.h"
 
-void			ui_widget_render(struct nk_context *ctx, struct media *media,\
-								float height)
+static void		clear(struct nk_context *ctx, t_world *w)
 {
-	(void)media;
-	nk_layout_row_static(ctx, height, WIN_WIDTH, 1);
+	if (w->redraw == 3)
+	{
+		nk_clear(ctx);
+		w->redraw = 0;
+	}
 }
 
-void			load_video_buffer(int *a_h, unsigned char *video_buffer)
+static void		get_position(struct nk_context *ctx, t_world *w,\
+								struct nk_vec2 *pos)
+{
+	*pos = nk_window_get_position(ctx);
+	w->pos_render.x = pos->x;
+	w->pos_render.y = pos->y;
+}
+
+static void		load_video_buffer(int *a_h, unsigned char *video_buffer)
 {
 	int		i;
 	t_color	tmp;
@@ -65,37 +75,31 @@ struct nk_image	screen_load(int *a_h, unsigned char *video_buffer)
 }
 
 void			render_scene(struct nk_context *ctx, struct media *media,\
-							t_world *world)
+							t_world *w)
 {
 	static struct nk_image	screen;
 	struct nk_vec2			pos;
 
 	nk_style_set_font(ctx, &media->font_18->handle);
-	if (nk_begin(ctx, world->title,\
-		nk_rect((world->screen.width - (WIN_WIDTH + 15)) / 2,\
-		(world->screen.height - (WIN_HEIGHT + 48)) / 2,\
+	if (nk_begin(ctx, w->title,\
+		nk_rect((w->screen.width - (WIN_WIDTH + 15)) / 2,\
+		(w->screen.height - (WIN_HEIGHT + 48)) / 2,\
 		WIN_WIDTH + 15, WIN_HEIGHT + 48), NK_WINDOW_MOVABLE |\
 		NK_WINDOW_NO_SCROLLBAR | NK_WINDOW_TITLE | NK_WINDOW_BACKGROUND\
 		| NK_WINDOW_CLOSABLE))
 	{
-		if ((world->reload_buffer == 1 && world->redraw == 0) || world->redraw == 3)
+		if ((w->reload_buffer == 1 && w->redraw == 0) || w->redraw == 3)
 		{
-			printf("je REDRAW le SCREEN\n");
-			screen = screen_load(world->a_h, world->video_buffer);
-			world->reload_buffer = 0;
+			screen = screen_load(w->a_h, w->video_buffer);
+			w->reload_buffer = 0;
 		}
-		pos = nk_window_get_position(ctx);
-		world->pos_render.x = pos.x;
-		world->pos_render.y = pos.y;
-		ui_widget_render(ctx, media, WIN_HEIGHT);
+		get_position(ctx, w, &pos);
+		nk_layout_row_static(ctx, WIN_HEIGHT, WIN_WIDTH, 1);
 		nk_image(ctx, screen);
-		if (mousepress_middle(ctx, world, pos) || mousepress_left(ctx, world, pos) || (key_press(ctx, world)))
-			world->redraw = 1;
+		if (mousepress_middle(ctx, w, pos) || mousepress_left(ctx, w, pos) ||\
+			(key_press(ctx, w)))
+			w->redraw = 1;
 	}
-	if (world->redraw == 3)
-	{
-		nk_clear(ctx);
-		world->redraw = 0;
-	}
+	clear(ctx, w);
 	nk_end(ctx);
 }
