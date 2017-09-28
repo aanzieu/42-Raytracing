@@ -117,7 +117,7 @@ void			launch_cpu(t_world *world)
 	}
 	refresh_viewplane_cluster(world);
 	get_viewplane(world);
-	launch_thread(world, 0, WIN_HEIGHT, world->aa);
+	launch_thread(world, 0, world->viewplane.y_res, world->aa);
 }
 
 /*

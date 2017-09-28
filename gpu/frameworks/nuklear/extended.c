@@ -46,6 +46,7 @@ void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
 		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_ADD, glfwGetKey(win, GLFW_KEY_KP_ADD) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_SUB, glfwGetKey(win, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS);		
+		nk_input_key(ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);		
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{
@@ -210,6 +211,16 @@ int interface_launch(t_world *world, char *argv)
 		allocate_mouse(&ctx, win);
 		if(ctx.input.keyboard.keys[NK_KEY_ECHAP].down != 0)
 			break;
+		if(nk_input_is_key_pressed(&ctx.input, NK_KEY_SPACE) && world->render_factor != 32)
+		{
+			world->render_factor = 32;
+			world->redraw = 1;
+		}
+		if(nk_input_is_key_released(&ctx.input, NK_KEY_SPACE))
+		{
+			world->render_factor = 1;
+			world->redraw = 1;
+		}
 		/* GUI */
 		draw_render(cluster, world);
 		gui_calls(&ctx, &media, cluster.world);
