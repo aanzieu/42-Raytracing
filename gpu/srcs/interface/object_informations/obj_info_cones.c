@@ -17,10 +17,14 @@
 #include "gui.h"
 #include "gpu_rt.h"
 
-static int move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal)
+int move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal)
 {
-	if(ctx->input.keyboard.keys[NK_KEY_A].down != 0)
+	static int press;
+
+	press = 2;
+	if(nk_input_is_key_released(&ctx->input, NK_KEY_A) && press == 2)
 	{
+		press = -1;
 		translate(pos, -1, 0, 0);
 		translate(normal, -1, 0, 0);
 		return(1);
@@ -33,14 +37,14 @@ static int move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal)
 	}
 	if(ctx->input.keyboard.keys[NK_KEY_S].down != 0)
 	{
-		translate(pos, 0, 0, -1);
-		translate(normal, 0, 0, -1);
+		translate(pos, 0, -1, 0);
+		translate(normal, 0, -1, 0);
 		return(1);
 	}
 	if(ctx->input.keyboard.keys[NK_KEY_W].down != 0)
 	{
-		translate(pos, 0, 0, 1);
-		translate(normal, 0, 0, 1);
+		translate(pos, 0, 1, 0);
+		translate(normal, 0, 1, 0);
 		return(1);
 	}
 	if(ctx->input.keyboard.keys[NK_KEY_Q].down != 0)
@@ -57,26 +61,26 @@ static int move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal)
 	}
 	if(ctx->input.keyboard.keys[NK_KEY_LEFT].down != 0)
 	{
-		rotate(pos, 10, 'z');
-		rotate(normal, 10, 'z');	
+		rotate(pos, -10, 'y');
+		rotate(normal, -10, 'y');	
 		return(1);
 	}
 	if(ctx->input.keyboard.keys[NK_KEY_RIGHT].down != 0)
 	{
-		rotate(pos, 10, 'z');
-		rotate(normal, 10, 'z');	
+		rotate(pos, 10, 'y');
+		rotate(normal, 10, 'y');	
 		return(1);
 	}
-	if(ctx->input.keyboard.keys[NK_KEY_LEFT].down != 0)
+	if(ctx->input.keyboard.keys[NK_KEY_UP].down != 0)
 	{
-		rotate(pos, 10, 'z');
-		rotate(normal, 10, 'z');	
+		rotate(pos, 10, 'x');
+		rotate(normal, 10, 'x');	
 		return(1);
 	}
-	if(ctx->input.keyboard.keys[NK_KEY_RIGHT].down != 0)
+	if(ctx->input.keyboard.keys[NK_KEY_DOWN].down != 0)
 	{
-		rotate(pos, 10, 'z');
-		rotate(normal, 10, 'z');	
+		rotate(pos, -10, 'x');
+		rotate(normal, -10, 'x');	
 		return(1);
 	}
 	return(0);

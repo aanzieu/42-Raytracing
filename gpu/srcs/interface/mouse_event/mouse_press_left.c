@@ -26,7 +26,6 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 	t_vec2d			pad;
 	static int	press;
 
-	press = 2;
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
@@ -36,6 +35,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 		pad.y = ctx->input.mouse.pos.y - pos.y - 40;
 		if (pad.x < 0 || pad.y < 0 || pad.x > WIN_WIDTH || pad.y > WIN_HEIGHT)
 			return (0);
+		press = 2;
 		get_up_left(world);
 		get_ray_direction(*(world), &ray, pad.x, pad.y);
 		get_closest_intersection(*(world), ray, &intersection);
@@ -46,7 +46,9 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 			world->keys.select = 1;
 		}
 	}
-	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2){
 		press = -1;
-	return (press == -1 ? 1 : 0);
+		return(1);
+	}
+	return (0);
 }

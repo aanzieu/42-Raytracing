@@ -29,10 +29,10 @@ void	scroll_input(GLFWwindow *win, double u, double yoff)
 	glfwGetWindowUserPointer(win), nk_vec2(0, (float)yoff));
 }
 
-void	gui_calls(struct file_browser *browser, struct nk_context *ctx,\
+void	gui_calls(struct nk_context *ctx,\
 					struct media *media, t_world *world)
 {
-	(void)browser;
+	
 	if (world->a_h != NULL)
 	{
 		scene_parameters(ctx, media, world);

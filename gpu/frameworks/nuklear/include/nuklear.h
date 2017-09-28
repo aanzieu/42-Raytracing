@@ -673,6 +673,7 @@ enum nk_keys {
     NK_KEY_D,
     NK_KEY_SPACE,   
 
+    NK_KEY_ECHAP,
     NK_KEY_DEL,
     NK_KEY_ENTER,
     NK_KEY_TAB,

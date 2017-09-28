@@ -43,6 +43,7 @@ void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
 		nk_input_key(ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);		
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{
@@ -127,76 +128,8 @@ void	draw_render(t_cluster cluster, t_world *world)
 	}
 }
 
-int interface_launch(t_world *world, char *argv)
+void	delete_object(struct nk_context ctx, struct nk_font_atlas atlas, struct media media)
 {
-	/* Platform */
-	(void)argv;
-	static GLFWwindow *win;
-
-	t_cluster	cluster;
-
-	cluster_initialize(world, &cluster);
-	printf("test init cluster\n");
-		// ft_bzero(cluster.world->a_h, cluster.world->size_main);
-
-	/* GUI */
-	struct device device;
-	struct nk_context ctx;
-	struct nk_font_atlas atlas;
-	struct file_browser browser;
-	struct media media;
-
-	init_glfw_start(&win, &ctx, &(cluster).world->screen);
-	/* GUI */
-	device_init(&device);
-	loading_media(&media, &atlas, &ctx, &device);
-	file_browser_init(&browser, &media);
-	while (!glfwWindowShouldClose(win))
-	{
-		/* High DPI displays */
-		glfwSetWindowAspectRatio(win, 16, 9);
-		glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		glfwGetWindowSize(win, &(cluster).world->screen.width, &(cluster).world->screen.height);
-		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
-		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
-		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
-
-		/* Input */
-		nk_input_begin(&ctx);
-		glfwPollEvents();
-		allocate_keys(&ctx, win);
-		allocate_mouse(&ctx, win);
-		
-		/* GUI */
-		draw_render(cluster, world);
-		// if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
-		// {
-		// 	ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-		// 	ft_printf("Redraw Scène next time %d \n", i++);
-		// 	refresh_viewplane(cluster.world);
-		// 	if (cluster.world->mode_cluster == 1)
-		// 	{
-		// 		ft_putstr("Waiting for connection...\n");
-		// 		render_clustering(world, &cluster);
-		// 		ft_putstr("End of connexion, get started again\n");
-		// 	}
-		// 	else
-		// 		rt(cluster.world);
-		// 	if (cluster.world->keys.pad_0)
-		// 		effect_application(cluster.world);
-		// 	cluster.world->redraw = 0;
-		// 	cluster.world->reload_buffer = 1;
-		// }
-		gui_calls(&browser, &ctx, &media, cluster.world);
-
-		/* Draw */
-		glViewport(0, 0, cluster.world->screen.display_width, cluster.world->screen.display_height);
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		device_draw(&device, &ctx, &(cluster.world->screen), NK_ANTI_ALIASING_ON);
-		glfwSwapBuffers(win);
-
-	}
 	glDeleteTextures(1,(const GLuint*)&media.plane.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.sphere.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.cone.handle.id);
@@ -228,10 +161,67 @@ int interface_launch(t_world *world, char *argv)
 	glDeleteTextures(1,(const GLuint*)&media.zoom_in.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.zoom_out.handle.id);
 	glDeleteTextures(1,(const GLuint*)&media.icons.default_file.handle.id);
-
-	file_browser_free(&browser);
+	// file_browser_free(&browser);
 	nk_font_atlas_clear(&atlas);
 	nk_free(&ctx);
+}
+
+
+int interface_launch(t_world *world, char *argv)
+{
+	/* Platform */
+	(void)argv;
+	static GLFWwindow *win;
+
+	t_cluster	cluster;
+
+	cluster_initialize(world, &cluster);
+	printf("test init cluster\n");
+		// ft_bzero(cluster.world->a_h, cluster.world->size_main);
+
+	/* GUI */
+	struct device device;
+	struct nk_context ctx;
+	struct nk_font_atlas atlas;
+	// struct file_browser browser;
+	struct media media;
+
+	init_glfw_start(&win, &ctx, &(cluster).world->screen);
+	/* GUI */
+	device_init(&device);
+	loading_media(&media, &atlas, &ctx, &device);
+	// file_browser_init(&browser, &media);
+	while (!glfwWindowShouldClose(win))
+	{
+		/* High DPI displays */
+		glfwSetWindowAspectRatio(win, 16, 9);
+		glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
+		glfwGetWindowSize(win, &(cluster).world->screen.width, &(cluster).world->screen.height);
+		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
+		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
+		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
+
+		/* Input */
+		nk_input_begin(&ctx);
+		glfwPollEvents();
+		allocate_keys(&ctx, win);
+		allocate_mouse(&ctx, win);
+		if(ctx.input.keyboard.keys[NK_KEY_ECHAP].down != 0)
+			break;
+		/* GUI */
+		draw_render(cluster, world);
+		gui_calls(&ctx, &media, cluster.world);
+
+		/* Draw */
+		glViewport(0, 0, cluster.world->screen.display_width, cluster.world->screen.display_height);
+		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+		device_draw(&device, &ctx, &(cluster.world->screen), NK_ANTI_ALIASING_ON);
+		glfwSwapBuffers(win);
+
+	}
+	delete_object(ctx, atlas, media);
+	clear_world(cluster.world);
 	device_shutdown(&device);
 	glfwTerminate();
 	return 0;
