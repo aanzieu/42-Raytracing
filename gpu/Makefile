@@ -256,9 +256,7 @@ $(NAME): $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3) \
-	-gencode arch=compute_30,code=compute_30 \
-    -gencode arch=compute_35,code=compute_35
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
