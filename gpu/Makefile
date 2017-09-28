@@ -303,8 +303,10 @@ clean:
 fclean: clean
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
-	# rm -rf LibraryTmp
 	@$(RM) $(NAME)
 	@$(RF) obj objcuda objnuklear bin screenshots
 
 re: fclean all
+
+clearall : fclean
+	rm -rf LibraryTmp

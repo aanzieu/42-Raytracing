@@ -32,8 +32,10 @@ static void	scene_ambient(struct nk_context *ctx, struct media *media,\
 }
 
 static void	scene_definition(struct nk_context *ctx, struct media *media,\
-							t_world *world, int hd)
+							t_world *world)
 {
+	static int hd = 1;
+
 	ui_header(ctx, media, "---- Render Definition");
 	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (hd == 0) ?\
@@ -69,7 +71,6 @@ void		scene_parameters(struct nk_context *ctx, struct media *media,\
 							t_world *world)
 {
 	static int option = 1;
-	static int hd = 1;
 
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if (nk_begin(ctx, "Scene parameters", nk_rect(0, 52, 250,\
@@ -77,7 +78,7 @@ void		scene_parameters(struct nk_context *ctx, struct media *media,\
 		NK_WINDOW_BACKGROUND))
 	{
 		scene_info_header(ctx, media, world);
-		scene_definition(ctx, media, world, hd);
+		scene_definition(ctx, media, world);
 		scene_effects(ctx, media, world, option);
 		scene_ambient(ctx, media, world);
 		scene_parameters_next(ctx, media, world);

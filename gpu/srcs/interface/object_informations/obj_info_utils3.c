@@ -25,13 +25,8 @@ static int	get_light_type(int type)
 	return (0);
 }
 
-<<<<<<< Updated upstream
-void		draw_light_type(struct nk_context *c, struct media *m,\
-							t_world *w, int *type)
-=======
 void			draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
-	int *type, double *intensity)
->>>>>>> Stashed changes
+				int *type, double *intensity)
 {
 	int	option;
 

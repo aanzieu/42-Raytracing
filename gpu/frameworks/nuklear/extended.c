@@ -10,6 +10,57 @@
 #include "gui.h"
 #include "cluster.h"
 
+void	allocate_mouse(struct nk_context *ctx, GLFWwindow *win)
+{
+	double x, y;
+
+	glfwGetCursorPos(win, &x, &y);
+	nk_input_motion(ctx, (int)x, (int)y);
+	nk_input_button(ctx, NK_BUTTON_LEFT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS);
+	nk_input_button(ctx, NK_BUTTON_MIDDLE, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS);
+	nk_input_button(ctx, NK_BUTTON_RIGHT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS);
+	nk_input_end(ctx);
+
+
+}
+
+void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
+{
+		nk_input_key(ctx, NK_KEY_DEL, glfwGetKey(win, GLFW_KEY_DELETE) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_ENTER, glfwGetKey(win, GLFW_KEY_ENTER) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_TAB, glfwGetKey(win, GLFW_KEY_TAB) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_BACKSPACE, glfwGetKey(win, GLFW_KEY_BACKSPACE) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_LEFT, glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_RIGHT, glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_UP, glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_DOWN, glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_A, glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_S, glfwGetKey(win, GLFW_KEY_S) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_D, glfwGetKey(win, GLFW_KEY_D) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
+		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
+				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
+		{
+			nk_input_key(ctx, NK_KEY_COPY, glfwGetKey(win, GLFW_KEY_C) == GLFW_PRESS);
+			nk_input_key(ctx, NK_KEY_PASTE, glfwGetKey(win, GLFW_KEY_P) == GLFW_PRESS);
+			nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
+			nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
+			nk_input_key(ctx, NK_KEY_SHIFT, 1);
+		}
+		else
+		{
+			nk_input_key(ctx, NK_KEY_COPY, 0);
+			nk_input_key(ctx, NK_KEY_PASTE, 0);
+			nk_input_key(ctx, NK_KEY_CUT, 0);
+			nk_input_key(ctx, NK_KEY_SHIFT, 0);
+		}
+}
+
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx)
 {
 
@@ -52,6 +103,30 @@ void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct
 	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 }
 
+void	draw_render(t_cluster cluster, t_world *world)
+{
+	static int i;
+	
+	if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
+	{
+		ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+		ft_printf("Redraw Scène next time %d \n", i++);
+		refresh_viewplane(cluster.world);
+		if (cluster.world->mode_cluster == 1)
+		{
+			ft_putstr("Waiting for connection...\n");
+			render_clustering(world, &cluster);
+			ft_putstr("End of connexion, get started again\n");
+		}
+		else
+			rt(cluster.world);
+		if (cluster.world->keys.pad_0)
+			effect_application(cluster.world);
+		cluster.world->redraw = 0;
+		cluster.world->reload_buffer = 1;
+	}
+}
+
 int interface_launch(t_world *world, char *argv)
 {
 	/* Platform */
@@ -70,7 +145,6 @@ int interface_launch(t_world *world, char *argv)
 	struct nk_font_atlas atlas;
 	struct file_browser browser;
 	struct media media;
-	int i = 0;
 
 	init_glfw_start(&win, &ctx, &(cluster).world->screen);
 	/* GUI */
@@ -88,62 +162,31 @@ int interface_launch(t_world *world, char *argv)
 		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
 
 		/* Input */
-		double x, y;
 		nk_input_begin(&ctx);
 		glfwPollEvents();
-		nk_input_key(&ctx, NK_KEY_DEL, glfwGetKey(win, GLFW_KEY_DELETE) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_ENTER, glfwGetKey(win, GLFW_KEY_ENTER) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_TAB, glfwGetKey(win, GLFW_KEY_TAB) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_BACKSPACE, glfwGetKey(win, GLFW_KEY_BACKSPACE) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_LEFT, glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_RIGHT, glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_UP, glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_DOWN, glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
-		nk_input_key(&ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
-				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
-		{
-			nk_input_key(&ctx, NK_KEY_COPY, glfwGetKey(win, GLFW_KEY_C) == GLFW_PRESS);
-			nk_input_key(&ctx, NK_KEY_PASTE, glfwGetKey(win, GLFW_KEY_P) == GLFW_PRESS);
-			nk_input_key(&ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-			nk_input_key(&ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-			nk_input_key(&ctx, NK_KEY_SHIFT, 1);
-		}
-		else
-		{
-			nk_input_key(&ctx, NK_KEY_COPY, 0);
-			nk_input_key(&ctx, NK_KEY_PASTE, 0);
-			nk_input_key(&ctx, NK_KEY_CUT, 0);
-			nk_input_key(&ctx, NK_KEY_SHIFT, 0);
-		}
-		glfwGetCursorPos(win, &x, &y);
-		nk_input_motion(&ctx, (int)x, (int)y);
-		nk_input_button(&ctx, NK_BUTTON_LEFT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS);
-		nk_input_button(&ctx, NK_BUTTON_MIDDLE, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS);
-		nk_input_button(&ctx, NK_BUTTON_RIGHT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS);
-		nk_input_end(&ctx);
-
+		allocate_keys(&ctx, win);
+		allocate_mouse(&ctx, win);
+		
 		/* GUI */
-		if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
-		{
-			ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
-			ft_printf("Redraw Scène next time %d \n", i++);
-			refresh_viewplane(cluster.world);
-			if (cluster.world->mode_cluster == 1)
-			{
-				ft_putstr("Waiting for connection...\n");
-				render_clustering(world, &cluster);
-				ft_putstr("End of connexion, get started again\n");
-			}
-			else
-				rt(cluster.world);
-			if (cluster.world->keys.pad_0)
-				effect_application(cluster.world);
-			cluster.world->redraw = 0;
-			cluster.world->reload_buffer = 1;
-		}
+		draw_render(cluster, world);
+		// if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
+		// {
+		// 	ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+		// 	ft_printf("Redraw Scène next time %d \n", i++);
+		// 	refresh_viewplane(cluster.world);
+		// 	if (cluster.world->mode_cluster == 1)
+		// 	{
+		// 		ft_putstr("Waiting for connection...\n");
+		// 		render_clustering(world, &cluster);
+		// 		ft_putstr("End of connexion, get started again\n");
+		// 	}
+		// 	else
+		// 		rt(cluster.world);
+		// 	if (cluster.world->keys.pad_0)
+		// 		effect_application(cluster.world);
+		// 	cluster.world->redraw = 0;
+		// 	cluster.world->reload_buffer = 1;
+		// }
 		gui_calls(&browser, &ctx, &media, cluster.world);
 
 		/* Draw */

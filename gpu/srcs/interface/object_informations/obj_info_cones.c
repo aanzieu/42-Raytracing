@@ -15,6 +15,72 @@
 #include "rt.h"
 #include "nuklear.h"
 #include "gui.h"
+#include "gpu_rt.h"
+
+static int move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal)
+{
+	if(ctx->input.keyboard.keys[NK_KEY_A].down != 0)
+	{
+		translate(pos, -1, 0, 0);
+		translate(normal, -1, 0, 0);
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_D].down != 0)
+	{
+		translate(pos, 1, 0, 0);
+		translate(normal, 1, 0, 0);
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_S].down != 0)
+	{
+		translate(pos, 0, 0, -1);
+		translate(normal, 0, 0, -1);
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_W].down != 0)
+	{
+		translate(pos, 0, 0, 1);
+		translate(normal, 0, 0, 1);
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_Q].down != 0)
+	{
+		rotate(pos, -10, 'z');
+		rotate(normal, -10, 'z');	
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_E].down != 0)
+	{
+		rotate(pos, 10, 'z');
+		rotate(normal, 10, 'z');	
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_LEFT].down != 0)
+	{
+		rotate(pos, 10, 'z');
+		rotate(normal, 10, 'z');	
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_RIGHT].down != 0)
+	{
+		rotate(pos, 10, 'z');
+		rotate(normal, 10, 'z');	
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_LEFT].down != 0)
+	{
+		rotate(pos, 10, 'z');
+		rotate(normal, 10, 'z');	
+		return(1);
+	}
+	if(ctx->input.keyboard.keys[NK_KEY_RIGHT].down != 0)
+	{
+		rotate(pos, 10, 'z');
+		rotate(normal, 10, 'z');	
+		return(1);
+	}
+	return(0);
+}
 
 static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 						int i)
@@ -71,6 +137,8 @@ void		cone_informations(t_world *world, struct nk_context *ctx,\
 			draw_chess_color(ctx, media, world, &world->cones[i].chess);
 			refresh_cone(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
+			if(move_object(ctx, &world->cones[i].pos, &world->cones[i].up))
+				world->redraw = 1;
 			break ;
 		}
 		i++;

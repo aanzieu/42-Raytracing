@@ -18,4 +18,3 @@ rm -rf clangtmp
 export PATH=LibraryTmp/Library/Developer/CommandLineTools/usr/bin${PATH:+:${PATH}}
 echo $PATH
 make -j
-rm -rf LibraryTmp

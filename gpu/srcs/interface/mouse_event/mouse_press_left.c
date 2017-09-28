@@ -24,7 +24,9 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 	t_ray			ray;
 	t_intersection	intersection;
 	t_vec2d			pad;
+	static int	press;
 
+	press = 2;
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
@@ -42,8 +44,9 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 			world->id_save = intersection.id_save;
 			world->ob_save = intersection.type;
 			world->keys.select = 1;
-			return (1);
 		}
 	}
-	return (0);
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
+		press = -1;
+	return (press == -1 ? 1 : 0);
 }
