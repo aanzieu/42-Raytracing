@@ -118,13 +118,8 @@ void            render_scene(struct nk_context *ctx, struct media *media,\
         nk_layout_row_static(ctx, WIN_HEIGHT, WIN_WIDTH, 1);
         nk_image(ctx, screen);
         if (mousepress_middle(ctx, w, pos) || mousepress_left(ctx, w, pos) ||\
-            (key_press(ctx, w)))
-            {
-            printf("je clic 2fois ? \n");
+            (key_press(ctx, w)))         
             w->redraw = 1;
-
-
-            }
     }
     clear(ctx, w);
     nk_end(ctx);

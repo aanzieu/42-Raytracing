@@ -37,7 +37,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 			return (0);
 		press = 2;
 		get_up_left(world);
-		get_ray_direction(*(world), &ray, pad.x, pad.y);
+		get_ray_direction(*(world), &ray, pad.x / world->render_factor, pad.y / world->render_factor);
 		get_closest_intersection(*(world), ray, &intersection);
 		if (intersection.t != INFINITY)
 		{

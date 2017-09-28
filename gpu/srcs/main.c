@@ -60,44 +60,30 @@ void			load_data(t_world *world)
 
 void			rt_cluster(t_world *world)
 {
-	printf("test dans le rt_cluster\n");
 	world->clientrender = 1;
 	world->render_factor = world->offsets.render_factor;
-	printf("FACTOR = %d\n", world->render_factor);
 	world->aa = world->offsets.aa;
 	world->id_save = world->offsets.id_save;
 	world->ob_save = world->offsets.ob_save;
 	world->mode = world->offsets.mode;
-	world->size_main = (WIN_WIDTH / world->render_factor) * ((world->offsets.y_max - world->offsets.y_min) / world->render_factor) * sizeof(int);
+	world->size_main = (WIN_WIDTH / world->render_factor) *
+	 ((world->offsets.y_max - world->offsets.y_min) / world->render_factor) * sizeof(int);
 	if (world->a_h == NULL)
 	{
 		if (!(world->a_h = ft_memalloc(world->size_main)))
 			ft_putendl_fd("Error : Can't malloc client a_h", 1);
-		// printf("avant free a_h\n");
-		// free(world->a_h);
-		// printf("apres free a_h\n");
 	}
 	ft_bzero(world->a_h, world->size_main);
 	if (world->mode == 0)
-	{
-		printf("laucnh CPU\n");
 		launch_cpu(world);
-		printf("fin de cpu\n");
-	}
 	else
-	{
-		printf("laucnh GPU\n");
 		launch_gpu(world);
-		printf("fin de GPU\n");
-
-	}
 }
 
 void			rt(t_world *world)
 {
 	world->size_main = world->viewplane.x_res * world->viewplane.y_res *
 			sizeof(int);
-	printf("cluster y_res %d\n", world->viewplane.y_res);
 	if (world->a_h == NULL)
 		if (!(world->a_h = malloc(world->size_main)))
 			exit(0);
@@ -106,51 +92,32 @@ void			rt(t_world *world)
 		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
 			exit (0);
 	}
-	printf("%d gpu test\n", world->mode);
-	printf("%d gpu test\n", world->clientrender);
 	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 	ft_bzero(world->a_h, world->size_main);
 	if(world->mode_cluster == 1)
-	{
 		return;
-		// ft_putstr("Waiting for connection...\n");
-		// master_cluster(world);
-		// ft_putstr("End of connexion, get started again\n");
-		// return;
-	}
-
 	if (world->mode == 0)
 	{
 		printf("laucnh CPU\n");
 		launch_cpu(world);
 	}
 	else
-	{
-
 		launch_gpu(world);
-		printf("laucnh GPU\n");
-	}
 }
 
 int				main(int argc, char **argv)
 {
-	int	flags;
-
-	(void)argc;
-	(void)argv;
-	flags = 0;
-	if (argc == 2)
+	if (argc == 1)
 		choose_main_launcher(argv, 0);
 	else if (argc == 3)
 	{
-		if ((ft_strcmp("master", argv[2]) == 0))
-			flags = 1;
-		else if ((ft_strcmp("client", argv[1]) == 0))
-			flags = 2;
-		choose_main_launcher(argv, flags);
+		if ((ft_strcmp("client", argv[1]) == 0))
+			choose_main_launcher(argv, 2);
+		else
+			ft_putstr("Usage: ./bin/RT client [IP]");
 	}
 	else
-		ft_putstr("Usage: ./bin/RT model.xml\n");
+		ft_putstr("Usage: launch only with ./bin/RT");
 	SDL_Quit();
 	return (0);
 }

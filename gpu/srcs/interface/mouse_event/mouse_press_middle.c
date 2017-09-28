@@ -20,7 +20,7 @@
 
 static int		remove_object_4(t_world *world, t_intersection *i)
 {
-	if (i->type == 'a')
+	if (i->type == 'b')
 	{
 		remove_paraboloid(&world->paraboloids_tmp, i);
 		load_paraboloids(&world->paraboloids, world->paraboloids_tmp,
@@ -131,7 +131,7 @@ int				mousepress_middle(struct nk_context *ctx, t_world *world,\
 		if (pad.x < 0 || pad.y < 0 || pad.x > WIN_WIDTH || pad.y > WIN_HEIGHT)
 			return (0);
 		get_up_left(world);
-		get_ray_direction(*(world), &ray, pad.x, pad.y);
+		get_ray_direction(*(world), &ray, pad.x / world->render_factor, pad.y / world->render_factor);
 		get_closest_intersection(*(world), ray, &intersection);
 		if (intersection.t != INFINITY)
 			if (remove_object(world, &intersection) == 1)
