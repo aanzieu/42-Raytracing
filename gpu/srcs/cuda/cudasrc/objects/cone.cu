@@ -14,88 +14,90 @@ extern "C" {
 #include "../../cudaheader/gpu_rt.h"
 }
 
-__host__ __device__ t_vec3d		get_normal_cone(t_cone cone, t_ray ray,
-		t_intersection intersection)
+__host__ __device__ t_vec3d		get_normal_cone(t_cone cone,
+		t_intersection *intersection_tmp)
 {
 	t_vec3d axis_v;
 	t_vec3d	normal_v;
 	t_vec3d	x;
-	double	m;
 	double	k;
 
 	k = cone.half_angle;
-	x = vector_substract(ray.origin, cone.pos);
-	axis_v = vector_normalize(vector_calculate(cone.pos, cone.up));
-	m = vector_dot(ray.dir, vector_scalar(axis_v, intersection.t))
-		+ vector_dot(x, axis_v);
-	normal_v = vector_normalize(
-			vector_substract(
-				vector_substract(
-					intersection.pos, cone.pos),
-				vector_scalar(
-					vector_scalar(
-						axis_v, m), 1 + (k * k))));
+	axis_v = vector_substract(intersection_tmp->pos, \
+		vector_add(cone.pos, cone.up));
+	axis_v = vector_scalar(cone.up, \
+		vector_dot(cone.up, axis_v) / vector_dot(cone.up, cone.up));
+	x = vector_add(axis_v, cone.up);
+	normal_v = vector_substract(intersection_tmp->pos, cone.pos);
+	x = vector_scalar(vector_normalize(x), vector_length(normal_v) / cos(k));
+	normal_v = vector_normalize(vector_substract(normal_v, x));
 	return (normal_v);
 }
 
-__host__ __device__ static int		limit_cone(t_cone cone, t_ray ray,
-		t_intersection *intersection_tmp, t_vec3d axis_v, t_vec3d x, t_eq eq)
+__host__ __device__ static double	limit_cone_next(t_eq eq,\
+		t_cone cone, t_ray ray, t_intersection *intersection_tmp)
 {
-	double b[2];
-	double k;
+	t_vec3d pos[2];
+	t_vec3d lim[2];
 
-	k = cone.half_angle;
-	b[0] = vector_dot(ray.dir, vector_scalar(axis_v, eq.res[0]))
-	 	+ vector_dot(x, axis_v);
-	b[1] = vector_dot(ray.dir, vector_scalar(axis_v, eq.res[1]))
-	 	+ vector_dot(x, axis_v);
-	intersection_tmp->pos = vector_add(ray.origin,
-		vector_scalar(ray.dir, eq.res[0]));
-	intersection_tmp->normal_v = vector_normalize(vector_substract(
-		vector_substract(intersection_tmp->pos, cone.pos),
-		vector_scalar(vector_scalar(axis_v, b[0]), 1 + (k * k))));
-	if (cone.height <= 0)
-		return (1);
-	if ((b[0] > 0 && b[0] < cone.height) || (b[1] > 0 && b[1] < cone.height))
-		if (b[0] > 0 && b[0] < cone.height)
-			return (1);
-	return (0);
+	pos[0] = vector_add(ray.origin, vector_scalar(ray.dir, eq.res[0]));
+	pos[1] = vector_add(cone.pos, vector_scalar(cone.up, cone.height));
+	lim[0] = vector_substract(pos[0], cone.pos);
+	lim[1] = vector_substract(pos[0], pos[1]);
+	if (vector_dot(cone.up, lim[0]) > SURFACE_TOLERANCE \
+		&& vector_dot(cone.up, lim[1]) < SURFACE_TOLERANCE)
+		return (eq.res[0]);
+	return (-1);
 }
 
-__host__ __device__ static int		get_cone(t_cone cone, t_ray ray,
+__host__ __device__ static int limit_cone(t_eq eq, t_cone cone,\
+		t_ray ray, t_intersection *intersection_tmp)
+{
+	double	t_save;
+
+	if (eq.res[1] > eq.res[0])
+		eq.res[1] = eq.res[0];
+	t_save = eq.res[1];
+	if (cone.height > 0)
+		if ((eq.res[1] = limit_cone_next(eq, cone, ray, intersection_tmp)) == -1)
+			return (-1);
+	intersection_tmp->t = eq.res[1] == t_save ? eq.res[0] : eq.res[1];
+	intersection_tmp->pos = vector_add(ray.origin,
+		vector_scalar(ray.dir, intersection_tmp->t));
+	intersection_tmp->normal_v = get_normal_cone(cone, intersection_tmp);
+	return (1);
+}
+
+__host__ __device__ static int		get_cone(t_cone cone, t_ray ray,\
 	t_intersection *intersection_tmp)
 {
-	t_vec3d axis_v;
-	t_vec3d	normal;
-	t_vec3d x;
 	t_eq		eq;
-	double	k;
+	t_vec3d x;
+	t_vec3d axis_v[2];
+	double 	k;
 
 	if (intersection_tmp->id == cone.id)
 		return (0);
-	normal = vector_normalize(vector_calculate(cone.pos, cone.up));
-	x = vector_calculate(cone.pos, ray.origin);
+
+	axis_v[0] = vector_substract(ray.origin, vector_add(cone.pos, cone.up));
+	axis_v[1] = vector_cross(axis_v[0], cone.up);
+	axis_v[0] = vector_cross(ray.dir, cone.up);
+	x = vector_substract(ray.origin, cone.pos);
 	k = cone.half_angle;
-	eq.a = vector_dot(ray.dir, ray.dir)
-		- (1 + k * k) * pow(vector_dot(ray.dir, normal), 2);
-	eq.b = 2 * (vector_dot(ray.dir, x)
-			- (1 + k * k) * (vector_dot(ray.dir, normal) * vector_dot(x, normal)));
-	eq.c = vector_dot(x, x)
-		- (1 + k * k) * pow(vector_dot(x, normal), 2);
+	eq.a = pow(cos(k), 2) * vector_dot(axis_v[0], axis_v[0]) - \
+		pow(sin(k), 2) * pow(vector_dot(ray.dir, cone.up), 2);
+	eq.b = pow(cos(k), 2) * vector_dot(axis_v[0], axis_v[1]) * 2 - \
+		2 * pow(sin(k), 2) * vector_dot(ray.dir, cone.up) * vector_dot(x, cone.up);
+	eq.c = pow(cos(k), 2) * vector_dot(axis_v[1], axis_v[1]) - \
+		pow(sin(k), 2) * pow(vector_dot(x, cone.up), 2);
 	second_degres(&eq);
 	if(eq.res[0] != NOT_A_SOLUTION)
-	{
-		intersection_tmp->t = eq.res[0];
-		x = vector_substract(ray.origin, cone.pos);
-		axis_v = vector_normalize(vector_calculate(cone.pos, cone.up));
-		if (limit_cone(cone, ray, intersection_tmp, axis_v, x, eq) == 1)
-			return (1);
-	}
+		return (limit_cone(eq, cone, ray, intersection_tmp));
 	intersection_tmp->t = -1.0;
 	return (0);
 }
 
-__host__ __device__ void			get_closest_cone(t_world world, t_ray ray,
+__host__ __device__ void			get_closest_cone(t_world world, t_ray ray,\
 		t_intersection *intersection, t_intersection *intersection_tmp)
 {
 	int i;
@@ -124,3 +126,55 @@ __host__ __device__ void			get_closest_cone(t_world world, t_ray ray,
 		i++;
 	}
 }
+
+
+// t_vec3d axis_v;
+
+// t_vec3d	normal;
+
+// t_vec3d x;
+
+// double	k;
+
+// normal = vector_normalize(vector_calculate(cone.pos, cone.up));
+// x = vector_calculate(cone.pos, ray.origin);
+// k = cone.half_angle;
+// eq.a = vector_dot(ray.dir, ray.dir)
+// 	- (1 + k * k) * pow(vector_dot(ray.dir, normal), 2);
+// eq.b = 2 * (vector_dot(ray.dir, x)
+// 		- (1 + k * k) * (vector_dot(ray.dir, normal) * vector_dot(x, normal)));
+// eq.c = vector_dot(x, x)
+// 	- (1 + k * k) * pow(vector_dot(x, normal), 2);
+
+//if//
+// return (limit_cone(eq, cone, ray, intersection_tmp));
+// x = vector_substract(ray.origin, cone.pos);
+// axis_v = vector_normalize(vector_calculate(cone.pos, cone.up));
+// if (limit_cone(cone, ray, intersection_tmp, axis_v, x, eq) == 1)
+// 	return (1);
+//fi//
+
+// __host__ __device__ static int		limit_cone(t_cone cone, t_ray ray,
+// 		t_intersection *intersection_tmp, t_vec3d axis_v, t_vec3d x, t_eq eq)
+// {
+// 	double b[2];
+// 	double k;
+//
+// 	k = cone.half_angle;
+// 	b[0] = vector_dot(ray.dir, vector_scalar(axis_v, eq.res[0]))
+// 	 	+ vector_dot(x, axis_v);
+// 	b[1] = vector_dot(ray.dir, vector_scalar(axis_v, eq.res[1]))
+// 	 	+ vector_dot(x, axis_v);
+// 	intersection_tmp->pos = vector_add(ray.origin,
+// 		vector_scalar(ray.dir, eq.res[0]));
+// 	intersection_tmp->normal_v = vector_normalize(vector_substract(
+// 		vector_substract(intersection_tmp->pos, cone.pos),
+// 		vector_scalar(vector_scalar(axis_v, b[0]), 1 + (k * k))));
+// 	if (cone.height <= 0)
+// 		return (1);
+// 	if ((b[0] > 0 && b[0] < cone.height) || (b[1] > 0 && b[1] < cone.height))
+// 		if (b[0] > 0 && b[0] < cone.height)
+// 			return (1);
+// 	return (0);
+// }
+//

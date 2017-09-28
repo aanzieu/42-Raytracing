@@ -16,39 +16,30 @@
 #include "nuklear.h"
 #include "gui.h"
 
-static int	get_light_type(int type)
-{
-	if (type == LIGHT_P)
-		return (0);
-	if (type == LIGHT_BOX)
-		return (1);
-	return (0);
-}
-
 void			draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
-				int *type, double *intensity)
+	t_light *light)
 {
 	int	option;
 
-	option = get_light_type(*type);
+	option = light->type == LIGHT_BOX ? 1 : 0;
 	ui_header(c, m, "---- Light Type");
 	ui_widget_special_mode(c, m, 20);
 	if (nk_button_symbol_label(c, (option == 0) ?
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "POINT", NK_TEXT_LEFT))
 	{
 		option = 0;
-		if (*type == LIGHT_BOX && *intensity >= 0.2)
-			*intensity -= 0.2;
-		*type = LIGHT_P;
+		if (light->type == LIGHT_BOX && light->intensity_coef >= 0.2)
+			light->intensity_coef -= 0.2;
+		light->type = LIGHT_P;
 		w->redraw = 1;
 	}
 	if (nk_button_symbol_label(c, (option == 1) ?
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "BOX", NK_TEXT_LEFT))
 	{
 		option = 1;
-		if (*type == LIGHT_P && *intensity <= 0.8)
-			*intensity += 0.2;
-		*type = LIGHT_BOX;
+		if (light->type == LIGHT_P && light->intensity_coef <= 0.8)
+			light->intensity_coef += 0.2;
+		light->type = LIGHT_BOX;
 		w->redraw = 1;
 	}
 }

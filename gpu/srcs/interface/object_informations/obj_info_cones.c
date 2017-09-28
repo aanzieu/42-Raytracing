@@ -24,6 +24,7 @@ static void	draw_infos(struct nk_context *c, struct media *m, t_world *w,\
 	ui_widget_value_infos(c, m, &w->cones[i].pos.y, "POS Y:");
 	ui_widget_value_infos(c, m, &w->cones[i].pos.z, "POS Z:");
 	ui_widget_value_infos(c, m, &w->cones[i].up.x, "NORMAL X:");
+	ui_widget_value_infos(c, m, &w->cones[i].up.y, "NORMAL Y:");
 	ui_widget_value_infos(c, m, &w->cones[i].up.z, "NORMAL Z:");
 	ui_widget_value_infos(c, m, &w->cones[i].height, "HEIGHT:");
 	ui_widget_value_infos(c, m, &w->cones[i].half_angle, "RADIUS:");
