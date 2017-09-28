@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_scene_parameters.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/27 16:22:49 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:51:06 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void	scene_info_header(struct nk_context *ctx, struct media *media,\
 void		scene_parameters(struct nk_context *ctx, struct media *media,\
 							t_world *world)
 {
-	static int option = 1;
-
 	nk_style_set_font(ctx, &media->font_20->handle);
 	if (nk_begin(ctx, "Scene parameters", nk_rect(0, 52, 250,\
 		world->screen.height - 52), NK_WINDOW_BORDER | NK_WINDOW_TITLE |\
@@ -79,7 +77,7 @@ void		scene_parameters(struct nk_context *ctx, struct media *media,\
 	{
 		scene_info_header(ctx, media, world);
 		scene_definition(ctx, media, world);
-		scene_effects(ctx, media, world, option);
+		scene_effects(ctx, media, world);
 		scene_ambient(ctx, media, world);
 		scene_parameters_next(ctx, media, world);
 	}

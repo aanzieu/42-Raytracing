@@ -85,7 +85,7 @@ int				mousepress_left(struct nk_context *ctx, t_world *world, struct nk_vec2 po
 void	objects_param(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_parameters_next(struct nk_context *ctx, struct media *media, t_world *world);
-void	scene_effects(struct nk_context *ctx, struct media *media, t_world *world, int option);
+void	scene_effects(struct nk_context *ctx, struct media *media, t_world *world);
 void	scene_topbar(struct nk_context *ctx, struct media *media, t_world *world);
 void	draw_topbar_add_objects(struct nk_context *c, struct media *m, t_world *w);
 void 	camera_control_bar(struct nk_context *ctx, struct media *m, t_world *w);
