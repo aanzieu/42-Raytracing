@@ -155,6 +155,8 @@ void	light_informations(t_world *world, struct nk_context *ctx, struct media *me
 void	refresh_light(t_world *world, int i);
 
 int		get_preset_info(t_perlin p);
+int 	move_object(struct nk_context *ctx, t_vec3d *pos, t_vec3d *normal);
+int 	move_object_without_norm(struct nk_context *ctx, t_vec3d *pos);
 int		draw_color_picker(struct nk_context *ctx, t_color *o, t_world *world);
 void	draw_chess_color(struct nk_context *ctx, struct media *m, t_world *world, t_color *c);
 void	draw_choose_color(struct nk_context *ctx, t_world *world, t_color *c);

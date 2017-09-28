@@ -123,6 +123,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_middle.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_spheres.c \
+				$(SRC_DIR)/interface/object_informations/obj_move.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_planes.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_cones.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_disks.c \

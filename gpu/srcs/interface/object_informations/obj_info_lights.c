@@ -16,6 +16,8 @@
 #include "nuklear.h"
 #include "gui.h"
 
+
+
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
 {
@@ -64,6 +66,8 @@ void		light_informations(t_world *world, struct nk_context *ctx,\
 			draw_color_picker(ctx, &world->lights[i].color, world);
 			refresh_h_cube(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
+			if(move_object_without_norm(ctx, &world->lights[i].pos))
+				world->redraw = 1;
 			break ;
 		}
 		i++;

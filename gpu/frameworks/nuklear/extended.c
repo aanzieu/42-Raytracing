@@ -43,7 +43,9 @@ void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
 		nk_input_key(ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);		
+		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_ADD, glfwGetKey(win, GLFW_KEY_KP_ADD) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_SUB, glfwGetKey(win, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS);		
 		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
 				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
 		{
