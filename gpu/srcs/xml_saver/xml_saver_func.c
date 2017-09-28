@@ -75,12 +75,10 @@ xmlNodePtr			xml_save_one_data_str(int t, char *str, xmlNodePtr object)
 	char		*data;
 
 	node = xmlNewChild(object, NULL, BAD_CAST(str), NULL);
-	if (t == LIGHT_P)
-		data = ft_strdup("POINT");
-	else if (t == LIGHT_BOX)
+	if (t == LIGHT_BOX)
 		data = ft_strdup("BOX");
 	else
-		data = ft_strdup("SPHERE");
+		data = ft_strdup("POINT");
 	if (!data)
 		show_error("Error on light type malloc in xmlSaver.");
 	xmlNewProp(node, BAD_CAST "data", BAD_CAST(data));
