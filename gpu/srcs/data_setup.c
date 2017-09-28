@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/09/11 16:52:40 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:31:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void 			data_setup_2(t_world *world)
 	world->video_buffer = NULL;
 	world->intensity = 2.1;
 	world->img_scene = 0;
+	world->menu_on = 0;
 }
 
 void			data_setup(t_world *world)

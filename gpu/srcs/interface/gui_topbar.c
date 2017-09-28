@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_topbar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/27 17:35:25 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:03:52 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@
 #include "parse.h"
 
 static void	add_object(struct nk_context *ctx, struct media *media,\
-					t_world *world)
+					t_world *world, int img_active[4])
 {
 	nk_layout_row_push(ctx, 60);
 	if (nk_menu_begin_text(ctx, "Add", 3, NK_TEXT_CENTERED, nk_vec2(600, 90)))
 	{
+		img_active[3] = 1;
 		nk_layout_row_dynamic(ctx, 20, 4);
 		draw_topbar_add_objects(ctx, media, world);
 		nk_menu_end(ctx);
 	}
+	else
+		img_active[3] = 0;
 }
 
 static void	file_open(struct nk_context *ctx, struct media *media,\
@@ -101,10 +104,14 @@ void		scene_topbar(struct nk_context *ctx, struct media *media,\
 			file_open(ctx, media, world, img_active);
 			file_save(ctx, media, world);
 			file_edit(ctx, media);
-			add_object(ctx, media, world);
+			add_object(ctx, media, world, img_active);
 		}
 		nk_layout_row_end(ctx);
 		select_scene(ctx, media, world, img_active);
+		if (img_active[0] == 1 || img_active[3] == 1)
+			world->menu_on = 1;
+		else
+			world->menu_on = 0;
 	}
 	nk_end(ctx);
 }

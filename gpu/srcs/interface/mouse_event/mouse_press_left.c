@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_press_left.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 17:57:27 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:39:47 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
-	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down)
+	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down && world->menu_on == 0)
 	{
 		pad.x = ctx->input.mouse.pos.x - pos.x;
 		pad.y = ctx->input.mouse.pos.y - pos.y - 40;

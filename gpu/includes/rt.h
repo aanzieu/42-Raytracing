@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 12:42:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/25 15:16:43 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/28 15:30:52 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ typedef struct		s_world
 	t_vec2d			pos_render;
 	int				redraw;
 	int				img_scene;
+	int				menu_on;
 	int				aa;
 	int				win_width;
 	int				win_height;
