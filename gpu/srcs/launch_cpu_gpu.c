@@ -25,6 +25,7 @@ static	void	*perform_thread(void *arg)
 	y = (thread->th) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min;
 
 	y_aa = y * thread->aa;
+	printf("thread n = %d | MIN = %d\n",thread->th, y);
 	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min)
 	{
 		x = 0;
@@ -41,6 +42,7 @@ static	void	*perform_thread(void *arg)
 		y_aa += thread->world->aa;
 		y++;
 	}
+	printf("thread n = %d | MAX = %d\n",thread->th, y);
 	pthread_exit(0);
 }
 
@@ -56,6 +58,7 @@ int				launch_thread(t_world *world, int y_min, int y_max, int aa)
 		tab[i].world = world;
 		tab[i].y_min = y_min;
 		tab[i].y_max = y_max;
+		printf("thread n = %d | min = %d | max = %d\n", i, y_min, y_max);
 		tab[i].aa = aa;
 		if (pthread_create(&world->thread[i], NULL, &perform_thread, &tab[i]))
 			ft_putendl_fd("Error : Can't init launch_rtv1", 1);
@@ -111,7 +114,7 @@ void			launch_cpu(t_world *world)
 		ft_printf("Calculating on Cpu\n");
 		refresh_viewplane_cluster(world);
 		get_viewplane_cluster(world);
-		launch_thread(world, world->offsets.y_min, world->offsets.y_max, world->offsets.aa);
+		launch_thread(world, world->offsets.y_min / world->render_factor, world->offsets.y_max / world->render_factor, world->offsets.aa);
 		ft_printf("End of Calculate\n");
 		return ;
 	}

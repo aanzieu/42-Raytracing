@@ -76,7 +76,7 @@ void			data_setup(t_world *world)
 	world->aa = 1;
 	refresh_viewplane(world);
 	world->mode = 0;
-	world->anaglyph_depth = 3;
+	world->anaglyph_depth = 4;
 	world->light_type = 1;
 	world->render_factor = 1;
 	world->viewplane.dist = 1;

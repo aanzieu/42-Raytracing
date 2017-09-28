@@ -21,14 +21,14 @@ void			local_config(t_world *world, char *argv)
 	interface_launch(world, argv);
 }
 
-void			master_config(t_world *world, char *argv)
-{
-	parse_rtv1(world, argv);
-	load_data(world);
-	ft_putstr("Waiting for connection...\n");
-	master_cluster(world);
-	ft_putstr("End of connexion, get started again\n");
-}
+// void			master_config(t_world *world, char *argv)
+// {
+// 	parse_rtv1(world, argv);
+// 	load_data(world);
+// 	ft_putstr("Waiting for connection...\n");
+// 	master_cluster(world);
+// 	ft_putstr("End of connexion, get started again\n");
+// }
 
 void			client_config(t_world *world, char *argv)
 {
@@ -48,8 +48,8 @@ void			choose_main_launcher(char **argv, int flags)
 	get_viewplane(world);
 	if (flags == 0 && argv[1])
 		local_config(world, argv[1]);
-	else if (flags == 1 && argv[1])
-		master_config(world, argv[1]);
+	// else if (flags == 1 && argv[1])
+	// 	master_config(world, argv[1]);
 	else if (flags == 2)
 		client_config(world, argv[2]);
 }

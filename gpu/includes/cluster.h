@@ -112,7 +112,7 @@ void					free_obj(t_world *world, char cmd);
 *******************************************************************************
 */
 
-void					render_clustering(t_world *world, t_cluster *cluster);
+void					render_clustering(t_cluster *cluster);
 void					put_buffer_together(t_cluster *cluster,
 						t_client *clients, int x, int y);
 void					cluster_initialize(t_world *world, t_cluster *cluster);

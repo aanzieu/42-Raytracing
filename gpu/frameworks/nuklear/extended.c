@@ -107,7 +107,7 @@ void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct
 	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 }
 
-void	draw_render(t_cluster cluster, t_world *world)
+void	draw_render(t_cluster cluster)
 {
 	static int i;
 	
@@ -116,10 +116,11 @@ void	draw_render(t_cluster cluster, t_world *world)
 		ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
 		ft_printf("Redraw Scène next time %d \n", i++);
 		refresh_viewplane(cluster.world);
+		printf("WORLD RENDER = %d\n", cluster.world->render_factor);
 		if (cluster.world->mode_cluster == 1)
 		{
 			ft_putstr("Waiting for connection...\n");
-			render_clustering(world, &cluster);
+			render_clustering(&cluster);
 			ft_putstr("End of connexion, get started again\n");
 		}
 		else
@@ -213,16 +214,18 @@ int interface_launch(t_world *world, char *argv)
 			break;
 		if(nk_input_is_key_pressed(&ctx.input, NK_KEY_SPACE) && world->render_factor != 32)
 		{
-			world->render_factor = 32;
+			world->render_factor = 16;
 			world->redraw = 1;
 		}
 		if(nk_input_is_key_released(&ctx.input, NK_KEY_SPACE))
 		{
 			world->render_factor = 1;
+			world->ob_save = '\0';
+			world->id_save = -1;
 			world->redraw = 1;
 		}
 		/* GUI */
-		draw_render(cluster, world);
+		draw_render(cluster);
 		gui_calls(&ctx, &media, cluster.world);
 
 		/* Draw */

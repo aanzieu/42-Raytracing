@@ -68,4 +68,6 @@ void				anaglyph(t_world *world)
 		color = color_scalar(color, 0);
 		i++;
 	}
+	free(red);
+	free(cyan);
 }

@@ -63,11 +63,12 @@ void			rt_cluster(t_world *world)
 	printf("test dans le rt_cluster\n");
 	world->clientrender = 1;
 	world->render_factor = world->offsets.render_factor;
+	printf("FACTOR = %d\n", world->render_factor);
 	world->aa = world->offsets.aa;
 	world->id_save = world->offsets.id_save;
 	world->ob_save = world->offsets.ob_save;
 	world->mode = world->offsets.mode;
-	world->size_main = WIN_WIDTH * (world->offsets.y_max - world->offsets.y_min) * sizeof(int);
+	world->size_main = (WIN_WIDTH / world->render_factor) * ((world->offsets.y_max - world->offsets.y_min) / world->render_factor) * sizeof(int);
 	if (world->a_h == NULL)
 	{
 		if (!(world->a_h = ft_memalloc(world->size_main)))
@@ -96,6 +97,7 @@ void			rt(t_world *world)
 {
 	world->size_main = world->viewplane.x_res * world->viewplane.y_res *
 			sizeof(int);
+	printf("cluster y_res %d\n", world->viewplane.y_res);
 	if (world->a_h == NULL)
 		if (!(world->a_h = malloc(world->size_main)))
 			exit(0);
