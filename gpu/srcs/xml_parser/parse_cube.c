@@ -47,6 +47,8 @@ void	handle_input_cube(t_cube *c, xmlNodePtr cur)
 		parse_refraction(&c->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&c->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&c->perlin, cur);
 }
 
 void	parse_cube(t_world *world, xmlNodePtr cur)

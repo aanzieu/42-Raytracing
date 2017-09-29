@@ -53,6 +53,8 @@ void	handle_input_cylinder(t_cylinder *cy, xmlNodePtr cur)
 		parse_refraction(&cy->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&cy->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&cy->perlin, cur);
 }
 
 void	parse_cylinder(t_world *world, xmlNodePtr cur)

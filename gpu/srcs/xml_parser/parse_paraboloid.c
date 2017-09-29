@@ -53,6 +53,8 @@ void	handle_input_paraboloid(t_paraboloid *p, xmlNodePtr cur)
 		parse_refraction(&p->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&p->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&p->perlin, cur);
 }
 
 void	parse_paraboloid(t_world *world, xmlNodePtr cur)

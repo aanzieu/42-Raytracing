@@ -39,6 +39,8 @@ static void	parse_cone_opt_next(t_cone *co, xmlNodePtr cur)
 		parse_refraction(&co->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence_coef")))
 		parse_transparence(&co->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&co->perlin, cur);
 }
 
 static void	parse_cone_opt(t_cone *co, xmlNodePtr cur)

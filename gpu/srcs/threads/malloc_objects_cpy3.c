@@ -41,7 +41,6 @@ t_triangle			*copy_triangle(t_triangle *obj)
 		if (!(news = (t_triangle *)malloc(sizeof(t_triangle))))
 			ft_putendl_fd("error : can't malloc copy thread triangle\n", 1);
 		news->pos = obj->pos;
-		// news->up = obj->up;
 		news->v1 = obj->v1;
 		news->v2 = obj->v2;
 		news->color = obj->color;

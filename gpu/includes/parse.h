@@ -105,7 +105,7 @@ void		parse_negative(int *negative, xmlNodePtr cur);
 void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
 void		parse_transparence(double *transparence_coef, xmlNodePtr cur);
-
+void		parse_perlin(t_perlin *p, xmlNodePtr cur);
 void		parse_ambient(t_world *world, xmlNodePtr cur);
 /*
 **	parser_utils.c
@@ -130,11 +130,11 @@ void		save_hyperboloids_to_xml(t_world *world, xmlNodePtr root_node);
 /*
 **	xml_save_objects_3.c
 */
-void	save_torus_to_xml(t_world *world, xmlNodePtr root_node);
-void	save_mobius_to_xml(t_world *world, xmlNodePtr root_node);
-void	save_h_cubes_to_xml(t_world *world, xmlNodePtr root_node);
-void	save_cubes_to_xml(t_world *world, xmlNodePtr root_node);
-void	save_triangles_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_torus_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_mobius_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_h_cubes_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_cubes_to_xml(t_world *world, xmlNodePtr root_node);
+void		save_triangles_to_xml(t_world *world, xmlNodePtr root_node);
 /*
 **	xml_saver_func.c
 */
@@ -142,6 +142,7 @@ xmlNodePtr	xml_save_vec3d(t_vec3d *v, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_one_data(double data, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_one_data_str(int data, char *str, xmlNodePtr object);
 xmlNodePtr	xml_save_rgb(t_color *c, char *str, xmlNodePtr object);
+xmlNodePtr	xml_save_perlin(t_perlin *p, char *str, xmlNodePtr object);
 /*
 **	ft_itoa_double.c
 */

@@ -57,7 +57,7 @@ void				anaglyph(t_world *world)
 	cyan = (t_color *)malloc(size * sizeof(t_color));
 	filter_anaglyph(world, red, size, 'r');
 	filter_anaglyph(world, cyan, size, 'c');
-	while (i < size)
+	while (i++ < size)
 	{
 		if (i - world->anaglyph_depth >= 0 && i + world->anaglyph_depth < size)
 		{
@@ -66,7 +66,6 @@ void				anaglyph(t_world *world)
 		}
 		world->a_h[i] = rgb_to_int(color);
 		color = color_scalar(color, 0);
-		i++;
 	}
 	free(red);
 	free(cyan);

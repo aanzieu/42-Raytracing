@@ -133,4 +133,7 @@ void					updated_objs_next3(t_data *data, char cmd,
 void					*dup_data_obj(t_cluster *cluster, char cmd, void *ret);
 int						send_buffer_obj(t_cluster *cluster,
 						t_client *clients, void *buffer);
+void					get_viewplane_cluster(t_world *world);
+void					refresh_viewplane_cluster(t_world *world);
+
 #endif

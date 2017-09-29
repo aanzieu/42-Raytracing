@@ -99,18 +99,20 @@ __host__ __device__ t_color	specular_light(t_world world, t_color color,\
 	t_vec3d raypos_tmp;
 	double	specular_angle;
 
-	raypos_tmp = vector_scalar(intersection.normal_v, 2 * vector_dot(ray, intersection.normal_v));
+	raypos_tmp = vector_scalar(intersection.normal_v,\
+		2 * vector_dot(ray, intersection.normal_v));
 	reflected_vector = vector_substract(ray, raypos_tmp);
 	reflected_vector = vector_normalize(reflected_vector);
-	specular_angle = pow(vector_dot(light_vector, reflected_vector), 150);
+	specular_angle = pow(vector_dot(light_vector, reflected_vector), 64);
 	light.color = color_scalar(light.color, specular_angle);
-	light.color = color_scalar(light.color, 0);
+	// light.color = color_scalar(light.color, 0);
 	//light.color = color_scalar(light.color, intersection.reflection_coef);
 	light.color = color_scalar(light.color, light.intensity_coef);
 	return (color_add(color, light.color));
 }
 
-__host__ __device__ t_vec3d	get_light_vector(t_world world, t_intersection intersection, t_light light)
+__host__ __device__ t_vec3d	get_light_vector(t_world world,\
+	t_intersection intersection, t_light light)
 {
 	if (light.type == LIGHT_PARALLEL)
 		return(light.dir_v);

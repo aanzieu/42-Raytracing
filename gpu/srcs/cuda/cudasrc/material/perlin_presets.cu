@@ -23,7 +23,7 @@ __host__ __device__ static t_color apply_marble(t_world world, t_vec3d pos,\
 	 	coef +=  (1.0f / level) * fabs(apply_noise(world,
 		 	level * 0.05 * x, level * 0.15 * y, level * 0.05 * z, p));
 	coef = 0.5f * sin((x + y) * 0.05f + coef) + 0.5f;
-	color2 = (t_color){1 - color.r, 1 - color.g, 1 - color.b};
+  color2 = (t_color){color.r / 2, color.g / 2, color.b / 2};
 	return (color_add(color_scalar(color, coef),
 			color_scalar(color2, (1.0f - coef))));
 }
@@ -39,7 +39,7 @@ __host__ __device__ static t_color apply_wood(t_world world, t_vec3d pos,\
 	z = pos.z * perlin.scale * 10;
 	grain = apply_noise(world, x, y, z, p) * 5;
 	grain = grain - (int)grain;
-	color2 = (t_color){1 - color.r, 1 - color.g, 1 - color.b};
+  color2 = (t_color){color.r / 2, color.g / 2, color.b / 2};
 	return (color_add(color_scalar(color, grain),
 		color_scalar(color2, (1.0f - grain))));
 }

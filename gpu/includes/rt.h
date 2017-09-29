@@ -260,7 +260,6 @@ typedef struct		s_world
 	int				*p;
 }					t_world;
 
-void 			perlin_noise_setup(t_world *world);
 void				refresh_viewplane(t_world *world);
 void				data_setup(t_world *world);
 void				load_data(t_world *world);

@@ -198,6 +198,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_cube.c \
 				$(SRC_DIR)/xml_parser/parse_h_cube.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
+				$(SRC_DIR)/xml_parser/parse_perlin.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parse_material.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \
@@ -206,9 +207,11 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_saver/ft_itoa_double.c \
 				$(SRC_DIR)/xml_saver/xml_saver.c \
 				$(SRC_DIR)/xml_saver/xml_saver_func.c \
+				$(SRC_DIR)/xml_saver/xml_saver_func_2.c \
 				$(SRC_DIR)/xml_saver/xml_save_objects.c \
 				$(SRC_DIR)/xml_saver/xml_save_objects_2.c \
 				$(SRC_DIR)/xml_saver/xml_save_objects_3.c \
+				$(SRC_DIR)/xml_saver/xml_save_objects_4.c \
 				\
 				$(SRC_DIR)/get_next_line/get_next_line.c \
 				\
@@ -232,6 +235,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/server/client_recev_infos.c \
 				$(SRC_DIR)/server/client_recev_infos_next.c \
 				$(SRC_DIR)/server/client_utils.c \
+				$(SRC_DIR)/server/viewplane_cluster.c
 
 ###################################################
 ##--- Use Patsubst to find .o from .c         ---##

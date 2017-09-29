@@ -91,6 +91,10 @@ t_sphere	*new_sphere(t_sphere *nw, int id)
 	s->refraction_coef = nw->refraction_coef;
 	s->transparence_coef = nw->transparence_coef;
 	s->perlin = nw->perlin;
+	s->perlin.is_set = nw->perlin.is_set;
+	s->perlin.pre_set = nw->perlin.pre_set;
+	s->perlin.scale = nw->perlin.scale;
+	s->perlin.amount = nw->perlin.amount;
 	s->next = NULL;
 	return (s);
 }

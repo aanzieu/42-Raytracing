@@ -121,11 +121,11 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
 	nk_font_atlas_end(atlas, nk_handle_id((int)device->font_tex), &device->null);
 	nk_init_default(ctx, &media->font_14->handle);
 
-	
+
 	/* icons */
 	glEnable(GL_TEXTURE_2D);
 	load_icon_object(media);
-  
+
 	// media->menu[0] = icon_load("frameworks/nuklear/icon/plan.png");
 	// media->menu[1] = icon_load("frameworks/nuklear/icon/sphere.png");
 	// media->menu[2] = icon_load("frameworks/nuklear/icon/cone.png");
@@ -141,6 +141,7 @@ void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_c
     media->images[3] = icon_load("testfiles/3.png");
     media->images[4] = icon_load("testfiles/4.png");
     media->images[5] = icon_load("testfiles/5.png");
-	media->images[6] = icon_load("testfiles/6.png");
-	media->images[7] = icon_load("testfiles/7.png");
+  	media->images[6] = icon_load("testfiles/6.png");
+  	media->images[7] = icon_load("testfiles/7.png");
+  	media->images[8] = icon_load("testfiles/8.png");
 }

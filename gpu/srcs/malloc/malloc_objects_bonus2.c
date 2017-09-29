@@ -21,7 +21,6 @@ t_triangle					*new_triangle(t_triangle *nw, int id)
 	t->pos = nw->pos;
 	t->v1 = nw->v1;
 	t->v2 = nw->v2;
-	// t->up = nw->up;
 	t->color = nw->color;
 	t->chess = nw->chess;
 	t->id = id;

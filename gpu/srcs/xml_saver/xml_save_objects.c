@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:03:42 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 17:21:28 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 19:07:30 by huweber          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	save_planes_to_xml(t_world *world, xmlNodePtr root_node)
 				object);
 		node = xml_save_one_data(world->planes->refraction_coef, "refraction",
 				object);
+		node = xml_save_one_data(world->planes->transparence_coef,
+				"transparence", object);
+		node = xml_save_perlin(&world->planes->perlin, "perlin", object);
 		world->planes = world->planes->next;
 	}
 	world->planes = ptr;
@@ -97,6 +100,9 @@ void	save_spheres_to_xml(t_world *world, xmlNodePtr root_node)
 				object);
 		node = xml_save_one_data(world->spheres->refraction_coef, "refraction",
 				object);
+		node = xml_save_one_data(world->spheres->transparence_coef,
+				"transparence", object);
+		node = xml_save_perlin(&world->spheres->perlin, "perlin", object);
 		world->spheres = world->spheres->next;
 	}
 	world->spheres = ptr;

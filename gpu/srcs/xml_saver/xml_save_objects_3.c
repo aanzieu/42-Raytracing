@@ -6,12 +6,24 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:10:07 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 12:50:53 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 19:22:36 by huweber          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "parse.h"
+
+void	save_torus_to_xml_next(t_world *world, xmlNodePtr node,
+	xmlNodePtr object)
+{
+	node = xml_save_one_data(world->torus->reflection_coef, "reflection",
+			object);
+	node = xml_save_one_data(world->torus->refraction_coef, "refraction",
+			object);
+	node = xml_save_one_data(world->torus->transparence_coef,
+			"transparence", object);
+	node = xml_save_perlin(&world->torus->perlin, "perlin", object);
+}
 
 void	save_torus_to_xml(t_world *world, xmlNodePtr root_node)
 {
@@ -24,17 +36,14 @@ void	save_torus_to_xml(t_world *world, xmlNodePtr root_node)
 	{
 		object = xmlNewChild(root_node, NULL, BAD_CAST "torus", NULL);
 		node = xml_save_vec3d(&world->torus->pos, "pos", object);
-		node = xml_save_one_data(world->torus->radius_small, "radius_small",\
+		node = xml_save_one_data(world->torus->radius_small, "radius_small",
 				object);
 		node = xml_save_one_data(world->torus->radius_big, "radius_big",\
 				object);
 		node = xml_save_rgb(&world->torus->color, "color", object);
 		if (world->torus->chess.r != -1)
 			node = xml_save_rgb(&world->torus->chess, "chess", object);
-		node = xml_save_one_data(world->torus->reflection_coef, "reflection",
-				object);
-		node = xml_save_one_data(world->torus->refraction_coef, "refraction",
-				object);
+		save_torus_to_xml_next(world, node, object);
 		world->torus = world->torus->next;
 	}
 	world->torus = ptr;
@@ -59,6 +68,9 @@ void	save_mobius_to_xml(t_world *world, xmlNodePtr root_node)
 				object);
 		node = xml_save_one_data(world->mobius->refraction_coef, "refraction",
 				object);
+		node = xml_save_one_data(world->mobius->transparence_coef,
+				"transparence", object);
+		node = xml_save_perlin(&world->mobius->perlin, "perlin", object);
 		world->mobius = world->mobius->next;
 	}
 	world->mobius = ptr;
@@ -82,6 +94,9 @@ void	save_h_cubes_to_xml(t_world *world, xmlNodePtr root_node)
 				object);
 		node = xml_save_one_data(world->h_cubes->refraction_coef, "refraction",
 				object);
+		node = xml_save_one_data(world->h_cubes->transparence_coef,\
+				"transparence", object);
+		node = xml_save_perlin(&world->h_cubes->perlin, "perlin", object);
 		world->h_cubes = world->h_cubes->next;
 	}
 	world->h_cubes = ptr;
@@ -91,7 +106,7 @@ void	save_cubes_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_cube	*ptr;
+	t_cube		*ptr;
 
 	ptr = world->cubes;
 	while (world->cubes != NULL)
@@ -106,32 +121,10 @@ void	save_cubes_to_xml(t_world *world, xmlNodePtr root_node)
 				object);
 		node = xml_save_one_data(world->cubes->refraction_coef, "refraction",
 				object);
+		node = xml_save_one_data(world->cubes->transparence_coef,
+				"transparence", object);
+		node = xml_save_perlin(&world->cubes->perlin, "perlin", object);
 		world->cubes = world->cubes->next;
 	}
 	world->cubes = ptr;
-}
-
-void	save_triangles_to_xml(t_world *world, xmlNodePtr root_node)
-{
-	xmlNodePtr	object;
-	xmlNodePtr	node;
-	t_triangle	*ptr;
-
-	ptr = world->triangles;
-	while (world->triangles != NULL)
-	{
-		object = xmlNewChild(root_node, NULL, BAD_CAST "triangle", NULL);
-		node = xml_save_vec3d(&world->triangles->pos, "pos", object);
-		node = xml_save_vec3d(&world->triangles->v1, "v1", object);
-		node = xml_save_vec3d(&world->triangles->v2, "v2", object);
-		node = xml_save_rgb(&world->triangles->color, "color", object);
-		if (world->triangles->chess.r != -1)
-			node = xml_save_rgb(&world->triangles->chess, "chess", object);
-		node = xml_save_one_data(world->triangles->reflection_coef, "reflection",
-				object);
-		node = xml_save_one_data(world->triangles->refraction_coef, "refraction",
-				object);
-		world->triangles = world->triangles->next;
-	}
-	world->triangles = ptr;
 }

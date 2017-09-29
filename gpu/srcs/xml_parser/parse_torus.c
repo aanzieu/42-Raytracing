@@ -49,6 +49,8 @@ static void		handle_input_torus(t_torus *t, xmlNodePtr cur)
 		parse_refraction(&t->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&t->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&t->perlin, cur);
 }
 
 void			parse_torus(t_world *world, xmlNodePtr cur)

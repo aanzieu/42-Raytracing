@@ -66,6 +66,8 @@ void		handle_input_disk(t_disk *d, xmlNodePtr cur)
 		parse_refraction(&d->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&d->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&d->perlin, cur);
 }
 
 void		parse_disk(t_world *world, xmlNodePtr cur)

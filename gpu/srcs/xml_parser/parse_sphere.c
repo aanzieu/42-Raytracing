@@ -49,6 +49,8 @@ void	handle_input_sphere(t_sphere *s, xmlNodePtr cur)
 		parse_refraction(&s->refraction_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
 		parse_transparence(&s->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&s->perlin, cur);
 }
 
 void	parse_sphere(t_world *world, xmlNodePtr cur)

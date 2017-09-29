@@ -6,15 +6,15 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 17:21:13 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 17:21:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/29 19:05:42 by huweber          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 
-void	add_mobius(t_mobius **alst, t_mobius *nw)
+void			add_mobius(t_mobius **alst, t_mobius *nw)
 {
-	t_mobius *curr;
+	t_mobius	*curr;
 
 	if (!nw || !alst)
 		return ;
@@ -31,7 +31,19 @@ void	add_mobius(t_mobius **alst, t_mobius *nw)
 	}
 }
 
-void	parse_mobius(t_world *world, xmlNodePtr cur)
+static void		parse_mobius_next(t_mobius *s, xmlNodePtr cur)
+{
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
+		parse_reflection(&s->reflection_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
+		parse_refraction(&s->refraction_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
+		parse_transparence(&s->transparence_coef, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
+		parse_perlin(&s->perlin, cur);
+}
+
+void			parse_mobius(t_world *world, xmlNodePtr cur)
 {
 	t_mobius	*s;
 
@@ -48,12 +60,7 @@ void	parse_mobius(t_world *world, xmlNodePtr cur)
 			parse_radius(&s->radius, cur);
 		if ((!xmlStrcmp(cur->name, (const xmlChar *)"color")))
 			parse_color(&s->color, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"reflection")))
-			parse_reflection(&s->reflection_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"refraction")))
-			parse_refraction(&s->refraction_coef, cur);
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"transparence")))
-			parse_transparence(&s->transparence_coef, cur);
+		parse_mobius_next(s, cur);
 		cur = cur->next;
 	}
 	add_mobius(&world->mobius_tmp, new_mobius(s, world->id++));

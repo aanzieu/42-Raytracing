@@ -218,7 +218,9 @@ CUDA_HOSTDEV void			get_ray_direction(t_world world, t_ray *ray,
 **                     RAYTRACER_UTILS_FCTS        	                          **
 *******************************************************************************/
 
-CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color, t_intersection intersection, t_ray ray);
+CUDA_HOSTDEV void			perlin_noise_setup(t_world *world);
+CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color,
+	t_intersection intersection, t_ray ray);
 CUDA_HOSTDEV int	get_light_box(t_light light,
 	t_intersection intersection, t_ray ray);
 
@@ -235,10 +237,6 @@ CUDA_HOSTDEV t_vec3d normal_perturbation(t_world world, t_vec3d normal,
 **                     PERLIN_PRESETS_FCTS                                    **
 *******************************************************************************/
 
-// CUDA_HOSTDEV t_color apply_marble(t_world world, t_vec3d pos,\
-// 	t_color color, t_perlin perlin);
-// CUDA_HOSTDEV t_color apply_wood(t_world world, t_vec3d pos,\
-// 	t_color color, t_perlin perlin);
 CUDA_HOSTDEV void 	apply_noise_dist(t_world world,\
 	t_intersection *intersection, t_perlin perlin);
 
