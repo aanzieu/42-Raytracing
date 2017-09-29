@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 12:23:19 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:49:01 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "nuklear.h"
 #include "gui.h"
 
-static int		get_light_type(t_light light)
+static int	get_light_type(t_light light)
 {
 	if (light.type == LIGHT_BOX)
 		return (1);
@@ -25,7 +25,19 @@ static int		get_light_type(t_light light)
 	return (0);
 }
 
-void	draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
+static void	draw_parallel_btn(struct nk_context *c, t_world *w, t_light *light,\
+								int *option)
+{
+	if (nk_button_symbol_label(c, (*option == 2) ? NK_SYMBOL_CIRCLE_SOLID :\
+	NK_SYMBOL_CIRCLE_OUTLINE, "PARALLEL", NK_TEXT_LEFT))
+	{
+		*option = 2;
+		light->type = LIGHT_PARALLEL;
+		w->redraw = 1;
+	}
+}
+
+void		draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
 						t_light *light)
 {
 	int	option;
@@ -51,11 +63,5 @@ void	draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
 		light->type = LIGHT_BOX;
 		w->redraw = 1;
 	}
-	if (nk_button_symbol_label(c, (option == 2) ?
-	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "PARALLEL", NK_TEXT_LEFT))
-	{
-		option = 2;
-		light->type = LIGHT_PARALLEL;
-		w->redraw = 1;
-	}
+	draw_parallel_btn(c, w, light, &option);
 }

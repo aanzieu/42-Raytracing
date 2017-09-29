@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 12:24:41 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:13:04 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.x, "POS X:");
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.y, "POS Y:");
 	ui_widget_value_infos(ctx, m, &w->lights[i].pos.z, "POS Z:");
+	if (w->lights[i].type == 2)
+	{
+		ui_widget_value_infos(ctx, m, &w->lights[i].dir.x, "DIR X:");
+		ui_widget_value_infos(ctx, m, &w->lights[i].dir.y, "DIR Y:");
+		ui_widget_value_infos(ctx, m, &w->lights[i].dir.z, "DIR Z:");
+	}
 	ui_slide_float_0_to_1(ctx, &w->lights[i].intensity_coef, "INTENSITY:");
 	draw_apply_button(ctx, m, w);
 	draw_light_type(ctx, m, w, &w->lights[i]);

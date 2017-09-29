@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 15:36:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/20 12:10:18 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:12:47 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct			s_ambient
 
 typedef struct			s_light
 {
-	int						id;
-	int						type;
+	int					id;
+	int					type;
 	t_vec3d				pos;
 	t_vec3d				dir;
 	t_vec3d				dir_v;
