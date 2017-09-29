@@ -673,7 +673,8 @@ enum nk_keys {
     NK_KEY_D,
     NK_KEY_SPACE,
     NK_KEY_ADD,
-    NK_KEY_SUB, 
+    NK_KEY_SUB,
+
 
     NK_KEY_ECHAP,
     NK_KEY_DEL,

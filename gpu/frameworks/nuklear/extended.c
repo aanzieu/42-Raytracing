@@ -46,23 +46,25 @@ void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
 		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_ADD, glfwGetKey(win, GLFW_KEY_KP_ADD) == GLFW_PRESS);
 		nk_input_key(ctx, NK_KEY_SUB, glfwGetKey(win, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS);		
-		nk_input_key(ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);		
-		if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
-				glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
-		{
-			nk_input_key(ctx, NK_KEY_COPY, glfwGetKey(win, GLFW_KEY_C) == GLFW_PRESS);
-			nk_input_key(ctx, NK_KEY_PASTE, glfwGetKey(win, GLFW_KEY_P) == GLFW_PRESS);
-			nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-			nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-			nk_input_key(ctx, NK_KEY_SHIFT, 1);
-		}
-		else
-		{
-			nk_input_key(ctx, NK_KEY_COPY, 0);
-			nk_input_key(ctx, NK_KEY_PASTE, 0);
-			nk_input_key(ctx, NK_KEY_CUT, 0);
-			nk_input_key(ctx, NK_KEY_SHIFT, 0);
-		}
+		nk_input_key(ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_SHIFT, glfwGetKey(win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS);
+		nk_input_key(ctx, NK_KEY_CTRL, glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS);		
+		// if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
+		// 		glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
+		// {
+		// 	nk_input_key(ctx, NK_KEY_COPY, glfwGetKey(win, GLFW_KEY_C) == GLFW_PRESS);
+		// 	nk_input_key(ctx, NK_KEY_PASTE, glfwGetKey(win, GLFW_KEY_P) == GLFW_PRESS);
+		// 	nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
+		// 	nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
+		// 	nk_input_key(ctx, NK_KEY_SHIFT, 1);
+		// }
+		// else
+		// {
+		// 	nk_input_key(ctx, NK_KEY_COPY, 0);
+		// 	nk_input_key(ctx, NK_KEY_PASTE, 0);
+		// 	nk_input_key(ctx, NK_KEY_CUT, 0);
+		// 	nk_input_key(ctx, NK_KEY_SHIFT, glfwGetKey(win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS);
+		// }
 }
 
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx)
