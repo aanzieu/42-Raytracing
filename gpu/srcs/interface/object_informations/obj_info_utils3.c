@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/27 17:28:10 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 12:23:19 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "nuklear.h"
 #include "gui.h"
 
-void			draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
-	t_light *light)
+void	draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
+						t_light *light)
 {
 	int	option;
 

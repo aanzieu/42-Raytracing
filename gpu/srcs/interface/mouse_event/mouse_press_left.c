@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_press_left.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/28 15:39:47 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/29 12:42:53 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 	t_ray			ray;
 	t_intersection	intersection;
 	t_vec2d			pad;
-	static int	press;
+	static int		press;
 
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
@@ -37,7 +37,8 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 			return (0);
 		press = 2;
 		get_up_left(world);
-		get_ray_direction(*(world), &ray, pad.x / world->render_factor, pad.y / world->render_factor);
+		get_ray_direction(*(world), &ray, pad.x / world->render_factor,\
+						pad.y / world->render_factor);
 		get_closest_intersection(*(world), ray, &intersection);
 		if (intersection.t != INFINITY)
 		{
@@ -46,9 +47,10 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 			world->keys.select = 1;
 		}
 	}
-	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2){
+	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
+	{
 		press = -1;
-		return(1);
+		return (1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 16:56:05 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/27 12:45:36 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 12:40:23 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ int				mousepress_middle(struct nk_context *ctx, t_world *world,\
 		if (pad.x < 0 || pad.y < 0 || pad.x > WIN_WIDTH || pad.y > WIN_HEIGHT)
 			return (0);
 		get_up_left(world);
-		get_ray_direction(*(world), &ray, pad.x / world->render_factor, pad.y / world->render_factor);
+		get_ray_direction(*(world), &ray, pad.x / world->render_factor,\
+						pad.y / world->render_factor);
 		get_closest_intersection(*(world), ray, &intersection);
 		if (intersection.t != INFINITY)
 			if (remove_object(world, &intersection) == 1)

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 13:15:26 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/27 14:28:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 15:26:05 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,95 +18,72 @@
 #include <vectors.h>
 #include <gpu_rt.h>
 
+static void	draw_objects_button_1(struct nk_context *ctx, struct media *media,\
+								t_world *w)
+{
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->sphere))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_sphere(&w->spheres, &w->spheres_tmp,\
+			&w->spheres_len, w->id++);
+		w->redraw = 1;
+	}
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->cone))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_cone(&w->cones, &w->cones_tmp,\
+			&w->cones_len, w->id++);
+		w->redraw = 1;
+	}
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->cylinder))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_cylinder(&w->cylinders, &w->cylinders_tmp,\
+			&w->cylinders_len, w->id++);
+		w->redraw = 1;
+	}
+}
+
+static void	draw_objects_button_2(struct nk_context *ctx, struct media *media,\
+								t_world *w)
+{
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->plane))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_plane(&w->planes, &w->planes_tmp,\
+			&w->planes_len, w->id++);
+		w->redraw = 1;
+	}
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->disk))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_disk(&w->disks, &w->disks_tmp,\
+			&w->disks_len, w->id++);
+		w->redraw = 1;
+	}
+	nk_layout_row_push(ctx, 32);
+	if (nk_button_image(ctx, media->torus))
+	{
+		if (w->a_h != NULL)
+			thread_free_and_add_torus(&w->torus, &w->torus_tmp,\
+			&w->torus_len, w->id++);
+		w->redraw = 1;
+	}
+}
+
 static void	draw_objects_button(struct nk_context *ctx, struct media *media,\
-							t_world *world)
+							t_world *w)
 {
 	nk_layout_row_begin(ctx, NK_STATIC, 32, 6);
 	{
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->sphere))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_sphere(&world->spheres, &world->spheres_tmp, &world->spheres_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->cone))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_cone(&world->cones, &world->cones_tmp, &world->cones_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->cylinder))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_cylinder(&world->cylinders, &world->cylinders_tmp, &world->cylinders_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->plane))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_plane(&world->planes, &world->planes_tmp, &world->planes_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->disk))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_disk(&world->disks, &world->disks_tmp, &world->disks_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->torus))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_torus(&world->torus, &world->torus_tmp, &world->torus_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->cube))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_cube(&world->cubes, &world->cubes_tmp, &world->cubes_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->triangle))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_triangle(&world->triangles, &world->triangles_tmp, &world->triangles_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->hyperboloid))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_hyperboloid(&world->hyperboloids, &world->hyperboloids_tmp, &world->hyperboloids_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->paraboloid))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_paraboloid(&world->paraboloids, &world->paraboloids_tmp, &world->paraboloids_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->mobius))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_mobius(&world->mobius, &world->mobius_tmp, &world->mobius_len, world->id++);
-			world->redraw = 1;
-		}
-		nk_layout_row_push(ctx, 32);
-		if (nk_button_image(ctx, media->h_cube))
-		{
-			if (world->a_h != NULL)
-				thread_free_and_add_h_cube(&world->h_cubes, &world->h_cubes_tmp, &world->h_cubes_len, world->id++);
-			world->redraw = 1;
-		}
+		draw_objects_button_1(ctx, media, w);
+		draw_objects_button_2(ctx, media, w);
+		draw_objects_button_3(ctx, media, w);
 	}
 	nk_layout_row_end(ctx);
 }

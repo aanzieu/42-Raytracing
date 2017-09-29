@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xml_save_objects_2.c                               :+:      :+:    :+:   */
+/*   xml_save_objects_3.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:10:07 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/18 17:34:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/29 12:50:53 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	save_torus_to_xml(t_world *world, xmlNodePtr root_node)
 {
 	xmlNodePtr	object;
 	xmlNodePtr	node;
-	t_torus	*ptr;
+	t_torus		*ptr;
 
 	ptr = world->torus;
 	while (world->torus != NULL)
@@ -25,8 +25,9 @@ void	save_torus_to_xml(t_world *world, xmlNodePtr root_node)
 		object = xmlNewChild(root_node, NULL, BAD_CAST "torus", NULL);
 		node = xml_save_vec3d(&world->torus->pos, "pos", object);
 		node = xml_save_one_data(world->torus->radius_small, "radius_small",\
-			object);
-		node = xml_save_one_data(world->torus->radius_big, "radius_big", object);
+				object);
+		node = xml_save_one_data(world->torus->radius_big, "radius_big",\
+				object);
 		node = xml_save_rgb(&world->torus->color, "color", object);
 		if (world->torus->chess.r != -1)
 			node = xml_save_rgb(&world->torus->chess, "chess", object);

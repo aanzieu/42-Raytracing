@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 16:58:18 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 16:30:07 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 12:24:10 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		cylinder_informations(t_world *world, struct nk_context *ctx,\
 			draw_chess_color(ctx, media, world, &world->cylinders[i].chess);
 			refresh_cylinder(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
-			if(move_object_without_norm(ctx, &world->cylinders[i].pos))
+			if (move_object_without_norm(ctx, &world->cylinders[i].pos))
 				world->redraw = 1;
 			break ;
 		}

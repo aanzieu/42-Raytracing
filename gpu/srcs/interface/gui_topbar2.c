@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_topbar2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/28 17:03:16 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/29 14:36:53 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 		select_gpu_cpu(ctx, media, world);
 		ui_header(ctx, media, "");
 		ui_widget_centered(ctx, media, 30);
+		nk_style_set_font(ctx, &media->font_18->handle);
 		press_launch(ctx, world, img_active);
 		nk_popup_close(ctx);
 		nk_popup_end(ctx);
@@ -111,7 +112,6 @@ void		select_scene(struct nk_context *ctx, struct media *media,\
 {
 	if (img_active[0])
 	{
-		//world->menu_on = 1;
 		if (nk_input_is_mouse_hovering_rect(&ctx->input,\
 			nk_rect(60, 40, 570, 292)))
 		{
@@ -125,7 +125,5 @@ void		select_scene(struct nk_context *ctx, struct media *media,\
 			img_active[1] = 0;
 		}
 	}
-	//else
-		//world->menu_on = 0;
 	nk_popup_end(ctx);
 }

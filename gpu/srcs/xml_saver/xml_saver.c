@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   xml_saver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 17:20:24 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/28 15:04:37 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/29 12:49:54 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "parse.h"
-static void save_objects_to_xml_next(t_world *world, xmlNodePtr root_node)
+
+static void	save_objects_to_xml_next(t_world *world, xmlNodePtr root_node)
 {
 	if (world->lights_len != 0)
 		save_lights_to_xml(world, root_node);

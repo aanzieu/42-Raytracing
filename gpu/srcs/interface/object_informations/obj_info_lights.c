@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:30:22 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 12:24:41 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "rt.h"
 #include "nuklear.h"
 #include "gui.h"
-
-
 
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
@@ -66,7 +64,7 @@ void		light_informations(t_world *world, struct nk_context *ctx,\
 			draw_color_picker(ctx, &world->lights[i].color, world);
 			refresh_h_cube(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
-			if(move_object_without_norm(ctx, &world->lights[i].pos))
+			if (move_object_without_norm(ctx, &world->lights[i].pos))
 				world->redraw = 1;
 			break ;
 		}

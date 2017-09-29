@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 17:03:03 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 12:38:12 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	scroll_input(GLFWwindow *win, double u, double yoff)
 void	gui_calls(struct nk_context *ctx,\
 					struct media *media, t_world *world)
 {
-	
 	if (world->a_h != NULL)
 	{
 		scene_parameters(ctx, media, world);

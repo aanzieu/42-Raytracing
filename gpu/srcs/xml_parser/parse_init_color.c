@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/18 17:17:50 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/09/29 12:48:37 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			parse_ambient(t_world *world, xmlNodePtr cur)
 
 void			parse_intensity(double *intensity_coef, xmlNodePtr cur)
 {
-	xmlChar *nb;
+	xmlChar	*nb;
 
 	nb = xmlGetProp(cur, (const xmlChar *)"data");
 	if (is_numeric((const char *)nb))
@@ -67,9 +67,9 @@ void			parse_intensity(double *intensity_coef, xmlNodePtr cur)
 	xmlFree(nb);
 }
 
-void 			parse_type(int *type, xmlNodePtr cur)
+void			parse_type(int *type, xmlNodePtr cur)
 {
-	xmlChar *type_l;
+	xmlChar	*type_l;
 
 	type_l = xmlGetProp(cur, (const xmlChar *)"data");
 	if (!(ft_strcmp((char *)type_l, "POINT")))
@@ -77,7 +77,6 @@ void 			parse_type(int *type, xmlNodePtr cur)
 	else if (!(ft_strcmp((char *)type_l, "BOX")))
 		*type = LIGHT_BOX;
 	else
-		show_error_2("invalid light type value. data=",\
-		 (const char *)type_l);
+		show_error_2("invalid light type value. data=", (const char *)type_l);
 	xmlFree(type_l);
 }
