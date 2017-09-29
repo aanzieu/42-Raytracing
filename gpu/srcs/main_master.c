@@ -86,15 +86,17 @@ void			put_buffer_together(t_cluster *cluster, t_client *clients,
 		i = 0;
 		if (clients->buffer)
 		{
-			y = nbr_clients * (cluster->world->viewplane.y_res / cluster->nbr_clients);
-			y_max = y + (cluster->world->viewplane.y_res / cluster->nbr_clients);
-			printf("cluster y_res dans le put together %d\n", cluster->world->viewplane.y_res);
+			y = nbr_clients *
+				(cluster->world->viewplane.y_res / cluster->nbr_clients);
+			y_max = y +
+				(cluster->world->viewplane.y_res / cluster->nbr_clients);
 			while (y < y_max)
 			{
 				x = -1;
 				while (++x < cluster->world->viewplane.x_res)
 				{
-					cluster->world->a_h[y * cluster->world->viewplane.x_res + x] = clients->buffer[i];
+					cluster->world->a_h[y *
+					cluster->world->viewplane.x_res + x] = clients->buffer[i];
 					i++;
 				}
 				y++;
@@ -104,70 +106,26 @@ void			put_buffer_together(t_cluster *cluster, t_client *clients,
 	}
 }
 
-/*
-**	Render Clustering
-*/
-
-// void			cluster_to_world(t_cluster *cluster, t_world *world, int x, int y)
-// {
-// 	while (y < world->viewplane.y_res)
-// 	{
-// 		x = 0;
-// 		while(x < world->viewplane.x_res)
-// 		{
-// 			world->a_h[y * world->viewplane.x_res + x] = cluster->world->a_h[y * world->viewplane.x_res + x];
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-
 void			render_clustering(t_cluster *cluster)
 {
-	// int			quit;
-	// SDL_Event	event;
 	int			tmp;
 
-	// quit = 0;
-	//  while(1)
-	//  {
-		refresh_viewplane(cluster->world);
-		get_viewplane(cluster->world);
-		printf("WORLD RENDER = %d\n", cluster->world->render_factor);
-
-		cluster->world->size_main =
-		cluster->world->viewplane.x_res * cluster->world->viewplane.y_res * sizeof(int);
-		printf("cluster y_res dans render clustering %d\n", cluster->world->viewplane.y_res);
-		if(cluster->world->a_h == NULL)
-		{
-			if (!(cluster->world->a_h = ft_memalloc(cluster->world->size_main)))
-				ft_putendl_fd("Error : Can't malloc cluster", 1);
-		}
-		// SDL_PollEvent(&event);
-		// quit = event_handler(world, event);
-		ft_bzero(cluster->world->a_h, cluster->world->size_main);		
-		if (cluster_stratege(cluster) == 1)
-		{
-			// if (world->animation_forward == 1 && cluster->nbr_clients > 0)			
-			// 	move_forward(world);
-			launch_client(cluster, cluster->client_list);
-		}
-		tmp = cluster->nbr_clients;
-		remove_client_if(cluster, &cluster->client_list, NULL, NULL);		
-		if (cluster->nbr_clients == tmp)
-		{
-			put_buffer_together(cluster, cluster->client_list, 0, 0);
-			//cluster_to_world(cluster, world, 0, 0);
-			// if(cluster->nbr_clients  0)
-				// break;
-			// 	savebmp(world);					
-		}
-		free_buffer(cluster);
-	// }
-		// int_to_int(cluster->world->a_h, world->a_h, WIN_WIDTH, WIN_HEIGHT);
-		// put_pixel_screen(cluster->world);
-		//ft_bzero(cluster->world->a_h, cluster->world->size_main);
-		// SDL_UpdateWindowSurface(cluster->world->window.id);
-	//  }
+	refresh_viewplane(cluster->world);
+	get_viewplane(cluster->world);
+	cluster->world->size_main =
+	cluster->world->viewplane.x_res *
+			cluster->world->viewplane.y_res * sizeof(int);
+	if (cluster->world->a_h == NULL)
+	{
+		if (!(cluster->world->a_h = ft_memalloc(cluster->world->size_main)))
+			ft_putendl_fd("Error : Can't malloc cluster", 1);
+	}
+	ft_bzero(cluster->world->a_h, cluster->world->size_main);
+	if (cluster_stratege(cluster) == 1)
+		launch_client(cluster, cluster->client_list);
+	tmp = cluster->nbr_clients;
+	remove_client_if(cluster, &cluster->client_list, NULL, NULL);
+	if (cluster->nbr_clients == tmp)
+		put_buffer_together(cluster, cluster->client_list, 0, 0);
+	free_buffer(cluster);
 }

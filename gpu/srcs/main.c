@@ -67,7 +67,8 @@ void			rt_cluster(t_world *world)
 	world->ob_save = world->offsets.ob_save;
 	world->mode = world->offsets.mode;
 	world->size_main = (WIN_WIDTH / world->render_factor) *
-	 ((world->offsets.y_max - world->offsets.y_min) / world->render_factor) * sizeof(int);
+		((world->offsets.y_max - world->offsets.y_min) / world->render_factor) *
+		sizeof(int);
 	if (world->a_h == NULL)
 	{
 		if (!(world->a_h = ft_memalloc(world->size_main)))
@@ -89,13 +90,15 @@ void			rt(t_world *world)
 			exit(0);
 	if (world->video_buffer == NULL)
 	{
-		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char))))
-			exit (0);
+		if (!(world->video_buffer = malloc(WIN_WIDTH * WIN_HEIGHT * 4 *
+												sizeof(unsigned char))))
+			exit(0);
 	}
-	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+	ft_bzero(world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 *
+												sizeof(unsigned char));
 	ft_bzero(world->a_h, world->size_main);
-	if(world->mode_cluster == 1)
-		return;
+	if (world->mode_cluster == 1)
+		return ;
 	if (world->mode == 0)
 	{
 		printf("laucnh CPU\n");

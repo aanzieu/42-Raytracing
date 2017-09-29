@@ -13,19 +13,23 @@
 #include <rt.h>
 #include <gpu_rt.h>
 #include <display.h>
-# include <unistd.h>
+#include <unistd.h>
 
 static	void	*perform_thread(void *arg)
 {
 	t_thread_input	*thread;
-	int				x, x_aa;
-	int				y, y_aa;
+	int				x;
+	int				x_aa;
+	int				y;
+	int				y_aa;
 
 	thread = (t_thread_input *)arg;
-	y = (thread->th) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min;
+	y = (thread->th) * ((thread->y_max - thread->y_min) / NB_TH) +
+																thread->y_min;
 
 	y_aa = y * thread->aa;
-	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) + thread->y_min)
+	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) +
+																thread->y_min)
 	{
 		x = 0;
 		x_aa = 0;
@@ -82,7 +86,7 @@ void			get_viewplane_cluster(t_world *world)
 }
 
 
-void 	refresh_viewplane_cluster(t_world *world)
+void 			refresh_viewplane_cluster(t_world *world)
 {
 	world->win_width = WIN_WIDTH * world->aa;
 	world->win_height = (WIN_HEIGHT) * world->aa;
@@ -92,7 +96,6 @@ void 	refresh_viewplane_cluster(t_world *world)
 	world->viewplane_aa.width = (double)((M_PI / 4) / 2);
 	world->viewplane_aa.height = ((double)((double)(world->win_height) /
 								(double)(world->win_width)) * world->viewplane_aa.width);
-
 }
 
 void			launch_cpu(t_world *world)
