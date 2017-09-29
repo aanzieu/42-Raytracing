@@ -45,8 +45,7 @@ __host__ __device__ void new_intersection(t_intersection *new_i)
 	new_i->normal_v = (t_vec3d){0, 0, 0};
 }
 
-__host__ __device__ void	cartoon_effect(t_world world, t_color *color,
-	t_light lights, t_intersection intersection, t_ray ray)
+__host__ __device__ void	cartoon_effect(t_world world, t_color *color, t_intersection intersection, t_ray ray)
 {
 	if(world.keys.select == 1 && intersection.id_save == world.id_save)
 	{

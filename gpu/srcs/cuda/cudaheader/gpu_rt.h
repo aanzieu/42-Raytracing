@@ -218,8 +218,7 @@ CUDA_HOSTDEV void			get_ray_direction(t_world world, t_ray *ray,
 **                     RAYTRACER_UTILS_FCTS        	                          **
 *******************************************************************************/
 
-CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color,
-	t_light lights, t_intersection intersection, t_ray ray);
+CUDA_HOSTDEV void	cartoon_effect(t_world world, t_color *color, t_intersection intersection, t_ray ray);
 CUDA_HOSTDEV int	get_light_box(t_light light,
 	t_intersection intersection, t_ray ray);
 

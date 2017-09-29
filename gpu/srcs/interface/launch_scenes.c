@@ -53,6 +53,10 @@ void		press_launch(struct nk_context *ctx, t_world *world,\
 			launch_scene_select(world, 4);
 		else if (img_active[2] == 5)
 			launch_scene_select(world, 5);
+		else if (img_active[2] == 6)
+			launch_scene_select(world, 6);
+		else if (img_active[2] == 7)
+			launch_scene_select(world, 7);
 		img_active[0] = 0;
 		img_active[1] = 0;
 		nk_popup_close(ctx);

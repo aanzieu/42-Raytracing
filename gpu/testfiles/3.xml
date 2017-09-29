@@ -8,14 +8,14 @@
     <reflection data="0"/>
     <refraction data="1"/>
   </plane>
-  <!-- <sphere>
+   <sphere>
     <pos x="1" y="0" z="1.000000"/>
     <radius data="0.400000"/>
     <color r="50" g="50" b="255"/>
     <reflection data="0"/>
     <refraction data="1"/>
-  </sphere> -->
-  <!-- <sphere>
+  </sphere> 
+   <sphere>
     <pos x="0" y="0.300000" z="1.000000"/>
     <radius data="0.400000"/>
     <color r="50" g="50" b="255"/>
@@ -28,7 +28,7 @@
     <color r="50" g="50" b="255"/>
     <reflection data="0"/>
     <refraction data="1"/>
-  </sphere> -->
+  </sphere> 
   <sphere>
     <pos x="0" y="0.900000" z="1.000000"/>
     <radius data="0.400000"/>

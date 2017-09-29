@@ -129,8 +129,8 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 		color = apply_materials_cpu(world, ray, intersection, color);
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);
-	if(world.keys.select == 1)
-		cartoon_effect(world, &color, world.lights[i], intersection, ray);
+	if(world.keys.select == 1 && intersection.depth == 0)
+		cartoon_effect(world, &color, intersection, ray);
 	while (i < world.lights_len && world.keys.light_none == 1)
 	{
 		if (get_light_box(world.lights[i], intersection, ray) == 1)
@@ -139,7 +139,7 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 				0.5 + 0.5 / world.lights[i].intensity_coef);
 		color = get_light_at(world, color, world.lights[i], intersection, ray);
 		if (world.keys.pad_9 == 1)
-			cartoon_effect(world, &color, world.lights[i], intersection, ray);
+			cartoon_effect(world, &color, intersection, ray);
 		i++;
 	}
 	return (color);

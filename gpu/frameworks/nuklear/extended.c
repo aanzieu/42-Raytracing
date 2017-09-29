@@ -125,6 +125,8 @@ void	draw_render(t_cluster cluster)
 		}
 		else
 			rt(cluster.world);
+		printf("Je redraw sans LUM\n");
+			
 		if (cluster.world->keys.pad_0)
 			effect_application(cluster.world);
 		cluster.world->redraw = 0;
@@ -171,30 +173,43 @@ void	delete_object(struct nk_context ctx, struct nk_font_atlas atlas, struct med
 }
 
 
+int		render_condition(struct nk_context *ctx, t_world *world)
+{
+	if(ctx->input.keyboard.keys[NK_KEY_ECHAP].down != 0)
+			return(0);
+	if(nk_input_is_key_pressed(&ctx->input, NK_KEY_SPACE) && world->render_factor != 32)
+	{
+		world->render_factor = 16;
+		world->redraw = 1;
+	}
+	if(nk_input_is_key_released(&ctx->input, NK_KEY_SPACE))
+	{
+		world->render_factor = 1;
+		world->ob_save = '\0';
+		world->id_save = -1;
+		world->redraw = 1;
+	}
+	return (1);
+}
+
 int interface_launch(t_world *world, char *argv)
 {
 	/* Platform */
 	(void)argv;
 	static GLFWwindow *win;
-
 	t_cluster	cluster;
 
 	cluster_initialize(world, &cluster);
-	printf("test init cluster\n");
-		// ft_bzero(cluster.world->a_h, cluster.world->size_main);
-
 	/* GUI */
 	struct device device;
 	struct nk_context ctx;
 	struct nk_font_atlas atlas;
-	// struct file_browser browser;
 	struct media media;
 
 	init_glfw_start(&win, &ctx, &(cluster).world->screen);
 	/* GUI */
 	device_init(&device);
 	loading_media(&media, &atlas, &ctx, &device);
-	// file_browser_init(&browser, &media);
 	while (!glfwWindowShouldClose(win))
 	{
 		/* High DPI displays */
@@ -204,26 +219,13 @@ int interface_launch(t_world *world, char *argv)
 		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
 		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
 		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
-
 		/* Input */
 		nk_input_begin(&ctx);
 		glfwPollEvents();
 		allocate_keys(&ctx, win);
 		allocate_mouse(&ctx, win);
-		if(ctx.input.keyboard.keys[NK_KEY_ECHAP].down != 0)
-			break;
-		if(nk_input_is_key_pressed(&ctx.input, NK_KEY_SPACE) && world->render_factor != 32)
-		{
-			world->render_factor = 16;
-			world->redraw = 1;
-		}
-		if(nk_input_is_key_released(&ctx.input, NK_KEY_SPACE))
-		{
-			world->render_factor = 1;
-			world->ob_save = '\0';
-			world->id_save = -1;
-			world->redraw = 1;
-		}
+		if(render_condition(&ctx, world))
+			;		
 		/* GUI */
 		draw_render(cluster);
 		gui_calls(&ctx, &media, cluster.world);

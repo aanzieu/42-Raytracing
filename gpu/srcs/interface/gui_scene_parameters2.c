@@ -109,6 +109,7 @@ static void	draw_lights_button(struct nk_context *ctx, struct media *media,\
 			{
 				world->ob_save = 'l';
 				world->id_save = tmp->id;
+				printf("word save = %c\n",world->ob_save);
 			}
 			ft_strdel(&light);
 			tmp = tmp->next;
@@ -130,7 +131,7 @@ void		scene_parameters_next(struct nk_context *ctx, struct media *media,\
 			&world->lights_len, world->id++);
 		world->redraw = 1;
 	}
-	if (world->lights_len)
+	if (world->lights_tmp != NULL)
 		draw_lights_button(ctx, media, world, 1);
 	ui_widget_centered(ctx, media, 5);
 	ui_header(ctx, media, "---- Add Objects");

@@ -4275,7 +4275,7 @@ struct media {
     struct nk_image zoom_out;
     struct nk_image convert;
     struct nk_image del;
-    struct nk_image images[9];
+    struct nk_image images[10];
     struct nk_image menu[6];
 
     int font;

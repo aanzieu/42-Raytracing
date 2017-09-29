@@ -40,8 +40,7 @@ static void	draw_delete_button(struct nk_context *ctx, struct media *media,\
 		NK_TEXT_CENTERED))
 	{
 		remove_light(&world->lights_tmp, &o);
-		load_lights(&world->lights, world->lights_tmp,\
-						&world->lights_len);
+		load_lights(&world->lights, world->lights_tmp, &world->lights_len);
 		world->redraw = 1;
 	}
 }
