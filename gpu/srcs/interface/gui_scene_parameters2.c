@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 13:15:26 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 15:26:05 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:16:00 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ static void	draw_lights_button(struct nk_context *ctx, struct media *media,\
 			{
 				world->ob_save = 'l';
 				world->id_save = tmp->id;
-				printf("word save = %c\n",world->ob_save);
 			}
 			ft_strdel(&light);
 			tmp = tmp->next;

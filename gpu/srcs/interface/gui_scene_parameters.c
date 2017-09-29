@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_scene_parameters.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/28 10:51:06 by PZC              ###   ########.fr       */
+/*   Updated: 2017/09/29 18:00:24 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static void	scene_definition(struct nk_context *ctx, struct media *media,\
 		world->keys.light_none = 0;
 		world->redraw = 1;
 	}
-	ui_slide_int_0_to_16(ctx, world, (world->aa == 1) ? 1 : 2,\
-						"Anti-Aliasing:");
+	ui_slide_int_0_to_8(ctx, world, (world->aa == 1) ? 1 : 2, "Anti-Aliasing:");
 }
 
 static void	scene_info_header(struct nk_context *ctx, struct media *media,\

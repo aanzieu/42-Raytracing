@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 16:05:27 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 17:23:04 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ui_widget_value_infos(struct nk_context *ctx, struct media *media,\
 	return (res == *value ? 0 : 1);
 }
 
-void	ui_slide_int_0_to_16(struct nk_context *ctx, t_world *w, int step,\
+void	ui_slide_int_0_to_8(struct nk_context *ctx, t_world *w, int step,\
 							char *title)
 {
 	char		*nb;
@@ -53,11 +53,11 @@ void	ui_slide_int_0_to_16(struct nk_context *ctx, t_world *w, int step,\
 		text_float_left(ctx, nb, 15);
 		ft_strdel(&nb);
 		nk_layout_row_push(ctx, 90);
-		if (nk_slider_int(ctx, 0, &w->aa, 16, step))
+		if (nk_slider_int(ctx, 0, &w->aa, 8, step))
 			press = 2;
 		if (w->aa == 0)
 			w->aa = 1;
-		text_float_left(ctx, "16", 15);
+		text_float_left(ctx, "8", 15);
 	}
 	nk_layout_row_end(ctx);
 	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)

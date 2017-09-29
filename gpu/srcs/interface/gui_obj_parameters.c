@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:03:58 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:27:44 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:00:05 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void		objects_param(struct nk_context *ctx, struct media *media,\
 		ui_header(ctx, media, "---- Selected Object");
 		find_informations_object(world, ctx, media);
 	}
-	nk_style_set_font(ctx, &media->font_20->handle);
 	nk_end(ctx);
+	nk_style_set_font(ctx, &media->font_20->handle);
 }

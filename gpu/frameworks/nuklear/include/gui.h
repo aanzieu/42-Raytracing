@@ -48,7 +48,7 @@ int		ui_widget_value_infos(struct nk_context *ctx, struct media *media, double *
 int		ui_widget_value_infos_cam(struct nk_context *ctx, double *value, char *title);
 int		ui_slide_float_intensity(struct nk_context *ctx, double *value, char *title);
 void	ui_slide_float_perlin(struct nk_context *ctx, t_perlin *p, double *value, char *title);
-void	ui_slide_int_0_to_16(struct nk_context *ctx, t_world *w, int step, char *title);
+void	ui_slide_int_0_to_8(struct nk_context *ctx, t_world *w, int step, char *title);
 void	ui_slide_float_0_to_1(struct nk_context *ctx, double *value, char *title);
 void	ui_slide_float_0_to_2(struct nk_context *ctx, double *value, char *title);
 void	text_float_left(struct nk_context *ctx, char *str, int w);
