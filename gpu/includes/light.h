@@ -19,6 +19,7 @@
 # define AMBIENT_LIGHT WHITE
 # define LIGHT_P 0
 # define LIGHT_BOX 1
+# define LIGHT_PARALLEL 2
 
 typedef struct			s_ambient
 {

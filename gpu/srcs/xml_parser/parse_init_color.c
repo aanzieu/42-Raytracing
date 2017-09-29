@@ -76,6 +76,8 @@ void			parse_type(int *type, xmlNodePtr cur)
 		*type = LIGHT_P;
 	else if (!(ft_strcmp((char *)type_l, "BOX")))
 		*type = LIGHT_BOX;
+	else if (!(ft_strcmp((char *)type_l, "PARALLEL")))
+		*type = LIGHT_PARALLEL;
 	else
 		show_error_2("invalid light type value. data=", (const char *)type_l);
 	xmlFree(type_l);

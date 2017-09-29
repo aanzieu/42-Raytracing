@@ -16,12 +16,21 @@
 #include "nuklear.h"
 #include "gui.h"
 
+static int		get_light_type(t_light light)
+{
+	if (light.type == LIGHT_BOX)
+		return (1);
+	if (light.type == LIGHT_PARALLEL)
+		return (2);
+	return (0);
+}
+
 void	draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
 						t_light *light)
 {
 	int	option;
 
-	option = light->type == LIGHT_BOX ? 1 : 0;
+	option = get_light_type(*light);
 	ui_header(c, m, "---- Light Type");
 	ui_widget_special_mode(c, m, 20);
 	if (nk_button_symbol_label(c, (option == 0) ?
@@ -40,6 +49,13 @@ void	draw_light_type(struct nk_context *c, struct media *m, t_world *w,\
 		if (light->type == LIGHT_P && light->intensity_coef <= 0.8)
 			light->intensity_coef += 0.2;
 		light->type = LIGHT_BOX;
+		w->redraw = 1;
+	}
+	if (nk_button_symbol_label(c, (option == 2) ?
+	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "PARALLEL", NK_TEXT_LEFT))
+	{
+		option = 2;
+		light->type = LIGHT_PARALLEL;
 		w->redraw = 1;
 	}
 }

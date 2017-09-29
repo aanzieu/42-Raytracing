@@ -9,7 +9,8 @@
     <refraction data="0"/>
   </plane>
   <light>
-    <pos x="0" y="3.000000" z="-3.000000"/>
+    <pos x="0" y="30.000000" z="-30.000000"/>
+    <dir x="0" y="0.000000" z="-30.000000"/>
     <color r="255" g="255" b="255"/>
     <intensity data="0.699999"/>
     <type data="POINT"/>

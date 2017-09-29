@@ -67,7 +67,7 @@ __host__ __device__ static double  get_distributed_shadow(t_world world,\
 }
 
 __host__ __device__ double		get_shadow(t_world world, t_light light,
-	t_intersection collision)
+	t_intersection collision, t_vec3d light_vector)
 {
 	t_intersection	collision_tmp;
 	t_ray				shadow;
@@ -78,7 +78,7 @@ __host__ __device__ double		get_shadow(t_world world, t_light light,
 		return (get_distributed_shadow(world, light, collision));
 	collision_tmp.t = DBL_MAX;
 	collision_tmp.type = '0';
-	shadow.dir = vector_calculate(collision.pos, light.pos);
+	shadow.dir = light_vector;
 	shadow.origin = collision.pos;
 	dist_light = vector_length(shadow.dir);
 	collision_tmp.id = -1;
@@ -112,10 +112,10 @@ __host__ __device__ t_color	specular_light(t_world world, t_color color,\
 
 __host__ __device__ t_vec3d	get_light_vector(t_world world, t_intersection intersection, t_light light)
 {
-	if (world.light_type == 1)
-		return(vector_normalize(vector_calculate(intersection.pos, light.pos)));
-	else
+	if (light.type == LIGHT_PARALLEL)
 		return(light.dir_v);
+	else
+		return(vector_normalize(vector_calculate(intersection.pos, light.pos)));				
 }
 
 __host__ __device__	t_color	get_light_at(t_world world, t_color color,\
@@ -128,7 +128,7 @@ __host__ __device__	t_color	get_light_at(t_world world, t_color color,\
 	tmp =  new_color(0, 0, 0);
 	light_vector = get_light_vector(world, intersection, light);
 	angle = vector_dot(intersection.normal_v, light_vector);
-	shadow_coef = get_shadow(world, light, intersection);
+	shadow_coef = get_shadow(world, light, intersection, light_vector);
 	if (angle > 0 && shadow_coef >= 0)
 	{
 		tmp = color_add(color, intersection.color);
