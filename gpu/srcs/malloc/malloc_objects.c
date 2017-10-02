@@ -95,6 +95,7 @@ t_sphere	*new_sphere(t_sphere *nw, int id)
 	s->perlin.pre_set = nw->perlin.pre_set;
 	s->perlin.scale = nw->perlin.scale;
 	s->perlin.amount = nw->perlin.amount;
+	s->texture = nw->texture;
 	s->next = NULL;
 	return (s);
 }

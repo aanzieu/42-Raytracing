@@ -51,6 +51,8 @@ void	handle_input_sphere(t_sphere *s, xmlNodePtr cur)
 		parse_transparence(&s->transparence_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
 		parse_perlin(&s->perlin, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"texture")))
+		parse_texture(&s->texture, cur);
 }
 
 void	parse_sphere(t_world *world, xmlNodePtr cur)

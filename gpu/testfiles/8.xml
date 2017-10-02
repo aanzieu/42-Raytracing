@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "norme.dtd">
-<scene name="Solar's system">
+<scene name="new file">
   <plane>
     <origin x="0" y="-100.000000" z="0"/>
     <normal x="0" y="0" z="-1024.000000"/>
@@ -28,6 +28,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.699998" amount="0"/>
+    <texture file="jupiter2.bmp"/>
   </sphere>
   <sphere>
     <pos x="-12.000000" y="3.000000" z="0"/>
@@ -37,6 +38,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.599999" amount="0"/>
+    <texture file="earth2.bmp"/>
   </sphere>
   <sphere>
     <pos x="-14.800000" y="-1.000000" z="-1.000000"/>
@@ -46,6 +48,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.199999" amount="0"/>
+    <texture file="mars.bmp"/>
   </sphere>
   <sphere>
     <pos x="-8.000000" y="1.000000" z="-0.500000"/>
@@ -55,6 +58,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+    <texture file="mercury.bmp"/>
   </sphere>
   <sphere>
     <pos x="-27.500000" y="4.000000" z="-0.500000"/>
@@ -64,6 +68,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.399999" amount="0"/>
+    <texture file="saturn.bmp"/>
   </sphere>
   <sphere>
     <pos x="-9.900000" y="0" z="-0.500000"/>
@@ -73,6 +78,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.599999" amount="0"/>
+    <texture file="venus.bmp"/>
   </sphere>
   <sphere>
     <pos x="-34.800000" y="2.000000" z="-1.500000"/>
@@ -82,6 +88,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.199999" amount="0"/>
+    <texture file="uranus.bmp"/>
   </sphere>
   <sphere>
     <pos x="-39.400000" y="-2.000000" z="-1.500000"/>
@@ -91,6 +98,7 @@
     <refraction data="0"/>
     <transparence data="0"/>
     <perlin is_set="1" pre_set="3" scale="0.299999" amount="0"/>
+    <texture file="neptune.bmp"/>
   </sphere>
   <torus>
     <pos x="0" y="0" z="0.100000"/>

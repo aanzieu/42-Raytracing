@@ -179,6 +179,8 @@ CUDA_HOSTDEV t_color 	handle_refraction_cpu(t_world world,
 	t_ray ray, t_intersection *intersection);
 CUDA_HOSTDEV t_color 	handle_transparence_cpu(t_world world,
 	t_ray ray, t_intersection *intersection);
+CUDA_HOSTDEV t_color load_texture_at(t_texture texture, t_ray ray,
+	t_intersection *intersection, t_world world);
 
 /*******************************************************************************
 **                     TEXTURES_GPU_FCTS                                      **

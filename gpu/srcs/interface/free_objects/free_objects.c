@@ -39,6 +39,8 @@ void	free_sphere(t_sphere **s_tmp, t_sphere **s, int *len)
 	while (*s_tmp)
 	{
 		next = (*s_tmp)->next;
+		if ((*s_tmp)->texture.is_set == 1)
+			SDL_FreeSurface((*s_tmp)->texture.tex);
 		free(*s_tmp);
 		(*s_tmp) = next;
 	}

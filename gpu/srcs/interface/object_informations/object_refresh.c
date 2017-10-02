@@ -33,6 +33,7 @@ void	refresh_sphere(t_world *world, int i)
 			tmp->reflection_coef = world->spheres[i].reflection_coef;
 			tmp->refraction_coef = world->spheres[i].refraction_coef;
 			tmp->transparence_coef = world->spheres[i].transparence_coef;
+			tmp->texture = world->spheres[i].texture;
 			tmp->perlin = world->spheres[i].perlin;
 			break ;
 		}

@@ -2,11 +2,11 @@
 <!ELEMENT camera (pos, dir, rot*, tra*)>
 <!ELEMENT light (pos, dir*, color*, intensity, type*)>
 <!ELEMENT ambient (color, intensity)>
-<!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
-<!ELEMENT sphere (pos, radius, tra*, color, chess*, negative*, reflection*, refraction*, transparence*, perlin*)>
-<!ELEMENT cylinder (pos, normal, radius, height*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
+<!ELEMENT plane (origin, normal, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*, texture*)>
+<!ELEMENT sphere (pos, radius, tra*, color, chess*, negative*, reflection*, refraction*, transparence*, perlin*, texture*)>
+<!ELEMENT cylinder (pos, normal, radius, height*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*, texture*)>
 <!ELEMENT disk (origin, normal, radius, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
-<!ELEMENT cone (pos, normal, radius, height*, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
+<!ELEMENT cone (pos, normal, radius, height*, min*, max*, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*, texture*)>
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT torus (pos, normal*, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
@@ -33,12 +33,12 @@
 <!ELEMENT radius_big (#PCDATA)>
 <!ELEMENT color (#PCDATA)>
 <!ELEMENT chess (#PCDATA)>
-<!ELEMENT perlin (#PCDATA)>
 <!ELEMENT intensity (#PCDATA)>
-<!ELEMENT negative (#PCDATA)>
 <!ELEMENT reflection (#PCDATA)>
 <!ELEMENT refraction (#PCDATA)>
 <!ELEMENT transparence (#PCDATA)>
+<!ELEMENT perlin (#PCDATA)>
+<!ELEMENT texture (#PCDATA)>
 <!ELEMENT type (#PCDATA)>
 
 <!ATTLIST scene name CDATA #REQUIRED>
@@ -114,6 +114,7 @@
 	amount CDATA #REQUIRED
 >
 
+<!ATTLIST texture file CDATA #REQUIRED>
 <!ATTLIST radius data CDATA #REQUIRED>
 <!ATTLIST radius_small data CDATA #REQUIRED>
 <!ATTLIST radius_big data CDATA #REQUIRED>

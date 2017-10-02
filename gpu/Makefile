@@ -81,6 +81,8 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/material/perlin_noise.cu \
 				$(SRC_CUDA_DIR)/material/perlin_presets.cu \
 				\
+				$(SRC_CUDA_DIR)/textures/textures.cu \
+				\
 				$(SRC_CUDA_DIR)/camera/camera.cu \
 				\
 				$(SRC_CUDA_DIR)/colors/colors.cu \
@@ -201,6 +203,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/xml_parser/parse_h_cube.c \
 				$(SRC_DIR)/xml_parser/parse_init_pos.c \
 				$(SRC_DIR)/xml_parser/parse_perlin.c \
+				$(SRC_DIR)/xml_parser/parse_texture.c \
 				$(SRC_DIR)/xml_parser/parse_init_color.c \
 				$(SRC_DIR)/xml_parser/parse_material.c \
 				$(SRC_DIR)/xml_parser/parser_utils.c \

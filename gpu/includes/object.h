@@ -16,6 +16,7 @@
 # include "vectors.h"
 # include "colors.h"
 # include "light.h"
+# include "../frameworks/SDL2.framework/Headers/SDL.h"
 
 # define WOOD 1
 # define GLASS 2
@@ -28,6 +29,15 @@ typedef struct				s_perlin
 	double					scale;
 	double					amount;
 }							t_perlin;
+
+typedef struct 			s_texture
+{
+	SDL_Surface 	*tex;
+	double				offset_x;
+	double				offset_y;
+	double				repeat;
+	int						is_set;
+}							t_texture;
 
 typedef struct				s_plane
 {
@@ -105,6 +115,7 @@ typedef struct				s_sphere
 	double					reflection_coef;
 	double					refraction_coef;
 	double					transparence_coef;
+	struct s_texture		texture;
 	struct s_perlin			perlin;
 	struct s_sphere			*next;
 }							t_sphere;

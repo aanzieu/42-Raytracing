@@ -106,6 +106,7 @@ void		parse_reflection(double *reflection_coef, xmlNodePtr cur);
 void		parse_refraction(double *refraction_coef, xmlNodePtr cur);
 void		parse_transparence(double *transparence_coef, xmlNodePtr cur);
 void		parse_perlin(t_perlin *p, xmlNodePtr cur);
+void		parse_texture(t_texture *tex, xmlNodePtr cur);
 void		parse_ambient(t_world *world, xmlNodePtr cur);
 /*
 **	parser_utils.c

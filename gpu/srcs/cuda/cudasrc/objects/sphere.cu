@@ -71,6 +71,9 @@ __host__ __device__ void	get_closest_sphere(t_world world, t_ray ray,\
 				intersection->normal_v = vector_normalize(\
 					vector_calculate(world.spheres[i].pos, intersection->pos));
 				apply_noise_dist(world, intersection, world.spheres[i].perlin);
+				if (world.spheres[i].texture.is_set == 1)
+					intersection->color = load_texture_at(world.spheres[i].texture,\
+						ray, intersection, world);
 			}
 		}
 		i++;
