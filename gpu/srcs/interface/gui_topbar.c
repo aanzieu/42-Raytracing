@@ -64,7 +64,7 @@ static void	file_save(struct nk_context *ctx, struct media *media,\
 	{
 		nk_layout_row_dynamic(ctx, 20, 1);
 		if (nk_menu_item_image_label(ctx, media->convert, "Save as xml",\
-			NK_TEXT_RIGHT))
+			NK_TEXT_RIGHT) && world->a_h)
 			save_xml_scene(world);
 		if (nk_menu_item_image_label(ctx, media->convert, "Save as bitmap",\
 			NK_TEXT_RIGHT))
