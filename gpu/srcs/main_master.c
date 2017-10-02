@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/07/27 17:32:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/02 11:41:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,8 @@ void			put_buffer_together(t_cluster *cluster, t_client *clients,
 			{
 				x = -1;
 				while (++x < cluster->world->viewplane.x_res)
-				{
 					cluster->world->a_h[y *
-					cluster->world->viewplane.x_res + x] = clients->buffer[i];
-					i++;
-				}
+					cluster->world->viewplane.x_res + x] = clients->buffer[i++];
 				y++;
 			}
 		}

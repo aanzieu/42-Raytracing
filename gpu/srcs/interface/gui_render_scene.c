@@ -17,15 +17,6 @@
 #include "nuklear.h"
 #include "gui.h"
 
-static void		clear(struct nk_context *ctx, t_world *w)
-{
-	if (w->redraw == 3)
-	{
-		nk_clear(ctx);
-		w->redraw = 0;
-	}
-}
-
 static void		get_position(struct nk_context *ctx, t_world *w,\
 								struct nk_vec2 *pos)
 {

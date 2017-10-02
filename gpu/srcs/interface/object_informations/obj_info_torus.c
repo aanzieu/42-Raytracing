@@ -70,6 +70,8 @@ void		torus_informations(t_world *world, struct nk_context *ctx,\
 			draw_chess_color(ctx, media, world, &world->torus[i].chess);
 			refresh_torus(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
+			if (move_object_without_norm(ctx, &world->torus[i].pos))
+				world->redraw = 1;
 			break ;
 		}
 		i++;

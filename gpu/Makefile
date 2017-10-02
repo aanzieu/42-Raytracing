@@ -125,6 +125,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/mouse_event/mouse_press_right.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_spheres.c \
 				$(SRC_DIR)/interface/object_informations/obj_move.c \
+				$(SRC_DIR)/interface/object_informations/obj_move_next.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_planes.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_cones.c \
 				$(SRC_DIR)/interface/object_informations/obj_info_disks.c \
@@ -147,6 +148,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/remove_objects/remove_objects2.c \
 				$(SRC_DIR)/interface/remove_objects/remove_objects3.c \
 				$(SRC_DIR)/interface/key_press.c \
+				$(SRC_DIR)/interface/key_press2.c \
 				$(SRC_DIR)/interface/free_objects/free_world.c \
 				$(SRC_DIR)/interface/free_objects/free_objects.c \
 				$(SRC_DIR)/interface/free_objects/free_objects_next.c \

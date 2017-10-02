@@ -38,7 +38,7 @@ struct device {
 	GLuint font_tex;
 };
 
-
+void		clear(struct nk_context *ctx, t_world *w);
 void	ui_widget(struct nk_context *ctx, struct media *media, float height);
 void	ui_header(struct nk_context *ctx, struct media *media, const char *str);
 void	ui_widget_centered(struct nk_context *ctx, struct media *m, float h);
@@ -126,6 +126,7 @@ struct nk_image icon_load(const char *filename);
 void	loading_media(struct media *media, struct nk_font_atlas *atlas, struct nk_context *ctx, struct device *device);
 void	device_draw(struct device *dev, struct nk_context *ctx, t_screen *screen, enum nk_anti_aliasing AA);
 void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx);
+int				move_camera_render_next(struct nk_context *ctx, t_world *world);
 int		key_press(struct nk_context *ctx, t_world *world);
 
 void	sphere_informations(t_world *world, struct nk_context *ctx, struct media *media);

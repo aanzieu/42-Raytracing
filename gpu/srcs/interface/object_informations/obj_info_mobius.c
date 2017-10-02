@@ -70,6 +70,8 @@ void		mobius_informations(t_world *world, struct nk_context *ctx,\
 			draw_chess_color(ctx, media, world, &world->mobius[i].chess);
 			refresh_mobius(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
+			if (move_object_without_norm(ctx, &world->mobius[i].pos))
+				world->redraw = 1;
 			break ;
 		}
 		i++;

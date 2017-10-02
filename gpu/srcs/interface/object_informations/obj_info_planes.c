@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/26 16:30:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:17:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void		plane_informations(t_world *world, struct nk_context *ctx,\
 			draw_chess_color(ctx, media, world, &world->planes[i].chess);
 			refresh_plane(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
+			if (move_object(ctx, &world->planes[i].pos,
+				&world->planes[i].up))
+				world->redraw = 1;
 			break ;
 		}
 		i++;

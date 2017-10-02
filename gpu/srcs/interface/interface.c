@@ -16,6 +16,15 @@
 #include "nuklear.h"
 #include "gui.h"
 
+void		clear(struct nk_context *ctx, t_world *w)
+{
+	if (w->redraw == 3)
+	{
+		nk_clear(ctx);
+		w->redraw = 0;
+	}
+}
+
 static void	get_mouse_hover_gui(struct nk_context *ctx, t_world *w)
 {
 	if (nk_input_is_mouse_hovering_rect(&ctx->input,\

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 12:42:53 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:24:54 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,29 @@
 #include "gui.h"
 #include "float.h"
 
-int		mousepress_left(struct nk_context *ctx, t_world *world,\
-						struct nk_vec2 pos)
+static void	intersection_find(t_world *world, t_ray ray)
 {
-	t_ray			ray;
 	t_intersection	intersection;
-	t_vec2d			pad;
-	static int		press;
 
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
+	get_closest_intersection(*(world), ray, &intersection);
+	if (intersection.t != INFINITY)
+	{
+		world->id_save = intersection.id_save;
+		world->ob_save = intersection.type;
+		world->keys.select = 1;
+	}
+}
+
+int			mousepress_left(struct nk_context *ctx, t_world *world,\
+						struct nk_vec2 pos)
+{
+	t_ray			ray;
+	t_vec2d			pad;
+	static int		press;
+
 	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down && world->menu_on == 0)
 	{
 		pad.x = ctx->input.mouse.pos.x - pos.x;
@@ -39,13 +51,7 @@ int		mousepress_left(struct nk_context *ctx, t_world *world,\
 		get_up_left(world);
 		get_ray_direction(*(world), &ray, pad.x / world->render_factor,\
 						pad.y / world->render_factor);
-		get_closest_intersection(*(world), ray, &intersection);
-		if (intersection.t != INFINITY)
-		{
-			world->id_save = intersection.id_save;
-			world->ob_save = intersection.type;
-			world->keys.select = 1;
-		}
+		intersection_find(world, ray);
 	}
 	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
 	{
