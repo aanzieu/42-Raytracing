@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 11:57:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 17:16:34 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 16:33:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <pthread.h>
 
 # include "../frameworks/SDL2.framework/Headers/SDL.h"
-# include "../frameworks/GL.framework/glew/2.1.0/include/GL/glew.h"
-# include "../frameworks/GL.framework/glfw/3.2.1/include/GLFW/glfw3.h"
+# include "../frameworks/glew/include/GL/glew.h"
+# include "../frameworks/glfw/include/GLFW/glfw3.h"
 # include "../libft/libft.h"
 
 # define NB_TH 4
@@ -279,7 +279,7 @@ int					event_handler(t_world *world, SDL_Event event);
 void				memory_allocation_error();
 void				free_world(t_world *world);
 void				mouse_movement(t_world *world);
-int					interface_launch(t_world *world, char *argv);
+void				interface_launch(t_world *world);
 
 /*
 ********************************************************************************

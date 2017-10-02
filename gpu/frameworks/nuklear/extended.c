@@ -1,4 +1,15 @@
-/* nuklear - v1.05 - public domain */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extended.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/02 14:20:10 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/10/02 16:44:20 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define NK_INCLUDE_MEDIA
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
@@ -6,88 +17,27 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
+
 #include "interface.h"
 #include "gui.h"
-#include "cluster.h"
+#include "../../includes/cluster.h"
 
-void	allocate_mouse(struct nk_context *ctx, GLFWwindow *win)
+void		allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing aa,
+			struct nk_context *ctx)
 {
-	double x, y;
+	static const struct nk_draw_vertex_layout_element	vertex_layout[] = {
+	{NK_VERTEX_POSITION, NK_FORMAT_FLOAT, NK_OFFSETOF(struct nk_glfw_vertex,
+	position)}, {NK_VERTEX_TEXCOORD, NK_FORMAT_FLOAT, NK_OFFSETOF(struct
+	nk_glfw_vertex, uv)}, {NK_VERTEX_COLOR, NK_FORMAT_R8G8B8A8,
+	NK_OFFSETOF(struct nk_glfw_vertex, col)}, {NK_VERTEX_LAYOUT_END}};
+	struct nk_convert_config							config;
 
-	glfwGetCursorPos(win, &x, &y);
-	nk_input_motion(ctx, (int)x, (int)y);
-	nk_input_button(ctx, NK_BUTTON_LEFT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS);
-	nk_input_button(ctx, NK_BUTTON_MIDDLE, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS);
-	nk_input_button(ctx, NK_BUTTON_RIGHT, (int)x, (int)y, glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS);
-	nk_input_end(ctx);
-
-
-}
-
-void	allocate_keys(struct nk_context *ctx, GLFWwindow *win)
-{
-		nk_input_key(ctx, NK_KEY_DEL, glfwGetKey(win, GLFW_KEY_DELETE) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_ENTER, glfwGetKey(win, GLFW_KEY_ENTER) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_TAB, glfwGetKey(win, GLFW_KEY_TAB) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_BACKSPACE, glfwGetKey(win, GLFW_KEY_BACKSPACE) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_LEFT, glfwGetKey(win, GLFW_KEY_LEFT) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_RIGHT, glfwGetKey(win, GLFW_KEY_RIGHT) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_UP, glfwGetKey(win, GLFW_KEY_UP) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_DOWN, glfwGetKey(win, GLFW_KEY_DOWN) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_K, glfwGetKey(win, GLFW_KEY_K) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_L, glfwGetKey(win, GLFW_KEY_L) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_X, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_A, glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_S, glfwGetKey(win, GLFW_KEY_S) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_D, glfwGetKey(win, GLFW_KEY_D) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_W, glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_Q, glfwGetKey(win, GLFW_KEY_Q) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_E, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_ECHAP, glfwGetKey(win, GLFW_KEY_ESCAPE) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_ADD, glfwGetKey(win, GLFW_KEY_KP_ADD) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_SUB, glfwGetKey(win, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS);		
-		nk_input_key(ctx, NK_KEY_SPACE, glfwGetKey(win, GLFW_KEY_SPACE) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_SHIFT, glfwGetKey(win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS);
-		nk_input_key(ctx, NK_KEY_CTRL, glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS);		
-		// if (glfwGetKey(win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS ||
-		// 		glfwGetKey(win, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS)
-		// {
-		// 	nk_input_key(ctx, NK_KEY_COPY, glfwGetKey(win, GLFW_KEY_C) == GLFW_PRESS);
-		// 	nk_input_key(ctx, NK_KEY_PASTE, glfwGetKey(win, GLFW_KEY_P) == GLFW_PRESS);
-		// 	nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_X) == GLFW_PRESS);
-		// 	nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(win, GLFW_KEY_E) == GLFW_PRESS);
-		// 	nk_input_key(ctx, NK_KEY_SHIFT, 1);
-		// }
-		// else
-		// {
-		// 	nk_input_key(ctx, NK_KEY_COPY, 0);
-		// 	nk_input_key(ctx, NK_KEY_PASTE, 0);
-		// 	nk_input_key(ctx, NK_KEY_CUT, 0);
-		// 	nk_input_key(ctx, NK_KEY_SHIFT, glfwGetKey(win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS);
-		// }
-}
-
-void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct nk_context *ctx)
-{
-
-	void *vertices, *elements;
-	struct nk_convert_config config;
-	static const struct nk_draw_vertex_layout_element vertex_layout[] = {
-		{NK_VERTEX_POSITION, NK_FORMAT_FLOAT, NK_OFFSETOF(struct nk_glfw_vertex, position)},
-		{NK_VERTEX_TEXCOORD, NK_FORMAT_FLOAT, NK_OFFSETOF(struct nk_glfw_vertex, uv)},
-		{NK_VERTEX_COLOR, NK_FORMAT_R8G8B8A8, NK_OFFSETOF(struct nk_glfw_vertex, col)},
-		{NK_VERTEX_LAYOUT_END}
-	};
-	/* allocate vertex and element buffer */
 	glBindVertexArray(dev->vao);
 	glBindBuffer(GL_ARRAY_BUFFER, dev->vbo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dev->ebo);
 	glBufferData(GL_ARRAY_BUFFER, MAX_VERTEX_MEMORY, NULL, GL_STREAM_DRAW);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, MAX_ELEMENT_MEMORY, NULL, GL_STREAM_DRAW);
-	vertices = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-	elements = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY);
-
-	/* fill convert configuration */
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, MAX_ELEMENT_MEMORY, NULL,
+			GL_STREAM_DRAW);
 	NK_MEMSET(&config, 0, sizeof(config));
 	config.vertex_layout = vertex_layout;
 	config.vertex_size = sizeof(struct nk_glfw_vertex);
@@ -97,28 +47,21 @@ void	allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing AA, struct
 	config.curve_segment_count = 22;
 	config.arc_segment_count = 22;
 	config.global_alpha = 1.0f;
-	config.shape_AA = AA;
-	config.line_AA = AA;
-
-	/* setup buffers to load vertices and elements */
-	struct nk_buffer vbuf, ebuf;
-	nk_buffer_init_fixed(&vbuf, vertices, MAX_VERTEX_MEMORY);
-	nk_buffer_init_fixed(&ebuf, elements, MAX_ELEMENT_MEMORY);
-	nk_convert(ctx, &dev->cmds, &vbuf, &ebuf, &config);
-	glUnmapBuffer(GL_ARRAY_BUFFER);
-	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+	config.shape_AA = aa;
+	config.line_AA = aa;
+	allocate_vertex_buffer_next(ctx, dev, config);
 }
 
-void	draw_render(t_cluster cluster)
+void		draw_render(t_cluster cluster)
 {
 	static int i;
-	
+
 	if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
 	{
-		ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT * 4 * sizeof(unsigned char));
+		ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT
+				* 4 * sizeof(unsigned char));
 		ft_printf("Redraw Scène next time %d \n", i++);
 		refresh_viewplane(cluster.world);
-		printf("WORLD RENDER = %d\n", cluster.world->render_factor);
 		if (cluster.world->mode_cluster == 1)
 		{
 			ft_putstr("Waiting for connection...\n");
@@ -127,8 +70,6 @@ void	draw_render(t_cluster cluster)
 		}
 		else
 			rt(cluster.world);
-		printf("Je redraw sans LUM\n");
-			
 		if (cluster.world->keys.pad_0)
 			effect_application(cluster.world);
 		cluster.world->redraw = 0;
@@ -136,113 +77,57 @@ void	draw_render(t_cluster cluster)
 	}
 }
 
-void	delete_object(struct nk_context ctx, struct nk_font_atlas atlas, struct media media)
+void		glfw_init_ratio(GLFWwindow *win, t_cluster cluster, t_world *world)
 {
-	glDeleteTextures(1,(const GLuint*)&media.plane.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.sphere.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.cone.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.cylinder.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.disk.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.paraboloid.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.hyperboloid.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.mobius.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.cube.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.h_cube.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.torus.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.triangle.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.light.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.cam.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.rec.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.rec_on.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_rot_left.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_rot_right.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_right.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_left.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_up.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.a_down.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.unchecked.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.checked.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.rocket.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.dir.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.del.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.convert.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.zoom_in.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.zoom_out.handle.id);
-	glDeleteTextures(1,(const GLuint*)&media.icons.default_file.handle.id);
-	// file_browser_free(&browser);
-	nk_font_atlas_clear(&atlas);
-	nk_free(&ctx);
+	glfwSetWindowAspectRatio(win, 16, 9);
+	glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
+	glfwGetWindowSize(win, &(cluster).world->screen.width,
+			&(cluster).world->screen.height);
+	glfwGetFramebufferSize(win, &(cluster).world->screen.display_width,
+			&(cluster).world->screen.display_height);
+	world->screen.scale.x = (float)cluster.world->screen.display_width /
+		(float)cluster.world->screen.width;
+	world->screen.scale.y = (float)cluster.world->screen.display_height /
+		(float)cluster.world->screen.height;
 }
 
-
-int		render_condition(struct nk_context *ctx, t_world *world)
+void		glfw_viewport(t_cluster cluster, struct device *device,
+			struct nk_context *ctx, GLFWwindow *win)
 {
-	if(ctx->input.keyboard.keys[NK_KEY_ECHAP].down != 0)
-			return(0);
-	if(nk_input_is_key_pressed(&ctx->input, NK_KEY_SPACE) && world->render_factor != 32)
-	{
-		world->render_factor = 16;
-		world->redraw = 1;
-	}
-	if(nk_input_is_key_released(&ctx->input, NK_KEY_SPACE))
-	{
-		world->render_factor = 1;
-		world->ob_save = '\0';
-		world->id_save = -1;
-		world->redraw = 1;
-	}
-	return (1);
+	glViewport(0, 0, cluster.world->screen.display_width,
+			cluster.world->screen.display_height);
+	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	device_draw(device, ctx, &(cluster.world->screen),
+			NK_ANTI_ALIASING_ON);
+	glfwSwapBuffers(win);
 }
 
-int interface_launch(t_world *world, char *argv)
+void		interface_launch(t_world *world)
 {
-	/* Platform */
-	(void)argv;
-	static GLFWwindow *win;
-	t_cluster	cluster;
+	static GLFWwindow		*win;
+	t_cluster				cluster;
+	struct device			device;
+	struct nk_context		ctx;
+	struct media			media;
 
 	cluster_initialize(world, &cluster);
-	/* GUI */
-	struct device device;
-	struct nk_context ctx;
-	struct nk_font_atlas atlas;
-	struct media media;
-
 	init_glfw_start(&win, &ctx, &(cluster).world->screen);
-	/* GUI */
 	device_init(&device);
-	loading_media(&media, &atlas, &ctx, &device);
+	loading_media(&media, &ctx, &device);
 	while (!glfwWindowShouldClose(win))
 	{
-		/* High DPI displays */
-		glfwSetWindowAspectRatio(win, 16, 9);
-		glfwSetWindowSizeLimits(win, 1024, 768, GLFW_DONT_CARE, GLFW_DONT_CARE);
-		glfwGetWindowSize(win, &(cluster).world->screen.width, &(cluster).world->screen.height);
-		glfwGetFramebufferSize(win, &(cluster).world->screen.display_width, &(cluster).world->screen.display_height);
-		world->screen.scale.x = (float)cluster.world->screen.display_width/(float)cluster.world->screen.width;
-		world->screen.scale.y = (float)cluster.world->screen.display_height/(float)cluster.world->screen.height;
-		/* Input */
+		glfw_init_ratio(win, cluster, world);
 		nk_input_begin(&ctx);
 		glfwPollEvents();
 		allocate_keys(&ctx, win);
-		allocate_mouse(&ctx, win);
-		if(render_condition(&ctx, world))
-			;		
-		/* GUI */
+		if (render_condition(&ctx, world) == 0)
+			break ;
 		draw_render(cluster);
 		gui_calls(&ctx, &media, cluster.world);
-
-		/* Draw */
-		glViewport(0, 0, cluster.world->screen.display_width, cluster.world->screen.display_height);
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		device_draw(&device, &ctx, &(cluster.world->screen), NK_ANTI_ALIASING_ON);
-		glfwSwapBuffers(win);
-
+		glfw_viewport(cluster, &device, &ctx, win);
 	}
-	delete_object(ctx, atlas, media);
-	clear_world(cluster.world);
+	delete_object(ctx, media);
 	device_shutdown(&device);
 	glfwTerminate();
-	return 0;
 }

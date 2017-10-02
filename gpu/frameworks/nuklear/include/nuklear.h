@@ -502,6 +502,7 @@ enum nk_symbol_type {
     NK_SYMBOL_MINUS,
     NK_SYMBOL_MAX
 };
+
 /* =============================================================================
  *
  *                                  CONTEXT
@@ -4300,6 +4301,28 @@ struct file_browser {
     size_t file_count;
     size_t dir_count;
     struct media *media;
+};
+
+struct					nk_glfw_vertex {
+	float						position[2];
+	float						uv[2];
+	nk_byte						col[4];
+};
+
+struct		device
+{
+	struct nk_buffer			cmds;
+	struct nk_draw_null_texture null;
+	GLuint						vbo, vao, ebo;
+	GLuint						prog;
+	GLuint						vert_shdr;
+	GLuint						frag_shdr;
+	GLint						attrib_pos;
+	GLint						attrib_uv;
+	GLint						attrib_col;
+	GLint						uniform_tex;
+	GLint						uniform_proj;
+	GLuint						font_tex;
 };
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/09/29 17:19:38 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 16:49:31 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 void			local_config(t_world *world, char *argv)
 {
-	interface_launch(world, argv);
+	(void)argv;
+	interface_launch(world);
 }
 
 void			client_config(t_world *world, char *argv)

@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/09/29 15:28:05 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/10/02 18:04:42 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,10 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 
 SRC_NUK =		$(SRC_NUKLEAR)/device_init.c \
 				$(SRC_NUKLEAR)/device_init_next.c \
+				$(SRC_NUKLEAR)/device_init_next2.c \
 				$(SRC_NUKLEAR)/load_media.c \
+				$(SRC_NUKLEAR)/utils_loading.c \
+				$(SRC_NUKLEAR)/allocate_keys.c \
 				$(SRC_NUKLEAR)/extended.c \
 
 SRC =			$(SRC_DIR)/main.c \

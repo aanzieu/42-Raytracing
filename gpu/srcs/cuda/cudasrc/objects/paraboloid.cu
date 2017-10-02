@@ -59,7 +59,7 @@ __host__ __device__ int		get_paraboloid(t_paraboloid para, t_ray ray,
 		intersection_tmp->t = eq.res[0];
 		return (1);
 	}
-//	intersection_tmp->t = -1.0;
+	intersection_tmp->t = -1.0;
 	return (0);
 }
 
