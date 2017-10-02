@@ -15,6 +15,7 @@
 #include "rt.h"
 #include "nuklear.h"
 #include "gui.h"
+#include "gpu_rt.h"
 
 static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 						int i)
@@ -27,6 +28,8 @@ static void	draw_infos(struct nk_context *ctx, struct media *m, t_world *w,\
 		ui_widget_value_infos(ctx, m, &w->lights[i].dir.x, "DIR X:");
 		ui_widget_value_infos(ctx, m, &w->lights[i].dir.y, "DIR Y:");
 		ui_widget_value_infos(ctx, m, &w->lights[i].dir.z, "DIR Z:");
+		w->lights[i].dir_v = vector_normalize(
+			vector_calculate(w->lights[i].dir, w->lights[i].pos));
 	}
 	ui_slide_float_0_to_1(ctx, &w->lights[i].intensity_coef, "INTENSITY:");
 	draw_apply_button(ctx, m, w);
