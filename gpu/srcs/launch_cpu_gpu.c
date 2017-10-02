@@ -28,19 +28,21 @@ static	void	*perform_thread(void *arg)
 	y = (thread->th) * ((thread->y_max - thread->y_min) / NB_TH)
 		+ thread->y_min;
 	y_aa = y * thread->aa;
-	while (y++ < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) +
+	while (y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) +
 																thread->y_min)
 	{
 		x = 0;
 		x_aa = 0;
-		while (x++ < thread->world->viewplane.x_res)
+		while (x < thread->world->viewplane.x_res)
 		{
 			thread->world->a_h[(y - thread->y_min) *
 			thread->world->viewplane.x_res + x] =
 				ray_tracer_cpu(*thread->world, x_aa, y_aa);
 			x_aa += thread->world->aa;
+			x++;
 		}
 		y_aa += thread->world->aa;
+		y++;
 	}
 	pthread_exit(0);
 }
@@ -83,8 +85,7 @@ void			launch_cpu(t_world *world)
 		ft_printf("Calculating on Cpu\n");
 		refresh_viewplane_cluster(world);
 		get_viewplane_cluster(world);
-		launch_thread(world, world->offsets.y_min / world->render_factor,
-			world->offsets.y_max / world->render_factor, world->offsets.aa);
+		launch_thread(world, world->offsets.y_min / world->render_factor, world->offsets.y_max / world->render_factor, world->offsets.aa);
 		ft_printf("End of Calculate\n");
 		return ;
 	}
