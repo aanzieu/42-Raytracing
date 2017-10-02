@@ -42,6 +42,23 @@ void				filter_anaglyph(t_world *world, t_color *buffer, int size,
 	}
 }
 
+/*
+**	Move camera and redraw for right eye
+*/
+
+void				redraw_right_eye(t_world *world)
+{
+	world->camera.pos = vector_add(world->camera.pos,
+	vector_scalar(world->camera.right_v, 0.1));
+	get_camera_axes(&world->camera);
+	get_viewplane(world);
+	rt(world);
+	world->camera.pos = vector_add(world->camera.pos,
+	vector_scalar(world->camera.right_v, -0.1));
+	get_camera_axes(&world->camera);
+	get_viewplane(world);
+}
+
 void				anaglyph(t_world *world)
 {
 	t_color *red;
@@ -50,20 +67,18 @@ void				anaglyph(t_world *world)
 	int		size;
 	int		i;
 
-	i = 0;
+	i = -1;
 	color = new_color(0, 0, 0);
 	size = world->viewplane.x_res * world->viewplane.y_res;
 	red = (t_color *)malloc(size * sizeof(t_color));
 	cyan = (t_color *)malloc(size * sizeof(t_color));
 	filter_anaglyph(world, red, size, 'r');
+	redraw_right_eye(world);
 	filter_anaglyph(world, cyan, size, 'c');
-	while (i++ < size)
+	while (++i < size)
 	{
-		if (i - world->anaglyph_depth >= 0 && i + world->anaglyph_depth < size)
-		{
-			color = color_add(color, red[i - world->anaglyph_depth]);
-			color = color_add(color, cyan[i + world->anaglyph_depth]);
-		}
+		color = color_add(color, red[i]);
+		color = color_add(color, cyan[i]);
 		world->a_h[i] = rgb_to_int(color);
 		color = color_scalar(color, 0);
 	}
