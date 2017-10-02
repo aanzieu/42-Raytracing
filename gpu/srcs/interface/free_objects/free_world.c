@@ -6,11 +6,20 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:20:56 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/12 13:35:25 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:47:54 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/rt.h"
+
+static void		clear_world3(t_world *world)
+{
+	world->keys.light_none = 0;
+	world->ambient.intensity = 0;
+	world->ambient.color = (t_color){0, 0, 0};
+	world->keys.pad_0 = 0;
+	world->aa = 1;
+}
 
 static void		clear_world2(t_world *world)
 {
@@ -36,6 +45,7 @@ static void		clear_world2(t_world *world)
 		free(world->a_h);
 		world->a_h = NULL;
 	}
+	clear_world3(world);
 }
 
 void			clear_world(t_world *world)

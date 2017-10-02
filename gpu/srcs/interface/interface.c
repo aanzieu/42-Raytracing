@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 20:47:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 18:09:44 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:32:47 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ static void	get_mouse_hover_gui(struct nk_context *ctx, t_world *w)
 	nk_rect(w->screen.width - 250, 52, 250, w->screen.height - 52))\
 	|| nk_input_is_mouse_hovering_rect(&ctx->input,\
 	nk_rect(0, 52, 250, w->screen.height - 52)))
-		w->menu_on = 1;
+		w->hover_ui = 1;
+	else if (w->hover_menu == 1)
+		w->hover_ui = 1;
 	else
-		w->menu_on = 0;
+		w->hover_ui = 0;
 }
 
 void		text_input(GLFWwindow *win, unsigned int codepoint)

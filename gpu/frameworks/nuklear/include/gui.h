@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 12:21:37 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 16:23:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/02 18:38:01 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,13 @@ void			header_info(struct nk_context *ctx,
 void			draw_apply_button(struct nk_context *c, struct media *m,
 				t_world *w);
 void			select_scene(struct nk_context *ctx, struct media *media,
-				t_world *world, int img_active[4]);
+				t_world *world, int img_active[5]);
+void			select_your_file(struct nk_context *ctx, struct media *media,
+				t_world *world, int img_active[5]);
 void			press_launch(struct nk_context *ctx, t_world *world,
-				int img_active[4]);
+				int img_active[5]);
+int				launch_xml_file(struct nk_context *ctx, t_world *world,
+				char *xml);
 void			draw_light_type(struct nk_context *c, struct media *m,
 				t_world *w, t_light *light);
 void			draw_p_presets(struct nk_context *c, struct media *m,

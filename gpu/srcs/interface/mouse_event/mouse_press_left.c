@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 11:24:54 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/02 19:38:26 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			mousepress_left(struct nk_context *ctx, t_world *world,\
 	t_vec2d			pad;
 	static int		press;
 
-	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down && world->menu_on == 0)
+	if (ctx->input.mouse.buttons[NK_BUTTON_LEFT].down && world->hover_ui == 0)
 	{
 		pad.x = ctx->input.mouse.pos.x - pos.x;
 		pad.y = ctx->input.mouse.pos.y - pos.y - 40;

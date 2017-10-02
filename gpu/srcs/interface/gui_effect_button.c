@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 14:37:50 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 17:18:06 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:55:41 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void		scene_effects(struct nk_context *ctx, struct media *media,\
 {
 	static int option = 1;
 
+	if (world->keys.pad_0 == 0)
+		option = 1;
 	ui_header(ctx, media, "---- Render Effects");
 	ui_widget_special_mode(ctx, media, 20);
 	draw_effect_button_1(ctx, media, world, &option);

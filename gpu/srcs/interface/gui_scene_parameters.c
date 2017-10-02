@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 18:00:24 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:53:57 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	scene_definition(struct nk_context *ctx, struct media *media,\
 {
 	static int hd = 1;
 
+	if (world->keys.light_none == 0)
+		hd = 1;
 	ui_header(ctx, media, "---- Render Definition");
 	ui_widget_special_mode(ctx, media, 20);
 	if (nk_button_symbol_label(ctx, (hd == 0) ?\

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:10:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 17:17:21 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:17:33 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void			data_setup_2(t_world *world)
 	world->video_buffer = NULL;
 	world->intensity = 2.1;
 	world->img_scene = 0;
-	world->menu_on = 0;
+	world->hover_menu = 0;
+	world->hover_ui = 0;
 }
 
 void			data_setup(t_world *world)

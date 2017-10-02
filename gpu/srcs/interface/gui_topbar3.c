@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_topbar2.c                                      :+:      :+:    :+:   */
+/*   gui_topbar3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 17:38:19 by xpouzenc         ###   ########.fr       */
+/*   Created: 2017/10/02 17:15:18 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/10/02 18:23:54 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static void	select_gpu_cpu(struct nk_context *ctx, struct media *media,\
 	}
 }
 
-static void	select_config(struct nk_context *ctx, struct media *media,\
-					t_world *world, int img_active[5])
+static int	select_config(struct nk_context *ctx, struct media *media,\
+					t_world *world, char *text)
 {
 	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Config Popup", 0,\
 		nk_rect(340, 52, 280, 280)))
@@ -76,52 +76,59 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 		ui_header(ctx, media, "");
 		ui_widget_centered(ctx, media, 30);
 		nk_style_set_font(ctx, &media->font_18->handle);
-		press_launch(ctx, world, img_active);
+		if (launch_xml_file(ctx, world, text))
+			return (1);
+		nk_popup_close(ctx);
+		nk_popup_end(ctx);
+	}
+	return (0);
+}
+
+static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
+								int img_active[5], char *text)
+{
+	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
+		nk_rect(60, 52, 280, 280)))
+	{
+		nk_layout_row_dynamic(ctx, 30, 1);
+		nk_label(ctx, "Enter a valid xml file,", NK_TEXT_CENTERED);
+		nk_label(ctx, "(it must be into 'testfiles' folder)", NK_TEXT_CENTERED);
+		nk_edit_string_zero_terminated(ctx, NK_EDIT_FIELD, text, 100,\
+		nk_filter_default);
+		nk_style_set_font(ctx, &media->font_14->handle);
+		if (nk_button_label(ctx, "SUBMIT"))
+		{
+			img_active[1] = !img_active[1];
+			nk_popup_close(ctx);
+		}
 		nk_popup_close(ctx);
 		nk_popup_end(ctx);
 	}
 }
 
-static void	draw_popup_scene(struct nk_context *ctx, struct media *media,\
-								int img_active[5])
-{
-	int	i;
-
-	if (nk_popup_begin(ctx, NK_POPUP_STATIC, "Scene Popup", 0,\
-		nk_rect(60, 52, 280, 280)))
-	{
-		i = 1;
-		nk_layout_row_static(ctx, 82, 82, 3);
-		while (i < 9)
-		{
-			if (nk_button_image(ctx, media->images[i]))
-			{
-				img_active[2] = i;
-				img_active[1] = !img_active[1];
-				nk_popup_close(ctx);
-			}
-			nk_popup_close(ctx);
-			i++;
-		}
-		nk_popup_end(ctx);
-	}
-}
-
-void		select_scene(struct nk_context *ctx, struct media *media,\
+void		select_your_file(struct nk_context *ctx, struct media *media,\
 					t_world *world, int img_active[5])
 {
-	if (img_active[0])
+	static char text[100];
+
+	if (img_active[4])
 	{
 		if (nk_input_is_mouse_hovering_rect(&ctx->input,\
 			nk_rect(60, 40, 570, 292)))
 		{
-			draw_popup_scene(ctx, media, img_active);
+			draw_popup_scene(ctx, media, img_active, text);
 			if (img_active[1])
-				select_config(ctx, media, world, img_active);
+			{
+				if (select_config(ctx, media, world, text))
+				{
+					img_active[4] = 0;
+					img_active[1] = 0;
+				}
+			}
 		}
 		else
 		{
-			img_active[0] = 0;
+			img_active[4] = 0;
 			img_active[1] = 0;
 		}
 	}

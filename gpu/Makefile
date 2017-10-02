@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/10/02 18:04:42 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/10/02 18:34:07 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ SRC =			$(SRC_DIR)/main.c \
 				$(SRC_DIR)/interface/gui_render_scene.c \
 				$(SRC_DIR)/interface/gui_topbar.c \
 				$(SRC_DIR)/interface/gui_topbar2.c \
+				$(SRC_DIR)/interface/gui_topbar3.c \
 				$(SRC_DIR)/interface/gui_topbar_add_obj.c \
 				$(SRC_DIR)/interface/gui_cam_controller.c \
 				$(SRC_DIR)/interface/launch_scenes.c \

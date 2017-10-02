@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 11:57:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 16:33:16 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/02 19:17:02 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,8 @@ typedef struct		s_world
 	t_vec2d			pos_render;
 	int				redraw;
 	int				img_scene;
-	int				menu_on;
+	int				hover_menu;
+	int				hover_ui;
 	int				aa;
 	int				win_width;
 	int				win_height;

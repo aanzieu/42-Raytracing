@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 17:57:57 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:16:16 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "parse.h"
 
 static void	add_object(struct nk_context *ctx, struct media *media,\
-					t_world *world, int img_active[4])
+					t_world *world, int img_active[5])
 {
 	nk_layout_row_push(ctx, 60);
 	if (nk_menu_begin_text(ctx, "Add", 3, NK_TEXT_CENTERED, nk_vec2(600, 90)))
@@ -34,14 +34,18 @@ static void	add_object(struct nk_context *ctx, struct media *media,\
 }
 
 static void	file_open(struct nk_context *ctx, struct media *media,\
-					t_world *world, int img_active[4])
+					t_world *world, int img_active[5])
 {
 	nk_layout_row_push(ctx, 60);
-	if (nk_menu_begin_text(ctx, "File", 4, NK_TEXT_CENTERED, nk_vec2(180, 60)))
+	if (nk_menu_begin_text(ctx, "File", 4, NK_TEXT_CENTERED, nk_vec2(180, 90)))
 	{
 		nk_layout_row_dynamic(ctx, 20, 1);
-		if (nk_menu_item_image_label(ctx, media->dir, "Open...", NK_TEXT_RIGHT))
+		if (nk_menu_item_image_label(ctx, media->dir, "Open a scene",\
+			NK_TEXT_RIGHT))
 			img_active[0] = 1;
+		if (nk_menu_item_image_label(ctx, media->icons.default_file,\
+			"Open your file", NK_TEXT_RIGHT))
+			img_active[4] = 1;
 		if (nk_menu_item_image_label(ctx, media->icons.default_file,\
 			"New file", NK_TEXT_RIGHT))
 		{
@@ -92,7 +96,7 @@ static void	file_edit(struct nk_context *ctx, struct media *media)
 void		scene_topbar(struct nk_context *ctx, struct media *media,\
 					t_world *world)
 {
-	static int img_active[4];
+	static int img_active[5];
 
 	if (nk_begin(ctx, "TOPBAR", nk_rect(0, 0, world->screen.width, 52),\
 		NK_WINDOW_BORDER))
@@ -107,11 +111,12 @@ void		scene_topbar(struct nk_context *ctx, struct media *media,\
 			add_object(ctx, media, world, img_active);
 		}
 		nk_layout_row_end(ctx);
+		select_your_file(ctx, media, world, img_active);
 		select_scene(ctx, media, world, img_active);
-		if (img_active[0] == 1 || img_active[3] == 1)
-			world->menu_on = 1;
+		if (img_active[0] == 1 || img_active[3] == 1 || img_active[4] == 1)
+			world->hover_menu = 1;
 		else
-			world->menu_on = 0;
+			world->hover_menu = 0;
 	}
 	nk_end(ctx);
 }
