@@ -28,6 +28,8 @@ int					data_grow(t_data *data, size_t size)
 
 int					data_recv(t_data *data, size_t size)
 {
+	size_t n;
+
 	if (!size)
 		return (0);
 	if (!data->total)
@@ -40,5 +42,8 @@ int					data_recv(t_data *data, size_t size)
 		return (1);
 	if (data->total == 1)
 		data->total++;
-	return (data_grow(data, size));
+	n = 1;
+	while (data->total * n * 1.618 < data->used + size)
+		n++;
+	return (data_grow(data, n));
 }
