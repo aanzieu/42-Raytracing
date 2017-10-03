@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 19:16:16 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:40:06 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	file_open(struct nk_context *ctx, struct media *media,\
 			"New file", NK_TEXT_RIGHT))
 		{
 			clear_world(world);
-			parse_rtv1(world, "testfiles/new.xml");
+			parse_rtv1(world, "scenes/new.xml");
 			load_data(world);
 			rt(world);
 			world->img_scene = 0;

@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE scene SYSTEM "norme.dtd">
+<!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
 <scene name="Just a cone">
-<camera>
-	<pos x="0" y="0" z="-10" />
-	<dir x="0" y="0" z="1" />
-	<rot x="0" y="0" z="0" />
-	<tra x="0" y="0" z="0" />
-</camera>
-<ambient>
-	<color r="255" g="255" b="255" a="1" />
-	<intensity data="0.1" />
-</ambient>
-<light>
-	<pos x="-3" y="-2" z="-4" />
-	<color r="255" g="255" b="255" a="1" />
-	<intensity data="1" />
-</light>
-<cone>
-	<pos x="0" y="-0.5" z="1" />
-	<normal x="0" y="-2" z="1" />
-	<radius data="0.4" />
-	<height data="2" />
-	<rot x="0" y="0" z="0" />
-	<color r="12" g="24" b="255" a="1" />
-	<reflection data="0.5" />
-</cone>
+  <plane>
+    <origin x="0" y="-1.000000" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <color r="92" g="92" b="92"/>
+    <chess r="0" g="0" b="0"/>
+    <reflection data="0.500000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+  </plane>
+  <cone>
+    <pos x="0" y="1.500000" z="7.000000"/>
+    <normal x="0" y="-2.000000" z="1.000000"/>
+    <radius data="0.400000"/>
+    <height data="2.000000"/>
+    <min x="0" y="0" z="0"/>
+    <max x="0" y="0" z="0"/>
+    <color r="12" g="24" b="255"/>
+    <reflection data="0.200000"/>
+    <refraction data="0"/>
+    <transparence data="0.300000"/>
+  </cone>
+  <light>
+    <pos x="0" y="5.000000" z="-4.000000"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="1.000000"/>
+    <type data="POINT"/>
+  </light>
+  <ambient>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.500000"/>
+  </ambient>
+  <camera>
+    <pos x="0" y="0.750000" z="-10.000000"/>
+    <dir x="0" y="0.250000" z="1.000000"/>
+  </camera>
 </scene>

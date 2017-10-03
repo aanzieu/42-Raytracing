@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
 <scene name="Three Sphere">
   <surface type="Cone">
     <center> -0.75 0 0.5 </center>

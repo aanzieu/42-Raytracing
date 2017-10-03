@@ -15,7 +15,7 @@
 void			parse_texture(t_texture *tex, xmlNodePtr cur)
 {
 	xmlChar *file;
-	char		*full_path;
+	char	*full_path;
 
 	file = xmlGetProp(cur, (const xmlChar *)"file");
 	full_path = ft_strjoin("./textures/", (char *)file);

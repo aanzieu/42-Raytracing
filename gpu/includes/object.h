@@ -30,12 +30,12 @@ typedef struct				s_perlin
 	double					amount;
 }							t_perlin;
 
-typedef struct 			s_texture
+typedef struct				s_texture
 {
-	SDL_Surface 	*tex;
-	double				offset_x;
-	double				offset_y;
-	double				repeat;
+	SDL_Surface				*tex;
+	double					offset_x;
+	double					offset_y;
+	double					repeat;
 	int						is_set;
 }							t_texture;
 
