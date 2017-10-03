@@ -124,7 +124,7 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 	if (intersection.type == '0')
 		return ((t_color){0, 0, 0});
 	color = intersection.color;
-	if(world.keys.light_none == 1 && world.mode == 0 && world.lights_tmp != NULL)
+	if(world.keys.light_none == 1 && world.mode == 0 && world.lights != NULL)
 		color = apply_materials_cpu(world, ray, intersection, color);
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);

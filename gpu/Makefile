@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/10/02 18:34:07 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/10/03 09:26:48 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ SRC_NUKLEAR = frameworks/nuklear
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SDL_FLAGS = `sdl-config --cflags --libs`
+SDL_FLAGS = `sdl2-config --cflags --libs`
 XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
 GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
+SDL2 = /Users/$(USER)/.brew/opt/sdl2/lib/libSDL2.dylib
 #GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
 GLEW = frameworks/glew/lib/libGLEW.a
 
@@ -270,7 +271,8 @@ $(NAME): $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
+#	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
+	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker $(SDL2) -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
