@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/09/29 17:20:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 12:05:39 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			rt(t_world *world)
 		return ;
 	if (world->mode == 0)
 	{
-		printf("laucnh CPU\n");
+		ft_putendl("launch CPU");
 		launch_cpu(world);
 	}
 	else
@@ -117,10 +117,10 @@ int				main(int argc, char **argv)
 		if ((ft_strcmp("client", argv[1]) == 0))
 			choose_main_launcher(argv, 2);
 		else
-			ft_putstr("Usage: ./bin/RT client [IP]");
+			ft_putendl("Usage: ./bin/RT client [IP]");
 	}
 	else
-		ft_putstr("Usage: launch only with ./bin/RT");
+		ft_putendl("Usage: ./bin/RT");
 	SDL_Quit();
 	return (0);
 }

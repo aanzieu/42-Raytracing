@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 17:20:24 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 12:49:54 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:59:23 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void		save_xml_scene(t_world *world)
 	root_node = xmlNewNode(NULL, BAD_CAST "scene");
 	xmlDocSetRootElement(doc, root_node);
 	xmlNewProp(root_node, BAD_CAST "name", BAD_CAST(world->title + 8));
-	xmlCreateIntSubset(doc, BAD_CAST "scene", NULL, BAD_CAST "norme.dtd");
+	xmlCreateIntSubset(doc, BAD_CAST "scene", NULL,\
+	BAD_CAST "../dtd/norme.dtd");
 	save_objects_to_xml(world, root_node);
 	xmlSaveFormatFileEnc("./testfiles/save.xml", doc, "UTF-8", 1);
 	xmlFreeDoc(doc);

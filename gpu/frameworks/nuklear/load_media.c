@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_media.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 15:12:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 16:01:53 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 11:42:36 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ void				load_icon_object2(struct media *media)
 	media->zoom_in = icon_load("frameworks/nuklear/icon/zoom_in.png");
 	media->zoom_out = icon_load("frameworks/nuklear/icon/zoom_out.png");
 	media->a_left = icon_load("frameworks/nuklear/icon/left.png");
-	media->images[0] = icon_load("testfiles/0.png");
-	media->images[1] = icon_load("testfiles/1.png");
-	media->images[2] = icon_load("testfiles/2.png");
-	media->images[3] = icon_load("testfiles/3.png");
-	media->images[4] = icon_load("testfiles/4.png");
-	media->images[5] = icon_load("testfiles/5.png");
-	media->images[6] = icon_load("testfiles/6.png");
-	media->images[7] = icon_load("testfiles/7.png");
-	media->images[8] = icon_load("testfiles/8.png");
+	media->images[0] = icon_load("scenes/0.png");
+	media->images[1] = icon_load("scenes/1.png");
+	media->images[2] = icon_load("scenes/2.png");
+	media->images[3] = icon_load("scenes/3.png");
+	media->images[4] = icon_load("scenes/4.png");
+	media->images[5] = icon_load("scenes/5.png");
+	media->images[6] = icon_load("scenes/6.png");
+	media->images[7] = icon_load("scenes/7.png");
+	media->images[8] = icon_load("scenes/8.png");
 }
 
 void				load_icon_object(struct media *media)

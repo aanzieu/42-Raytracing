@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:54:11 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 18:23:19 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 11:51:06 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	launch_scene_select(t_world *world, int i)
 
 	clear_world(world);
 	nb = ft_itoa(i);
-	start = ft_strjoin("testfiles/", nb);
+	start = ft_strjoin("scenes/", nb);
 	ft_strdel(&nb);
 	path = ft_strjoin(start, ".xml");
 	ft_strdel(&start);
