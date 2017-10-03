@@ -85,6 +85,7 @@ int				send_informations_all(t_cluster *cluster,
 	int			nbr_clients;
 	int			clients_alive;
 
+	
 	clients_alive = 0;
 	nbr_clients = 0;
 	clients = cluster->client_list;
@@ -98,5 +99,6 @@ int				send_informations_all(t_cluster *cluster,
 			return (1);
 		return (0);
 	}
+	
 	return (1);
 }

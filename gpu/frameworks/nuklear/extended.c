@@ -52,28 +52,30 @@ void		allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing aa,
 	allocate_vertex_buffer_next(ctx, dev, config);
 }
 
-void		draw_render(t_cluster cluster)
+void		draw_render(t_cluster *cluster)
 {
 	static int i;
 
-	if (cluster.world->video_buffer != NULL && cluster.world->redraw == 1)
+	if (cluster->world->video_buffer != NULL && cluster->world->redraw == 1)
 	{
-		ft_bzero(cluster.world->video_buffer, WIN_WIDTH * WIN_HEIGHT
+		ft_bzero(cluster->world->video_buffer, WIN_WIDTH * WIN_HEIGHT
 				* 4 * sizeof(unsigned char));
 		ft_printf("Redraw Scène next time %d \n", i++);
-		refresh_viewplane(cluster.world);
-		if (cluster.world->mode_cluster == 1)
+		refresh_viewplane(cluster->world);
+		if (cluster->world->mode_cluster == 1)
 		{
 			ft_putstr("Waiting for connection...\n");
-			render_clustering(&cluster);
+			if (cluster->client_list != NULL)
+				render_clustering(cluster);
+			printf("nbr client after cluster render = %d\n", cluster->nbr_clients);
 			ft_putstr("End of connexion, get started again\n");
 		}
 		else
-			rt(cluster.world);
-		if (cluster.world->keys.pad_0)
-			effect_application(cluster.world);
-		cluster.world->redraw = 0;
-		cluster.world->reload_buffer = 1;
+			rt(cluster->world);
+		if (cluster->world->keys.pad_0)
+			effect_application(cluster->world);
+		cluster->world->redraw = 0;
+		cluster->world->reload_buffer = 1;
 	}
 }
 
@@ -123,7 +125,7 @@ void		interface_launch(t_world *world)
 		allocate_keys(&ctx, win);
 		if (render_condition(&ctx, world) == 0)
 			break ;
-		draw_render(cluster);
+		draw_render(&cluster);
 		gui_calls(&ctx, &media, cluster.world);
 		glfw_viewport(cluster, &device, &ctx, win);
 	}

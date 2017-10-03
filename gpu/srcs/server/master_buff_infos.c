@@ -80,7 +80,11 @@ int					send_buffer_clients(t_cluster *cluster, t_client *clients)
 	{
 		if (!(buffer = dup_data(cluster, 'c', NULL)))
 			return (0);
-		send_informations(clients, 'c', buffer, sizeof(t_camera));
+		if(!send_informations(clients, 'c', buffer, sizeof(t_camera)))
+		{
+			free(buffer);
+			return(0);
+		}
 		free(buffer);
 	}
 	if ((clients->status & SEND_AMBIANT) == 0)
