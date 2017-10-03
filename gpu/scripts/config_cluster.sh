@@ -22,6 +22,6 @@ then
 }
 else
 {
-    echo "No IP specified. Relaunch using: ./bin/rt 'IP Adresss'"
+    echo "No IP specified. Relaunch using: ./bin/rt [Valid IP Adresss] or reconfigure everything with 'sh ./scripts/config_cluster.sh [Valid IP Adress]'"
 }
 fi
