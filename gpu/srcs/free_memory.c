@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:05:44 by svilau            #+#    #+#             */
-/*   Updated: 2017/06/16 17:42:30 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 12:28:27 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		memory_allocation_error(void)
 {
-	ft_putstr("Not enough memory, quiting...\n");
+	ft_putendl("Not enough memory, quiting...");
 	exit(0);
 }
 

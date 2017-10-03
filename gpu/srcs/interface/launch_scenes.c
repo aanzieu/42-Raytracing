@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:54:11 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/03 11:51:06 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:27:43 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,26 @@ static void	launch_scene_select(t_world *world, int i)
 	char *start;
 	char *path;
 
-	clear_world(world);
 	nb = ft_itoa(i);
 	start = ft_strjoin("scenes/", nb);
 	ft_strdel(&nb);
 	path = ft_strjoin(start, ".xml");
 	ft_strdel(&start);
-	parse_rtv1(world, path);
-	ft_strdel(&path);
-	load_data(world);
-	rt(world);
-	world->img_scene = i;
-	world->redraw = 3;
+	if (parser_checker(path))
+	{
+		clear_world(world);
+		parse_rtv1(world, path);
+		ft_strdel(&path);
+		load_data(world);
+		rt(world);
+		world->img_scene = i;
+		world->redraw = 3;
+	}
+	else
+	{
+		ft_strdel(&path);
+		ft_putendl("Please, enter a valid xml file. Read dtd/norme.dtd");
+	}
 }
 
 void		press_launch(struct nk_context *ctx, t_world *world,\
@@ -71,16 +79,23 @@ int			launch_xml_file(struct nk_context *ctx, t_world *world, char *xml)
 
 	if (nk_button_label(ctx, "Launch"))
 	{
-		clear_world(world);
 		path = ft_strjoin("testfiles/", xml);
-		parse_rtv1(world, path);
+		if (parser_checker(path))
+		{
+			clear_world(world);
+			parse_rtv1(world, path);
+			ft_strdel(&path);
+			load_data(world);
+			rt(world);
+			world->img_scene = 0;
+			world->redraw = 3;
+			nk_popup_close(ctx);
+			return (1);
+		}
+		else
+			ft_putendl("Please, enter a valid xml file. Read dtd/norme.dtd");
 		ft_strdel(&path);
-		load_data(world);
-		rt(world);
-		world->img_scene = 0;
-		world->redraw = 3;
 		nk_popup_close(ctx);
-		return (1);
 	}
 	return (0);
 }

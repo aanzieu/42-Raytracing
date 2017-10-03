@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/10/02 10:50:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 12:25:55 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ void			launch_cpu(t_world *world)
 	}
 	if (world->clientrender == 1)
 	{
-		ft_printf("Calculating on Cpu\n");
+		ft_putendl("Calculating on Cpu");
 		refresh_viewplane_cluster(world);
 		get_viewplane_cluster(world);
 		launch_thread(world, world->offsets.y_min / world->render_factor,
 				world->offsets.y_max / world->render_factor, world->offsets.aa);
-		ft_printf("End of Calculate\n");
+		ft_putendl("End of Calculate");
 		return ;
 	}
 	refresh_viewplane_cluster(world);
@@ -101,12 +101,12 @@ void			launch_gpu(t_world *world)
 {
 	if (world->clientrender == 1)
 	{
-		ft_printf("Calculating on Gpu\n");
+		ft_putendl("Calculating on Gpu");
 		refresh_viewplane_cluster(world);
 		get_viewplane_cluster(world);
 		render_cuda(world->a_h, WIN_WIDTH,
 				world->offsets.y_max - world->offsets.y_min, *world, 0);
-		ft_printf("End of Calculate\n");
+		ft_putendl("End of Calculate");
 		return ;
 	}
 	get_viewplane(world);

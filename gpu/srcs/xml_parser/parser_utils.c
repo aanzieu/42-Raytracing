@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/07/18 17:32:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:10:29 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,31 @@ int		is_numeric(const char *str)
 		i++;
 	}
 	return (1);
+}
+
+int		parser_checker(char *argv)
+{
+	xmlParserCtxtPtr	ctxt;
+	xmlDocPtr			doc;
+
+	if (!(ctxt = xmlNewParserCtxt()))
+		show_error("failed to allocate parser context");
+	if (!(doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID)))
+	{
+		xmlFreeDoc(doc);
+		xmlFreeParserCtxt(ctxt);
+		return (0);
+	}
+	else
+	{
+		if (ctxt->valid == 0)
+		{
+			xmlFreeDoc(doc);
+			xmlFreeParserCtxt(ctxt);
+			return (0);
+		}
+		xmlFreeDoc(doc);
+		xmlFreeParserCtxt(ctxt);
+		return (1);
+	}
 }

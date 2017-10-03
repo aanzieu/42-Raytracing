@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 17:15:33 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 14:34:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:19:11 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void		parse_ambient(t_world *world, xmlNodePtr cur);
 **	parser_utils.c
 */
 int			is_numeric(const char *str);
+int			parser_checker(char *argv);
 /*
 **	xml_save_objects.c
 */

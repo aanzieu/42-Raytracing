@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 17:29:28 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/18 17:49:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:57:52 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,24 +93,8 @@ static void		parse_file(t_world *world, const char *docname)
 
 void			parse_rtv1(t_world *world, char *argv)
 {
-	xmlParserCtxtPtr	ctxt;
-	xmlDocPtr			doc;
-
-	if (!(ctxt = xmlNewParserCtxt()))
-		show_error("failed to allocate parser context");
-	if (!(doc = xmlCtxtReadFile(ctxt, argv, NULL, XML_PARSE_DTDVALID)))
-	{
-		xmlFreeDoc(doc);
-		xmlFreeParserCtxt(ctxt);
-		show_error("Usage: ./bin/RT filename.xml");
-	}
+	if (parser_checker(argv))
+		parse_file(world, argv);
 	else
-	{
-		if (ctxt->valid == 0)
-			show_error("xml file error");
-		else
-			parse_file(world, argv);
-		xmlFreeDoc(doc);
-	}
-	xmlFreeParserCtxt(ctxt);
+		ft_putendl("Please, give me a valid xml file. Read the dtd/norme.dtd");
 }

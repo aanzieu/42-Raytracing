@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/10/02 16:49:31 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 12:27:16 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void			local_config(t_world *world, char *argv)
 void			client_config(t_world *world, char *argv)
 {
 	if (argv == NULL)
-		ft_putstr_fd("usage : ./bin/RT map.xml client 'MASTER IP'\n", 1);
+		ft_putendl_fd("usage : ./bin/RT client 'MASTER IP'", 1);
 	serveur_address_serveur(argv, world);
-	ft_putstr("Thank you for your patience\n");
+	ft_putendl("Thank you for your patience.");
 }
 
 void			choose_main_launcher(char **argv, int flags)
