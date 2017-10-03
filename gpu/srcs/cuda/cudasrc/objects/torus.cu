@@ -123,7 +123,8 @@ __host__ __device__ void	get_closest_torus(t_world world, t_ray ray,
 					// if (world.spheres[i].perlin.is_set == 1)
 					// 	intersection->normal_v = normal_perturbation(world,
 					// 		intersection->normal_v, intersection->pos, world.spheres[i].perlin);
-					apply_noise_dist(world, intersection, world.torus[i].perlin);
+					if(world.on == 1){
+					apply_noise_dist(world, intersection, world.torus[i].perlin);}
 			}
 		}
 		i++;

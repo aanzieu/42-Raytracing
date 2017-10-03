@@ -44,6 +44,9 @@ void			data_setup_2(t_world *world)
 	world->img_scene = 0;
 	world->hover_menu = 0;
 	world->hover_ui = 0;
+	world->clientrender = 0;
+	world->on = 0;
+	
 }
 
 void			data_setup(t_world *world)

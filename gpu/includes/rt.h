@@ -257,7 +257,7 @@ typedef struct		s_world
 	int				mode_cluster;
 	t_vec3d			save_dir;
 	t_vec3d			save_pos;
-
+	int				on;
 	int				*p;
 }					t_world;
 

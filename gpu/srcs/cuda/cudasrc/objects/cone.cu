@@ -120,7 +120,8 @@ __host__ __device__ void			get_closest_cone(t_world world, t_ray ray,\
 				intersection->chess = world.cones[i].chess;
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
-				apply_noise_dist(world, intersection, world.cones[i].perlin);
+				if(world.on == 1){
+				apply_noise_dist(world, intersection, world.cones[i].perlin);}
 			}
 		}
 		i++;

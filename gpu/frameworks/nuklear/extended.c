@@ -58,8 +58,6 @@ void		draw_render(t_cluster *cluster)
 
 	if (cluster->world->video_buffer != NULL && cluster->world->redraw == 1)
 	{
-		printf("DEAD\n");
-	
 		ft_bzero(cluster->world->video_buffer, WIN_WIDTH * WIN_HEIGHT
 				* 4 * sizeof(unsigned char));
 		ft_printf("Redraw Scène next time %d \n", i++);
@@ -69,7 +67,6 @@ void		draw_render(t_cluster *cluster)
 			ft_putstr("Waiting for connection...\n");
 			if (cluster->client_list != NULL)
 				render_clustering(cluster);
-			printf("nbr client after cluster render = %d\n", cluster->nbr_clients);
 			ft_putstr("End of connexion, get started again\n");
 		}
 		else
@@ -78,6 +75,7 @@ void		draw_render(t_cluster *cluster)
 			effect_application(cluster->world);
 		cluster->world->redraw = 0;
 		cluster->world->reload_buffer = 1;
+		
 	}
 }
 

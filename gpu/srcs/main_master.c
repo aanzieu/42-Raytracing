@@ -125,4 +125,5 @@ void			render_clustering(t_cluster *cluster)
 	if (cluster->nbr_clients == tmp)
 		put_buffer_together(cluster, cluster->client_list, 0, 0);
 	free_buffer(cluster);
+	cluster->world->on = 1;
 }

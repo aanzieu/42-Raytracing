@@ -88,7 +88,8 @@ __host__ __device__ void	get_closest_paraboloid(t_world world, t_ray ray,
 					vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_paraboloid(world.paraboloids[i], ray,
 														*intersection);
-				apply_noise_dist(world, intersection, world.paraboloids[i].perlin);
+				if(world.on == 1){
+				apply_noise_dist(world, intersection, world.paraboloids[i].perlin);}
 			}
 		}
 		i++;

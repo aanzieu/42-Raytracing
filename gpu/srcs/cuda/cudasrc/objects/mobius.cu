@@ -108,7 +108,8 @@ __host__ __device__ void		get_closest_mobius(t_world world, t_ray ray,
 				intersection->transparence_coef = world.mobius[i].transparence_coef;
 				intersection->color = world.mobius[i].color;
 				get_normal_mobius(intersection, world.mobius[i], ray);
-				apply_noise_dist(world, intersection, world.mobius[i].perlin);
+				if(world.on == 1){
+				apply_noise_dist(world, intersection, world.mobius[i].perlin);}
 			}
 		}
 		i++;

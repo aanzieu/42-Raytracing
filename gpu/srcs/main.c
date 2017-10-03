@@ -79,6 +79,7 @@ void			rt_cluster(t_world *world)
 		launch_cpu(world);
 	else
 		launch_gpu(world);
+	world->on = 1;
 }
 
 void			rt(t_world *world)
@@ -106,6 +107,7 @@ void			rt(t_world *world)
 	}
 	else
 		launch_gpu(world);
+	world->on = 1;
 }
 
 int				main(int argc, char **argv)

@@ -81,7 +81,8 @@ __host__ __device__ void	get_closest_plane(t_world world, t_ray ray,
 				intersection->chess = world.planes[i].chess;
 				intersection->pos = intersection_tmp->pos;
 				intersection->normal_v = intersection_tmp->normal_v;
-				apply_noise_dist(world, intersection, world.planes[i].perlin);
+				if(world.on == 1){
+				apply_noise_dist(world, intersection, world.planes[i].perlin);}
 			}
 		}
 		i++;

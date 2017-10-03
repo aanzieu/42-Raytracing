@@ -74,7 +74,8 @@ __host__ __device__ void	get_closest_hyperboloid(t_world world, t_ray ray,
 						vector_scalar(ray.dir, intersection_tmp->t));
 				intersection->normal_v = get_normal_hyperboloid(world.hyperboloids[i], ray,
 						*intersection);
-				apply_noise_dist(world, intersection, world.hyperboloids[i].perlin);
+				if(world.on == 1){
+				apply_noise_dist(world, intersection, world.hyperboloids[i].perlin);}
 			}
 		}
 		i++;
