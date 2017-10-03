@@ -1978,6 +1978,7 @@ NK_API int nk_select_image_text(struct nk_context*, struct nk_image,const char*,
 NK_API float nk_slide_float(struct nk_context*, float min, float val, float max, float step);
 NK_API int nk_slide_int(struct nk_context*, int min, int val, int max, int step);
 NK_API int nk_slider_float(struct nk_context*, float min, float *val, float max, float step);
+NK_API int nk_slider_double(struct nk_context*, double min, double *val, double max, double step);
 NK_API int nk_slider_int(struct nk_context*, int min, int *val, int max, int step);
 /* =============================================================================
  *
@@ -21218,6 +21219,41 @@ nk_slider_float(struct nk_context *ctx, float min_value, float *value, float max
 
     int ret = 0;
     float old_value;
+    struct nk_rect bounds;
+    enum nk_widget_layout_states state;
+
+    NK_ASSERT(ctx);
+    NK_ASSERT(ctx->current);
+    NK_ASSERT(ctx->current->layout);
+    NK_ASSERT(value);
+    if (!ctx || !ctx->current || !ctx->current->layout || !value)
+        return ret;
+
+    win = ctx->current;
+    style = &ctx->style;
+    layout = win->layout;
+
+    state = nk_widget(&bounds, ctx);
+    if (!state) return ret;
+    in = (state == NK_WIDGET_ROM || layout->flags & NK_WINDOW_ROM) ? 0 : &ctx->input;
+
+    old_value = *value;
+    *value = nk_do_slider(&ctx->last_widget_state, &win->buffer, bounds, min_value,
+                old_value, max_value, value_step, &style->slider, in, style->font);
+    return (old_value > *value || old_value < *value);
+}
+
+NK_API int
+nk_slider_double(struct nk_context *ctx, double min_value, double *value, double max_value,
+    double value_step)
+{
+    struct nk_window *win;
+    struct nk_panel *layout;
+    struct nk_input *in;
+    const struct nk_style *style;
+
+    int ret = 0;
+    double old_value;
     struct nk_rect bounds;
     enum nk_widget_layout_states state;
 

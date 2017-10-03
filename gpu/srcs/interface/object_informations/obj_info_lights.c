@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 08:13:23 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 16:13:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:49:02 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		light_informations(t_world *world, struct nk_context *ctx,\
 			ui_header(ctx, media, "---- Colors ----");
 			nk_style_set_font(ctx, &media->font_14->handle);
 			draw_color_picker(ctx, &world->lights[i].color, world);
-			refresh_h_cube(world, i);
+			refresh_light(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			if (move_object_without_norm(ctx, &world->lights[i].pos))
 				world->redraw = 1;

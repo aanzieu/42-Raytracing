@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 18:04:32 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/29 17:23:04 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:57:45 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,20 @@ void	ui_slide_int_0_to_8(struct nk_context *ctx, t_world *w, int step,\
 void	ui_slide_float_0_to_1(struct nk_context *ctx, double *value,\
 									char *title)
 {
-	float		tmp;
+	double		tmp;
 	char		*nb;
 	static int	press;
 
-	tmp = (float)*value;
-	nb = ft_itoa(round(*value * 100));
+	tmp = round(*value * 100);
+	nb = ft_itoa(tmp);
 	nk_layout_row_begin(ctx, NK_STATIC, 20, 4);
 	{
 		text_float_left(ctx, title, 80);
 		text_float_left(ctx, nb, 15);
 		ft_strdel(&nb);
 		nk_layout_row_push(ctx, 90);
-		if (nk_slider_float(ctx, 0, &tmp, 1.0f, 0.1f))
+		if (nk_slider_double(ctx, 0, value, 1.0f, 0.1f))
 			press = 2;
-		*value = tmp;
 		text_float_left(ctx, "100", 15);
 	}
 	nk_layout_row_end(ctx);
@@ -95,21 +94,20 @@ void	ui_slide_float_0_to_1(struct nk_context *ctx, double *value,\
 void	ui_slide_float_0_to_2(struct nk_context *ctx, double *value,\
 									char *title)
 {
-	float		tmp;
+	double		tmp;
 	char		*nb;
 	static int	press;
 
-	tmp = (float)*value;
-	nb = ft_itoa(round((*value * 100) / 2));
+	tmp = round((*value * 100) / 2);
+	nb = ft_itoa(tmp);
 	nk_layout_row_begin(ctx, NK_STATIC, 20, 4);
 	{
 		text_float_left(ctx, title, 80);
 		text_float_left(ctx, nb, 15);
 		ft_strdel(&nb);
 		nk_layout_row_push(ctx, 90);
-		if (nk_slider_float(ctx, 0, &tmp, 2.0f, 0.2f))
+		if (nk_slider_double(ctx, 0, value, 2.0f, 0.2f))
 			press = 2;
-		*value = tmp;
 		text_float_left(ctx, "100", 15);
 	}
 	nk_layout_row_end(ctx);
