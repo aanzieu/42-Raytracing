@@ -8,7 +8,7 @@ brew instal libxml2
 brew install glfw3
 echo "-----------"
 echo "Cleaning any possible residue files..."
-# make fclean
+make fclean
 echo "-----------"
 echo "Compiling project..."
 make -j
