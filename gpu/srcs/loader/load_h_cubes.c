@@ -42,7 +42,6 @@ static unsigned int			count_h_cubes(t_h_cube *h_cubes)
 		size++;
 		s = s->next;
 	}
-	printf("h_cubes len SIZE = %d\n", size);
 	return (size);
 }
 

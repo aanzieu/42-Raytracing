@@ -58,6 +58,8 @@ void		draw_render(t_cluster *cluster)
 
 	if (cluster->world->video_buffer != NULL && cluster->world->redraw == 1)
 	{
+		printf("DEAD\n");
+	
 		ft_bzero(cluster->world->video_buffer, WIN_WIDTH * WIN_HEIGHT
 				* 4 * sizeof(unsigned char));
 		ft_printf("Redraw Scène next time %d \n", i++);

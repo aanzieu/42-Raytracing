@@ -43,7 +43,6 @@ static unsigned int			count_spheres(t_sphere *spheres)
 		size++;
 		s = s->next;
 	}
-	printf("spheres len SIZE = %d\n", size);
 	return (size);
 }
 
