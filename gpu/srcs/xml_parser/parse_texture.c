@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_perlin.c                                     :+:      :+:    :+:   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huweber <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 19:03:54 by huweber           #+#    #+#             */
-/*   Updated: 2017/09/29 19:06:06 by huweber          ###   ########.fr       */
+/*   Updated: 2017/10/03 15:16:40 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			parse_texture(t_texture *tex, xmlNodePtr cur)
 
 	file = xmlGetProp(cur, (const xmlChar *)"file");
 	full_path = ft_strjoin("./textures/", (char *)file);
-	printf("%s\n", full_path);
+	ft_printf("%s\n", full_path);
 	if (!full_path)
 		show_error_2("invalid texture path (./textures/file_name.bmp), file=",
 			(const char *)file);

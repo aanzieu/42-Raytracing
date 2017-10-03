@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_spheres.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 18:06:29 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/18 16:53:12 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 15:11:25 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static unsigned int			count_spheres(t_sphere *spheres)
 		size++;
 		s = s->next;
 	}
-	printf("spheres len SIZE = %d\n", size);
 	return (size);
 }
 

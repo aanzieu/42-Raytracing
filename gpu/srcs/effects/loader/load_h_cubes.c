@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_h_cubes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:58:09 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 12:58:21 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 15:11:31 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static unsigned int			count_h_cubes(t_h_cube *h_cubes)
 		size++;
 		s = s->next;
 	}
-	printf("h_cubes len SIZE = %d\n", size);
 	return (size);
 }
 

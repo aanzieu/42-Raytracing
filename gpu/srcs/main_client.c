@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_client.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svilau <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 10:49:50 by svilau            #+#    #+#             */
-/*   Updated: 2017/07/27 17:24:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 15:12:53 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void				client_loop(int sockfd, t_cluster *cluster, t_data *data)
 	if (data_size || data_size == 0)
 	{
 		if (data_recv(data, data_size) == 0)
-			printf("zero data receved from %c\n", cmd);
+			ft_printf("zero data receved from %c\n", cmd);
 		recv(sockfd, data->data, data_size, 0);
 		data->used = data_size;
 	}

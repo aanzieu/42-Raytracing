@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:10:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/03 14:17:47 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 14:52:26 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ static void	file_edit(struct nk_context *ctx, struct media *media)
 		if (nk_menu_item_image_label(ctx, media->dir, "Images folder",\
 			NK_TEXT_RIGHT))
 			system("open ./screenshots");
+		if (nk_menu_item_image_label(ctx, media->dir, "XML folder",\
+			NK_TEXT_RIGHT))
+			system("open ./testfiles");
 		nk_menu_end(ctx);
 	}
 }
