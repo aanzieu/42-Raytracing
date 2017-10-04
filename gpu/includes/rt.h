@@ -24,7 +24,7 @@
 # include "../frameworks/glfw/include/GLFW/glfw3.h"
 # include "../libft/libft.h"
 
-# define NB_TH 4
+# define NB_TH 16
 
 # define VERSION 1.03.3
 
