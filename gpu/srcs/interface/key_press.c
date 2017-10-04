@@ -95,11 +95,7 @@ int					move_camera_render(struct nk_context *ctx, t_world *world)
 
 int					key_press(struct nk_context *ctx, t_world *world)
 {
-	if (ctx->input.keyboard.keys[NK_KEY_L].down)
-		world->keys.light_none = 1;
-	else if (ctx->input.keyboard.keys[NK_KEY_K].down)
-		world->keys.light_none = 0;
-	else if (world->id_save == -1 || world->ob_save == '\0')
+	if ((world->id_save == -1 || world->ob_save == '\0') && world->on == 1)
 	{
 		if (move_camera_render(ctx, world)
 			|| move_camera_render_next(ctx, world))

@@ -98,7 +98,8 @@ int		render_condition(struct nk_context *ctx, t_world *world)
 	if (nk_input_is_key_pressed(&ctx->input, NK_KEY_SPACE)
 			&& world->render_factor != 32)
 	{
-		world->render_factor = 16;
+		if(world->on == 1)
+			world->render_factor = 16;
 		world->redraw = 1;
 	}
 	if (nk_input_is_key_released(&ctx->input, NK_KEY_SPACE))
