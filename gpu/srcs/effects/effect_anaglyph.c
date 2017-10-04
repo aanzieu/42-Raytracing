@@ -52,7 +52,7 @@ void				redraw_right_eye(t_world *world)
 	vector_scalar(world->camera.right_v, 0.1));
 	get_camera_axes(&world->camera);
 	get_viewplane(world);
-	rt(world);
+	launch_cpu(world);
 	world->camera.pos = vector_add(world->camera.pos,
 	vector_scalar(world->camera.right_v, -0.1));
 	get_camera_axes(&world->camera);
