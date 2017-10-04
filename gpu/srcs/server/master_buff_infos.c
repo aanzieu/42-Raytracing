@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/27 15:04:43 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 14:38:59 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:41:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ int					send_buffer_clients(t_cluster *cluster, t_client *clients)
 	{
 		if (!(buffer = dup_data(cluster, 'c', NULL)))
 			return (0);
-		if(!send_informations(clients, 'c', buffer, sizeof(t_camera)))
+		if (!send_informations(clients, 'c', buffer, sizeof(t_camera)))
 		{
 			free(buffer);
-			return(0);
+			return (0);
 		}
 		free(buffer);
 	}

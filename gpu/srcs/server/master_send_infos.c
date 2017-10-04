@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/26 14:48:56 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/19 14:41:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:47:54 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int				send_informations_all(t_cluster *cluster,
 	int			nbr_clients;
 	int			clients_alive;
 
-	
 	clients_alive = 0;
 	nbr_clients = 0;
 	clients = cluster->client_list;
@@ -99,6 +98,5 @@ int				send_informations_all(t_cluster *cluster,
 			return (1);
 		return (0);
 	}
-	
 	return (1);
 }

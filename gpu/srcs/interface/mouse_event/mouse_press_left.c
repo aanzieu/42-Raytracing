@@ -25,7 +25,7 @@ static void	intersection_find(t_world *world, t_ray ray)
 	intersection.t = DBL_MAX;
 	intersection.type = '0';
 	intersection.id = -1;
-	world->on = 0;
+	world->on = 2;
 	get_closest_intersection(*(world), ray, &intersection);
 	if (intersection.t != INFINITY)
 	{
@@ -33,6 +33,7 @@ static void	intersection_find(t_world *world, t_ray ray)
 		world->ob_save = intersection.type;
 		world->keys.select = 1;
 	}
+	world->on = 0;
 }
 
 int			mousepress_left(struct nk_context *ctx, t_world *world,\

@@ -76,7 +76,7 @@ void		cylinder_informations(t_world *world, struct nk_context *ctx,\
 			refresh_cylinder(world, i);
 			draw_delete_button(ctx, media, world, world->id_save);
 			if (move_object(ctx, &world->cylinders[i].pos,
-			&world->cylinders[i].up))
+				&world->cylinders[i].up))
 				world->redraw = 1;
 			break ;
 		}

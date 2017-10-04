@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:20:10 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 16:44:20 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:40:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void		draw_render(t_cluster *cluster)
 			effect_application(cluster->world);
 		cluster->world->redraw = 0;
 		cluster->world->reload_buffer = 1;
-		
 	}
 }
 

@@ -34,7 +34,7 @@ static int	move_object_next3(struct nk_context *ctx, t_vec3d *normal)
 			rotate(normal, 20, 'z');
 			return (press = 1);
 		}
-		if (nk_input_is_key_released(&ctx->input, NK_KEY_DOWN) && press == 2)
+		if (nk_input_is_key_released(&ctx->input, NK_KEY_S) && press == 2)
 		{
 			rotate(normal, -20, 'x');
 			return (press = 1);
@@ -50,17 +50,17 @@ static int	move_object_next2(struct nk_context *ctx, t_vec3d *normal)
 	press = 2;
 	if (ctx->input.keyboard.keys[NK_KEY_SHIFT].down)
 	{
-		if (nk_input_is_key_released(&ctx->input, NK_KEY_LEFT) && press == 2)
+		if (nk_input_is_key_released(&ctx->input, NK_KEY_A) && press == 2)
 		{
 			rotate(normal, -20, 'y');
 			return (press = 1);
 		}
-		if (nk_input_is_key_released(&ctx->input, NK_KEY_RIGHT) && press == 2)
+		if (nk_input_is_key_released(&ctx->input, NK_KEY_D) && press == 2)
 		{
 			rotate(normal, 20, 'y');
 			return (press = 1);
 		}
-		if (nk_input_is_key_released(&ctx->input, NK_KEY_UP) && press == 2)
+		if (nk_input_is_key_released(&ctx->input, NK_KEY_W) && press == 2)
 		{
 			rotate(normal, 20, 'x');
 			return (press = 1);

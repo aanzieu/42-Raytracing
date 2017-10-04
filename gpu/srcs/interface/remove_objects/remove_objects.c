@@ -36,6 +36,8 @@ void			remove_sphere(t_sphere **s, t_intersection *i)
 				last->next = current->next;
 			tmp = current;
 			current = current->next;
+			if (tmp->texture.is_set == 1)
+				SDL_FreeSurface((tmp)->texture.tex);
 			free(tmp);
 		}
 		else

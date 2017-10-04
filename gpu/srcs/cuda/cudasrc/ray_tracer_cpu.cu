@@ -121,6 +121,8 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 	if (intersection.depth > MAX_DEPTH)
 		return (color);
 	get_closest_intersection(world, ray, &intersection);
+	if(world.on == 2)
+		return (color);
 	if (intersection.type == '0')
 		return ((t_color){0, 0, 0});
 	color = intersection.color;

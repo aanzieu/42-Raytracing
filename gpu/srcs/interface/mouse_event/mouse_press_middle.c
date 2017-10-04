@@ -130,13 +130,18 @@ int				mousepress_middle(struct nk_context *ctx, t_world *world,\
 		pad.y = ctx->input.mouse.pos.y - pos.y - 40;
 		if (pad.x < 0 || pad.y < 0 || pad.x > WIN_WIDTH || pad.y > WIN_HEIGHT)
 			return (0);
+		if (world->on == 1){
+		world->on = 2;
 		get_up_left(world);
 		get_ray_direction(*(world), &ray, pad.x / world->render_factor,\
 						pad.y / world->render_factor);
-		get_closest_intersection(*(world), ray, &intersection);
+			get_closest_intersection(*(world), ray, &intersection);
+		world->on = 0;
 		if (intersection.t != INFINITY)
 			if (remove_object(world, &intersection) == 1)
 				return (1);
+		}
+		
 	}
 	return (0);
 }

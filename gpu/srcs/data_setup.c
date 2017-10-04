@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:10:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/03 14:25:16 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/03 17:41:25 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void			data_setup_2(t_world *world)
 	world->hover_ui = 0;
 	world->clientrender = 0;
 	world->on = 0;
-	
 }
 
 void			data_setup(t_world *world)
