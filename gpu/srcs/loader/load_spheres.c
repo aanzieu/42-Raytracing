@@ -66,6 +66,8 @@ void						load_spheres(t_sphere **spheres,
 	tmp = spheres_tmp;
 	while (tmp)
 	{
+		// if (tmp->texture.is_set == 1)
+		// 	(*spheres)[i].texture.tex = tmp->texture.tex;
 		(*spheres)[i] = *tmp;
 		tmp = tmp->next;
 		i++;

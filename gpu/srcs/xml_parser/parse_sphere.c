@@ -31,7 +31,7 @@ void	add_sphere(t_sphere **alst, t_sphere *nw)
 	}
 }
 
-void	handle_input_sphere(t_sphere *s, xmlNodePtr cur)
+void	handle_input_sphere(t_sphere *s, xmlNodePtr cur, int i)
 {
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"pos")))
 		parse_vec3d(&s->pos, cur);
@@ -51,8 +51,8 @@ void	handle_input_sphere(t_sphere *s, xmlNodePtr cur)
 		parse_transparence(&s->transparence_coef, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
 		parse_perlin(&s->perlin, cur);
-	if ((!xmlStrcmp(cur->name, (const xmlChar *)"texture")))
-		parse_texture(&s->texture, cur);
+	if ((!xmlStrcmp(cur->name, (const xmlChar *)"texture")) && i == 0)
+			parse_texture(&s->texture, cur);
 }
 
 void	parse_sphere(t_world *world, xmlNodePtr cur)
@@ -65,7 +65,10 @@ void	parse_sphere(t_world *world, xmlNodePtr cur)
 	s->chess = (t_color){-1, -1, -1};
 	while (cur != NULL)
 	{
-		handle_input_sphere(s, cur);
+		if (world->mode_cluster == 1)
+			handle_input_sphere(s, cur, 1);
+		else
+			handle_input_sphere(s, cur, 0);
 		cur = cur->next;
 	}
 	add_sphere(&world->spheres_tmp, new_sphere(s, world->id++));

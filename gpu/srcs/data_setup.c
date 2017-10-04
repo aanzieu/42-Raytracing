@@ -46,6 +46,7 @@ void			data_setup_2(t_world *world)
 	world->hover_ui = 0;
 	world->clientrender = 0;
 	world->on = 0;
+	world->camera.up_v = (t_vec3d){0, 1, 0};
 }
 
 void			data_setup(t_world *world)

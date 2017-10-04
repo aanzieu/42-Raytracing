@@ -68,7 +68,7 @@ __host__ __device__ void	get_camera_axes(t_camera *camera)
 {
 	t_vec3d tmp;
 
-	tmp = new_vector(0, 1, 0);
+	tmp = camera->up_v;
 	camera->dir_v = vector_normalize(
 						vector_calculate(
 							camera->pos,

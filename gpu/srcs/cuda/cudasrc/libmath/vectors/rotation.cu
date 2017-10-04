@@ -48,7 +48,12 @@ __host__ __device__ void	cam_rot(t_camera *camera, double degrees, char axis)
 	degrees = (-1) * deg_to_radians(degrees);
 	if (axis == 'z')
 	{
-		return;
+		camera->look_at.z -= camera->pos.z;
+		camera->look_at.y -= camera->pos.y;
+		rotate(&camera->look_at, degrees, 'z');
+		camera->look_at.z += camera->pos.z;
+		camera->look_at.y += camera->pos.y;
+		get_camera_axes(camera);
 	}
 	else if (axis == 'x')
 	{
