@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 14:46:46 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 14:58:25 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:42:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,8 @@ void			render_scene(struct nk_context *ctx, struct media *media,\
 		nk_layout_row_static(ctx, WIN_HEIGHT, WIN_WIDTH, 1);
 		nk_image(ctx, screen);
 		if (mousepress_middle(ctx, w, pos) || mousepress_left(ctx, w, pos)\
-			|| key_press(ctx, w)) 
-		{
-			w->on = 0;
+			|| key_press(ctx, w))
 			w->redraw = 1;
-		}
 	}
 	clear(ctx, w);
 	nk_end(ctx);

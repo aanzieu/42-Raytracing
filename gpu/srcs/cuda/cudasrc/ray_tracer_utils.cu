@@ -9,6 +9,7 @@ extern "C" {
 #include <math.h>
 #include <float.h>
 #include <cuda.h>
+
 __host__ __device__ void			perlin_noise_setup(t_world *world)
 {
 	int i;

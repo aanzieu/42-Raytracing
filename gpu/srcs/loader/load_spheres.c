@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/16 18:06:29 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/03 15:12:10 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:01:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void						load_spheres(t_sphere **spheres,
 	tmp = spheres_tmp;
 	while (tmp)
 	{
-		// if (tmp->texture.is_set == 1)
-		// 	(*spheres)[i].texture.tex = tmp->texture.tex;
 		(*spheres)[i] = *tmp;
 		tmp = tmp->next;
 		i++;

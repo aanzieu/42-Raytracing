@@ -85,7 +85,6 @@ __host__ __device__ double				solver_n_degree(double *coef,
 	{
 		if (sols[i] > EPSILON)
 		{
-
 			hit = vector_add(vector_scalar(ray.dir, sols[i]), ray.origin);
 			if (find_inside(m, hit))
 				return (sols[i]);

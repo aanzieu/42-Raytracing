@@ -24,7 +24,7 @@
 #include <uuid/uuid.h>
 #include <unistd.h>
 #include "stb_image.h"
-#include "../../includes/rt.h"
+#include "rt.h"
 #include "nuklear.h"
 #include "gui.h"
 

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 12:21:37 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 18:38:01 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:56:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			text_float_left(struct nk_context *ctx, char *str, int w);
 **===============================================================
 */
 
-void			remove_sphere(t_sphere **s, t_intersection *i);
+void			remove_sphere(t_sphere **s, t_intersection *i, t_sphere *tmp);
 void			remove_cone(t_cone **s, t_intersection *i);
 void			remove_cylinder(t_cylinder **s, t_intersection *i);
 void			remove_plane(t_plane **s, t_intersection *i);

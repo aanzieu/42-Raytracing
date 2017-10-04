@@ -20,7 +20,7 @@
 
 #include "interface.h"
 #include "gui.h"
-#include "../../includes/cluster.h"
+#include "cluster.h"
 
 void		allocate_vertex_buffer(struct device *dev, enum nk_anti_aliasing aa,
 			struct nk_context *ctx)

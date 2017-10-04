@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:39:05 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 09:45:42 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/04 14:45:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,7 @@
 #include "nuklear.h"
 #include "gui.h"
 
-// static void		norm_cam(t_world *world)
-// {
-// 	world->camera.right_v = vector_normalize(world->camera.right_v);
-// 	world->camera.dir_v = vector_normalize(world->camera.dir_v);
-// 	world->camera.up_v = vector_normalize(world->camera.up_v);
-// }
-
-// void	get_camera_axes2(t_camera *camera)
-// {
-// 	t_vec3d tmp;
-
-// 	tmp = camera->up_v;
-// 	camera->dir_v = vector_normalize(
-// 						vector_calculate(
-// 							camera->pos,
-// 							camera->look_at));
-// 	camera->right_v = vector_normalize(
-// 						vector_cross(
-// 							vector_normalize(tmp),
-// 							camera->dir_v));
-// 	camera->up_v = vector_normalize(
-// 					vector_cross(
-// 						camera->dir_v,
-// 						camera->right_v));
-// }
-
-static int		move_camera_render_next4(struct nk_context *ctx, t_world *world)
+static int		move_camera_render_next5(struct nk_context *ctx, t_world *world)
 {
 	static int press;
 
@@ -53,37 +27,32 @@ static int		move_camera_render_next4(struct nk_context *ctx, t_world *world)
 		if (nk_input_is_key_released(&ctx->input, NK_KEY_W)
 				&& !ctx->input.keyboard.keys[NK_KEY_SHIFT].down && press == 2)
 		{
-			// vector_rot_z(&world->camera.right_v, &world->camera.up_v, \
-			// deg_to_radians(-10));
-			// norm_cam(world);
 			cam_rot(&world->camera, -90, 'x');
 			return (press = 1);
 		}
 		if (nk_input_is_key_released(&ctx->input, NK_KEY_S)
 				&& !ctx->input.keyboard.keys[NK_KEY_SHIFT].down && press == 2)
 		{
-			// vector_rot_z(&world->camera.right_v, &world->camera.up_v, \
-			// deg_to_radians(10));
-			// norm_cam(world);
 			cam_rot(&world->camera, 90, 'x');
 			return (press = 1);
 		}
+	}
+	return (0);
+}
+
+static int		move_camera_render_next4(struct nk_context *ctx, t_world *world)
+{
+	static int press;
+
+	press = 2;
+	if (ctx->input.keyboard.keys[NK_KEY_CTRL].down)
+	{
 		if (nk_input_is_key_released(&ctx->input, NK_KEY_Q)
 				&& !ctx->input.keyboard.keys[NK_KEY_SHIFT].down && press == 2)
 		{
-
-			// translate(&world->camera.right_v, -(world->camera.pos.x), -(world->camera.pos.y), -(world->camera.pos.z));
-			// translate(&world->camera.up_v, -(world->camera.pos.x), -(world->camera.pos.y), -(world->camera.pos.z));
-			vector_rot_z(&world->camera.right_v, &world->camera.up_v, deg_to_radians(-10));
-			// translate(&world->camera.right_v, (world->camera.pos.x), (world->camera.pos.y), (world->camera.pos.z));
-			// translate(&world->camera.up_v, (world->camera.pos.x), (world->camera.pos.y), (world->camera.pos.z));
+			vector_rot_z(&world->camera.right_v, &world->camera.up_v,
+					deg_to_radians(-10));
 			get_camera_axes(&world->camera);
-			
-			// get_camera_axes(&world->camera);
-			
-			// norm_cam(world);
-			
-			//cam_rot(&world->camera, -90, 'z');
 			return (press = 1);
 		}
 		if (nk_input_is_key_released(&ctx->input, NK_KEY_E)
@@ -92,12 +61,10 @@ static int		move_camera_render_next4(struct nk_context *ctx, t_world *world)
 			vector_rot_z(&world->camera.right_v, &world->camera.up_v, \
 			deg_to_radians(10));
 			get_camera_axes(&world->camera);
-			// norm_cam(world);
-			//cam_rot(&world->camera, 90, 'z');
 			return (press = 1);
 		}
 	}
-	return (0);
+	return (move_camera_render_next5(ctx, world));
 }
 
 static int		move_camera_render_next3(struct nk_context *ctx, t_world *world)

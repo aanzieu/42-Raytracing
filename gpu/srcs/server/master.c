@@ -62,6 +62,7 @@ static int		prepare_offsets(t_cluster *cluster, int nbr)
 		cluster->nbr_clients;
 	offsets.render_factor = cluster->world->render_factor;
 	offsets.aa = cluster->world->aa;
+	offsets.on = cluster->world->on;
 	offsets.mode = cluster->world->mode;
 	offsets.ob_save = cluster->world->ob_save;
 	offsets.id_save = cluster->world->id_save;

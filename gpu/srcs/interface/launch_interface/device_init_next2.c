@@ -18,7 +18,7 @@
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_DEFAULT_FONT
 
-#include "../../includes/rt.h"
+#include "rt.h"
 #include "nuklear.h"
 #include "gui.h"
 #include <assert.h>

@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 16:31:55 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/08/24 16:23:07 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:03:10 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	handle_input_sphere(t_sphere *s, xmlNodePtr cur, int i)
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"perlin")))
 		parse_perlin(&s->perlin, cur);
 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"texture")) && i == 0)
-			parse_texture(&s->texture, cur);
+		parse_texture(&s->texture, cur);
 }
 
 void	parse_sphere(t_world *world, xmlNodePtr cur)

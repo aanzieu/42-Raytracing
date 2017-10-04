@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/13 13:55:08 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/29 12:24:53 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:57:20 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	draw_delete_button(struct nk_context *c, struct media *media,\
 	nk_style_set_font(c, &media->font_14->handle);
 	if (nk_button_image_label(c, media->del, "DELETE OBJECT", NK_TEXT_CENTERED))
 	{
-		remove_sphere(&world->spheres_tmp, &o);
+		remove_sphere(&world->spheres_tmp, &o, NULL);
 		load_spheres(&world->spheres, world->spheres_tmp, &world->spheres_len);
 		world->redraw = 1;
 	}

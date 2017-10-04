@@ -32,7 +32,7 @@ XML_FLAGS = `xml2-config --cflags --exec-prefix=/usr --libs`
 
 GLFW3 = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.2.dylib
 SDL2 = /Users/$(USER)/.brew/opt/sdl2/lib/libSDL2.dylib
-#GLFW3 = frameworks/glfw/lib/libglfw.3.2.dylib
+
 GLEW = frameworks/glew/lib/libGLEW.a
 
 CC = gcc
@@ -89,15 +89,15 @@ SRC_CUDA =		$(SRC_CUDA_DIR)/gpu_rtv1.cu \
 				$(SRC_CUDA_DIR)/colors/colors.cu \
 				$(SRC_CUDA_DIR)/colors/colors2.cu
 
-SRC_NUK =		$(SRC_NUKLEAR)/device_init.c \
-				$(SRC_NUKLEAR)/device_init_next.c \
-				$(SRC_NUKLEAR)/device_init_next2.c \
-				$(SRC_NUKLEAR)/load_media.c \
-				$(SRC_NUKLEAR)/utils_loading.c \
-				$(SRC_NUKLEAR)/allocate_keys.c \
-				$(SRC_NUKLEAR)/extended.c \
-
-SRC =			$(SRC_DIR)/main.c \
+SRC =			$(SRC_DIR)/interface/launch_interface/device_init.c \
+				$(SRC_DIR)/interface/launch_interface/device_init_next.c \
+				$(SRC_DIR)/interface/launch_interface/device_init_next2.c \
+				$(SRC_DIR)/interface/launch_interface/load_media.c \
+				$(SRC_DIR)/interface/launch_interface/utils_loading.c \
+				$(SRC_DIR)/interface/launch_interface/allocate_keys.c \
+				$(SRC_DIR)/interface/launch_interface/extended.c \
+				\
+				$(SRC_DIR)/main.c \
 				$(SRC_DIR)/launch_cpu_gpu.c \
 				$(SRC_DIR)/launch_configuration.c \
 				$(SRC_DIR)/data_setup.c \
@@ -253,8 +253,6 @@ SRC =			$(SRC_DIR)/main.c \
 
 OBJ		 = $(patsubst srcs/%.c, obj/%.o, $(SRC))
 .SILENT:
-OBJ_NUK	 = $(patsubst frameworks/%.c, objnuklear/%.o, $(SRC_NUK))
-.SILENT:
 OBJ_CUDA = $(patsubst srcs/%.cu, objcuda/%.o, $(SRC_CUDA))
 .SILENT:
 
@@ -264,14 +262,13 @@ OBJ_CUDA = $(patsubst srcs/%.cu, objcuda/%.o, $(SRC_CUDA))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
+$(NAME): $(OBJ) $(OBJ_CUDA)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Cuda Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Interface--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
-#	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker -framework,SDL2 -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
 	@nvcc -g -o bin/$(NAME) $(OBJ) $(OBJ_CUDA) $(OBJ_NUK) $(LIBFT) $(XML_FLAGS) -Xlinker $(SDL2) -Xlinker -framework,OpenGL -Xlinker -framework,Cocoa -Xlinker -framework,IOKit -Xlinker -framework,CoreVideo -Xlinker $(GLEW) -Xlinker $(GLFW3)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
@@ -282,12 +279,6 @@ $(NAME): $(OBJ) $(OBJ_CUDA) $(OBJ_NUK)
 
 obj/%.o: srcs/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
-	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
-	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
-
-objnuklear/%.o: frameworks/%.c
-	if [ ! -d objnuklear ]; then mkdir -p objnuklear; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	$(CC) $(CC_FLAGS) -c $(INCLUDE) $(INCLUDECUDA) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
@@ -319,9 +310,6 @@ fclean: clean
 	printf '\033[1;7m'
 	printf '\033[31m[✔] %s\n\033[0m' "--Cleaning Executable and All Object--------"
 	@$(RM) $(NAME)
-	@$(RF) obj objcuda objnuklear bin screenshots
+	@$(RF) obj objcuda bin screenshots
 
 re: fclean all
-
-clearall : fclean
-	rm -rf LibraryTmp

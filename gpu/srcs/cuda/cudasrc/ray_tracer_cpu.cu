@@ -76,17 +76,17 @@ __host__ __device__ double		get_closest_intersection(t_world world, t_ray ray,
 	intersection_tmp.type = '0';
 	intersection_tmp.id = intersection->id;
 	get_closest_sphere(world, ray, intersection, &intersection_tmp);
-	get_closest_mobius(world, ray, intersection, &intersection_tmp);
-	get_closest_torus(world, ray, intersection, &intersection_tmp);
-	get_closest_plane(world, ray, intersection, &intersection_tmp);
-	get_closest_disk(world, ray, intersection, &intersection_tmp);
-	get_closest_cone(world, ray, intersection, &intersection_tmp);
-	get_closest_cube(world, ray, intersection, &intersection_tmp);
-	get_closest_hollow_cube(world, ray, intersection, &intersection_tmp);
-	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
-	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
-	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
-	get_closest_triangle(world, ray, intersection, &intersection_tmp);
+//	get_closest_mobius(world, ray, intersection, &intersection_tmp);
+//	get_closest_torus(world, ray, intersection, &intersection_tmp);
+//	get_closest_plane(world, ray, intersection, &intersection_tmp);
+//	get_closest_disk(world, ray, intersection, &intersection_tmp);
+//	get_closest_cone(world, ray, intersection, &intersection_tmp);
+//	get_closest_cube(world, ray, intersection, &intersection_tmp);
+//	get_closest_hollow_cube(world, ray, intersection, &intersection_tmp);
+//	get_closest_cylinder(world, ray, intersection, &intersection_tmp);
+//	get_closest_paraboloid(world, ray, intersection, &intersection_tmp);
+//	get_closest_hyperboloid(world, ray, intersection, &intersection_tmp);
+//	get_closest_triangle(world, ray, intersection, &intersection_tmp);
 	if (intersection->type == '0')
 		return (0);
 	return (1);
@@ -126,7 +126,7 @@ __host__ __device__ t_color		ray_tracer_depth_cpu(t_world world, t_ray ray,\
 	if (intersection.type == '0')
 		return ((t_color){0, 0, 0});
 	color = intersection.color;
-	if(world.keys.light_none == 1 && world.mode == 0 && world.lights != NULL)
+	if(world.keys.light_none == 1 && world.mode == 0 && world.lights_len > 0)
 		color = apply_materials_cpu(world, ray, intersection, color);
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);

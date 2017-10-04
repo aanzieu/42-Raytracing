@@ -52,6 +52,7 @@ typedef struct		s_offsets
 	int				render_factor;
 	int				aa;
 	int				mode;
+	int				on;
 	int				id_save;
 	char			ob_save;
 }					t_offsets;

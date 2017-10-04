@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 19:38:26 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:46:21 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int			mousepress_left(struct nk_context *ctx, t_world *world,\
 		get_up_left(world);
 		get_ray_direction(*(world), &ray, pad.x / world->render_factor,\
 						pad.y / world->render_factor);
-		if(world->on == 1)
+		if (world->on == 1)
 			intersection_find(world, ray);
 		press = 2;
 	}
 	if (nk_input_is_mouse_released(&ctx->input, NK_BUTTON_LEFT) && press == 2)
-		return(press = 1);
+		return (press = 1);
 	return (0);
 }

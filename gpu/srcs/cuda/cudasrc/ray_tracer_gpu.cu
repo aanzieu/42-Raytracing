@@ -72,7 +72,7 @@ __host__ __device__ t_color		ray_tracer_depth_gpu(t_world world, t_ray ray,
 	color = color_multiply(color, world.ambient.color);
 	color = color_scalar(color, world.ambient.intensity);
 	if(world.keys.light_none == 0)
-		color = intersection.color;
+		return (color = intersection.color);
 	if(world.keys.select == 1)
 		cartoon_effect(world, &color, intersection, ray);
 	while (i < world.lights_len && world.keys.light_none == 1)

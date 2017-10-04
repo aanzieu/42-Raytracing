@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 21:17:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/09/26 16:29:32 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/04 14:55:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 #include "nuklear.h"
 #include "gui.h"
 
-void			remove_sphere(t_sphere **s, t_intersection *i)
+void			remove_sphere(t_sphere **s, t_intersection *i, t_sphere *tmp)
 {
 	t_sphere	*current;
 	t_sphere	*last;
-	t_sphere	*tmp;
 
 	current = *s;
-	tmp = NULL;
 	last = NULL;
 	while (current)
 	{

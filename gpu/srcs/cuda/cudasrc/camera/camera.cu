@@ -55,7 +55,6 @@ __host__ __device__ void	move_down(t_world *world)
 	get_camera_axes(&world->camera);
 }
 
-
 __host__ __device__ void	move_up(t_world *world)
 {
 	translate(&world->camera.pos, 0, 0.5, 0);

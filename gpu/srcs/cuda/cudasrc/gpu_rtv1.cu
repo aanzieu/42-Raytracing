@@ -51,23 +51,24 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 {
 	int 					*a_d = 0;
 	// int 					*p;
-	size_t				size = constw * consth * sizeof(int);
+	size_t					size = constw * consth * sizeof(int);
 
-	dim3						threads_per_block(8, 8);
-	dim3						grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
+	dim3					threads_per_block(8, 8);
+	dim3					grid_size(constw / threads_per_block.x, consth / threads_per_block.y);
 
 	t_sphere				*spheres_d = NULL;
-	// t_plane					*planes_d = NULL;
+	// t_plane				*planes_d = NULL;
 	// t_cylinder			*cylinders_d = NULL;
-	// t_cone					*cones_d = NULL;
-	// t_disk					*disks_d = NULL;
-	// t_torus					*torus_d = NULL;
+	// t_cone				*cones_d = NULL;
+	// t_disk				*disks_d = NULL;
+	// t_torus				*torus_d = NULL;
 	// t_mobius				*mobius_d = NULL;
-	// t_cube					*cubes_d = NULL;
+	// t_cube				*cubes_d = NULL;
 	// t_h_cube				*h_cubes_d = NULL;
 	// t_triangle			*triangles_d = NULL;
-	// t_paraboloid		*paraboloids_d = NULL;
+	// t_paraboloid			*paraboloids_d = NULL;
 	// t_hyperboloid		*hyperboloids_d = NULL;
+
 	t_light					*lights_d = NULL;
 
 	// static int p_test[] = {
@@ -95,7 +96,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// world.p = p;
 
 	cudaMalloc(&a_d, size);
-	cudaMalloc(&spheres_d, sizeof(t_sphere) * (1 + world.spheres_len));
+	cudaMalloc(&spheres_d, sizeof(t_sphere) * world.spheres_len);
 	// cudaMalloc(&planes_d, sizeof(t_plane) * (1 + world.planes_len));
 	// cudaMalloc(&cylinders_d, sizeof(t_cylinder) * (1 + world.cylinders_len));
 	// cudaMalloc(&cubes_d, sizeof(t_cube) * (1 + world.cubes_len));
@@ -107,7 +108,7 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// cudaMalloc(&hyperboloids_d, sizeof(t_hyperboloid) * (1 + world.hyperboloids_len));
 	// cudaMalloc(&cones_d, sizeof(t_cone) * (1 + world.cones_len));
 	// cudaMalloc(&disks_d, sizeof(t_disk) * (1 + world.disks_len));
-	cudaMalloc(&lights_d, sizeof(t_light) * (1 + world.lights_len));
+	cudaMalloc(&lights_d, sizeof(t_light) * world.lights_len);
 
 	cudaMemcpy(spheres_d, world.spheres, sizeof(t_sphere) * world.spheres_len, cudaMemcpyHostToDevice);
 	// cudaMemcpy(planes_d, world.planes, sizeof(t_plane) * world.planes_len, cudaMemcpyHostToDevice);
@@ -137,15 +138,15 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// world.disks = disks_d;
 	world.lights = lights_d;
 
-	size_t size_stack;
+	//size_t size_stack;
 
-	cudaDeviceSetLimit(cudaLimitStackSize, 100000 * sizeof(float));
-  cudaDeviceGetLimit(&size_stack, cudaLimitStackSize);
+	//cudaDeviceSetLimit(cudaLimitStackSize, 100000 * sizeof(float));
+ 	//cudaDeviceGetLimit(&size_stack, cudaLimitStackSize);
 
 	test <<< grid_size, threads_per_block >>> (a_d, constw, consth, world);
 	cudaMemcpy(a_h, a_d, size, cudaMemcpyDeviceToHost);
 
-	if (spheres_d != NULL)
+	if (world.spheres_len > 0); // != NULL)
 		cudaFree(spheres_d);
 	// if (planes_d != NULL)
 	// 	cudaFree(planes_d);
@@ -169,11 +170,11 @@ extern "C" void render_cuda(int *a_h, unsigned int constw, unsigned int consth, 
 	// 	cudaFree(torus_d);
 	// if (mobius_d != NULL)
 	// 	cudaFree(mobius_d);
-	if (lights_d != NULL)
+	if (world.lights_len > 0 ); //d != NULL)
 		cudaFree(lights_d);
 	if (a_d != NULL)
 		cudaFree(a_d);
-	cudaThreadSynchronize();
+//	cudaThreadSynchronize();
 
 	// cudaThreadSynchronize();
 	// CudaThreadSynchronize();

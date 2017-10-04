@@ -66,6 +66,7 @@ void			rt_cluster(t_world *world)
 	world->id_save = world->offsets.id_save;
 	world->ob_save = world->offsets.ob_save;
 	world->mode = world->offsets.mode;
+	world->on = world->offsets.on;
 	world->size_main = (WIN_WIDTH / world->render_factor) *
 		((world->offsets.y_max - world->offsets.y_min) / world->render_factor) *
 		sizeof(int);
