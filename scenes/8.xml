@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
 <scene name="new file">
   <plane>
@@ -8,7 +8,7 @@
     <reflection data="0"/>
     <refraction data="0"/>
     <transparence data="0"/>
-    <perlin is_set="1" pre_set="0" scale="0.299998" amount="50.000000"/>
+    <perlin is_set="1" pre_set="0" scale="0.099997" amount="50.000000"/>
   </plane>
   <sphere>
     <pos x="0" y="0" z="-0.500000"/>
@@ -17,7 +17,7 @@
     <chess r="255" g="165" b="28"/>
     <reflection data="0"/>
     <refraction data="0"/>
-    <transparence data="0.300000"/>
+    <transparence data="0.100000"/>
     <perlin is_set="1" pre_set="0" scale="0.199999" amount="50.000000"/>
   </sphere>
   <sphere>
@@ -67,7 +67,7 @@
     <reflection data="0"/>
     <refraction data="0"/>
     <transparence data="0"/>
-    <perlin is_set="1" pre_set="3" scale="0.399999" amount="0"/>
+    <perlin is_set="1" pre_set="3" scale="0.399998" amount="0"/>
     <texture file="saturn.bmp"/>
   </sphere>
   <sphere>
@@ -184,7 +184,8 @@
     <pos x="0" y="0" z="1.000000"/>
     <radius_small data="0.600000"/>
     <radius_big data="17.200000"/>
-    <color r="247" g="245" b="245"/>
+    <color r="5" g="5" b="5"/>
+    <chess r="252" g="252" b="252"/>
     <reflection data="0"/>
     <refraction data="0"/>
     <transparence data="0"/>
@@ -200,23 +201,24 @@
     <transparence data="0"/>
     <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </torus>
-  <h_cube>
-    <pos x="0" y="0" z="0"/>
-    <color r="125" g="225" b="125"/>
+  <mobius>
+    <pos x="-27.500000" y="4.000000" z="-0.500000"/>
+    <radius data="2.700000"/>
+    <color r="62" g="65" b="65"/>
     <reflection data="0"/>
     <refraction data="0"/>
     <transparence data="0"/>
-    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
-  </h_cube>
+    <perlin is_set="1" pre_set="0" scale="0.100000" amount="25.000000"/>
+  </mobius>
   <light>
-    <pos x="0" y="3.000000" z="-100.000000"/>
+    <pos x="0" y="3.000000" z="-30.000000"/>
     <color r="255" g="255" b="255"/>
-    <intensity data="0.999998"/>
+    <intensity data="0.499997"/>
     <type data="POINT"/>
   </light>
   <ambient>
     <color r="255" g="255" b="255"/>
-    <intensity data="0.999999"/>
+    <intensity data="0.599998"/>
   </ambient>
   <camera>
     <pos x="-89.000000" y="15.000000" z="-41.000000"/>
