@@ -18,6 +18,25 @@
 #include "gui.h"
 #include "parse.h"
 
+void		reset_camera(t_world *world, int i)
+{
+	static t_vec3d pos;
+	static t_vec3d dir;
+
+	if (i == 0)
+	{
+		pos = world->camera.pos;
+		dir = world->camera.look_at;
+	}
+	else
+	{
+		world->camera.pos = pos;
+		world->camera.look_at = dir;
+	}
+	world->camera.up_v = (t_vec3d){0, 1, 0};
+	get_camera_axes(&world->camera);
+}
+
 static void	launch_scene_select(t_world *world, int i)
 {
 	char *nb;
@@ -34,6 +53,7 @@ static void	launch_scene_select(t_world *world, int i)
 		clear_world(world);
 		parse_rtv1(world, path);
 		ft_strdel(&path);
+		reset_camera(world, 0);
 		load_data(world);
 		rt(world);
 		world->img_scene = i;
