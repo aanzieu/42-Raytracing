@@ -4,14 +4,16 @@ This is an interfaced ray tracer engine on MAC OSX Platform (we may support linu
 
 Supports:
 
-- luminosity;
+- lights : ambient, point, parrallel, light box;
 - shadows;
+- soft shadows with light box;
 - reflexion;
 - transparency;
 - 12 shapes (sphere, plane, cone, cylinder, cube, triangle, disk, torus, mobius, hollow cube, hyperboloid, paraboloid);
 - perlin noise;
 - post-process effects (sepia, black & white, cartoon, pastel, etc);
 - anaglyph 3D;
+- Clustering;
 
 --DEPENDENCIES--
 

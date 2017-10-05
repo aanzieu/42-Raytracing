@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:18:04 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 17:38:19 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/05 14:51:39 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,6 @@ static void	select_local_cluster(struct nk_context *ctx, struct media *media,\
 	}
 }
 
-static void	select_gpu_cpu(struct nk_context *ctx, struct media *media,\
-						t_world *world)
-{
-	static int toggle[2] = {1, 0};
-
-	ui_header(ctx, media, "---- Choose CPU/GPU ----");
-	ui_widget_small_button(ctx, media, 30);
-	if (nk_button_image_label(ctx, (toggle[0])
-	? media->checked : media->unchecked, "Cpu", NK_TEXT_LEFT))
-	{
-		toggle[0] = !toggle[0];
-		toggle[1] = !toggle[1];
-		world->mode = 0;
-	}
-	if (nk_button_image_label(ctx, (toggle[1])
-	? media->checked : media->unchecked, "Gpu", NK_TEXT_LEFT))
-	{
-		toggle[1] = !toggle[1];
-		toggle[0] = !toggle[0];
-		world->mode = 1;
-	}
-}
-
 static void	select_config(struct nk_context *ctx, struct media *media,\
 					t_world *world, int img_active[5])
 {
@@ -72,7 +49,6 @@ static void	select_config(struct nk_context *ctx, struct media *media,\
 		nk_rect(340, 52, 280, 280)))
 	{
 		select_local_cluster(ctx, media, world);
-		select_gpu_cpu(ctx, media, world);
 		ui_header(ctx, media, "");
 		ui_widget_centered(ctx, media, 30);
 		nk_style_set_font(ctx, &media->font_18->handle);
