@@ -128,6 +128,7 @@ void			delete_object(struct nk_context ctx, struct media media);
 void			allocate_vertex_buffer_next(struct nk_context *ctx,
 				struct device *dev, struct nk_convert_config config);
 int				render_condition(struct nk_context *ctx, t_world *world);
+void			reset_camera(t_world *world, int i);
 
 /*
 ** ===============================================================

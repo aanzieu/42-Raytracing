@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:14:19 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/10/02 11:15:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/05 16:03:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,27 @@ int					move_camera_render(struct nk_context *ctx, t_world *world)
 	return (move_camera_render2(ctx, world));
 }
 
+int					reset_cam_axe(struct nk_context *ctx, t_world *world)
+{
+	static int press;
+
+	press = 2;
+	if (nk_input_is_key_released(&ctx->input, NK_KEY_TAB)
+	&& press == 2)
+	{
+		reset_camera(world, 1);
+		return (press = 1);
+	}
+	return (0);
+}
+
 int					key_press(struct nk_context *ctx, t_world *world)
 {
 	if ((world->id_save == -1 || world->ob_save == '\0') && world->on == 1)
 	{
 		if (move_camera_render(ctx, world)
-			|| move_camera_render_next(ctx, world))
+			|| move_camera_render_next(ctx, world)
+			|| reset_cam_axe(ctx, world))
 			return (1);
 	}
 	return (0);
