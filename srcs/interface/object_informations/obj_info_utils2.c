@@ -6,7 +6,7 @@
 /*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 13:31:03 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/09/27 17:10:02 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/10/05 13:36:47 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ static void	draw_p_presets_next(struct nk_context *c, t_world *w, t_perlin *p)
 	int	option;
 
 	option = get_preset_info(*p);
+	if (nk_button_symbol_label(c, (option == 1) ?
+	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
+	{
+		option = 1;
+		if (p->is_set == 1)
+			p->is_set = 0;
+		p->pre_set = WOOD;
+		p->scale = 0.19;
+		w->redraw = 1;
+	}
 	if (nk_button_symbol_label(c, (option == 2) ?
 	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "MARBLE", NK_TEXT_LEFT))
 	{
@@ -30,14 +40,6 @@ static void	draw_p_presets_next(struct nk_context *c, t_world *w, t_perlin *p)
 		p->pre_set = MARBLE;
 		p->scale = 0.9;
 		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(c, (option == 3) ?
-	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "GLASS", NK_TEXT_LEFT))
-	{
-		option = 3;
-		if (p->is_set == 1)
-			p->is_set = 0;
-		p->pre_set = GLASS;
 	}
 }
 
@@ -55,16 +57,8 @@ void		draw_p_presets(struct nk_context *c, struct media *m, t_world *w,\
 		option = 0;
 		p->pre_set = 0;
 		p->is_set = 0;
-		w->redraw = 1;
-	}
-	if (nk_button_symbol_label(c, (option == 1) ?
-	NK_SYMBOL_CIRCLE_SOLID : NK_SYMBOL_CIRCLE_OUTLINE, "WOOD", NK_TEXT_LEFT))
-	{
-		option = 1;
-		if (p->is_set == 1)
-			p->is_set = 0;
-		p->pre_set = WOOD;
-		p->scale = 0.19;
+		p->scale = 0;
+		p->amount = 0;
 		w->redraw = 1;
 	}
 	draw_p_presets_next(c, w, p);
@@ -76,6 +70,8 @@ void		draw_infos_next(struct nk_context *c, struct media *m, t_perlin *p,\
 	(void)w;
 	nk_style_set_font(c, &m->font_14->handle);
 	ui_slide_float_perlin(c, p, &p->scale, "PERLIN SCALE:");
+	if (p->scale == 0)
+		p->is_set = 0;
 	if (ui_widget_value_infos(c, m, &p->amount, "PERLIN AMOUNT:"))
 	{
 		if (p->is_set == 0 && p->amount > 0)
@@ -89,7 +85,5 @@ int			get_preset_info(t_perlin p)
 		return (1);
 	if (p.pre_set == MARBLE)
 		return (2);
-	if (p.pre_set == GLASS)
-		return (3);
 	return (0);
 }

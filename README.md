@@ -31,7 +31,7 @@ To execute the program : './bin/rt' .
 
 https://youtu.be/ylTecs2UYDA
 
---AUTORS--
+--AUTHORS--
 
 Antoine Anzieu
 aanzieu@student.42.fr
