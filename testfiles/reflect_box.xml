@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
+<scene name="Cool gallery">
+  <plane>
+    <origin x="0" y="1.000000" z="1.000000"/>
+    <normal x="0" y="0" z="1.000000"/>
+    <color r="249" g="157" b="157"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <plane>
+    <origin x="0" y="-1.000000" z="1.000000"/>
+    <normal x="0" y="0" z="1.000000"/>
+    <color r="23" g="146" b="88"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="3" scale="0.899999" amount="0"/>
+  </plane>
+  <plane>
+    <origin x="0" y="0" z="1.000000"/>
+    <normal x="0" y="0" z="1.000000"/>
+    <color r="36" g="36" b="36"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <plane>
+    <origin x="0.500000" y="0" z="1.000000"/>
+    <normal x="0.500000" y="0" z="1.000000"/>
+    <color r="255" g="222" b="69"/>
+    <chess r="255" g="0" b="255"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <plane>
+    <origin x="-1.000000" y="1.000000" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <color r="48" g="198" b="239"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <plane>
+    <origin x="1.000000" y="1.000000" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <color r="154" g="144" b="93"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <sphere>
+    <pos x="0" y="0" z="0"/>
+    <radius data="0.700000"/>
+    <color r="60" g="255" b="30"/>
+    <reflection data="0.999999"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <light>
+    <pos x="0" y="0" z="-5.000000"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.299999"/>
+    <type data="POINT"/>
+  </light>
+  <ambient>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.699999"/>
+  </ambient>
+  <camera>
+    <pos x="0" y="0.100000" z="-20.000000"/>
+    <dir x="1.150744" y="0.873850" z="0.955116"/>
+  </camera>
+</scene>
