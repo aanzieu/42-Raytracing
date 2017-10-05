@@ -1,1 +1,0 @@
-norminette */*.c */*/*.c srcs/*.c libft/*.c includes/*.h
