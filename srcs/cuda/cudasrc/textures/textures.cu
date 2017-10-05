@@ -42,7 +42,7 @@ __host__ __device__ t_color load_texture_at(t_texture texture, t_ray ray,\
 	u = fmod(u, (double)(texture.tex->w - 1.0));
 	v = fmod(v, (double)(texture.tex->h - 1.0));
 	pixel = getpixel(texture.tex, u, v);
-	SDL_GetRGB(pixel, texture.tex->format, &r, &g, &b);
+	// SDL_GetRGB(pixel, texture.tex->format, &r, &g, &b);
 	ret.r = (double)(r) / 255;
 	ret.g = (double)(g) / 255;
 	ret.b = (double)(b) / 255;
