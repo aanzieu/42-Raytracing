@@ -93,7 +93,7 @@ void			free_obj_next(t_world *world, char cmd)
 	}
 	if (cmd == 'l')
 	{
-		if (world->lights_len > 0)
+		if (world->lights != NULL)
 			free(world->lights);
 		world->lights = NULL;
 		world->lights_len = 0;

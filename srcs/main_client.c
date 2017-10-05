@@ -33,7 +33,7 @@ void				client_loop(int sockfd, t_cluster *cluster, t_data *data)
 	if (data_size || data_size == 0)
 	{
 		if (data_recv(data, data_size) == 0)
-			ft_printf("zero data receved from %c\n", cmd);
+			;
 		recv(sockfd, data->data, data_size, 0);
 		data->used = data_size;
 	}
