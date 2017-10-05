@@ -18,29 +18,29 @@
 
 static	void	*perform_thread(void *arg)
 {
-	t_thread_input	*thread;
+	t_thread_input	*t;
 	int				x;
 	int				x_aa;
 	int				y;
 	int				y_aa;
 
-	thread = (t_thread_input *)arg;
-	y = (((thread->th) * ((thread->y_max - thread->y_min) / NB_TH)
-		+ thread->y_min)) - 1;
-	y_aa = y * thread->aa;
-	while (++y < (thread->th + 1) * ((thread->y_max - thread->y_min) / NB_TH) +
-																thread->y_min)
+	t = (t_thread_input *)arg;
+	y = (((t->th) * ((t->y_max - t->y_min) / NB_TH)
+		+ t->y_min));
+	y_aa = y * t->aa;
+	while (y < (t->th + 1) * ((t->y_max - t->y_min) / NB_TH) + t->y_min)
 	{
 		x = -1;
 		x_aa = 0;
-		while (++x < thread->world->viewplane.x_res)
+		while (++x < t->world->viewplane.x_res)
 		{
-			thread->world->a_h[(y - thread->y_min) *
-			thread->world->viewplane.x_res + x] =
-				ray_tracer_cpu(*thread->world, x_aa, y_aa);
-			x_aa += thread->world->aa;
+			t->world->a_h[(y - t->y_min) *
+			t->world->viewplane.x_res + x] =
+				ray_tracer_cpu(*t->world, x_aa, y_aa);
+			x_aa += t->world->aa;
 		}
-		y_aa += thread->world->aa;
+		y_aa += t->world->aa;
+		y++;
 	}
 	pthread_exit(0);
 }
