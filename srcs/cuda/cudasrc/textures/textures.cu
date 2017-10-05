@@ -5,8 +5,6 @@ extern "C" {
 	#include <equation.h>
 }
 
-#pragma hd_warning_disable
-
 __host__ __device__ Uint32 	getpixel(SDL_Surface *surface, int x, int y)
 {
   int		bpp;
@@ -32,7 +30,6 @@ __host__ __device__ t_color load_texture_at(t_texture texture, t_ray ray,\
 		t_intersection *intersection, t_world world)
 {
 	Uint32		pixel;
-	Uint8			r, g, b;
 	double 		u, v;
 	t_color 	ret;
 
@@ -42,9 +39,8 @@ __host__ __device__ t_color load_texture_at(t_texture texture, t_ray ray,\
 	u = fmod(u, (double)(texture.tex->w - 1.0));
 	v = fmod(v, (double)(texture.tex->h - 1.0));
 	pixel = getpixel(texture.tex, u, v);
-	SDL_GetRGB(pixel, texture.tex->format, &r, &g, &b);
-	ret.r = (double)(r) / 255;
-	ret.g = (double)(g) / 255;
-	ret.b = (double)(b) / 255;
+	ret.r = (double)((pixel >> 16) & 0xff) / 255;
+	ret.g = (double)((pixel >> 8) & 0xff) / 255;
+	ret.b = (double)(pixel & 0xff) / 255;
 	return (ret);
 }

@@ -10,7 +10,7 @@
 <!ELEMENT paraboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT hyperboloid (top, normal, radius, height, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT torus (pos, normal*, radius_small, radius_big, rot*, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
-<!ELEMENT mobius (pos, radius, tra*, color, chess*, wreflection*, refraction*, transparence*, perlin*)>
+<!ELEMENT mobius (pos, radius, tra*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT triangle (pos, normal, v1, v2, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT cube (min, max, normal*, color, chess*, reflection*, refraction*, transparence*, perlin*)>
 <!ELEMENT h_cube (pos, color, chess*, reflection*, refraction*, transparence*, perlin*)>
