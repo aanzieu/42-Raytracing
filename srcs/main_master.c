@@ -107,6 +107,7 @@ void			render_clustering(t_cluster *cluster)
 {
 	int			tmp;
 
+	cluster->world->render_factor = 1;
 	refresh_viewplane(cluster->world);
 	get_viewplane(cluster->world);
 	cluster->world->size_main =
