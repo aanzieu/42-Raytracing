@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
 <scene name="Rubik's cube">
   <plane>
@@ -7,6 +7,8 @@
     <color r="236" g="107" b="107"/>
     <reflection data="0.300000"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </plane>
   <plane>
     <origin x="3.000000" y="0" z="0"/>
@@ -14,6 +16,8 @@
     <color r="65" g="242" b="213"/>
     <reflection data="0.300000"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </plane>
   <plane>
     <origin x="0" y="0" z="4.000000"/>
@@ -21,6 +25,8 @@
     <color r="60" g="236" b="100"/>
     <reflection data="0.300000"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </plane>
   <sphere>
     <pos x="0" y="-3.000000" z="0"/>
@@ -28,6 +34,8 @@
     <color r="36" g="205" b="62"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </sphere>
   <cube>
     <min x="0" y="0" z="0"/>
@@ -35,6 +43,8 @@
     <color r="22" g="166" b="157"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0.600000" z="0"/>
@@ -42,6 +52,8 @@
     <color r="20" g="140" b="140"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.200000" z="0"/>
@@ -49,6 +61,8 @@
     <color r="15" g="113" b="126"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.800000" z="0"/>
@@ -56,6 +70,8 @@
     <color r="55" g="55" b="100"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0" z="0"/>
@@ -63,6 +79,8 @@
     <color r="23" g="164" b="83"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0.600000" z="0"/>
@@ -70,6 +88,8 @@
     <color r="18" g="134" b="79"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.200000" z="0"/>
@@ -77,6 +97,8 @@
     <color r="12" g="110" b="70"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.800000" z="0"/>
@@ -84,6 +106,8 @@
     <color r="54" g="54" b="65"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0" z="0"/>
@@ -91,6 +115,8 @@
     <color r="133" g="202" b="157"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0.600000" z="0"/>
@@ -98,6 +124,8 @@
     <color r="140" g="164" b="143"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.200000" z="0"/>
@@ -105,6 +133,8 @@
     <color r="143" g="128" b="125"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.800000" z="0"/>
@@ -112,6 +142,8 @@
     <color r="148" g="47" b="97"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0" z="0"/>
@@ -119,6 +151,8 @@
     <color r="143" g="196" b="75"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0.600000" z="0"/>
@@ -126,6 +160,8 @@
     <color r="146" g="161" b="70"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.200000" z="0"/>
@@ -133,6 +169,8 @@
     <color r="147" g="126" b="65"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.800000" z="0"/>
@@ -140,6 +178,8 @@
     <color r="150" g="46" b="53"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0" z="0.600000"/>
@@ -147,6 +187,8 @@
     <color r="197" g="221" b="159"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0.600000" z="0.600000"/>
@@ -154,6 +196,8 @@
     <color r="193" g="178" b="142"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.200000" z="0.600000"/>
@@ -161,6 +205,8 @@
     <color r="193" g="138" b="125"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.800000" z="0.600000"/>
@@ -168,6 +214,8 @@
     <color r="188" g="39" b="94"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0" z="0.600000"/>
@@ -175,6 +223,8 @@
     <color r="202" g="217" b="63"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0.600000" z="0.600000"/>
@@ -182,6 +232,8 @@
     <color r="200" g="175" b="60"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.200000" z="0.600000"/>
@@ -189,6 +241,8 @@
     <color r="198" g="137" b="58"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.800000" z="0.600000"/>
@@ -196,6 +250,8 @@
     <color r="189" g="42" b="52"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0" z="0.600000"/>
@@ -203,6 +259,8 @@
     <color r="255" g="244" b="160"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0.600000" z="0.600000"/>
@@ -210,6 +268,8 @@
     <color r="252" g="196" b="142"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.200000" z="0.600000"/>
@@ -217,6 +277,8 @@
     <color r="244" g="151" b="124"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.800000" z="0.600000"/>
@@ -224,6 +286,8 @@
     <color r="234" g="29" b="93"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0" z="0.600000"/>
@@ -231,6 +295,8 @@
     <color r="253" g="239" b="53"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0.600000" z="0.600000"/>
@@ -238,6 +304,8 @@
     <color r="252" g="192" b="48"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.200000" z="0.600000"/>
@@ -245,6 +313,8 @@
     <color r="245" g="147" b="49"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.800000" z="0.600000"/>
@@ -252,6 +322,8 @@
     <color r="232" g="33" b="45"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0" z="1.200000"/>
@@ -259,6 +331,8 @@
     <color r="29" g="174" b="238"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0.600000" z="1.200000"/>
@@ -266,6 +340,8 @@
     <color r="22" g="143" b="210"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.200000" z="1.200000"/>
@@ -273,6 +349,8 @@
     <color r="17" g="115" b="184"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.800000" z="1.200000"/>
@@ -280,6 +358,8 @@
     <color r="47" g="53" b="144"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0" z="1.200000"/>
@@ -287,6 +367,8 @@
     <color r="27" g="170" b="197"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0.600000" z="1.200000"/>
@@ -294,6 +376,8 @@
     <color r="22" g="140" b="174"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.200000" z="1.200000"/>
@@ -301,6 +385,8 @@
     <color r="15" g="114" b="155"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.800000" z="1.200000"/>
@@ -308,6 +394,8 @@
     <color r="50" g="52" b="120"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0" z="1.200000"/>
@@ -315,6 +403,8 @@
     <color r="113" g="207" b="244"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0.600000" z="1.200000"/>
@@ -322,6 +412,8 @@
     <color r="128" g="168" b="218"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.200000" z="1.200000"/>
@@ -329,6 +421,8 @@
     <color r="135" g="130" b="187"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.800000" z="1.200000"/>
@@ -336,6 +430,8 @@
     <color r="141" g="45" b="140"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0" z="1.200000"/>
@@ -343,6 +439,8 @@
     <color r="126" g="204" b="198"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0.600000" z="1.200000"/>
@@ -350,6 +448,8 @@
     <color r="135" g="166" b="177"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.200000" z="1.200000"/>
@@ -357,6 +457,8 @@
     <color r="142" g="130" b="158"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.800000" z="1.200000"/>
@@ -364,6 +466,8 @@
     <color r="146" g="44" b="110"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0" z="1.800000"/>
@@ -371,6 +475,8 @@
     <color r="185" g="229" b="249"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="0.600000" z="1.800000"/>
@@ -378,6 +484,8 @@
     <color r="187" g="184" b="219"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.200000" z="1.800000"/>
@@ -385,6 +493,8 @@
     <color r="188" g="142" b="192"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0" y="1.800000" z="1.800000"/>
@@ -392,6 +502,8 @@
     <color r="170" g="40" b="140"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0" z="1.800000"/>
@@ -399,6 +511,8 @@
     <color r="192" g="224" b="202"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="0.600000" z="1.800000"/>
@@ -406,6 +520,8 @@
     <color r="192" g="180" b="180"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.200000" z="1.800000"/>
@@ -413,6 +529,8 @@
     <color r="191" g="140" b="157"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="0.600000" y="1.800000" z="1.800000"/>
@@ -420,6 +538,8 @@
     <color r="187" g="37" b="116"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0" z="1.800000"/>
@@ -427,6 +547,8 @@
     <color r="255" g="255" b="255"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="0.600000" z="1.800000"/>
@@ -434,6 +556,8 @@
     <color r="254" g="249" b="205"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.200000" z="1.800000"/>
@@ -441,6 +565,8 @@
     <color r="251" g="200" b="180"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.200000" y="1.800000" z="1.800000"/>
@@ -448,6 +574,8 @@
     <color r="243" g="153" b="161"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0" z="1.800000"/>
@@ -455,6 +583,8 @@
     <color r="247" g="204" b="224"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="0.600000" z="1.800000"/>
@@ -462,6 +592,8 @@
     <color r="242" g="145" b="190"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.200000" z="1.800000"/>
@@ -469,6 +601,8 @@
     <color r="220" g="60" b="120"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <cube>
     <min x="1.800000" y="1.800000" z="1.800000"/>
@@ -476,22 +610,18 @@
     <color r="126" g="204" b="198"/>
     <reflection data="0"/>
     <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cube>
   <light>
     <pos x="0" y="3.000000" z="-2.000000"/>
     <color r="255" g="255" b="255"/>
-    <intensity data="0.700000"/>
-    <type data="POINT"/>
-  </light>
-  <light>
-    <pos x="0" y="0" z="0"/>
-    <color r="255" g="255" b="255"/>
-    <intensity data="0.100000"/>
+    <intensity data="0.599999"/>
     <type data="POINT"/>
   </light>
   <ambient>
     <color r="238" g="233" b="233"/>
-    <intensity data="0.499998"/>
+    <intensity data="0.299998"/>
   </ambient>
   <camera>
     <pos x="-7.000000" y="15.000000" z="-12.000000"/>
