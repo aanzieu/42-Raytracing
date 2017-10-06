@@ -7,13 +7,18 @@ Supports:
 - lights : ambient, point, parrallel, light box;
 - shadows;
 - soft shadows with light box;
-- reflexion;
+- refraction;
+- reflection;
 - transparency;
 - 12 shapes (sphere, plane, cone, cylinder, cube, triangle, disk, torus, mobius, hollow cube, hyperboloid, paraboloid);
 - perlin noise;
 - post-process effects (sepia, black & white, cartoon, pastel, etc);
 - anaglyph 3D;
 - Clustering;
+- XML Parser;
+- XML File saver;
+- Bitmap saver;
+- User Interface;
 
 --DEPENDENCIES--
 

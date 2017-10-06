@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xml_save_objects_4.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huweber <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 19:22:27 by huweber           #+#    #+#             */
-/*   Updated: 2017/09/29 19:25:14 by huweber          ###   ########.fr       */
+/*   Updated: 2017/10/06 14:10:02 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	save_triangles_to_xml(t_world *world, xmlNodePtr root_node)
 	{
 		object = xmlNewChild(root_node, NULL, BAD_CAST "triangle", NULL);
 		node = xml_save_vec3d(&world->triangles->pos, "pos", object);
+		node = xml_save_vec3d(&world->triangles->up, "normal", object);
 		node = xml_save_vec3d(&world->triangles->v1, "v1", object);
 		node = xml_save_vec3d(&world->triangles->v2, "v2", object);
 		node = xml_save_rgb(&world->triangles->color, "color", object);

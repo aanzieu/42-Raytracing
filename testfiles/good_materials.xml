@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
+<scene name="2 Spheres">
+  <plane>
+    <origin x="0" y="-1.000000" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <color r="236" g="205" b="62"/>
+    <chess r="255" g="0" b="255"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <sphere>
+    <pos x="-0.500000" y="0" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0.100000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="0.250000" y="0" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0.500000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="1.000000" y="0" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0.900000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="-0.500000" y="0.750000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+    <transparence data="0.100000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="0.250000" y="0.750000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+    <transparence data="0.500000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="1.000000" y="0.750000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="0"/>
+    <transparence data="0.900000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="-0.500000" y="1.500000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="1.200000"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="0.250000" y="1.500000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="1.500000"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="1.000000" y="1.500000" z="1.500000"/>
+    <radius data="0.400000"/>
+    <color r="155" g="255" b="155"/>
+    <reflection data="0"/>
+    <refraction data="2.000000"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <light>
+    <pos x="0" y="0" z="0"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.399999"/>
+    <type data="POINT"/>
+  </light>
+  <light>
+    <pos x="0" y="0" z="5.000000"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.399999"/>
+    <type data="POINT"/>
+  </light>
+  <ambient>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.500000"/>
+  </ambient>
+  <camera>
+    <pos x="0" y="0" z="-12.000000"/>
+    <dir x="0" y="0.584633" z="0.985750"/>
+  </camera>
+</scene>

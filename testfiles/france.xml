@@ -30,8 +30,6 @@
 	<intensity data="0.5" />
 </light>
 
-<!--Blue stripe-->
-
 <sphere>
 	<pos x="0" y="0" z="1" />
 	<radius data="0.4" />
@@ -60,9 +58,7 @@
 	<reflection data="0" />
 </sphere>
 
-<!---->
 
-<!--White stripe-->
 
 <sphere>
 	<pos x="0.5" y="0" z="1" />
@@ -92,10 +88,6 @@
 	<reflection data="0" />
 </sphere>
 
-<!---->
-
-<!--Red stripe-->
-
 <sphere>
 	<pos x="1" y="0" z="1" />
 	<radius data="0.4" />
@@ -123,8 +115,6 @@
 	<color r="255" g="30" b="20" />
 	<reflection data="0" />
 </sphere>
-
-<!---->
 
 <plane>
 	<origin x="0" y="-1" z="0" />

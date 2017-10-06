@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
+<scene name="Spheres with box light">
+  <plane>
+    <origin x="0" y="-1.000000" z="0"/>
+    <normal x="0" y="1.000000" z="0"/>
+    <color r="79" g="79" b="79"/>
+    <chess r="26" g="26" b="43"/>
+    <reflection data="1.000000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </plane>
+  <sphere>
+    <pos x="3.800000" y="0" z="0"/>
+    <radius data="2.000000"/>
+    <color r="64" g="177" b="121"/>
+    <reflection data="0.699999"/>
+    <refraction data="0"/>
+    <transparence data="0.300000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="5.500000" y="0" z="3.500000"/>
+    <radius data="1.000000"/>
+    <color r="194" g="90" b="79"/>
+    <reflection data="0"/>
+    <refraction data="0.500000"/>
+    <transparence data="0.500000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="-2.200000" y="0" z="2.200000"/>
+    <radius data="1.000000"/>
+    <color r="138" g="105" b="100"/>
+    <reflection data="0"/>
+    <refraction data="0.324999"/>
+    <transparence data="0.600000"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
+  </sphere>
+  <sphere>
+    <pos x="-2.200000" y="2.000000" z="-1.000000"/>
+    <radius data="0.500000"/>
+    <color r="206" g="206" b="206"/>
+    <reflection data="0.100000"/>
+    <refraction data="0"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="3" scale="0.899999" amount="0"/>
+  </sphere>
+  <light>
+    <pos x="1.500000" y="8.000000" z="0.500000"/>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.300000"/>
+    <type data="BOX"/>
+  </light>
+  <ambient>
+    <color r="255" g="255" b="255"/>
+    <intensity data="0.600000"/>
+  </ambient>
+  <camera>
+    <pos x="32.200000" y="3.000000" z="-26.100000"/>
+    <dir x="6.347532" y="0.580176" z="-3.010394"/>
+  </camera>
+</scene>
