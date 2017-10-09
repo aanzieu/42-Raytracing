@@ -42,11 +42,11 @@ $> sh scripts/config_cluster.sh
 ## Media
 
 https://youtu.be/ylTecs2UYDA
-![screen1](https://imgur.com/Qm9Ggm3)
-![screen2](https://imgur.com/ZVwP6J9)
-![screen3](https://imgur.com/i8xfzHa)
-![screen4](https://imgur.com/CalaeQD)
-![screen5](https://imgur.com/ugFXxhJ)
+![screen1](images/screen1.png)
+![screen2](images/screen2.png)
+![screen3](images/screen3.png)
+![screen4](images/screen4.png)
+![screen5](images/screen5.png)
 
 
 ## Authors
