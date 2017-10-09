@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 14:03:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/10/02 11:41:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/10/09 12:53:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,33 @@ void			*init_client(void *arg)
 	return (NULL);
 }
 
-void			cluster_initialize(t_world *world, t_cluster *cluster)
+void			cluster_initialize(t_world *world, t_cluster *cl)
 {
 	int					ret;
-	int					port_offs;
-	struct sockaddr_in	sockaddr_in;
+	int					pf;
+	struct sockaddr_in	sk;
 	int					enable;
 
-	cluster->client_list = NULL;
-	if ((cluster->sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+	cl->client_list = NULL;
+	if ((cl->sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
 		ft_putendl_fd("Error : no create socket", 1);
-	if (setsockopt(cluster->sockfd,
+	if (setsockopt(cl->sockfd,
 				SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(enable)) < 0)
 		ft_putendl_fd("Error :setsockopt(SO_REUSEADDR) failed", 1);
-	ft_bzero(&sockaddr_in, sizeof(sockaddr_in));
-	sockaddr_in.sin_family = AF_INET;
-	sockaddr_in.sin_port = FIND_PORT;
-	sockaddr_in.sin_addr.s_addr = INADDR_ANY;
-	port_offs = 0;
-	while (port_offs <= 5 && (ret = bind(cluster->sockfd,
-					(void *)&sockaddr_in, sizeof(sockaddr_in))) == -1)
-		sockaddr_in.sin_port = FIND_PORT + ++port_offs;
+	ft_bzero(&sk, sizeof(sk));
+	sk.sin_family = AF_INET;
+	sk.sin_port = FIND_PORT;
+	sk.sin_addr.s_addr = INADDR_ANY;
+	pf = 0;
+	while (pf <= 5 && (ret = bind(cl->sockfd, (void *)&sk, sizeof(sk))) == -1)
+		sk.sin_port = FIND_PORT + ++pf;
 	if (ret == -1)
 		ft_putendl_fd("Error : all ports used", 1);
-	if (listen(cluster->sockfd, 0) == -1)
+	if (listen(cl->sockfd, 0) == -1)
 		ft_putendl_fd("Error : listen", 1);
-	cluster->world = world;
-	cluster->nbr_clients = 0;
-	pthread_create(&cluster->client_thread, NULL, &init_client, cluster);
+	cl->world = world;
+	cl->nbr_clients = 0;
+	pthread_create(&cl->client_thread, NULL, &init_client, cl);
 }
 
 void			put_buffer_together(t_cluster *cluster, t_client *clients,
@@ -120,10 +119,10 @@ void			render_clustering(t_cluster *cluster)
 			ft_putendl_fd("Error : Can't malloc cluster", 1);
 	}
 	ft_bzero(cluster->world->a_h, cluster->world->size_main);
-	tmp = cluster->nbr_clients;		
+	tmp = cluster->nbr_clients;
 	if (cluster_stratege(cluster) == 1)
 		launch_client(cluster, cluster->client_list);
-	tmp = cluster->nbr_clients;		
+	tmp = cluster->nbr_clients;
 	remove_client_if(cluster, &cluster->client_list, NULL, NULL);
 	if (cluster->nbr_clients == tmp)
 		put_buffer_together(cluster, cluster->client_list, 0, 0);
