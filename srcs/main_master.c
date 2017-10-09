@@ -70,6 +70,7 @@ void			cluster_initialize(t_world *world, t_cluster *cluster)
 	if (listen(cluster->sockfd, 0) == -1)
 		ft_putendl_fd("Error : listen", 1);
 	cluster->world = world;
+	cluster->nbr_clients = 0;
 	pthread_create(&cluster->client_thread, NULL, &init_client, cluster);
 }
 
@@ -119,9 +120,10 @@ void			render_clustering(t_cluster *cluster)
 			ft_putendl_fd("Error : Can't malloc cluster", 1);
 	}
 	ft_bzero(cluster->world->a_h, cluster->world->size_main);
+	tmp = cluster->nbr_clients;		
 	if (cluster_stratege(cluster) == 1)
 		launch_client(cluster, cluster->client_list);
-	tmp = cluster->nbr_clients;
+	tmp = cluster->nbr_clients;		
 	remove_client_if(cluster, &cluster->client_list, NULL, NULL);
 	if (cluster->nbr_clients == tmp)
 		put_buffer_together(cluster, cluster->client_list, 0, 0);
