@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene SYSTEM "../dtd/norme.dtd">
 <scene name="Just a cone">
   <plane>
@@ -9,18 +9,20 @@
     <reflection data="0.500000"/>
     <refraction data="0"/>
     <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </plane>
   <cone>
-    <pos x="0" y="1.500000" z="7.000000"/>
-    <normal x="0" y="-2.000000" z="1.000000"/>
+    <pos x="0" y="-1.000000" z="7.000000"/>
+    <normal x="0" y="1.332104" z="1.795967"/>
     <radius data="0.400000"/>
     <height data="2.000000"/>
     <min x="0" y="0" z="0"/>
     <max x="0" y="0" z="0"/>
     <color r="12" g="24" b="255"/>
-    <reflection data="0.200000"/>
+    <reflection data="0.400000"/>
     <refraction data="0"/>
-    <transparence data="0.300000"/>
+    <transparence data="0"/>
+    <perlin is_set="0" pre_set="0" scale="0" amount="0"/>
   </cone>
   <light>
     <pos x="0" y="5.000000" z="-4.000000"/>
@@ -33,7 +35,7 @@
     <intensity data="0.500000"/>
   </ambient>
   <camera>
-    <pos x="0" y="0.750000" z="-10.000000"/>
-    <dir x="0" y="0.250000" z="1.000000"/>
+    <pos x="8.000000" y="1.750000" z="-14.000000"/>
+    <dir x="3.000000" y="1.250000" z="1.000000"/>
   </camera>
 </scene>
