@@ -6,7 +6,7 @@
 #    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/16 11:32:29 by aanzieu           #+#    #+#              #
-#    Updated: 2017/10/03 09:26:48 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/10/09 10:57:25 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -286,7 +286,6 @@ obj/%.o: srcs/%.c
 objcuda/%.o: srcs/%.cu
 	if [ ! -d objcuda ]; then mkdir -p objcuda; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	#printf '\033[31m[✔] %s\n\033[0m' "--Set up Env Clang 7.3.0--------"
 	nvcc -g -c -dc -Wno-deprecated-gpu-targets $(INCLUDECUDA) $(INCLUDE) $(INCLUDEXML) $(INCLUDENK) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
