@@ -21,10 +21,7 @@ extern "C" {
 **	ecrit sur 't_vec3d *intersection' les coordonees du point d'intersection
 **	avec le plan
 */
-__host__ __device__ double nrm(t_vec3d t1)
-{
-	return (sqrt(pow(t1.x, 2) + pow(t1.y, 2) + pow(t1.z, 2)));
-}
+
 __host__ __device__ int		get_plane(t_plane plane, t_ray ray,
 	t_intersection *intersection_tmp)
 {
@@ -41,7 +38,7 @@ __host__ __device__ int		get_plane(t_plane plane, t_ray ray,
 		x = vector_scalar(vector_calculate(plane.pos, ray.origin), -1);
 		n = vector_dot(x, normal_v);
 		t = n / v;
-		if (t > 0.0000001)
+		if (t > 0.0000001 && t < 100000)
 		{
 			intersection_tmp->t = t;
 			if (v > 0)
