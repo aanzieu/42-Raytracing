@@ -37,7 +37,7 @@ $> ./bin/RT
 ```
 To run in clustering mode as a client:
 ``` bash
-$> sh scripts/config_cluster.sh
+$> sh scripts/config_cluster.sh [master IP]
 ```
 ## Media
 
